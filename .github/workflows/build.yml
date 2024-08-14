@@ -21,8 +21,5 @@ jobs:
     - name: Build Installer
       run: dotnet build "./installer/installer.sln" -c Release
       
-    - name: Build Launcher
-      run: dotnet build "./launcher/launcher.sln" -c Release
-      
     - name: Build Playback
       run: dotnet build "./playback/playback.sln" -c Release
