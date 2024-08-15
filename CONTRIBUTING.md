@@ -5,9 +5,9 @@
 + `main`: 主分支，用于记录阶段性成果，由管理员维护，需要 2 个 approving reviews
 + `dev`: 用于记录最新进展，由开发者进行维护，需要 1 个 approving review
 
-## 向 THUAI7 贡献代码
+## 向 8 贡献代码
 
-请遵循一下贡献流程，向 THUAI7 贡献代码 
+请遵循一下贡献流程，向 THUAI8 贡献代码 
 
 1. 将 `eesast/THUAI8` fork 到自己的仓库中
 2. 基于 `dev` 分支建立一个新的功能分支
