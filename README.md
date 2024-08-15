@@ -27,9 +27,8 @@
 |    CAPI    |                  选手接口，生成可执行文件                  |             通信组             |
 |    docs    |                       比赛的说明文档                       | 逻辑组、通信组、运维组、界面组 |
 | dependency | 项目依赖文件，如 proto、dll、lib、dockerfile、shell 脚本等 | 逻辑组、通信组、运维组、界面组 |
-| installer  |       下载器，用于选手包的下载与更新，生成可执行文件       |             运维组             |
-| interface  |                         Unity 界面                         |             界面组             |
-|  launcher  |        游戏启动器，用于快速启动游戏，生成可执行文件        |             运维组             |
+| installer  |下载器兼启动器，用于选手包的下载与更新，生成可执行文件，启动游戏|             运维组             |
+| interface  |                         简易调试界面，Unity 界面                  |             界面组             |
 |   logic    |              游戏逻辑、Server，生成可执行文件              |         通信组、逻辑组         |
 |  playback  |                   游戏回放组件，生成类库                   |             逻辑组             |
 |  resource  |       资源文件目录，用于存储主目录下 README 所用图片       |            端茶倒水            |
