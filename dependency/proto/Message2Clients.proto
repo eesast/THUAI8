@@ -1,0 +1,180 @@
+// Message2Client
+syntax = "proto3";
+package protobuf;
+
+import "MessageType.proto";
+
+message MessageOfCharacter
+{
+    int64 guid = 1;
+
+    int64 team_id = 2;
+    int64 player_id = 3;
+
+    CharacterType character_type = 4;
+    CharacterState character_state = 5;
+
+    int32 x = 6;
+    int32 y = 7;
+
+    double facing_direction = 8;
+    int32 speed = 9;
+    int32 view_range = 10;
+
+    int32 ATK =11;
+    int32 attack_range = 12;
+
+    double skill_cd = 17;
+
+    int32 economy_depletion = 13;
+    int32 kill_score = 14;
+    
+    int32 hp = 15; 
+
+    EquipmentType equipment_type = 16;
+}
+
+message MessageOfBarracks
+{
+    int32 x = 1;
+    int32 y = 2;
+    int32 hp = 3; // 剩余的血量
+    int64 team_id = 4;
+}
+
+message MessageOfSpring
+{
+    int32 x = 1;
+    int32 y = 2;
+    int32 hp = 3; // 剩余的血量
+    int64 team_id = 4;
+}
+
+message MessageOfFarm
+{
+    int32 x = 1;
+    int32 y = 2;
+    int32 hp = 3; // 剩余的血量
+    int64 team_id = 4;
+}
+
+message MessageOfTrap
+{
+    TrapType trap_type = 1;
+
+    int32 x = 2;
+    int32 y = 3;
+
+    int64 team_id = 4;
+}
+
+message MessageOfResource
+{
+    ResourceType resource_type = 1;
+    ResourceState resource_state = 2;
+
+    int32 x = 3;
+    int32 y = 4;
+
+    int32 hp = 5;
+}
+
+message MessageOfMap
+{
+    uint32 height = 1;
+    uint32 width = 2;
+    message Row
+    {
+        repeated PlaceType cols = 1;
+    }
+    repeated Row rows = 3;
+}
+
+message MessageOfTeam
+{
+    int64 team_id = 1;
+    int64 player_id = 2;
+    int64 score = 3;
+    int64 energy = 4;
+//    int64 guid=5;
+}
+
+message MessageOfObj
+{
+    oneof message_of_obj
+    {
+        MessageOfCharacter character_message = 1;
+        MessageOfBarracks barracks_message = 2;
+        MessageOfSpring spring_message = 3;
+        MessageOfFarm farm_message = 4;
+        MessageOfTrap trap_message = 5;
+        MessageOfResource resource_message = 6;
+        MessageOfMap map_message = 7;
+        MessageOfNews news_message = 8;
+        MessageOfTeam team_message = 9;
+    }
+}
+
+message MessageOfAll
+{
+    int32 game_time = 1;
+    int32 buddhists_team_score=2;
+    int32 monsters_team_score=3;
+    int32 buddhists_team_energy=4;
+    int32 monsters_team_energy=5;
+    int32 buddhists_hero_hp=6;
+    int32 monsters_hero_hp=7;
+}
+
+message MessageToClient
+{
+    repeated MessageOfObj obj_message = 1;
+    GameState game_state = 2;
+    MessageOfAll all_message = 3;
+}
+
+message MoveRes // 如果打算设计撞墙保留平行速度分量，且需要返回值则可用这个（大概没啥用）
+{
+    int64 actual_speed = 1;
+    double actual_angle = 2;
+    bool act_success = 3;
+}
+
+message CreatCharacterRes
+{
+    bool act_success = 1;
+    int64 player_id = 2;
+}
+
+message BoolRes
+{
+    bool act_success = 1;
+}
+
+message CharacterInfoRes
+{
+    repeated MessageOfCharacter Character_info = 1;
+}
+
+message EcoRes
+{
+    int64 economy = 1;
+}
+
+message MessageOfNews
+{
+    oneof news // 一条新闻
+    {
+        string text_message = 1;
+        bytes binary_message = 2;
+    }
+    int64 from_id = 3;
+    int64 to_id = 4;
+    int64 team_id = 5;
+}
+// message MsgRes // 用于获取队友发来的消息
+// {
+//     bool have_message = 1; // 是否有待接收的消息
+//     int64 from_player_id = 2;
+//     string message_received = 3;
+// }
