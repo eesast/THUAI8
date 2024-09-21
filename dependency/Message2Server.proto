@@ -1,0 +1,93 @@
+// Message2Server
+syntax = "proto3";
+package protobuf;
+import "MessageType.proto";
+
+message NullRequest {}
+
+message IDMsg
+{
+    int64 character_id = 1;
+    int64 team_id = 2;
+}
+
+message CharacterMsg
+{
+    int64 character_id = 1;
+    int64 team_id = 2;
+    CharacterType character_type = 3;
+}
+
+
+message MoveMsg
+{
+    int64 character_id = 1;
+    double angle = 2;
+    int64 time_in_milliseconds = 3;
+    int64 team_id = 4;
+}
+
+message SendMsg
+{
+    int64 character_id = 1;
+    int64 to_character_id = 2;
+    oneof message
+    {
+        string text_message = 3;
+        bytes binary_message = 4;
+    }
+    int64 team_id = 5;
+}
+
+message AttackMsg // 相当于攻击
+{
+    int64 character_id = 1;
+    int64 team_id = 2;
+    int32 attack_range = 3; // 攻击范围
+    int64 attacked_character_id = 4;
+}
+
+message CastMsg
+{
+    int64 character_id = 0;
+    int64 skill_id = 1;
+    repeated int64 casted_character_id = 2;
+    int64 team_id = 3;
+    int32 x = 4;
+    int32 y = 5;
+}
+
+message ConstructMsg //修建建筑
+{
+    int64 character_id = 1;
+    ConstructionType construction_type = 2;
+    int64 team_id = 3;
+}
+
+message EquipMsg
+{
+    int64 character_id = 1;
+    EquipmentType equipment_type = 2;
+    int64 team_id = 3;
+}
+
+message RecoverMsg
+{
+    int64 character_id = 1;
+    int64 recovered_hp = 2;
+    int64 team_id = 3;
+}
+
+message ShieldMsg
+{
+    int64 character_id = 1;
+    int64 defensive_value = 2;
+    int64 team_id = 3;
+}
+
+message CreatCharacterMsg
+{
+    CharacterType character_type = 1;
+    int64 team_id = 2;
+    int32 birthpoint_index = 3;
+}
