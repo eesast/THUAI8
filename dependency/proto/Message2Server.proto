@@ -55,6 +55,7 @@ message CastMsg
     int64 team_id = 3;
     int32 x = 4;
     int32 y = 5;
+    int32 attack_range = 6; // 攻击范围
 }
 
 message ConstructMsg //修建建筑
