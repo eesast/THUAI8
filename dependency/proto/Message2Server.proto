@@ -53,9 +53,15 @@ message CastMsg
     int64 skill_id = 1;
     repeated int64 casted_character_id = 2;
     int64 team_id = 3;
+<<<<<<< HEAD
     int32 attack_range = 4; // 攻击范围
     int32 x = 5;
     int32 y = 6;
+=======
+    int32 x = 4;
+    int32 y = 5;
+    int32 attack_range = 6; // 攻击范围
+>>>>>>> 7b16393b68d52fc7c25edae8e00c5196d41d6276
 }
 
 message ConstructMsg //修建建筑
