@@ -39,22 +39,27 @@ message SendMsg
     int64 team_id = 5;
 }
 
-message AttackMsg // 相当于攻击
+message AttackMsg // 普通攻击
 {
     int64 character_id = 1;
     int64 team_id = 2;
     int32 attack_range = 3; // 攻击范围
-    int64 attacked_character_id = 4;
+    int64 attacked_character_id = 4; // 攻击对象
 }
 
-message CastMsg
+message CastMsg // 释放技能
 {
     int64 character_id = 0;
     int64 skill_id = 1;
-    repeated int64 casted_character_id = 2;
+    repeated int64 casted_character_id = 2; // 技能作用的对象，可能有多个
     int64 team_id = 3;
-    int32 x = 4;
-    int32 y = 5;
+
+    // 释放技能时角色的位置（击退可能有用）
+    optional int32 x = 4;
+    optional int32 y = 5;
+
+    // 释放技能的角度（激光束可能有用）
+    optional double angle = 6;
 }
 
 message ConstructMsg //修建建筑
@@ -75,13 +80,6 @@ message RecoverMsg
 {
     int64 character_id = 1;
     int64 recovered_hp = 2;
-    int64 team_id = 3;
-}
-
-message ShieldMsg
-{
-    int64 character_id = 1;
-    int64 defensive_value = 2;
     int64 team_id = 3;
 }
 

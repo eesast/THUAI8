@@ -7,21 +7,24 @@ import "Message2Server.proto";
 service AvailableService
 {
     rpc TryConnection(IDMsg) returns (BoolRes);
+
     // 游戏开局调用一次的服务
-    rpc AddPlayer(PlayerMsg) returns (stream MessageToClient); // 连接上后等待游戏开始，server会定时通过该服务向所有client发送消息
+    rpc AddCharacter(CharacterMsg) returns (stream MessageToClient); // 连接上后等待游戏开始，server会定时通过该服务向所有client发送消息
     rpc GetMap(NullRequest) returns (MessageOfMap);
-    // 游戏过程中玩家执行操作的服务
-    // 船
+
+    // 游戏过程中普通角色执行操作的服务
     rpc Move(MoveMsg) returns (MoveRes);            // 移动
     rpc Recover(RecoverMsg) returns (BoolRes);      // 回复
-    rpc Harvest(IDMsg) returns (BoolRes);           // 开采
+    rpc Harvest(IDMsg) returns (BoolRes);           // 开采经济资源
     rpc Rebuild(ConstructMsg) returns (BoolRes);    // 给建筑回血
     rpc Construct(ConstructMsg) returns (BoolRes);  // 修建建筑
     rpc Equip(EquipMsg) returns (BoolRes);          // 买装备
-    rpc Attack(AttackMsg) returns (BoolRes);        // 攻击
+    rpc Attack(AttackMsg) returns (BoolRes);        // 普通攻击
     rpc Cast(CastMsg) returns (BoolRes);            // 释放技能
     rpc Send(SendMsg) returns (BoolRes);            // 传递信息
-    rpc CreatCharacter(CreatCharacterMsg) returns (BoolRes);
-    rpc CreatCharacterRID(CreatCharacterMsg) returns (CreatCharacterRes);
+
+    // 游戏过程中核心角色可以另外执行操作的服务
+    rpc CreatCharacter(CreatCharacterMsg) returns (BoolRes); // 创建角色
+    rpc CreatCharacterRID(CreatCharacterMsg) returns (CreatCharacterRes); // 获取角色编号
     rpc EndAllAction(IDMsg) returns (BoolRes); // 结束所有动作
 }
