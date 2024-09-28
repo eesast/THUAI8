@@ -24,14 +24,14 @@ message MessageOfCharacter
     int32 ATK =11;
     int32 attack_range = 12;
 
-    double skill_cd = 17;
+    double skill_cd = 13;
 
-    int32 economy_depletion = 13;
-    int32 kill_score = 14;
+    int32 economy_depletion = 14;
+    int32 kill_score = 15;
     
-    int32 hp = 15; 
+    int32 hp = 16; 
 
-    EquipmentType equipment_type = 16;
+    EquipmentType equipment_type = 17;
 }
 
 message MessageOfBarracks
