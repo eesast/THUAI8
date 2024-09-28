@@ -54,6 +54,8 @@ message CastMsg // 释放技能
     repeated int64 casted_character_id = 2; // 技能作用的对象，可能有多个
     int64 team_id = 3;
 
+    int32 attack_range = 4; // 攻击范围
+
     // 释放技能时角色的位置（击退可能有用）
     optional int32 x = 4;
     optional int32 y = 5;
