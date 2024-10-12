@@ -15,14 +15,7 @@ jobs:
       with:
         dotnet-version: 8.0.x
 
-    - name: Setup dotnet-script
-      run: dotnet tool install --global dotnet-script
-    - name: Pre-process1
-      run: dotnet script .github/preProcess/AvaloniaEnvConfig.csx
-    - name: Install Workloads
-      run: dotnet new worload install Avalonia.Templates
-    - name: Build Proto
-      run: dotnet build "./dependency/proto/Protos.csproj" -c Release
+    
     - name: Build Logic
       run: dotnet build "./logic/logic.sln" -c Release
 
@@ -35,12 +28,7 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
-      - name: Setup dotnet-script
-        run: dotnet tool install --global dotnet-script
-      - name: Pre-Process1
-        run: dotnet script .github/preProcess/AvaloniaEnvConfig.csx
-      - name: Install Workloads
-        run: dotnet new workload install Avalonia.Templates
+
       - name: Build Installer
         run: dotnet build "./installer/installer.sln" -c Release
 
@@ -66,6 +54,6 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-        
+
     - name: Build Playback
       run: dotnet build "./playback/playback.sln" -c Release
