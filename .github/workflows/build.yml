@@ -32,18 +32,6 @@ jobs:
       - name: Build Installer
         run: dotnet build "./installer/installer.sln" -c Release
 
-  donet-build-launcher:
-    if: true
-    runs-on: windows-latest
-    steps:
-    - uses: actions/checkout@v4
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v4
-      with:
-        dontnet-version: 8.0.x
-
-    - name: Build Lancher:
-      run: dotnet build "./launcher/launcher.sln" -c Release
 
   dotnet-build-playback:
     if: ture
