@@ -40,3 +40,8 @@ jobs:
       run: |
         dotnet restore "./playback/playback.sln"
         dotnet format "./playback/playback.sln" --severity error --no-restore --verify-no-changes
+    - name: Check Interface
+      run: |
+        dotnet format whitespace "./interface/interface_live/Assets/Scripts/" --folder --verify-no-changes
+        dotnet format whitespace "./interface/interface_playback/Assets/Scripts/" --folder --verify-no-changes
+        dotnet format whitespace "./interface/interface_local/Assets/Scripts/" --folder --verify-no-changes
