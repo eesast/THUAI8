@@ -23,14 +23,29 @@ void ChangeFile(string path)
 {
     var document = new XmlDocument();
     document.Load(path);
-    var es = document.GetElementsByTagName("TargetFrameworks");
-    if (es.Count == 2)
+    var projectNode = document.DocumentElement;
+    if (projectNode != null)
     {
-        var i0 = es[0];
-        var i1 = es[1];
-        var text = i1.InnerText;
-        i0.InnerText = text.Split(';')[1];
-        i0.ParentNode.RemoveChild(i1);
+        var propertyGroup = document.CreateElement("PropertyGroup", projectNode.NamespaceURI);
+        
+        var optimize = document.CreateElement("Optimize", projectNode.NamespaceURI);
+        optimize.InnerText = "true";
+        propertyGroup.AppendChild(optimize);
+        
+        var serverGc = document.CreateElement("ServerGarbageCollection", projectNode.NamespaceURI);
+        serverGc.InnerText = "true";
+        propertyGroup.AppendChild(serverGc);
+        
+        var concurrentGc = document.CreateElement("ConcurrentGarbageCollection", projectNode.NamespaceURI);
+        concurrentGc.InnerText = "true";
+        propertyGroup.AppendChild(concurrentGc);
+        
+        var tieredCompilation = document.CreateElement("TieredCompilation", projectNode.NamespaceURI);
+        tieredCompilation.InnerText = "true";
+        propertyGroup.AppendChild(tieredCompilation);
+        
+        projectNode.AppendChild(propertyGroup);
     }
+    
     document.Save(path);
 }

@@ -14,10 +14,23 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-        
+    - name: Setup dotnet-script
+      run: dotnet tool install --global dotnet-script
+    - name: Pre-process1
+      run: dotnet script .github/preProcess/AvaloniaEnvConfig.csx
+    - name: Install Workloads
+      run: dotnet worload install avalonia
+    - name: Build Proto
+      run: dotnet build "./dependency/proto/Protos.csproj" -c Release
     - name: Build Logic
       run: dotnet build "./logic/logic.sln" -c Release
       
+    - name: Setup dotnet-script
+      run: dotnet tool install --global dotnet-script
+    - name: Pre-Process1
+      run: dotnet script .github/preProcess/AvaloniaEnvConfig.csx
+    - name: Install Workloads
+      run: dotnet workload install avalonia
     - name: Build Installer
       run: dotnet build "./installer/installer.sln" -c Release
       
