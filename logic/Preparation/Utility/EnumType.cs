@@ -13,7 +13,7 @@ namespace Preparation.Utility
         TRAP = 8,              // 陷阱
     }
 
-    public enum CharacterState
+    public enum CharacterState //角色状态
     {
         NULL_CHARACTER_STATE = 0,
 
