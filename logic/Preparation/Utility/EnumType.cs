@@ -93,22 +93,22 @@ namespace Preparation.Utility
 
     public enum CharacterType
     {
-        Null=0,
+        Null = 0,
 
         //取经团队阵营
-        Tangseng=1,
-        SunWukong=2,
-        ZhuBajie=3,
-        ShaWujing=4,
-        BaiLongma=5,
+        Tangseng = 1,
+        SunWukong = 2,
+        ZhuBajie = 3,
+        ShaWujing = 4,
+        BaiLongma = 5,
 
         //妖怪阵营
-        Jiuling=6,
-        HongHaier=7,
-        NiuMowang=8,
-        TieShan=9,
-        Zhizhujing=10,
+        Jiuling = 6,
+        HongHaier = 7,
+        NiuMowang = 8,
+        TieShan = 9,
+        Zhizhujing = 10,
 
-        Pawn=11,
+        Pawn = 11,
     }
 }
