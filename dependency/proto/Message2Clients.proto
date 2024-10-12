@@ -24,7 +24,7 @@ message MessageOfCharacter
     int32 ATK =11;
     int32 attack_range = 12;
 
-    double skill_cd = 13;
+    int32 skill_cd = 13;
 
     int32 economy_depletion = 14;
     int32 kill_score = 15;
