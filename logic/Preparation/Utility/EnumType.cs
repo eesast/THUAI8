@@ -42,7 +42,7 @@ namespace Preparation.Utility
         SQUARE = 2,
     }
 
-    public enum EconomyResourceState
+    public enum EconomyResourceState //经济资源状态
     {
         NULL_ECONOMY_RESOURCE_STSTE = 0,
         HARVESTABLE = 1,
@@ -50,7 +50,7 @@ namespace Preparation.Utility
         HARVESTED = 3,
     }
 
-    public enum AdditionResourceState
+    public enum AdditionResourceState //加成资源状态
     {
         NULL_ADDITION_RESOURCE_STATE = 0,
         BEATABLE = 1,
@@ -58,7 +58,7 @@ namespace Preparation.Utility
         BEATEN = 3,
     }
 
-    public enum EquipmentType
+    public enum EquipmentType //装备类型
     {
         NULL_EQUIPMENT_TYPE = 0,
 
