@@ -120,7 +120,7 @@ message MessageOfObj
         MessageOfFarm farm_message = 4;
         MessageOfTrap trap_message = 5;
         MessageOfEconomyResource economy_resource_message = 6;
-        MessageOfAdditonResource addition_resource_message = 7;
+        MessageOfAdditionResource addition_resource_message = 7;
         MessageOfMap map_message = 8;
         MessageOfNews news_message = 9;
         MessageOfTeam team_message = 10;
