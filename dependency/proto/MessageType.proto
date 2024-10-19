@@ -76,7 +76,7 @@ enum CharacterState // 角色状态
 enum EconomyResourceType // 经济资源
 {
     NULL_ECONOMY_RESOURCE_TYPE = 0;
-    ECONOMY_RESOURCE = 1;
+    ECONOMY_RESOURCE_TYPE = 1;
 }
 
 enum AdditionResourceType // 加成资源
