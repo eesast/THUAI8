@@ -23,7 +23,8 @@ PROTOBUF_PRAGMA_INIT_SEG
 namespace _pb = ::google::protobuf;
 namespace _pbi = ::google::protobuf::internal;
 namespace _fl = ::google::protobuf::internal::field_layout;
-namespace protobuf {
+namespace protobuf
+{
 }  // namespace protobuf
 static constexpr const ::_pb::EnumDescriptor**
     file_level_enum_descriptors_Services_2eproto = nullptr;
@@ -33,7 +34,8 @@ const ::uint32_t TableStruct_Services_2eproto::offsets[1] = {};
 static constexpr ::_pbi::MigrationSchema* schemas = nullptr;
 static constexpr ::_pb::Message* const* file_default_instances = nullptr;
 const char descriptor_table_protodef_Services_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
-    protodesc_cold) = {
+    protodesc_cold
+) = {
     "\n\016Services.proto\022\010protobuf\032\025Message2Clie"
     "nts.proto\032\024Message2Server.proto2\307\006\n\020Avai"
     "lableService\0223\n\rTryConnection\022\017.protobuf"
@@ -57,8 +59,7 @@ const char descriptor_table_protodef_Services_2eproto[] ABSL_ATTRIBUTE_SECTION_V
     "RID\022\033.protobuf.CreatCharacterMsg\032\033.proto"
     "buf.CreatCharacterRes\0222\n\014EndAllAction\022\017."
     "protobuf.IDMsg\032\021.protobuf.BoolResb\006proto"
-    "3"
-};
+    "3"};
 static const ::_pbi::DescriptorTable* const descriptor_table_Services_2eproto_deps[2] =
     {
         &::descriptor_table_Message2Clients_2eproto,
@@ -81,12 +82,15 @@ PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_Services_2epro
     file_level_enum_descriptors_Services_2eproto,
     file_level_service_descriptors_Services_2eproto,
 };
-namespace protobuf {
-// @@protoc_insertion_point(namespace_scope)
+namespace protobuf
+{
+    // @@protoc_insertion_point(namespace_scope)
 }  // namespace protobuf
-namespace google {
-namespace protobuf {
-}  // namespace protobuf
+namespace google
+{
+    namespace protobuf
+    {
+    }  // namespace protobuf
 }  // namespace google
 // @@protoc_insertion_point(global_scope)
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 static ::std::false_type

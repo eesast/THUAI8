@@ -23,7 +23,8 @@ PROTOBUF_PRAGMA_INIT_SEG
 namespace _pb = ::google::protobuf;
 namespace _pbi = ::google::protobuf::internal;
 namespace _fl = ::google::protobuf::internal::field_layout;
-namespace protobuf {
+namespace protobuf
+{
 }  // namespace protobuf
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_MessageType_2eproto[14];
 static constexpr const ::_pb::ServiceDescriptor**
@@ -32,7 +33,8 @@ const ::uint32_t TableStruct_MessageType_2eproto::offsets[1] = {};
 static constexpr ::_pbi::MigrationSchema* schemas = nullptr;
 static constexpr ::_pb::Message* const* file_default_instances = nullptr;
 const char descriptor_table_protodef_MessageType_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
-    protodesc_cold) = {
+    protodesc_cold
+) = {
     "\n\021MessageType.proto\022\010protobuf*P\n\tGameSta"
     "te\022\023\n\017NULL_GAME_STATE\020\000\022\016\n\nGAME_START\020\001\022"
     "\020\n\014GAME_RUNNING\020\002\022\014\n\010GAME_END\020\003*\225\001\n\tPlac"
@@ -82,8 +84,7 @@ const char descriptor_table_protodef_MessageType_2eproto[] ABSL_ATTRIBUTE_SECTIO
     "\010NewsType\022\022\n\016NULL_NEWS_TYPE\020\000\022\010\n\004TEXT\020\001\022"
     "\n\n\006BINARY\020\002*B\n\nPlayerTeam\022\r\n\tNULL_TEAM\020\000"
     "\022\022\n\016BUDDHISTS_TEAM\020\001\022\021\n\rMONSTERS_TEAM\020\002b"
-    "\006proto3"
-};
+    "\006proto3"};
 static ::absl::once_flag descriptor_table_MessageType_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_MessageType_2eproto = {
     false,
@@ -101,138 +102,197 @@ PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_MessageType_2e
     file_level_enum_descriptors_MessageType_2eproto,
     file_level_service_descriptors_MessageType_2eproto,
 };
-namespace protobuf {
-const ::google::protobuf::EnumDescriptor* GameState_descriptor() {
-  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
-  return file_level_enum_descriptors_MessageType_2eproto[0];
-}
-PROTOBUF_CONSTINIT const uint32_t GameState_internal_data_[] = {
-    262144u, 0u, };
-bool GameState_IsValid(int value) {
-  return 0 <= value && value <= 3;
-}
-const ::google::protobuf::EnumDescriptor* PlaceType_descriptor() {
-  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
-  return file_level_enum_descriptors_MessageType_2eproto[1];
-}
-PROTOBUF_CONSTINIT const uint32_t PlaceType_internal_data_[] = {
-    589824u, 0u, };
-bool PlaceType_IsValid(int value) {
-  return 0 <= value && value <= 8;
-}
-const ::google::protobuf::EnumDescriptor* ShapeType_descriptor() {
-  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
-  return file_level_enum_descriptors_MessageType_2eproto[2];
-}
-PROTOBUF_CONSTINIT const uint32_t ShapeType_internal_data_[] = {
-    196608u, 0u, };
-bool ShapeType_IsValid(int value) {
-  return 0 <= value && value <= 2;
-}
-const ::google::protobuf::EnumDescriptor* CharacterType_descriptor() {
-  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
-  return file_level_enum_descriptors_MessageType_2eproto[3];
-}
-PROTOBUF_CONSTINIT const uint32_t CharacterType_internal_data_[] = {
-    851968u, 0u, };
-bool CharacterType_IsValid(int value) {
-  return 0 <= value && value <= 12;
-}
-const ::google::protobuf::EnumDescriptor* CharacterState_descriptor() {
-  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
-  return file_level_enum_descriptors_MessageType_2eproto[4];
-}
-PROTOBUF_CONSTINIT const uint32_t CharacterState_internal_data_[] = {
-    917504u, 0u, };
-bool CharacterState_IsValid(int value) {
-  return 0 <= value && value <= 13;
-}
-const ::google::protobuf::EnumDescriptor* EconomyResourceType_descriptor() {
-  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
-  return file_level_enum_descriptors_MessageType_2eproto[5];
-}
-PROTOBUF_CONSTINIT const uint32_t EconomyResourceType_internal_data_[] = {
-    131072u, 0u, };
-bool EconomyResourceType_IsValid(int value) {
-  return 0 <= value && value <= 1;
-}
-const ::google::protobuf::EnumDescriptor* AdditionResourceType_descriptor() {
-  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
-  return file_level_enum_descriptors_MessageType_2eproto[6];
-}
-PROTOBUF_CONSTINIT const uint32_t AdditionResourceType_internal_data_[] = {
-    589824u, 0u, };
-bool AdditionResourceType_IsValid(int value) {
-  return 0 <= value && value <= 8;
-}
-const ::google::protobuf::EnumDescriptor* EconomyResourceState_descriptor() {
-  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
-  return file_level_enum_descriptors_MessageType_2eproto[7];
-}
-PROTOBUF_CONSTINIT const uint32_t EconomyResourceState_internal_data_[] = {
-    262144u, 0u, };
-bool EconomyResourceState_IsValid(int value) {
-  return 0 <= value && value <= 3;
-}
-const ::google::protobuf::EnumDescriptor* AdditionResourceState_descriptor() {
-  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
-  return file_level_enum_descriptors_MessageType_2eproto[8];
-}
-PROTOBUF_CONSTINIT const uint32_t AdditionResourceState_internal_data_[] = {
-    262144u, 0u, };
-bool AdditionResourceState_IsValid(int value) {
-  return 0 <= value && value <= 3;
-}
-const ::google::protobuf::EnumDescriptor* EquipmentType_descriptor() {
-  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
-  return file_level_enum_descriptors_MessageType_2eproto[9];
-}
-PROTOBUF_CONSTINIT const uint32_t EquipmentType_internal_data_[] = {
-    720896u, 0u, };
-bool EquipmentType_IsValid(int value) {
-  return 0 <= value && value <= 10;
-}
-const ::google::protobuf::EnumDescriptor* ConstructionType_descriptor() {
-  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
-  return file_level_enum_descriptors_MessageType_2eproto[10];
-}
-PROTOBUF_CONSTINIT const uint32_t ConstructionType_internal_data_[] = {
-    262144u, 0u, };
-bool ConstructionType_IsValid(int value) {
-  return 0 <= value && value <= 3;
-}
-const ::google::protobuf::EnumDescriptor* TrapType_descriptor() {
-  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
-  return file_level_enum_descriptors_MessageType_2eproto[11];
-}
-PROTOBUF_CONSTINIT const uint32_t TrapType_internal_data_[] = {
-    196608u, 0u, };
-bool TrapType_IsValid(int value) {
-  return 0 <= value && value <= 2;
-}
-const ::google::protobuf::EnumDescriptor* NewsType_descriptor() {
-  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
-  return file_level_enum_descriptors_MessageType_2eproto[12];
-}
-PROTOBUF_CONSTINIT const uint32_t NewsType_internal_data_[] = {
-    196608u, 0u, };
-bool NewsType_IsValid(int value) {
-  return 0 <= value && value <= 2;
-}
-const ::google::protobuf::EnumDescriptor* PlayerTeam_descriptor() {
-  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
-  return file_level_enum_descriptors_MessageType_2eproto[13];
-}
-PROTOBUF_CONSTINIT const uint32_t PlayerTeam_internal_data_[] = {
-    196608u, 0u, };
-bool PlayerTeam_IsValid(int value) {
-  return 0 <= value && value <= 2;
-}
-// @@protoc_insertion_point(namespace_scope)
+namespace protobuf
+{
+    const ::google::protobuf::EnumDescriptor* GameState_descriptor()
+    {
+        ::google::protobuf::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
+        return file_level_enum_descriptors_MessageType_2eproto[0];
+    }
+    PROTOBUF_CONSTINIT const uint32_t GameState_internal_data_[] = {
+        262144u,
+        0u,
+    };
+    bool GameState_IsValid(int value)
+    {
+        return 0 <= value && value <= 3;
+    }
+    const ::google::protobuf::EnumDescriptor* PlaceType_descriptor()
+    {
+        ::google::protobuf::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
+        return file_level_enum_descriptors_MessageType_2eproto[1];
+    }
+    PROTOBUF_CONSTINIT const uint32_t PlaceType_internal_data_[] = {
+        589824u,
+        0u,
+    };
+    bool PlaceType_IsValid(int value)
+    {
+        return 0 <= value && value <= 8;
+    }
+    const ::google::protobuf::EnumDescriptor* ShapeType_descriptor()
+    {
+        ::google::protobuf::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
+        return file_level_enum_descriptors_MessageType_2eproto[2];
+    }
+    PROTOBUF_CONSTINIT const uint32_t ShapeType_internal_data_[] = {
+        196608u,
+        0u,
+    };
+    bool ShapeType_IsValid(int value)
+    {
+        return 0 <= value && value <= 2;
+    }
+    const ::google::protobuf::EnumDescriptor* CharacterType_descriptor()
+    {
+        ::google::protobuf::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
+        return file_level_enum_descriptors_MessageType_2eproto[3];
+    }
+    PROTOBUF_CONSTINIT const uint32_t CharacterType_internal_data_[] = {
+        851968u,
+        0u,
+    };
+    bool CharacterType_IsValid(int value)
+    {
+        return 0 <= value && value <= 12;
+    }
+    const ::google::protobuf::EnumDescriptor* CharacterState_descriptor()
+    {
+        ::google::protobuf::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
+        return file_level_enum_descriptors_MessageType_2eproto[4];
+    }
+    PROTOBUF_CONSTINIT const uint32_t CharacterState_internal_data_[] = {
+        917504u,
+        0u,
+    };
+    bool CharacterState_IsValid(int value)
+    {
+        return 0 <= value && value <= 13;
+    }
+    const ::google::protobuf::EnumDescriptor* EconomyResourceType_descriptor()
+    {
+        ::google::protobuf::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
+        return file_level_enum_descriptors_MessageType_2eproto[5];
+    }
+    PROTOBUF_CONSTINIT const uint32_t EconomyResourceType_internal_data_[] = {
+        131072u,
+        0u,
+    };
+    bool EconomyResourceType_IsValid(int value)
+    {
+        return 0 <= value && value <= 1;
+    }
+    const ::google::protobuf::EnumDescriptor* AdditionResourceType_descriptor()
+    {
+        ::google::protobuf::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
+        return file_level_enum_descriptors_MessageType_2eproto[6];
+    }
+    PROTOBUF_CONSTINIT const uint32_t AdditionResourceType_internal_data_[] = {
+        589824u,
+        0u,
+    };
+    bool AdditionResourceType_IsValid(int value)
+    {
+        return 0 <= value && value <= 8;
+    }
+    const ::google::protobuf::EnumDescriptor* EconomyResourceState_descriptor()
+    {
+        ::google::protobuf::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
+        return file_level_enum_descriptors_MessageType_2eproto[7];
+    }
+    PROTOBUF_CONSTINIT const uint32_t EconomyResourceState_internal_data_[] = {
+        262144u,
+        0u,
+    };
+    bool EconomyResourceState_IsValid(int value)
+    {
+        return 0 <= value && value <= 3;
+    }
+    const ::google::protobuf::EnumDescriptor* AdditionResourceState_descriptor()
+    {
+        ::google::protobuf::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
+        return file_level_enum_descriptors_MessageType_2eproto[8];
+    }
+    PROTOBUF_CONSTINIT const uint32_t AdditionResourceState_internal_data_[] = {
+        262144u,
+        0u,
+    };
+    bool AdditionResourceState_IsValid(int value)
+    {
+        return 0 <= value && value <= 3;
+    }
+    const ::google::protobuf::EnumDescriptor* EquipmentType_descriptor()
+    {
+        ::google::protobuf::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
+        return file_level_enum_descriptors_MessageType_2eproto[9];
+    }
+    PROTOBUF_CONSTINIT const uint32_t EquipmentType_internal_data_[] = {
+        720896u,
+        0u,
+    };
+    bool EquipmentType_IsValid(int value)
+    {
+        return 0 <= value && value <= 10;
+    }
+    const ::google::protobuf::EnumDescriptor* ConstructionType_descriptor()
+    {
+        ::google::protobuf::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
+        return file_level_enum_descriptors_MessageType_2eproto[10];
+    }
+    PROTOBUF_CONSTINIT const uint32_t ConstructionType_internal_data_[] = {
+        262144u,
+        0u,
+    };
+    bool ConstructionType_IsValid(int value)
+    {
+        return 0 <= value && value <= 3;
+    }
+    const ::google::protobuf::EnumDescriptor* TrapType_descriptor()
+    {
+        ::google::protobuf::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
+        return file_level_enum_descriptors_MessageType_2eproto[11];
+    }
+    PROTOBUF_CONSTINIT const uint32_t TrapType_internal_data_[] = {
+        196608u,
+        0u,
+    };
+    bool TrapType_IsValid(int value)
+    {
+        return 0 <= value && value <= 2;
+    }
+    const ::google::protobuf::EnumDescriptor* NewsType_descriptor()
+    {
+        ::google::protobuf::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
+        return file_level_enum_descriptors_MessageType_2eproto[12];
+    }
+    PROTOBUF_CONSTINIT const uint32_t NewsType_internal_data_[] = {
+        196608u,
+        0u,
+    };
+    bool NewsType_IsValid(int value)
+    {
+        return 0 <= value && value <= 2;
+    }
+    const ::google::protobuf::EnumDescriptor* PlayerTeam_descriptor()
+    {
+        ::google::protobuf::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
+        return file_level_enum_descriptors_MessageType_2eproto[13];
+    }
+    PROTOBUF_CONSTINIT const uint32_t PlayerTeam_internal_data_[] = {
+        196608u,
+        0u,
+    };
+    bool PlayerTeam_IsValid(int value)
+    {
+        return 0 <= value && value <= 2;
+    }
+    // @@protoc_insertion_point(namespace_scope)
 }  // namespace protobuf
-namespace google {
-namespace protobuf {
-}  // namespace protobuf
+namespace google
+{
+    namespace protobuf
+    {
+    }  // namespace protobuf
 }  // namespace google
 // @@protoc_insertion_point(global_scope)
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 static ::std::false_type

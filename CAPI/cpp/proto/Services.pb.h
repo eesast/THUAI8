@@ -25,7 +25,7 @@
 #include "google/protobuf/metadata_lite.h"
 #include "google/protobuf/generated_message_reflection.h"
 #include "google/protobuf/repeated_field.h"  // IWYU pragma: export
-#include "google/protobuf/extension_set.h"  // IWYU pragma: export
+#include "google/protobuf/extension_set.h"   // IWYU pragma: export
 #include "Message2Clients.pb.h"
 #include "Message2Server.pb.h"
 // @@protoc_insertion_point(includes)
@@ -35,38 +35,39 @@
 
 #define PROTOBUF_INTERNAL_EXPORT_Services_2eproto
 
-namespace google {
-namespace protobuf {
-namespace internal {
-class AnyMetadata;
-}  // namespace internal
-}  // namespace protobuf
+namespace google
+{
+    namespace protobuf
+    {
+        namespace internal
+        {
+            class AnyMetadata;
+        }  // namespace internal
+    }      // namespace protobuf
 }  // namespace google
 
 // Internal implementation detail -- do not use these members.
-struct TableStruct_Services_2eproto {
-  static const ::uint32_t offsets[];
+struct TableStruct_Services_2eproto
+{
+    static const ::uint32_t offsets[];
 };
 extern const ::google::protobuf::internal::DescriptorTable
     descriptor_table_Services_2eproto;
-namespace google {
-namespace protobuf {
-}  // namespace protobuf
+namespace google
+{
+    namespace protobuf
+    {
+    }  // namespace protobuf
 }  // namespace google
 
-namespace protobuf {
+namespace protobuf
+{
 
-// ===================================================================
+    // ===================================================================
 
+    // ===================================================================
 
-
-// ===================================================================
-
-
-
-
-// ===================================================================
-
+    // ===================================================================
 
 #ifdef __GNUC__
 #pragma GCC diagnostic push
@@ -76,9 +77,8 @@ namespace protobuf {
 #pragma GCC diagnostic pop
 #endif  // __GNUC__
 
-// @@protoc_insertion_point(namespace_scope)
+    // @@protoc_insertion_point(namespace_scope)
 }  // namespace protobuf
-
 
 // @@protoc_insertion_point(global_scope)
 
