@@ -312,25 +312,21 @@ namespace THUAI8
     // 仅供DEBUG使用，名称可改动
     // 还没写完，后面待续
 
-    inline std::map<GameState, std::string> gameStateDict
-    {
+    inline std::map<GameState, std::string> gameStateDict{
         {GameState::NullGameState, "NullGameState"},
         {GameState::GameStart, "GameStart"},
         {GameState::GameRunning, "GameRunning"},
         {GameState::GameEnd, "GameEnd"},
     };
 
-    inline std::map<CharacterType, std::string> characterTypeDict
-    {
+    inline std::map<CharacterType, std::string> characterTypeDict{
         {CharacterType::NullCharacterType, "NullCharacterType"},
-
         {CharacterType::Camp1Character1, "Camp1Character1"},
         {CharacterType::Camp1Character2, "Camp1Character2"},
         {CharacterType::Camp1Character3, "Camp1Character3"},
         {CharacterType::Camp1Character4, "Camp1Character4"},
         {CharacterType::Camp1Character5, "Camp1Character5"},
         {CharacterType::Camp1Character6, "Camp1Character6"},
-
         {CharacterType::Camp2Character1, "Camp2Character1"},
         {CharacterType::Camp2Character2, "Camp2Character2"},
         {CharacterType::Camp2Character3, "Camp2Character3"},
@@ -339,17 +335,14 @@ namespace THUAI8
         {CharacterType::Camp2Character6, "Camp2Character6"},
     };
 
-    inline std::map<CharacterState, std::string> characterStateDict
-    {
+    inline std::map<CharacterState, std::string> characterStateDict{
         {CharacterState::NullCharacterState, "NullCharacterState"},
-
         {CharacterState::Idle, "Idle"},
         {CharacterState::Harvesting, "Harvesting"},
         {CharacterState::Attacking, "Attacking"},
         {CharacterState::SkillCasting, "SkillCasting"},
         {CharacterState::Constructing, "Constructing"},
         {CharacterState::Moving, "Moving"},
-
         {CharacterState::Blind, "Blind"},
         {CharacterState::KnockedBack, "KnockedBack"},
         {CharacterState::Stunned, "Stunned"},
@@ -359,15 +352,13 @@ namespace THUAI8
         {CharacterState::Burned, "Burned"},
     };
 
-    inline std::map<PlayerTeam, std::string> playerTeamDict
-    {
+    inline std::map<PlayerTeam, std::string> playerTeamDict{
         {PlayerTeam::NullTeam, "NullTeam"},
         {PlayerTeam::BuddhistsTeam, "BuddhistsTeam"},
         {PlayerTeam::MonstersTeam, "MonstersTeam"},
     };
 
-    inline std::map<PlaceType, std::string> placeTypeDict
-    {
+    inline std::map<PlaceType, std::string> placeTypeDict{
         {PlaceType::NullPlaceType, "NullPlaceType"},
         {PlaceType::Home, "Home"},
         {PlaceType::Space, "Space"},
@@ -379,83 +370,67 @@ namespace THUAI8
         {PlaceType::Trap, "Trap"},
     };
 
-    inline std::map<EquipmentType, std::string> equipmentTypeDict
-    {
+    inline std::map<EquipmentType, std::string> equipmentTypeDict{
         {EquipmentType::NullEquipmentType, "NullEquipmentType"},
-
         {EquipmentType::SmallHealthPotion, "SmallHealthPotion"},
         {EquipmentType::MediumHealthPotion, "MediumHealthPotion"},
         {EquipmentType::LargeHealthPotion, "LargeHealthPotion"},
-
         {EquipmentType::SmallShield, "SmallShield"},
         {EquipmentType::MediumShield, "MediumShield"},
         {EquipmentType::LargeShield, "LargeShield"},
-
         {EquipmentType::Speedboots, "Speedboots"},
         {EquipmentType::PurificationPotion, "PurificationPotion"},
         {EquipmentType::InvisibilityPotion, "InvisibilityPotion"},
         {EquipmentType::BerserkPotion, "BerserkPotion"},
     };
 
-    inline std::map<ConstructionType, std::string> constructionDict
-    {
+    inline std::map<ConstructionType, std::string> constructionDict{
         {ConstructionType::NullConstructionType, "NullConstructionType"},
         {ConstructionType::Barracks, "Barracks"},
         {ConstructionType::Spring, "Spring"},
         {ConstructionType::Farm, "Farm"},
     };
 
-    inline std::map<EconomyResourceType, std::string> economyResourceTypeDict
-    {
+    inline std::map<EconomyResourceType, std::string> economyResourceTypeDict{
         {EconomyResourceType::NullEconomyResourceState, "NullEconomyResourceState"},
-
         {EconomyResourceType::SmallEconomyResource, "SmallEconomyResource"},
         {EconomyResourceType::MediumEconomyResource, "MediumEconomyResource"},
         {EconomyResourceType::LargeEconomyResource, "LargeEconomyResource"},
     };
 
-    inline std::map<AdditionResourceType, std::string> additionResourceTypeDict
-    {
+    inline std::map<AdditionResourceType, std::string> additionResourceTypeDict{
         {AdditionResourceType::NullAdditionReourceType, "NullAdditionReourceType"}.
-
         {AdditionResourceType::SmallAdditionResource1, "SmallAdditionResource1"},
         {AdditionResourceType::MediumAdditionResource1, "MediumAdditionResource1"},
         {AdditionResourceType::LargeAdditionResource1, "LargeAdditionResource1"},
-
         {AdditionResourceType::SmallAdditionResource2, "SmallAdditionResource2"},
         {AdditionResourceType::MediumAdditionResource2, "MediumAdditionResource2"},
         {AdditionResourceType::LargeAdditionResource2, "LargeAdditionResource2"},
-
         {AdditionResourceType::AdditionResource3, "AdditionResource3"},
-
         {AdditionResourceType::AdditionResource4, "AdditionResource4"},
     };
 
-    inline std::map<EconomyResourceState, std::string> economyResourceStateDict
-    {
+    inline std::map<EconomyResourceState, std::string> economyResourceStateDict{
         {EconomyResourceState::NullEconomyResourceState, "NullEconomyResourceState"},
         {EconomyResourceState::Harvestable, "Harvestable"},
         {EconomyResourceState::BeingHarvested, "BeingHarvested"},
         {EconomyResourceState::Harvested, "Harvested"},
     };
 
-    inline std::map<AdditionResourceState, std::string> additionResourceStateDict
-    {
+    inline std::map<AdditionResourceState, std::string> additionResourceStateDict{
         {AdditionResourceState::NullAdditionReourceType, "NullAdditionReourceType"},
         {AdditionResourceState::Beatable, "Beatable"},
         {AdditionResourceState::BeingBeaten, "BeingBeaten"},
         {AdditionResourceState::Beaten, "Beaten"},
     };
 
-    inline std::map<TrapType, std::string> trapTypeDict
-    {
+    inline std::map<TrapType, std::string> trapTypeDict{
         {TrapType::NullTrapType, "NullTrapType"},
         {TrapType::Hole, "Hole"},
         {TrapType::Cage, "Cage"},
     }
 
-    inline std::map<MessageOfObj, std::string> messageOfObjDict
-    {
+    inline std::map<MessageOfObj, std::string> messageOfObjDict{
         {MessageOfObj::NullMessageOfObj, "NullMessageOfObj"},
         {MessageOfObj::ShipMessage, "ShipMessage"},
         {MessageOfObj::BulletMessage, "BulletMessage"},
@@ -471,12 +446,11 @@ namespace THUAI8
         {MessageOfObj::TeamMessage, "TeamMessage"},
     };
 
-    inline std::map<NewsType, std::string> newsTypeDict
-    {
+    inline std::map<NewsType, std::string> newsTypeDict{
         {NewsType::NullNewsType, "NullNewsType"},
         {NewsType::TextMessage, "TextMessage"},
         {NewsType::BinaryMessage, "BinaryMessage"},
     };
-}  // namespace THUAI7
+}  // namespace THUAI8
 
 #endif
