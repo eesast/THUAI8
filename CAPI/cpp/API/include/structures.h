@@ -30,12 +30,12 @@ namespace THUAI8
         NullPlaceType = 0,
         Home = 1,
         Space = 2,
-        Barrier = 3;
-        Bush = 4;
-        EconomyResource = 5;
-        AdditionResource = 6;
-        Construction = 7;
-        Trap = 8;
+        Barrier = 3，
+        Bush = 4，
+        EconomyResource = 5，
+        AdditionResource = 6，
+        Construction = 7，
+        Trap = 8，
     };
 
     // 形状标志
@@ -161,7 +161,7 @@ namespace THUAI8
 
     enum class TrapType
     {
-        NullTrapType = 0;
+        NullTrapType = 0，
         Hole = 1,
         Cage = 2,
     }
@@ -399,7 +399,7 @@ namespace THUAI8
     };
 
     inline std::map<AdditionResourceType, std::string> additionResourceTypeDict{
-        {AdditionResourceType::NullAdditionReourceType, "NullAdditionReourceType"}.
+        {AdditionResourceType::NullAdditionReourceType, "NullAdditionReourceType"}，
         {AdditionResourceType::SmallAdditionResource1, "SmallAdditionResource1"},
         {AdditionResourceType::MediumAdditionResource1, "MediumAdditionResource1"},
         {AdditionResourceType::LargeAdditionResource1, "LargeAdditionResource1"},
@@ -428,7 +428,7 @@ namespace THUAI8
         {TrapType::NullTrapType, "NullTrapType"},
         {TrapType::Hole, "Hole"},
         {TrapType::Cage, "Cage"},
-    }
+    }；
 
     inline std::map<MessageOfObj, std::string> messageOfObjDict{
         {MessageOfObj::NullMessageOfObj, "NullMessageOfObj"},
