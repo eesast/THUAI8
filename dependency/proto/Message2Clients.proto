@@ -38,24 +38,33 @@ message MessageOfBarracks
 {
     int32 x = 1;
     int32 y = 2;
+
     int32 hp = 3; // 剩余的血量
+
     int64 team_id = 4;
+    int32 id = 5;
 }
 
 message MessageOfSpring
 {
     int32 x = 1;
     int32 y = 2;
+
     int32 hp = 3; // 剩余的血量
+
     int64 team_id = 4;
+    int32 id = 5;
 }
 
 message MessageOfFarm
 {
     int32 x = 1;
     int32 y = 2;
+
     int32 hp = 3; // 剩余的血量
+
     int64 team_id = 4;
+    int32 id = 5;
 }
 
 message MessageOfTrap
@@ -66,6 +75,7 @@ message MessageOfTrap
     int32 y = 3;
 
     int64 team_id = 4;
+    int32 id = 5;
 }
 
 message MessageOfEconomyResource
@@ -77,6 +87,8 @@ message MessageOfEconomyResource
     int32 y = 4;
 
     int32 process = 5; // 采集进度 等价于血量
+
+    int32 id = 6;
 }
 
 message MessageOfAdditionResource
@@ -88,6 +100,8 @@ message MessageOfAdditionResource
     int32 y = 4;
 
     int32 hp = 5;
+
+    int32 id = 6;
 }
 
 message MessageOfMap
