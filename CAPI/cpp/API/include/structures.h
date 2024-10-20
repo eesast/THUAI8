@@ -169,18 +169,16 @@ namespace THUAI8
     enum class MessageOfObj : unsigned char
     {
         NullMessageOfObj = 0,
-        ShipMessage = 1,
-        BulletMessage = 2,
-        FactoryMessage = 3,
-        CommunityMessage = 4,
-        FortMessage = 5,
-        WormholeMessage = 6,
-        HomeMessage = 7,
-        ResourceMessage = 8,
-        MapMessage = 9,
-        NewsMessage = 10,
-        BombedBulletMessage = 11,
-        TeamMessage = 12,
+        CharacterMessage = 1,
+        BarracksMessage = 2,
+        SpringMessage = 3,
+        FarmMessage = 4,
+        TrapMessage = 5,
+        EconomyResourceMessage = 6,
+        AdditionResourceMessage = 7,
+        MapMessage = 8,
+        NewsMessage = 9,
+        TeamMessage = 10,
     };
 
     enum class NewsType : unsigned char
@@ -432,17 +430,15 @@ namespace THUAI8
 
     inline std::map<MessageOfObj, std::string> messageOfObjDict{
         {MessageOfObj::NullMessageOfObj, "NullMessageOfObj"},
-        {MessageOfObj::ShipMessage, "ShipMessage"},
-        {MessageOfObj::BulletMessage, "BulletMessage"},
-        {MessageOfObj::FactoryMessage, "FactoryMessage"},
-        {MessageOfObj::CommunityMessage, "CommunityMessage"},
-        {MessageOfObj::FortMessage, "FortMessage"},
-        {MessageOfObj::WormholeMessage, "WormholeMessage"},
-        {MessageOfObj::HomeMessage, "HomeMessage"},
-        {MessageOfObj::ResourceMessage, "ResourceMessage"},
+        {MessageOfObj::CharacterMessage, "CharacterMessage"},
+        {MessageOfObj::BarracksMessage, "BarracksMessage"},
+        {MessageOfObj::SpringMessage, "SpringMessage"},
+        {MessageOfObj::FarmMessage, "FarmMessage"},
+        {MessageOfObj::TrapMessage, "TrapMessage"},
+        {MessageOfObj::EconomyResourceMessage, "EconomyResourceMessage"},
+        {MessageOfObj::AdditionResourceMessage, "AdditionResourceMessage"},
         {MessageOfObj::MapMessage, "MapMessage"},
         {MessageOfObj::NewsMessage, "NewsMessage"},
-        {MessageOfObj::BombedBulletMessage, "BombedBulletMessage"},
         {MessageOfObj::TeamMessage, "TeamMessage"},
     };
 
