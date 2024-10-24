@@ -109,7 +109,7 @@ namespace Preparation.Utility
         TieShan = 9,
         Zhizhujing = 10,
 
-        Monkid=11,
+        Monkid = 11,
         Pawn = 12,
     }
 }
