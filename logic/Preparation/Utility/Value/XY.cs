@@ -1,6 +1,6 @@
 ﻿using System;
 
-
+namespace Preparation.Utility.Value;
 public readonly struct XY
 {
     public readonly int x;
