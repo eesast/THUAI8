@@ -86,7 +86,7 @@ namespace installer.ViewModel
         }
 
         private int teamCount = 2;
-        private int shipCount = 4;
+        private int characterCount = 4;
         public int TeamCount
         {
             get => teamCount;
@@ -101,7 +101,7 @@ namespace installer.ViewModel
             get => characterCount;
             set
             {
-                charaterCount = value;
+                characterCount = value;
                 OnPropertyChanged();
             }
         }
@@ -223,7 +223,7 @@ namespace installer.ViewModel
                 {
                     Downloader.Data.Config.Commands.TeamID = Players[i].TeamID;
                     Downloader.Data.Config.Commands.PlayerID = Players[i].PlayerID;
-                    Downloader.Data.Config.Commands.ShipType = Players[i].CharacterType;
+                    Downloader.Data.Config.Commands.CharacterType = Players[i].CharacterType;
                     LaunchClient(Players[i].TeamID, Players[i].PlayerID, Players[i].CharacterType);
                     haveManual = true;
                 }
