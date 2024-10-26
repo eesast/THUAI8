@@ -13,6 +13,20 @@ namespace Preparation.Utility
         TRAP = 8,              // 陷阱
     }
 
+    public enum GameObjType : uint
+    {
+        Null = 0,
+        Character = 1,
+
+        Barrier = 2,
+        Bush = 3,
+        E_Resource = 4,//经济资源
+        A_Resource = 5,//加成资源
+        Construction = 6,
+        Trap = 7,
+        Home = 8,
+        OutOfBoundBlock = 9,
+    }
     public enum CharacterState //角色状态
     {
         NULL_CHARACTER_STATE = 0,
