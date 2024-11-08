@@ -350,9 +350,9 @@ namespace Server
             return false;
         }
 
-        private MessageofAll GetMessageOfAll(int time)
+        private MessageOfAll GetMessageOfAll(int time)
         {
-            MessageofAll msg = new()
+            MessageOfAll msg = new()
             {
                 GameTime = time;
             };
