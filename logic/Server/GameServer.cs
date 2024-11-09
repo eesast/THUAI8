@@ -18,7 +18,7 @@ namespace Server
         public string status;
         public double[] scores;
     }
-    partial class GameServer:ServerBase
+    partial class GameServer : ServerBase
     {
         private readonly ConcurrentDictionary<long, (SemaphoreSlim, SemaphoreSlim)> semaDict0 = new(); //for spectator and team0 player
         private readonly ConcurrentDictionary<long, (SemaphoreSlim, SemaphoreSlim)> semaDict1 = new();
@@ -43,12 +43,12 @@ namespace Server
 
         public void StartGame()
         {
-            if(game.GameMap.Timer.IsGaming) return;
-            foreach(var team in communicationToGameID)
+            if (game.GameMap.Timer.IsGaming) return;
+            foreach (var team in communicationToGameID)
             {
-                foreach(var id in team)
+                foreach (var id in team)
                 {
-                    if(if == GameObj.invalidID) return;//如果有未初始化的玩家，不开始游戏
+                    if (if == GameObj.invalidID) return;//如果有未初始化的玩家，不开始游戏
                 }
             }
             GameServerLogging.logger.ConsoleLog("Game starts!");
@@ -58,7 +58,7 @@ namespace Server
             new Thread(() =>
             {
                 bool flag = true;
-                new  FramerateTaskExecutor<int>
+                new FramerateTaskExecutor<int>
                 {
                     () => game.GameMap.Timer.IsGaming,
                     ()=>
@@ -83,7 +83,7 @@ namespace Server
                 IsBackground = true
             }.Start();
         }
-        
+
         public void CreateStartFile()
         {
             if (options.StartLockFile != DefaultArgumentOptions.FileName)
@@ -372,10 +372,10 @@ namespace Server
                 Height = game.GameMap.Height,
                 Width = game.GameMap.Width
             };
-            for(int i = 0; i < game.GameMap.Height; i++)
+            for (int i = 0; i < game.GameMap.Height; i++)
             {
                 msgOfMap.Rows.Add(new MessageOfMap.Types.Rows());
-                for(int j = 0; j<game.GameMap.Width; j++)
+                for (int j = 0; j < game.GameMap.Width; j++)
                 {
                     msgOfMap.Rows[i].Cols.Add(Transformation.PlaceTypeToProto(game.GameMap.Map[i, j]));
                 }
@@ -386,32 +386,32 @@ namespace Server
         public GameServer(ArgumentOptions options)
         {
             this.options = options;
-            if(options.MapResource == DefaultArgumentOptions.MapResource)
+            if (options.MapResource == DefaultArgumentOptions.MapResource)
                 game = new(MapInfo.defaultMapStruct, options.TeamCount);
             else
             {
-                if(options.MapResource.EndsWith(".txt"))
+                if (options.MapResource.EndsWith(".txt"))
                 {
                     try
                     {
-                        uint[,] map = new uint[GameData.MapRows,GameData.MapCols];
+                        uint[,] map = new uint[GameData.MapRows, GameData.MapCols];
                         string? lines;
-                        int i =0.j=0;
+                        int i = 0.j = 0;
                         using StreamReader sr = new(options.MapResource);
                         #region 读取地图
-                        while(!sr.EndOfStream && i<GameData.MapRows)
+                        while (!sr.EndOfStream && i < GameData.MapRows)
                         {
-                            if((line = sr.RewadLine()) != null)
+                            if ((line = sr.RewadLine()) != null)
                             {
                                 string[] nums = lines.Split(' ');
-                                foreach(string item nums)
+                                foreach (string item nums)
                                 {
-                                    if(items.Length>1)
-                                    map[i,j] = (uint)int.Parse(item);
+                                    if (items.Length > 1)
+                                        map[i, j] = (uint)int.Parse(item);
                                     else
-                                        map[i,j] = (unint)MapEncoder.Hex2Dec(char.Parse(item));
+                                        map[i, j] = (unint)MapEncoder.Hex2Dec(char.Parse(item));
                                     j++;
-                                    if(j>=GameData.MapCols)
+                                    if (j >= GameData.MapCols)
                                     {
                                         j = 0;
                                         break;
@@ -428,7 +428,7 @@ namespace Server
                         game = new(MapInfo.defaultMapStruct, options.TeamCount);
                     }
                 }
-                else if(options.MapResource.EndWith(".map"))
+                else if (options.MapResource.EndWith(".map"))
                 {
                     try
                     {
@@ -447,21 +447,21 @@ namespace Server
             currentMapMsg = new() { MapMessage = MapMsg() };
             playerNum = options.CharacterCount;
             communicationToGameID = new long[TeamCount][];
-            for(int i = 0; i < TeamCount; i++)
+            for (int i = 0; i < TeamCount; i++)
             {
                 communicationToGameID[i] = new long[options.CharacterCount + 1];
             }
 
-            for(int team = 0; team < TeamCount; team++)
+            for (int team = 0; team < TeamCount; team++)
             {
                 communicationToGameID[team][0] = GameObj.invalidID;
-                for(int i = 1; i <= options.CharacterCount; i++)
+                for (int i = 1; i <= options.CharacterCount; i++)
                 {
                     communicationToGameID[team][i] = GameObj.invalidID;
                 }
             }
 
-            if(options.FileName != DefaultArgumentOptions.FileName)
+            if (options.FileName != DefaultArgumentOptions.FileName)
             {
                 try
                 {
@@ -473,13 +473,13 @@ namespace Server
                 }
             }
             string? token2 = Environment.GetEnvironmentVariable("TOKEN");
-            if(token2 == null)
+            if (token2 == null)
             {
                 GameServerLogging.logger.ConsoleLog("Null TOKEN Environment!");
             }
             else
                 options.Token = token2;
-            if(options.Url != DefaultArgumentOptions.Url && options.Token != Token)
+            if (options.Url != DefaultArgumentOptions.Url && options.Token != Token)
             {
                 httpSender = new(options.Url, options.Token);
             }
