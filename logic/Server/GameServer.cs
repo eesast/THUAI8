@@ -360,8 +360,8 @@ namespace Server
             msg.buddhists_team_score = score[0];
             msg.monsters_team_score = score[1];
             int[] economy = GetMoney();
-            msg.buddhists_team_money = economy[0];
-            msg.monsters_team_money = economy[1];
+            msg.buddhists_team_economy = economy[0];
+            msg.monsters_team_economy = economy[1];
             return msg;
         }
 
