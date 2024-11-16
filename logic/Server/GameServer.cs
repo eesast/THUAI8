@@ -100,8 +100,8 @@ partial class GameServer : ServerBase
         {
             Dictionary<string, int> result = [];
             int[] score = GetScore();
-            result.Add("RedTeam", score[0]);
-            result.Add("BlueTeam", score[1]);
+            result.Add("Disciple Team", score[0]);
+            result.Add("Monsters Team", score[1]);
             JsonSerializer serializer = new();
             using StreamWriter sw = new(path);
             using JsonTextWriter writer = new(sw);
@@ -356,11 +356,11 @@ partial class GameServer : ServerBase
             int[] score = GetScore();
             msg.RedTeamScore = score[0];
             msg.BlueTeamScore = score[1];
-            int[] energy = GetMoney();
-            msg.RedTeamEnergy = energy[0];
-            msg.BlueTeamEnergy = energy[1];
-            msg.RedHomeHp = (int)game.TeamList[0].Home.HP;
-            msg.BlueHomeHp = (int)game.TeamList[1].Home.HP;
+            int[] economy = GetMoney();
+            msg.msg.buddhists_team_economy = economy[0];
+            msg.monsters_team_economy = economy[1];
+            // msg.RedHomeHp = (int)game.TeamList[0].Home.HP;
+            // msg.BlueHomeHp = (int)game.TeamList[1].Home.HP;
             return msg;
         }
 
