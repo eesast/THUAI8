@@ -354,10 +354,10 @@ partial class GameServer : ServerBase
                 GameTime = time
             };
             int[] score = GetScore();
-            msg.RedTeamScore = score[0];
-            msg.BlueTeamScore = score[1];
+            msg.buddhists_team_score = score[0];
+            msg.monsters_team_score = score[1];
             int[] economy = GetMoney();
-            msg.msg.buddhists_team_economy = economy[0];
+            msg.buddhists_team_economy = economy[0];
             msg.monsters_team_economy = economy[1];
             // msg.RedHomeHp = (int)game.TeamList[0].Home.HP;
             // msg.BlueHomeHp = (int)game.TeamList[1].Home.HP;
