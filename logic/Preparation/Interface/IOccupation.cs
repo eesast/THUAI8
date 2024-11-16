@@ -9,5 +9,5 @@ public interface IOccupation
     public int MaxHp { get; }
     public int BaseAttackSize { get; }
     public int ViewRange { get; }
-    public bool IsModuleValid(ModuleType moduleType);
+    public bool IsEquipValid(EquipmentType EquipType);
 }
