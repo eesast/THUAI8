@@ -1,4 +1,4 @@
-﻿using GameClass.GameObj;
+using GameClass.GameObj;
 using GameClass.GameObj.Map;
 using GameClass.MapGenerator;
 using Gaming;
@@ -13,12 +13,11 @@ using System.Collections;
 
 namespace Server
 {
-    public class ContestResult
-    {
+    public class ContestResult[
         public string status;
-        public double[] scores;
-    }
-    partial class GameServer : ServerBase
+    public double[] scores;
+]
+partial class GameServer : ServerBase
     {
         private readonly ConcurrentDictionary<long, (SemaphoreSlim, SemaphoreSlim)> semaDict0 = new(); //for spectator and team0 player
         private readonly ConcurrentDictionary<long, (SemaphoreSlim, SemaphoreSlim)> semaDict1 = new();
@@ -48,27 +47,27 @@ namespace Server
             {
                 foreach (var id in team)
                 {
-                    if (if == GameObj.invalidID) return;//如果有未初始化的玩家，不开始游戏
+                    if (id == GameObj.invalidID) return;//如果有未初始化的玩家，不开始游戏
                 }
             }
             GameServerLogging.logger.ConsoleLog("Game starts!");
-            CreatStartFiles();
-            game.StarGame((int)options.GameTimeInSecond * 1000);
+            CreateStartFile();
+            game.StartGame((int)options.GameTimeInSecond * 1000);
             Thread.Sleep(1);
             new Thread(() =>
             {
                 bool flag = true;
-                new FramerateTaskExecutor<int>
-                {
+                new FrameRateTaskExecutor<int>
+                (
                     () => game.GameMap.Timer.IsGaming,
-                    ()=>
+                    () =>
                     {
-                        if(flag)
+                        if (flag == true)
                         {
-                            ReportGame(GameState.Start);
-                            falg = false;
+                            ReportGame(GameState.GameStart);
+                            flag = false;
                         }
-                        else ReportGame(GameState.Running);
+                        else ReportGame(GameState.GameRunning);
                     },
                     SendMessageToClientIntervalInMilliseconds,
                     () =>
@@ -77,11 +76,9 @@ namespace Server
                         OnGameEnd();
                         return 0;
                     }
-                }.Start();
+                ).Start();
             })
-            {
-                IsBackground = true
-            }.Start();
+            { IsBackground = true }.Start();
         }
 
         public void CreateStartFile()
@@ -103,8 +100,8 @@ namespace Server
         {
             Dictionary<string, int> result = [];
             int[] score = GetScore();
-            result.Add("Disciple Team", score[0]);
-            result.Add("Monsters Team", score[1]);
+            result.Add("RedTeam", score[0]);
+            result.Add("BlueTeam", score[1]);
             JsonSerializer serializer = new();
             using StreamWriter sw = new(path);
             using JsonTextWriter writer = new(sw);
@@ -311,10 +308,10 @@ namespace Server
             }
         }
 
-        private bool PlayerDeceased(int playerID)    //# 这里需要判断大本营deceased吗？
+        private bool PlayerDeceased(int playerID)
         {
-            return game.GameMap.GameObjDict[GameObjType.Character].Cast<Character>()?.Find(
-                character => character.PlayerID == playerID && character.CharacterState == CharacterStateType.Deceased
+            return game.GameMap.GameObjDict[GameObjType.Ship].Cast<Ship>()?.Find(
+                ship => ship.PlayerID == playerID && ship.ShipState == ShipStateType.Deceased
                 ) != null;
         }
 
@@ -354,14 +351,16 @@ namespace Server
         {
             MessageOfAll msg = new()
             {
-                GameTime = time;
+                GameTime = time
             };
             int[] score = GetScore();
-            msg.buddhists_team_score = score[0];
-            msg.monsters_team_score = score[1];
-            int[] economy = GetMoney();
-            msg.buddhists_team_economy = economy[0];
-            msg.monsters_team_economy = economy[1];
+            msg.RedTeamScore = score[0];
+            msg.BlueTeamScore = score[1];
+            int[] energy = GetMoney();
+            msg.RedTeamEnergy = energy[0];
+            msg.BlueTeamEnergy = energy[1];
+            msg.RedHomeHp = (int)game.TeamList[0].Home.HP;
+            msg.BlueHomeHp = (int)game.TeamList[1].Home.HP;
             return msg;
         }
 
@@ -374,10 +373,10 @@ namespace Server
             };
             for (int i = 0; i < game.GameMap.Height; i++)
             {
-                msgOfMap.Rows.Add(new MessageOfMap.Types.Rows());
+                msgOfMap.Rows.Add(new MessageOfMap.Types.Row());
                 for (int j = 0; j < game.GameMap.Width; j++)
                 {
-                    msgOfMap.Rows[i].Cols.Add(Transformation.PlaceTypeToProto(game.GameMap.Map[i, j]));
+                    msgOfMap.Rows[i].Cols.Add(Transformation.PlaceTypeToProto(game.GameMap.ProtoGameMap[i, j]));
                 }
             }
             return msgOfMap;
@@ -390,26 +389,28 @@ namespace Server
                 game = new(MapInfo.defaultMapStruct, options.TeamCount);
             else
             {
+                // txt文本方案
                 if (options.MapResource.EndsWith(".txt"))
                 {
                     try
                     {
                         uint[,] map = new uint[GameData.MapRows, GameData.MapCols];
-                        string? lines;
-                        int i = 0.j = 0;
+                        string? line;
+                        int i = 0, j = 0;
                         using StreamReader sr = new(options.MapResource);
-                        #region 读取地图
+                        #region 读取txt地图
                         while (!sr.EndOfStream && i < GameData.MapRows)
                         {
-                            if ((line = sr.RewadLine()) != null)
+                            if ((line = sr.ReadLine()) != null)
                             {
-                                string[] nums = lines.Split(' ');
-                                foreach (string item nums)
+                                string[] nums = line.Split(' ');
+                                foreach (string item in nums)
                                 {
-                                    if (items.Length > 1)
+                                    if (item.Length > 1)//以兼容原方案
                                         map[i, j] = (uint)int.Parse(item);
                                     else
-                                        map[i, j] = (unint)MapEncoder.Hex2Dec(char.Parse(item));
+                                        //2022-04-22 by LHR 十六进制编码地图方案（防止地图编辑员瞎眼x
+                                        map[i, j] = (uint)MapEncoder.Hex2Dec(char.Parse(item));
                                     j++;
                                     if (j >= GameData.MapCols)
                                     {
@@ -428,7 +429,8 @@ namespace Server
                         game = new(MapInfo.defaultMapStruct, options.TeamCount);
                     }
                 }
-                else if (options.MapResource.EndWith(".map"))
+                // MapStruct二进制方案
+                else if (options.MapResource.EndsWith(".map"))
                 {
                     try
                     {
@@ -445,19 +447,19 @@ namespace Server
                 }
             }
             currentMapMsg = new() { MapMessage = MapMsg() };
-            playerNum = options.CharacterCount;
+            playerNum = options.ShipCount + options.HomeCount;
             communicationToGameID = new long[TeamCount][];
             for (int i = 0; i < TeamCount; i++)
             {
-                communicationToGameID[i] = new long[options.CharacterCount + 1];
+                communicationToGameID[i] = new long[options.ShipCount + options.HomeCount];
             }
-
+            //创建server时先设定待加入对象都是invalid
             for (int team = 0; team < TeamCount; team++)
             {
-                communicationToGameID[team][0] = GameObj.invalidID;
-                for (int i = 1; i <= options.CharacterCount; i++)
+                communicationToGameID[team][0] = GameObj.invalidID; // team
+                for (int i = 1; i <= options.ShipCount; i++)
                 {
-                    communicationToGameID[team][i] = GameObj.invalidID;
+                    communicationToGameID[team][i] = GameObj.invalidID; //ship
                 }
             }
 
@@ -465,13 +467,14 @@ namespace Server
             {
                 try
                 {
-                    mwr = new(options.FileName, options.TeamCount, options.CharacterCount);
+                    mwr = new(options.FileName, options.TeamCount, options.ShipCount);
                 }
                 catch
                 {
-                    GameServerLogging.logger.Consolelog($"Error:Cannot create the playback file: {options.FileName}! ");
+                    GameServerLogging.logger.ConsoleLog($"Error: Cannot create the playback file: {options.FileName}!");
                 }
             }
+
             string? token2 = Environment.GetEnvironmentVariable("TOKEN");
             if (token2 == null)
             {
@@ -479,7 +482,7 @@ namespace Server
             }
             else
                 options.Token = token2;
-            if (options.Url != DefaultArgumentOptions.Url && options.Token != Token)
+            if (options.Url != DefaultArgumentOptions.Url && options.Token != DefaultArgumentOptions.Token)
             {
                 httpSender = new(options.Url, options.Token);
             }
