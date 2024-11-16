@@ -21,7 +21,7 @@ message MessageOfCharacter
     int32 speed = 9;
     int32 view_range = 10;
 
-    int32 ATK =11;
+    int32 atk =11;
     int32 attack_range = 12;
 
     int32 skill_cd = 13;
