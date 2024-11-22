@@ -16,6 +16,6 @@ namespace Preparation.Interface
         public CharacterState CharacterState { get; }
         public long AddMoney(long add);
         public long SubMoney(long sub);
-        public long SetShipState(CharacterState value = CharacterState.NULL_CHARACTER_STATE, IGameObj? obj = null);
+        public long SetCharacterState(CharacterState value = CharacterState.NULL_CHARACTER_STATE, IGameObj? obj = null);
     }
 }
