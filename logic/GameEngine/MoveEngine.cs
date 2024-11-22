@@ -1,10 +1,8 @@
 ﻿using Preparation.Interface;
 using Preparation.Utility;
-using Preparation.Utility.Logging;
 using Preparation.Utility.Value;
 using System;
 using System.Threading;
-using Timothy.FrameRateTask;
 
 namespace GameEngine
 {
@@ -114,11 +112,6 @@ namespace GameEngine
                         flag = true;
                         break;
                     case AfterCollision.Destroyed:
-                        GameEngineLogging.logger.ConsoleLogDebug(
-                            Logger.ObjInfo(obj)
-                            + " collide with "
-                            + Logger.ObjInfo(collisionObj)
-                            + " and has been removed from the game");
                         return false;
                     case AfterCollision.MoveMax:
                         if (!MoveMax(obj, res, stateNum)) return false;
@@ -136,9 +129,6 @@ namespace GameEngine
 
         public void MoveObj(IMovable obj, int moveTime, double direction, long stateNum)
         {
-            GameEngineLogging.logger.ConsoleLogDebug(
-                Logger.ObjInfo(obj)
-                + $" position {obj.Position}, start moving in direction {direction}");
             if (!gameTimer.IsGaming) return;
             lock (obj.ActionLock)
             {
@@ -170,11 +160,6 @@ namespace GameEngine
                                 flag = true;
                                 break;
                             case AfterCollision.Destroyed:
-                                GameEngineLogging.logger.ConsoleLogDebug(
-                                    Logger.ObjInfo(obj)
-                                    + " collide with "
-                                    + Logger.ObjInfo(collisionObj)
-                                    + " and has been removed from the game");
                                 isEnded = true;
                                 break;
                             case AfterCollision.MoveMax:
@@ -193,7 +178,7 @@ namespace GameEngine
                         if (moveTime >= GameData.NumOfPosGridPerCell / GameData.NumOfStepPerSecond)
                         {
                             Thread.Sleep(GameData.NumOfPosGridPerCell / GameData.NumOfStepPerSecond);
-                            new FrameRateTaskExecutor<int>(
+                            /*new FrameRateTaskExecutor<int>(
                                 () => gameTimer.IsGaming,
                                 () =>
                                 {
@@ -219,7 +204,7 @@ namespace GameEngine
                                     else GameEngineLogging.logger.ConsoleLogDebug(
                                             "Debug info: Object moving time exceed for once");
                                 }
-                            }.Start();
+                            }.Start();*/
                             if (!isEnded && obj.StateNum == stateNum && obj.CanMove && !obj.IsRemoved)
                                 isEnded = !LoopDo(obj, direction, ref deltaLen, stateNum);
                         }
@@ -253,11 +238,6 @@ namespace GameEngine
                                             flag = true;
                                             break;
                                         case AfterCollision.Destroyed:
-                                            GameEngineLogging.logger.ConsoleLogDebug(
-                                                Logger.ObjInfo(obj)
-                                                + " collide with "
-                                                + Logger.ObjInfo(collisionObj)
-                                                + " and has been removed from the game");
                                             isEnded = true;
                                             break;
                                         case AfterCollision.MoveMax:

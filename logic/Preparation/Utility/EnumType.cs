@@ -47,6 +47,7 @@ namespace Preparation.Utility
         HEALING = 11,
         BERSERK = 12,
         BURNED = 13,
+        DECEASED = 14,
     }
 
     public enum ShapeType
