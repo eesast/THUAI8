@@ -59,7 +59,7 @@ namespace Preparation.Utility
 
     public enum EconomyResourceState //经济资源状态
     {
-        NULL_ECONOMY_RESOURCE_STSTE = 0,
+        NULL_ECONOMY_RESOURCE_STATE = 0,
         HARVESTABLE = 1,
         BEING_HARVESTED = 2,
         HARVESTED = 3,
@@ -97,6 +97,8 @@ namespace Preparation.Utility
         BARRACKS = 1,
         SPRING = 2,
         FARM = 3,
+        TRAP = 4,
+        CAGE = 5,
     }
 
     public enum TrapType
