@@ -47,6 +47,7 @@ namespace Preparation.Utility
         HEALING = 11,
         BERSERK = 12,
         BURNED = 13,
+        DECEASED = 14,
     }
 
     public enum ShapeType
@@ -110,18 +111,18 @@ namespace Preparation.Utility
         Null = 0,
 
         //取经团队阵营
-        Tangseng = 1,
+        TangSeng = 1,
         SunWukong = 2,
         ZhuBajie = 3,
         ShaWujing = 4,
         BaiLongma = 5,
 
         //妖怪阵营
-        Jiuling = 6,
+        JiuLing = 6,
         HongHaier = 7,
         NiuMowang = 8,
         TieShan = 9,
-        Zhizhujing = 10,
+        ZhiZhujing = 10,
 
         Monkid = 11,
         Pawn = 12,
