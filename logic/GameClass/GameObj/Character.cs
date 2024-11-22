@@ -6,8 +6,8 @@ using Preparation.Utility.Value.SafeValue.LockedValue;
 
 
 
-namespace  GameClass.GameObj;
-public class Character:Movable,ICharacter
+namespace GameClass.GameObj;
+public class Character : Movable, ICharacter
 {
     public AtomicLong TeamID { get; } = new(long.MaxValue);
     public AtomicLong PlayerID { get; } = new(long.MaxValue);
@@ -39,11 +39,11 @@ public class Character:Movable,ICharacter
     public IOccupation Occupation { get; }
     public IMoneyPool MoneyPool { get; }
     private GameObj? InteractObj = null;
-    public GameObj?GetInteractObj
+    public GameObj? GetInteractObj
     {
         get
         {
-            lock(actionLock)
+            lock (actionLock)
             {
                 return InteractObj;
             }
@@ -111,7 +111,7 @@ public class Character:Movable,ICharacter
         }
         return cost;
     }
-    private long ChangeCharacterState(CharacterState value1=CharacterState.NULL_CHARACTER_STATE, CharacterState value2 = CharacterState.NULL_CHARACTER_STATE, GameObj?gameobj=null)
+    private long ChangeCharacterState(CharacterState value1 = CharacterState.NULL_CHARACTER_STATE, CharacterState value2 = CharacterState.NULL_CHARACTER_STATE, GameObj? gameobj = null)
     {
         //只能被SetCharacterState引用
         InteractObj = gameobj;
@@ -119,24 +119,24 @@ public class Character:Movable,ICharacter
         characterState2 = value2;
         return stateNum;
     }
-    public long SetCharacterState(CharacterState value1=CharacterState.NULL_CHARACTER_STATE, CharacterState value2 = CharacterState.NULL_CHARACTER_STATE, IGameObj?obj=null)
+    public long SetCharacterState(CharacterState value1 = CharacterState.NULL_CHARACTER_STATE, CharacterState value2 = CharacterState.NULL_CHARACTER_STATE, IGameObj? obj = null)
     {
         GameObj? gameobj = (GameObj?)obj;
-        lock(actionLock)
+        lock (actionLock)
         {
-            CharacterState nowState1 =characterState1;
+            CharacterState nowState1 = characterState1;
             CharacterState nowState2 = characterState2;
-            if (nowState1 == value1&&nowState2==value2) return -1;
+            if (nowState1 == value1 && nowState2 == value2) return -1;
             if (value2 == CharacterState.NULL_CHARACTER_STATE)
                 value2 = nowState2;
             //此部分代码存在问题需要解决：当角色通过商店等获取新的被动状态时，原有的被动状态会因此被覆盖失效
-            switch(nowState2)
+            switch (nowState2)
             {
                 case CharacterState.BLIND://致盲时无法攻击或使用技能
-                    if (value1 == CharacterState.ATTACKING||value1==CharacterState.SKILL_CASTING)
+                    if (value1 == CharacterState.ATTACKING || value1 == CharacterState.SKILL_CASTING)
                         return -1;
                     else
-                        return ChangeCharacterState(value1, value2,gameobj);
+                        return ChangeCharacterState(value1, value2, gameobj);
                     break;
                 case CharacterState.STUNNED://被定身时无法移动
                     if (value1 == CharacterState.MOVING)
@@ -147,7 +147,8 @@ public class Character:Movable,ICharacter
                 case CharacterState.KNOCKED_BACK://击退时无法进行任何操作
                     return -1;
                     break;
-                default:return ChangeCharacterState(value1, value2, gameobj);
+                default:
+                    return ChangeCharacterState(value1, value2, gameobj);
             }
         }
     }
