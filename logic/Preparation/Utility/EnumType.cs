@@ -58,7 +58,7 @@ namespace Preparation.Utility
 
     public enum EconomyResourceState //经济资源状态
     {
-        NULL_ECONOMY_RESOURCE_STSTE = 0,
+        NULL_ECONOMY_RESOURCE_STATE = 0,
         HARVESTABLE = 1,
         BEING_HARVESTED = 2,
         HARVESTED = 3,
@@ -96,6 +96,8 @@ namespace Preparation.Utility
         BARRACKS = 1,
         SPRING = 2,
         FARM = 3,
+        TRAP = 4,
+        CAGE = 5,
     }
 
     public enum TrapType
@@ -110,18 +112,18 @@ namespace Preparation.Utility
         Null = 0,
 
         //取经团队阵营
-        Tangseng = 1,
+        TangSeng = 1,
         SunWukong = 2,
         ZhuBajie = 3,
         ShaWujing = 4,
         BaiLongma = 5,
 
         //妖怪阵营
-        Jiuling = 6,
+        JiuLing = 6,
         HongHaier = 7,
         NiuMowang = 8,
         TieShan = 9,
-        Zhizhujing = 10,
+        ZhiZhujing = 10,
 
         Monkid = 11,
         Pawn = 12,
