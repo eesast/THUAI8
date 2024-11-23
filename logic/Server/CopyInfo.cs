@@ -36,10 +36,6 @@ namespace Server
             }
         }
 
-        public static MessageOfObj? Auto(Base @base, long time)
-        {
-            return Base(@base, time);
-        }
         public static MessageOfObj? Auto(MessageOfNews news)
         {
             MessageOfObj objMsg = new()
