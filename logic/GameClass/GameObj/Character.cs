@@ -175,8 +175,8 @@ public class Character : Movable, ICharacter
         }
         return true;
     }
-    public Character(int radius,CharacterType type,MoneyPool pool):
-        base(GameData.PosNotInGame,radius,GameObjType.Character)
+    public Character(int radius, CharacterType type, MoneyPool pool) :
+        base(GameData.PosNotInGame, radius, GameObjType.Character)
     {
         CanMove.SetROri(false);
         IsRemoved.SetROri(true);

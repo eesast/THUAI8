@@ -3,7 +3,7 @@ using Preparation.Utility;
 
 namespace GameClass.GameObj.Occupations
 {
-    public class BaiLongma:IOccupation
+    public class BaiLongma : IOccupation
     {
         public int MoveSpeed { get; } = GameData.NumOfStepPerSecond;
         public int MaxHp { get; } = GameData.BaiLongmaHP;
