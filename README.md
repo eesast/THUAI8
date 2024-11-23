@@ -1,6 +1,10 @@
 # THUAI8
 清华大学第八届人工智能挑战赛电子系赛道（原电子系第 26 届队式程序设计大赛 teamstyle26）
 
+Gitee 镜像地址：[THUAI8: Gitee Mirror](https://gitee.com/eesast/THUAI8)
+
+GitLink 镜像地址：[THUAI8: GitLink Mirror](https://www.gitlink.org.cn/EESAST/THUAI8)
+
 ## 赛题背景
 
 待定
