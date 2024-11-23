@@ -1,4 +1,5 @@
-﻿using Preparation.Interface;
+﻿using GameClass.GameObj.Occupations;
+using Preparation.Interface;
 using Preparation.Utility;
 using Preparation.Utility.Value;
 using Preparation.Utility.Value.SafeValue.Atomic;
@@ -17,6 +18,8 @@ public class Character : Movable, ICharacter
     public InVariableRange<long> HP { get; }
     public InVariableRange<long> AttackPower { get; }
     public InVariableRange<long> AttackSize { get; }
+    public InVariableRange<long> Shield { get; }
+    public InVariableRange<long> Shoes { get; }//移速加成（注意是加成值，实际移速为基础移速+移速加成）
     public CharacterType CharacterType { get; }
     private CharacterState characterState1 = CharacterState.NULL_CHARACTER_STATE;
     private CharacterState characterState2 = CharacterState.DECEASED;
@@ -160,6 +163,29 @@ public class Character : Movable, ICharacter
         }
     }
 
+    public bool TryToRemoveFromGame(CharacterState state)
+    {
+        lock (actionlock)
+        {
+            if (SetCharacterState(CharacterState.NULL_CHARACTER_STATE, state) == -1)
+                return false;
+            TryToRemove();
+            CanMove.SetROri(false);
+            position = GameData.PosNotInGame;
+        }
+        return true;
+    }
+    public Character(int radius,CharacterType type,MoneyPool pool):
+        base(GameData.PosNotInGame,radius,GameObjType.Character)
+    {
+        CanMove.SetROri(false);
+        IsRemoved.SetROri(true);
+        Occupation = OccupationFactory.FindIOccupation(CharacterType = type);
+        ViewRange = Occupation.ViewRange;
+        HP = new(Occupation.MaxHp);
+        AttackSize = new(Occupation.BaseAttackSize);
+        MoneyPool = pool;
+    }
 }
 
 

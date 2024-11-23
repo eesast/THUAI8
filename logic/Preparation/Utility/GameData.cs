@@ -24,10 +24,39 @@ namespace Preparation.Utility
         public const int ZhiZhujingcost = 3000;
         public const int Pawncost = 1000;
 
+        //character property
+        public const int TangSengHP = 1000;
+        public const int SunWukongHP = 200;
+        public const int ZhuBajieHP = 300;
+        public const int ShaWujingHP = 150;
+        public const int BaiLongmaHP = 150;
+        public const int MonkidHP = 50;
+        public const int JiuLingHP = 1000;
+        public const int HongHaierHP = 200;
+        public const int NiuMowangHP = 300;
+        public const int TieShanHP = 150;
+        public const int ZhiZhujingHP = 150;
+        public const int PawnHP = 50;
+
+        public const int TangSengATKsize = 0;
+        public const int SunWukongATKsize = 1000;
+        public const int ZhuBajieATKsize = 2000;
+        public const int ShaWujingATKsize = 5000;
+        public const int BaiLongmaATKsize = 5000;
+        public const int MonkidATKsize = 1000;
+        public const int JiuLingATKsize = 0;
+        public const int HongHaierATKsize = 1000;
+        public const int NiuMowangATKsize = 2000;
+        public const int TieShanATKsize = 5000;
+        public const int ZhiZhujingATKsize = 5000;
+        public const int PawnATKsize = 1000;
+
         public const int NumOfPosGridPerCell = 1000;    // 每格的【坐标单位】数
         public const int MapLength = 50000;             // 地图长度
         public const int MapRows = 50;                  // 行数
         public const int MapCols = 50;                  // 列数
+
+        public const int Viewrange = 8000;
 
         public const int CharacterRadius = 400;
         public static XY GetCellCenterPos(int x, int y)  // 求格子的中心坐标
@@ -70,5 +99,6 @@ namespace Preparation.Utility
         public const int TrapConstructSpeed = 20;//100/5
         public const int CageConstructSpeed = 20;//100/5
 
+        public static readonly XY PosNotInGame = new(1, 1);
     }
 }
