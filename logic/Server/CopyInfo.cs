@@ -6,7 +6,6 @@ using Utility = Preparation.Utility;
 
 namespace Server
 {
-
     public static class CopyInfo
     {
         public static MessageOfObj? Auto(GameObj gameObj, long time)
