@@ -14,7 +14,7 @@ namespace Gaming
         {
             private readonly Game game = game;
             private readonly Map map = gameMap;
-            public static Character?AddCharacter(long teamID,long playerID,CharacterType charactertype,MoneyPool moneypool)
+            public static Character? AddCharacter(long teamID, long playerID, CharacterType charactertype, MoneyPool moneypool)
             {
                 Character newcharacter = new(GameData.CharacterRadius, charactertype, moneypool);
                 newcharacter.TeamID.SetROri(teamID);
@@ -34,14 +34,14 @@ namespace Gaming
                 return true;
             }
 
-            public void BeAttacked(Character character,Character obj)
+            public void BeAttacked(Character character, Character obj)
             {
-                if(obj.TeamID.Get()==character.TeamID.Get())
+                if (obj.TeamID.Get() == character.TeamID.Get())
                 {
                     return;
                 }
                 long subHP = obj.AttackPower;
-                if(character.Shield>0)
+                if (character.Shield > 0)
                 {
                     character.Shield.SubPositiveV(subHP);
                 }
@@ -49,7 +49,7 @@ namespace Gaming
                 {
                     character.HP.SubPositiveV(subHP);
                 }
-                if(character.HP==0)
+                if (character.HP == 0)
                 {
                     long score = 0;
                     if (character.CharacterType == CharacterType.TangSeng || character.CharacterType == CharacterType.JiuLing)
@@ -63,7 +63,7 @@ namespace Gaming
                 }
             }
 
-            public void BeAttacked(Character character,long AP)//此部分适用于中立资源攻击及技能攻击
+            public void BeAttacked(Character character, long AP)//此部分适用于中立资源攻击及技能攻击
             {
                 if (character.Shield > 0)
                 {
@@ -87,7 +87,7 @@ namespace Gaming
                 }
             }
 
-            public static bool Recover(Character character,long recover)
+            public static bool Recover(Character character, long recover)
             {
                 if (recover <= 0)
                     return false;
@@ -97,13 +97,12 @@ namespace Gaming
 
             public void Remove(Character character)
             {
-                if(!character.TryToRemoveFromGame(CharacterState.DECEASED))
+                if (!character.TryToRemoveFromGame(CharacterState.DECEASED))
                 {
                     return;
                 }
                 gameMap.Remove(character);
             }
         }
-        
     }
 }
