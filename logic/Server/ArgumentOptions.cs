@@ -3,7 +3,7 @@ using Preparation.Utility;
 
 namesapce Server
 {
-    public class DefaultArgumentOptions
+public class DefaultArgumentOptions
 {
     public const string FileName = "xxxxxxxxx";
     public const string Token = "xxxxxxxxx";
