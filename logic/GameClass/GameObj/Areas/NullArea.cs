@@ -7,5 +7,5 @@ public class NullArea(XY initPos)
     : Immovable(initPos, int.MaxValue, GameObjType.Null)
 {
     public override bool IsRigid(bool args = false) => false;
-    public override ShapeType Shape => ShapeType.Null;
+    public override ShapeType Shape => ShapeType.NULL_SHAPE_TYPE;
 }
