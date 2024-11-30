@@ -10,19 +10,16 @@ extern const bool asynchronous = false;
 
 // 选手需要依次将player1到player4的角色类型在这里定义
 extern const std::array<THUAI8::CharacterType, 12> CharacterTypeDict = {
-    THUAI8::CharacterType::Camp1Character1,
-    THUAI8::CharacterType::Camp1Character2,
-    THUAI8::CharacterType::Camp1Character3,
-    THUAI8::CharacterType::Camp1Character4,
-    THUAI8::CharacterType::Camp1Character5,
-    THUAI8::CharacterType::Camp1Character6,
-    
-    THUAI8::CharacterType::Camp2Character1,
-    THUAI8::CharacterType::Camp2Character2,
-    THUAI8::CharacterType::Camp2Character3,
-    THUAI8::CharacterType::Camp2Character4,
-    THUAI8::CharacterType::Camp2Character5,
-    THUAI8::CharacterType::Camp2Character6,
+    THUAI8::CharacterType::Monk,
+    THUAI8::CharacterType::MonkeyKing,
+    THUAI8::CharacterType::Pigsy,
+    THUAI8::CharacterType::ShaWujing,
+    THUAI8::CharacterType::Whitedragonhorse,
+    THUAI8::CharacterType::JiuTouYuanSheng,
+    THUAI8::CharacterType::Honghaier,
+    THUAI8::CharacterType::Gyuumao,
+    THUAI8::CharacterType::Princess_Iron_Fan,
+    THUAI8::CharacterType::Spider,
 };
 
 // 可以在AI.cpp内部声明变量与函数
@@ -44,6 +41,10 @@ void AI::play(IShipAPI& api)
     else if (this->playerID == 4)
     {
         // player4的操作
+    }
+    else if (this->playerID == 5)
+    {
+        // player5的操作
     }
 }
 
