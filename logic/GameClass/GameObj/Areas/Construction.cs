@@ -9,7 +9,7 @@ public class Construction(XY initPos)
     : Immovable(initPos, GameData.NumOfPosGridPerCell / 2, GameObjType.Construction)
 {
     public AtomicLong TeamID { get; } = new(long.MaxValue);
-    public InVariableRange<long> HP { get; } = new(0, GameData.CommunityHP);
+    public InVariableRange<long> HP { get; } = new(0, GameData.ConstructionHP);
     public override bool IsRigid(bool args = false) => true;
     public override ShapeType Shape => ShapeType.SQUARE;
 

@@ -103,6 +103,7 @@ namespace Preparation.Utility
         {
             return (pos1 - pos2).Length() <= range;
         }
+        public const int ConstructionHP = 1000;//建筑物的默认HP
         public const int BarracksHP = 600;
         public const int SpringHP = 300;
         public const int FarmHP = 400;
@@ -111,6 +112,10 @@ namespace Preparation.Utility
         public const int FarmConstructSpeed = 40;//400/10
         public const int TrapConstructSpeed = 20;//100/5
         public const int CageConstructSpeed = 20;//100/5
+        public const int TimerInterval = 1000;
+        public const int TrapRange = 1;
+        public const int TrapDamage = 20;
+        public const int TrapTime = 5000;
 
         public static readonly XY PosNotInGame = new(1, 1);
     }
