@@ -159,16 +159,6 @@ int32_t TeamAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
     return logic.GetAdditionResourceState(cellX, cellY);
 }
 
-int32_t CharacterAPI::GetHomeHp() const
-{
-    return logic.GetHomeHp();
-}
-
-int32_t TeamAPI::GetHomeHp() const
-{
-    return logic.GetHomeHp();
-}
-
 std::shared_ptr<const THUAI8::GameInfo> CharacterAPI::GetGameInfo() const
 {
     return logic.GetGameInfo();
@@ -246,10 +236,16 @@ std::future<bool> CharacterAPI::MoveLeft(int64_t timeInMilliseconds)
     return Move(timeInMilliseconds, PI * 1.5);
 }
 
-std::future<bool> CharacterAPI::Attack(int64_t attackedPlayerID)
+std::future<bool> CharacterAPI::Common_Attack(int64_t attackedPlayerID)
 {
     return std::async(std::launch::async, [=]()
-                      { return logic.Attack(attackedPlayerID); });
+                      { return logic.Common_Attack(attackedPlayerID); });
+}
+
+std::future<bool> CharacterAPI::Skill_Attack(int64_t attackedPlayerID)
+{
+    return std::async(std::launch::async, [=]()
+                      { return logic.Skill_Attack(attackedPlayerID); });
 }
 
 std::future<bool> CharacterAPI::Recover(int64_t recover)
@@ -258,47 +254,40 @@ std::future<bool> CharacterAPI::Recover(int64_t recover)
                       { return logic.Recover(recover); });
 }
 
-std::future<bool> ShipAPI::Produce()
+std::future<bool> CharacterAPI::Produce()
 {
     return std::async(std::launch::async, [=]()
                       { return logic.Produce(); });
 }
 
-std::future<bool> ShipAPI::RepairWormhole()
-{
-    return std::async(std::launch::async, [=]()
-                      { return logic.RepairWormhole(); });
-}
-
-std::future<bool> ShipAPI::RepairHome()
-{
-    return std::async(std::launch::async, [=]()
-                      { return logic.RepairHome(); });
-}
-
-std::future<bool> ShipAPI::Rebuild(THUAI7::ConstructionType constructionType)
+std::future<bool> CharacterAPI::Rebuild(THUAI8::ConstructionType constructionType)
 {
     return std::async(std::launch::async, [=]()
                       { return logic.Rebuild(constructionType); });
 }
 
-std::future<bool> ShipAPI::Construct(THUAI7::ConstructionType constructionType)
+std::future<bool> CharacterAPI::Construct(THUAI8::ConstructionType constructionType)
 {
     return std::async(std::launch::async, [=]()
                       { return logic.Construct(constructionType); });
 }
 
-bool ShipAPI::HaveView(int32_t targetX, int32_t targetY) const
+bool CharacterAPI::HaveView(int32_t targetX, int32_t targetY) const
 {
     auto selfInfo = GetSelfInfo();
     return logic.HaveView(selfInfo->x, selfInfo->y, targetX, targetY, selfInfo->viewRange);
 }
 
+void CharacterAPI::Play(IAI& ai)
+{
+    ai.play(*this);
+}
+
 // Team独有
-std::future<bool> TeamAPI::InstallModule(int32_t playerID, const THUAI7::ModuleType moduleType)
+std::future<bool> TeamAPI::InstallEquipment(int32_t playerID, const THUAI8::EquipmentType equipmentType)
 {
     return std::async(std::launch::async, [=]()
-                      { return logic.InstallModule(playerID, moduleType); });
+                      { return logic.InstallEquipment(playerID, equipmentType); });
 }
 
 std::future<bool> TeamAPI::Recycle(int32_t playerID)
@@ -307,15 +296,10 @@ std::future<bool> TeamAPI::Recycle(int32_t playerID)
                       { return logic.Recycle(playerID); });
 }
 
-std::future<bool> TeamAPI::BuildShip(THUAI7::ShipType ShipType, int32_t birthIndex)
+std::future<bool> TeamAPI::BuildCharacter(THUAI8::CharacterType CharacterType, int32_t birthIndex)
 {
     return std::async(std::launch::async, [=]()
-                      { return logic.BuildShip(ShipType, birthIndex); });
-}
-
-void ShipAPI::Play(IAI& ai)
-{
-    ai.play(*this);
+                      { return logic.BuildCharacter(CharacterType, birthIndex); });
 }
 
 void TeamAPI::Play(IAI& ai)
