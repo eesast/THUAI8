@@ -10,6 +10,7 @@ namespace GameClass.GameObj.Occupations
         public int ViewRange { get; } = GameData.Viewrange;
         public int Cost { get; } = 0;
         public int BaseAttackSize { get; } = GameData.JiuLingATKsize;
+        public int AttackPower { get; } = GameData.JiuLingATKpower;
         public bool IsEquipValid(EquipmentType equiptype) => equiptype switch
         {
             EquipmentType.SPEEDBOOTS => false,

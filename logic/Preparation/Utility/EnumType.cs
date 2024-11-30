@@ -27,6 +27,15 @@ namespace Preparation.Utility
         Home = 8,
         OutOfBoundBlock = 9,
     }
+
+    public enum A_ResourceType
+    {
+        NULL = 0,
+        CrazyMan = 1,
+        LifePool = 2,
+        QuickStep = 3,
+        WideView = 4,
+    }
     public enum CharacterState //角色状态
     {
         NULL_CHARACTER_STATE = 0,
