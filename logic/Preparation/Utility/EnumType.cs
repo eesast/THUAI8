@@ -29,7 +29,7 @@ namespace Preparation.Utility
     }
 
     public enum A_ResourceType
-    { 
+    {
         NULL = 0,
         CrazyMan = 1,
         LifePool = 2,
