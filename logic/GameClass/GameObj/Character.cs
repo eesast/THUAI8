@@ -4,6 +4,7 @@ using Preparation.Utility;
 using Preparation.Utility.Value;
 using Preparation.Utility.Value.SafeValue.Atomic;
 using Preparation.Utility.Value.SafeValue.LockedValue;
+using GameClass.GameObj.Areas;
 
 using System.Timers;
 
@@ -194,11 +195,11 @@ public class Character : Movable, ICharacter
     }
     public bool InSquare(XY pos, int range)
     {
-        return pos.x >= Pos.x - range && pos.x <= Pos.x + range && pos.y >= Pos.y - range && pos.y <= Pos.y + range;
+        return pos.x >= Position.x - range && pos.x <= Position.x + range && pos.y >= Position.y - range && pos.y <= Position.y + range;
     }
     public void InTrap(Trap trap)
     {
-        if (!trapped && InSquare(trap.Pos, GameData.TrapRange) && trap.TeamID != TeamID)
+        if (!trapped && InSquare(trap.Position, GameData.TrapRange) && trap.TeamID != TeamID)
         {
             visbility = true;
             trapped = true;

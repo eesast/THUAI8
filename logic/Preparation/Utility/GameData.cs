@@ -118,5 +118,24 @@ namespace Preparation.Utility
         public const int TrapTime = 5000;
 
         public static readonly XY PosNotInGame = new(1, 1);
+
+        public const int ResourceHP = 10000;
+
+        //加成资源
+        public const int CrazyMan1HP = 400;
+        public const int CrazyMan2HP = 500;
+        public const int CrazyMan3HP = 600;
+        public const int LifePool1HP = 200;
+        public const int LifePool2HP = 300;
+        public const int LifePool3HP = 400;
+        public const int QuickStepHP = 300;
+        public const int WideViewHP = 300;
+
+        public const int CrazyMan1ATK = 10;
+        public const int CrazyMan2ATK = 15;
+        public const int CrazyMan3ATK = 20;
+        public const int LifePoolATK = 10;
+        public const int QuickStep = 10;
+        public const int WideView = 10;
     }
 }
