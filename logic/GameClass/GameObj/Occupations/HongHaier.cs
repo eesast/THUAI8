@@ -11,10 +11,10 @@ namespace GameClass.GameObj.Occupations
         public int ViewRange { get; } = GameData.Viewrange;
         public int Cost { get; } = GameData.HongHaiercost;
         public int BaseAttackSize { get; } = GameData.HongHaierATKsize;
+        public int AttackPower { get; } = GameData.HongHaierATKpower;
         public bool IsEquipValid(EquipmentType equiptype) => equiptype switch
         {
             EquipmentType.SPEEDBOOTS => false,
-
             EquipmentType.SMALL_HEALTH_POTION => false,
             EquipmentType.MEDIUM_HEALTH_POTION => false,
             EquipmentType.LARGE_HEALTH_POTION => false,

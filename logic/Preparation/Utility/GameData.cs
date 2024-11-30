@@ -51,6 +51,19 @@ namespace Preparation.Utility
         public const int ZhiZhujingATKsize = 5000;
         public const int PawnATKsize = 1000;
 
+        public const int TangSengATKpower = 0;
+        public const int SunWukongATKpower = 30;
+        public const int ZhuBajieATKpower = 20;
+        public const int ShaWujingATKpower = 10;
+        public const int BaiLongmaATKpower = 10;
+        public const int MonkidATKpower = 5;
+        public const int JiuLingATKpower = 0;
+        public const int HongHaierATKpower = 25;
+        public const int NiuMowangATKpower = 20;
+        public const int TieShanATKpower = 10;
+        public const int ZhiZhujingATKpower = 10;
+        public const int PawnATKpower = 5;
+
         public const int NumOfPosGridPerCell = 1000;    // 每格的【坐标单位】数
         public const int MapLength = 50000;             // 地图长度
         public const int MapRows = 50;                  // 行数
@@ -105,5 +118,24 @@ namespace Preparation.Utility
         public const int TrapTime = 5000;
 
         public static readonly XY PosNotInGame = new(1, 1);
+
+        public const int ResourceHP = 10000;
+
+        //加成资源
+        public const int CrazyMan1HP = 400;
+        public const int CrazyMan2HP = 500;
+        public const int CrazyMan3HP = 600;
+        public const int LifePool1HP = 200;
+        public const int LifePool2HP = 300;
+        public const int LifePool3HP = 400;
+        public const int QuickStepHP = 300;
+        public const int WideViewHP = 300;
+
+        public const int CrazyMan1ATK = 10;
+        public const int CrazyMan2ATK = 15;
+        public const int CrazyMan3ATK = 20;
+        public const int LifePoolATK = 10;
+        public const int QuickStep = 10;
+        public const int WideView = 10;
     }
 }

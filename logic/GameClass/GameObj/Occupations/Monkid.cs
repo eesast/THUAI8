@@ -10,6 +10,7 @@ namespace GameClass.GameObj.Occupations
         public int ViewRange { get; } = GameData.Viewrange;
         public int Cost { get; } = GameData.Monkidcost;
         public int BaseAttackSize { get; } = GameData.MonkidATKsize;
+        public int AttackPower { get; } = GameData.MonkidATKpower;
         public bool IsEquipValid(EquipmentType equiptype) => equiptype switch
         {
             EquipmentType.SPEEDBOOTS => false,
