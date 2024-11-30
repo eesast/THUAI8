@@ -10,7 +10,7 @@ public class E_Resource(XY initPos)
     public InVariableRange<long> HP { get; } = new(GameData.ResourceHP);
     public override bool IsRigid(bool args = false) => false;
     public override ShapeType Shape => ShapeType.NULL_SHAPE_TYPE;
-    public bool Produce(int producespeed,Character character)
+    public bool Produce(int producespeed, Character character)
     {
         return character.MoneyPool.AddMoney(-HP.SubRChange(producespeed)) > 0;
     }
