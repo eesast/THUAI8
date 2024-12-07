@@ -119,7 +119,7 @@ public:
     // 用于DEBUG的输出函数，选手仅在开启Debug模式的情况下可以使用
 
     virtual void Print(std::string str) const = 0;
-    virtual void PrintShip() const = 0;
+    virtual void PrintCharacter() const = 0;
     virtual void PrintTeam() const = 0;
     virtual void PrintSelfInfo() const = 0;
 };
@@ -139,7 +139,7 @@ public:
     virtual std::future<bool> Produce() = 0;
     virtual std::future<bool> Rebuild(THUAI8::ConstructionType constructionType) = 0;
     virtual std::future<bool> Construct(THUAI8::ConstructionType constructionType) = 0;
-    virtual std::shared_ptr<const THUAI8::Ship> GetSelfInfo() const = 0;
+    virtual std::shared_ptr<const THUAI8::Character> GetSelfInfo() const = 0;
     virtual bool HaveView(int32_t targetX, int32_t targetY) const = 0;
 };
 
@@ -269,7 +269,7 @@ public:
     void Print(std::string str) const
     {
     }
-    void PrintShip() const
+    void PrintCharacter() const
     {
     }
     void PrintTeam() const
