@@ -31,10 +31,14 @@ namespace Preparation.Utility
     public enum A_ResourceType
     {
         NULL = 0,
-        CrazyMan = 1,
-        LifePool = 2,
-        QuickStep = 3,
-        WideView = 4,
+        CrazyMan1 = 1,
+        CrazyMan2 = 2,
+        CrazyMan3 = 3,
+        LifePool1 = 4,
+        LifePool2 = 5,
+        LifePool3 = 6,
+        QuickStep = 7,
+        WideView = 8,
     }
     public enum CharacterState //角色状态
     {

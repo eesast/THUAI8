@@ -172,7 +172,7 @@ public class Character : Movable, ICharacter
 
     public bool TryToRemoveFromGame(CharacterState state)
     {
-        lock (actionlock)
+        lock (actionLock)
         {
             if (SetCharacterState(CharacterState.NULL_CHARACTER_STATE, state) == -1)
                 return false;
@@ -182,6 +182,13 @@ public class Character : Movable, ICharacter
         }
         return true;
     }
+    public void Init()
+    {
+        HP.SetMaxV(Occupation.MaxHp);
+        HP.SetVToMaxV();
+        AttackPower.SetMaxV(Occupation.AttackPower);
+        AttackPower.SetVToMaxV();
+    }
     public Character(int radius, CharacterType type, MoneyPool pool) :
         base(GameData.PosNotInGame, radius, GameObjType.Character)
     {
@@ -190,8 +197,10 @@ public class Character : Movable, ICharacter
         Occupation = OccupationFactory.FindIOccupation(CharacterType = type);
         ViewRange = Occupation.ViewRange;
         HP = new(Occupation.MaxHp);
+        AttackPower = new(Occupation.AttackPower);
         AttackSize = new(Occupation.BaseAttackSize);
         MoneyPool = pool;
+        Init();
     }
     public bool InSquare(XY pos, int range)
     {

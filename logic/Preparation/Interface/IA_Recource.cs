@@ -5,7 +5,7 @@ namespace Preparation.Interface
 {
     public interface IA_Recource
     {
-        public int ATKpower { get; }
-        public int HP { get; }
+        public InVariableRange<long> HP { get; }
+        public InVariableRange<long> AttackPower { get; }
     }
 }
