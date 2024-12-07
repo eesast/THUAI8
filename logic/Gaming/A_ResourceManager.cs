@@ -10,7 +10,7 @@ namespace Gaming
     public partial class Game
     {
         private readonly A_ResourceManager ARmanager;
-        private class A_ResourceManager(Game game, Map gameMap) 
+        private class A_ResourceManager(Game game, Map gameMap)
         {
             private readonly Game game = game;
             private readonly Map map = gameMap;
@@ -21,7 +21,7 @@ namespace Gaming
             }
             public bool activateAR(A_Resource AResource)
             {
-                if(AResource.ARstate == AdditionResourceState.BEATEN)
+                if (AResource.ARstate == AdditionResourceState.BEATEN)
                 {
                     return false;
                 }
