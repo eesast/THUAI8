@@ -103,6 +103,20 @@ namespace Gaming
                 }
                 gameMap.Remove(character);
             }
+            public static bool ImproveATK(Character character, long ATK)
+            {
+                if (ATK <= 0)
+                    return false;
+                character.AttackPower.AddPositiveV(ATK);//暂未添加时间限制
+                return true;
+            }
+            public static bool ImproveSpeed(Character character, long speed)
+            {
+                if (speed <= 0)
+                    return false;
+                character.Shoes.AddPositiveV(speed);//暂未添加时间限制
+                return true;
+            }
         }
     }
 }

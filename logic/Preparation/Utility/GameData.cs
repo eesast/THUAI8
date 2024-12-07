@@ -72,6 +72,7 @@ namespace Preparation.Utility
         public const int Viewrange = 8000;
 
         public const int CharacterRadius = 400;
+        public const int AResourceRadius = 400;
         public static XY GetCellCenterPos(int x, int y)  // 求格子的中心坐标
             => new(x * NumOfPosGridPerCell + NumOfPosGridPerCell / 2,
                    y * NumOfPosGridPerCell + NumOfPosGridPerCell / 2);
@@ -135,7 +136,7 @@ namespace Preparation.Utility
         public const int CrazyMan2ATK = 15;
         public const int CrazyMan3ATK = 20;
         public const int LifePoolATK = 10;
-        public const int QuickStep = 10;
-        public const int WideView = 10;
+        public const int QuickStepATK = 10;
+        public const int WideViewATK = 10;
     }
 }
