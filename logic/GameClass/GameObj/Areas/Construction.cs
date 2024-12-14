@@ -9,12 +9,12 @@ public class Construction(XY initPos)
     : Immovable(initPos, GameData.NumOfPosGridPerCell / 2, GameObjType.Construction)
 {
     public AtomicLong TeamID { get; } = new(long.MaxValue);
-    public InVariableRange<long> HP { get; } = new(0, GameData.CommunityHP);
+    public InVariableRange<long> HP { get; } = new(0, GameData.ConstructionHP);
     public override bool IsRigid(bool args = false) => true;
-    public override ShapeType Shape => ShapeType.Square;
+    public override ShapeType Shape => ShapeType.SQUARE;
 
     private readonly object lockOfConstructionType = new();
-    private ConstructionType constructionType = ConstructionType.Null;
+    private ConstructionType constructionType = ConstructionType.NULL_CONSTRUCTION_TYPE;
     public ConstructionType ConstructionType
     {
         get
@@ -29,13 +29,13 @@ public class Construction(XY initPos)
     public bool Construct(ConstructionType constructionType, Character character)//这里修改了函数的参数列表删除了int constructSpeed
     {
         int constructSpeed;
-        if (constructionType == ConstructionType.Null)
+        if (constructionType == ConstructionType.NULL_CONSTRUCTION_TYPE)
             return false;
         lock (lockOfConstructionType)
         {
-            if (this.constructionType == ConstructionType.Null || HP == 0)
+            if (this.constructionType == ConstructionType.NULL_CONSTRUCTION_TYPE || HP == 0)
             {
-                TeamID.SetROri(ship.TeamID);
+                TeamID.SetROri(character.TeamID);
                 this.constructionType = constructionType;
                 switch (constructionType)
                 {
@@ -80,7 +80,21 @@ public class Construction(XY initPos)
         }
         if (character!.TeamID != TeamID)
         {
-            long subHP = character.AP;//这里记得修改，因为伤害不一定是AP，还可能是技能伤害
+            long subHP = character.AttackPower;
+            HP.SubPositiveV(subHP);
+        }
+        return previousActivated;
+    }
+    public bool BeAttacked(Character character, long AP)
+    {
+        var previousActivated = IsActivated.Get();
+        if (constructionType == ConstructionType.TRAP || constructionType == ConstructionType.CAGE)
+        {
+            return previousActivated;
+        }
+        if (character!.TeamID != TeamID)
+        {
+            long subHP = AP;
             HP.SubPositiveV(subHP);
         }
         return previousActivated;

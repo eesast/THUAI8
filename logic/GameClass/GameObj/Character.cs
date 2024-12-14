@@ -1,10 +1,12 @@
-﻿using Preparation.Interface;
+﻿using GameClass.GameObj.Occupations;
+using Preparation.Interface;
 using Preparation.Utility;
 using Preparation.Utility.Value;
 using Preparation.Utility.Value.SafeValue.Atomic;
 using Preparation.Utility.Value.SafeValue.LockedValue;
+using GameClass.GameObj.Areas;
 
-
+using System.Timers;
 
 namespace GameClass.GameObj;
 public class Character : Movable, ICharacter
@@ -17,7 +19,16 @@ public class Character : Movable, ICharacter
     public InVariableRange<long> HP { get; }
     public InVariableRange<long> AttackPower { get; }
     public InVariableRange<long> AttackSize { get; }
+    public InVariableRange<long> Shield { get; }
+    public InVariableRange<long> Shoes { get; }//移速加成（注意是加成值，实际移速为基础移速+移速加成）
     public CharacterType CharacterType { get; }
+    public bool visbility { get; set; } = true;
+    public bool trapped { get; set; } = false;
+    public bool caged { get; set; } = false;
+    public bool stunned { get; set; } = false;
+    public double HarmCut = 0.0;//伤害减免，该值范围为0-1，为比例减伤。
+    private Timer? trapTimer = null;
+    private Timer? cageTimer = null;
     private CharacterState characterState1 = CharacterState.NULL_CHARACTER_STATE;
     private CharacterState characterState2 = CharacterState.DECEASED;
     public CharacterState CharacterState1
@@ -160,6 +171,122 @@ public class Character : Movable, ICharacter
         }
     }
 
+    public bool TryToRemoveFromGame(CharacterState state)
+    {
+        lock (actionLock)
+        {
+            if (SetCharacterState(CharacterState.NULL_CHARACTER_STATE, state) == -1)
+                return false;
+            TryToRemove();
+            CanMove.SetROri(false);
+            position = GameData.PosNotInGame;
+        }
+        return true;
+    }
+    public void Init()
+    {
+        HP.SetMaxV(Occupation.MaxHp);
+        HP.SetVToMaxV();
+        AttackPower.SetMaxV(Occupation.AttackPower);
+        AttackPower.SetVToMaxV();
+    }
+    public Character(int radius, CharacterType type, MoneyPool pool) :
+        base(GameData.PosNotInGame, radius, GameObjType.Character)
+    {
+        CanMove.SetROri(false);
+        IsRemoved.SetROri(true);
+        Occupation = OccupationFactory.FindIOccupation(CharacterType = type);
+        ViewRange = Occupation.ViewRange;
+        HP = new(Occupation.MaxHp);
+        AttackPower = new(Occupation.AttackPower);
+        AttackSize = new(Occupation.BaseAttackSize);
+        MoneyPool = pool;
+        Init();
+    }
+    public bool InSquare(XY pos, int range)
+    {
+        return pos.x >= Position.x - range && pos.x <= Position.x + range && pos.y >= Position.y - range && pos.y <= Position.y + range;
+    }
+    public void InTrap(Trap trap)
+    {
+        if (!trapped && InSquare(trap.Position, GameData.TrapRange) && trap.TeamID != TeamID)
+        {
+            visbility = true;
+            trapped = true;
+            StartTrapTimer(trap);
+            //HP.SubV(GameData.TrapDamage);
+            //SetCharacterState(CharacterState.STUNNED);
+
+        }
+    }
+    private void StartTrapTimer(Trap trap)
+    {
+        StopTrapTimer();
+        trapTimer = new Timer(GameData.TimerInterval);
+        int elapsedSeconds = 0;
+        trapTimer.Elapsed += (sender, e) =>
+        {
+            HP.SubV(GameData.TrapDamage);//如果造成伤害要改在这里改
+            elapsedSeconds++;
+            if (elapsedSeconds >= GameData.TrapTime / 1000)
+            {
+                trapped = false;
+                StopTrapTimer();
+            }
+        };
+        trapTimer.AutoReset = false;
+        trapTimer.Enabled = true;
+    }
+    public void StopTrapTimer()
+    {
+        if (trapTimer != null)
+        {
+            trapTimer.Stop();
+            trapTimer.Dispose();
+            trapTimer = null;
+        }
+    }
+    public void InCage(Cage cage)
+    {
+        if (!caged && InSquare(trap.Pos, GameData.TrapRange) && cage.TeamID != TeamID)
+        {
+            visbility = true;
+            caged = true;
+            stunned = true;
+            StartCageTimer(trap);
+            //HP.SubV(GameData.TrapDamage);
+            //SetCharacterState(CharacterState.STUNNED);
+
+        }
+    }
+    private void StartCageTimer(Trap trap)
+    {
+        StopCageTimer();
+        cageTimer = new Timer(GameData.TimerInterval);
+        int elapsedSeconds = 0;
+        trapTimer.Elapsed += (sender, e) =>
+        {
+
+            elapsedSeconds++;
+            if (elapsedSeconds >= GameData.TrapTime / 1000)
+            {
+                caged = false;
+                stunned = false;
+                StopCageTimer();
+            }
+        };
+        cageTimer.AutoReset = false;
+        cageTimer.Enabled = true;
+    }
+    public void StopCageTimer()
+    {
+        if (cageTimer != null)
+        {
+            cageTimer.Stop();
+            cageTimer.Dispose();
+            cageTimer = null;
+        }
+    }
 }
 
 
