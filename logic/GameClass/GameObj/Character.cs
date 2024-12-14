@@ -26,6 +26,7 @@ public class Character : Movable, ICharacter
     public bool trapped { get; set; } = false;
     public bool caged { get; set; } = false;
     public bool stunned { get; set; } = false;
+    public double HarmCut = 0.0;//伤害减免，该值范围为0-1，为比例减伤。
     private Timer? trapTimer = null;
     private Timer? cageTimer = null;
     private CharacterState characterState1 = CharacterState.NULL_CHARACTER_STATE;
