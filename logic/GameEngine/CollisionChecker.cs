@@ -8,12 +8,12 @@ namespace GameEngine
 {
     internal class CollisionChecker(IMap gameMap)
     {
-        public IGameObj? CheckCollision(IMovable obj, XY Pos, bool collideWithWormhole = false)
+        public IGameObj? CheckCollision(IMovable obj, XY Pos)
         {
             // 在列表中检查碰撞
             IGameObj? CheckCollisionInList(LockedClassList<IGameObj> lst)
             {
-                return lst.Find(listObj => obj.WillCollideWith(listObj, Pos, collideWithWormhole));
+                return lst.Find(listObj => obj.WillCollideWith(listObj, Pos));
             }
 
             IGameObj? collisionObj;
@@ -33,7 +33,7 @@ namespace GameEngine
         /// <param name="obj">移动的物体</param>
         /// <param name="moveVec">移动的位移向量</param>
         /// <returns>和它碰撞的物体</returns>
-        public IGameObj? CheckCollisionWhenMoving(IMovable obj, XY moveVec, bool collideWithWormhole = false)
+        public IGameObj? CheckCollisionWhenMoving(IMovable obj, XY moveVec)
         {
             XY nextPos = obj.Position + moveVec;
             if (!obj.IsRigid())
@@ -42,7 +42,7 @@ namespace GameEngine
                     return gameMap.GetOutOfBound(nextPos);
                 return null;
             }
-            return CheckCollision(obj, nextPos, collideWithWormhole);
+            return CheckCollision(obj, nextPos);
         }
         /// <summary>
         /// /// 可移动物体（圆）向矩形物体移动时，可移动且不会碰撞的最大距离。直接用double计算，防止误差
@@ -117,7 +117,7 @@ namespace GameEngine
                     {
                         switch (listObj.Shape)  // 默认obj为圆形
                         {
-                            case ShapeType.Circle:
+                            case ShapeType.CIRCLE:
                                 {
                                     // 计算两者之间的距离
                                     double mod = XY.DistanceFloor3(listObj.Position, obj.Position);
@@ -142,7 +142,7 @@ namespace GameEngine
                                     }
                                     break;
                                 }
-                            case ShapeType.Square:
+                            case ShapeType.SQUARE:
                                 {
                                     // if (obj.WillCollideWith(listObj, obj.Position))
                                     //     tmpMax = 0;

@@ -40,7 +40,7 @@ namespace Gaming
                 {
                     return;
                 }
-                long subHP = obj.AttackPower;
+                long subHP = (long)(obj.AttackPower * (1 - character.HarmCut));
                 if (character.Shield > 0)
                 {
                     character.Shield.SubPositiveV(subHP);
@@ -65,13 +65,14 @@ namespace Gaming
 
             public void BeAttacked(Character character, long AP)//此部分适用于中立资源攻击及技能攻击
             {
+                long subHP = (long)(AP * (1 - character.HarmCut));
                 if (character.Shield > 0)
                 {
-                    character.Shield.SubPositiveV(AP);
+                    character.Shield.SubPositiveV(subHP);
                 }
                 else
                 {
-                    character.HP.SubPositiveV(AP);
+                    character.HP.SubPositiveV(subHP);
                 }
                 if (character.HP == 0)
                 {
@@ -115,6 +116,25 @@ namespace Gaming
                 if (speed <= 0)
                     return false;
                 character.Shoes.AddPositiveV(speed);//暂未添加时间限制
+                return true;
+            }
+            public static bool SkillCasting(Character character, double theta = 0.0)
+            {
+                if (!character.Commandable() || character.CharacterState2 == CharacterState.BLIND)
+                    return false;
+                switch (character.CharacterType)
+                {
+                    case CharacterType.SunWukong:
+                        {
+                            break;
+                        }
+                    case CharacterType.ZhuBajie:
+                        {
+                            Recover(character, 150);//回复一半血量
+                            character.HarmCut = 0.5;//设置伤害减免。此处尚未增加时间限制
+                            break;
+                        }
+                }
                 return true;
             }
         }
