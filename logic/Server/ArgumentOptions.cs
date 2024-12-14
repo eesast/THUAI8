@@ -68,5 +68,6 @@ namespace Server
 
         [Option("mode", Required = false, HelpText = "Whether to run final competition. 0 本地玩,1 最终比赛,2 天梯")]
         public int Mode { get; set; } = 0;
+
     }
 }
