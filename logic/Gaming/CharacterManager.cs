@@ -122,7 +122,7 @@ namespace Gaming
             {
                 if (!character.Commandable() || character.CharacterState2 == CharacterState.BLIND)
                     return false;
-                switch(character.CharacterType)
+                switch (character.CharacterType)
                 {
                     case CharacterType.SunWukong:
                         {
