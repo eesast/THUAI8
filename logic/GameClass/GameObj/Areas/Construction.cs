@@ -80,7 +80,21 @@ public class Construction(XY initPos)
         }
         if (character!.TeamID != TeamID)
         {
-            long subHP = character.AP;//这里记得修改，因为伤害不一定是AP，还可能是技能伤害
+            long subHP = character.AttackPower;
+            HP.SubPositiveV(subHP);
+        }
+        return previousActivated;
+    }
+    public bool BeAttacked(Character character, long AP)
+    {
+        var previousActivated = IsActivated.Get();
+        if (constructionType == ConstructionType.TRAP || constructionType == ConstructionType.CAGE)
+        {
+            return previousActivated;
+        }
+        if (character!.TeamID != TeamID)
+        {
+            long subHP = AP;
             HP.SubPositiveV(subHP);
         }
         return previousActivated;
