@@ -136,10 +136,10 @@ public:
     virtual std::future<bool> Skill_Attack(double angleInRadian) = 0;
     virtual std::future<bool> Common_Attack(double angleInRadian) = 0;
     virtual std::future<bool> Recover(int64_t recover) = 0;
-    virtual std::future<bool> Produce() = 0;
+    virtual std::future<bool> Harvest() = 0;
     virtual std::future<bool> Rebuild(THUAI8::ConstructionType constructionType) = 0;
     virtual std::future<bool> Construct(THUAI8::ConstructionType constructionType) = 0;
-    virtual std::shared_ptr<const THUAI8::Ship> GetSelfInfo() const = 0;
+    virtual std::shared_ptr<const THUAI8::Character> GetSelfInfo() const = 0;
     virtual bool HaveView(int32_t targetX, int32_t targetY) const = 0;
 };
 
@@ -193,7 +193,7 @@ public:
     std::future<bool> Skill_Attack(double angleInRadian) override;
     std::future<bool> Common_Attack(double angleInRadian) override;
     std::future<bool> Recover(int64_t recover) override;
-    std::future<bool> Produce() override;
+    std::future<bool> Harvest() override;
     std::future<bool> Rebuild(THUAI8::ConstructionType constructionType) override;
     std::future<bool> Construct(THUAI8::ConstructionType constructionType) override;
 
@@ -306,7 +306,7 @@ public:
     std::future<bool> Skill_Attack(double angleInRadian) override;
     std::future<bool> Common_Attack(double angleInRadian) override;
     std::future<bool> Recover(int64_t recover) override;
-    std::future<bool> Produce() override;
+    std::future<bool> Harvest() override;
     std::future<bool> Rebuild(THUAI8::ConstructionType constructionType) override;
     std::future<bool> Construct(THUAI8::ConstructionType constructionType) override;
 
