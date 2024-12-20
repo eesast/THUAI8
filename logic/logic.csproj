@@ -7,4 +7,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="GameClass\GameClass.csproj" />
+    <ProjectReference Include="GameEngine\GameEngine.csproj" />
+    <ProjectReference Include="Gaming\Gaming.csproj" />
+    <ProjectReference Include="Preparation\Preparation.csproj" />
+    <ProjectReference Include="Server\Server.csproj" />
+  </ItemGroup>
+
 </Project>

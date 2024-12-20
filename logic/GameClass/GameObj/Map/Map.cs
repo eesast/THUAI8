@@ -94,13 +94,13 @@ namespace GameClass.GameObj.Map
         }
         public List<Character>? CharacterInTheRangeNotTeamID(XY Pos, int range, long teamID)
         {
-            return GameObjDict[GameObjType.Character].Cast<Character>()?.FindAll(ship =>
-                (GameData.IsInTheRange(ship.Position, Pos, range) && ship.TeamID != teamID));
+            return GameObjDict[GameObjType.Character].Cast<Character>()?.FindAll(character =>
+                (GameData.IsInTheRange(character.Position, Pos, range) && character.TeamID != teamID));
         }
         public List<Character>? CharacterInTheList(List<CellXY> PosList)
         {
-            return GameObjDict[GameObjType.Character].Cast<Character>()?.FindAll(ship =>
-                PosList.Contains(GameData.PosGridToCellXY(ship.Position)));
+            return GameObjDict[GameObjType.Character].Cast<Character>()?.FindAll(character =>
+                PosList.Contains(GameData.PosGridToCellXY(character.Position)));
         }
         public bool CanSee(Character character, GameObj gameObj)
         {
@@ -176,7 +176,7 @@ namespace GameClass.GameObj.Map
         {
             GameObjDict[gameObj.Type].Add(gameObj);
         }
-        public Map(MapStruct mapResource)
+        public Map(MapStruct mapResource, A_ResourceType type = A_ResourceType.NULL)
         {
             gameObjDict = [];
             foreach (GameObjType idx in Enum.GetValues(typeof(GameObjType)))
@@ -197,13 +197,13 @@ namespace GameClass.GameObj.Map
                             Add(new BARRIER(GameData.GetCellCenterPos(i, j)));
                             break;
                         case PlaceType.BUSH:
-                            Add(new BUSH(GameData.GetCellCenterPos(i, j)));
+                            Add(new Bush(GameData.GetCellCenterPos(i, j)));
                             break;
                         case PlaceType.ADDITION_RESOURCE:
-                            Add(new ADDITION_RESOURCE(GameData.GetCellCenterPos(i, j)));
+                            Add(new A_Resource(GameData.AResourceRadius, type, GameData.GetCellCenterPos(i, j)));
                             break;
                         case PlaceType.CONSTRUCTION:
-                            Add(new CONSTRUCTION(GameData.GetCellCenterPos(i, j)));
+                            Add(new Construction(GameData.GetCellCenterPos(i, j)));
                             break;
                     }
                 }

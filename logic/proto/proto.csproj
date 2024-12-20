@@ -7,10 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Gaming\Gaming.csproj" />
-    <ProjectReference Include="..\Preparation\Preparation.csproj" />
-    <ProjectReference Include="..\proto\proto.csproj" />
-  </ItemGroup>
-
 </Project>

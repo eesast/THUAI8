@@ -8,9 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Gaming\Gaming.csproj" />
+    <ProjectReference Include="..\GameClass\GameClass.csproj" />
+    <ProjectReference Include="..\GameEngine\GameEngine.csproj" />
     <ProjectReference Include="..\Preparation\Preparation.csproj" />
-    <ProjectReference Include="..\proto\proto.csproj" />
   </ItemGroup>
 
 </Project>
