@@ -119,7 +119,7 @@ public:
     // 用于DEBUG的输出函数，选手仅在开启Debug模式的情况下可以使用
 
     virtual void Print(std::string str) const = 0;
-    virtual void PrintShip() const = 0;
+    virtual void PrintCharacter() const = 0;
     virtual void PrintTeam() const = 0;
     virtual void PrintSelfInfo() const = 0;
 };
@@ -133,8 +133,8 @@ public:
     virtual std::future<bool> MoveUp(int32_t speed, int64_t timeInMilliseconds) = 0;
     virtual std::future<bool> MoveLeft(int32_t speed, int64_t timeInMilliseconds) = 0;
     virtual std::future<bool> MoveDown(int32_t speed, int64_t timeInMilliseconds) = 0;
-    virtual std::future<bool> Skill_Attack(double angleInRadian) = 0;
-    virtual std::future<bool> Common_Attack(double angleInRadian) = 0;
+    virtual std::future<bool> Skill_Attack(int64_t attackedPlayerID) = 0;
+    virtual std::future<bool> Common_Attack(int64_t attackedPlayerID) = 0;
     virtual std::future<bool> Recover(int64_t recover) = 0;
     virtual std::future<bool> Harvest() = 0;
     virtual std::future<bool> Rebuild(THUAI8::ConstructionType constructionType) = 0;
@@ -269,7 +269,7 @@ public:
     void Print(std::string str) const
     {
     }
-    void PrintShip() const
+    void PrintCharacter() const
     {
     }
     void PrintTeam() const

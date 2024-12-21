@@ -27,19 +27,19 @@ public:
     ~Communication() = default;
     bool TryConnection(int32_t playerID, int32_t teamID);
     protobuf::MessageToClient GetMessage2Client();
-    void AddPlayer(int32_t playerID, int32_t teamID, THUAI7::ShipType ShipType);
+    void AddPlayer(int32_t playerID, int32_t teamID, THUAI8::CharacterType CharacterType);
     bool EndAllAction(int32_t playerID, int32_t teamID);
     // Character
     bool Move(int32_t speed, int32_t playerID, int32_t teamID, int64_t time, double angle);
     bool Recover(int32_t playerID, int64_t recover, int32_t teamID);
     bool Produce(int32_t playerID, int32_t teamID);
-    bool Rebuild(int32_t playerID, int32_t teamID, THUAI7::ConstructionType constructionType);
-    bool Construct(int32_t playerID, int32_t teamID, THUAI7::ConstructionType constructionType);
+    bool Rebuild(int32_t playerID, int32_t teamID, THUAI8::ConstructionType constructionType);
+    bool Construct(int32_t playerID, int32_t teamID, THUAI8::ConstructionType constructionType);
     bool Skill_Attack(int32_t playerID, int32_t teamID, double angle);
     bool Common_Attack(int32_t playerID, int32_t teamID, double angle);
     bool Send(int32_t playerID, int32_t toPlayerID, int32_t teamID, std::string message, bool binary);
     // Team
-    bool InstallEquipment(int32_t playerID, int32_t teamID, THUAI7::EquipmentType equipmentType);
+    bool InstallEquipment(int32_t playerID, int32_t teamID, THUAI8::EquipmentType equipmentType);
     bool BuildCharacter(int32_t teamID, THUAI8::CharacterType CharacterType, int32_t birthIndex);
     bool Recycle(int32_t playerID, int32_t teamID);
 
