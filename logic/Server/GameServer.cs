@@ -13,11 +13,12 @@ using System.Collections;
 
 namespace Server
 {
-    public class ContestResult[
+    public class ContestResult
+    {
         public string status;
-    public double[] scores;
-]
-partial class GameServer : ServerBase
+        public double[] scores;
+    }
+    partial class GameServer : ServerBase
     {
         private readonly ConcurrentDictionary<long, (SemaphoreSlim, SemaphoreSlim)> semaDict0 = new(); //for spectator and team0 player
         private readonly ConcurrentDictionary<long, (SemaphoreSlim, SemaphoreSlim)> semaDict1 = new();
@@ -310,8 +311,8 @@ partial class GameServer : ServerBase
 
         private bool PlayerDeceased(int playerID)
         {
-            return game.GameMap.GameObjDict[GameObjType.Ship].Cast<Ship>()?.Find(
-                ship => ship.PlayerID == playerID && ship.ShipState == ShipStateType.Deceased
+            return game.GameMap.GameObjDict[GameObjType.Character].Cast<Character>()?.Find(
+                character => character.PlayerID == playerID && character.CharacterState == CharacterStateType.Deceased
                 ) != null;
         }
 
@@ -342,7 +343,7 @@ partial class GameServer : ServerBase
 
         private bool ValidPlayerID(long playerID)
         {
-            if (playerID == 0 || (1 <= playerID && playerID <= options.ShipCount))
+            if (playerID == 0 || (1 <= playerID && playerID <= options.CharacterCount))
                 return true;
             return false;
         }
@@ -447,19 +448,19 @@ partial class GameServer : ServerBase
                 }
             }
             currentMapMsg = new() { MapMessage = MapMsg() };
-            playerNum = options.ShipCount + options.HomeCount;
+            playerNum = options.CharacterCount + options.HomeCount;
             communicationToGameID = new long[TeamCount][];
             for (int i = 0; i < TeamCount; i++)
             {
-                communicationToGameID[i] = new long[options.ShipCount + options.HomeCount];
+                communicationToGameID[i] = new long[options.CharacterCount + options.HomeCount];
             }
             //创建server时先设定待加入对象都是invalid
             for (int team = 0; team < TeamCount; team++)
             {
                 communicationToGameID[team][0] = GameObj.invalidID; // team
-                for (int i = 1; i <= options.ShipCount; i++)
+                for (int i = 1; i <= options.CharacterCount; i++)
                 {
-                    communicationToGameID[team][i] = GameObj.invalidID; //ship
+                    communicationToGameID[team][i] = GameObj.invalidID; //character
                 }
             }
 
@@ -467,7 +468,7 @@ partial class GameServer : ServerBase
             {
                 try
                 {
-                    mwr = new(options.FileName, options.TeamCount, options.ShipCount);
+                    mwr = new(options.FileName, options.TeamCount, options.CharacterCount);
                 }
                 catch
                 {

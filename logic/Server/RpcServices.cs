@@ -182,16 +182,16 @@ namespace Server
                 else if (request.TeamId == 1)
                     semaDict1[request.PlayerId].Item1.Wait();
                 Character? character = game.GameMap.FindCharacterInPlayerID(request.TeamId, request.PlayerId);
-                // if(ship!=null)
+                // if(character!=null)
                 // {
-                //     GameServerLogging.logger.ConsoleLog($"Ship {request.PlayerId} exist! IsRemoved {ship.IsRemoved}");
+                //     GameServerLogging.logger.ConsoleLog($"Character {request.PlayerId} exist! IsRemoved {character.IsRemoved}");
                 // }
                 // else{
-                //     GameServerLogging.logger.ConsoleLog($"Ship {request.PlayerId} null");
+                //     GameServerLogging.logger.ConsoleLog($"Character {request.PlayerId} null");
                 // }
                 if (!firstTime && request.PlayerId > 0 && (character == null || character.IsRemoved == true))
                 {
-                    // GameServerLogging.logger.ConsoleLog($"Cannot find ship {request.PlayerId} from Team {request.TeamId}!");
+                    // GameServerLogging.logger.ConsoleLog($"Cannot find character {request.PlayerId} from Team {request.TeamId}!");
                 }
                 else
                 {
@@ -242,7 +242,7 @@ namespace Server
                 return Task.FromResult(boolRes);
             }
             // var gameID = communicationToGameID[request.TeamId][request.PlayerId];
-            boolRes.ActSuccess = game.ActivateShip(request.TeamId, Transformation.ShipTypeFromProto(request.ShipType));
+            boolRes.ActSuccess = game.ActivateCharacter(request.TeamId, Transformation.CharacterTyprFromProto(request.CharacterType));
             if (!game.GameMap.Timer.IsGaming) boolRes.ActSuccess = false;
             GameServerLogging.logger.ConsoleLogDebug($"END Activate: {boolRes.ActSuccess}");
             return Task.FromResult(boolRes);
@@ -265,7 +265,7 @@ namespace Server
                 return Task.FromResult(moveRes);
             }
             // var gameID = communicationToGameID[request.TeamId][request.PlayerId];
-            moveRes.ActSuccess = game.MoveShip(
+            moveRes.ActSuccess = game.MoveCharacter(
                 request.TeamId, request.PlayerId,
                 (int)request.TimeInMilliseconds, request.Angle);
             if (!game.GameMap.Timer.IsGaming)

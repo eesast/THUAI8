@@ -109,14 +109,10 @@ namespace Preparation.Utility.Value.SafeValue.LockedValue
         {
             if (value < T.Zero)
             {
-                LockedValueLogging.logger.ConsoleLogDebug(
-                    $"Warning: Try to set IntInTheVariableRange to {value}");
                 value = T.Zero;
             }
             if (maxValue < T.Zero)
             {
-                LockedValueLogging.logger.ConsoleLogDebug(
-                    $"Warning: Try to set IntInTheVariableRange.maxValue to {maxValue}");
                 maxValue = T.Zero;
             }
             v = value.CompareTo(maxValue) < 0 ? value : maxValue;
@@ -129,8 +125,6 @@ namespace Preparation.Utility.Value.SafeValue.LockedValue
         {
             if (maxValue < T.Zero)
             {
-                LockedValueLogging.logger.ConsoleLogDebug(
-                    $"Warning: Try to set IntInTheVariableRange.maxValue to {maxValue}");
                 maxValue = T.Zero;
             }
             v = maxV = maxValue;

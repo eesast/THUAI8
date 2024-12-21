@@ -27,6 +27,19 @@ namespace Preparation.Utility
         Home = 8,
         OutOfBoundBlock = 9,
     }
+
+    public enum A_ResourceType
+    {
+        NULL = 0,
+        CrazyMan1 = 1,
+        CrazyMan2 = 2,
+        CrazyMan3 = 3,
+        LifePool1 = 4,
+        LifePool2 = 5,
+        LifePool3 = 6,
+        QuickStep = 7,
+        WideView = 8,
+    }
     public enum CharacterState //角色状态
     {
         NULL_CHARACTER_STATE = 0,
@@ -47,6 +60,7 @@ namespace Preparation.Utility
         HEALING = 11,
         BERSERK = 12,
         BURNED = 13,
+        DECEASED = 14,
     }
 
     public enum ShapeType
@@ -58,7 +72,7 @@ namespace Preparation.Utility
 
     public enum EconomyResourceState //经济资源状态
     {
-        NULL_ECONOMY_RESOURCE_STSTE = 0,
+        NULL_ECONOMY_RESOURCE_STATE = 0,
         HARVESTABLE = 1,
         BEING_HARVESTED = 2,
         HARVESTED = 3,
@@ -96,6 +110,8 @@ namespace Preparation.Utility
         BARRACKS = 1,
         SPRING = 2,
         FARM = 3,
+        TRAP = 4,
+        CAGE = 5,
     }
 
     public enum TrapType
@@ -110,18 +126,18 @@ namespace Preparation.Utility
         Null = 0,
 
         //取经团队阵营
-        Tangseng = 1,
+        TangSeng = 1,
         SunWukong = 2,
         ZhuBajie = 3,
         ShaWujing = 4,
         BaiLongma = 5,
 
         //妖怪阵营
-        Jiuling = 6,
+        JiuLing = 6,
         HongHaier = 7,
         NiuMowang = 8,
         TieShan = 9,
-        Zhizhujing = 10,
+        ZhiZhujing = 10,
 
         Monkid = 11,
         Pawn = 12,
