@@ -16,7 +16,7 @@ jobs:
         clangFormatVersion: 14
         exclude: './players'
         inplace: False
- 
+
   dotnet-format-checking:
     runs-on: windows-latest
     steps:
@@ -40,3 +40,7 @@ jobs:
       run: |
         dotnet restore "./playback/playback.sln"
         dotnet format "./playback/playback.sln" --severity error --no-restore --verify-no-changes
+
+    - name: Check Interface
+      run: |
+        dotnet format whitespace "./interface/Unity/interface-live/Assets/Scripts/" --folder --verify-no-changes
