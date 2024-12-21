@@ -136,7 +136,7 @@ namespace Gaming
                         break;
                     case CharacterType.ShaWujing:
                         {
-                            break;   
+                            break;
                         }
                 }
                 return true;
