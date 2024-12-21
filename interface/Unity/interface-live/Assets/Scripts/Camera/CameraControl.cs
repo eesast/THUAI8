@@ -15,7 +15,6 @@ public class CameraControl : MonoBehaviour
         Camera.main.orthographicSize = currentScale;
     }
 
-    // Update is called once per frame
     void Update()
     {
         mousePos = Input.mousePosition;
