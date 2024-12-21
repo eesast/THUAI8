@@ -71,6 +71,9 @@ namespace Preparation.Utility
 
         public const int Viewrange = 8000;
 
+        public const int SkillRange1 = 6000;            //技能释放范围，适用除“龙腾四海”外的范围型技能
+        public const int SkillRange2 = 10000;           //技能释放范围，适用“龙腾四海”
+
         public const int CharacterRadius = 400;
         public const int AResourceRadius = 400;
         public static XY GetCellCenterPos(int x, int y)  // 求格子的中心坐标

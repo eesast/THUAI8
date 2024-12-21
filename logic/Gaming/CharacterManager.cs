@@ -132,7 +132,11 @@ namespace Gaming
                         {
                             Recover(character, 150);//回复一半血量
                             character.HarmCut = 0.5;//设置伤害减免。此处尚未增加时间限制
-                            break;
+                        }
+                        break;
+                    case CharacterType.ShaWujing:
+                        {
+                            break;   
                         }
                 }
                 return true;

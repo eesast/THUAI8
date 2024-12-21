@@ -68,7 +68,7 @@ public class Construction(XY initPos)
             }
         }
 
-        return HP.AddVUseOtherRChange<long>(constructSpeed, ship.MoneyPool.Money, 1) > 0;//原程序constructSpeed的内涵问清楚后再改
+        return HP.AddVUseOtherRChange<long>(constructSpeed, character.MoneyPool.Money, 1) > 0;//原程序constructSpeed的内涵问清楚后再改
 
     }
     public bool BeAttacked(Character character)
