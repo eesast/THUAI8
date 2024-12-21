@@ -13,11 +13,12 @@ using System.Collections;
 
 namespace Server
 {
-    public class ContestResult[
+    public class ContestResult
+    {
         public string status;
-    public double[] scores;
-]
-partial class GameServer : ServerBase
+        public double[] scores;
+    }
+    partial class GameServer : ServerBase
     {
         private readonly ConcurrentDictionary<long, (SemaphoreSlim, SemaphoreSlim)> semaDict0 = new(); //for spectator and team0 player
         private readonly ConcurrentDictionary<long, (SemaphoreSlim, SemaphoreSlim)> semaDict1 = new();

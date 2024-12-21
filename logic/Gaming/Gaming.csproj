@@ -8,6 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GameClass\GameClass.csproj" />
+    <ProjectReference Include="..\GameEngine\GameEngine.csproj" />
     <ProjectReference Include="..\Preparation\Preparation.csproj" />
   </ItemGroup>
 

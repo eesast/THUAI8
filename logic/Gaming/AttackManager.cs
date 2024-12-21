@@ -1,6 +1,5 @@
 ﻿using GameClass.GameObj;
 using GameClass.GameObj.Map;
-using GameEngine;
 using Preparation.Interface;
 using Preparation.Utility;
 using GameClass.GameObj.Areas;
@@ -9,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using GameEngine;
 
 namespace Gaming
 {
