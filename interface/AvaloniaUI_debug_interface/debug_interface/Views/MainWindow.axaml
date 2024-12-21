@@ -10,7 +10,7 @@
     x:Name="MainWindowElement"
     Title="THUAI8 调试界面"
     Width="1200"
-    Height="1000"
+    Height="900"
     x:DataType="vm:MainWindowViewModel"
     Icon="/Assets/eesast_logo_32x32.png"
     mc:Ignorable="d">
