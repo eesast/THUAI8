@@ -6,29 +6,6 @@ using UnityEngine;
 
 public class CoreParam
 {
-    // public class FrameQueue<T>
-    // {
-    //     public FrameQueue(int _maxSize = 20)
-    //     {
-    //         maxSize = _maxSize;
-    //         tail = maxSize - 1;
-    //         valQueue = new T[maxSize];
-    //     }
-    //     public readonly int maxSize;
-    //     private T[] valQueue;
-    //     private int tail;
-    //     public void Add(T val)
-    //     {
-    //         tail = (tail + 1) % maxSize;
-    //         valQueue[tail] = val;
-    //     }
-    //     public T GetValue(int index)
-    //     {
-    //         if (index >= maxSize)
-    //             return default;
-    //         return valQueue[(tail + maxSize - index) % maxSize];
-    //     }
-    // };
     public class FrameQueue<T>
     {
         public FrameQueue()
@@ -51,7 +28,6 @@ public class CoreParam
             return valQueue.Count;
         }
     };
-    // public static FrameQueue<string> stringQueue = new FrameQueue<string>();
     public static FrameQueue<MessageToClient> frameQueue = new FrameQueue<MessageToClient>();
     public static MessageToClient firstFrame, currentFrame;
     public static MessageOfMap map;
