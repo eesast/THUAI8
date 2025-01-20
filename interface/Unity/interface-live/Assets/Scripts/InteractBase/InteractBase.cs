@@ -21,9 +21,6 @@ public class InteractBase : MonoBehaviour
         }
         else
         {
-
-
-
             if (tobeseObj)
                 Destroy(tobeseObj);
         }
