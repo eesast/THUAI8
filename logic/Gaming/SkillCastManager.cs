@@ -48,9 +48,7 @@ namespace Gaming
                 switch (character.CharacterType)
                 {
                     case CharacterType.SunWukong:
-                        {
-                            
-                        }
+                        { }
                         break;
                     case CharacterType.ZhuBajie:
                         {
@@ -149,7 +147,8 @@ namespace Gaming
                                 }
                             }
                             return true;
-                        }break;
+                        }
+                        break;
                     case CharacterType.TieShan:
                         {
                             var ObjBeingShots = gameMap.CharacterInTheRangeNotTeamID(character.Position, GameData.SkillRange1, character.TeamID);
