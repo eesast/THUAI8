@@ -88,7 +88,7 @@ namespace Gaming
                 }
             }
 
-            public static bool Recover(Character character, long recover)
+            public bool Recover(Character character, long recover)
             {
                 if (recover <= 0)
                     return false;
@@ -116,29 +116,6 @@ namespace Gaming
                 if (speed <= 0)
                     return false;
                 character.Shoes.AddPositiveV(speed);//暂未添加时间限制
-                return true;
-            }
-            public static bool SkillCasting(Character character, double theta = 0.0)
-            {
-                if (!character.Commandable() || character.CharacterState2 == CharacterState.BLIND)
-                    return false;
-                switch (character.CharacterType)
-                {
-                    case CharacterType.SunWukong:
-                        {
-                            break;
-                        }
-                    case CharacterType.ZhuBajie:
-                        {
-                            Recover(character, 150);//回复一半血量
-                            character.HarmCut = 0.5;//设置伤害减免。此处尚未增加时间限制
-                        }
-                        break;
-                    case CharacterType.ShaWujing:
-                        {
-                            break;   
-                        }
-                }
                 return true;
             }
         }

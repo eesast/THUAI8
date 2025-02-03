@@ -73,6 +73,11 @@ namespace Preparation.Utility
 
         public const int SkillRange1 = 6000;            //技能释放范围，适用除“龙腾四海”外的范围型技能
         public const int SkillRange2 = 10000;           //技能释放范围，适用“龙腾四海”
+        public const long BaiLongmaSkillATK = 20;
+        public const long HongHaierSkillATK = 15;
+        public const long NiuMowangShield = 100;
+        public const long TieShanSkillATK = 20;
+        public const long ZhiZhujingSkillATK = 10;
 
         public const int CharacterRadius = 400;
         public const int AResourceRadius = 400;
