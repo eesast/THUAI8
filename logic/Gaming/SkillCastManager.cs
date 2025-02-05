@@ -48,7 +48,26 @@ namespace Gaming
                 switch (character.CharacterType)
                 {
                     case CharacterType.SunWukong:
-                        { }
+                        {
+                            var ObjBeingShots = gameMap.CharacterOnTheSameLineNotTeamID(character.Position, theta, character.TeamID);
+                            if (ObjBeingShots == null || ObjBeingShots.Count == 0)
+                            {
+                                return true;
+                            }
+                            foreach (var ObjBeingShot in ObjBeingShots)
+                            {
+                                switch (ObjBeingShot.Type)
+                                {
+                                    case GameObjType.Character:
+                                        {
+                                            characterManager.BeAttacked(ObjBeingShot, GameData.SunWukongSkillATK);
+                                        }
+                                        break;
+                                    default: break;
+                                }
+                            }
+                            return true;
+                        }
                         break;
                     case CharacterType.ZhuBajie:
                         {

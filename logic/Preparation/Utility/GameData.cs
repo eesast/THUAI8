@@ -73,6 +73,7 @@ namespace Preparation.Utility
 
         public const int SkillRange1 = 6000;            //技能释放范围，适用除“龙腾四海”外的范围型技能
         public const int SkillRange2 = 10000;           //技能释放范围，适用“龙腾四海”
+        public const long SunWukongSkillATK = 50;
         public const long BaiLongmaSkillATK = 20;
         public const long HongHaierSkillATK = 15;
         public const long NiuMowangShield = 100;
@@ -111,6 +112,17 @@ namespace Preparation.Utility
         public static bool IsInTheRange(XY pos1, XY pos2, int range)
         {
             return (pos1 - pos2).Length() <= range;
+        }
+        public static bool IsOnTheSameLine(XY pos1, XY pos2, double angle)//以pos1为基准，检测pos2是否在以pos1为端点、与x轴正方向呈angle角的射线上（逆时针为正方向）
+        {
+            double sinx = (pos2 - pos1).y / (pos2 - pos1).Length();
+            double cosx = (pos2 - pos1).x / (pos2 - pos1).Length();
+            if (Math.Abs(sinx - Math.Sin(angle)) < 0.01 && Math.Abs(cosx - Math.Cos(angle)) < 0.01)
+            {
+                return true;
+            }
+            else
+                return false;
         }
         public const int ConstructionHP = 1000;//建筑物的默认HP
         public const int BarracksHP = 600;
