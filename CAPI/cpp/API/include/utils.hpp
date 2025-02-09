@@ -16,7 +16,7 @@
 #undef SendMessage
 #undef PeekMessage
 
-//用于将THUAI7的类转换为Protobuf的类
+// 用于将THUAI7的类转换为Protobuf的类
 namespace AssistFunction
 {
     constexpr int32_t numOfGridPerCell = 1000;
@@ -71,7 +71,7 @@ namespace AssistFunction
 
 namespace Proto2THUAI8
 {
-    //用于将Protobuf中的枚举转换为THUAI8的枚举
+    // 用于将Protobuf中的枚举转换为THUAI8的枚举
     inline std::map<protobuf::GameState, THUAI8::GameState> gameStateDict{
         {protobuf::GameState::NULL_GAME_STATE, THUAI8::GameState::NullGameState},
         {protobuf::GameState::GAME_START, THUAI8::GameState::GameStart},
@@ -206,7 +206,7 @@ namespace Proto2THUAI8
         {protobuf::PlayerTeam::MONSTERS_TEAM, THUAI8::PlayerTeam::MonstersTeam},
     };
 
-    //用于将Protobuf中的类转换为THUAI8的类
+    // 用于将Protobuf中的类转换为THUAI8的类
     inline std::shared_ptr<THUAI8::Character> Protobuf2THUAI8Character(const protobuf::MessageOfCharacter& CharacterMsg)
     {
         auto character = std::make_shared<THUAI8::Character>();
@@ -310,10 +310,10 @@ namespace Proto2THUAI8
         return gameMap;
     }
 }  // namespace Proto2THUAI8
-//辅助函数，用于将proto信息转换为THUAI8的信息
+// 辅助函数，用于将proto信息转换为THUAI8的信息
 namespace THUAI8Proto
 {
-    //用于将THUAI8的枚举转换为Protobuf的枚举
+    // 用于将THUAI8的枚举转换为Protobuf的枚举
     inline std::map<THUAI8::GameState, protobuf::GameState> gameStateDict{
         {THUAI8::GameState::NullGameState, protobuf::GameState::NULL_GAME_STATE},
         {THUAI8::GameState::GameStart, protobuf::GameState::GAME_START},

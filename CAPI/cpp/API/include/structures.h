@@ -53,6 +53,13 @@ namespace THUAI8
         MonstersTeam = 2,
     };
 
+    enum class PlayerType : unsigned char
+    {
+        NullPlayerType = 0,
+        Character = 1,
+        Team = 2,
+    };
+
     enum class CharacterType : unsigned char
     {
         NullCharacterType = 0,
@@ -109,6 +116,17 @@ namespace THUAI8
         Berserk = 12,
         Burned = 13,
     };
+
+    enum class CharacterBuffType : unsigned char
+    {
+        NullCharacterBuffType = 0,
+
+        AttackBuff = 1,
+        DefenseBuff = 2,
+        SpeedBuff = 3,
+        VisionBuff = 4,
+        InvisibilityBuff = 5,
+    }
 
     enum class EconomyResourceType : unsigned char
     {
@@ -197,6 +215,7 @@ namespace THUAI8
 
         CharacterType characterType;
         CharacterState characterState;
+        CharacterBuffType characterBuffType;
 
         int32_t x;
         int32_t y;
