@@ -16,7 +16,7 @@
 #undef SendMessage
 #undef PeekMessage
 
-// 用于将THUAI7的类转换为Protobuf的类
+// 用于将THUAI8的类转换为Protobuf的类
 namespace AssistFunction
 {
     constexpr int32_t numOfGridPerCell = 1000;

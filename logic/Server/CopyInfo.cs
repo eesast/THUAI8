@@ -57,6 +57,13 @@ namespace Server
 
                     CharacterType = Transformation.CharacterTypeToProto(player.CharacterType),
                     CharacterState = Transformation.CharacterStateToProto(player.CharacterState),
+                    // // 待定 这里被动状态貌似可以叠加？ Timer的转化还没写
+                    // DamageReduction = player.HarmCut,
+                    // Burned = player.Burned,
+                    // SkillShield = player.Shield,
+                    // AttackBuff = player.AttackBuff, // Character.cs中没有这个属性
+                    // SpeedBuff = player.Shoes,
+                    // VisionBuff = player.visbility, // 貌似拼写错误？
 
                     X = player.Position.x,
                     Y = player.Position.y,
@@ -75,7 +82,13 @@ namespace Server
 
                     Hp = (int)player.HP,
 
-                    EquipmentType = Transformation.EquipmentTypeToProto(player.EquipmentType),
+                    // Equipment = Transformation.EquipmentTypeToProto(player.EquipmentType), // Character.cs中没有这个属性，下同
+                    // HealthPotionEquipment = player.HealthPotionEquipment,
+                    // ShieldEquipment = player.ShieldEquipment,
+                    // SpeedShoesEquipment = player.SpeedShoesEquipment,
+                    // PurificationEquipment = player.PurificationEquipment,
+                    // InvisibilityPotionEquipment = player.InvisibilityPotionEquipment,
+                    // BerserkPotionEquipment = player.BerserkPotionEquipment,
                 }
             };
             return msg;

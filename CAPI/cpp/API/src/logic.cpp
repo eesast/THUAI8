@@ -507,7 +507,8 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
                 }
                 break;
             case THUAI8::MessageOfObj::TrapMessage:
-                if (item.trap_message().team_id() == teamID || AssistFunction::HaveView(x, y, item.trap_message().x(), item.trap_message().y(), viewRange, bufferState->gameMap) && currentState->characterSelf->)
+                // 待定
+                if (item.trap_message().team_id() == teamID || AssistFunction::HaveView(x, y, item.trap_message().x(), item.trap_message().y(), viewRange, bufferState->gameMap) && currentState->characterSelf->visionBuff == THUAI8::CharacterBuffType::VisionBuff)
                 {
                     auto pos = THUAI8::cellxy_t(
                         AssistFunction::GridToCell(item.trap_message().x()),
@@ -582,7 +583,7 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
                         logger->error("Unknown NewsType!");
                 }
                 break;
-            case THUAI7::MessageOfObj::NullMessageOfObj:
+            case THUAI8::MessageOfObj::NullMessageOfObj:
             default:
                 break;
         }
@@ -602,7 +603,7 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
         {
             for (const auto& character : bufferState->characters)
             {
-                if (AssistFunction::HaveView(character->x, character->y, targetX, targetY, character->viewRange, bufferState->gameMap) && character->characterBuffType == THUAI8::CharacterBuffType::VisionBuff)
+                if (AssistFunction::HaveView(character->x, character->y, targetX, targetY, character->viewRange, bufferState->gameMap) && character->visionBuff == THUAI8::CharacterBuffType::VisionBuff)
                     return true;
             }
             return false;
@@ -696,36 +697,73 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
                 }
                 break;
             case THUAI8::MessageOfObj::TrapMessage:
-
-            case THUAI7::MessageOfObj::ResourceMessage:
-                if (HaveOverView(item.resource_message().x(), item.resource_message().y()))
+                if (item.trap_message().team_id() == teamID || HaveOverTrapView(item.trap_message().x(), item.trap_message().y()))
                 {
-                    auto pos = THUAI7::cellxy_t(
-                        AssistFunction::GridToCell(item.resource_message().x()),
-                        AssistFunction::GridToCell(item.resource_message().y())
+                    auto pos = THUAI8::cellxy_t(
+                        AssistFunction::GridToCell(item.trap_message().x()),
+                        AssistFunction::GridToCell(item.trap_message().y())
                     );
-                    if (bufferState->mapInfo->resourceState.count(pos) == 0)
+                    if (bufferState->mapInfo->trapState.count(pos) == 0)
                     {
-                        bufferState->mapInfo->resourceState.emplace(pos, item.resource_message().progress());
-                        logger->debug("Load Resource!");
+                        bufferState->mapInfo->trapState.emplace(pos, item.trap_message().team_id());
+                        if (item.trap_message().team_id() == teamID)
+                            logger->debug("Load Trap!");
+                        else
+                            logger->debug("Load EnemyTrap!");
                     }
                     else
                     {
-                        bufferState->mapInfo->resourceState[pos] = item.resource_message().progress();
-                        logger->debug("Update Resource!");
+                        bufferState->mapInfo->trapState[pos] = item.trap_message().team_id();
+                        if (item.trap_message().team_id() == teamID)
+                            logger->debug("Update Trap!");
+                        else
+                            logger->debug("Update EnemyTrap!");
                     }
                 }
                 break;
-            case THUAI7::MessageOfObj::NewsMessage:
-                if (item.news_message().team_id() == teamID && item.news_message().to_id() == playerID)
+            case THUAI8::MessageOfObj::EconomyResourceMessage:
+                auto pos = THUAI8::cellxy_t(
+                    AssistFunction::GridToCell(item.economy_resource_message().x()),
+                    AssistFunction::GridToCell(item.economy_resource_message().y())
+                );
+                if (bufferState->mapInfo->economyResourceState.count(pos) == 0)
                 {
-                    auto& news = item.news_message();
-                    if (Proto2THUAI7::newsTypeDict[news.news_case()] == THUAI7::NewsType::TextMessage)
+                    bufferState->mapInfo->economyResourceState.emplace(pos, item.economy_resource_message().hp());
+                    logger->debug("Load EconomyResource!");
+                }
+                else
+                {
+                    bufferState->mapInfo->economyResourceState[pos] = item.economy_resource_message().hp();
+                    logger->debug("Update EconomyResource!");
+                }
+                break;
+            case THUAI8::MessageOfObj::AdditionResourceMessage:
+                auto pos = THUAI8::cellxy_t(
+                    AssistFunction::GridToCell(item.addition_resource_message().x()),
+                    AssistFunction::GridToCell(item.addition_resource_message().y())
+                );
+                if (bufferState->mapInfo->additionResourceState.count(pos) == 0)
+                {
+                    bufferState->mapInfo->additionResourceState.emplace(pos, std::pair(item.addition_resource_message().hp(), item.addition_resource_message().addition_resource_type()));
+                    logger->debug("Load AdditionResource!");
+                }
+                else
+                {
+                    bufferState->mapInfo->additionResourceState[pos].first = item.addition_resource_message().hp();
+                    bufferState->mapInfo->additionResourceState[pos].second = item.addition_resource_message().addition_resource_type();
+                    logger->debug("Update AdditionResource!");
+                }
+                break;
+            case THUAI8::MessageOfObj::NewsMessage:
+                auto& news = item.news_message();
+                if (news.to_id() == playerID && news.team_id() == teamID)
+                {
+                    if (Proto2THUAI8::newsTypeDict[news.news_case()] == THUAI8::NewsType::TextMessage)
                     {
                         messageQueue.emplace(std::pair(news.from_id(), news.text_message()));
                         logger->debug("Load Text News!");
                     }
-                    else if (Proto2THUAI7::newsTypeDict[news.news_case()] == THUAI7::NewsType::BinaryMessage)
+                    else if (Proto2THUAI8::newsTypeDict[news.news_case()] == THUAI8::NewsType::BinaryMessage)
                     {
                         messageQueue.emplace(std::pair(news.from_id(), news.binary_message()));
                         logger->debug("Load Binary News!");
@@ -734,7 +772,7 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
                         logger->error("Unknown NewsType!");
                 }
                 break;
-            case THUAI7::MessageOfObj::NullMessageOfObj:
+            case THUAI8::MessageOfObj::NullMessageOfObj:
             default:
                 break;
         }

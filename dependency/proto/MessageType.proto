@@ -77,9 +77,11 @@ enum CharacterBuffType // 加成资源中的Buff
 {
     NLULL_CHARACTER_BUFF_TYPE = 0;
 
-    ATTACK_BUFF = 1;
-    SPEED_BUFF = 3;
-    VISION_BUFF = 4;
+    ATTACK_BUFF1 = 1;
+    ATTACK_BUFF2 = 2;
+    ATTACK_BUFF3 = 3;
+    SPEED_BUFF = 4;
+    VISION_BUFF = 5;
 }
 
 enum EconomyResourceType // 经济资源

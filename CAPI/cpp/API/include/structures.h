@@ -121,11 +121,12 @@ namespace THUAI8
     {
         NullCharacterBuffType = 0,
 
-        AttackBuff = 1,
-        DefenseBuff = 2,
-        SpeedBuff = 3,
-        VisionBuff = 4,
-        InvisibilityBuff = 5,
+        AttackBuff1 = 1,
+        AttackBuff2 = 2,
+        AttackBuff3 = 3,
+        DefenseBuff = 4,
+        SpeedBuff = 5,
+        VisionBuff = 6,
     }
 
     enum class EconomyResourceType : unsigned char
@@ -213,9 +214,16 @@ namespace THUAI8
         int64_t teamID;
         int64_t playerID;
 
+        // 待定
         CharacterType characterType;
         CharacterState characterState;
-        CharacterBuffType characterBuffType;
+        double damageRedunction;
+        bool burned;
+        Timer ? burnedTimer;  // 类型？
+        int32_t skikkShield;
+        CharacterBuffType attackBuff;
+        CharacterBuffType speedBuff;
+        CharacterBuffType visionBuff;
 
         int32_t x;
         int32_t y;
@@ -231,7 +239,14 @@ namespace THUAI8
 
         int32_t hp;
 
-        EquipmentType equipmentType;
+        // // 待定
+        // EquipmentType equipmentType;
+        // EquipmentType healthPotionEquipment;
+        // EquipmentType shildEquipment;
+        // EquipmentType speedShoesEquipment;
+        // EquipmentType purificationPotionEquipment;
+        // EquipmentType invisibilityPotionEquipment;
+        // EquipmentType berserkPotionEquipment;
     };
 
     struct Team
