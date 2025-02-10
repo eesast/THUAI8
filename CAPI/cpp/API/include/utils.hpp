@@ -31,7 +31,7 @@ namespace AssistFunction
         return int32_t(grid) / numOfGridPerCell;
     }
 
-    inline bool HaveView(int32_t x, int32_t y, int32_t newX, int32_t newY, int32_t viewRange, std::vector<std::vector<THUAI7::PlaceType>>& map)
+    inline bool HaveView(int32_t x, int32_t y, int32_t newX, int32_t newY, int32_t viewRange, std::vector<std::vector<THUAI8::PlaceType>>& map)
     {
         double deltaX = newX - x;
         double deltaY = newY - y;

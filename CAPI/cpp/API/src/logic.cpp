@@ -177,7 +177,7 @@ int32_t Logic::GetScore() const
         }
 }
 
-std::shared_ptr<const THUAI7::GameInfo> Logic::GetGameInfo() const
+std::shared_ptr<const THUAI8::GameInfo> Logic::GetGameInfo() const
 {
     std::unique_lock<std::mutex> lock(mtxState);
     logger->debug("Called GetGameInfo");
@@ -421,7 +421,7 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
                         logger->debug("Load EnemyCharacter!");
                     }
                 }
-                else if (teamID == item.ship_message().team_id() && playerID != item.character_message().player_id())
+                else if (teamID == item.character_message().team_id() && playerID != item.character_message().player_id())
                 {
                     std::shared_ptr<THUAI8::Character> Character = Proto2THUAI8::Protobuf2THUAI8Character(item.character_message());
                     bufferState->characters.push_back(Character);
