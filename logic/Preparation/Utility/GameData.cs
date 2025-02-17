@@ -158,5 +158,35 @@ namespace Preparation.Utility
         public const int LifePoolATK = 10;
         public const int QuickStepATK = 10;
         public const int WideViewATK = 10;
+
+        //装备
+        public const int LifeMedicine1cost = 1500;
+        public const int LifeMedicine2cost = 3000;
+        public const int LifeMedicine3cost = 4500;
+        public const int LifeMedicine1HP = 50;
+        public const int LifeMedicine2HP = 100;
+        public const int LifeMedicine3HP = 150;
+
+        public const int Shield1cost = 2000;
+        public const int Shield2cost = 3500;
+        public const int Shield3cost = 5000;
+        public const int Shield1 = 50;
+        public const int Shield2 = 100;
+        public const int Shield3 = 150;
+
+        public const int ShoesCost = 1500;
+        public const int ShoesSpeed = 500;
+
+        public const int PurificationCost = 2000;
+        public const int PurificationTime = 30000;
+
+        public const int InvisibleCost = 4000;
+        public const int InvisibleTime = 10000;
+
+        public const int CrazyCost = 10000;
+        public const int CrazyTime = 30000;
+        public const double CrazyPower = 1.2;
+        public const double CrazyATKFreq = 1.25;
+        public const int CrazySpeed = 300;
     }
 }
