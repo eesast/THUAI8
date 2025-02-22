@@ -84,7 +84,7 @@ namespace Gaming
                 {
                     return false;
                 }
-                long stateNum = character.SetCharacterState(CharacterState.HEALING,character.CharacterState2);
+                long stateNum = character.SetCharacterState(CharacterState.HEALING, character.CharacterState2);
                 if (stateNum == -1)
                 {
                     return false;
@@ -129,6 +129,5 @@ namespace Gaming
                 return false;
             }
         }
-        
     }
 }

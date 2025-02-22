@@ -231,7 +231,6 @@ public class Character : Movable, ICharacter
     {
         return pos.x >= Position.x - range && pos.x <= Position.x + range && pos.y >= Position.y - range && pos.y <= Position.y + range;
     }
-    
     public bool GetEquipments(EquipmentType equiptype)
     {
         if (equiptype == EquipmentType.NULL_EQUIPMENT_TYPE) return false;
@@ -305,7 +304,7 @@ public class Character : Movable, ICharacter
                     return true;
                 }
                 break;
-            default:return false;
+            default: return false;
         }
     }
 }
