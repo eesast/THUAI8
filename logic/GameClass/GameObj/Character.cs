@@ -5,7 +5,7 @@ using Preparation.Utility.Value;
 using Preparation.Utility.Value.SafeValue.Atomic;
 using Preparation.Utility.Value.SafeValue.LockedValue;
 using GameClass.GameObj.Areas;
-
+using GameClass.GameObj.Equipments;
 using System.Timers;
 
 namespace GameClass.GameObj;
@@ -22,11 +22,11 @@ public class Character : Movable, ICharacter
     public InVariableRange<long> Shield { get; }
     public InVariableRange<long> Shoes { get; }//移速加成（注意是加成值，实际移速为基础移速+移速加成）
     public CharacterType CharacterType { get; }
-    public bool visbility { get; set; } = true;
     public bool trapped { get; set; } = false;
     public bool caged { get; set; } = false;
     public bool stunned { get; set; } = false;
     public double HarmCut = 0.0;//伤害减免，该值范围为0-1，为比例减伤。
+    public double ATKFrequency = 1.0;//攻击频率，即每秒攻击次数。
     private Timer? trapTimer = null;
     private Timer? cageTimer = null;
     private CharacterState characterState1 = CharacterState.NULL_CHARACTER_STATE;
@@ -48,7 +48,7 @@ public class Character : Movable, ICharacter
         }
     }
     public IOccupation Occupation { get; }
-    public IMoneyPool MoneyPool { get; }
+    public MoneyPool MoneyPool { get; }
     private GameObj? InteractObj = null;
     public GameObj? GetInteractObj
     {
@@ -187,8 +187,6 @@ public class Character : Movable, ICharacter
     {
         HP.SetMaxV(Occupation.MaxHp);
         HP.SetVToMaxV();
-        AttackPower.SetMaxV(Occupation.AttackPower);
-        AttackPower.SetVToMaxV();
     }
     public Character(int radius, CharacterType type, MoneyPool pool) :
         base(GameData.PosNotInGame, radius, GameObjType.Character)
@@ -197,9 +195,10 @@ public class Character : Movable, ICharacter
         IsRemoved.SetROri(true);
         Occupation = OccupationFactory.FindIOccupation(CharacterType = type);
         ViewRange = Occupation.ViewRange;
-        HP = new(Occupation.MaxHp);
-        AttackPower = new(Occupation.AttackPower);
+        Shoes = new(0);
+        Shield = new(0);
         AttackSize = new(Occupation.BaseAttackSize);
+        AttackPower = new(Occupation.AttackPower);
         MoneyPool = pool;
         Init();
     }
@@ -285,6 +284,82 @@ public class Character : Movable, ICharacter
             cageTimer.Stop();
             cageTimer.Dispose();
             cageTimer = null;
+        }
+    }
+
+    public bool GetEquipments(EquipmentType equiptype)
+    {
+        if (equiptype == EquipmentType.NULL_EQUIPMENT_TYPE) return false;
+        if (!Occupation.IsEquipValid(equiptype)) return false;
+        if (MoneyPool.Money < EquipmentFactory.FindCost(equiptype)) return false;
+        switch (equiptype)
+        {
+            case EquipmentType.SMALL_HEALTH_POTION:
+                {
+                    HP.AddPositiveV(GameData.LifeMedicine1HP);
+                    SubMoney(EquipmentFactory.FindCost(equiptype));
+                    return true;
+                }
+                break;
+            case EquipmentType.MEDIUM_HEALTH_POTION:
+                {
+                    HP.AddPositiveV(GameData.LifeMedicine2HP);
+                    SubMoney(EquipmentFactory.FindCost(equiptype));
+                    return true;
+                }
+                break;
+            case EquipmentType.LARGE_HEALTH_POTION:
+                {
+                    HP.AddPositiveV(GameData.LifeMedicine3HP);
+                    SubMoney(EquipmentFactory.FindCost(equiptype));
+                    return true;
+                }
+                break;
+            case EquipmentType.SMALL_SHIELD:
+                {
+                    Shield.AddPositiveV(GameData.Shield1);
+                    SubMoney(EquipmentFactory.FindCost(equiptype));
+                    return true;
+                }
+                break;
+            case EquipmentType.MEDIUM_SHIELD:
+                {
+                    Shield.AddPositiveV(GameData.Shield2);
+                    SubMoney(EquipmentFactory.FindCost(equiptype));
+                    return true;
+                }
+                break;
+            case EquipmentType.LARGE_SHIELD:
+                {
+                    Shield.AddPositiveV(GameData.Shield3);
+                    SubMoney(EquipmentFactory.FindCost(equiptype));
+                    return true;
+                }
+                break;
+            case EquipmentType.SPEEDBOOTS:
+                {
+                    Shoes.AddPositiveV(GameData.ShoesSpeed);
+                    SubMoney(EquipmentFactory.FindCost(equiptype));
+                    return true;
+                }
+                break;
+            case EquipmentType.INVISIBILITY_POTION:
+                {
+                    SetCharacterState(CharacterState1, CharacterState.INVISIBLE);//此处缺少时间限制
+                    SubMoney(EquipmentFactory.FindCost(equiptype));
+                    return true;
+                }
+                break;
+            case EquipmentType.BERSERK_POTION:
+                {
+                    SetCharacterState(CharacterState1, CharacterState.BERSERK);//此处缺少时间限制
+                    AttackPower.AddPositiveV((long)(0.2 * AttackPower.GetValue()));
+                    ATKFrequency = GameData.CrazyATKFreq;
+                    Shoes.AddPositiveV(GameData.CrazySpeed);
+                    SubMoney(EquipmentFactory.FindCost(equiptype));
+                    return true;
+                }
+                break;
         }
     }
 }

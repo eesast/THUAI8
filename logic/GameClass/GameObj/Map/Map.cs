@@ -97,6 +97,16 @@ namespace GameClass.GameObj.Map
             return GameObjDict[GameObjType.Character].Cast<Character>()?.FindAll(character =>
                 (GameData.IsInTheRange(character.Position, Pos, range) && character.TeamID != teamID));
         }
+        public List<Character>? CharacterOnTheSameLineNotTeamID(XY Pos, double theta, long teamID)
+        {
+            return GameObjDict[GameObjType.Character].Cast<Character>()?.FindAll(character =>
+            (GameData.IsOnTheSameLine(Pos, character.Position, theta) && character.TeamID != teamID));
+        }
+        public List<Character>? CharacterInTheRangeInTeamID(XY Pos, int range, long teamID)
+        {
+            return GameObjDict[GameObjType.Character].Cast<Character>()?.FindAll(character =>
+                (GameData.IsInTheRange(character.Position, Pos, range) && character.TeamID == teamID));
+        }
         public List<Character>? CharacterInTheList(List<CellXY> PosList)
         {
             return GameObjDict[GameObjType.Character].Cast<Character>()?.FindAll(character =>
