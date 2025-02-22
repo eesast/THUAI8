@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Protobuf;
 using UnityEngine;
 
 public class ParaDefine : SingletonMono<ParaDefine>
@@ -27,5 +28,10 @@ public class ParaDefine : SingletonMono<ParaDefine>
     public litColorSetting[] Team0Color, Team1Color;
     public litColorSetting[] ResourceColor;
     public litColorSetting[] LaserColor, PlasmaColor;*/
+    [SerializeField] int[] maxHp;
+    public int GetMaxHp(CharacterType characterType)
+    {
+        return maxHp[(int)characterType];
+    }
 
 }
