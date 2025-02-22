@@ -50,9 +50,16 @@ namespace Gaming
                 {
                     return false;
                 }
+                if (gameobj.visible == false || gameobj.CharacterState2 == CharacterState.INVISIBLE)
+                {
+                    return false;
+                }
                 characterManager.BeAttacked(gameobj, character);
-                if (character.CharacterState2 == CharacterState.INVISIBLE)
+                if (character.CharacterState2 == CharacterState.INVISIBLE || character.visible == false)
+                {
+                    character.visible = true;
                     character.SetCharacterState(character.CharacterState1, CharacterState.NULL_CHARACTER_STATE);//破隐
+                }
                 return true;
             }
             public bool Attack(Character character, A_Resource gameobj)

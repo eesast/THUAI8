@@ -1,13 +1,15 @@
 using Preparation.Utility;
 using Preparation.Utility.Value;
+using Preparation.Utility.Value.SafeValue.Atomic;
 
 namespace GameClass.GameObj.Areas;
 
-public class Trap(XY initPos)
-    : Immovable(initPos, int.MaxValue, GameObjType.Null), Construction
+public class Trap(XY initPos)//trap无法被攻击销毁，因此不以construction为基类
+    : Immovable(initPos, int.MaxValue, GameObjType.Null)
 {
     public override bool IsRigid(bool args = false) => true;
     public override ShapeType Shape => ShapeType.SQUARE;
+    public AtomicLong TeamID { get; } = new(long.MaxValue);
 
     /*public bool InSquare(Character character, int range)
     {
