@@ -25,10 +25,17 @@ public class Character : Movable, ICharacter
     public bool trapped { get; set; } = false;
     public bool caged { get; set; } = false;
     public bool stunned { get; set; } = false;
+    public bool burned { get; set; } = false;
+    public bool visible { get; set; } = true;
+    public bool blind { get; set; } = false;
     public double HarmCut = 0.0;//伤害减免，该值范围为0-1，为比例减伤。
     public double ATKFrequency = 1.0;//攻击频率，即每秒攻击次数。
-    private Timer? trapTimer = null;
-    private Timer? cageTimer = null;
+    public long TrapTime = long.MaxValue;
+    public long CageTime = long.MaxValue;
+    public long BurnedTime = long.MaxValue;
+    public long BlindTime = long.MaxValue;
+    public long StunnedTime = long.MaxValue;
+    public long HarmCutTime = long.MaxValue;
     private CharacterState characterState1 = CharacterState.NULL_CHARACTER_STATE;
     private CharacterState characterState2 = CharacterState.DECEASED;
     public CharacterState CharacterState1
@@ -171,6 +178,24 @@ public class Character : Movable, ICharacter
         }
     }
 
+    public bool StartThread(long stateNum)
+    {
+        lock (actionLock)
+        {
+            if (StateNum == stateNum)
+            {
+                CharacterLogging.logger.ConsoleLogDebug(
+                    LoggingFunctional.CharacterLogInfo(this)
+                    + " StartThread succeeded");
+                return true;
+            }
+        }
+        CharacterLogging.logger.ConsoleLogDebug(
+            LoggingFunctional.CharacterLogInfo(this)
+            + " StartThread failed");
+        return false;
+    }
+
     public bool TryToRemoveFromGame(CharacterState state)
     {
         lock (actionLock)
@@ -206,87 +231,7 @@ public class Character : Movable, ICharacter
     {
         return pos.x >= Position.x - range && pos.x <= Position.x + range && pos.y >= Position.y - range && pos.y <= Position.y + range;
     }
-    public void InTrap(Trap trap)
-    {
-        if (!trapped && InSquare(trap.Position, GameData.TrapRange) && trap.TeamID != TeamID)
-        {
-            visbility = true;
-            trapped = true;
-            StartTrapTimer(trap);
-            //HP.SubV(GameData.TrapDamage);
-            //SetCharacterState(CharacterState.STUNNED);
-
-        }
-    }
-    private void StartTrapTimer(Trap trap)
-    {
-        StopTrapTimer();
-        trapTimer = new Timer(GameData.TimerInterval);
-        int elapsedSeconds = 0;
-        trapTimer.Elapsed += (sender, e) =>
-        {
-            HP.SubV(GameData.TrapDamage);//如果造成伤害要改在这里改
-            elapsedSeconds++;
-            if (elapsedSeconds >= GameData.TrapTime / 1000)
-            {
-                trapped = false;
-                StopTrapTimer();
-            }
-        };
-        trapTimer.AutoReset = false;
-        trapTimer.Enabled = true;
-    }
-    public void StopTrapTimer()
-    {
-        if (trapTimer != null)
-        {
-            trapTimer.Stop();
-            trapTimer.Dispose();
-            trapTimer = null;
-        }
-    }
-    public void InCage(Cage cage)
-    {
-        if (!caged && InSquare(trap.Pos, GameData.TrapRange) && cage.TeamID != TeamID)
-        {
-            visbility = true;
-            caged = true;
-            stunned = true;
-            StartCageTimer(trap);
-            //HP.SubV(GameData.TrapDamage);
-            //SetCharacterState(CharacterState.STUNNED);
-
-        }
-    }
-    private void StartCageTimer(Trap trap)
-    {
-        StopCageTimer();
-        cageTimer = new Timer(GameData.TimerInterval);
-        int elapsedSeconds = 0;
-        trapTimer.Elapsed += (sender, e) =>
-        {
-
-            elapsedSeconds++;
-            if (elapsedSeconds >= GameData.TrapTime / 1000)
-            {
-                caged = false;
-                stunned = false;
-                StopCageTimer();
-            }
-        };
-        cageTimer.AutoReset = false;
-        cageTimer.Enabled = true;
-    }
-    public void StopCageTimer()
-    {
-        if (cageTimer != null)
-        {
-            cageTimer.Stop();
-            cageTimer.Dispose();
-            cageTimer = null;
-        }
-    }
-
+    
     public bool GetEquipments(EquipmentType equiptype)
     {
         if (equiptype == EquipmentType.NULL_EQUIPMENT_TYPE) return false;
@@ -360,6 +305,7 @@ public class Character : Movable, ICharacter
                     return true;
                 }
                 break;
+            default:return false;
         }
     }
 }

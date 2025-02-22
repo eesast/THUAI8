@@ -28,7 +28,7 @@ public class Construction(XY initPos)
 
     public bool Construct(ConstructionType constructionType, Character character)//这里修改了函数的参数列表删除了int constructSpeed
     {
-        int constructSpeed;
+        int constructSpeed = 0;
         if (constructionType == ConstructionType.NULL_CONSTRUCTION_TYPE)
             return false;
         lock (lockOfConstructionType)

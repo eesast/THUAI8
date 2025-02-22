@@ -9,6 +9,7 @@ namespace Preparation.Utility
         public const int CheckInterval = 10;                // 检查间隔
         public const uint GameDurationInSecond = 60 * 10;   // 游戏时长
         public const int LimitOfStopAndMove = 15;           // 停止和移动的最大间隔
+        public const int ProduceSpeedPerSecond = 200;       // 每秒生产值
 
         public const int TolerancesLength = 3;
         public const int AdjustLength = 3;
