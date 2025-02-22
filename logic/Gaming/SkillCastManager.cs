@@ -73,6 +73,7 @@ namespace Gaming
                         {
                             characterManager.Recover(character, 150);//回复一半血量
                             character.HarmCut = 0.5;//设置伤害减免。此处尚未增加时间限制
+                            character.HarmCutTime = Environment.TickCount64;
                         }
                         break;
                     case CharacterType.ShaWujing:
@@ -89,6 +90,8 @@ namespace Gaming
                                     case GameObjType.Character:
                                         {
                                             ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.BLIND);
+                                            ObjBeingShot.blind = true;
+                                            ObjBeingShot.BlindTime = Environment.TickCount64;
                                         }
                                         break;
                                     default: break;
@@ -133,6 +136,8 @@ namespace Gaming
                                     case GameObjType.Character:
                                         {
                                             ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.BURNED);
+                                            ObjBeingShot.burned = true;
+                                            ObjBeingShot.BurnedTime = Environment.TickCount64;
                                         }
                                         break;
                                     default: break;
@@ -209,6 +214,8 @@ namespace Gaming
                                         {
                                             characterManager.BeAttacked(ObjBeingShot, GameData.ZhiZhujingSkillATK);
                                             ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.STUNNED);//尚未加入时间限制
+                                            ObjBeingShot.stunned = true;
+                                            ObjBeingShot.StunnedTime = Environment.TickCount64;
                                         }
                                         break;
                                     default: break;

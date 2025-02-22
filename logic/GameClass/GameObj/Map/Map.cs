@@ -204,7 +204,7 @@ namespace GameClass.GameObj.Map
                     switch (mapResource.map[i, j])
                     {
                         case PlaceType.BARRIER:
-                            Add(new BARRIER(GameData.GetCellCenterPos(i, j)));
+                            Add(new Barriers(GameData.GetCellCenterPos(i, j)));
                             break;
                         case PlaceType.BUSH:
                             Add(new Bush(GameData.GetCellCenterPos(i, j)));
