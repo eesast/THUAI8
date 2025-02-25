@@ -1,0 +1,263 @@
+<!--  MainWindow.axaml  -->
+<Window
+    x:Class="debug_interface.Views.MainWindow"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="using:debug_interface.Views"
+    xmlns:vm="using:debug_interface.ViewModels"
+    x:Name="MainWindowElement"
+    Title="THUAI8 调试界面"
+    Width="1200"
+    Height="900"
+    x:DataType="vm:MainWindowViewModel"
+    Icon="/Assets/eesast_logo_32x32.png"
+    mc:Ignorable="d">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+
+    <Window.Styles>
+        <Style Selector="ProgressBar:horizontal">
+            <Setter Property="MinWidth" Value="130" />
+            <Setter Property="MinHeight" Value="0" />
+        </Style>
+        <Style Selector="ProgressBar:vertical">
+            <Setter Property="MinWidth" Value="0" />
+            <Setter Property="MinHeight" Value="0" />
+        </Style>
+    </Window.Styles>
+
+
+    <Grid ColumnDefinitions="3*,5.5*" RowDefinitions="*">
+        <!--  左侧区域  -->
+        <Grid Background="AliceBlue" RowDefinitions="*,*">
+
+            <Grid Grid.Row="0" RowDefinitions="1*,7*,3*">
+
+                <!--  红方队伍标题行  -->
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+
+
+                    <TextBlock
+                        Margin="5"
+                        Background="LightGoldenrodYellow"
+                        FontSize="16"
+                        FontWeight="Bold"
+                        Foreground="Brown"
+                        Text="取经队伍" />
+                    <TextBlock
+                        Margin="5,2"
+                        VerticalAlignment="Center"
+                        FontSize="12"
+                        Text="经济: 60000" />
+                </StackPanel>
+
+
+                <!--  红方团队角色信息  -->
+                <UniformGrid Grid.Row="1" Margin="2">
+                    <ItemsControl ItemsSource="{Binding RedTeamCharacters}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="3" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="vm:CharacterViewModel">
+                                <Border
+                                    Margin="2"
+                                    Padding="5"
+                                    BorderBrush="Gray"
+                                    BorderThickness="1">
+                                    <StackPanel>
+                                        <!--  名字  -->
+                                        <TextBlock
+                                            Margin="5,2"
+                                            HorizontalAlignment="Center"
+                                            FontSize="10"
+                                            Text="{Binding Name}" />
+                                        <!--  血量  -->
+                                        <Border Width="130" BorderThickness="1">
+                                            <ProgressBar
+                                                Height="18"
+                                                MaxWidth="80"
+                                                Margin="5,2,5,2"
+                                                HorizontalAlignment="Center"
+                                                FontSize="10"
+                                                Foreground="LightGoldenrodYellow"
+                                                Maximum="{Binding Hp}"
+                                                ProgressTextFormat="{} 血量:{0}/{3} ({1:0}%)"
+                                                ShowProgressText="True"
+                                                Value="609" />
+                                        </Border>
+                                        <!--<TextBlock
+                                                Margin="5,2"
+                                                HorizontalAlignment="Center"
+                                                FontSize="10"
+                                                Text="{Binding Hp, StringFormat=血量: {0}}" />-->
+
+                                        <!--  状态显示 (主动/被动)  -->
+                                        <TextBlock
+                                            Margin="5,2"
+                                            HorizontalAlignment="Center"
+                                            FontSize="10"
+                                            Text="{Binding DisplayStates}" />
+                                        <!--  装备显示  -->
+                                        <TextBlock
+                                            Margin="5,2"
+                                            HorizontalAlignment="Center"
+                                            FontSize="10"
+                                            Text="{Binding DisplayEquipments}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </UniformGrid>
+
+                <!--  红方建筑信息  -->
+                <TextBlock
+                    Grid.Row="2"
+                    Margin="5"
+                    FontStyle="Italic"
+                    Text="{Binding SomeBuildingInfo}" />
+            </Grid>
+            <!--  蓝方队伍标题  -->
+            <Grid Grid.Row="1" RowDefinitions="1*,7*,3*">
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <TextBlock
+                        Margin="5"
+                        Background="LightBlue"
+                        FontSize="16"
+                        FontWeight="Bold"
+                        Foreground="Brown"
+                        Text="妖怪队伍" />
+                    <TextBlock
+                        Margin="5,2"
+                        VerticalAlignment="Center"
+                        FontSize="12"
+                        Text="经济: 10000" />
+                </StackPanel>
+                <!--  蓝方团队角色信息  -->
+                <UniformGrid Grid.Row="1" Margin="5">
+                    <ItemsControl ItemsSource="{Binding BlueTeamCharacters}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="3" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="vm:CharacterViewModel">
+                                <Border
+                                    Margin="2"
+                                    Padding="5"
+                                    BorderBrush="Gray"
+                                    BorderThickness="1">
+                                    <StackPanel>
+                                        <!--  名字  -->
+                                        <TextBlock
+                                            Margin="5,2"
+                                            HorizontalAlignment="Center"
+                                            FontSize="10"
+                                            Text="{Binding Name}" />
+                                        <!--  血量  -->
+                                        <Border Width="130" BorderThickness="1">
+                                            <ProgressBar
+                                                Height="18"
+                                                MaxWidth="80"
+                                                Margin="5,2,5,2"
+                                                HorizontalAlignment="Center"
+                                                FontSize="10"
+                                                Foreground="LightBlue"
+                                                Maximum="{Binding Hp}"
+                                                ProgressTextFormat="{} 血量:{0}/{3} ({1:0}%)"
+                                                ShowProgressText="True"
+                                                Value="450" />
+                                        </Border>
+                                        <!--  状态显示 (主动/被动)  -->
+                                        <TextBlock
+                                            Margin="5,2"
+                                            HorizontalAlignment="Center"
+                                            FontSize="10"
+                                            Text="{Binding DisplayStates}" />
+                                        <!--  装备显示  -->
+                                        <TextBlock
+                                            Margin="5,2"
+                                            HorizontalAlignment="Center"
+                                            FontSize="10"
+                                            Text="{Binding DisplayEquipments}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </UniformGrid>
+
+                <!--  蓝方建筑信息  -->
+                <TextBlock
+                    Grid.Row="2"
+                    Margin="5"
+                    FontStyle="Italic"
+                    Text="{Binding AnotherBuildingInfo}" />
+            </Grid>
+        </Grid>
+
+        <!--  右侧区域  -->
+        <Grid
+            Grid.Column="1"
+            Margin="2"
+            Background="Ivory">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--  视野按钮、时间、比分  -->
+            <StackPanel
+                Margin="5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+
+
+                <TextBlock
+                    Margin="20,0,10,0"
+                    VerticalAlignment="Center"
+                    FontSize="25"
+                    Text="{Binding CurrentTime}" />
+                <TextBlock
+                    Margin="10,0"
+                    VerticalAlignment="Center"
+                    Text="红方得分:" />
+                <TextBlock
+                    Margin="5,0"
+                    VerticalAlignment="Center"
+                    Text="{Binding RedScore}" />
+                <TextBlock
+                    Margin="10,0"
+                    VerticalAlignment="Center"
+                    Text="蓝方得分:" />
+                <TextBlock
+                    Margin="5,0"
+                    VerticalAlignment="Center"
+                    Text="{Binding BlueScore}" />
+            </StackPanel>
+
+            <!--  地图  -->
+            <Border
+                Grid.Row="1"
+                Margin="5"
+                BorderBrush="Gray"
+                BorderThickness="1">
+                <TextBlock
+                    Margin="5"
+                    Text="{Binding GameLog}"
+                    TextWrapping="Wrap" />
+            </Border>
+        </Grid>
+    </Grid>
+</Window>
