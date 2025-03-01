@@ -22,6 +22,11 @@ namespace GameClass.GameObj.Map
 
         private readonly MyTimer timer = new();
         public IMyTimer Timer => timer;
+        private readonly long currentHomeNum = 0;
+        public bool TeamExists(long teamID)
+        {
+            return teamID < currentHomeNum;
+        }
 
         #region GetPlaceType
         public PlaceType GetPlaceType(IGameObj obj)
