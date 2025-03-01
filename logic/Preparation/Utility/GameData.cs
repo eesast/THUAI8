@@ -9,6 +9,7 @@ namespace Preparation.Utility
         public const int CheckInterval = 10;                // 检查间隔
         public const uint GameDurationInSecond = 60 * 10;   // 游戏时长
         public const int LimitOfStopAndMove = 15;           // 停止和移动的最大间隔
+        public const int ProduceSpeedPerSecond = 200;       // 每秒生产值
 
         public const int TolerancesLength = 3;
         public const int AdjustLength = 3;
@@ -158,5 +159,42 @@ namespace Preparation.Utility
         public const int LifePoolATK = 10;
         public const int QuickStepATK = 10;
         public const int WideViewATK = 10;
+
+        //装备
+        public const int LifeMedicine1cost = 1500;
+        public const int LifeMedicine2cost = 3000;
+        public const int LifeMedicine3cost = 4500;
+        public const int LifeMedicine1HP = 50;
+        public const int LifeMedicine2HP = 100;
+        public const int LifeMedicine3HP = 150;
+
+        public const int Shield1cost = 2000;
+        public const int Shield2cost = 3500;
+        public const int Shield3cost = 5000;
+        public const int Shield1 = 50;
+        public const int Shield2 = 100;
+        public const int Shield3 = 150;
+
+        public const int ShoesCost = 1500;
+        public const int ShoesSpeed = 500;
+
+        public const int PurificationCost = 2000;
+        public const int PurificationTime = 30000;
+
+        public const int InvisibleCost = 4000;
+        public const int InvisibleTime = 10000;
+
+        public const int CrazyCost = 10000;
+        public const int CrazyTime = 30000;
+        public const double CrazyPower = 1.2;
+        public const double CrazyATKFreq = 1.25;
+        public const int CrazySpeed = 300;
+        public List<XY> BirthPointList = new List<XY>
+        {
+            new XY(0, 0),
+            new XY(50000, 50000)
+        };//待定
+        public const int ScoreFarmPerSecond = 100;
+        public const int MaxCharacterNum = 1;
     }
 }

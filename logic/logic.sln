@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "proto", "proto\proto.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameEngine", "GameEngine\GameEngine.csproj", "{BAF115E3-A3D1-497A-AC6F-AE55FE9FD171}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playback", "PlayBack\Playback.csproj", "{E745ADA8-BE8E-4CC9-A693-759E2C244A6E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{BAF115E3-A3D1-497A-AC6F-AE55FE9FD171}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BAF115E3-A3D1-497A-AC6F-AE55FE9FD171}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BAF115E3-A3D1-497A-AC6F-AE55FE9FD171}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E745ADA8-BE8E-4CC9-A693-759E2C244A6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E745ADA8-BE8E-4CC9-A693-759E2C244A6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E745ADA8-BE8E-4CC9-A693-759E2C244A6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E745ADA8-BE8E-4CC9-A693-759E2C244A6E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

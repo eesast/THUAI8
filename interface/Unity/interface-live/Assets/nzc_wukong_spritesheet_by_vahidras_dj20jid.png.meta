@@ -1,0 +1,3274 @@
+fileFormatVersion: 2
+guid: cccd24cac537cf54f96c9da476e893a4
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_3
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 2122
+        width: 54
+        height: 87
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c179b43d3c6ce341bdf61b8dca2f963
+      internalID: 379526686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_4
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 2124
+        width: 54
+        height: 85
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afa2508e2643ecd4caf3796262080aea
+      internalID: -981631702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_5
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 2115
+        width: 66
+        height: 92
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0453618461fc77242ae7981e05ceac8d
+      internalID: -1869974372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_6
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 2117
+        width: 97
+        height: 81
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f386139267aa3df4da60bb7b9219b0c5
+      internalID: -1583211755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_7
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 2115
+        width: 43
+        height: 86
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 020c56939b02d8842a6ae19e1f1efecb
+      internalID: -488693430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_8
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 2117
+        width: 51
+        height: 92
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b03937f541d964945b80ef03cc303d48
+      internalID: 1437019566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_9
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 2139
+        width: 88
+        height: 62
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6cbd8bd18d44dfe4f9fbf876ec2507a6
+      internalID: -938831869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_10
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 2122
+        width: 43
+        height: 85
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2eecd7862d863f9408c56e570688e2b4
+      internalID: -1196236792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_13
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 2133
+        width: 92
+        height: 51
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb0c4d81d66c1ac44b1c6d0d5e3a7794
+      internalID: 1960343008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_14
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 2145
+        width: 83
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 073fee7be333371468c9aae0eba41d8a
+      internalID: -1217936050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_15
+      rect:
+        serializedVersion: 2
+        x: 778
+        y: 2145
+        width: 83
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d777a39acb3fa1c4c93fd9af342fc117
+      internalID: 103389402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_19
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 2021
+        width: 69
+        height: 73
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d0206f996bf8804f9df5889a430b261
+      internalID: -2043442865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_20
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 2018
+        width: 68
+        height: 74
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 302b5ec761d4cca4c9cabb5b5cb1ac3e
+      internalID: -2104936920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_21
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 2020
+        width: 69
+        height: 73
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17f48009fb2a8ad41aa4531572c033d0
+      internalID: 1121984088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_22
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 2020
+        width: 68
+        height: 72
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8.578086, y: 36}
+        - {x: -33.70369, y: 8.217326}
+        - {x: -33.70369, y: -33.66988}
+        - {x: -27.721403, y: -31.276327}
+        - {x: -15.756829, y: -36}
+        - {x: 20.13689, y: -36}
+        - {x: 34, y: -14.521444}
+        - {x: 34, y: 36}
+      - - {x: 30.905005, y: -9.734335}
+        - {x: 28.51209, y: -14.521444}
+        - {x: 28.51209, y: -19.308554}
+        - {x: 33.29792, y: -21.702108}
+        - {x: 34, y: -21.702108}
+        - {x: 34, y: -9.734335}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad0771a29a5320a4da24c560001f9485
+      internalID: -990370774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_23
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 2015
+        width: 71
+        height: 72
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35.5, y: 11}
+        - {x: -35.5, y: -16.529612}
+        - {x: -34.312378, y: -17.726389}
+        - {x: -6.7938604, y: -35.678047}
+        - {x: 31.492773, y: -35.678047}
+        - {x: 35.5, y: -27.300608}
+        - {x: 24.5, y: -3}
+        - {x: 35.5, y: 14}
+        - {x: 35.5, y: 36}
+        - {x: -14.5, y: 36}
+      - - {x: -18.758434, y: -0.97150505}
+        - {x: -11.57969, y: -0.97150505}
+        - {x: -17.561975, y: -0.97150505}
+        - {x: -18.758434, y: 0.2252723}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db48d5bb062771c498a4b4b45db1c2e6
+      internalID: -1930592279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_24
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 2017
+        width: 68
+        height: 71
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33e1bca2516f63c40b9f05605ff4e006
+      internalID: -840314537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_25
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 1897
+        width: 61
+        height: 99
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 11.053141, y: 49.5}
+        - {x: -14.072463, y: 44.98711}
+        - {x: -30.5, y: 3.0999045}
+        - {x: -30.5, y: -49.5}
+        - {x: 12.249598, y: -49.5}
+        - {x: 30.5, y: 18.65801}
+        - {x: 30.5, y: 49.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa1014357e502da4aa36bff6a127a880
+      internalID: 93751964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_26
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 1899
+        width: 80
+        height: 98
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20b5ca529d31e4245aab9601c7411158
+      internalID: 666770854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_27
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 1892
+        width: 97
+        height: 80
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc005af528edf9443bdc81348a8712ed
+      internalID: 540064782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_28
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 1897
+        width: 92
+        height: 79
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 295f5eae9d17da04ca0037e5c808ccd9
+      internalID: 1447124723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_29
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 1894
+        width: 101
+        height: 81
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 387bcc7191c2f034a8f252cadbd209e8
+      internalID: -550547967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_30
+      rect:
+        serializedVersion: 2
+        x: 565
+        y: 1890
+        width: 101
+        height: 104
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33975a80a274a864d8358648f55d0928
+      internalID: 1706055771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_31
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 1891
+        width: 140
+        height: 99
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45cf9bf0019fb8845bfa4aa32a5f64d6
+      internalID: -613410273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_32
+      rect:
+        serializedVersion: 2
+        x: 824
+        y: 1889
+        width: 102
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bb05453392370341914642f45a213ea
+      internalID: 918387654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_33
+      rect:
+        serializedVersion: 2
+        x: 942
+        y: 1890
+        width: 101
+        height: 75
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8da1d4cb55ba804409b4855d551db0a5
+      internalID: 167948752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_34
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 1781
+        width: 74
+        height: 99
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59dad36e6f3b2814ab248d086e247ed4
+      internalID: 1925089771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_35
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 1781
+        width: 78
+        height: 99
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ce7c61ab255f2942b815b3962a19647
+      internalID: 12763650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_36
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 1780
+        width: 106
+        height: 71
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f174dc099c7cdbe43b9df5a870b9ae06
+      internalID: 1858690986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_37
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 1778
+        width: 92
+        height: 73
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc1fae41930796b46b5e45cc9b57a556
+      internalID: -753418547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_38
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 1782
+        width: 94
+        height: 81
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8df3845da74cd284e8cb38beb5c7354b
+      internalID: 605544799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_39
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 1769
+        width: 73
+        height: 103
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 026dc39cab93db146a6564f108d9a581
+      internalID: -1597573148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_40
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 1776
+        width: 107
+        height: 98
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a7d1121339dc4040bdd64ec1041e5f8
+      internalID: -245420274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_41
+      rect:
+        serializedVersion: 2
+        x: 753
+        y: 1774
+        width: 111
+        height: 74
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b06caf2dee509d4898514e0d87ff998
+      internalID: -195240913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_42
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 1772
+        width: 95
+        height: 76
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b8b5d2154776da4988cda2a22fcd584
+      internalID: -1526249883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_43
+      rect:
+        serializedVersion: 2
+        x: 954
+        y: 1774
+        width: 99
+        height: 74
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdff72708be7ca341bc2f4631ceec0d9
+      internalID: 886340592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_44
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 1647
+        width: 103
+        height: 116
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ab8d2ed6278e89489ec4caea0f8a109
+      internalID: 231261216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_45
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 1647
+        width: 131
+        height: 118
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf5fff6922da8924d98a5a77a57701ba
+      internalID: 1920594389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_46
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 1647
+        width: 78
+        height: 112
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2001aa34767581d42af5e6ac7cf100e1
+      internalID: -2045313160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_47
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 1649
+        width: 113
+        height: 74
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bd66ebc5306b79469f6860e0d13e171
+      internalID: -326262114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_48
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 1543
+        width: 107
+        height: 68
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9486dfbf0bb212d4e82b73a2afb81e1b
+      internalID: -731264775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_49
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 1525
+        width: 105
+        height: 88
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d42cd82e0140e7146baf21f10f6a7835
+      internalID: 515554695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_50
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 1538
+        width: 122
+        height: 74
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8601898644efdb4fbd33b3339820d31
+      internalID: -1500914671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_51
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 1504
+        width: 90
+        height: 126
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15c13099c2b23dc40aeba11b43c91f30
+      internalID: -1051648883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_52
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 1509
+        width: 108
+        height: 115
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d04417c8f4b26f849a21875b22ee5602
+      internalID: 860861049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_54
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 1518
+        width: 117
+        height: 74
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82958b16b20337345923fa429f93b38a
+      internalID: -1796062893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_55
+      rect:
+        serializedVersion: 2
+        x: 735
+        y: 1516
+        width: 80
+        height: 82
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 889460d3e173f6944adc8ccbe7e7b7d0
+      internalID: 1964739692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_56
+      rect:
+        serializedVersion: 2
+        x: 821
+        y: 1513
+        width: 112
+        height: 70
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b15def15d5d04de4d84c6bb8fb6d3b46
+      internalID: 28157204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_57
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 1388
+        width: 115
+        height: 83
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2f7531602d15644eb7e79a2c0149279
+      internalID: 1637643363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_58
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 1386
+        width: 115
+        height: 82
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbd0f10ef3fe0564aa28fb36736de99e
+      internalID: -1812360311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_59
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 1383
+        width: 115
+        height: 83
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a92aa6b59cfeaf94e80e9df0c869a1e0
+      internalID: 1993328401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_60
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 1386
+        width: 88
+        height: 112
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d34187303218d14b9405a6acf8cbece
+      internalID: -208088354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_61
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 1245
+        width: 73
+        height: 117
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a241a4693ff6884fb814cc411016641
+      internalID: -1498293463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_62
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 1240
+        width: 79
+        height: 135
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36022e26e4d65a94f804248084888e04
+      internalID: -1583001414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_63
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 1241
+        width: 104
+        height: 104
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b02c63cfa21afa34b954fdc5080775c9
+      internalID: 2108905778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_64
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 1237
+        width: 81
+        height: 84
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 995fb6e245252ce4f9c1242d19dae503
+      internalID: -1113529525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_65
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 1235
+        width: 140
+        height: 87
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c84a33f5e2b9b024b944f4bc9ed493dd
+      internalID: -1026273100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_66
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 1239
+        width: 61
+        height: 88
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95b174c4629462c43a548957461f5f51
+      internalID: -1989105168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_67
+      rect:
+        serializedVersion: 2
+        x: 639
+        y: 1239
+        width: 106
+        height: 83
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e6eee8aecccf7940a4a0d5547614603
+      internalID: -172306353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_68
+      rect:
+        serializedVersion: 2
+        x: 738
+        y: 1235
+        width: 66
+        height: 69
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c19b8397a6dd648449f5bf7317a76847
+      internalID: 291299683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_69
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 1234
+        width: 116
+        height: 63
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edb736bc0d7edbf4cb998cf1212a5c3c
+      internalID: 749659048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_70
+      rect:
+        serializedVersion: 2
+        x: 930
+        y: 1233
+        width: 116
+        height: 77
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07afca2150922ef43929e7453d1a9b42
+      internalID: -648984215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_71
+      rect:
+        serializedVersion: 2
+        x: 1007
+        y: 1288
+        width: 34
+        height: 26
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 780bf2400e2d44c49b6b09f5c3d2f0e4
+      internalID: -599593038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_72
+      rect:
+        serializedVersion: 2
+        x: 590
+        y: 1245
+        width: 42
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5411252952f7b484ab38dae928107673
+      internalID: -1602898412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_73
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 1099
+        width: 93
+        height: 112
+      alignment: 9
+      pivot: {x: 0.33119145, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a71ebaaf42474fc4db339c7c15880559
+      internalID: -836529258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_75
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 1095
+        width: 113
+        height: 103
+      alignment: 9
+      pivot: {x: 0.6383971, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aea2fb2b0eca3564f8b1d59023013802
+      internalID: -1510265053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_77
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1096
+        width: 124
+        height: 100
+      alignment: 9
+      pivot: {x: 0.65041846, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c73ec383c4bfcc446888609e23bc462b
+      internalID: -588756740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_78
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 1090
+        width: 47
+        height: 131
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75010259453d92445ac3e0e4f8c401f3
+      internalID: -973998831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_79
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 1091
+        width: 72
+        height: 129
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8f858814abf127469c6cb89e9025d04
+      internalID: -635668398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_80
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 1087
+        width: 59
+        height: 131
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5597faa73028c2941ba274a5ddd8c3fe
+      internalID: -1517641982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_81
+      rect:
+        serializedVersion: 2
+        x: 601
+        y: 1087
+        width: 85
+        height: 123
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 541d08ae81af62e4a98c23770e5d7d5f
+      internalID: 1532542643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_82
+      rect:
+        serializedVersion: 2
+        x: 699
+        y: 1099
+        width: 127
+        height: 86
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dee4790a395ee9d4a90795b997b7dfc9
+      internalID: -1270786735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_83
+      rect:
+        serializedVersion: 2
+        x: 844
+        y: 1078
+        width: 125
+        height: 98
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ee609817ea60654f826358146db5fa9
+      internalID: 1032273564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_84
+      rect:
+        serializedVersion: 2
+        x: 991
+        y: 1088
+        width: 85
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b658be07a767ebb48ab8dbe655d89e1a
+      internalID: 880748464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_85
+      rect:
+        serializedVersion: 2
+        x: 1082
+        y: 1095
+        width: 86
+        height: 81
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac57c24f39d42e14598980f19c230046
+      internalID: 1998208801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_86
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 944
+        width: 72
+        height: 125
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 465e92703a6504543bd36c5f46054014
+      internalID: 619653756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_87
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 941
+        width: 82
+        height: 140
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 587c2d5160e352045b95d3854dd8bf23
+      internalID: 600735746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_88
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 939
+        width: 110
+        height: 97
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da152aea5e142694c86d4a6a9b35d316
+      internalID: -1066324535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_89
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 939
+        width: 128
+        height: 81
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00e1bef79cfa3fb4993bab05080e7fc9
+      internalID: 313972668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_90
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 932
+        width: 130
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6e8281c772a2fa4eb0f75b815573de5
+      internalID: -1193501665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_91
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 932
+        width: 74
+        height: 113
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2e4887bd81aa584fb7b2d5fc67c930c
+      internalID: -354633043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_92
+      rect:
+        serializedVersion: 2
+        x: 621
+        y: 942
+        width: 79
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5cbeb837ebecda40a7b7d102bd8cf80
+      internalID: -1320891119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_93
+      rect:
+        serializedVersion: 2
+        x: 706
+        y: 944
+        width: 123
+        height: 76
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20122e506f11380409e9a298164ad3b5
+      internalID: 874217245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_94
+      rect:
+        serializedVersion: 2
+        x: 834
+        y: 951
+        width: 141
+        height: 53
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2731de1c17d35c49a7d3f1184928e70
+      internalID: 1171410059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_95
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 813
+        width: 92
+        height: 74
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0d4e4a273a2ae74095e36073e5e1082
+      internalID: -410866278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_96
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 814
+        width: 91
+        height: 74
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: daac9eca0693f2347b5cbc761d28d359
+      internalID: -1766591125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_97
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 816
+        width: 91
+        height: 74
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eff6df5a1d7a756499d2079de233a460
+      internalID: 1056065924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_98
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 813
+        width: 67
+        height: 100
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26b304469142a2b4ca3cf3350ed47ed5
+      internalID: -617557041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_99
+      rect:
+        serializedVersion: 2
+        x: 382
+        y: 817
+        width: 94
+        height: 70
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21ea39d8baa1f774aae4db04495c3633
+      internalID: 703716655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_100
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 833
+        width: 41
+        height: 29
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed781e4f6e0b168469ac093637754ca2
+      internalID: 15187021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_101
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 856
+        width: 41
+        height: 28
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3ed10388348595439840b5eee1ba33a
+      internalID: 2080829823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_102
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 827
+        width: 75
+        height: 79
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8efea1bfa613fba4599291311b623627
+      internalID: -1260724014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_103
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 826
+        width: 86
+        height: 70
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81aeeb49fb991414485cc0a91077c40c
+      internalID: 979252434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_104
+      rect:
+        serializedVersion: 2
+        x: 699
+        y: 810
+        width: 106
+        height: 100
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c28a0f9df8abbbd489a48f9acb7a9e64
+      internalID: -1923564545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_105
+      rect:
+        serializedVersion: 2
+        x: 808
+        y: 789
+        width: 106
+        height: 104
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd9742f1b4ef0af4983c4cc6c503f736
+      internalID: -1654903338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_106
+      rect:
+        serializedVersion: 2
+        x: 926
+        y: 795
+        width: 105
+        height: 83
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6f9924ed01b09e4084d3d417d0b18c2
+      internalID: 2033213968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_107
+      rect:
+        serializedVersion: 2
+        x: 1053
+        y: 817
+        width: 111
+        height: 73
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bd6f27081c865d498271a20df24c957
+      internalID: -1255538756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_108
+      rect:
+        serializedVersion: 2
+        x: 1170
+        y: 814
+        width: 76
+        height: 94
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e87e000d6eb1d44d8c17539d7802b88
+      internalID: -1929768876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_109
+      rect:
+        serializedVersion: 2
+        x: 1243
+        y: 814
+        width: 141
+        height: 52
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c903a228bd6645443ab1d879970279fb
+      internalID: 1795831473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_110
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 813
+        width: 41
+        height: 28
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85c77e460e34ced4c9e07adf481974e7
+      internalID: -932839856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_111
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 691
+        width: 70
+        height: 105
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d0470581fa955e438d8d2a04d499a51
+      internalID: 1606030205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_112
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 689
+        width: 73
+        height: 101
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 401aba045e5c4144c84d9cfdc0344cda
+      internalID: -589939247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_113
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 682
+        width: 92
+        height: 79
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5794c70633e21db41bccc8d4c4bb1124
+      internalID: -2036616925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_114
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 704
+        width: 116
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1ce48501b85c6442a3613b995bcca78
+      internalID: -1773764474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_115
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 551
+        width: 125
+        height: 89
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb6c5a6b764f44c4f9c1926013da8cf4
+      internalID: -756179967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_116
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 551
+        width: 103
+        height: 99
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 098abf8ddecc0324b9831854211424c4
+      internalID: -1584855928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_117
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 543
+        width: 61
+        height: 102
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2324cfb6dc5890499b82d9a1d25f7fc
+      internalID: 206826205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_118
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 543
+        width: 75
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 304bb00ef6272e24c9839cf0671999f8
+      internalID: 1513346642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_119
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 539
+        width: 104
+        height: 93
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 520607ffc86585f46a91f0ce2a3c15a7
+      internalID: -646286271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_120
+      rect:
+        serializedVersion: 2
+        x: 529
+        y: 555
+        width: 141
+        height: 53
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b4ff3f44a0ca8a4991b9dbce5b3d7b1
+      internalID: -548259097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_121
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 408
+        width: 67
+        height: 115
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8148d8457132ca74eb55d638b739ddf1
+      internalID: -848469950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_122
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 408
+        width: 69
+        height: 111
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36d9700c0e4868f40b4b58e2396117dc
+      internalID: -1807576932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_123
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 406
+        width: 79
+        height: 115
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bd324891bf840a4a99616050c113eb5
+      internalID: -282015282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_124
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 481
+        width: 43
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7d987756d6e9214186ee4c02e1e3b10
+      internalID: 681599106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_125
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 481
+        width: 37
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef9de1afded68794091582977cb7c0c2
+      internalID: 723112020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_126
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 480
+        width: 43
+        height: 39
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bcf46d5c1fb0c14f83e7caa68467796
+      internalID: -1037554926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_127
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 503
+        width: 85
+        height: 6
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1295933863f67ab4690cfff58a1907c8
+      internalID: 514434205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_128
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 431
+        width: 95
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acf53b64ecf740e458d3c3ebb92cf015
+      internalID: -1363913506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_129
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 432
+        width: 106
+        height: 54
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9522a247e39bd6a43abb8ec8aa092786
+      internalID: 1156581510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_130
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 432
+        width: 99
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b9a7549ae05a7d4d89dbf96079baa8c
+      internalID: -299203285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_131
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 292
+        width: 108
+        height: 99
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77d3e66ce0211ba44b8680284f73b14e
+      internalID: -1559821563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_132
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 293
+        width: 103
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 201c7c10947ab064ebce300f54a9d000
+      internalID: 1300452016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_133
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 290
+        width: 104
+        height: 99
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87a66afdcb304d846a12e734b2dd8884
+      internalID: 1658665569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_134
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 296
+        width: 89
+        height: 107
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aec1a735090edbc4190768fc103755d0
+      internalID: 1824350238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_135
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 293
+        width: 89
+        height: 109
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98dfa0d7251986b4eb51f2a25dbaf39c
+      internalID: 296173908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_136
+      rect:
+        serializedVersion: 2
+        x: 497
+        y: 293
+        width: 88
+        height: 109
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c3c8c05b8baa654585e1d2ff157d3a6
+      internalID: 899861573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_137
+      rect:
+        serializedVersion: 2
+        x: 632
+        y: 304
+        width: 146
+        height: 86
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23015591eb96d004b815cbee1e841722
+      internalID: 52601090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_138
+      rect:
+        serializedVersion: 2
+        x: 787
+        y: 296
+        width: 159
+        height: 81
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4008c589a5f9dc14ebcfa50ad3b6a27b
+      internalID: 1775132213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_139
+      rect:
+        serializedVersion: 2
+        x: 954
+        y: 296
+        width: 152
+        height: 80
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2d0e598299be684b880846dcff4f40d
+      internalID: -989093182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_140
+      rect:
+        serializedVersion: 2
+        x: 1123
+        y: 296
+        width: 140
+        height: 81
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 848e1048b947c0140a8c5e2dc7973f5f
+      internalID: 2128055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_141
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 144
+        width: 125
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a75fa07ddf4bf24c882f5d8574026a6
+      internalID: 1338499152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_142
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 138
+        width: 114
+        height: 107
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 132191e7b49bed04c90eb2ccd9c97c14
+      internalID: -1921170009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_143
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 144
+        width: 153
+        height: 112
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7502feef9d681e44c98d5773f40e9fcd
+      internalID: -1332464815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_144
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 138
+        width: 115
+        height: 113
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89e951ab2e5413a4fbe554f00987f25f
+      internalID: 794720857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_145
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 138
+        width: 118
+        height: 119
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f32820d84398f164b8d6f15bb4e3ec5b
+      internalID: 1891040987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_147
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 150
+        width: 116
+        height: 83
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f65e20ed40fe56b4e828f16feb2448a0
+      internalID: 763895119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_148
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 150
+        width: 116
+        height: 85
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41a34e117eaf09d4eb2a09a0b31c53be
+      internalID: -1364924706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_149
+      rect:
+        serializedVersion: 2
+        x: 961
+        y: 150
+        width: 116
+        height: 85
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e993a27574ea2747825a5085207edc1
+      internalID: 1638234006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nzc_wukong_spritesheet_by_vahidras_dj20jid_0
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 1898
+        width: 86
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 1, z: 0, w: 0}
+      outline:
+      - - {x: 19.577301, y: -43.7712}
+        - {x: 19.577301, y: -29.409868}
+        - {x: 29.14896, y: -24.622759}
+        - {x: 39.917076, y: -12.654985}
+        - {x: 43, y: -3.0807667}
+        - {x: 43, y: 14.8708935}
+        - {x: 38.72062, y: 12.477339}
+        - {x: 31.541874, y: 2.90312}
+        - {x: 26.756044, y: 11.280561}
+        - {x: 23.166674, y: 20.85478}
+        - {x: 31.541874, y: 26.838667}
+        - {x: 39.917076, y: 35.21611}
+        - {x: 39.917076, y: 38.806442}
+        - {x: 33.934788, y: 44.79033}
+        - {x: 17.184387, y: 49.57744}
+        - {x: 6.4162707, y: 50}
+        - {x: -19.90579, y: 50}
+        - {x: -33.066822, y: 48.38066}
+        - {x: -22, y: 39}
+        - {x: -11.530589, y: 38.806442}
+        - {x: 7.612728, y: 34.019333}
+        - {x: 1.6304414, y: 26.838667}
+        - {x: -9.137674, y: 20.85478}
+        - {x: -21.102247, y: 10.083784}
+        - {x: -42.638477, y: -3.0807667}
+        - {x: -42.638477, y: -12.654985}
+        - {x: -40.245564, y: -16.245317}
+        - {x: -28.28099, y: -23.425982}
+        - {x: -15.119961, y: -30.606646}
+        - {x: -10.334131, y: -30.606646}
+        - {x: -5.548302, y: -34.19698}
+        - {x: -13.923504, y: -41.377644}
+        - {x: -13.923504, y: -46.164753}
+        - {x: -10.334131, y: -49.755085}
+        - {x: -1.9589305, y: -49.755085}
+        - {x: 4.023356, y: -48.558308}
+        - {x: 7.612728, y: -44.967976}
+        - {x: 17.184387, y: -49.755085}
+      - - {x: -10.334131, y: 2.90312}
+        - {x: -10.334131, y: 1.7063427}
+        - {x: -7.941217, y: 2.90312}
+        - {x: -1.9589305, y: -1.8839893}
+        - {x: -5.548302, y: 0.50956535}
+      physicsShape: []
+      tessellationDetail: 0.38
+      bones: []
+      spriteID: 68041a30e73144544baed211b3f82e31
+      internalID: 4258889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_0: 4258889
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_1: 1315693536
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_10: -1196236792
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_100: 15187021
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_101: 2080829823
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_102: -1260724014
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_103: 979252434
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_104: -1923564545
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_105: -1654903338
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_106: 2033213968
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_107: -1255538756
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_108: -1929768876
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_109: 1795831473
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_11: -1138271127
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_110: -932839856
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_111: 1606030205
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_112: -589939247
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_113: -2036616925
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_114: -1773764474
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_115: -756179967
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_116: -1584855928
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_117: 206826205
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_118: 1513346642
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_119: -646286271
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_12: 588314307
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_120: -548259097
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_121: -848469950
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_122: -1807576932
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_123: -282015282
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_124: 681599106
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_125: 723112020
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_126: -1037554926
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_127: 514434205
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_128: -1363913506
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_129: 1156581510
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_13: 1960343008
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_130: -299203285
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_131: -1559821563
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_132: 1300452016
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_133: 1658665569
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_134: 1824350238
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_135: 296173908
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_136: 899861573
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_137: 52601090
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_138: 1775132213
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_139: -989093182
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_14: -1217936050
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_140: 2128055
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_141: 1338499152
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_142: -1921170009
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_143: -1332464815
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_144: 794720857
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_145: 1891040987
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_146: -1361603599
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_147: 763895119
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_148: -1364924706
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_149: 1638234006
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_15: 103389402
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_16: -750457324
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_17: 307407088
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_18: -656184853
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_19: -2043442865
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_2: -378926831
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_20: -2104936920
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_21: 1121984088
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_22: -990370774
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_23: -1930592279
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_24: -840314537
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_25: 93751964
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_26: 666770854
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_27: 540064782
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_28: 1447124723
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_29: -550547967
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_3: 379526686
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_30: 1706055771
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_31: -613410273
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_32: 918387654
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_33: 167948752
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_34: 1925089771
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_35: 12763650
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_36: 1858690986
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_37: -753418547
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_38: 605544799
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_39: -1597573148
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_4: -981631702
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_40: -245420274
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_41: -195240913
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_42: -1526249883
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_43: 886340592
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_44: 231261216
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_45: 1920594389
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_46: -2045313160
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_47: -326262114
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_48: -731264775
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_49: 515554695
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_5: -1869974372
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_50: -1500914671
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_51: -1051648883
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_52: 860861049
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_53: -1568230869
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_54: -1796062893
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_55: 1964739692
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_56: 28157204
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_57: 1637643363
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_58: -1812360311
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_59: 1993328401
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_6: -1583211755
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_60: -208088354
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_61: -1498293463
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_62: -1583001414
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_63: 2108905778
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_64: -1113529525
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_65: -1026273100
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_66: -1989105168
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_67: -172306353
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_68: 291299683
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_69: 749659048
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_7: -488693430
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_70: -648984215
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_71: -599593038
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_72: -1602898412
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_73: -836529258
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_74: 1933621510
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_75: -1510265053
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_76: 870729271
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_77: -588756740
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_78: -973998831
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_79: -635668398
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_8: 1437019566
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_80: -1517641982
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_81: 1532542643
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_82: -1270786735
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_83: 1032273564
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_84: 880748464
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_85: 1998208801
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_86: 619653756
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_87: 600735746
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_88: -1066324535
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_89: 313972668
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_9: -938831869
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_90: -1193501665
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_91: -354633043
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_92: -1320891119
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_93: 874217245
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_94: 1171410059
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_95: -410866278
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_96: -1766591125
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_97: 1056065924
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_98: -617557041
+      nzc_wukong_spritesheet_by_vahidras_dj20jid_99: 703716655
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

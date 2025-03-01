@@ -5,7 +5,7 @@ using Preparation.Utility.Value;
 using Preparation.Utility.Value.SafeValue.Atomic;
 using Preparation.Utility.Value.SafeValue.LockedValue;
 using GameClass.GameObj.Areas;
-
+using GameClass.GameObj.Equipments;
 using System.Timers;
 
 namespace GameClass.GameObj;
@@ -22,13 +22,20 @@ public class Character : Movable, ICharacter
     public InVariableRange<long> Shield { get; }
     public InVariableRange<long> Shoes { get; }//移速加成（注意是加成值，实际移速为基础移速+移速加成）
     public CharacterType CharacterType { get; }
-    public bool visbility { get; set; } = true;
     public bool trapped { get; set; } = false;
     public bool caged { get; set; } = false;
     public bool stunned { get; set; } = false;
+    public bool burned { get; set; } = false;
+    public bool visible { get; set; } = true;
+    public bool blind { get; set; } = false;
     public double HarmCut = 0.0;//伤害减免，该值范围为0-1，为比例减伤。
-    private Timer? trapTimer = null;
-    private Timer? cageTimer = null;
+    public double ATKFrequency = 1.0;//攻击频率，即每秒攻击次数。
+    public long TrapTime = long.MaxValue;
+    public long CageTime = long.MaxValue;
+    public long BurnedTime = long.MaxValue;
+    public long BlindTime = long.MaxValue;
+    public long StunnedTime = long.MaxValue;
+    public long HarmCutTime = long.MaxValue;
     private CharacterState characterState1 = CharacterState.NULL_CHARACTER_STATE;
     private CharacterState characterState2 = CharacterState.DECEASED;
     public CharacterState CharacterState1
@@ -48,7 +55,7 @@ public class Character : Movable, ICharacter
         }
     }
     public IOccupation Occupation { get; }
-    public IMoneyPool MoneyPool { get; }
+    public MoneyPool MoneyPool { get; }
     private GameObj? InteractObj = null;
     public GameObj? GetInteractObj
     {
@@ -148,16 +155,13 @@ public class Character : Movable, ICharacter
                         return -1;
                     else
                         return ChangeCharacterState(value1, value2, gameobj);
-                    break;
                 case CharacterState.STUNNED://被定身时无法移动
                     if (value1 == CharacterState.MOVING)
                         return -1;
                     else
                         return ChangeCharacterState(value1, value2, gameobj);
-                    break;
                 case CharacterState.KNOCKED_BACK://击退时无法进行任何操作
                     return -1;
-                    break;
                 default:
                     return ChangeCharacterState(value1, value2, gameobj);
             }
@@ -169,6 +173,24 @@ public class Character : Movable, ICharacter
         {
             return (characterState2 != CharacterState.KNOCKED_BACK);
         }
+    }
+
+    public bool StartThread(long stateNum)
+    {
+        lock (actionLock)
+        {
+            if (StateNum == stateNum)
+            {
+                CharacterLogging.logger.ConsoleLogDebug(
+                    LoggingFunctional.CharacterLogInfo(this)
+                    + " StartThread succeeded");
+                return true;
+            }
+        }
+        CharacterLogging.logger.ConsoleLogDebug(
+            LoggingFunctional.CharacterLogInfo(this)
+            + " StartThread failed");
+        return false;
     }
 
     public bool TryToRemoveFromGame(CharacterState state)
@@ -187,8 +209,6 @@ public class Character : Movable, ICharacter
     {
         HP.SetMaxV(Occupation.MaxHp);
         HP.SetVToMaxV();
-        AttackPower.SetMaxV(Occupation.AttackPower);
-        AttackPower.SetVToMaxV();
     }
     public Character(int radius, CharacterType type, MoneyPool pool) :
         base(GameData.PosNotInGame, radius, GameObjType.Character)
@@ -197,9 +217,10 @@ public class Character : Movable, ICharacter
         IsRemoved.SetROri(true);
         Occupation = OccupationFactory.FindIOccupation(CharacterType = type);
         ViewRange = Occupation.ViewRange;
-        HP = new(Occupation.MaxHp);
-        AttackPower = new(Occupation.AttackPower);
+        Shoes = new(0);
+        Shield = new(0);
         AttackSize = new(Occupation.BaseAttackSize);
+        AttackPower = new(Occupation.AttackPower);
         MoneyPool = pool;
         Init();
     }
@@ -207,84 +228,71 @@ public class Character : Movable, ICharacter
     {
         return pos.x >= Position.x - range && pos.x <= Position.x + range && pos.y >= Position.y - range && pos.y <= Position.y + range;
     }
-    public void InTrap(Trap trap)
+    public bool GetEquipments(EquipmentType equiptype)
     {
-        if (!trapped && InSquare(trap.Position, GameData.TrapRange) && trap.TeamID != TeamID)
+        if (equiptype == EquipmentType.NULL_EQUIPMENT_TYPE) return false;
+        if (!Occupation.IsEquipValid(equiptype)) return false;
+        if (MoneyPool.Money < EquipmentFactory.FindCost(equiptype)) return false;
+        switch (equiptype)
         {
-            visbility = true;
-            trapped = true;
-            StartTrapTimer(trap);
-            //HP.SubV(GameData.TrapDamage);
-            //SetCharacterState(CharacterState.STUNNED);
-
-        }
-    }
-    private void StartTrapTimer(Trap trap)
-    {
-        StopTrapTimer();
-        trapTimer = new Timer(GameData.TimerInterval);
-        int elapsedSeconds = 0;
-        trapTimer.Elapsed += (sender, e) =>
-        {
-            HP.SubV(GameData.TrapDamage);//如果造成伤害要改在这里改
-            elapsedSeconds++;
-            if (elapsedSeconds >= GameData.TrapTime / 1000)
-            {
-                trapped = false;
-                StopTrapTimer();
-            }
-        };
-        trapTimer.AutoReset = false;
-        trapTimer.Enabled = true;
-    }
-    public void StopTrapTimer()
-    {
-        if (trapTimer != null)
-        {
-            trapTimer.Stop();
-            trapTimer.Dispose();
-            trapTimer = null;
-        }
-    }
-    public void InCage(Cage cage)
-    {
-        if (!caged && InSquare(trap.Pos, GameData.TrapRange) && cage.TeamID != TeamID)
-        {
-            visbility = true;
-            caged = true;
-            stunned = true;
-            StartCageTimer(trap);
-            //HP.SubV(GameData.TrapDamage);
-            //SetCharacterState(CharacterState.STUNNED);
-
-        }
-    }
-    private void StartCageTimer(Trap trap)
-    {
-        StopCageTimer();
-        cageTimer = new Timer(GameData.TimerInterval);
-        int elapsedSeconds = 0;
-        trapTimer.Elapsed += (sender, e) =>
-        {
-
-            elapsedSeconds++;
-            if (elapsedSeconds >= GameData.TrapTime / 1000)
-            {
-                caged = false;
-                stunned = false;
-                StopCageTimer();
-            }
-        };
-        cageTimer.AutoReset = false;
-        cageTimer.Enabled = true;
-    }
-    public void StopCageTimer()
-    {
-        if (cageTimer != null)
-        {
-            cageTimer.Stop();
-            cageTimer.Dispose();
-            cageTimer = null;
+            case EquipmentType.SMALL_HEALTH_POTION:
+                {
+                    HP.AddPositiveV(GameData.LifeMedicine1HP);
+                    SubMoney(EquipmentFactory.FindCost(equiptype));
+                    return true;
+                }
+            case EquipmentType.MEDIUM_HEALTH_POTION:
+                {
+                    HP.AddPositiveV(GameData.LifeMedicine2HP);
+                    SubMoney(EquipmentFactory.FindCost(equiptype));
+                    return true;
+                }
+            case EquipmentType.LARGE_HEALTH_POTION:
+                {
+                    HP.AddPositiveV(GameData.LifeMedicine3HP);
+                    SubMoney(EquipmentFactory.FindCost(equiptype));
+                    return true;
+                }
+            case EquipmentType.SMALL_SHIELD:
+                {
+                    Shield.AddPositiveV(GameData.Shield1);
+                    SubMoney(EquipmentFactory.FindCost(equiptype));
+                    return true;
+                }
+            case EquipmentType.MEDIUM_SHIELD:
+                {
+                    Shield.AddPositiveV(GameData.Shield2);
+                    SubMoney(EquipmentFactory.FindCost(equiptype));
+                    return true;
+                }
+            case EquipmentType.LARGE_SHIELD:
+                {
+                    Shield.AddPositiveV(GameData.Shield3);
+                    SubMoney(EquipmentFactory.FindCost(equiptype));
+                    return true;
+                }
+            case EquipmentType.SPEEDBOOTS:
+                {
+                    Shoes.AddPositiveV(GameData.ShoesSpeed);
+                    SubMoney(EquipmentFactory.FindCost(equiptype));
+                    return true;
+                }
+            case EquipmentType.INVISIBILITY_POTION:
+                {
+                    SetCharacterState(CharacterState1, CharacterState.INVISIBLE);//此处缺少时间限制
+                    SubMoney(EquipmentFactory.FindCost(equiptype));
+                    return true;
+                }
+            case EquipmentType.BERSERK_POTION:
+                {
+                    SetCharacterState(CharacterState1, CharacterState.BERSERK);//此处缺少时间限制
+                    AttackPower.AddPositiveV((long)(0.2 * AttackPower.GetValue()));
+                    ATKFrequency = GameData.CrazyATKFreq;
+                    Shoes.AddPositiveV(GameData.CrazySpeed);
+                    SubMoney(EquipmentFactory.FindCost(equiptype));
+                    return true;
+                }
+            default: return false;
         }
     }
 }
