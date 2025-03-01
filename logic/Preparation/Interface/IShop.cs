@@ -38,9 +38,9 @@ namespace Preparation.Interface
     public interface ICrazy : IShop
     {
         public int ContinueTime { get; }
-        public int PowerImprove { get; }
+        public double PowerImprove { get; }
         public int SpeedImprove { get; }
-        public int AttackFrequencyImprove { get; }
+        public double AttackFrequencyImprove { get; }
         public EquipmentType equipmentType { get; }
     }
 }

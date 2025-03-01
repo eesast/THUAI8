@@ -50,7 +50,16 @@ namespace Gaming
                 {
                     return false;
                 }
+                if (gameobj.visible == false || gameobj.CharacterState2 == CharacterState.INVISIBLE)
+                {
+                    return false;
+                }
                 characterManager.BeAttacked(gameobj, character);
+                if (character.CharacterState2 == CharacterState.INVISIBLE || character.visible == false)
+                {
+                    character.visible = true;
+                    character.SetCharacterState(character.CharacterState1, CharacterState.NULL_CHARACTER_STATE);//破隐
+                }
                 return true;
             }
             public bool Attack(Character character, A_Resource gameobj)
@@ -64,6 +73,8 @@ namespace Gaming
                     return false;
                 }
                 ARManager.BeAttacked(gameobj, character);
+                if (character.CharacterState2 == CharacterState.INVISIBLE)
+                    character.SetCharacterState(character.CharacterState1, CharacterState.NULL_CHARACTER_STATE);//破隐
                 return true;
             }
             public bool Attack(Character character, Construction gameobj)
@@ -77,6 +88,8 @@ namespace Gaming
                     return false;
                 }
                 gameobj.BeAttacked(character);
+                if (character.CharacterState2 == CharacterState.INVISIBLE)
+                    character.SetCharacterState(character.CharacterState1, CharacterState.NULL_CHARACTER_STATE);//破隐
                 return true;
             }
         }

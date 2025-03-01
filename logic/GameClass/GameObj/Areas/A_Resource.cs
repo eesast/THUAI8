@@ -49,7 +49,7 @@ public class A_Resource
     public A_Resource(int radius, A_ResourceType type, XY initPos) :
         base(initPos, radius, GameObjType.A_Resource)
     {
-        Occupation = ARFactory.FindAROccupation(Type = type);
+        Occupation = ARFactory.FindAROccupation(type);
         HP = new(Occupation.MaxHp);
         AttackPower = new(Occupation.AttackPower);
         Init();
