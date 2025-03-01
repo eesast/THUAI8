@@ -11,6 +11,7 @@
     <ProjectReference Include="..\GameClass\GameClass.csproj" />
     <ProjectReference Include="..\GameEngine\GameEngine.csproj" />
     <ProjectReference Include="..\Gaming\Gaming.csproj" />
+    <ProjectReference Include="..\PlayBack\Playback.csproj" />
     <ProjectReference Include="..\Preparation\Preparation.csproj" />
     <ProjectReference Include="..\proto\proto.csproj" />
   </ItemGroup>
@@ -21,7 +22,7 @@
 	<PackageReference Include="Google.Protobuf" Version="3.29.3" />
 	<PackageReference Include="Grpc" Version="2.46.6" />
 	<PackageReference Include="Grpc.Core" Version="2.46.6" />
-	<PackageReference Include="Grpc.Tools" Version="2.69.0">
+	<PackageReference Include="Grpc.Tools" Version="2.70.0">
 		<PrivateAssets>all</PrivateAssets>
 		<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	</PackageReference>

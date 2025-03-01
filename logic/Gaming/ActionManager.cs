@@ -128,6 +128,78 @@ namespace Gaming
                 { IsBackground = true }.Start();
                 return false;
             }
+            public bool Construct(Character character, ConstructionType constructionType)
+            {
+                Construction? construction = (Construction?)gameMap.OneForInteract(character.Position, GameObjType.Construction);
+                if (character.CharacterType != CharacterType.Monkid || character.CharacterType != CharacterType.Pawn)
+                {
+                    return false;
+                }
+                if (construction == null)
+                {
+                    return false;
+                }
+                if (construction.HP.IsMaxV())
+                {
+                    return false;
+                }
+                long stateNum = character.SetCharacterState(CharacterState.CONSTRUCTING, character.CharacterState2);
+                if (stateNum == -1)
+                {
+                    return false;
+                }
+                new Thread
+                (
+                    () =>
+                    {
+                        character.ThreadNum.WaitOne();
+                        if (!character.StartThread(stateNum))
+                        {
+                            character.ThreadNum.Release();
+                            return;
+                        }
+                        construction.AddConstructNum();
+                        Thread.Sleep(GameData.CheckInterval);
+                        new FrameRateTaskExecutor<int>
+                        (
+                            loopCondition: () => stateNum == character.StateNum && gameMap.Timer.IsGaming,
+                            loopToDo: () =>
+                            {
+                                if (!construction.Construct(constructionType, character))
+                                {
+                                    //character.ResetCharacterState(stateNum);
+                                    return false;
+                                }
+                                if (construction.HP.IsMaxV())
+                                {
+                                    //ship.ResetShipState(stateNum);
+                                    if (!construction.IsActivated)
+                                    {
+                                        switch (construction.ConstructionType)
+                                        {
+                                            case ConstructionType.FARM:
+                                                game.AddFactory(construction.TeamID);
+                                                break;
+                                            case ConstructionType.BARRACKS:
+                                                game.AddBirthPoint(construction.TeamID, construction.Position);
+                                                break;
+                                        }
+                                        construction.IsActivated.Set(true);
+                                    }
+                                    return false;
+                                }
+                                return true;
+                            },
+                            timeInterval: GameData.CheckInterval,
+                            finallyReturn: () => 0
+                        ).Start();
+                        character.ThreadNum.Release();
+                        construction.SubConstructNum();
+                    }
+                )
+                { IsBackground = true }.Start();
+                return false;
+            }
         }
     }
 }

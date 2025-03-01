@@ -189,5 +189,12 @@ namespace Preparation.Utility
         public const double CrazyPower = 1.2;
         public const double CrazyATKFreq = 1.25;
         public const int CrazySpeed = 300;
+        public List<XY> BirthPointList = new List<XY>
+        {
+            new XY(0, 0),
+            new XY(50000, 50000)
+        };//待定
+        public const int ScoreFarmPerSecond = 100;
+        public const int MaxCharacterNum = 1;
     }
 }

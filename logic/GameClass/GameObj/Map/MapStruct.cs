@@ -155,7 +155,7 @@ public readonly struct MapStruct
     {
         for (uint i = 0; i < height; i++)
         {
-            for (uint j = 0; j < width; j++) map[i, j] = PlaceType.Null;
+            for (uint j = 0; j < width; j++) map[i, j] = PlaceType.NULL_PLACE_TYPE;
         }
     }
 
