@@ -9,11 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup>
 
-  <ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\logic\proto\proto.csproj" />
+	</ItemGroup>
+
+
+	<ItemGroup>
     <None Remove="Assets\eesast_logo_32x32.png" />
     <None Remove="Assets\nailong.jpg" />
     <None Remove="Assets\tangseng.jpg" />
@@ -30,5 +34,6 @@
       <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
     </PackageReference>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageReference Include="Google.Protobuf" Version="3.29.3" />
   </ItemGroup>
 </Project>

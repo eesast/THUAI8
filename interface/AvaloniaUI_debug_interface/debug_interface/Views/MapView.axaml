@@ -1,0 +1,34 @@
+<!--MapView.axaml-->
+<UserControl
+    x:Class="debug_interface.Views.MapView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:debug_interface.Models"
+    xmlns:vm="using:debug_interface.ViewModels"
+    x:DataType="vm:MapViewModel"
+    mc:Ignorable="d">
+    <!--  使用 ItemsControl 绑定 MapCells 集合  -->
+	<ItemsControl ItemsSource="{Binding MapCells}">
+		<ItemsControl.ItemsPanel>
+			<ItemsPanelTemplate>
+				<UniformGrid Columns="50" Rows="50" />
+			</ItemsPanelTemplate>
+		</ItemsControl.ItemsPanel>
+		<ItemsControl.ItemTemplate>
+			<DataTemplate x:DataType="models:MapCell">
+				<Border Background="{Binding DisplayColor}"
+						BorderThickness="0.4"
+						Width="15"
+						Height="15"
+						BorderBrush="Gray">
+					<TextBlock Text="{Binding DisplayText}"
+							   HorizontalAlignment="Center"
+							   VerticalAlignment="Center"
+							   FontSize="6"/>
+				</Border>
+			</DataTemplate>
+		</ItemsControl.ItemTemplate>
+	</ItemsControl>
+</UserControl>
