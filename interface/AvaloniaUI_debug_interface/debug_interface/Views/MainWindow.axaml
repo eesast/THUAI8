@@ -5,12 +5,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:views="using:debug_interface.Views"
+    xmlns:local="clr-namespace:debug_interface.Views"
     xmlns:vm="using:debug_interface.ViewModels"
     x:Name="MainWindowElement"
     Title="THUAI8 调试界面"
     Width="1200"
-    Height="900"
+    Height="800"
     x:DataType="vm:MainWindowViewModel"
     Icon="/Assets/eesast_logo_32x32.png"
     mc:Ignorable="d">
@@ -210,15 +210,15 @@
         <Grid
             Grid.Column="1"
             Margin="2"
-            Background="Ivory">
+            >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <!--  视野按钮、时间、比分  -->
+            <!--  时间、比分  -->
             <StackPanel
-                Margin="5"
+                Margin="2"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Orientation="Horizontal">
@@ -247,17 +247,16 @@
                     Text="{Binding BlueScore}" />
             </StackPanel>
 
-            <!--  地图  -->
-            <Border
-                Grid.Row="1"
-                Margin="5"
-                BorderBrush="Gray"
-                BorderThickness="1">
-                <TextBlock
-                    Margin="5"
-                    Text="{Binding GameLog}"
-                    TextWrapping="Wrap" />
-            </Border>
-        </Grid>
+
+			<!-- 地图  -->
+			<Border
+				Grid.Row="1"
+				Margin="5"
+				BorderBrush="Gray"
+				BorderThickness="1">
+				<local:MapView />
+			</Border>
+
+		</Grid>
     </Grid>
 </Window>

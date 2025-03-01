@@ -1,3 +1,4 @@
+// service.proto
 syntax = "proto3";
 package protobuf;
 
