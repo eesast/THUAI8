@@ -25,7 +25,7 @@ namespace GameClass.GameObj
         public Base(Home home)
         {
             sideFlag = home.sideFlag;
-            TeamID = new(home.teamID);
+            TeamID = new(home.TeamID);
             CharacterPool = new(
                 classfier: (character) => character.CharacterType,//以下可能出问题
                 idleChecker: (character) => character.IsRemoved,

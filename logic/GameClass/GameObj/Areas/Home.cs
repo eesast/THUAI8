@@ -12,5 +12,5 @@ public class Home(XY initPos, long id, int sideFlag)
     public long TeamID { get; } = id;
     public int sideFlag = sideFlag;
     public override bool IsRigid(bool args = false) => true;
-    public override ShapeType Shape => ShapeType.Square;
+    public override ShapeType Shape => ShapeType.SQUARE;
 }
