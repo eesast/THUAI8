@@ -164,7 +164,7 @@ namespace Gaming
             if (characterManager.ActivateCharacter(character, pos))
             {
                 GameLogging.logger.ConsoleLogDebug($"Successfully activated {teamID} {characterType} at {pos}");
-                return ship.PlayerID;
+                return character.PlayerID;
             }
             else
             {
@@ -213,7 +213,7 @@ namespace Gaming
             {
                 GameLogging.logger.ConsoleLogDebug(
                     "Fail to move "
-                    + LoggingFunctional.ShipLogInfo(teamID, characterID)
+                    + LoggingFunctional.CharacterLogInfo(teamID, characterID)
                     + ", not found");
                 return false;
             }
