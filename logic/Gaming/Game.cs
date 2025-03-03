@@ -289,17 +289,17 @@ namespace Gaming
         {
             gameMap = new(mapResource);
             characterManager = new(this, gameMap);
-            skillCastManager = new();
+            ARManager = new(this, gameMap);
+            skillCastManager = new(this, gameMap, characterManager, ARManger);
             actionManager = new(this, gameMap, characterManager);
             attackManager = new(this, gameMap, characterManager);
-            ARManager = new(this, gameMap);
             teamList = [];
             gameMap.GameObjDict[GameObjType.Home].Cast<GameObj>()?.ForEach(
                 delegate (GameObj gameObj)
                 {
                     if (gameObj.Type == GameObjType.Home)
                     {
-                        teamList.Add(new Base((Home)gameObj));
+                        teamList.Add(new Base((Home)gameObj, -1));
                         teamList.Last().BirthPointList.Add(gameObj.Position);
                         teamList.Last().AddMoney(GameData.InitialMoney);
                     }
