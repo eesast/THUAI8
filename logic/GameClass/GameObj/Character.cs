@@ -36,6 +36,20 @@ public class Character : Movable, ICharacter
     public long BlindTime = long.MaxValue;
     public long StunnedTime = long.MaxValue;
     public long HarmCutTime = long.MaxValue;
+    private long skillCD = long.MaxValue;
+    public bool canskill = true;
+    public void StartSkillCD()
+    {
+        skillCD = Environment.TickCount64;
+    }
+    public void ResetSkillCD()
+    {
+        skillCD = long.MaxValue;
+    }
+    public long GetSkillTime()
+    {
+        return skillCD;
+    }
     private CharacterState characterState1 = CharacterState.NULL_CHARACTER_STATE;
     private CharacterState characterState2 = CharacterState.DECEASED;
     public CharacterState CharacterState1
