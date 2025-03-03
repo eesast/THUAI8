@@ -200,12 +200,12 @@ namespace Gaming
         {
             if (!gameMap.Timer.IsGaming)
                 return false;
-            Character? character = gameMap.FindShipInPlayerID(teamID, characterID);
+            Character? character = gameMap.FindCharacterInPlayerID(teamID, characterID);
             if (character != null && character.IsRemoved == false)
             {
                 GameLogging.logger.ConsoleLogDebug(
                     "Try to move "
-                    + LoggingFunctional.CharacterLogInfo(ship)
+                    + LoggingFunctional.CharacterLogInfo(character)
                     + $" {moveTimeInMilliseconds} {angle}");
                 return actionManager.MoveCharacter(character, moveTimeInMilliseconds, angle);
             }
@@ -217,6 +217,7 @@ namespace Gaming
                     + ", not found");
                 return false;
             }
+        }
         public void AddBirthPoint(long teamID, XY pos)
         {
             if (!gameMap.TeamExists(teamID))
@@ -246,5 +247,4 @@ namespace Gaming
             teamList[(int)teamID].FarmNum.Sub(1);
         }
     }
-}
 }
