@@ -23,7 +23,7 @@ namespace GameClass.GameObj
         public int MoneyAddPerSecond => FarmNum * GameData.ScoreFarmPerSecond;
         public Base(long teamID, int sideFlag)
         {
-            public int sideFlag = sideFlag;
+        public int sideFlag = sideFlag;
         TeamID = new (teamID);
             CharacterPool = new (
                 classfier: (character) => character.CharacterType,//以下可能出问题
