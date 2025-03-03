@@ -45,6 +45,10 @@ namespace Gaming
             {
                 if (!character.Commandable() || character.CharacterState2 == CharacterState.BLIND)
                     return false;
+                if (!character.canskill)
+                    return false;
+                character.StartSkillCD();
+                character.canskill = false;
                 switch (character.CharacterType)
                 {
                     case CharacterType.SunWukong:

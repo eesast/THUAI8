@@ -213,6 +213,15 @@ namespace Gaming
                     character.HarmCut = 0;
                 }
             }
+            public void CheckSkillTime(Character character)
+            {
+                long nowtime = Environment.TickCount64;
+                if (nowtime - character.GetSkillTime() >= 6000)
+                {
+                    character.canskill = true;
+                    character.ResetSkillCD();
+                }
+            }
         }
     }
 }
