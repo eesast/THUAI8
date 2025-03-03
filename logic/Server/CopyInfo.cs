@@ -90,7 +90,6 @@ namespace Server
             {
                 EconomyResourceMessage = new()
                 {
-                    Type = economyresource.TypeOfEconomyResource,
                     State = Transformation.EconomyResourceStateToProto(economyresource.EconomyResourceState),
 
                     X = economyresource.Position.x,
@@ -108,7 +107,7 @@ namespace Server
             {
                 AdditionResourceMessage = new()
                 {
-                    Type = additionResource.TypeOfAdditionResource,
+                    Type = additionResource.A_ResourceType,
                     State = additionResource.AdditionResourceState,
 
                     X = additionResource.Position.x,
