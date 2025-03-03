@@ -271,5 +271,40 @@ namespace Gaming
             }
             return gameObjList;
         }
+        public void ClearAllLists()
+        {
+            foreach (var keyValuePair in gameMap.GameObjDict)
+            {
+                if (!GameData.NeedCopy(keyValuePair.Key))
+                {
+                    gameMap.GameObjDict[GameObjType.Character].ForEach(delegate (IGameObj character)
+                    {
+                        ((Character)character).CanMove.SetROri(false);
+                    });
+                    gameMap.GameObjDict[keyValuePair.Key].Clear();
+                }
+            }
+        }
+        public Game(MapStruct mapResource, int numOfTeam)
+        {
+            gameMap = new(mapResource);
+            characterManager = new(this, gameMap);
+            skillCastManager = new();
+            actionManager = new(this, gameMap, characterManager);
+            attackManager = new(this, gameMap, characterManager);
+            ARManager = new(this, gameMap);
+            teamList = [];
+            gameMap.GameObjDict[GameObjType.Home].Cast<GameObj>()?.ForEach(
+                delegate (GameObj gameObj)
+                {
+                    if (gameObj.Type == GameObjType.Home)
+                    {
+                        teamList.Add(new Base((Home)gameObj));
+                        teamList.Last().BirthPointList.Add(gameObj.Position);
+                        teamList.Last().AddMoney(GameData.InitialMoney);
+                    }
+                }
+            );
+        }
     }
 }
