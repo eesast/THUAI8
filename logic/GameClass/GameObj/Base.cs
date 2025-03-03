@@ -22,10 +22,10 @@ namespace GameClass.GameObj
         public AtomicInt FarmNum { get; } = new(1);
         public int sideFlag { get; }
         public int MoneyAddPerSecond => FarmNum * GameData.ScoreFarmPerSecond;
-        public Base(long teamID, int sideFlag)
+        public Base(Home home)
         {
-            sideFlag = sideFlag;
-            TeamID = new(teamID);
+            sideFlag = home.sideFlag;
+            TeamID = new(home.teamID);
             CharacterPool = new(
                 classfier: (character) => character.CharacterType,//以下可能出问题
                 idleChecker: (character) => character.IsRemoved,

@@ -290,7 +290,7 @@ namespace Gaming
             gameMap = new(mapResource);
             characterManager = new(this, gameMap);
             ARManager = new(this, gameMap);
-            skillCastManager = new(this, gameMap, characterManager, ARManger);
+            skillCastManager = new(this, gameMap, characterManager, ARManager);
             actionManager = new(this, gameMap, characterManager);
             attackManager = new(this, gameMap, characterManager);
             teamList = [];
@@ -299,7 +299,7 @@ namespace Gaming
                 {
                     if (gameObj.Type == GameObjType.Home)
                     {
-                        teamList.Add(new Base((Home)gameObj, -1));
+                        teamList.Add(new Base((Home)gameObj));
                         teamList.Last().BirthPointList.Add(gameObj.Position);
                         teamList.Last().AddMoney(GameData.InitialMoney);
                     }
