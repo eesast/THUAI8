@@ -4,6 +4,7 @@ using Preparation.Utility.Logging;
 using Preparation.Utility.Value;
 using System;
 using System.Threading;
+using Timothy.FrameRateTask;
 
 namespace GameEngine
 {

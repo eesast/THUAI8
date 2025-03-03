@@ -2,7 +2,7 @@ using GameClass.GameObj;
 using GameClass.GameObj.Map;
 using GameClass.GameObj.Areas;
 using GameClass.MapGenerator;
-using GameClass.Occupations;
+using GameClass.GameObj.Occupations;
 using Preparation.Utility;
 using Preparation.Utility.Value;
 using Preparation.Interface;
@@ -15,12 +15,12 @@ namespace Gaming
 {
     public partial class Game
     {
-        public struct PlayerInitInfo(long teamID, long playerID, CharacterType characterType, bool sideFlag)//sideFlag表示队伍是取经阵营还是妖怪阵营
+        public struct PlayerInitInfo(long teamID, long playerID, CharacterType characterType, int sideFlag)//sideFlag表示队伍是取经阵营还是妖怪阵营
         {
             public long teamID = teamID;
             public long playerID = playerID;
             public CharacterType characterType = characterType;
-            public bool sideFlag = sideFlag;//0是取经队，1是妖怪队
+            public int sideFlag = sideFlag;//0是取经队，1是妖怪队
         }
         private readonly List<Base> teamList;
         public List<Base> TeamList => teamList;
@@ -40,44 +40,44 @@ namespace Gaming
                 {
                     switch (characterType)
                     {
-                        case characterType.Null:
+                        case CharacterType.Null:
                             return GameObj.invalidID;
-                        case characterType.TangSeng:
-                            if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.Tangseng)
+                        case CharacterType.TangSeng:
+                            if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.TangSeng)
                                 >= GameData.MaxCharacterNum)
                             {
                                 return GameObj.invalidID;
                             }
                             break;
-                        case characterType.SunWukong:
-                            if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.Sunwukong)
+                        case CharacterType.SunWukong:
+                            if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.SunWukong)
                                 >= GameData.MaxCharacterNum)
                             {
                                 return GameObj.invalidID;
                             }
                             break;
-                        case characterType.ZhuBajie:
-                            if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.Zhubajie)
+                        case CharacterType.ZhuBajie:
+                            if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.ZhuBajie)
                                 >= GameData.MaxCharacterNum)
                             {
                                 return GameObj.invalidID;
                             }
                             break;
-                        case characterType.ShaWujing:
-                            if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.Shawujing)
+                        case CharacterType.ShaWujing:
+                            if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.ShaWujing)
                                 >= GameData.MaxCharacterNum)
                             {
                                 return GameObj.invalidID;
                             }
                             break;
-                        case characterType.BaiLongma:
-                            if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.Bailongma)
+                        case CharacterType.BaiLongma:
+                            if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.BaiLongma)
                                 >= GameData.MaxCharacterNum)
                             {
                                 return GameObj.invalidID;
                             }
                             break;
-                        case characterType.Monkid:
+                        case CharacterType.Monkid:
                             break;
                         default:
                             return GameObj.invalidID;
@@ -87,50 +87,50 @@ namespace Gaming
                 {
                     switch (characterType)
                     {
-                        case characterType.Null:
+                        case CharacterType.Null:
                             return GameObj.invalidID;
-                        case characterType.JiuLing:
-                            if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.Jiuling)
+                        case CharacterType.JiuLing:
+                            if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.JiuLing)
                                 >= GameData.MaxCharacterNum)
                             {
                                 return GameObj.invalidID;
                             }
                             break;
-                        case characterType.HongHaier:
-                            if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.Honghaier)
+                        case CharacterType.HongHaier:
+                            if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.HongHaier)
                                 >= GameData.MaxCharacterNum)
                             {
                                 return GameObj.invalidID;
                             }
                             break;
-                        case characterType.NiuMowang:
-                            if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.Niumowang)
+                        case CharacterType.NiuMowang:
+                            if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.NiuMowang)
                                 >= GameData.MaxCharacterNum)
                             {
                                 return GameObj.invalidID;
                             }
                             break;
-                        case characterType.TieShan:
-                            if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.Tieshan)
+                        case CharacterType.TieShan:
+                            if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.TieShan)
                                 >= GameData.MaxCharacterNum)
                             {
                                 return GameObj.invalidID;
                             }
                             break;
-                        case characterType.ZhiZhujing:
-                            if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.Zhizhujing)
+                        case CharacterType.ZhiZhujing:
+                            if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.ZhiZhujing)
                                 >= GameData.MaxCharacterNum)
                             {
                                 return GameObj.invalidID;
                             }
                             break;
-                        case characterType.Pawn:
+                        case CharacterType.Pawn:
                             break;
                         default:
                             return GameObj.invalidID;
                     }
                 }
-                characterType? newCharacter = CharacterManager.AddCharacter(playerInitInfo.teamID,
+                Character? newCharacter = CharacterManager.AddCharacter(playerInitInfo.teamID,
                                                     playerInitInfo.playerID,
                                                     playerInitInfo.characterType,
                                                     teamList[(int)playerInitInfo.teamID].MoneyPool);
@@ -217,6 +217,34 @@ namespace Gaming
                     + ", not found");
                 return false;
             }
+        public void AddBirthPoint(long teamID, XY pos)
+        {
+            if (!gameMap.TeamExists(teamID))
+                return;
+            if (teamList[(int)teamID].BirthPointList.Contains(pos))
+                return;
+            teamList[(int)teamID].BirthPointList.Add(pos);
+        }
+        public void RemoveBirthPoint(long teamID, XY pos)
+        {
+            if (!gameMap.TeamExists(teamID))
+                return;
+            if (!teamList[(int)teamID].BirthPointList.Contains(pos))
+                return;
+            teamList[(int)teamID].BirthPointList.Remove(pos);
+        }
+        public void AddFactory(long teamID)
+        {
+            if (!gameMap.TeamExists(teamID))
+                return;
+            teamList[(int)teamID].FarmNum.Add(1);
+        }
+        public void RemoveFactory(long teamID)
+        {
+            if (!gameMap.TeamExists(teamID))
+                return;
+            teamList[(int)teamID].FarmNum.Sub(1);
         }
     }
+}
 }

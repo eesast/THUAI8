@@ -155,16 +155,13 @@ public class Character : Movable, ICharacter
                         return -1;
                     else
                         return ChangeCharacterState(value1, value2, gameobj);
-                    break;
                 case CharacterState.STUNNED://被定身时无法移动
                     if (value1 == CharacterState.MOVING)
                         return -1;
                     else
                         return ChangeCharacterState(value1, value2, gameobj);
-                    break;
                 case CharacterState.KNOCKED_BACK://击退时无法进行任何操作
                     return -1;
-                    break;
                 default:
                     return ChangeCharacterState(value1, value2, gameobj);
             }
@@ -244,56 +241,48 @@ public class Character : Movable, ICharacter
                     SubMoney(EquipmentFactory.FindCost(equiptype));
                     return true;
                 }
-                break;
             case EquipmentType.MEDIUM_HEALTH_POTION:
                 {
                     HP.AddPositiveV(GameData.LifeMedicine2HP);
                     SubMoney(EquipmentFactory.FindCost(equiptype));
                     return true;
                 }
-                break;
             case EquipmentType.LARGE_HEALTH_POTION:
                 {
                     HP.AddPositiveV(GameData.LifeMedicine3HP);
                     SubMoney(EquipmentFactory.FindCost(equiptype));
                     return true;
                 }
-                break;
             case EquipmentType.SMALL_SHIELD:
                 {
                     Shield.AddPositiveV(GameData.Shield1);
                     SubMoney(EquipmentFactory.FindCost(equiptype));
                     return true;
                 }
-                break;
             case EquipmentType.MEDIUM_SHIELD:
                 {
                     Shield.AddPositiveV(GameData.Shield2);
                     SubMoney(EquipmentFactory.FindCost(equiptype));
                     return true;
                 }
-                break;
             case EquipmentType.LARGE_SHIELD:
                 {
                     Shield.AddPositiveV(GameData.Shield3);
                     SubMoney(EquipmentFactory.FindCost(equiptype));
                     return true;
                 }
-                break;
             case EquipmentType.SPEEDBOOTS:
                 {
                     Shoes.AddPositiveV(GameData.ShoesSpeed);
                     SubMoney(EquipmentFactory.FindCost(equiptype));
                     return true;
                 }
-                break;
             case EquipmentType.INVISIBILITY_POTION:
                 {
                     SetCharacterState(CharacterState1, CharacterState.INVISIBLE);//此处缺少时间限制
                     SubMoney(EquipmentFactory.FindCost(equiptype));
                     return true;
                 }
-                break;
             case EquipmentType.BERSERK_POTION:
                 {
                     SetCharacterState(CharacterState1, CharacterState.BERSERK);//此处缺少时间限制
@@ -303,7 +292,6 @@ public class Character : Movable, ICharacter
                     SubMoney(EquipmentFactory.FindCost(equiptype));
                     return true;
                 }
-                break;
             default: return false;
         }
     }
