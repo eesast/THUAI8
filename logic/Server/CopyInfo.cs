@@ -16,17 +16,17 @@ namespace Server
             {
                 case GameObjType.Character:
                     return Character((Character)gameObj, time);
-                case GameObjType.EconomyResource:
-                    return EconomyResource((EconomyResource)gameObj);
-                case GameObjType.AdditionResource:
-                    return AdditionResource((AdditionResource)gameObj);
+                case GameObjType.E_Resource:
+                    return E_Resource((E_Resource)gameObj);
+                case GameObjType.A_Resource:
+                    return A_Resource((A_Resource)gameObj);
                 case GameObjType.Construction:
                     Construction construction = (Construction)gameObj;
-                    if (construction.ConstructionType == Utility.ConstructionType.Barracks)
+                    if (construction.ConstructionType == Utility.ConstructionType.BARRACKS)
                         return Barracks(construction);
-                    else if (construction.ConstructionType == Utility.ConstructionType.Spring)
+                    else if (construction.ConstructionType == Utility.ConstructionType.SPRING)
                         return Spring(construction);
-                    else if (construction.ConstructionType == Utility.ConstructionType.Farm)
+                    else if (construction.ConstructionType == Utility.ConstructionType.FARM)
                         return Farm(construction);
                     return null;
                 case GameObjType.Trap:
@@ -55,8 +55,9 @@ namespace Server
                     TeamId = player.TeamID,
                     PlayerId = player.PlayerID,
 
-                    CharacterType = Transformation.CharacterTypeToProto(player.CharacterType),
-                    CharacterState = Transformation.CharacterStateToProto(player.CharacterState),
+                    CharacterType = player.CharacterType,
+                    CharacterState1 = player.CharacterState1,
+                    CharacterState2 = player.CharacterState2,
 
                     X = player.Position.x,
                     Y = player.Position.y,
@@ -66,7 +67,7 @@ namespace Server
                     ViewRange = player.ViewRange,
 
                     Atk = player.ATK,
-                    AttackRange = player.AttackRange,
+                    AttackSize = player.AttackSize,
 
                     SkillCD = player.SkillCD,
 
@@ -75,7 +76,7 @@ namespace Server
 
                     Hp = (int)player.HP,
 
-                    EquipmentType = Transformation.EquipmentTypeToProto(player.EquipmentType),
+                    EquipmentType = player.EquipmentType,
                 }
             };
             return msg;
@@ -87,7 +88,7 @@ namespace Server
             {
                 EconomyResourceMessage = new()
                 {
-                    Type = Transformation.EconomyResourceToProto(economyresource.TypeOfEconomyResource),
+                    Type = economyresource.TypeOfEconomyResource,
                     State = Transformation.EconomyResourceStateToProto(economyresource.EconomyResourceState),
 
                     X = economyresource.Position.x,
@@ -105,8 +106,8 @@ namespace Server
             {
                 AdditionResourceMessage = new()
                 {
-                    Type = Transformation.AdditionResourceToProto(additionResource.TypeOfAdditionResource),
-                    State = Transformation.AdditionResourceStateToProto(additionResource.AdditionResourceState),
+                    Type = additionResource.TypeOfAdditionResource,
+                    State = additionResource.AdditionResourceState,
 
                     X = additionResource.Position.x,
                     Y = additionResource.Position.y,
