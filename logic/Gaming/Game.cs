@@ -146,6 +146,78 @@ namespace Gaming
                 return playerInitInfo.playerID;
             }
         }
+        public long ActivateCharacter(long teamID, CharacterType characterType, int birthPointIndex = 0)
+        {
+            GameLogging.logger.ConsoleLogDebug($"Try to activate {teamID} {characterType} at birthpoint {birthPointIndex}");
+            Character? character = teamList[(int)teamID].CharacterPool.GetObj(characterType);
+            if (character == null)
+            {
+                GameLogging.logger.ConsoleLogDebug($"Fail to activate {teamID} {characterType}, no character available");
+                return GameObj.invalidID;
+            }
+            if (birthPointIndex < 0)
+                birthPointIndex = 0;
+            if (birthPointIndex >= teamList[(int)teamID].BirthPointList.Count)
+                birthPointIndex = teamList[(int)teamID].BirthPointList.Count - 1;
+            XY pos = teamList[(int)teamID].BirthPointList[birthPointIndex];
+            pos += new XY(((random.Next() & 2) - 1) * 1000, ((random.Next() & 2) - 1) * 1000);
+            if (characterManager.ActivateCharacter(character, pos))
+            {
+                GameLogging.logger.ConsoleLogDebug($"Successfully activated {teamID} {characterType} at {pos}");
+                return character.PlayerID;
+            }
+            else
+            {
+                teamList[(int)teamID].CharacterPool.ReturnObj(character);
+                GameLogging.logger.ConsoleLogDebug($"Fail to activate {teamID} {characterType} at {pos}, rule not permitted");
+                return GameObj.invalidID;
+            }
+        }
+        public bool StartGame(int milliSeconds)
+        {
+            if (gameMap.Timer.IsGaming)
+                return false;
+            // 开始游戏
+            foreach (var team in TeamList)
+            {
+                actionManager.TeamTask(team);
+                if (team.sideFlag == 0)
+                {
+                    ActivateCharacter(team.TeamID, CharacterType.Tangseng);
+                }
+                else
+                {
+                    ActivateCharacter(team.TeamID, CharacterType.Jiuling);
+                }
+            }
+            gameMap.Timer.Start(() => { }, () => EndGame(), milliSeconds);
+            return true;
+        }
+        public void EndGame()
+        {
+        }
+        public bool MoveCharacter(long teamID, long characterID, int moveTimeInMilliseconds, double angle)
+        {
+            if (!gameMap.Timer.IsGaming)
+                return false;
+            Character? character = gameMap.FindCharacterInPlayerID(teamID, characterID);
+            if (character != null && character.IsRemoved == false)
+            {
+                GameLogging.logger.ConsoleLogDebug(
+                    "Try to move "
+                    + LoggingFunctional.CharacterLogInfo(character)
+                    + $" {moveTimeInMilliseconds} {angle}");
+                return actionManager.MoveCharacter(character, moveTimeInMilliseconds, angle);
+            }
+            else
+            {
+                GameLogging.logger.ConsoleLogDebug(
+                    "Fail to move "
+                    + LoggingFunctional.CharacterLogInfo(teamID, characterID)
+                    + ", not found");
+                return false;
+            }
+        }
         public void AddBirthPoint(long teamID, XY pos)
         {
             if (!gameMap.TeamExists(teamID))

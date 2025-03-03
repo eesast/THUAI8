@@ -53,6 +53,13 @@ namespace THUAI8
         MonstersTeam = 2,
     };
 
+    enum class PlayerType : unsigned char
+    {
+        NullPlayerType = 0,
+        Character = 1,
+        Team = 2,
+    };
+
     enum class CharacterType : unsigned char
     {
         NullCharacterType = 0,
@@ -109,6 +116,18 @@ namespace THUAI8
         Berserk = 12,
         Burned = 13,
     };
+
+    enum class CharacterBuffType : unsigned char
+    {
+        NullCharacterBuffType = 0,
+
+        AttackBuff1 = 1,
+        AttackBuff2 = 2,
+        AttackBuff3 = 3,
+        DefenseBuff = 4,
+        SpeedBuff = 5,
+        VisionBuff = 6,
+    }
 
     enum class EconomyResourceType : unsigned char
     {
@@ -195,8 +214,16 @@ namespace THUAI8
         int64_t teamID;
         int64_t playerID;
 
+        // 待定
         CharacterType characterType;
         CharacterState characterState;
+        double damageRedunction;
+        bool burned;
+        Timer ? burnedTimer;  // 类型？
+        int32_t skikkShield;
+        CharacterBuffType attackBuff;
+        CharacterBuffType speedBuff;
+        CharacterBuffType visionBuff;
 
         int32_t x;
         int32_t y;
@@ -212,7 +239,14 @@ namespace THUAI8
 
         int32_t hp;
 
-        EquipmentType equipmentType;
+        // // 待定
+        // EquipmentType equipmentType;
+        // EquipmentType healthPotionEquipment;
+        // EquipmentType shildEquipment;
+        // EquipmentType speedShoesEquipment;
+        // EquipmentType purificationPotionEquipment;
+        // EquipmentType invisibilityPotionEquipment;
+        // EquipmentType berserkPotionEquipment;
     };
 
     struct Team

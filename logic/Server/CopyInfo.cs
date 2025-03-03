@@ -55,6 +55,7 @@ namespace Server
                     TeamId = player.TeamID,
                     PlayerId = player.PlayerID,
 
+
                     CharacterType = player.CharacterType,
                     CharacterState1 = player.CharacterState1,
                     CharacterState2 = player.CharacterState2,
@@ -75,6 +76,7 @@ namespace Server
                     KillSvore = player.KillScore,
 
                     Hp = (int)player.HP,
+
 
                     EquipmentType = player.EquipmentType,
                 }
