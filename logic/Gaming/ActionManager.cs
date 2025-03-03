@@ -200,6 +200,32 @@ namespace Gaming
                 { IsBackground = true }.Start();
                 return false;
             }
+            public bool TeamTask(Base team)
+            {
+                new Thread
+                (
+                    () =>
+                    {
+                        while (!gameMap.Timer.IsGaming)
+                        {
+                            Thread.Sleep(1);
+                        }
+                        new FrameRateTaskExecutor<int>
+                        (
+                            loopCondition: () => gameMap.Timer.IsGaming,
+                            loopToDo: () =>
+                            {
+                                team.AddMoney(team.MoneyAddPerSecond / GameData.NumOfStepPerSecond);
+                                return true;
+                            },
+                            timeInterval: GameData.CheckInterval,
+                            finallyReturn: () => 0
+                        ).Start();
+                    }
+                )
+                { IsBackground = true }.Start();
+                return false;
+            }
         }
     }
 }
