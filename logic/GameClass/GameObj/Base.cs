@@ -21,8 +21,9 @@ namespace GameClass.GameObj
         public AtomicInt BarrackNum { get; } = new(0);
         public AtomicInt FarmNum { get; } = new(1);
         public int MoneyAddPerSecond => FarmNum * GameData.ScoreFarmPerSecond;
-        public Base(long teamID)
+        public Base(long teamID, bool sideFlag)
         {
+            bool sideFlag = sideFlag;
             TeamID = new(teamID);
             CharacterPool = new(
                 classfier: (character) => character.CharacterType,//以下可能出问题

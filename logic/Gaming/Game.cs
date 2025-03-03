@@ -183,11 +183,11 @@ namespace Gaming
                 actionManager.TeamTask(team);
                 if (team.sideFlag == 0)
                 {
-                    ActivateCharacter(team.TeamID, CharacterType.Tangseng);
+                    ActivateCharacter(team.TeamID, CharacterType.TangSeng);
                 }
                 else
                 {
-                    ActivateCharacter(team.TeamID, CharacterType.Jiuling);
+                    ActivateCharacter(team.TeamID, CharacterType.JiuLing);
                 }
             }
             gameMap.Timer.Start(() => { }, () => EndGame(), milliSeconds);
@@ -245,6 +245,31 @@ namespace Gaming
             if (!gameMap.TeamExists(teamID))
                 return;
             teamList[(int)teamID].FarmNum.Sub(1);
+        }
+        public long GetTeamMoney(long teamID)
+        {
+            if (!gameMap.TeamExists(teamID))
+                return -1;
+            return teamList[(int)teamID].MoneyPool.Money;
+        }
+        public long GetTeamScore(long teamID)
+        {
+            if (!gameMap.TeamExists(teamID))
+                return -1;
+            return teamList[(int)teamID].MoneyPool.Score;
+        }
+        public List<IGameObj> GetGameObj()
+        {
+            var gameObjList = new List<IGameObj>();
+            foreach (var keyValuePair in gameMap.GameObjDict)
+            {
+                if (GameData.NeedCopy(keyValuePair.Key))
+                {
+                    var thisList = gameMap.GameObjDict[keyValuePair.Key].ToNewList();
+                    if (thisList != null) gameObjList.AddRange(thisList);
+                }
+            }
+            return gameObjList;
         }
     }
 }
