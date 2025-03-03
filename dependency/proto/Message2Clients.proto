@@ -13,6 +13,14 @@ message MessageOfCharacter
 
     CharacterType character_type = 4;
     CharacterState character_state = 5;
+    // 待定 是否加Timer?
+    // double damage_reduction = ; // 伤害减免
+    // bool burned = ; // 是否燃烧
+    // Timer? burned_timer = ; // 燃烧持续时间 感觉不能用Timer
+    // int32 skill_shield = ; // 技能护盾能抵挡的伤害
+    // CharacterBuffType attack_buff = ; // 狂战士之力
+    // CharacterBuffType speed_buff = ; // 疾步之灵
+    // CharacterBuffType vision_buff = ; // 视野之灵
 
     int32 x = 6;
     int32 y = 7;
@@ -31,7 +39,13 @@ message MessageOfCharacter
     
     int32 hp = 16; 
 
-    EquipmentType equipment_type = 17;
+    EquipmentType equipment = 17;
+    // EquipmentType health_potion_equipment = ;
+    // EquipmentType shild_equipment =;
+    // EquipmentType speed_shoes_equipment =;
+    // EquipmentType purification_potion_equipment =;
+    // EquipmentType invisibility_potion_equipment =;
+    // EquipmentType berserk_potion_equipment =;
 }
 
 message MessageOfBarracks

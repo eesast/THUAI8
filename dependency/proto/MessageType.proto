@@ -63,14 +63,25 @@ enum CharacterState // 角色状态
     CONSTRUCTING = 5;
     MOVING = 6;
 
-    // 被动状态
-    BLIND = 7;
-    KNOCKED_BACK = 8;
-    STUNNED = 9;
-    INVISIBLE = 10;
-    HEALING = 11;
-    BERSERK = 12;
-    BURNED = 13;
+    // // 被动状态
+    // BLIND = 7;
+    // KNOCKED_BACK = 8;
+    // STUNNED = 9;
+    // INVISIBLE = 10;
+    // HEALING = 11;
+    // BERSERK = 12;
+    // BURNED = 13;
+}
+
+enum CharacterBuffType // 加成资源中的Buff
+{
+    NLULL_CHARACTER_BUFF_TYPE = 0;
+
+    ATTACK_BUFF1 = 1;
+    ATTACK_BUFF2 = 2;
+    ATTACK_BUFF3 = 3;
+    SPEED_BUFF = 4;
+    VISION_BUFF = 5;
 }
 
 enum EconomyResourceType // 经济资源
