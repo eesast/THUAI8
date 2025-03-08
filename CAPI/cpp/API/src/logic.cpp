@@ -14,15 +14,24 @@
 
 extern const bool asynchronous;
 
+<<<<<<< HEAD
 Logic::Logic(int32_t pID, int32_t tID, THUAI8::PlayerType pType, THUAI8::CharacterType cType) :
     playerID(pID),
     teamID(tID),
     playerType(pType),
     CharacterType(cType)
+=======
+Logic::Logic(int32_t pID, int32_t tID, THUAI8::PlayerType pType, THUAI8::CharacterType sType) :
+    playerID(pID),
+    teamID(tID),
+    playerType(pType),
+    selfType(sType)
+>>>>>>> c939f17 (修更改了MessageType.proto的人物名称，并重新生成了MessageType.pb.cc文件和Message.pb.h文件)
 {
     currentState = &state[0];
     bufferState = &state[1];
     currentState->gameInfo = std::make_shared<THUAI8::GameInfo>();
+<<<<<<< HEAD
     currentState->mapInfo = std::make_shared<THUAI8::GameMap>();
     bufferState->gameInfo = std::make_shared<THUAI8::GameInfo>();
     bufferState->mapInfo = std::make_shared<THUAI8::GameMap>();
@@ -778,3 +787,12 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
         }
     }
 }
+=======
+    bufferState->gameInfo = std::make_shared<THUAI8::GameInfo>();
+    currentState->mapInfo = std::make_shared<THUAI8::GameMap>();
+    bufferState->mapInfo = std::make_shared<THUAI8::GameMap>();
+    if (teamID == 0)
+    {
+    }
+}
+>>>>>>> c939f17 (修更改了MessageType.proto的人物名称，并重新生成了MessageType.pb.cc文件和Message.pb.h文件)
