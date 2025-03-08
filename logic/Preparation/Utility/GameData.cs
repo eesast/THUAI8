@@ -125,6 +125,18 @@ namespace Preparation.Utility
             else
                 return false;
         }
+        public static bool NeedCopy(GameObjType gameObjType)
+        {
+            return gameObjType != GameObjType.Null &&
+                   gameObjType != GameObjType.Barrier &&
+                   gameObjType != GameObjType.Bush &&
+                   gameObjType != GameObjType.E_Resource &&
+                   gameObjType != GameObjType.A_Resource &&
+                   gameObjType != GameObjType.Construction &&
+                   gameObjType != GameObjType.Trap &&
+                   gameObjType != GameObjType.Home &&
+                    gameObjType != GameObjType.OutOfBoundBlock;
+        }
         public const int ConstructionHP = 1000;//建筑物的默认HP
         public const int BarracksHP = 600;
         public const int SpringHP = 300;
@@ -191,5 +203,6 @@ namespace Preparation.Utility
         public const int CrazySpeed = 300;
         public const int ScoreFarmPerSecond = 100;
         public const int MaxCharacterNum = 1;
+        public const int InitialMoney = 5000;
     }
 }

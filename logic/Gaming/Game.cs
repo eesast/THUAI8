@@ -183,11 +183,11 @@ namespace Gaming
                 actionManager.TeamTask(team);
                 if (team.sideFlag == 0)
                 {
-                    ActivateCharacter(team.TeamID, CharacterType.Tangseng);
+                    ActivateCharacter(team.TeamID, CharacterType.TangSeng);
                 }
                 else
                 {
-                    ActivateCharacter(team.TeamID, CharacterType.Jiuling);
+                    ActivateCharacter(team.TeamID, CharacterType.JiuLing);
                 }
             }
             gameMap.Timer.Start(() => { }, () => EndGame(), milliSeconds);
@@ -245,6 +245,66 @@ namespace Gaming
             if (!gameMap.TeamExists(teamID))
                 return;
             teamList[(int)teamID].FarmNum.Sub(1);
+        }
+        public long GetTeamMoney(long teamID)
+        {
+            if (!gameMap.TeamExists(teamID))
+                return -1;
+            return teamList[(int)teamID].MoneyPool.Money;
+        }
+        public long GetTeamScore(long teamID)
+        {
+            if (!gameMap.TeamExists(teamID))
+                return -1;
+            return teamList[(int)teamID].MoneyPool.Score;
+        }
+        public List<IGameObj> GetGameObj()
+        {
+            var gameObjList = new List<IGameObj>();
+            foreach (var keyValuePair in gameMap.GameObjDict)
+            {
+                if (GameData.NeedCopy(keyValuePair.Key))
+                {
+                    var thisList = gameMap.GameObjDict[keyValuePair.Key].ToNewList();
+                    if (thisList != null) gameObjList.AddRange(thisList);
+                }
+            }
+            return gameObjList;
+        }
+        public void ClearAllLists()
+        {
+            foreach (var keyValuePair in gameMap.GameObjDict)
+            {
+                if (!GameData.NeedCopy(keyValuePair.Key))
+                {
+                    gameMap.GameObjDict[GameObjType.Character].ForEach(delegate (IGameObj character)
+                    {
+                        ((Character)character).CanMove.SetROri(false);
+                    });
+                    gameMap.GameObjDict[keyValuePair.Key].Clear();
+                }
+            }
+        }
+        public Game(MapStruct mapResource, int numOfTeam)
+        {
+            gameMap = new(mapResource);
+            characterManager = new(this, gameMap);
+            ARManager = new(this, gameMap);
+            skillCastManager = new(this, gameMap, characterManager, ARManager);
+            actionManager = new(this, gameMap, characterManager);
+            attackManager = new(this, gameMap, characterManager);
+            teamList = [];
+            gameMap.GameObjDict[GameObjType.Home].Cast<GameObj>()?.ForEach(
+                delegate (GameObj gameObj)
+                {
+                    if (gameObj.Type == GameObjType.Home)
+                    {
+                        teamList.Add(new Base((Home)gameObj));
+                        teamList.Last().BirthPointList.Add(gameObj.Position);
+                        teamList.Last().AddMoney(GameData.InitialMoney);
+                    }
+                }
+            );
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Gaming
 {
     public partial class Game
     {
-        private readonly A_ResourceManager ARmanager;
+        private readonly A_ResourceManager ARManager;
         private class A_ResourceManager(Game game, Map gameMap)
         {
             private readonly Game game = game;
