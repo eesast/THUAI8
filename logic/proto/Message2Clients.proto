@@ -12,26 +12,27 @@ message MessageOfCharacter
     int64 player_id = 3;
 
     CharacterType character_type = 4;
-    CharacterState character_state = 5;
+    CharacterState CharacterState1 = 5;
+    CharacterState CharacterState2 = 6;
 
-    int32 x = 6;
-    int32 y = 7;
+    int32 x = 7;
+    int32 y = 8;
 
-    double facing_direction = 8;
-    int32 speed = 9;
-    int32 view_range = 10;
+    double facing_direction = 9;
+    int32 speed = 10;
+    int32 view_range = 11;
 
-    int32 atk =11;
-    int32 attack_range = 12;
+    int32 atk =12;
+    int32 attack_range = 13;
 
-    int32 skill_cd = 13;
+    int32 skill_cd = 14;
 
-    int32 economy_depletion = 14;
-    int32 kill_score = 15;
+    int32 economy_depletion = 15;
+    int32 kill_score = 16;
     
-    int32 hp = 16; 
+    int32 hp = 17; 
 
-    EquipmentType equipment_type = 17;
+    EquipmentType equipment_type = 18;
 }
 
 message MessageOfBarracks

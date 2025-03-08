@@ -67,13 +67,13 @@ namespace Server
                     Speed = player.MoveSpeed,
                     ViewRange = player.ViewRange,
 
-                    Atk = player.ATK,
+                    Atk = player.AttackPower,
                     AttackSize = player.AttackSize,
 
                     SkillCD = player.SkillCD,
 
                     EconomyDepletion = player.EconomyDepletion,
-                    KillSvore = player.KillScore,
+                    KillScore = player.KillScore,
 
                     Hp = (int)player.HP,
 
