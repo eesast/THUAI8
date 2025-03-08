@@ -14,7 +14,7 @@ namespace Gaming
 {
     public partial class Game
     {
-        private readonly AttackManager AttackeManager;
+        private readonly AttackManager attackManager;
         private class AttackManager
         {
             private readonly Game game;

@@ -20,10 +20,12 @@ namespace GameClass.GameObj
         public MoneyPool MoneyPool { get; } = new();
         public AtomicInt BarrackNum { get; } = new(0);
         public AtomicInt FarmNum { get; } = new(1);
+        public int sideFlag { get; }
         public int MoneyAddPerSecond => FarmNum * GameData.ScoreFarmPerSecond;
-        public Base(long teamID)
+        public Base(Home home)
         {
-            TeamID = new(teamID);
+            sideFlag = home.sideFlag;
+            TeamID = new(home.TeamID);
             CharacterPool = new(
                 classfier: (character) => character.CharacterType,//以下可能出问题
                 idleChecker: (character) => character.IsRemoved,
