@@ -33,22 +33,21 @@ enum ShapeType //
 enum CharacterType // 
 {
     NULL_CHARACTER_TYPE = 0;
-
     // 取经团队阵营角色
-    CAMP1_CHARACTER1 = 1;
-    CAMP1_CHARACTER2 = 2;
-    CAMP1_CHARACTER3 = 3;
-    CAMP1_CHARACTER4 = 4;
-    CAMP1_CHARACTER5 = 5;
-    CAMP1_CHARACTER6 = 6;
+    TangSeng = 1;
+    SunWukong = 2;
+    ZhuBajie = 3;
+    ShaWujing = 4;
+    BaiLongma = 5;
+    Monkid = 6;
     
     // 妖怪团队阵营角色
-    CAMP2_CHARACTER1 = 7;
-    CAMP2_CHARACTER2 = 8;
-    CAMP2_CHARACTER3 = 9;
-    CAMP2_CHARACTER4 = 10;
-    CAMP2_CHARACTER5 = 11;
-    CAMP2_CHARACTER6 = 12;
+    JiuLing = 7;
+    HongHaier = 8;
+    NiuMowang = 9;
+    TieShan = 10;
+    ZhiZhujing = 11;
+    Pawn = 12;
 }
 
 enum CharacterState // 角色状态
