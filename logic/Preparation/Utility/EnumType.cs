@@ -77,6 +77,14 @@ namespace Preparation.Utility
         BEING_HARVESTED = 2,
         HARVESTED = 3,
     }
+    public enum EconomyResourceType // 经济资源
+    {
+        NULL_ECONOMY_RESOURCE_TYPE = 0,
+
+        SMALL_ECONOMY_RESOURCE = 1,
+        MEDIUM_ECONOMY_RESOURCE = 2,
+        LARGE_ECONOMY_RESOURCE = 3,
+    }
 
     public enum AdditionResourceState //加成资源状态
     {
