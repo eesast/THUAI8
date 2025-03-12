@@ -1,20 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>Library</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>Library</OutputType>
+		<TargetFramework>net8.0</TargetFramework>
+		<ApplicationIcon />
+		<StartupObject />
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="FrameRateTask" Version="1.2.0" />
-    <PackageReference Include="Google.Protobuf" Version="3.29.3" />
-    <PackageReference Include="Google.Protobuf.Tools" Version="3.29.3" />
-    <PackageReference Include="Grpc.Tools" Version="2.70.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="Google.Protobuf" Version="3.30.0" />
   </ItemGroup>
 
   <ItemGroup>
