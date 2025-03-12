@@ -13,7 +13,6 @@
     <ProjectReference Include="..\Gaming\Gaming.csproj" />
     <ProjectReference Include="..\PlayBack\Playback.csproj" />
     <ProjectReference Include="..\Preparation\Preparation.csproj" />
-    <ProjectReference Include="..\proto\proto.csproj" />
   </ItemGroup>
 
   <ItemGroup>
