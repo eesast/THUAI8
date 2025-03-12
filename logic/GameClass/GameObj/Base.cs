@@ -20,6 +20,7 @@ namespace GameClass.GameObj
         public MoneyPool MoneyPool { get; } = new();
         public AtomicInt BarrackNum { get; } = new(0);
         public AtomicInt FarmNum { get; } = new(1);
+        public AtomicInt CharacterNum { get; } = new(0);
         public int sideFlag { get; }
         public int MoneyAddPerSecond => FarmNum * GameData.ScoreFarmPerSecond;
         public Base(Home home)
