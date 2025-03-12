@@ -173,13 +173,13 @@ public static class Transformation
     };
     public static ProtoTrapType TrapTypeToProto(ConstructionType traptype) => traptype switch
     {
-        ConstructionType.TRAP => ProtoTrapType.TRAP,
-        ConstructionType.CAGE => ProtoTrapType.CAGE
+        ConstructionType.TRAP => ProtoTrapType.Hole,
+        ConstructionType.CAGE => ProtoTrapType.Cage
     };
     public static ConstructionType TrapTypeFromProto(ProtoTrapType traptype) => traptype switch
     {
-        ProtoTrapType.TRAP => ConstructionType.TRAP,
-        ProtoTrapType.CAGE => ConstructionType.CAGE
+        ProtoTrapType.Hole => ConstructionType.TRAP,
+        ProtoTrapType.Cage => ConstructionType.CAGE
     };
     public static ProtoAdditionalResourceType AResourceToProto(A_ResourceType ARtype) => ARtype switch
     {
