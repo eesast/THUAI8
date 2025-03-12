@@ -8,14 +8,12 @@
 
   <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.29.3" />
-<<<<<<< HEAD
-=======
+
     <PackageReference Include="Google.Protobuf.Tools" Version="3.29.3" />
     <PackageReference Include="Grpc.Tools" Version="2.70.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
->>>>>>> c939f17 (修更改了MessageType.proto的人物名称，并重新生成了MessageType.pb.cc文件和Message.pb.h文件)
   </ItemGroup>
 
   <ItemGroup>
