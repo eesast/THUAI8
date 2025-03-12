@@ -162,14 +162,14 @@ namespace Gaming
             }
             if (teamList[(int)teamID].sideFlag == 0)
             {
-                if (character.CharacterType >= CharacterType.Jiuling)
+                if (character.CharacterType >= CharacterType.JiuLing)
                 {
                     return false;
                 }
             }
             if (teamList[(int)teamID].sideFlag == 1)
             {
-                if (character.CharacterType < CharacterType.Jiuling)
+                if (character.CharacterType < CharacterType.JiuLing)
                 {
                     return false;
                 }
