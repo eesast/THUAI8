@@ -29,6 +29,11 @@ namespace Gaming
         private readonly Random random = new();
         public long AddPlayer(PlayerInitInfo playerInitInfo)
         {
+            if (teamList[(int)playerInitInfo.teamID].CharacterNum >= GameData.CharacterTotalNumMax)
+            {
+                return GameObj.invalidID;
+            }
+            teamList[(int)playerInitInfo.teamID].CharacterNum.Add(1);
             if (gameMap.TeamExists(playerInitInfo.teamID))
             {
                 return GameObj.invalidID;
@@ -145,6 +150,47 @@ namespace Gaming
             {
                 return playerInitInfo.playerID;
             }
+        }
+        public bool Recycle(long teamID, long characterID)
+        {
+            if (!gameMap.Timer.IsGaming)
+                return false;
+            Character? character = gameMap.FindCharacterInPlayerID(teamID, characterID);
+            if (character.CharacterType == CharacterType.TangSeng || character.CharacterType == CharacterType.JiuLing)
+            {
+                return false;
+            }
+            if (teamList[(int)teamID].sideFlag == 0)
+            {
+                if (character.CharacterType >= CharacterType.Jiuling)
+                {
+                    return false;
+                }
+            }
+            if (teamList[(int)teamID].sideFlag == 1)
+            {
+                if (character.CharacterType < CharacterType.Jiuling)
+                {
+                    return false;
+                }
+            }
+            if (character != null && character.IsRemoved == false)
+            {
+                bool validRecyclePoint = false;
+                foreach (XY recyclePoint in teamList[(int)character.TeamID].BirthPointList)
+                {
+                    if (GameData.ApproachToInteract(character.Position, recyclePoint) && character.Position != recyclePoint)
+                    {
+                        validRecyclePoint = true;
+                        break;
+                    }
+                }
+                if (validRecyclePoint)
+                {
+                    return characterManager.Recycle(character);
+                }
+            }
+            return false;
         }
         public long ActivateCharacter(long teamID, CharacterType characterType, int birthPointIndex = 0)
         {
