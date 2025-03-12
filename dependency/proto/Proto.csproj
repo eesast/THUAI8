@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
 	<!--<ItemGroup>
     <None Remove="Message2Clients.proto" />
@@ -15,11 +15,11 @@
   </ItemGroup>-->
 
 	<ItemGroup>
-		<PackageReference Include="Google.Protobuf" Version="3.29.3" />
-		<PackageReference Include="Google.Protobuf.Tools" Version="3.29.3" />
+		<PackageReference Include="Google.Protobuf" Version="3.27.2" />
+		<PackageReference Include="Google.Protobuf.Tools" Version="3.26.1" />
 		<PackageReference Include="Grpc" Version="2.46.6" />
 		<PackageReference Include="Grpc.Core" Version="2.46.6" />
-		<PackageReference Include="Grpc.Tools" Version="2.70.0">
+		<PackageReference Include="Grpc.Tools" Version="2.63.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>

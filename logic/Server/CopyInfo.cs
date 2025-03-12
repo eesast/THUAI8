@@ -56,9 +56,9 @@ namespace Server
                     PlayerId = player.PlayerID,
 
 
-                    CharacterType = player.CharacterType,
-                    CharacterState1 = player.CharacterState1,
-                    CharacterState2 = player.CharacterState2,
+                    CharacterType = Transformation.CharacterTypeToProto(player.CharacterType),
+                    CharacterState1 = Transformation.CharacterStateToProto(player.CharacterState1),
+                    CharacterState2 = Transformation.CharacterStateToProto(player.CharacterState2),
 
                     X = player.Position.x,
                     Y = player.Position.y,
@@ -67,13 +67,13 @@ namespace Server
                     Speed = player.MoveSpeed,
                     ViewRange = player.ViewRange,
 
-                    Atk = player.ATK,
+                    Atk = player.AttackPower,
                     AttackSize = player.AttackSize,
 
                     SkillCD = player.SkillCD,
 
                     EconomyDepletion = player.EconomyDepletion,
-                    KillSvore = player.KillScore,
+                    KillScore = player.KillScore,
 
                     Hp = (int)player.HP,
 
