@@ -21,7 +21,6 @@ namespace Gaming
             public long playerID = playerID;
             public CharacterType characterType = characterType;
             public int sideFlag = sideFlag;//0是取经队，1是妖怪队
-            public int characterTotalNum = 0;
         }
         private readonly List<Base> teamList;
         public List<Base> TeamList => teamList;
@@ -30,11 +29,11 @@ namespace Gaming
         private readonly Random random = new();
         public long AddPlayer(PlayerInitInfo playerInitInfo)
         {
-            if (teamList[(int)playerInitInfo.teamID].characterTotalNum >= GameData.CharacterTotalNumMax)
+            if (teamList[(int)playerInitInfo.teamID].CharacterNum >= GameData.CharacterTotalNumMax)
             {
                 return GameObj.invalidID;
             }
-            teamList[(int)teamID].CharacterNum.Add(1);
+            teamList[(int)playerInitInfo.teamID].CharacterNum.Add(1);
             if (gameMap.TeamExists(playerInitInfo.teamID))
             {
                 return GameObj.invalidID;
@@ -157,6 +156,24 @@ namespace Gaming
             if (!gameMap.Timer.IsGaming)
                 return false;
             Character? character = gameMap.FindCharacterInPlayerID(teamID, characterID);
+            if (character.CharacterType == CharacterType.TangSeng || character.CharacterType == CharacterType.JiuLing)
+            {
+                return false;
+            }
+            if (teamList[(int)teamID].sideFlag == 0)
+            {
+                if (character.CharacterType >= CharacterType.Jiuling)
+                {
+                    return false;
+                }
+            }
+            if (teamList[(int)teamID].sideFlag == 1)
+            {
+                if (character.CharacterType < CharacterType.Jiuling)
+                {
+                    return false;
+                }
+            }
             if (character != null && character.IsRemoved == false)
             {
                 bool validRecyclePoint = false;

@@ -107,6 +107,20 @@ namespace Gaming
                 }
                 gameMap.Remove(character);
             }
+            public bool Recycle(Character character)
+            {
+                long characterValue =
+                    (long)character.GetCost() * character.HP.GetDivideValueByMaxV() * GameData.RecycleRate;
+                CharacterManagerLogging.logger.ConsoleLogDebug(
+                    LoggingFunctional.CharacterLogInfo(character)
+                    + $" 's value is {characterValue}");
+                character.AddMoney(characterValue);
+                ShipManagerLogging.logger.ConsoleLogDebug(
+                    LoggingFunctional.CharacterLogInfo(character)
+                    + " is recycled!");
+                Remove(character);
+                return false;
+            }
             public static bool ImproveATK(Character character, long ATK)
             {
                 if (ATK <= 0)

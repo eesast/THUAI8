@@ -205,5 +205,6 @@ namespace Preparation.Utility
         public const int MaxCharacterNum = 1;
         public const int InitialMoney = 5000;
         public const int CharacterTotalNumMax = 6;
+        public const double RecycleRate = 0.5;
     }
 }
