@@ -110,12 +110,12 @@ namespace Gaming
             public bool Recycle(Character character)
             {
                 long characterValue =
-                    (long)character.GetCost() * character.HP.GetDivideValueByMaxV() * GameData.RecycleRate;
+                    (long)(character.GetCost() * character.HP.GetDivideValueByMaxV() * GameData.RecycleRate);
                 CharacterManagerLogging.logger.ConsoleLogDebug(
                     LoggingFunctional.CharacterLogInfo(character)
                     + $" 's value is {characterValue}");
                 character.AddMoney(characterValue);
-                ShipManagerLogging.logger.ConsoleLogDebug(
+                CharacterManagerLogging.logger.ConsoleLogDebug(
                     LoggingFunctional.CharacterLogInfo(character)
                     + " is recycled!");
                 Remove(character);
