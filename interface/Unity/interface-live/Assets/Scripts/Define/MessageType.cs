@@ -193,15 +193,15 @@ namespace Protobuf
 
   public enum AdditionResourceType
   {
-    [pbr::OriginalName("NULL_ADDITION_RESOURCE_TYPE")] NullAdditionResourceType = 0,
-    [pbr::OriginalName("SMALL_ADDITION_RESOURCE1")] SmallAdditionResource1 = 1,
-    [pbr::OriginalName("MEDIUM_ADDITION_RESOURCE1")] MediumAdditionResource1 = 2,
-    [pbr::OriginalName("LARGE_ADDITION_RESOURCE1")] LargeAdditionResource1 = 3,
-    [pbr::OriginalName("SMALL_ADDITION_RESOURCE2")] SmallAdditionResource2 = 4,
-    [pbr::OriginalName("MEDIUM_ADDITION_RESOURCE2")] MediumAdditionResource2 = 5,
-    [pbr::OriginalName("LARGE_ADDITION_RESOURCE2")] LargeAdditionResource2 = 6,
-    [pbr::OriginalName("ADDITION_RESOURCE3")] AdditionResource3 = 7,
-    [pbr::OriginalName("ADDITION_RESOURCE4")] AdditionResource4 = 8,
+    [pbr::OriginalName("NULL_ADDITION_RESOURCE_TYPE")] NULL = 0,
+    [pbr::OriginalName("LIFE_POOL1")] LIFE_POOL1 = 1,
+    [pbr::OriginalName("LIFE_POOL2")] LIFE_POOL2 = 2,
+    [pbr::OriginalName("LIFE_POOL3")] LIFE_POOL3 = 3,
+    [pbr::OriginalName("CRAZY_MAN1")] CRAZY_MAN1 = 4,
+    [pbr::OriginalName("CRAZY_MAN2")] CRAZY_MAN2 = 5,
+    [pbr::OriginalName("CRAZY_MAN3")] CRAZY_MAN3 = 6,
+    [pbr::OriginalName("QUICK_STEP")] QUICK_STEP = 7,
+    [pbr::OriginalName("WIDE_VIEW")] WIDE_VIEW = 8,
   }
 
   public enum EconomyResourceState
