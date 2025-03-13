@@ -156,24 +156,28 @@ namespace Gaming
             if (!gameMap.Timer.IsGaming)
                 return false;
             Character? character = gameMap.FindCharacterInPlayerID(teamID, characterID);
-            if (character.CharacterType == CharacterType.TangSeng || character.CharacterType == CharacterType.JiuLing)
+            if (character != null)
             {
-                return false;
-            }
-            if (teamList[(int)teamID].sideFlag == 0)
-            {
-                if (character.CharacterType >= CharacterType.JiuLing)
+                if (character.CharacterType == CharacterType.TangSeng || character.CharacterType == CharacterType.JiuLing)
                 {
                     return false;
                 }
-            }
-            if (teamList[(int)teamID].sideFlag == 1)
-            {
-                if (character.CharacterType < CharacterType.JiuLing)
+                if (teamList[(int)teamID].sideFlag == 0)
                 {
-                    return false;
+                    if (character.CharacterType >= CharacterType.JiuLing)
+                    {
+                        return false;
+                    }
+                }
+                if (teamList[(int)teamID].sideFlag == 1)
+                {
+                    if (character.CharacterType < CharacterType.JiuLing)
+                    {
+                        return false;
+                    }
                 }
             }
+
             if (character != null && character.IsRemoved == false)
             {
                 bool validRecyclePoint = false;
