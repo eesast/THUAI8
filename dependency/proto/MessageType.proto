@@ -69,6 +69,7 @@ enum CharacterState // 角色状态
     HEALING = 11;
     BERSERK = 12;
     BURNED = 13;
+    DECEASED = 14;
 }
 
 

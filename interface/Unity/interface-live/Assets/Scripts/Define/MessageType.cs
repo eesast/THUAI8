@@ -9,19 +9,23 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace Protobuf {
+namespace Protobuf
+{
 
   /// <summary>Holder for reflection information generated from MessageType.proto</summary>
-  public static partial class MessageTypeReflection {
+  public static partial class MessageTypeReflection
+  {
 
     #region Descriptor
     /// <summary>File descriptor for MessageType.proto</summary>
-    public static pbr::FileDescriptor Descriptor {
+    public static pbr::FileDescriptor Descriptor
+    {
       get { return descriptor; }
     }
     private static pbr::FileDescriptor descriptor;
 
-    static MessageTypeReflection() {
+    static MessageTypeReflection()
+    {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChFNZXNzYWdlVHlwZS5wcm90bxIIcHJvdG9idWYqUAoJR2FtZVN0YXRlEhMK",
@@ -72,20 +76,22 @@ namespace Protobuf {
             "Mw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Protobuf.GameState), typeof(global::Protobuf.PlaceType), typeof(global::Protobuf.ShapeType), typeof(global::Protobuf.CharacterType), typeof(global::Protobuf.CharacterState), typeof(global::Protobuf.EconomyResourceType), typeof(global::Protobuf.AdditionResourceType), typeof(global::Protobuf.EconomyResourceState), typeof(global::Protobuf.AdditionResourceState), typeof(global::Protobuf.EquipmentType), typeof(global::Protobuf.ConstructionType), typeof(global::Protobuf.TrapType), typeof(global::Protobuf.NewsType), typeof(global::Protobuf.PlayerTeam), }, null, null));
+          new pbr::GeneratedClrTypeInfo(new[] { typeof(global::Protobuf.GameState), typeof(global::Protobuf.PlaceType), typeof(global::Protobuf.ShapeType), typeof(global::Protobuf.CharacterType), typeof(global::Protobuf.CharacterState), typeof(global::Protobuf.EconomyResourceType), typeof(global::Protobuf.AdditionResourceType), typeof(global::Protobuf.EconomyResourceState), typeof(global::Protobuf.AdditionResourceState), typeof(global::Protobuf.EquipmentType), typeof(global::Protobuf.ConstructionType), typeof(global::Protobuf.TrapType), typeof(global::Protobuf.NewsType), typeof(global::Protobuf.PlayerTeam), }, null, null));
     }
     #endregion
 
   }
   #region Enums
-  public enum GameState {
+  public enum GameState
+  {
     [pbr::OriginalName("NULL_GAME_STATE")] NullGameState = 0,
     [pbr::OriginalName("GAME_START")] GameStart = 1,
     [pbr::OriginalName("GAME_RUNNING")] GameRunning = 2,
     [pbr::OriginalName("GAME_END")] GameEnd = 3,
   }
 
-  public enum PlaceType {
+  public enum PlaceType
+  {
     [pbr::OriginalName("NULL_PLACE_TYPE")] NullPlaceType = 0,
     /// <summary>
     /// 出生点（地图左下与右上）
@@ -121,13 +127,15 @@ namespace Protobuf {
     [pbr::OriginalName("TRAP")] Trap = 8,
   }
 
-  public enum ShapeType {
+  public enum ShapeType
+  {
     [pbr::OriginalName("NULL_SHAPE_TYPE")] NullShapeType = 0,
     [pbr::OriginalName("CIRCLE")] Circle = 1,
     [pbr::OriginalName("SQUARE")] Square = 2,
   }
 
-  public enum CharacterType {
+  public enum CharacterType
+  {
     [pbr::OriginalName("NULL_CHARACTER_TYPE")] NullCharacterType = 0,
     /// <summary>
     /// 取经团队阵营角色
@@ -149,7 +157,8 @@ namespace Protobuf {
     [pbr::OriginalName("CAMP2_CHARACTER6")] Camp2Character6 = 12,
   }
 
-  public enum CharacterState {
+  public enum CharacterState
+  {
     [pbr::OriginalName("NULL_CHARACTER_STATE")] NullCharacterState = 0,
     /// <summary>
     /// 主动状态
@@ -170,16 +179,20 @@ namespace Protobuf {
     [pbr::OriginalName("HEALING")] Healing = 11,
     [pbr::OriginalName("BERSERK")] Berserk = 12,
     [pbr::OriginalName("BURNED")] Burned = 13,
+    [pbr::OriginalName("BURNED")] Deceased = 14,
+
   }
 
-  public enum EconomyResourceType {
+  public enum EconomyResourceType
+  {
     [pbr::OriginalName("NULL_ECONOMY_RESOURCE_TYPE")] NullEconomyResourceType = 0,
     [pbr::OriginalName("SMALL_ECONOMY_RESOURCE")] SmallEconomyResource = 1,
     [pbr::OriginalName("MEDIUM_ECONOMY_RESOURCE")] MediumEconomyResource = 2,
     [pbr::OriginalName("LARGE_ECONOMY_RESOURCE")] LargeEconomyResource = 3,
   }
 
-  public enum AdditionResourceType {
+  public enum AdditionResourceType
+  {
     [pbr::OriginalName("NULL_ADDITION_RESOURCE_TYPE")] NullAdditionResourceType = 0,
     [pbr::OriginalName("SMALL_ADDITION_RESOURCE1")] SmallAdditionResource1 = 1,
     [pbr::OriginalName("MEDIUM_ADDITION_RESOURCE1")] MediumAdditionResource1 = 2,
@@ -191,21 +204,24 @@ namespace Protobuf {
     [pbr::OriginalName("ADDITION_RESOURCE4")] AdditionResource4 = 8,
   }
 
-  public enum EconomyResourceState {
+  public enum EconomyResourceState
+  {
     [pbr::OriginalName("NULL_ECONOMY_RESOURCE_STSTE")] NullEconomyResourceStste = 0,
     [pbr::OriginalName("HARVESTABLE")] Harvestable = 1,
     [pbr::OriginalName("BEING_HARVESTED")] BeingHarvested = 2,
     [pbr::OriginalName("HARVESTED")] Harvested = 3,
   }
 
-  public enum AdditionResourceState {
+  public enum AdditionResourceState
+  {
     [pbr::OriginalName("NULL_ADDITION_RESOURCE_STATE")] NullAdditionResourceState = 0,
     [pbr::OriginalName("BEATABLE")] Beatable = 1,
     [pbr::OriginalName("BEING_BEATEN")] BeingBeaten = 2,
     [pbr::OriginalName("BEATEN")] Beaten = 3,
   }
 
-  public enum EquipmentType {
+  public enum EquipmentType
+  {
     [pbr::OriginalName("NULL_EQUIPMENT_TYPE")] NullEquipmentType = 0,
     [pbr::OriginalName("SMALL_HEALTH_POTION")] SmallHealthPotion = 1,
     [pbr::OriginalName("MEDIUM_HEALTH_POTION")] MediumHealthPotion = 2,
@@ -219,14 +235,16 @@ namespace Protobuf {
     [pbr::OriginalName("BERSERK_POTION")] BerserkPotion = 10,
   }
 
-  public enum ConstructionType {
+  public enum ConstructionType
+  {
     [pbr::OriginalName("NULL_CONSTRUCTION_TYPE")] NullConstructionType = 0,
     [pbr::OriginalName("BARRACKS")] Barracks = 1,
     [pbr::OriginalName("SPRING")] Spring = 2,
     [pbr::OriginalName("FARM")] Farm = 3,
   }
 
-  public enum TrapType {
+  public enum TrapType
+  {
     [pbr::OriginalName("NULL_TRAP_TYPE")] NullTrapType = 0,
     /// <summary>
     /// 坑洞陷阱
@@ -238,13 +256,15 @@ namespace Protobuf {
     [pbr::OriginalName("CAGE")] Cage = 2,
   }
 
-  public enum NewsType {
+  public enum NewsType
+  {
     [pbr::OriginalName("NULL_NEWS_TYPE")] NullNewsType = 0,
     [pbr::OriginalName("TEXT")] Text = 1,
     [pbr::OriginalName("BINARY")] Binary = 2,
   }
 
-  public enum PlayerTeam {
+  public enum PlayerTeam
+  {
     [pbr::OriginalName("NULL_TEAM")] NullTeam = 0,
     [pbr::OriginalName("BUDDHISTS_TEAM")] BuddhistsTeam = 1,
     [pbr::OriginalName("MONSTERS_TEAM")] MonstersTeam = 2,
