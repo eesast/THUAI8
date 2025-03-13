@@ -43,7 +43,7 @@ namespace Gaming
                     switch (AResource.AResourceType)
                     {
                         case A_ResourceType.CrazyMan1:
-                            { 
+                            {
                                 score = 4000;
                                 foreach (var teamcharacter in characters)
                                 {
@@ -51,12 +51,12 @@ namespace Gaming
                                     {
                                         teamcharacter.CrazyManTime = Environment.TickCount64;
                                         teamcharacter.CrazyManNum = 1;
-                                    };
+                                    }
                                 }
                             }
                             break;
                         case A_ResourceType.CrazyMan2:
-                            { 
+                            {
                                 score = 5000;
                                 foreach (var teamcharacter in characters)
                                 {
@@ -64,12 +64,12 @@ namespace Gaming
                                     {
                                         teamcharacter.CrazyManTime = Environment.TickCount64;
                                         teamcharacter.CrazyManNum = 1;
-                                    };
+                                    }
                                 }
                             }
                             break;
                         case A_ResourceType.CrazyMan3:
-                            { 
+                            {
                                 score = 6000;
                                 foreach (var teamcharacter in characters)
                                 {
@@ -77,12 +77,12 @@ namespace Gaming
                                     {
                                         teamcharacter.CrazyManTime = Environment.TickCount64;
                                         teamcharacter.CrazyManNum = 1;
-                                    };
+                                    }
                                 }
                             }
                             break;
                         case A_ResourceType.LifePool1:
-                            { 
+                            {
                                 score = 2000;
                                 foreach (var teamcharacter in characters)
                                 {
@@ -91,7 +91,7 @@ namespace Gaming
                             }
                             break;
                         case A_ResourceType.LifePool2:
-                            { 
+                            {
                                 score = 3000;
                                 foreach (var teamcharacter in characters)
                                 {
@@ -100,7 +100,7 @@ namespace Gaming
                             }
                             break;
                         case A_ResourceType.LifePool3:
-                            { 
+                            {
                                 score = 4000;
                                 foreach (var teamcharacter in characters)
                                 {
@@ -109,14 +109,14 @@ namespace Gaming
                             }
                             break;
                         case A_ResourceType.QuickStep:
-                            { 
+                            {
                                 score = 3000;
                                 foreach (var teamcharacter in characters)
                                 {
                                     if (characterManager.ImproveSpeed(teamcharacter, 500))
                                     {
                                         teamcharacter.QuickStepTime = Environment.TickCount64;
-                                    };
+                                    }
                                 }
                             }
                             break;
