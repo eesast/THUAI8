@@ -20,7 +20,8 @@ PROTOBUF_PRAGMA_INIT_SEG
 namespace _pb = ::PROTOBUF_NAMESPACE_ID;
 namespace _pbi = _pb::internal;
 
-namespace protobuf {
+namespace protobuf
+{
 }  // namespace protobuf
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_MessageType_2eproto[14];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_MessageType_2eproto = nullptr;
@@ -29,332 +30,383 @@ static constexpr ::_pbi::MigrationSchema* schemas = nullptr;
 static constexpr ::_pb::Message* const* file_default_instances = nullptr;
 
 const char descriptor_table_protodef_MessageType_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\021MessageType.proto\022\010protobuf*P\n\tGameSta"
-  "te\022\023\n\017NULL_GAME_STATE\020\000\022\016\n\nGAME_START\020\001\022"
-  "\020\n\014GAME_RUNNING\020\002\022\014\n\010GAME_END\020\003*\225\001\n\tPlac"
-  "eType\022\023\n\017NULL_PLACE_TYPE\020\000\022\010\n\004HOME\020\001\022\t\n\005"
-  "SPACE\020\002\022\013\n\007BARRIER\020\003\022\010\n\004BUSH\020\004\022\024\n\020ECONOM"
-  "Y_RESOURCE\020\005\022\025\n\021ADDITION_RESOURCE\020\006\022\020\n\014C"
-  "ONSTRUCTION\020\007\022\010\n\004TRAP\020\010*8\n\tShapeType\022\023\n\017"
-  "NULL_SHAPE_TYPE\020\000\022\n\n\006CIRCLE\020\001\022\n\n\006SQUARE\020"
-  "\002*\260\002\n\rCharacterType\022\027\n\023NULL_CHARACTER_TY"
-  "PE\020\000\022\024\n\020CAMP1_CHARACTER1\020\001\022\024\n\020CAMP1_CHAR"
-  "ACTER2\020\002\022\024\n\020CAMP1_CHARACTER3\020\003\022\024\n\020CAMP1_"
-  "CHARACTER4\020\004\022\024\n\020CAMP1_CHARACTER5\020\005\022\024\n\020CA"
-  "MP1_CHARACTER6\020\006\022\024\n\020CAMP2_CHARACTER1\020\007\022\024"
-  "\n\020CAMP2_CHARACTER2\020\010\022\024\n\020CAMP2_CHARACTER3"
-  "\020\t\022\024\n\020CAMP2_CHARACTER4\020\n\022\024\n\020CAMP2_CHARAC"
-  "TER5\020\013\022\024\n\020CAMP2_CHARACTER6\020\014*\343\001\n\016Charact"
-  "erState\022\030\n\024NULL_CHARACTER_STATE\020\000\022\010\n\004IDL"
-  "E\020\001\022\016\n\nHARVESTING\020\002\022\r\n\tATTACKING\020\003\022\021\n\rSK"
-  "ILL_CASTING\020\004\022\020\n\014CONSTRUCTING\020\005\022\n\n\006MOVIN"
-  "G\020\006\022\t\n\005BLIND\020\007\022\020\n\014KNOCKED_BACK\020\010\022\013\n\007STUN"
-  "NED\020\t\022\r\n\tINVISIBLE\020\n\022\013\n\007HEALING\020\013\022\013\n\007BER"
-  "SERK\020\014\022\n\n\006BURNED\020\r*\212\001\n\023EconomyResourceTy"
-  "pe\022\036\n\032NULL_ECONOMY_RESOURCE_TYPE\020\000\022\032\n\026SM"
-  "ALL_ECONOMY_RESOURCE\020\001\022\033\n\027MEDIUM_ECONOMY"
-  "_RESOURCE\020\002\022\032\n\026LARGE_ECONOMY_RESOURCE\020\003*"
-  "\235\002\n\024AdditionResourceType\022\037\n\033NULL_ADDITIO"
-  "N_RESOURCE_TYPE\020\000\022\034\n\030SMALL_ADDITION_RESO"
-  "URCE1\020\001\022\035\n\031MEDIUM_ADDITION_RESOURCE1\020\002\022\034"
-  "\n\030LARGE_ADDITION_RESOURCE1\020\003\022\034\n\030SMALL_AD"
-  "DITION_RESOURCE2\020\004\022\035\n\031MEDIUM_ADDITION_RE"
-  "SOURCE2\020\005\022\034\n\030LARGE_ADDITION_RESOURCE2\020\006\022"
-  "\026\n\022ADDITION_RESOURCE3\020\007\022\026\n\022ADDITION_RESO"
-  "URCE4\020\010*l\n\024EconomyResourceState\022\037\n\033NULL_"
-  "ECONOMY_RESOURCE_STSTE\020\000\022\017\n\013HARVESTABLE\020"
-  "\001\022\023\n\017BEING_HARVESTED\020\002\022\r\n\tHARVESTED\020\003*e\n"
-  "\025AdditionResourceState\022 \n\034NULL_ADDITION_"
-  "RESOURCE_STATE\020\000\022\014\n\010BEATABLE\020\001\022\020\n\014BEING_"
-  "BEATEN\020\002\022\n\n\006BEATEN\020\003*\201\002\n\rEquipmentType\022\027"
-  "\n\023NULL_EQUIPMENT_TYPE\020\000\022\027\n\023SMALL_HEALTH_"
-  "POTION\020\001\022\030\n\024MEDIUM_HEALTH_POTION\020\002\022\027\n\023LA"
-  "RGE_HEALTH_POTION\020\003\022\020\n\014SMALL_SHIELD\020\004\022\021\n"
-  "\rMEDIUM_SHIELD\020\005\022\020\n\014LARGE_SHIELD\020\006\022\016\n\nSP"
-  "EEDBOOTS\020\007\022\027\n\023PURIFICATION_POTION\020\010\022\027\n\023I"
-  "NVISIBILITY_POTION\020\t\022\022\n\016BERSERK_POTION\020\n"
-  "*R\n\020ConstructionType\022\032\n\026NULL_CONSTRUCTIO"
-  "N_TYPE\020\000\022\014\n\010BARRACKS\020\001\022\n\n\006SPRING\020\002\022\010\n\004FA"
-  "RM\020\003*2\n\010TrapType\022\022\n\016NULL_TRAP_TYPE\020\000\022\010\n\004"
-  "HOLE\020\001\022\010\n\004CAGE\020\002*4\n\010NewsType\022\022\n\016NULL_NEW"
-  "S_TYPE\020\000\022\010\n\004TEXT\020\001\022\n\n\006BINARY\020\002*B\n\nPlayer"
-  "Team\022\r\n\tNULL_TEAM\020\000\022\022\n\016BUDDHISTS_TEAM\020\001\022"
-  "\021\n\rMONSTERS_TEAM\020\002b\006proto3"
-  ;
+    "\n\021MessageType.proto\022\010protobuf*P\n\tGameSta"
+    "te\022\023\n\017NULL_GAME_STATE\020\000\022\016\n\nGAME_START\020\001\022"
+    "\020\n\014GAME_RUNNING\020\002\022\014\n\010GAME_END\020\003*\225\001\n\tPlac"
+    "eType\022\023\n\017NULL_PLACE_TYPE\020\000\022\010\n\004HOME\020\001\022\t\n\005"
+    "SPACE\020\002\022\013\n\007BARRIER\020\003\022\010\n\004BUSH\020\004\022\024\n\020ECONOM"
+    "Y_RESOURCE\020\005\022\025\n\021ADDITION_RESOURCE\020\006\022\020\n\014C"
+    "ONSTRUCTION\020\007\022\010\n\004TRAP\020\010*8\n\tShapeType\022\023\n\017"
+    "NULL_SHAPE_TYPE\020\000\022\n\n\006CIRCLE\020\001\022\n\n\006SQUARE\020"
+    "\002*\260\002\n\rCharacterType\022\027\n\023NULL_CHARACTER_TY"
+    "PE\020\000\022\024\n\020CAMP1_CHARACTER1\020\001\022\024\n\020CAMP1_CHAR"
+    "ACTER2\020\002\022\024\n\020CAMP1_CHARACTER3\020\003\022\024\n\020CAMP1_"
+    "CHARACTER4\020\004\022\024\n\020CAMP1_CHARACTER5\020\005\022\024\n\020CA"
+    "MP1_CHARACTER6\020\006\022\024\n\020CAMP2_CHARACTER1\020\007\022\024"
+    "\n\020CAMP2_CHARACTER2\020\010\022\024\n\020CAMP2_CHARACTER3"
+    "\020\t\022\024\n\020CAMP2_CHARACTER4\020\n\022\024\n\020CAMP2_CHARAC"
+    "TER5\020\013\022\024\n\020CAMP2_CHARACTER6\020\014*\343\001\n\016Charact"
+    "erState\022\030\n\024NULL_CHARACTER_STATE\020\000\022\010\n\004IDL"
+    "E\020\001\022\016\n\nHARVESTING\020\002\022\r\n\tATTACKING\020\003\022\021\n\rSK"
+    "ILL_CASTING\020\004\022\020\n\014CONSTRUCTING\020\005\022\n\n\006MOVIN"
+    "G\020\006\022\t\n\005BLIND\020\007\022\020\n\014KNOCKED_BACK\020\010\022\013\n\007STUN"
+    "NED\020\t\022\r\n\tINVISIBLE\020\n\022\013\n\007HEALING\020\013\022\013\n\007BER"
+    "SERK\020\014\022\n\n\006BURNED\020\r*\212\001\n\023EconomyResourceTy"
+    "pe\022\036\n\032NULL_ECONOMY_RESOURCE_TYPE\020\000\022\032\n\026SM"
+    "ALL_ECONOMY_RESOURCE\020\001\022\033\n\027MEDIUM_ECONOMY"
+    "_RESOURCE\020\002\022\032\n\026LARGE_ECONOMY_RESOURCE\020\003*"
+    "\235\002\n\024AdditionResourceType\022\037\n\033NULL_ADDITIO"
+    "N_RESOURCE_TYPE\020\000\022\034\n\030SMALL_ADDITION_RESO"
+    "URCE1\020\001\022\035\n\031MEDIUM_ADDITION_RESOURCE1\020\002\022\034"
+    "\n\030LARGE_ADDITION_RESOURCE1\020\003\022\034\n\030SMALL_AD"
+    "DITION_RESOURCE2\020\004\022\035\n\031MEDIUM_ADDITION_RE"
+    "SOURCE2\020\005\022\034\n\030LARGE_ADDITION_RESOURCE2\020\006\022"
+    "\026\n\022ADDITION_RESOURCE3\020\007\022\026\n\022ADDITION_RESO"
+    "URCE4\020\010*l\n\024EconomyResourceState\022\037\n\033NULL_"
+    "ECONOMY_RESOURCE_STSTE\020\000\022\017\n\013HARVESTABLE\020"
+    "\001\022\023\n\017BEING_HARVESTED\020\002\022\r\n\tHARVESTED\020\003*e\n"
+    "\025AdditionResourceState\022 \n\034NULL_ADDITION_"
+    "RESOURCE_STATE\020\000\022\014\n\010BEATABLE\020\001\022\020\n\014BEING_"
+    "BEATEN\020\002\022\n\n\006BEATEN\020\003*\201\002\n\rEquipmentType\022\027"
+    "\n\023NULL_EQUIPMENT_TYPE\020\000\022\027\n\023SMALL_HEALTH_"
+    "POTION\020\001\022\030\n\024MEDIUM_HEALTH_POTION\020\002\022\027\n\023LA"
+    "RGE_HEALTH_POTION\020\003\022\020\n\014SMALL_SHIELD\020\004\022\021\n"
+    "\rMEDIUM_SHIELD\020\005\022\020\n\014LARGE_SHIELD\020\006\022\016\n\nSP"
+    "EEDBOOTS\020\007\022\027\n\023PURIFICATION_POTION\020\010\022\027\n\023I"
+    "NVISIBILITY_POTION\020\t\022\022\n\016BERSERK_POTION\020\n"
+    "*R\n\020ConstructionType\022\032\n\026NULL_CONSTRUCTIO"
+    "N_TYPE\020\000\022\014\n\010BARRACKS\020\001\022\n\n\006SPRING\020\002\022\010\n\004FA"
+    "RM\020\003*2\n\010TrapType\022\022\n\016NULL_TRAP_TYPE\020\000\022\010\n\004"
+    "HOLE\020\001\022\010\n\004CAGE\020\002*4\n\010NewsType\022\022\n\016NULL_NEW"
+    "S_TYPE\020\000\022\010\n\004TEXT\020\001\022\n\n\006BINARY\020\002*B\n\nPlayer"
+    "Team\022\r\n\tNULL_TEAM\020\000\022\022\n\016BUDDHISTS_TEAM\020\001\022"
+    "\021\n\rMONSTERS_TEAM\020\002b\006proto3";
 static ::_pbi::once_flag descriptor_table_MessageType_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_MessageType_2eproto = {
-    false, false, 2026, descriptor_table_protodef_MessageType_2eproto,
+    false,
+    false,
+    2026,
+    descriptor_table_protodef_MessageType_2eproto,
     "MessageType.proto",
-    &descriptor_table_MessageType_2eproto_once, nullptr, 0, 0,
-    schemas, file_default_instances, TableStruct_MessageType_2eproto::offsets,
-    nullptr, file_level_enum_descriptors_MessageType_2eproto,
+    &descriptor_table_MessageType_2eproto_once,
+    nullptr,
+    0,
+    0,
+    schemas,
+    file_default_instances,
+    TableStruct_MessageType_2eproto::offsets,
+    nullptr,
+    file_level_enum_descriptors_MessageType_2eproto,
     file_level_service_descriptors_MessageType_2eproto,
 };
-PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_MessageType_2eproto_getter() {
-  return &descriptor_table_MessageType_2eproto;
+PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_MessageType_2eproto_getter()
+{
+    return &descriptor_table_MessageType_2eproto;
 }
 
 // Force running AddDescriptors() at dynamic initialization time.
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_MessageType_2eproto(&descriptor_table_MessageType_2eproto);
-namespace protobuf {
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* GameState_descriptor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
-  return file_level_enum_descriptors_MessageType_2eproto[0];
-}
-bool GameState_IsValid(int value) {
-  switch (value) {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-      return true;
-    default:
-      return false;
-  }
-}
+namespace protobuf
+{
+    const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* GameState_descriptor()
+    {
+        ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
+        return file_level_enum_descriptors_MessageType_2eproto[0];
+    }
+    bool GameState_IsValid(int value)
+    {
+        switch (value)
+        {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+                return true;
+            default:
+                return false;
+        }
+    }
 
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* PlaceType_descriptor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
-  return file_level_enum_descriptors_MessageType_2eproto[1];
-}
-bool PlaceType_IsValid(int value) {
-  switch (value) {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-    case 5:
-    case 6:
-    case 7:
-    case 8:
-      return true;
-    default:
-      return false;
-  }
-}
+    const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* PlaceType_descriptor()
+    {
+        ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
+        return file_level_enum_descriptors_MessageType_2eproto[1];
+    }
+    bool PlaceType_IsValid(int value)
+    {
+        switch (value)
+        {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+                return true;
+            default:
+                return false;
+        }
+    }
 
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ShapeType_descriptor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
-  return file_level_enum_descriptors_MessageType_2eproto[2];
-}
-bool ShapeType_IsValid(int value) {
-  switch (value) {
-    case 0:
-    case 1:
-    case 2:
-      return true;
-    default:
-      return false;
-  }
-}
+    const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ShapeType_descriptor()
+    {
+        ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
+        return file_level_enum_descriptors_MessageType_2eproto[2];
+    }
+    bool ShapeType_IsValid(int value)
+    {
+        switch (value)
+        {
+            case 0:
+            case 1:
+            case 2:
+                return true;
+            default:
+                return false;
+        }
+    }
 
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* CharacterType_descriptor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
-  return file_level_enum_descriptors_MessageType_2eproto[3];
-}
-bool CharacterType_IsValid(int value) {
-  switch (value) {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-    case 5:
-    case 6:
-    case 7:
-    case 8:
-    case 9:
-    case 10:
-    case 11:
-    case 12:
-      return true;
-    default:
-      return false;
-  }
-}
+    const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* CharacterType_descriptor()
+    {
+        ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
+        return file_level_enum_descriptors_MessageType_2eproto[3];
+    }
+    bool CharacterType_IsValid(int value)
+    {
+        switch (value)
+        {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+            case 11:
+            case 12:
+                return true;
+            default:
+                return false;
+        }
+    }
 
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* CharacterState_descriptor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
-  return file_level_enum_descriptors_MessageType_2eproto[4];
-}
-bool CharacterState_IsValid(int value) {
-  switch (value) {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-    case 5:
-    case 6:
-    case 7:
-    case 8:
-    case 9:
-    case 10:
-    case 11:
-    case 12:
-    case 13:
-      return true;
-    default:
-      return false;
-  }
-}
+    const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* CharacterState_descriptor()
+    {
+        ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
+        return file_level_enum_descriptors_MessageType_2eproto[4];
+    }
+    bool CharacterState_IsValid(int value)
+    {
+        switch (value)
+        {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+            case 11:
+            case 12:
+            case 13:
+                return true;
+            default:
+                return false;
+        }
+    }
 
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* EconomyResourceType_descriptor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
-  return file_level_enum_descriptors_MessageType_2eproto[5];
-}
-bool EconomyResourceType_IsValid(int value) {
-  switch (value) {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-      return true;
-    default:
-      return false;
-  }
-}
+    const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* EconomyResourceType_descriptor()
+    {
+        ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
+        return file_level_enum_descriptors_MessageType_2eproto[5];
+    }
+    bool EconomyResourceType_IsValid(int value)
+    {
+        switch (value)
+        {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+                return true;
+            default:
+                return false;
+        }
+    }
 
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* AdditionResourceType_descriptor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
-  return file_level_enum_descriptors_MessageType_2eproto[6];
-}
-bool AdditionResourceType_IsValid(int value) {
-  switch (value) {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-    case 5:
-    case 6:
-    case 7:
-    case 8:
-      return true;
-    default:
-      return false;
-  }
-}
+    const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* AdditionResourceType_descriptor()
+    {
+        ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
+        return file_level_enum_descriptors_MessageType_2eproto[6];
+    }
+    bool AdditionResourceType_IsValid(int value)
+    {
+        switch (value)
+        {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+                return true;
+            default:
+                return false;
+        }
+    }
 
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* EconomyResourceState_descriptor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
-  return file_level_enum_descriptors_MessageType_2eproto[7];
-}
-bool EconomyResourceState_IsValid(int value) {
-  switch (value) {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-      return true;
-    default:
-      return false;
-  }
-}
+    const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* EconomyResourceState_descriptor()
+    {
+        ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
+        return file_level_enum_descriptors_MessageType_2eproto[7];
+    }
+    bool EconomyResourceState_IsValid(int value)
+    {
+        switch (value)
+        {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+                return true;
+            default:
+                return false;
+        }
+    }
 
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* AdditionResourceState_descriptor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
-  return file_level_enum_descriptors_MessageType_2eproto[8];
-}
-bool AdditionResourceState_IsValid(int value) {
-  switch (value) {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-      return true;
-    default:
-      return false;
-  }
-}
+    const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* AdditionResourceState_descriptor()
+    {
+        ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
+        return file_level_enum_descriptors_MessageType_2eproto[8];
+    }
+    bool AdditionResourceState_IsValid(int value)
+    {
+        switch (value)
+        {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+                return true;
+            default:
+                return false;
+        }
+    }
 
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* EquipmentType_descriptor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
-  return file_level_enum_descriptors_MessageType_2eproto[9];
-}
-bool EquipmentType_IsValid(int value) {
-  switch (value) {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-    case 5:
-    case 6:
-    case 7:
-    case 8:
-    case 9:
-    case 10:
-      return true;
-    default:
-      return false;
-  }
-}
+    const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* EquipmentType_descriptor()
+    {
+        ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
+        return file_level_enum_descriptors_MessageType_2eproto[9];
+    }
+    bool EquipmentType_IsValid(int value)
+    {
+        switch (value)
+        {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+                return true;
+            default:
+                return false;
+        }
+    }
 
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ConstructionType_descriptor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
-  return file_level_enum_descriptors_MessageType_2eproto[10];
-}
-bool ConstructionType_IsValid(int value) {
-  switch (value) {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-      return true;
-    default:
-      return false;
-  }
-}
+    const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ConstructionType_descriptor()
+    {
+        ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
+        return file_level_enum_descriptors_MessageType_2eproto[10];
+    }
+    bool ConstructionType_IsValid(int value)
+    {
+        switch (value)
+        {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+                return true;
+            default:
+                return false;
+        }
+    }
 
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* TrapType_descriptor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
-  return file_level_enum_descriptors_MessageType_2eproto[11];
-}
-bool TrapType_IsValid(int value) {
-  switch (value) {
-    case 0:
-    case 1:
-    case 2:
-      return true;
-    default:
-      return false;
-  }
-}
+    const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* TrapType_descriptor()
+    {
+        ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
+        return file_level_enum_descriptors_MessageType_2eproto[11];
+    }
+    bool TrapType_IsValid(int value)
+    {
+        switch (value)
+        {
+            case 0:
+            case 1:
+            case 2:
+                return true;
+            default:
+                return false;
+        }
+    }
 
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* NewsType_descriptor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
-  return file_level_enum_descriptors_MessageType_2eproto[12];
-}
-bool NewsType_IsValid(int value) {
-  switch (value) {
-    case 0:
-    case 1:
-    case 2:
-      return true;
-    default:
-      return false;
-  }
-}
+    const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* NewsType_descriptor()
+    {
+        ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
+        return file_level_enum_descriptors_MessageType_2eproto[12];
+    }
+    bool NewsType_IsValid(int value)
+    {
+        switch (value)
+        {
+            case 0:
+            case 1:
+            case 2:
+                return true;
+            default:
+                return false;
+        }
+    }
 
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* PlayerTeam_descriptor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
-  return file_level_enum_descriptors_MessageType_2eproto[13];
-}
-bool PlayerTeam_IsValid(int value) {
-  switch (value) {
-    case 0:
-    case 1:
-    case 2:
-      return true;
-    default:
-      return false;
-  }
-}
+    const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* PlayerTeam_descriptor()
+    {
+        ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
+        return file_level_enum_descriptors_MessageType_2eproto[13];
+    }
+    bool PlayerTeam_IsValid(int value)
+    {
+        switch (value)
+        {
+            case 0:
+            case 1:
+            case 2:
+                return true;
+            default:
+                return false;
+        }
+    }
 
-
-// @@protoc_insertion_point(namespace_scope)
+    // @@protoc_insertion_point(namespace_scope)
 }  // namespace protobuf
 PROTOBUF_NAMESPACE_OPEN
 PROTOBUF_NAMESPACE_CLOSE
