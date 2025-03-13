@@ -38,6 +38,9 @@ public class Character : Movable, ICharacter
     public long HarmCutTime = long.MaxValue;
     private long skillCD = long.MaxValue;
     public bool canskill = true;
+    public long CrazyManTime = long.MaxValue;
+    public long QuickStepTime = long.MaxValue;
+    public int CrazyManNum = 0;
     public void StartSkillCD()
     {
         skillCD = Environment.TickCount64;

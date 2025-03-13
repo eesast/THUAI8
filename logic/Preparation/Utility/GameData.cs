@@ -14,11 +14,14 @@ namespace Preparation.Utility
         public const int TolerancesLength = 3;
         public const int AdjustLength = 3;
         //character cost
+        public const int TangSengcost = 0;
         public const int SunWukongcost = 5000;
         public const int ZhuBajiecost = 4000;
         public const int ShaWujingcost = 3000;
         public const int BaiLongmacost = 4000;
         public const int Monkidcost = 1000;
+
+        public const int JiuLingcost = 0;
         public const int HongHaiercost = 5000;
         public const int NiuMowangcost = 4000;
         public const int TieShancost = 3000;

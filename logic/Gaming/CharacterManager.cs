@@ -121,14 +121,14 @@ namespace Gaming
                 Remove(character);
                 return false;
             }
-            public static bool ImproveATK(Character character, long ATK)
+            public bool ImproveATK(Character character, long ATK)
             {
                 if (ATK <= 0)
                     return false;
                 character.AttackPower.AddPositiveV(ATK);//暂未添加时间限制
                 return true;
             }
-            public static bool ImproveSpeed(Character character, long speed)
+            public bool ImproveSpeed(Character character, long speed)
             {
                 if (speed <= 0)
                     return false;
@@ -234,6 +234,22 @@ namespace Gaming
                 {
                     character.canskill = true;
                     character.ResetSkillCD();
+                }
+            }
+            public void CheckCrazyManTime(Character character)
+            {
+                long nowtime = Environment.TickCount64;
+                if (nowtime - character.CrazyManTime >= (15 + character.CrazyManNum * 15))
+                {
+                    character.AttackPower.SubPositiveV(5 + character.CrazyManNum * 5);
+                }
+            }
+            public void CheckQuickStepTime(Character character)
+            {
+                long nowtime = Environment.TickCount64;
+                if (nowtime - character.CrazyManTime >= 60000)
+                {
+                    character.Shoes.SubPositiveV(500);
                 }
             }
         }

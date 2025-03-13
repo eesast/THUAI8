@@ -117,6 +117,11 @@ namespace GameClass.GameObj.Map
             return GameObjDict[GameObjType.Character].Cast<Character>()?.FindAll(character =>
                 PosList.Contains(GameData.PosGridToCellXY(character.Position)));
         }
+        public List<Character>? CharacterInTeamID(long teamID)
+        {
+            return GameObjDict[GameObjType.Character].Cast<Character>()?.FindAll(character =>
+                 character.TeamID == teamID);
+        }
         public bool CanSee(Character character, GameObj gameObj)
         {
             XY pos1 = character.Position;

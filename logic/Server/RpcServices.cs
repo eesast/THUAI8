@@ -303,7 +303,7 @@ namespace Server
             // var gameID = communicationToGameID[request.TeamId][request.PlayerId];
             boolRes.ActSuccess = game.Harvest(
                 request.TeamId, request.PlayerId,
-                Transformation.EcnomyResourceFromProto(request.EconomyResourceType));
+                Transformation.EconomyResourceTypeFromProto(request.EconomyResourceType));
             GameServerLogging.logger.ConsoleLogDebug("END Harvest");
             return Task.FromResult(boolRes);
         }
@@ -357,7 +357,7 @@ namespace Server
             // var gameID = communicationToGameID[request.TeamId][request.PlayerId];
             boolRes.ActSuccess = game.Equip(
                 request.TeamId, request.PlayerId,
-                Transformation.EquipmentFromProto(request.EquipmentType));
+                Transformation.EquipmentTypeFromProto(request.EquipmentType));
             GameServerLogging.logger.ConsoleLogDebug("END Equip");
             return Task.FromResult(boolRes);
         }
@@ -504,19 +504,19 @@ namespace Server
                 $"TRY CreatCharacter: CharacterType {request.CharacterType} from Team {request.TeamId}");
             var activateCost = Transformation.CharacterTypeFromProto(request.CharacterType) switch
             {
-                Utility.CharacterType.Camp1Character1 => GameData.Camp1Character1Cost,
-                Utility.CharacterType.Camp1Character2 => GameData.Camp1Character2Cost,
-                Utility.CharacterType.Camp1Character3 => GameData.Camp1Character3Cost,
-                Utility.CharacterType.Camp1Character4 => GameData.Camp1Character4Cost,
-                Utility.CharacterType.Camp1Character5 => GameData.Camp1Character5Cost,
-                Utility.CharacterType.Camp1Character6 => GameData.Camp1Character6Cost,
+                Utility.CharacterType.TangSeng => GameData.TangSengcost,
+                Utility.CharacterType.SunWukong => GameData.SunWukongcost,
+                Utility.CharacterType.ZhuBajie => GameData.ZhuBajiecost,
+                Utility.CharacterType.ShaWujing => GameData.ShaWujingcost,
+                Utility.CharacterType.BaiLongma => GameData.BaiLongmacost,
+                Utility.CharacterType.Monkid => GameData.Monkidcost,
 
-                Utility.CharacterType.Camp2Character1 => GameData.Camp2Character1Cost,
-                Utility.CharacterType.Camp2Character2 => GameData.Camp2Character2Cost,
-                Utility.CharacterType.Camp2Character3 => GameData.Camp2Character3Cost,
-                Utility.CharacterType.Camp2Character4 => GameData.Camp2Character4Cost,
-                Utility.CharacterType.Camp2Character5 => GameData.Camp2Character5Cost,
-                Utility.CharacterType.Camp2Character6 => GameData.Camp2Character6Cost,
+                Utility.CharacterType.JiuLing => GameData.JiuLingcost,
+                Utility.CharacterType.HongHaier => GameData.HongHaiercost,
+                Utility.CharacterType.NiuMowang => GameData.NiuMowangcost,
+                Utility.CharacterType.TieShan => GameData.TieShancost,
+                Utility.CharacterType.ZhiZhujing => GameData.ZhiZhujingcost,
+                Utility.CharacterType.Pawn => GameData.Pawncost,
 
                 _ => int.MaxValue
             };
@@ -549,19 +549,19 @@ namespace Server
                 $"TRY CreatCharacter: CharacterType {request.CharacterType} from Team {request.TeamId}");
             var activateCost = Transformation.CharacterTypeFromProto(request.CharacterType) switch
             {
-                Utility.CharacterType.Camp1Character1 => GameData.Camp1Character1Cost,
-                Utility.CharacterType.Camp1Character2 => GameData.Camp1Character2Cost,
-                Utility.CharacterType.Camp1Character3 => GameData.Camp1Character3Cost,
-                Utility.CharacterType.Camp1Character4 => GameData.Camp1Character4Cost,
-                Utility.CharacterType.Camp1Character5 => GameData.Camp1Character5Cost,
-                Utility.CharacterType.Camp1Character6 => GameData.Camp1Character6Cost,
+                Utility.CharacterType.TangSeng => GameData.TangSengcost,
+                Utility.CharacterType.SunWukong => GameData.SunWukongcost,
+                Utility.CharacterType.ZhuBajie => GameData.ZhuBajiecost,
+                Utility.CharacterType.ShaWujing => GameData.ShaWujingcost,
+                Utility.CharacterType.BaiLongma => GameData.BaiLongmacost,
+                Utility.CharacterType.Monkid => GameData.Monkidcost,
 
-                Utility.CharacterType.Camp2Character1 => GameData.Camp2Character1Cost,
-                Utility.CharacterType.Camp2Character2 => GameData.Camp2Character2Cost,
-                Utility.CharacterType.Camp2Character3 => GameData.Camp2Character3Cost,
-                Utility.CharacterType.Camp2Character4 => GameData.Camp2Character4Cost,
-                Utility.CharacterType.Camp2Character5 => GameData.Camp2Character5Cost,
-                Utility.CharacterType.Camp2Character6 => GameData.Camp2Character6Cost,
+                Utility.CharacterType.JiuLing => GameData.JiuLingcost,
+                Utility.CharacterType.HongHaier => GameData.HongHaiercost,
+                Utility.CharacterType.NiuMowang => GameData.NiuMowangcost,
+                Utility.CharacterType.TieShan => GameData.TieShancost,
+                Utility.CharacterType.ZhiZhujing => GameData.ZhiZhujingcost,
+                Utility.CharacterType.Pawn => GameData.Pawncost,
 
                 _ => int.MaxValue
             };
@@ -584,7 +584,7 @@ namespace Server
                 ActSuccess = playerId != GameObj.invalidID,
                 PlayerId = playerId
             };
-            if (craetCharacterRes.ActSuccess) teamMoneyPool.SubMoney(activateCost);
+            if (creatCharacterRes.ActSuccess) teamMoneyPool.SubMoney(activateCost);
             GameServerLogging.logger.ConsoleLogDebug("END CreatCharacterRID");
             return Task.FromResult(creatCharacterRes);
         }
