@@ -84,13 +84,13 @@ namespace Server
             return msg;
         }
 
-        private static MessageOfObj EconomyResource(EconomyResource economyresource)
+        private static MessageOfObj EconomyResource(E_Resource economyresource)
         {
             MessageOfObj msg = new()
             {
                 EconomyResourceMessage = new()
                 {
-                    State = Transformation.EconomyResourceStateToProto(economyresource.EconomyResourceState),
+                    State = Transformation.EconomyResourceStateToProto(economyresource.ERstate),
 
                     X = economyresource.Position.x,
                     Y = economyresource.Position.y,
@@ -101,14 +101,14 @@ namespace Server
             return msg;
         }
 
-        private static MessageOfObj AdditionResource(AdditionResource additionResource)
+        private static MessageOfObj AdditionResource(A_Resource additionResource)
         {
             MessageOfObj msg = new()
             {
                 AdditionResourceMessage = new()
                 {
-                    Type = additionResource.A_ResourceType,
-                    State = additionResource.AdditionResourceState,
+                    Type = additionResource.AResourceType,
+                    State = additionResource.ARstate,
 
                     X = additionResource.Position.x,
                     Y = additionResource.Position.y,
