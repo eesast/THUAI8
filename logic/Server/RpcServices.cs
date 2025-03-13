@@ -303,7 +303,7 @@ namespace Server
             // var gameID = communicationToGameID[request.TeamId][request.PlayerId];
             boolRes.ActSuccess = game.Harvest(
                 request.TeamId, request.PlayerId,
-                Transformation.EcnomyResourceFromProto(request.EconomyResourceType));
+                Transformation.EconomyResourceTypeFromProto(request.EconomyResourceType));
             GameServerLogging.logger.ConsoleLogDebug("END Harvest");
             return Task.FromResult(boolRes);
         }
@@ -357,7 +357,7 @@ namespace Server
             // var gameID = communicationToGameID[request.TeamId][request.PlayerId];
             boolRes.ActSuccess = game.Equip(
                 request.TeamId, request.PlayerId,
-                Transformation.EquipmentFromProto(request.EquipmentType));
+                Transformation.EquipmentTypeFromProto(request.EquipmentType));
             GameServerLogging.logger.ConsoleLogDebug("END Equip");
             return Task.FromResult(boolRes);
         }
