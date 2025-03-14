@@ -339,7 +339,7 @@ namespace Gaming
         {
             gameMap = new(mapResource);
             characterManager = new(this, gameMap);
-            ARManager = new(this, gameMap);
+            ARManager = new(this, gameMap, characterManager);
             skillCastManager = new(this, gameMap, characterManager, ARManager);
             actionManager = new(this, gameMap, characterManager);
             attackManager = new(this, gameMap, characterManager);
@@ -355,6 +355,67 @@ namespace Gaming
                     }
                 }
             );
+        }
+        public bool Recover(long teamID, long characterID, long recover)
+        {
+            if (!gameMap.Timer.IsGaming)
+                return false;
+            Character? character = gameMap.FindCharacterInPlayerID(teamID, characterID);
+            if (character != null && character.IsRemoved == false)
+            {
+                bool validRecoverPoint = false;
+                foreach (XY recoverPoint in teamList[(int)character.TeamID].BirthPointList)
+                {
+                    if (GameData.ApproachToInteract(character.Position, recoverPoint) && character.Position != recoverPoint)
+                    {
+                        validRecoverPoint = true;
+                        break;
+                    }
+                }
+                if (validRecoverPoint)
+                {
+                    return characterManager.Recover(character, recover);
+                }
+            }
+            return false;
+        }
+        public bool Attack(long teamID, long characterID, double angle, Character ObjBeingShot)
+        {
+            if (!gameMap.Timer.IsGaming)
+                return false;
+            Character? character = gameMap.FindCharacterInPlayerID(teamID, characterID);
+            if (character != null && character.IsRemoved == false)
+                return attackManager.Attack(character, ObjBeingShot);
+            return false;
+        }
+        public bool Construct(long teamID, long characterID, ConstructionType constructionType)
+        {
+            if (!gameMap.Timer.IsGaming)
+                return false;
+            Character? character = gameMap.FindCharacterInPlayerID(teamID, characterID);
+            if (character != null && character.IsRemoved == false)
+            {
+                return actionManager.Construct(character, constructionType);
+            }
+            return false;
+        }
+        public bool Produce(long teamID, long characterID)
+        {
+            if (!gameMap.Timer.IsGaming)
+                return false;
+            Character? character = gameMap.FindCharacterInPlayerID(teamID, characterID);
+            if (character != null && character.IsRemoved == false)
+                return actionManager.Produce(character);
+            return false;
+        }
+        public bool CastSkill(long teamID, long characterID, double angle = 0.0)
+        {
+            if (!gameMap.Timer.IsGaming)
+                return false;
+            Character? character = gameMap.FindCharacterInPlayerID(teamID, characterID);
+            if (character != null && character.IsRemoved == false)
+                return skillCastManager.SkillCasting(character, angle);
+            return false;
         }
     }
 }
