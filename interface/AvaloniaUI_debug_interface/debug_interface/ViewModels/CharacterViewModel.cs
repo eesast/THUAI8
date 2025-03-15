@@ -14,6 +14,12 @@ namespace debug_interface.ViewModels
         [ObservableProperty]
         private int hp = 1000; // 血量，可由服务器动态更新
 
+        [ObservableProperty]
+        private int posX = 0;
+
+        [ObservableProperty]
+        private int posY = 0;
+
         // 主动状态（单一）
         // 可能值: "空置","开采","攻击","释放技能","建造","移动"
         [ObservableProperty]
@@ -30,11 +36,11 @@ namespace debug_interface.ViewModels
         //}
         // 被动状态（可叠加）
         // 可能值: "致盲","击退","定身","隐身" 等，可由服务器控制增减
-        public ObservableCollection<string> PassiveStates { get; }
+        public ObservableCollection<string> PassiveStates { get; } = new ObservableCollection<string>();
 
         // 装备清单：用名称+数量表示。如 {"小血瓶":2, "鞋子":1, "大护盾":1, "净化药水":3}
         // 为了方便绑定，用 ObservableCollection 来存储装备条目，每个条目包含Name和Count
-        public ObservableCollection<EquipmentItem> EquipmentInventory { get; }
+        public ObservableCollection<EquipmentItem> EquipmentInventory { get; } = new ObservableCollection<EquipmentItem>();
 
         // 状态选项列表和装备选项列表已不再使用ComboBox选择，而是纯展示。
         // 如果需要仍保留可由服务器更新，但这里不会再用于交互。
@@ -73,8 +79,8 @@ namespace debug_interface.ViewModels
                 {
                     return "装备：无";
                 }
-                var parts = EquipmentInventory.Select(e => $"{e.Name}x{e.Count}");
-                return "装备：" + string.Join(" ", parts);
+                return "装备: " + string.Join(", ",
+                                    EquipmentInventory.Select(e => $"{e.Name}×{e.Count}"));
             }
         }
 

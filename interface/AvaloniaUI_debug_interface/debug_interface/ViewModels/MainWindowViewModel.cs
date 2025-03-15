@@ -3,11 +3,16 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
 using System;
 using System.Timers;
+using debug_interface.ViewModels;
 
 namespace debug_interface.ViewModels
 {
     public partial class MainWindowViewModel : ViewModelBase
     {
+        // Keep only one definition of MapVM
+        [ObservableProperty]
+        private MapViewModel mapVM;
+
         public ObservableCollection<CharacterViewModel> RedTeamCharacters { get; }
         public ObservableCollection<CharacterViewModel> BlueTeamCharacters { get; }
 
@@ -42,10 +47,11 @@ namespace debug_interface.ViewModels
 
         public MainWindowViewModel()
         {
+            // Initialize collections first
             RedTeamCharacters = new ObservableCollection<CharacterViewModel>();
             BlueTeamCharacters = new ObservableCollection<CharacterViewModel>();
 
-            // 初始化角色，给每个角色不同的数据以示例可变性
+            // Initialize characters
             for (int i = 0; i < 6; i++)
             {
                 var redChar = new CharacterViewModel()
@@ -69,12 +75,28 @@ namespace debug_interface.ViewModels
                     ActiveState = "空置",
                 };
                 blueChar.PassiveStates.Add("隐身");
-                //blueChar.PassiveStates.Remove("致盲"); 
                 blueChar.EquipmentInventory.Add(new EquipmentItem("净化药水", 3));
                 if (i % 2 == 1)
                     blueChar.EquipmentInventory.Add(new EquipmentItem("鞋子", 1));
 
                 BlueTeamCharacters.Add(blueChar);
+            }
+
+            // Initialize MapViewModel
+            MapVM = new MapViewModel();
+
+            // Assign random initial positions to characters
+            Random rnd = new Random();
+            foreach (var character in RedTeamCharacters)
+            {
+                character.PosX = rnd.Next(10, 40);
+                character.PosY = rnd.Next(10, 40);
+            }
+
+            foreach (var character in BlueTeamCharacters)
+            {
+                character.PosX = rnd.Next(10, 40);
+                character.PosY = rnd.Next(10, 40);
             }
 
             _timer = new Timer(1000);
