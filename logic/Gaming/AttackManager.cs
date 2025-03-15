@@ -92,6 +92,40 @@ namespace Gaming
                     character.SetCharacterState(character.CharacterState1, CharacterState.NULL_CHARACTER_STATE);//破隐
                 return true;
             }
+            public bool AttackResource(Character character)
+            {
+                A_Resource? Aresource = (A_Resource?)gameMap.OneForInteract(character.Position, GameObjType.A_Resource);
+                if (Aresource == null)
+                {
+                    return false;
+                }
+                if (Aresource.HP == 0)
+                {
+                    return false;
+                }
+                long stateNum = character.SetCharacterState(CharacterState.ATTACKING, character.CharacterState2);
+                if (stateNum == -1)
+                {
+                    return false;
+                }
+                new Thread
+                (
+                    () =>
+                    {
+                        character.ThreadNum.WaitOne();
+                        if (!character.StartThread(stateNum))
+                        {
+                            character.ThreadNum.Release();
+                            return;
+                        }
+                        //Eresource.AddProduceNum();
+                        Thread.Sleep(GameData.CheckInterval);
+                        Attack(character, Aresource);
+                    }
+                )
+                { IsBackground = true }.Start();
+                return false;
+            }
         }
     }
 }

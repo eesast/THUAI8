@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Reflection.Metadata;
 
 namespace Gaming
 {
@@ -379,11 +380,12 @@ namespace Gaming
             }
             return false;
         }
-        public bool Attack(long teamID, long characterID, double angle, Character ObjBeingShot)
+        public bool Attack(long teamID, long characterID, double angle, long ATKteamID, long ATKcharacterID)
         {
             if (!gameMap.Timer.IsGaming)
                 return false;
             Character? character = gameMap.FindCharacterInPlayerID(teamID, characterID);
+            Character? ObjBeingShot = gameMap.FindCharacterInPlayerID(ATKteamID, ATKcharacterID);
             if (character != null && character.IsRemoved == false)
                 return attackManager.Attack(character, ObjBeingShot);
             return false;
@@ -415,6 +417,33 @@ namespace Gaming
             Character? character = gameMap.FindCharacterInPlayerID(teamID, characterID);
             if (character != null && character.IsRemoved == false)
                 return skillCastManager.SkillCasting(character, angle);
+            return false;
+        }
+        public bool Equip(long teamID, long characterID, EquipmentType equiptype)
+        {
+            if (!gameMap.Timer.IsGaming)
+                return false;
+            Character? character = gameMap.FindCharacterInPlayerID(teamID, characterID);
+            if (character != null && character.IsRemoved == false)
+                return equipManager.GetEquipment(character, equiptype);
+            return false;
+        }
+        public bool Stop(long teamID, long characterID)
+        {
+            if (!gameMap.Timer.IsGaming)
+                return false;
+            Character? character = gameMap.FindCharacterInPlayerID(teamID, characterID);
+            if (character != null)
+                return ActionManager.Stop(character);
+            return false;
+        }
+        public bool AttackResource(long teamID, long characterID)
+        {
+            if (!gameMap.Timer.IsGaming)
+                return false;
+            Character? character = gameMap.FindCharacterInPlayerID(teamID, characterID);
+            if (character != null)
+                return attackManager.AttackResource(character);
             return false;
         }
     }
