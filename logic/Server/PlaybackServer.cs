@@ -46,30 +46,30 @@ namespace Server
         public override int[] GetMoney() => [];
         public override int[] GetScore() => FinalScore;
 
-        public override async Task AddPlayer(PlayerMsg request,
+        public override async Task AddPlayer(CharacterMsg request,
                                              IServerStreamWriter<MessageToClient> responseStream,
                                              ServerCallContext context)
         {
-            PlaybackServerLogging.logger.ConsoleLog($"AddPlayer: {request.PlayerId}");
-            if (request.PlayerId >= spectatorMinPlayerID && options.NotAllowSpectator == false)
+            PlaybackServerLogging.logger.ConsoleLog($"AddPlayer: {request.CharacterId}");
+            if (request.CharacterId >= spectatorMinPlayerID && options.NotAllowSpectator == false)
             {
                 // 观战模式
                 lock (spectatorJoinLock) // 具体原因见另一个上锁的地方
                 {
-                    if (semaDict.TryAdd(request.PlayerId, (new SemaphoreSlim(0, 1), new SemaphoreSlim(0, 1))))
+                    if (semaDict.TryAdd(request.CharacterId, (new SemaphoreSlim(0, 1), new SemaphoreSlim(0, 1))))
                     {
                         PlaybackServerLogging.logger.ConsoleLog("A new spectator comes to watch this game");
                         IsSpectatorJoin = true;
                     }
                     else
                     {
-                        PlaybackServerLogging.logger.ConsoleLog($"Duplicated Spectator ID {request.PlayerId}");
+                        PlaybackServerLogging.logger.ConsoleLog($"Duplicated Spectator ID {request.CharacterId}");
                         return;
                     }
                 }
                 do
                 {
-                    semaDict[request.PlayerId].Item1.Wait();
+                    semaDict[request.CharacterId].Item1.Wait();
                     try
                     {
                         if (currentGameInfo != null)
@@ -80,7 +80,7 @@ namespace Server
                     }
                     catch (InvalidOperationException)
                     {
-                        if (semaDict.TryRemove(request.PlayerId, out var semas))
+                        if (semaDict.TryRemove(request.CharacterId, out var semas))
                         {
                             try
                             {
@@ -88,7 +88,7 @@ namespace Server
                                 semas.Item2.Release();
                             }
                             catch { }
-                            PlaybackServerLogging.logger.ConsoleLog($"The spectator {request.PlayerId} exited");
+                            PlaybackServerLogging.logger.ConsoleLog($"The spectator {request.CharacterId} exited");
                             return;
                         }
                     }
@@ -100,7 +100,7 @@ namespace Server
                     {
                         try
                         {
-                            semaDict[request.PlayerId].Item2.Release();
+                            semaDict[request.CharacterId].Item2.Release();
                         }
                         catch { }
                     }

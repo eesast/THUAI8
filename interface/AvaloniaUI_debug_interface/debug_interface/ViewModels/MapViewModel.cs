@@ -1,4 +1,5 @@
-﻿using System;
+﻿//MapViewModel.cs
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,10 +17,20 @@ namespace debug_interface.ViewModels
         // 定义地图网格大小为 50（行）× 50（列）
         public const int GridSize = 50;
 
-        // ObservableCollection 存放 2500 个 MapCell 对象，
+        // ObservableCollection 存放 2500 个 MapCell 对象，每个对象代表一个地图格子
         // 数据绑定到视图后，界面会显示出整个地图
         public ObservableCollection<MapCell> MapCells { get; }
+        public ObservableCollection<CharacterViewModel> RedTeamCharacters { get; }
+        public ObservableCollection<CharacterViewModel> BlueTeamCharacters { get; }
 
+        public MapViewModel(ObservableCollection<CharacterViewModel> redTeam, ObservableCollection<CharacterViewModel> blueTeam)
+        {
+            MapCells = new ObservableCollection<MapCell>();
+            RedTeamCharacters = redTeam;
+            BlueTeamCharacters = blueTeam;
+            InitializeDefaultMap();
+        }
+        // 构造函数，用于测试
         public MapViewModel()
         {
             MapCells = new ObservableCollection<MapCell>();

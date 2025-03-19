@@ -193,7 +193,7 @@ public static class Transformation
         A_ResourceType.QuickStep => ProtoAdditionalResourceType.QUICK_STEP,
         A_ResourceType.WideView => ProtoAdditionalResourceType.WIDE_VIEW
     };
-    public static A_ResourceType AResourceFromProto(A_ResourceType ARtype) => ARtype switch
+    public static A_ResourceType AResourceFromProto(ProtoAdditionalResourceType ARtype) => ARtype switch
     {
         ProtoAdditionalResourceType.NULL => A_ResourceType.NULL,
         ProtoAdditionalResourceType.LIFE_POOL1 => A_ResourceType.LifePool1,

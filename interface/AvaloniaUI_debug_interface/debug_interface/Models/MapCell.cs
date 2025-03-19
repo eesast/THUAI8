@@ -1,4 +1,5 @@
-﻿using Avalonia.Media;
+﻿//MapCell.cs
+using Avalonia.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 using System.Collections.Generic;
