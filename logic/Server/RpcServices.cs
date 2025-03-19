@@ -135,7 +135,7 @@ namespace Server
             GameServerLogging.logger.ConsoleLogDebug("AddPlayer: Check Correct");
             lock (addPlayerLock)
             {
-                Game.PlayerInitInfo playerInitInfo = new(request.TeamId, request.CharacterId, Transformation.CharacterTypeFromProto(request.CharacterType),request.SideFlag);
+                Game.PlayerInitInfo playerInitInfo = new(request.TeamId, request.CharacterId, Transformation.CharacterTypeFromProto(request.CharacterType), request.SideFlag);
                 long newPlayerID = game.AddPlayer(playerInitInfo);
                 if (newPlayerID == GameObj.invalidID)
                 {
@@ -363,7 +363,7 @@ namespace Server
 
         public override Task<BoolRes> Attack(AttackMsg request, ServerCallContext context)
         {
-            
+
             GameServerLogging.logger.ConsoleLogDebug(
                 $"TRY Attack: Player {request.CharacterId} from Team {request.TeamId} attacking Player {request.AttackedCharacterId}");
             BoolRes boolRes = new();
@@ -385,7 +385,7 @@ namespace Server
             // var gameID = communicationToGameID[request.TeamId][request.PlayerId];
             boolRes.ActSuccess = game.Attack(
                 request.TeamId, request.CharacterId,
-                request.AttackRange, request.AttackedCharacterId,request.AttackedTeam);
+                request.AttackRange, request.AttackedCharacterId, request.AttackedTeam);
             GameServerLogging.logger.ConsoleLogDebug("END Attack");
             return Task.FromResult(boolRes);
         }
