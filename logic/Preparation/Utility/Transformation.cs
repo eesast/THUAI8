@@ -183,27 +183,27 @@ public static class Transformation
     };
     public static ProtoAdditionalResourceType AResourceToProto(A_ResourceType ARtype) => ARtype switch
     {
-        A_ResourceType.NULL => ProtoAdditionalResourceType.NULL,
-        A_ResourceType.LifePool1 => ProtoAdditionalResourceType.LIFE_POOL1,
-        A_ResourceType.LifePool2 => ProtoAdditionalResourceType.LIFE_POOL2,
-        A_ResourceType.LifePool3 => ProtoAdditionalResourceType.LIFE_POOL3,
-        A_ResourceType.CrazyMan1 => ProtoAdditionalResourceType.CRAZY_MAN1,
-        A_ResourceType.CrazyMan2 => ProtoAdditionalResourceType.CRAZY_MAN2,
-        A_ResourceType.CrazyMan3 => ProtoAdditionalResourceType.CRAZY_MAN3,
-        A_ResourceType.QuickStep => ProtoAdditionalResourceType.QUICK_STEP,
-        A_ResourceType.WideView => ProtoAdditionalResourceType.WIDE_VIEW
+        A_ResourceType.NULL => ProtoAdditionalResourceType.NullAdditionResourceType,
+        A_ResourceType.LifePool1 => ProtoAdditionalResourceType.LifePool1,
+        A_ResourceType.LifePool2 => ProtoAdditionalResourceType.LifePool2,
+        A_ResourceType.LifePool3 => ProtoAdditionalResourceType.LifePool3,
+        A_ResourceType.CrazyMan1 => ProtoAdditionalResourceType.CrazyMan1,
+        A_ResourceType.CrazyMan2 => ProtoAdditionalResourceType.CrazyMan2,
+        A_ResourceType.CrazyMan3 => ProtoAdditionalResourceType.CrazyMan3,
+        A_ResourceType.QuickStep => ProtoAdditionalResourceType.QuickStep,
+        A_ResourceType.WideView => ProtoAdditionalResourceType.WideView
     };
     public static A_ResourceType AResourceFromProto(ProtoAdditionalResourceType ARtype) => ARtype switch
     {
-        ProtoAdditionalResourceType.NULL => A_ResourceType.NULL,
-        ProtoAdditionalResourceType.LIFE_POOL1 => A_ResourceType.LifePool1,
-        ProtoAdditionalResourceType.LIFE_POOL2 => A_ResourceType.LifePool2,
-        ProtoAdditionalResourceType.LIFE_POOL3 => A_ResourceType.LifePool3,
-        ProtoAdditionalResourceType.CRAZY_MAN1 => A_ResourceType.CrazyMan1,
-        ProtoAdditionalResourceType.CRAZY_MAN2 => A_ResourceType.CrazyMan2,
-        ProtoAdditionalResourceType.CRAZY_MAN3 => A_ResourceType.CrazyMan3,
-        ProtoAdditionalResourceType.QUICK_STEP => A_ResourceType.QuickStep,
-        ProtoAdditionalResourceType.WIDE_VIEW => A_ResourceType.WideView
+        ProtoAdditionalResourceType.NullAdditionResourceType => A_ResourceType.NULL,
+        ProtoAdditionalResourceType.LifePool1 => A_ResourceType.LifePool1,
+        ProtoAdditionalResourceType.LifePool2 => A_ResourceType.LifePool2,
+        ProtoAdditionalResourceType.LifePool3 => A_ResourceType.LifePool3,
+        ProtoAdditionalResourceType.CrazyMan1 => A_ResourceType.CrazyMan1,
+        ProtoAdditionalResourceType.CrazyMan2 => A_ResourceType.CrazyMan2,
+        ProtoAdditionalResourceType.CrazyMan3 => A_ResourceType.CrazyMan3,
+        ProtoAdditionalResourceType.QuickStep => A_ResourceType.QuickStep,
+        ProtoAdditionalResourceType.WideView => A_ResourceType.WideView
     };
     public static ProtoAdditionalResourceState AResourceStateToProto(AdditionResourceState State) => State switch
     {
