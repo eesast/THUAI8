@@ -5,7 +5,7 @@ using Preparation.Utility.Value.SafeValue.Atomic;
 namespace GameClass.GameObj.Areas;
 
 public class Trap(XY initPos)//trap无法被攻击销毁，因此不以construction为基类
-    : Immovable(initPos, int.MaxValue, GameObjType.Null)
+    : Immovable(initPos, int.MaxValue, GameObjType.NULL)
 {
     public override bool IsRigid(bool args = false) => true;
     public override ShapeType Shape => ShapeType.SQUARE;
