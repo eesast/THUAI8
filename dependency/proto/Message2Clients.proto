@@ -12,7 +12,9 @@ message MessageOfCharacter
     int64 player_id = 3;
 
     CharacterType character_type = 4;
-    CharacterState character_state = 5;
+    CharacterState character_state1 = 5;
+    CharacterState character_state2 = 6;
+
     // 待定 是否加Timer?
     // double damage_reduction = ; // 伤害减免
     // bool burned = ; // 是否燃烧
@@ -22,24 +24,24 @@ message MessageOfCharacter
     // CharacterBuffType speed_buff = ; // 疾步之灵
     // CharacterBuffType vision_buff = ; // 视野之灵
 
-    int32 x = 6;
-    int32 y = 7;
+    int32 x = 7;
+    int32 y = 8;
 
-    double facing_direction = 8;
-    int32 speed = 9;
-    int32 view_range = 10;
+    double facing_direction = 9;
+    int32 speed = 10;
+    int32 view_range = 11;
 
-    int32 atk =11;
-    int32 attack_range = 12;
+    int32 atk =12;
+    int32 attack_size = 13;
 
-    int32 skill_cd = 13;
+    int64 skill_cd = 14;
 
-    int32 economy_depletion = 14;
-    int32 kill_score = 15;
+    int32 economy_depletion = 15;
+    int32 kill_score = 16;
     
-    int32 hp = 16; 
+    int32 hp = 17; 
 
-    EquipmentType equipment = 17;
+    EquipmentType equipment = 18;
     // EquipmentType health_potion_equipment = ;
     // EquipmentType shild_equipment =;
     // EquipmentType speed_shoes_equipment =;

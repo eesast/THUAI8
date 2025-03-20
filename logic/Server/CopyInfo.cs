@@ -70,7 +70,7 @@ namespace Server
                     Atk = player.AttackPower,
                     AttackSize = player.AttackSize,
 
-                    SkillCD = player.SkillCD,
+                    SkillCd = player.skillCD,
 
                     EconomyDepletion = player.EconomyDepletion,
                     KillScore = player.KillScore,
