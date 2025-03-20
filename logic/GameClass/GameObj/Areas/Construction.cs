@@ -6,7 +6,7 @@ using Preparation.Utility.Value.SafeValue.LockedValue;
 namespace GameClass.GameObj.Areas;
 
 public class Construction(XY initPos)
-    : Immovable(initPos, GameData.NumOfPosGridPerCell / 2, GameObjType.Construction)
+    : Immovable(initPos, GameData.NumOfPosGridPerCell / 2, GameObjType.CONSTRUCTION)
 {
     public AtomicLong TeamID { get; } = new(long.MaxValue);
     public InVariableRange<long> HP { get; } = new(0, GameData.ConstructionHP);

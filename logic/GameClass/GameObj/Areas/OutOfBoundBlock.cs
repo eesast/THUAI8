@@ -8,7 +8,7 @@ namespace GameClass.GameObj.Areas;
 /// 逻辑墙
 /// </summary>
 public class OutOfBoundBlock(XY initPos)
-    : Immovable(initPos, int.MaxValue, GameObjType.OutOfBoundBlock), IOutOfBound
+    : Immovable(initPos, int.MaxValue, GameObjType.OUTOFBOUNDBLOCK), IOutOfBound
 {
     public override bool IsRigid(bool args = false) => true;
     public override ShapeType Shape => ShapeType.SQUARE;

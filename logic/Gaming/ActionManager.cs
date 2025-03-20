@@ -75,7 +75,7 @@ namespace Gaming
             }
             public bool Produce(Character character)
             {
-                E_Resource? Eresource = (E_Resource?)gameMap.OneForInteract(character.Position, GameObjType.E_Resource);
+                E_Resource? Eresource = (E_Resource?)gameMap.OneForInteract(character.Position, GameObjType.ECONOMY_RESOURCE);
                 if (Eresource == null)
                 {
                     return false;
@@ -130,7 +130,7 @@ namespace Gaming
             }
             public bool Construct(Character character, ConstructionType constructionType)
             {
-                Construction? construction = (Construction?)gameMap.OneForInteract(character.Position, GameObjType.Construction);
+                Construction? construction = (Construction?)gameMap.OneForInteract(character.Position, GameObjType.CONSTRUCTION);
                 if (character.CharacterType != CharacterType.Monkid || character.CharacterType != CharacterType.Pawn)
                 {
                     return false;

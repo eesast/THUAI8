@@ -94,7 +94,7 @@ namespace Gaming
             }
             public bool AttackResource(Character character)
             {
-                A_Resource? Aresource = (A_Resource?)gameMap.OneForInteract(character.Position, GameObjType.A_Resource);
+                A_Resource? Aresource = (A_Resource?)gameMap.OneForInteract(character.Position, GameObjType.ADDITIONAL_RESOURCE);
                 if (Aresource == null)
                 {
                     return false;

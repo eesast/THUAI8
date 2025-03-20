@@ -42,7 +42,7 @@ namespace Gaming
                     long score = 0;
                     switch (AResource.AResourceType)
                     {
-                        case A_ResourceType.CrazyMan1:
+                        case A_ResourceType.CRAZY_MAN1:
                             {
                                 score = 4000;
                                 foreach (var teamcharacter in characters)
@@ -55,7 +55,7 @@ namespace Gaming
                                 }
                             }
                             break;
-                        case A_ResourceType.CrazyMan2:
+                        case A_ResourceType.CRAZY_MAN2:
                             {
                                 score = 5000;
                                 foreach (var teamcharacter in characters)
@@ -68,7 +68,7 @@ namespace Gaming
                                 }
                             }
                             break;
-                        case A_ResourceType.CrazyMan3:
+                        case A_ResourceType.CRAZY_MAN3:
                             {
                                 score = 6000;
                                 foreach (var teamcharacter in characters)
@@ -81,7 +81,7 @@ namespace Gaming
                                 }
                             }
                             break;
-                        case A_ResourceType.LifePool1:
+                        case A_ResourceType.LIFE_POOL1:
                             {
                                 score = 2000;
                                 foreach (var teamcharacter in characters)
@@ -90,7 +90,7 @@ namespace Gaming
                                 }
                             }
                             break;
-                        case A_ResourceType.LifePool2:
+                        case A_ResourceType.LIFE_POOL2:
                             {
                                 score = 3000;
                                 foreach (var teamcharacter in characters)
@@ -99,7 +99,7 @@ namespace Gaming
                                 }
                             }
                             break;
-                        case A_ResourceType.LifePool3:
+                        case A_ResourceType.LIFE_POOL3:
                             {
                                 score = 4000;
                                 foreach (var teamcharacter in characters)
@@ -108,7 +108,7 @@ namespace Gaming
                                 }
                             }
                             break;
-                        case A_ResourceType.QuickStep:
+                        case A_ResourceType.QUICK_STEP:
                             {
                                 score = 3000;
                                 foreach (var teamcharacter in characters)
@@ -120,7 +120,7 @@ namespace Gaming
                                 }
                             }
                             break;
-                        case A_ResourceType.WideView:
+                        case A_ResourceType.WIDE_VIEW:
                             { score = 3000; }
                             break;
                     }//此部分缺失加得分代码
@@ -143,28 +143,28 @@ namespace Gaming
                     long score = 0;
                     switch (AResource.AResourceType)
                     {
-                        case A_ResourceType.CrazyMan1:
+                        case A_ResourceType.CRAZY_MAN1:
                             score = 4000;
                             break;
-                        case A_ResourceType.CrazyMan2:
+                        case A_ResourceType.CRAZY_MAN2:
                             score = 5000;
                             break;
-                        case A_ResourceType.CrazyMan3:
+                        case A_ResourceType.CRAZY_MAN3:
                             score = 6000;
                             break;
-                        case A_ResourceType.LifePool1:
+                        case A_ResourceType.LIFE_POOL1:
                             score = 2000;
                             break;
-                        case A_ResourceType.LifePool2:
+                        case A_ResourceType.LIFE_POOL2:
                             score = 3000;
                             break;
-                        case A_ResourceType.LifePool3:
+                        case A_ResourceType.LIFE_POOL3:
                             score = 4000;
                             break;
-                        case A_ResourceType.QuickStep:
+                        case A_ResourceType.QUICK_STEP:
                             score = 3000;
                             break;
-                        case A_ResourceType.WideView:
+                        case A_ResourceType.WIDE_VIEW:
                             score = 3000;
                             break;
                     }

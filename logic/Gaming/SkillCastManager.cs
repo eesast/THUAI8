@@ -62,7 +62,7 @@ namespace Gaming
                             {
                                 switch (ObjBeingShot.Type)
                                 {
-                                    case GameObjType.Character:
+                                    case GameObjType.CHARACTER:
                                         {
                                             characterManager.BeAttacked(ObjBeingShot, GameData.SunWukongSkillATK);
                                         }
@@ -91,7 +91,7 @@ namespace Gaming
                             {
                                 switch (ObjBeingShot.Type)
                                 {
-                                    case GameObjType.Character:
+                                    case GameObjType.CHARACTER:
                                         {
                                             ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.BLIND);
                                             ObjBeingShot.blind = true;
@@ -115,7 +115,7 @@ namespace Gaming
                             {
                                 switch (ObjBeingShot.Type)
                                 {
-                                    case GameObjType.Character:
+                                    case GameObjType.CHARACTER:
                                         {
                                             characterManager.BeAttacked(ObjBeingShot, GameData.BaiLongmaSkillATK);
                                         }
@@ -137,7 +137,7 @@ namespace Gaming
                             {
                                 switch (ObjBeingShot.Type)
                                 {
-                                    case GameObjType.Character:
+                                    case GameObjType.CHARACTER:
                                         {
                                             ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.BURNED);
                                             ObjBeingShot.burned = true;
@@ -188,7 +188,7 @@ namespace Gaming
                             {
                                 switch (ObjBeingShot.Type)
                                 {
-                                    case GameObjType.Character:
+                                    case GameObjType.CHARACTER:
                                         {
                                             if (ObjBeingShot.CharacterState2 == CharacterState.BURNED)
                                             {
@@ -214,7 +214,7 @@ namespace Gaming
                             {
                                 switch (ObjBeingShot.Type)
                                 {
-                                    case GameObjType.Character:
+                                    case GameObjType.CHARACTER:
                                         {
                                             characterManager.BeAttacked(ObjBeingShot, GameData.ZhiZhujingSkillATK);
                                             ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.STUNNED);//尚未加入时间限制

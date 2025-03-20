@@ -47,7 +47,7 @@ public class A_Resource
         AttackPower.SetVToMaxV();
     }
     public A_Resource(int radius, A_ResourceType type, XY initPos) :
-        base(initPos, radius, GameObjType.A_Resource)
+        base(initPos, radius, GameObjType.ADDITIONAL_RESOURCE)
     {
         Occupation = ARFactory.FindAROccupation(type);
         HP = new(Occupation.MaxHp);
