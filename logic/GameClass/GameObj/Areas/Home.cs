@@ -7,7 +7,7 @@ using Preparation.Utility.Value.SafeValue.LockedValue;
 namespace GameClass.GameObj.Areas;
 
 public class Home(XY initPos, long id, int sideFlag)
-    : Immovable(initPos, GameData.NumOfPosGridPerCell / 2, GameObjType.Home), IHome
+    : Immovable(initPos, GameData.NumOfPosGridPerCell / 2, GameObjType.HOME), IHome
 {
     public long TeamID { get; } = id;
     public int sideFlag = sideFlag;

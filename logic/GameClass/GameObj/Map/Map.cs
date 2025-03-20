@@ -69,11 +69,11 @@ namespace GameClass.GameObj.Map
 
         public Character? FindCharacterInID(long ID)
         {
-            return (Character?)GameObjDict[GameObjType.Character].Find(gameObj => (ID == ((Character)gameObj).ID));
+            return (Character?)GameObjDict[GameObjType.CHARACTER].Find(gameObj => (ID == ((Character)gameObj).ID));
         }
         public Character? FindCharacterInPlayerID(long teamID, long playerID)
         {
-            return (Character?)GameObjDict[GameObjType.Character].Find(gameObj => (teamID == ((Character)gameObj).TeamID) && playerID == ((Character)gameObj).PlayerID);
+            return (Character?)GameObjDict[GameObjType.CHARACTER].Find(gameObj => (teamID == ((Character)gameObj).TeamID) && playerID == ((Character)gameObj).PlayerID);
         }
         public GameObj? OneForInteract(XY Pos, GameObjType gameObjType)
         {
@@ -99,27 +99,27 @@ namespace GameClass.GameObj.Map
         }
         public List<Character>? CharacterInTheRangeNotTeamID(XY Pos, int range, long teamID)
         {
-            return GameObjDict[GameObjType.Character].Cast<Character>()?.FindAll(character =>
+            return GameObjDict[GameObjType.CHARACTER].Cast<Character>()?.FindAll(character =>
                 (GameData.IsInTheRange(character.Position, Pos, range) && character.TeamID != teamID));
         }
         public List<Character>? CharacterOnTheSameLineNotTeamID(XY Pos, double theta, long teamID)
         {
-            return GameObjDict[GameObjType.Character].Cast<Character>()?.FindAll(character =>
+            return GameObjDict[GameObjType.CHARACTER].Cast<Character>()?.FindAll(character =>
             (GameData.IsOnTheSameLine(Pos, character.Position, theta) && character.TeamID != teamID));
         }
         public List<Character>? CharacterInTheRangeInTeamID(XY Pos, int range, long teamID)
         {
-            return GameObjDict[GameObjType.Character].Cast<Character>()?.FindAll(character =>
+            return GameObjDict[GameObjType.CHARACTER].Cast<Character>()?.FindAll(character =>
                 (GameData.IsInTheRange(character.Position, Pos, range) && character.TeamID == teamID));
         }
         public List<Character>? CharacterInTheList(List<CellXY> PosList)
         {
-            return GameObjDict[GameObjType.Character].Cast<Character>()?.FindAll(character =>
+            return GameObjDict[GameObjType.CHARACTER].Cast<Character>()?.FindAll(character =>
                 PosList.Contains(GameData.PosGridToCellXY(character.Position)));
         }
         public List<Character>? CharacterInTeamID(long teamID)
         {
-            return GameObjDict[GameObjType.Character].Cast<Character>()?.FindAll(character =>
+            return GameObjDict[GameObjType.CHARACTER].Cast<Character>()?.FindAll(character =>
                  character.TeamID == teamID);
         }
         public bool CanSee(Character character, GameObj gameObj)
@@ -201,7 +201,7 @@ namespace GameClass.GameObj.Map
             gameObjDict = [];
             foreach (GameObjType idx in Enum.GetValues(typeof(GameObjType)))
             {
-                if (idx != GameObjType.Null)
+                if (idx != GameObjType.NULL)
                     gameObjDict.TryAdd(idx, new LockedClassList<IGameObj>());
             }
             height = mapResource.height;

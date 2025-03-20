@@ -130,15 +130,15 @@ namespace Preparation.Utility
         }
         public static bool NeedCopy(GameObjType gameObjType)
         {
-            return gameObjType != GameObjType.Null &&
-                   gameObjType != GameObjType.Barrier &&
-                   gameObjType != GameObjType.Bush &&
-                   gameObjType != GameObjType.E_Resource &&
-                   gameObjType != GameObjType.A_Resource &&
-                   gameObjType != GameObjType.Construction &&
-                   gameObjType != GameObjType.Trap &&
-                   gameObjType != GameObjType.Home &&
-                    gameObjType != GameObjType.OutOfBoundBlock;
+            return gameObjType != GameObjType.NULL &&
+                   gameObjType != GameObjType.BARRIER &&
+                   gameObjType != GameObjType.BUSH &&
+                   gameObjType != GameObjType.ECONOMY_RESOURCE &&
+                   gameObjType != GameObjType.ADDITIONAL_RESOURCE &&
+                   gameObjType != GameObjType.CONSTRUCTION &&
+                   gameObjType != GameObjType.TRAP &&
+                   gameObjType != GameObjType.HOME &&
+                    gameObjType != GameObjType.OUTOFBOUNDBLOCK;
         }
         public const int ConstructionHP = 1000;//建筑物的默认HP
         public const int BarracksHP = 600;

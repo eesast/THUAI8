@@ -311,7 +311,7 @@ namespace Server
 
         private bool PlayerDeceased(int playerID)
         {
-            return game.GameMap.GameObjDict[GameObjType.Character].Cast<Character>()?.Find(
+            return game.GameMap.GameObjDict[GameObjType.CHARACTER].Cast<Character>()?.Find(
                 character => character.PlayerID == playerID && character.CharacterState == CharacterStateType.Deceased
                 ) != null;
         }

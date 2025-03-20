@@ -250,13 +250,12 @@
 
 			<!-- 地图  -->
 			<Border
-				Grid.Row="1"
-				Margin="5"
-				BorderBrush="Gray"
-				BorderThickness="1">
-				<local:MapView />
+            Grid.Row="1"
+            Margin="5"
+            BorderBrush="Gray"
+            BorderThickness="1">
+			<local:MapView />
 			</Border>
-
 		</Grid>
     </Grid>
 </Window>

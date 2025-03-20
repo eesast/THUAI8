@@ -6,7 +6,7 @@ using System.Threading.Tasks.Dataflow;
 namespace GameClass.GameObj.Areas;
 
 public class E_Resource(XY initPos)
-    : Immovable(initPos, int.MaxValue, GameObjType.Null)
+    : Immovable(initPos, int.MaxValue, GameObjType.NULL)
 {
     public InVariableRange<long> HP { get; } = new(GameData.ResourceHP);
     public override bool IsRigid(bool args = false) => false;

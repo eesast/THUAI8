@@ -14,13 +14,13 @@ namespace Server
                 return null;
             switch (gameObj.Type)
             {
-                case GameObjType.Character:
+                case GameObjType.CHARACTER:
                     return Character((Character)gameObj, time);
-                case GameObjType.E_Resource:
+                case GameObjType.ECONOMY_RESOURCE:
                     return E_Resource((E_Resource)gameObj);
-                case GameObjType.A_Resource:
+                case GameObjType.ADDITIONAL_RESOURCE:
                     return A_Resource((A_Resource)gameObj);
-                case GameObjType.Construction:
+                case GameObjType.CONSTRUCTION:
                     Construction construction = (Construction)gameObj;
                     if (construction.ConstructionType == Utility.ConstructionType.BARRACKS)
                         return Barracks(construction);
@@ -29,7 +29,7 @@ namespace Server
                     else if (construction.ConstructionType == Utility.ConstructionType.FARM)
                         return Farm(construction);
                     return null;
-                case GameObjType.Trap:
+                case GameObjType.TRAP:
                     return Trap((Trap)gameObj);
                 default: return null;
             }
@@ -67,8 +67,8 @@ namespace Server
                     Speed = player.MoveSpeed,
                     ViewRange = player.ViewRange,
 
-                    Atk = player.AttackPower,
-                    AttackSize = player.AttackSize,
+                    Atk = (int)player.AttackPower,
+                    AttackSize = (int)player.AttackSize,
 
                     SkillCd = player.skillCD,
 
@@ -78,7 +78,7 @@ namespace Server
                     Hp = (int)player.HP,
 
 
-                    EquipmentType = player.EquipmentType,
+                    Equipment = player.EquipmentType,
                 }
             };
             return msg;
@@ -90,12 +90,12 @@ namespace Server
             {
                 EconomyResourceMessage = new()
                 {
-                    State = Transformation.EconomyResourceStateToProto(economyresource.ERstate),
+                    EconomyResourceState = Transformation.EconomyResourceStateToProto(economyresource.ERstate),
 
                     X = economyresource.Position.x,
                     Y = economyresource.Position.y,
 
-                    Progress = (int)economyresource.Progress,
+                    Process = (int)economyresource.HP,      //可能有问题
                 }
             };
             return msg;
@@ -107,8 +107,8 @@ namespace Server
             {
                 AdditionResourceMessage = new()
                 {
-                    Type = additionResource.AResourceType,
-                    State = additionResource.ARstate,
+                    AdditionResourceType = (AdditionResourceType)additionResource.AResourceType,
+                    AdditionResourceState = (Protobuf.AdditionResourceState)additionResource.ARstate,
 
                     X = additionResource.Position.x,
                     Y = additionResource.Position.y,
@@ -180,7 +180,7 @@ namespace Server
                     X = trap.Position.x,
                     Y = trap.Position.y,
 
-                    Hp = (int)trap.HP,
+                    //Hp = (int)trap.HP,            陷阱没有HP
 
                     TeamId = trap.TeamID,
                 }

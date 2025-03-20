@@ -14,11 +14,19 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\logic\proto\proto.csproj" />
-		<ProjectReference Include="..\..\..\installer\installer.csproj" />
 	</ItemGroup>
-    
-	
-	
+
+	<ItemGroup>
+		<!-- 使用正斜杠 / 确保跨平台兼容 -->
+		<Compile Include="..\..\..\installer\Data\ConfigFileData.cs" Link="Interact/ConfigFileData.cs">
+			<!-- 添加路径存在性检查 -->
+			<Error Condition="!Exists('../../../installer/Data/ConfigFileData.cs')" />
+		</Compile>
+
+		<Compile Include="..\..\..\installer/Model/Logger.cs" Link="Interact/Logger.cs">
+			<Error Condition="!Exists('../../installer/Model/Logger.cs')" />
+		</Compile>
+	</ItemGroup>
 	
 	<ItemGroup>
     <None Remove="Assets\eesast_logo_32x32.png" />
@@ -43,5 +51,9 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Utili\" />
   </ItemGroup>
 </Project>

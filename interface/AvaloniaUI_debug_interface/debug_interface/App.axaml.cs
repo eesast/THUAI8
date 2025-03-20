@@ -14,29 +14,6 @@ namespace debug_interface
     /// </summary>
     public partial class App : Application
     {
-        //GPT GENERATED
-        //public override void Initialize()
-        //{
-        //    AvaloniaXamlLoader.Load(this);
-        //}
-
-        //public override void OnFrameworkInitializationCompleted()
-        //{
-        //    if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
-        //    {
-        //        // 创建主窗口的ViewModel实例
-        //        var mainWindowViewModel = new MainWindowViewModel();
-
-        //        // 设置主窗口及其数据上下文
-        //        desktop.MainWindow = new MainWindow
-        //        {
-        //            DataContext = mainWindowViewModel
-        //        };
-        //    }
-
-        //    base.OnFrameworkInitializationCompleted();
-        //}
-
 
         public override void Initialize()
         {

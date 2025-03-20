@@ -97,7 +97,7 @@ public class Character : Movable, ICharacter
     {
         if (IsRemoved)
             return true;
-        if (targetObj.Type == GameObjType.Character
+        if (targetObj.Type == GameObjType.CHARACTER
          && XY.DistanceCeil3(targetObj.Position, Position)
             < Radius + targetObj.Radius - GameData.AdjustLength)
             return true;
@@ -229,7 +229,7 @@ public class Character : Movable, ICharacter
         HP.SetVToMaxV();
     }
     public Character(int radius, CharacterType type, MoneyPool pool) :
-        base(GameData.PosNotInGame, radius, GameObjType.Character)
+        base(GameData.PosNotInGame, radius, GameObjType.CHARACTER)
     {
         CanMove.SetROri(false);
         IsRemoved.SetROri(true);
