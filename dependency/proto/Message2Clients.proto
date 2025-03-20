@@ -41,7 +41,8 @@ message MessageOfCharacter
     
     int32 hp = 17; 
 
-    EquipmentType equipment = 18;
+   int64 shield = 18;
+   int64 shoes = 19;
     // EquipmentType health_potion_equipment = ;
     // EquipmentType shild_equipment =;
     // EquipmentType speed_shoes_equipment =;
@@ -105,6 +106,7 @@ message MessageOfEconomyResource
     int32 process = 5; // 采集进度 等价于血量
 
     int32 id = 6;
+
 }
 
 message MessageOfAdditionResource
