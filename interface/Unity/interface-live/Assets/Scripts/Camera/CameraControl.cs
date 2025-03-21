@@ -46,9 +46,9 @@ public class CameraControl : MonoBehaviour
         if (mousePos.x > 0 && mousePos.x < Screen.width && mousePos.y > 0 && mousePos.y < Screen.height)
         {
             if (Camera.main.ScreenToWorldPoint(mousePos).x > -1 &&
-            Camera.main.ScreenToWorldPoint(mousePos).x < 50 &&
-            Camera.main.ScreenToWorldPoint(mousePos).y > -1 &&
-            Camera.main.ScreenToWorldPoint(mousePos).y < 50)
+                Camera.main.ScreenToWorldPoint(mousePos).x < 50 &&
+                Camera.main.ScreenToWorldPoint(mousePos).y > -1 &&
+                Camera.main.ScreenToWorldPoint(mousePos).y < 50)
             {
                 if (!sideBarRect || (sideBarRect && !RectTransformUtility.RectangleContainsScreenPoint(sideBarRect, Input.mousePosition, Camera.main)))
                 {

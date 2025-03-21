@@ -2,31 +2,22 @@ using System;
 using Protobuf;
 using UnityEngine;
 using TMPro;
+using Unity.Collections;
 
 [RequireComponent(typeof(Animator))]
 public class CharacterBase : MonoBehaviour
 {
     //public long ID;
     public CharacterType characterType;
-    public CharacterState State => CoreParam.characters[Id].CharacterState;
-    public PlayerTeam TeamId => characterType switch
+    public CharacterState ActiveState => CoreParam.characters[Id].CharacterState1;
+    public CharacterState PassiveState => CoreParam.characters[Id].CharacterState2;
+    public PlayerTeam TeamId => (int)characterType switch
     {
-        CharacterType.Camp1Character1 => PlayerTeam.BuddhistsTeam,
-        CharacterType.Camp1Character2 => PlayerTeam.BuddhistsTeam,
-        CharacterType.Camp1Character3 => PlayerTeam.BuddhistsTeam,
-        CharacterType.Camp1Character4 => PlayerTeam.BuddhistsTeam,
-        CharacterType.Camp1Character5 => PlayerTeam.BuddhistsTeam,
-        CharacterType.Camp1Character6 => PlayerTeam.BuddhistsTeam,
-
-        CharacterType.Camp2Character1 => PlayerTeam.MonstersTeam,
-        CharacterType.Camp2Character2 => PlayerTeam.MonstersTeam,
-        CharacterType.Camp2Character3 => PlayerTeam.MonstersTeam,
-        CharacterType.Camp2Character4 => PlayerTeam.MonstersTeam,
-        CharacterType.Camp2Character5 => PlayerTeam.MonstersTeam,
-        CharacterType.Camp2Character6 => PlayerTeam.MonstersTeam,
-
+        var x when x >= 1 && x <= 6 => PlayerTeam.BuddhistsTeam,
+        var x when x >= 7 && x <= 12 => PlayerTeam.MonstersTeam,
         _ => PlayerTeam.NullTeam
     };
+    bool Deceased => CurrentHp <= 0 || ActiveState == CharacterState.Deceased;
 
     public long Id => ((int)TeamId - 1) * 4 + ((int)characterType - 1);
     public int CurrentHp => CoreParam.characters[Id].Hp;
@@ -53,7 +44,7 @@ public class CharacterBase : MonoBehaviour
     void Update()
     {
         UpdateHpBar();
-        switch (State)
+        switch (ActiveState)
         {
             case CharacterState.Idle:
                 animator.SetBool("Moving", false);
@@ -62,12 +53,18 @@ public class CharacterBase : MonoBehaviour
                 animator.SetBool("Moving", true);
                 break;
             case CharacterState.Attacking:
+            case CharacterState.Harvesting:
                 animator.SetTrigger("Attack");
                 break;
+            case CharacterState.SkillCasting:
+                animator.SetTrigger("CastSkill");
+                break;
         }
-        if (CurrentHp <= 0)
+        if (Deceased != animator.GetBool("Deceased"))
         {
-            animator.SetBool("Ceased", false);
+            animator.SetBool("Deceased", Deceased);
+            if (Deceased)
+                animator.SetTrigger("Die");
         }
     }
 }
