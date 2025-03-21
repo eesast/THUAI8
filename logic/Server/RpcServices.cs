@@ -50,7 +50,7 @@ namespace Server
         public override async Task AddCharacter(CharacterMsg request, IServerStreamWriter<MessageToClient> responseStream, ServerCallContext context)
         {
 #if !DEBUG
-            GameServerLogging.logger.ConsoleLog($"AddPlayer: Player {request.PlayerId} from Team {request.TeamId}");
+            GameServerLogging.logger.ConsoleLog($"AddPlayer: Player {request.CharacterId} from Team {request.TeamId}");
 #endif
             if (request.CharacterId >= spectatorMinPlayerID && options.NotAllowSpectator == false)
             {
