@@ -46,7 +46,7 @@ namespace Server
         public override int[] GetMoney() => [];
         public override int[] GetScore() => FinalScore;
 
-        public override async Task AddPlayer(CharacterMsg request,
+        public override async Task AddCharacter(CharacterMsg request,
                                              IServerStreamWriter<MessageToClient> responseStream,
                                              ServerCallContext context)
         {
@@ -192,8 +192,8 @@ namespace Server
                             if (msg.GameState == GameState.GameEnd)
                             {
                                 PlaybackServerLogging.logger.ConsoleLog("Game over normally!");
-                                finalScore[0] = msg.AllMessage.buddhists_team_score;
-                                finalScore[1] = msg.AllMessage.monsters_team_score;
+                                finalScore[0] = msg.AllMessage.BuddhistsTeamScore;
+                                finalScore[1] = msg.AllMessage.MonstersTeamScore;
                                 goto endParse;
                             }
                         }
@@ -264,8 +264,8 @@ namespace Server
                             {
                                 PlaybackServerLogging.logger.ConsoleLog("Game over normally!");
                                 IsGaming = false;
-                                finalScore[0] = msg.AllMessage.buddhists_team_score;
-                                finalScore[1] = msg.AllMessage.monsters_team_score;
+                                finalScore[0] = msg.AllMessage.BuddhistsTeamScore;
+                                finalScore[1] = msg.AllMessage.MonstersTeamScore;
                                 ReportGame(msg);
                                 return false;
                             }

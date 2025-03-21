@@ -312,7 +312,7 @@ namespace Server
         private bool PlayerDeceased(int playerID)
         {
             return game.GameMap.GameObjDict[GameObjType.CHARACTER].Cast<Character>()?.Find(
-                character => character.PlayerID == playerID && character.CharacterState == CharacterStateType.Deceased
+                character => character.PlayerID == playerID && character.CharacterState2 == Preparation.Utility.CharacterState.DECEASED
                 ) != null;
         }
 
@@ -355,11 +355,11 @@ namespace Server
                 GameTime = time
             };
             int[] score = GetScore();
-            msg.buddhists_team_score = score[0];
-            msg.monsters_team_score = score[1];
+            msg.BuddhistsTeamScore = score[0];
+            msg.MonstersTeamScore = score[1];
             int[] economy = GetMoney();
-            msg.buddhists_team_economy = economy[0];
-            msg.monsters_team_economy = economy[1];
+            msg.BuddhistsTeamEconomy = economy[0];
+            msg.MonstersTeamEconomy = economy[1];
             // msg.RedHomeHp = (int)game.TeamList[0].Home.HP;
             // msg.BlueHomeHp = (int)game.TeamList[1].Home.HP;
             return msg;
