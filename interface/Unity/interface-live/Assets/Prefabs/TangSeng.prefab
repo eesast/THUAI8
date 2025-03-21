@@ -283,8 +283,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1077253204434213898}
   - {fileID: 8828305270359486492}
@@ -325,8 +325,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterType: 1
-  characterState: 0
-  currentHp: 0
 --- !u!1001 &78459502186465116
 PrefabInstance:
   m_ObjectHideFlags: 0

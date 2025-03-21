@@ -8,7 +8,7 @@ public class CharacterBase : MonoBehaviour
 {
     //public long ID;
     public CharacterType characterType;
-    public CharacterState characterState;
+    public CharacterState State => CoreParam.characters[Id].CharacterState;
     public PlayerTeam TeamId => characterType switch
     {
         CharacterType.Camp1Character1 => PlayerTeam.BuddhistsTeam,
@@ -44,7 +44,7 @@ public class CharacterBase : MonoBehaviour
     void Start()
     {
         hpBar = transform.Find("HpBar").Find("HpBarFillWrapper");
-        hpText = transform.GetComponentInChildren<TextMeshPro>();
+        hpText = transform.Find("HpBar").Find("HpBarText").GetComponent<TextMeshPro>();
         animator = GetComponent<Animator>();
 
         UpdateHpBar();
@@ -53,7 +53,7 @@ public class CharacterBase : MonoBehaviour
     void Update()
     {
         UpdateHpBar();
-        switch (characterState)
+        switch (State)
         {
             case CharacterState.Idle:
                 animator.SetBool("Moving", false);
@@ -67,7 +67,7 @@ public class CharacterBase : MonoBehaviour
         }
         if (CurrentHp <= 0)
         {
-            animator.SetTrigger("Die");
+            animator.SetBool("Ceased", false);
         }
     }
 }
