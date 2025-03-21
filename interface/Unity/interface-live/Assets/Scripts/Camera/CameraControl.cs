@@ -9,10 +9,12 @@ public class CameraControl : MonoBehaviour
     public RectTransform sideBarRect;
     public float currentScaleTime = 0.5f, basicCameraScale, currentScale;
     public float cameraSpeedMax = 1.5f, cameraSpeed;
+    private new Camera camera;
     void Start()
     {
+        camera = GetComponent<Camera>();
         currentScale = cameraScaleCurve.Evaluate(currentScaleTime) * basicCameraScale;
-        Camera.main.orthographicSize = currentScale;
+        camera.orthographicSize = currentScale;
     }
 
     void Update()
@@ -45,33 +47,33 @@ public class CameraControl : MonoBehaviour
         }
         if (mousePos.x > 0 && mousePos.x < Screen.width && mousePos.y > 0 && mousePos.y < Screen.height)
         {
-            if (Camera.main.ScreenToWorldPoint(mousePos).x > -1 &&
-                Camera.main.ScreenToWorldPoint(mousePos).x < 50 &&
-                Camera.main.ScreenToWorldPoint(mousePos).y > -1 &&
-                Camera.main.ScreenToWorldPoint(mousePos).y < 50)
+            if (camera.ScreenToWorldPoint(mousePos).x > -1 &&
+                camera.ScreenToWorldPoint(mousePos).x < 50 &&
+                camera.ScreenToWorldPoint(mousePos).y > -1 &&
+                camera.ScreenToWorldPoint(mousePos).y < 50)
             {
-                if (!sideBarRect || (sideBarRect && !RectTransformUtility.RectangleContainsScreenPoint(sideBarRect, Input.mousePosition, Camera.main)))
+                if (!sideBarRect || (sideBarRect && !RectTransformUtility.RectangleContainsScreenPoint(sideBarRect, Input.mousePosition, camera)))
                 {
                     if (Input.mouseScrollDelta.y < 0)
                     {
                         currentScaleTime = Mathf.Min(1f, currentScaleTime + 0.02f);
 
                         currentScale = cameraScaleCurve.Evaluate(currentScaleTime) * basicCameraScale;
-                        Camera.main.transform.position = Camera.main.ScreenToWorldPoint(mousePos) +
-                            currentScale / Camera.main.orthographicSize * (Camera.main.transform.position - Camera.main.ScreenToWorldPoint(mousePos));
-                        Camera.main.orthographicSize = currentScale;
+                        camera.transform.position = camera.ScreenToWorldPoint(mousePos) +
+                            currentScale / camera.orthographicSize * (camera.transform.position - camera.ScreenToWorldPoint(mousePos));
+                        camera.orthographicSize = currentScale;
                     }
                     if (Input.mouseScrollDelta.y > 0)
                     {
                         currentScaleTime = Mathf.Max(0f, currentScaleTime - 0.02f);
                         currentScale = cameraScaleCurve.Evaluate(currentScaleTime) * basicCameraScale;
-                        Camera.main.transform.position = Camera.main.ScreenToWorldPoint(mousePos) +
-                            currentScale / Camera.main.orthographicSize * (Camera.main.transform.position - Camera.main.ScreenToWorldPoint(mousePos));
-                        Camera.main.orthographicSize = currentScale;
+                        camera.transform.position = camera.ScreenToWorldPoint(mousePos) +
+                            currentScale / camera.orthographicSize * (camera.transform.position - camera.ScreenToWorldPoint(mousePos));
+                        camera.orthographicSize = currentScale;
                     }
                 }
             }
         }
-        // Debug.Log(RectTransformUtility.RectangleContainsScreenPoint(sideBarRect, Input.mousePosition, Camera.main));
+        // Debug.Log(RectTransformUtility.RectangleContainsScreenPoint(sideBarRect, Input.mousePosition, camera));
     }
 }

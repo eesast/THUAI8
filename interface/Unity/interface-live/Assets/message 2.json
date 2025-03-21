@@ -39,6 +39,7 @@
                 "playerId": 2,
                 "guid": 851,
                 "characterState1": 4,
+                "characterState2": 8,
                 "characterType": 2,
                 "viewRange": 8000,
                 "atk": 0,

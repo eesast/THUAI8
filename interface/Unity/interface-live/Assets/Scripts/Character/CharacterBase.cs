@@ -25,6 +25,7 @@ public class CharacterBase : MonoBehaviour
     private Transform hpBar;
     private TextMeshPro hpText;
     private Animator animator;
+    private Transform stateIcons;
 
     void UpdateHpBar()
     {
@@ -34,11 +35,20 @@ public class CharacterBase : MonoBehaviour
 
     void Start()
     {
-        hpBar = transform.Find("HpBar").Find("HpBarFillWrapper");
-        hpText = transform.Find("HpBar").Find("HpBarText").GetComponent<TextMeshPro>();
         animator = GetComponent<Animator>();
 
-        UpdateHpBar();
+        hpBar = transform.Find("HpBar").Find("HpBarFillWrapper");
+        hpText = transform.Find("HpBar").Find("HpBarText").GetComponent<TextMeshPro>();
+        try
+        {
+            UpdateHpBar();
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e);
+        }
+
+        stateIcons = transform.Find("StateIcons");
     }
 
     void Update()
@@ -65,6 +75,12 @@ public class CharacterBase : MonoBehaviour
             animator.SetBool("Deceased", Deceased);
             if (Deceased)
                 animator.SetTrigger("Die");
+        }
+
+        if (PassiveState != CharacterState.NullCharacterState)
+        {
+            foreach (Transform icon in stateIcons)
+                icon.gameObject.SetActive(icon.name == PassiveState.ToString());
         }
     }
 }
