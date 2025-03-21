@@ -17,9 +17,9 @@ namespace Server
                 case GameObjType.CHARACTER:
                     return Character((Character)gameObj, time);
                 case GameObjType.ECONOMY_RESOURCE:
-                    return E_Resource((E_Resource)gameObj);
+                    return EconomyResource((E_Resource)gameObj);
                 case GameObjType.ADDITIONAL_RESOURCE:
-                    return A_Resource((A_Resource)gameObj);
+                    return AdditionResource((A_Resource)gameObj);
                 case GameObjType.CONSTRUCTION:
                     Construction construction = (Construction)gameObj;
                     if (construction.ConstructionType == Utility.ConstructionType.BARRACKS)
@@ -43,11 +43,31 @@ namespace Server
             };
             return objMsg;
         }
-
-        private static MessageOfObj? Character(Character player, long time)
+        private static MessageOfObj? Base(Base player, long time)
         {
             MessageOfObj msg = new()
             {
+                TeamMessage = new()
+                {
+                    TeamId = player.TeamID,
+                    PlayerId = player.PlayerID,
+                    Score = player.MoneyPool.Score,
+                    Energy = player.MoneyPool.Money,
+                }
+            };
+            return msg;
+        }
+
+        public static MessageOfObj? Auto(Base @base, long time)
+        {
+            return Base(@base, time);
+        }
+        private static MessageOfObj? Character(Character player, long time)
+        {
+            MessageOfCharacter a;
+            MessageOfObj msg = new()
+            {
+
                 CharacterMessage = new()
                 {
                     Guid = player.ID,
@@ -67,18 +87,18 @@ namespace Server
                     Speed = player.MoveSpeed,
                     ViewRange = player.ViewRange,
 
-                    Atk = player.AttackPower,
-                    AttackSize = player.AttackSize,
+                    Atk = (int)player.AttackPower,
+                    AttackSize = (int)player.AttackSize,
 
-                    SkillCD = player.SkillCD,
+                    SkillCd = player.skillCD,
 
                     EconomyDepletion = player.EconomyDepletion,
-                    KillScore = player.KillScore,
+                    KillScore = (int)player.GetCost(),
 
                     Hp = (int)player.HP,
 
-
-                    EquipmentType = player.EquipmentType,
+                    Shield = player.Shield,
+                    Shoes = player.Shoes,
                 }
             };
             return msg;
@@ -90,12 +110,12 @@ namespace Server
             {
                 EconomyResourceMessage = new()
                 {
-                    State = Transformation.EconomyResourceStateToProto(economyresource.ERstate),
+                    EconomyResourceState = Transformation.EconomyResourceStateToProto(economyresource.ERstate),
 
                     X = economyresource.Position.x,
                     Y = economyresource.Position.y,
 
-                    Progress = (int)economyresource.Progress,
+                    Process = (int)economyresource.HP,      //����������
                 }
             };
             return msg;
@@ -107,8 +127,8 @@ namespace Server
             {
                 AdditionResourceMessage = new()
                 {
-                    Type = additionResource.AResourceType,
-                    State = additionResource.ARstate,
+                    AdditionResourceType = (AdditionResourceType)additionResource.AResourceType,
+                    AdditionResourceState = (Protobuf.AdditionResourceState)additionResource.ARstate,
 
                     X = additionResource.Position.x,
                     Y = additionResource.Position.y,
@@ -180,7 +200,7 @@ namespace Server
                     X = trap.Position.x,
                     Y = trap.Position.y,
 
-                    Hp = (int)trap.HP,
+                    //Hp = (int)trap.HP,            ����û��HP
 
                     TeamId = trap.TeamID,
                 }
