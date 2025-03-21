@@ -26,5 +26,5 @@ public class E_Resource(XY initPos)
                 return State;
         }
     }
-    public A_ResourceType AResourceType { get; }
+    public EconomyResourceType EResourceType { get; }
 }

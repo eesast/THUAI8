@@ -196,7 +196,7 @@ namespace GameClass.GameObj.Map
         {
             GameObjDict[gameObj.Type].Add(gameObj);
         }
-        public Map(MapStruct mapResource, A_ResourceType type = A_ResourceType.NULL)
+        public Map(MapStruct mapResource, A_ResourceType Atype = A_ResourceType.NULL)
         {
             gameObjDict = [];
             foreach (GameObjType idx in Enum.GetValues(typeof(GameObjType)))
@@ -220,10 +220,13 @@ namespace GameClass.GameObj.Map
                             Add(new Bush(GameData.GetCellCenterPos(i, j)));
                             break;
                         case PlaceType.ADDITION_RESOURCE:
-                            Add(new A_Resource(GameData.AResourceRadius, type, GameData.GetCellCenterPos(i, j)));
+                            Add(new A_Resource(GameData.AResourceRadius, Atype, GameData.GetCellCenterPos(i, j)));
                             break;
                         case PlaceType.CONSTRUCTION:
                             Add(new Construction(GameData.GetCellCenterPos(i, j)));
+                            break;
+                        case PlaceType.ECONOMY_RESOURCE:
+                            Add(new E_Resource(GameData.GetCellCenterPos(i, j)));
                             break;
                     }
                 }
