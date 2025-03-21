@@ -4,7 +4,7 @@ using Preparation.Utility.Value.SafeValue.Atomic;
 
 namespace GameClass.GameObj.Areas;
 
-public class Cage(XY initPos)//cageï¿½Ş·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù£ï¿½ï¿½ï¿½Ë²ï¿½ï¿½ï¿½constructionÎªï¿½ï¿½ï¿½ï¿½
+public class Cage(XY initPos)//cageÎŞ·¨±»¹¥»÷Ïú»Ù£¬Òò´Ë²»ÒÔconstructionÎª»ùÀà
     : Immovable(initPos, int.MaxValue, GameObjType.TRAP)
 {
     public override bool IsRigid(bool args = false) => true;
