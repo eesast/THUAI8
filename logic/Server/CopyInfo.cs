@@ -67,7 +67,7 @@ namespace Server
             MessageOfCharacter a;
             MessageOfObj msg = new()
             {
-                
+
                 CharacterMessage = new()
                 {
                     Guid = player.ID,
@@ -115,7 +115,7 @@ namespace Server
                     X = economyresource.Position.x,
                     Y = economyresource.Position.y,
 
-                    Process = (int)economyresource.HP,      //¿ÉÄÜÓÐÎÊÌâ
+                    Process = (int)economyresource.HP,      //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 }
             };
             return msg;
@@ -200,7 +200,7 @@ namespace Server
                     X = trap.Position.x,
                     Y = trap.Position.y,
 
-                    //Hp = (int)trap.HP,            ÏÝÚåÃ»ÓÐHP
+                    //Hp = (int)trap.HP,            ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½HP
 
                     TeamId = trap.TeamID,
                 }
