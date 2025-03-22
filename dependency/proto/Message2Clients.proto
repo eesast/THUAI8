@@ -4,6 +4,13 @@ package protobuf;
 
 import "MessageType.proto";
 
+message MessageOfMonkeySkill
+{
+    int64 team_id = 1;
+    int64 player_id = 2;
+    double angle = 3;
+}
+
 message MessageOfCharacter
 {
     int64 guid = 1;
