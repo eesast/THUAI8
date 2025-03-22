@@ -9,23 +9,19 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace Protobuf
-{
+namespace Protobuf {
 
   /// <summary>Holder for reflection information generated from MessageType.proto</summary>
-  public static partial class MessageTypeReflection
-  {
+  public static partial class MessageTypeReflection {
 
     #region Descriptor
     /// <summary>File descriptor for MessageType.proto</summary>
-    public static pbr::FileDescriptor Descriptor
-    {
+    public static pbr::FileDescriptor Descriptor {
       get { return descriptor; }
     }
     private static pbr::FileDescriptor descriptor;
 
-    static MessageTypeReflection()
-    {
+    static MessageTypeReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChFNZXNzYWdlVHlwZS5wcm90bxIIcHJvdG9idWYqUAoJR2FtZVN0YXRlEhMK",
@@ -35,63 +31,56 @@ namespace Protobuf
             "EggKBEJVU0gQBBIUChBFQ09OT01ZX1JFU09VUkNFEAUSFQoRQURESVRJT05f",
             "UkVTT1VSQ0UQBhIQCgxDT05TVFJVQ1RJT04QBxIICgRUUkFQEAgqOAoJU2hh",
             "cGVUeXBlEhMKD05VTExfU0hBUEVfVFlQRRAAEgoKBkNJUkNMRRABEgoKBlNR",
-            "VUFSRRACKrACCg1DaGFyYWN0ZXJUeXBlEhcKE05VTExfQ0hBUkFDVEVSX1RZ",
-            "UEUQABIUChBDQU1QMV9DSEFSQUNURVIxEAESFAoQQ0FNUDFfQ0hBUkFDVEVS",
-            "MhACEhQKEENBTVAxX0NIQVJBQ1RFUjMQAxIUChBDQU1QMV9DSEFSQUNURVI0",
-            "EAQSFAoQQ0FNUDFfQ0hBUkFDVEVSNRAFEhQKEENBTVAxX0NIQVJBQ1RFUjYQ",
-            "BhIUChBDQU1QMl9DSEFSQUNURVIxEAcSFAoQQ0FNUDJfQ0hBUkFDVEVSMhAI",
-            "EhQKEENBTVAyX0NIQVJBQ1RFUjMQCRIUChBDQU1QMl9DSEFSQUNURVI0EAoS",
-            "FAoQQ0FNUDJfQ0hBUkFDVEVSNRALEhQKEENBTVAyX0NIQVJBQ1RFUjYQDCrj",
-            "AQoOQ2hhcmFjdGVyU3RhdGUSGAoUTlVMTF9DSEFSQUNURVJfU1RBVEUQABII",
-            "CgRJRExFEAESDgoKSEFSVkVTVElORxACEg0KCUFUVEFDS0lORxADEhEKDVNL",
-            "SUxMX0NBU1RJTkcQBBIQCgxDT05TVFJVQ1RJTkcQBRIKCgZNT1ZJTkcQBhIJ",
-            "CgVCTElORBAHEhAKDEtOT0NLRURfQkFDSxAIEgsKB1NUVU5ORUQQCRINCglJ",
-            "TlZJU0lCTEUQChILCgdIRUFMSU5HEAsSCwoHQkVSU0VSSxAMEgoKBkJVUk5F",
-            "RBANKooBChNFY29ub215UmVzb3VyY2VUeXBlEh4KGk5VTExfRUNPTk9NWV9S",
-            "RVNPVVJDRV9UWVBFEAASGgoWU01BTExfRUNPTk9NWV9SRVNPVVJDRRABEhsK",
-            "F01FRElVTV9FQ09OT01ZX1JFU09VUkNFEAISGgoWTEFSR0VfRUNPTk9NWV9S",
-            "RVNPVVJDRRADKp0CChRBZGRpdGlvblJlc291cmNlVHlwZRIfChtOVUxMX0FE",
-            "RElUSU9OX1JFU09VUkNFX1RZUEUQABIcChhTTUFMTF9BRERJVElPTl9SRVNP",
-            "VVJDRTEQARIdChlNRURJVU1fQURESVRJT05fUkVTT1VSQ0UxEAISHAoYTEFS",
-            "R0VfQURESVRJT05fUkVTT1VSQ0UxEAMSHAoYU01BTExfQURESVRJT05fUkVT",
-            "T1VSQ0UyEAQSHQoZTUVESVVNX0FERElUSU9OX1JFU09VUkNFMhAFEhwKGExB",
-            "UkdFX0FERElUSU9OX1JFU09VUkNFMhAGEhYKEkFERElUSU9OX1JFU09VUkNF",
-            "MxAHEhYKEkFERElUSU9OX1JFU09VUkNFNBAIKmwKFEVjb25vbXlSZXNvdXJj",
-            "ZVN0YXRlEh8KG05VTExfRUNPTk9NWV9SRVNPVVJDRV9TVFNURRAAEg8KC0hB",
-            "UlZFU1RBQkxFEAESEwoPQkVJTkdfSEFSVkVTVEVEEAISDQoJSEFSVkVTVEVE",
-            "EAMqZQoVQWRkaXRpb25SZXNvdXJjZVN0YXRlEiAKHE5VTExfQURESVRJT05f",
-            "UkVTT1VSQ0VfU1RBVEUQABIMCghCRUFUQUJMRRABEhAKDEJFSU5HX0JFQVRF",
-            "ThACEgoKBkJFQVRFThADKoECCg1FcXVpcG1lbnRUeXBlEhcKE05VTExfRVFV",
-            "SVBNRU5UX1RZUEUQABIXChNTTUFMTF9IRUFMVEhfUE9USU9OEAESGAoUTUVE",
-            "SVVNX0hFQUxUSF9QT1RJT04QAhIXChNMQVJHRV9IRUFMVEhfUE9USU9OEAMS",
-            "EAoMU01BTExfU0hJRUxEEAQSEQoNTUVESVVNX1NISUVMRBAFEhAKDExBUkdF",
-            "X1NISUVMRBAGEg4KClNQRUVEQk9PVFMQBxIXChNQVVJJRklDQVRJT05fUE9U",
-            "SU9OEAgSFwoTSU5WSVNJQklMSVRZX1BPVElPThAJEhIKDkJFUlNFUktfUE9U",
-            "SU9OEAoqUgoQQ29uc3RydWN0aW9uVHlwZRIaChZOVUxMX0NPTlNUUlVDVElP",
-            "Tl9UWVBFEAASDAoIQkFSUkFDS1MQARIKCgZTUFJJTkcQAhIICgRGQVJNEAMq",
-            "MgoIVHJhcFR5cGUSEgoOTlVMTF9UUkFQX1RZUEUQABIICgRIT0xFEAESCAoE",
-            "Q0FHRRACKjQKCE5ld3NUeXBlEhIKDk5VTExfTkVXU19UWVBFEAASCAoEVEVY",
-            "VBABEgoKBkJJTkFSWRACKkIKClBsYXllclRlYW0SDQoJTlVMTF9URUFNEAAS",
-            "EgoOQlVEREhJU1RTX1RFQU0QARIRCg1NT05TVEVSU19URUFNEAJiBnByb3Rv",
-            "Mw=="));
+            "VUFSRRACKs8BCg1DaGFyYWN0ZXJUeXBlEhcKE05VTExfQ0hBUkFDVEVSX1RZ",
+            "UEUQABIMCghUYW5nU2VuZxABEg0KCVN1bld1a29uZxACEgwKCFpodUJhamll",
+            "EAMSDQoJU2hhV3VqaW5nEAQSDQoJQmFpTG9uZ21hEAUSCgoGTW9ua2lkEAYS",
+            "CwoHSml1TGluZxAHEg0KCUhvbmdIYWllchAIEg0KCU5pdU1vd2FuZxAJEgsK",
+            "B1RpZVNoYW4QChIOCgpaaGlaaHVqaW5nEAsSCAoEUGF3bhAMKvEBCg5DaGFy",
+            "YWN0ZXJTdGF0ZRIYChROVUxMX0NIQVJBQ1RFUl9TVEFURRAAEggKBElETEUQ",
+            "ARIOCgpIQVJWRVNUSU5HEAISDQoJQVRUQUNLSU5HEAMSEQoNU0tJTExfQ0FT",
+            "VElORxAEEhAKDENPTlNUUlVDVElORxAFEgoKBk1PVklORxAGEgkKBUJMSU5E",
+            "EAcSEAoMS05PQ0tFRF9CQUNLEAgSCwoHU1RVTk5FRBAJEg0KCUlOVklTSUJM",
+            "RRAKEgsKB0hFQUxJTkcQCxILCgdCRVJTRVJLEAwSCgoGQlVSTkVEEA0SDAoI",
+            "REVDRUFTRUQQDiqKAQoTRWNvbm9teVJlc291cmNlVHlwZRIeChpOVUxMX0VD",
+            "T05PTVlfUkVTT1VSQ0VfVFlQRRAAEhoKFlNNQUxMX0VDT05PTVlfUkVTT1VS",
+            "Q0UQARIbChdNRURJVU1fRUNPTk9NWV9SRVNPVVJDRRACEhoKFkxBUkdFX0VD",
+            "T05PTVlfUkVTT1VSQ0UQAyq2AQoUQWRkaXRpb25SZXNvdXJjZVR5cGUSHwob",
+            "TlVMTF9BRERJVElPTl9SRVNPVVJDRV9UWVBFEAASDgoKTElGRV9QT09MMRAB",
+            "Eg4KCkxJRkVfUE9PTDIQAhIOCgpMSUZFX1BPT0wzEAMSDgoKQ1JBWllfTUFO",
+            "MRAEEg4KCkNSQVpZX01BTjIQBRIOCgpDUkFaWV9NQU4zEAYSDgoKUVVJQ0tf",
+            "U1RFUBAHEg0KCVdJREVfVklFVxAIKmwKFEVjb25vbXlSZXNvdXJjZVN0YXRl",
+            "Eh8KG05VTExfRUNPTk9NWV9SRVNPVVJDRV9TVFNURRAAEg8KC0hBUlZFU1RB",
+            "QkxFEAESEwoPQkVJTkdfSEFSVkVTVEVEEAISDQoJSEFSVkVTVEVEEAMqZQoV",
+            "QWRkaXRpb25SZXNvdXJjZVN0YXRlEiAKHE5VTExfQURESVRJT05fUkVTT1VS",
+            "Q0VfU1RBVEUQABIMCghCRUFUQUJMRRABEhAKDEJFSU5HX0JFQVRFThACEgoK",
+            "BkJFQVRFThADKoECCg1FcXVpcG1lbnRUeXBlEhcKE05VTExfRVFVSVBNRU5U",
+            "X1RZUEUQABIXChNTTUFMTF9IRUFMVEhfUE9USU9OEAESGAoUTUVESVVNX0hF",
+            "QUxUSF9QT1RJT04QAhIXChNMQVJHRV9IRUFMVEhfUE9USU9OEAMSEAoMU01B",
+            "TExfU0hJRUxEEAQSEQoNTUVESVVNX1NISUVMRBAFEhAKDExBUkdFX1NISUVM",
+            "RBAGEg4KClNQRUVEQk9PVFMQBxIXChNQVVJJRklDQVRJT05fUE9USU9OEAgS",
+            "FwoTSU5WSVNJQklMSVRZX1BPVElPThAJEhIKDkJFUlNFUktfUE9USU9OEAoq",
+            "UgoQQ29uc3RydWN0aW9uVHlwZRIaChZOVUxMX0NPTlNUUlVDVElPTl9UWVBF",
+            "EAASDAoIQkFSUkFDS1MQARIKCgZTUFJJTkcQAhIICgRGQVJNEAMqMgoIVHJh",
+            "cFR5cGUSEgoOTlVMTF9UUkFQX1RZUEUQABIICgRIT0xFEAESCAoEQ0FHRRAC",
+            "KjQKCE5ld3NUeXBlEhIKDk5VTExfTkVXU19UWVBFEAASCAoEVEVYVBABEgoK",
+            "BkJJTkFSWRACKkIKClBsYXllclRlYW0SDQoJTlVMTF9URUFNEAASEgoOQlVE",
+            "REhJU1RTX1RFQU0QARIRCg1NT05TVEVSU19URUFNEAJiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] { typeof(global::Protobuf.GameState), typeof(global::Protobuf.PlaceType), typeof(global::Protobuf.ShapeType), typeof(global::Protobuf.CharacterType), typeof(global::Protobuf.CharacterState), typeof(global::Protobuf.EconomyResourceType), typeof(global::Protobuf.AdditionResourceType), typeof(global::Protobuf.EconomyResourceState), typeof(global::Protobuf.AdditionResourceState), typeof(global::Protobuf.EquipmentType), typeof(global::Protobuf.ConstructionType), typeof(global::Protobuf.TrapType), typeof(global::Protobuf.NewsType), typeof(global::Protobuf.PlayerTeam), }, null, null));
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Protobuf.GameState), typeof(global::Protobuf.PlaceType), typeof(global::Protobuf.ShapeType), typeof(global::Protobuf.CharacterType), typeof(global::Protobuf.CharacterState), typeof(global::Protobuf.EconomyResourceType), typeof(global::Protobuf.AdditionResourceType), typeof(global::Protobuf.EconomyResourceState), typeof(global::Protobuf.AdditionResourceState), typeof(global::Protobuf.EquipmentType), typeof(global::Protobuf.ConstructionType), typeof(global::Protobuf.TrapType), typeof(global::Protobuf.NewsType), typeof(global::Protobuf.PlayerTeam), }, null, null));
     }
     #endregion
 
   }
   #region Enums
-  public enum GameState
-  {
+  public enum GameState {
     [pbr::OriginalName("NULL_GAME_STATE")] NullGameState = 0,
     [pbr::OriginalName("GAME_START")] GameStart = 1,
     [pbr::OriginalName("GAME_RUNNING")] GameRunning = 2,
     [pbr::OriginalName("GAME_END")] GameEnd = 3,
   }
 
-  public enum PlaceType
-  {
+  public enum PlaceType {
     [pbr::OriginalName("NULL_PLACE_TYPE")] NullPlaceType = 0,
     /// <summary>
     /// 出生点（地图左下与右上）
@@ -127,51 +116,42 @@ namespace Protobuf
     [pbr::OriginalName("TRAP")] Trap = 8,
   }
 
-  public enum ShapeType
-  {
+  public enum ShapeType {
     [pbr::OriginalName("NULL_SHAPE_TYPE")] NullShapeType = 0,
     [pbr::OriginalName("CIRCLE")] Circle = 1,
     [pbr::OriginalName("SQUARE")] Square = 2,
   }
 
-  public enum CharacterType
-  {
+  public enum CharacterType {
     [pbr::OriginalName("NULL_CHARACTER_TYPE")] NullCharacterType = 0,
     /// <summary>
     /// 取经团队阵营角色
     /// </summary>
-    [pbr::OriginalName("CAMP1_CHARACTER1")] Camp1Character1 = 1,
-    [pbr::OriginalName("CAMP1_CHARACTER2")] Camp1Character2 = 2,
-    [pbr::OriginalName("CAMP1_CHARACTER3")] Camp1Character3 = 3,
-    [pbr::OriginalName("CAMP1_CHARACTER4")] Camp1Character4 = 4,
-    [pbr::OriginalName("CAMP1_CHARACTER5")] Camp1Character5 = 5,
-    [pbr::OriginalName("CAMP1_CHARACTER6")] Camp1Character6 = 6,
+    [pbr::OriginalName("TangSeng")] TangSeng = 1,
+    [pbr::OriginalName("SunWukong")] SunWukong = 2,
+    [pbr::OriginalName("ZhuBajie")] ZhuBajie = 3,
+    [pbr::OriginalName("ShaWujing")] ShaWujing = 4,
+    [pbr::OriginalName("BaiLongma")] BaiLongma = 5,
+    [pbr::OriginalName("Monkid")] Monkid = 6,
     /// <summary>
     /// 妖怪团队阵营角色
     /// </summary>
-    [pbr::OriginalName("CAMP2_CHARACTER1")] Camp2Character1 = 7,
-    [pbr::OriginalName("CAMP2_CHARACTER2")] Camp2Character2 = 8,
-    [pbr::OriginalName("CAMP2_CHARACTER3")] Camp2Character3 = 9,
-    [pbr::OriginalName("CAMP2_CHARACTER4")] Camp2Character4 = 10,
-    [pbr::OriginalName("CAMP2_CHARACTER5")] Camp2Character5 = 11,
-    [pbr::OriginalName("CAMP2_CHARACTER6")] Camp2Character6 = 12,
+    [pbr::OriginalName("JiuLing")] JiuLing = 7,
+    [pbr::OriginalName("HongHaier")] HongHaier = 8,
+    [pbr::OriginalName("NiuMowang")] NiuMowang = 9,
+    [pbr::OriginalName("TieShan")] TieShan = 10,
+    [pbr::OriginalName("ZhiZhujing")] ZhiZhujing = 11,
+    [pbr::OriginalName("Pawn")] Pawn = 12,
   }
 
-  public enum CharacterState
-  {
+  public enum CharacterState {
     [pbr::OriginalName("NULL_CHARACTER_STATE")] NullCharacterState = 0,
-    /// <summary>
-    /// 主动状态
-    /// </summary>
     [pbr::OriginalName("IDLE")] Idle = 1,
     [pbr::OriginalName("HARVESTING")] Harvesting = 2,
     [pbr::OriginalName("ATTACKING")] Attacking = 3,
     [pbr::OriginalName("SKILL_CASTING")] SkillCasting = 4,
     [pbr::OriginalName("CONSTRUCTING")] Constructing = 5,
     [pbr::OriginalName("MOVING")] Moving = 6,
-    /// <summary>
-    /// 被动状态
-    /// </summary>
     [pbr::OriginalName("BLIND")] Blind = 7,
     [pbr::OriginalName("KNOCKED_BACK")] KnockedBack = 8,
     [pbr::OriginalName("STUNNED")] Stunned = 9,
@@ -179,49 +159,43 @@ namespace Protobuf
     [pbr::OriginalName("HEALING")] Healing = 11,
     [pbr::OriginalName("BERSERK")] Berserk = 12,
     [pbr::OriginalName("BURNED")] Burned = 13,
-    [pbr::OriginalName("BURNED")] Deceased = 14,
-
+    [pbr::OriginalName("DECEASED")] Deceased = 14,
   }
 
-  public enum EconomyResourceType
-  {
+  public enum EconomyResourceType {
     [pbr::OriginalName("NULL_ECONOMY_RESOURCE_TYPE")] NullEconomyResourceType = 0,
     [pbr::OriginalName("SMALL_ECONOMY_RESOURCE")] SmallEconomyResource = 1,
     [pbr::OriginalName("MEDIUM_ECONOMY_RESOURCE")] MediumEconomyResource = 2,
     [pbr::OriginalName("LARGE_ECONOMY_RESOURCE")] LargeEconomyResource = 3,
   }
 
-  public enum AdditionResourceType
-  {
-    [pbr::OriginalName("NULL_ADDITION_RESOURCE_TYPE")] NULL = 0,
-    [pbr::OriginalName("LIFE_POOL1")] LIFE_POOL1 = 1,
-    [pbr::OriginalName("LIFE_POOL2")] LIFE_POOL2 = 2,
-    [pbr::OriginalName("LIFE_POOL3")] LIFE_POOL3 = 3,
-    [pbr::OriginalName("CRAZY_MAN1")] CRAZY_MAN1 = 4,
-    [pbr::OriginalName("CRAZY_MAN2")] CRAZY_MAN2 = 5,
-    [pbr::OriginalName("CRAZY_MAN3")] CRAZY_MAN3 = 6,
-    [pbr::OriginalName("QUICK_STEP")] QUICK_STEP = 7,
-    [pbr::OriginalName("WIDE_VIEW")] WIDE_VIEW = 8,
+  public enum AdditionResourceType {
+    [pbr::OriginalName("NULL_ADDITION_RESOURCE_TYPE")] NullAdditionResourceType = 0,
+    [pbr::OriginalName("LIFE_POOL1")] LifePool1 = 1,
+    [pbr::OriginalName("LIFE_POOL2")] LifePool2 = 2,
+    [pbr::OriginalName("LIFE_POOL3")] LifePool3 = 3,
+    [pbr::OriginalName("CRAZY_MAN1")] CrazyMan1 = 4,
+    [pbr::OriginalName("CRAZY_MAN2")] CrazyMan2 = 5,
+    [pbr::OriginalName("CRAZY_MAN3")] CrazyMan3 = 6,
+    [pbr::OriginalName("QUICK_STEP")] QuickStep = 7,
+    [pbr::OriginalName("WIDE_VIEW")] WideView = 8,
   }
 
-  public enum EconomyResourceState
-  {
+  public enum EconomyResourceState {
     [pbr::OriginalName("NULL_ECONOMY_RESOURCE_STSTE")] NullEconomyResourceStste = 0,
     [pbr::OriginalName("HARVESTABLE")] Harvestable = 1,
     [pbr::OriginalName("BEING_HARVESTED")] BeingHarvested = 2,
     [pbr::OriginalName("HARVESTED")] Harvested = 3,
   }
 
-  public enum AdditionResourceState
-  {
+  public enum AdditionResourceState {
     [pbr::OriginalName("NULL_ADDITION_RESOURCE_STATE")] NullAdditionResourceState = 0,
     [pbr::OriginalName("BEATABLE")] Beatable = 1,
     [pbr::OriginalName("BEING_BEATEN")] BeingBeaten = 2,
     [pbr::OriginalName("BEATEN")] Beaten = 3,
   }
 
-  public enum EquipmentType
-  {
+  public enum EquipmentType {
     [pbr::OriginalName("NULL_EQUIPMENT_TYPE")] NullEquipmentType = 0,
     [pbr::OriginalName("SMALL_HEALTH_POTION")] SmallHealthPotion = 1,
     [pbr::OriginalName("MEDIUM_HEALTH_POTION")] MediumHealthPotion = 2,
@@ -235,16 +209,14 @@ namespace Protobuf
     [pbr::OriginalName("BERSERK_POTION")] BerserkPotion = 10,
   }
 
-  public enum ConstructionType
-  {
+  public enum ConstructionType {
     [pbr::OriginalName("NULL_CONSTRUCTION_TYPE")] NullConstructionType = 0,
     [pbr::OriginalName("BARRACKS")] Barracks = 1,
     [pbr::OriginalName("SPRING")] Spring = 2,
     [pbr::OriginalName("FARM")] Farm = 3,
   }
 
-  public enum TrapType
-  {
+  public enum TrapType {
     [pbr::OriginalName("NULL_TRAP_TYPE")] NullTrapType = 0,
     /// <summary>
     /// 坑洞陷阱
@@ -256,15 +228,13 @@ namespace Protobuf
     [pbr::OriginalName("CAGE")] Cage = 2,
   }
 
-  public enum NewsType
-  {
+  public enum NewsType {
     [pbr::OriginalName("NULL_NEWS_TYPE")] NullNewsType = 0,
     [pbr::OriginalName("TEXT")] Text = 1,
     [pbr::OriginalName("BINARY")] Binary = 2,
   }
 
-  public enum PlayerTeam
-  {
+  public enum PlayerTeam {
     [pbr::OriginalName("NULL_TEAM")] NullTeam = 0,
     [pbr::OriginalName("BUDDHISTS_TEAM")] BuddhistsTeam = 1,
     [pbr::OriginalName("MONSTERS_TEAM")] MonstersTeam = 2,
