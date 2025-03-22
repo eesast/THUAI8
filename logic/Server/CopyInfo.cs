@@ -199,8 +199,8 @@ namespace Server
                 {
                     TrapType = trap switch
                     {
-                        x when x is Trap => Protobuf.TrapType.Trap,
-                        x when x is Cage => Protobuf.TrapType.Cage,
+                        Trap _ => Protobuf.TrapType.Hole,
+                        Cage _ => Protobuf.TrapType.Cage,
                     },
 
                     X = trap.Position.x,
@@ -208,7 +208,11 @@ namespace Server
 
                     //Hp = (int)trap.HP,            ����û��HP
 
-                    TeamId = trap.TeamID,
+                    TeamId = trap switch
+                    {
+                        Trap t => t.TeamID,
+                        Cage c => c.TeamID,
+                    }
                 }
             };
             return msg;
