@@ -4,7 +4,7 @@ using Preparation.Utility.Value;
 namespace GameClass.GameObj.Areas;
 
 public class Bush(XY initPos)
-    : Immovable(initPos, int.MaxValue, GameObjType.NULL)
+    : Immovable(initPos, GameData.NumOfPosGridPerCell / 2, GameObjType.BUSH)
 {
     public override bool IsRigid(bool args = false) => false;
     public override ShapeType Shape => ShapeType.NULL_SHAPE_TYPE;
