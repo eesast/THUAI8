@@ -1,0 +1,9 @@
+root = true
+
+[*.cs]
+dotnet_diagnostic.CA1707.severity = error
+dotnet_code_quality.CA1707.api_surface = all
+dotnet_diagnostic.CA1712.severity = error
+dotnet_diagnostic.CA1715.severity = error
+
+dotnet_diagnostic.CA1801.severity = warning

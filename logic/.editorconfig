@@ -1,8 +1,0 @@
-root = true
-
-[*.cs]
-dotnet_code_quality.CA1707.severity = error
-dotnet_code_quality.CA1712.severity = error
-dotnet_code_quality.CA1715.severity = error
-
-dotnet_code_quality.CA1801.severity = warning
