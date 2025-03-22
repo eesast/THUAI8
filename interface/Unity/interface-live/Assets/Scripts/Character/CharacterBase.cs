@@ -2,31 +2,22 @@ using System;
 using Protobuf;
 using UnityEngine;
 using TMPro;
+using Unity.Collections;
 
 [RequireComponent(typeof(Animator))]
 public class CharacterBase : MonoBehaviour
 {
     //public long ID;
     public CharacterType characterType;
-    public CharacterState characterState;
-    public PlayerTeam TeamId => characterType switch
+    public CharacterState ActiveState => CoreParam.characters[Id].CharacterState1;
+    public CharacterState PassiveState => CoreParam.characters[Id].CharacterState2;
+    public PlayerTeam TeamId => (int)characterType switch
     {
-        CharacterType.Camp1Character1 => PlayerTeam.BuddhistsTeam,
-        CharacterType.Camp1Character2 => PlayerTeam.BuddhistsTeam,
-        CharacterType.Camp1Character3 => PlayerTeam.BuddhistsTeam,
-        CharacterType.Camp1Character4 => PlayerTeam.BuddhistsTeam,
-        CharacterType.Camp1Character5 => PlayerTeam.BuddhistsTeam,
-        CharacterType.Camp1Character6 => PlayerTeam.BuddhistsTeam,
-
-        CharacterType.Camp2Character1 => PlayerTeam.MonstersTeam,
-        CharacterType.Camp2Character2 => PlayerTeam.MonstersTeam,
-        CharacterType.Camp2Character3 => PlayerTeam.MonstersTeam,
-        CharacterType.Camp2Character4 => PlayerTeam.MonstersTeam,
-        CharacterType.Camp2Character5 => PlayerTeam.MonstersTeam,
-        CharacterType.Camp2Character6 => PlayerTeam.MonstersTeam,
-
+        var x when x >= 1 && x <= 6 => PlayerTeam.BuddhistsTeam,
+        var x when x >= 7 && x <= 12 => PlayerTeam.MonstersTeam,
         _ => PlayerTeam.NullTeam
     };
+    bool Deceased => CurrentHp <= 0 || ActiveState == CharacterState.Deceased;
 
     public long Id => ((int)TeamId - 1) * 4 + ((int)characterType - 1);
     public int CurrentHp => CoreParam.characters[Id].Hp;
@@ -34,6 +25,7 @@ public class CharacterBase : MonoBehaviour
     private Transform hpBar;
     private TextMeshPro hpText;
     private Animator animator;
+    private Transform stateIcons;
 
     void UpdateHpBar()
     {
@@ -43,17 +35,26 @@ public class CharacterBase : MonoBehaviour
 
     void Start()
     {
-        hpBar = transform.Find("HpBar").Find("HpBarFillWrapper");
-        hpText = transform.GetComponentInChildren<TextMeshPro>();
         animator = GetComponent<Animator>();
 
-        UpdateHpBar();
+        hpBar = transform.Find("HpBar").Find("HpBarFillWrapper");
+        hpText = transform.Find("HpBar").Find("HpBarText").GetComponent<TextMeshPro>();
+        try
+        {
+            UpdateHpBar();
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e);
+        }
+
+        stateIcons = transform.Find("StateIcons");
     }
 
     void Update()
     {
         UpdateHpBar();
-        switch (characterState)
+        switch (ActiveState)
         {
             case CharacterState.Idle:
                 animator.SetBool("Moving", false);
@@ -62,12 +63,24 @@ public class CharacterBase : MonoBehaviour
                 animator.SetBool("Moving", true);
                 break;
             case CharacterState.Attacking:
+            case CharacterState.Harvesting:
                 animator.SetTrigger("Attack");
                 break;
+            case CharacterState.SkillCasting:
+                animator.SetTrigger("CastSkill");
+                break;
         }
-        if (CurrentHp <= 0)
+        if (Deceased != animator.GetBool("Deceased"))
         {
-            animator.SetTrigger("Die");
+            animator.SetBool("Deceased", Deceased);
+            if (Deceased)
+                animator.SetTrigger("Die");
+        }
+
+        if (PassiveState != CharacterState.NullCharacterState)
+        {
+            foreach (Transform icon in stateIcons)
+                icon.gameObject.SetActive(icon.name == PassiveState.ToString());
         }
     }
 }
