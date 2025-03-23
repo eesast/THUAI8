@@ -31,31 +31,43 @@ message MessageOfCharacter
     double berserk_time = 17;
     CharacterState burned_state = 18;
     double burned_time = 19;
-    CharacterState deceased_state = 20; // 死亡状态不需要持续时间
+    CharacterState harm_cut_state = 20;
+    double harm_cut_time = 21;
+    CharacterState deceased_state = 22; // 死亡状态不需要持续时间
 
-    int32 x = 21;
-    int32 y = 22;
+    int32 x = 23;
+    int32 y = 24;
 
-    double facing_direction = 23;
-    int32 speed = 24;
-    int32 view_range = 25;
+    double facing_direction = 25;
+    int32 speed = 26;
+    int32 view_range = 27;
 
-    int32 common_attack = 26;
-    double common_attack_cd = 27;
-    int32 common_attack_range = 28;
+    int32 common_attack = 28;
+    double common_attack_cd = 29;
+    int32 common_attack_range = 30;
 
-    double skill_attack_cd = 29;
+    double skill_attack_cd = 31;
 
-    int32 economy_depletion = 30; // 经济资源消耗
-    int32 kill_score = 31; // 击杀得分
+    int32 economy_depletion = 32; // 经济资源消耗
+    int32 kill_score = 33; // 击杀得分
     
-    int32 hp = 32; 
+    int32 hp = 34; 
 
     // 其它装备都是直接消耗，不需要记录
-    EquipmentType shield_equipment = 33; // NULL_EQUIPMENT_TYPE表示没有装备
-    int32 shild = 34; // 护盾剩余
-    EquipmentType shoes_equipment = 35;
-    double shoes_time = 36;
+    EquipmentType shield_equipment = 35; // NULL_EQUIPMENT_TYPE表示没有装备
+    int32 shild = 36; // 护盾剩余
+    EquipmentType shoes_equipment = 37;
+    double shoes_time = 38;
+
+    // 加成资源的Buff
+    CharacterBuffType attack_buff = 39;
+    double attack_buff_time = 40;
+    CharacterBuffType defense_buff = 41;
+    double defense_buff_time = 42;
+    CharacterBuffType speed_buff = 43;
+    double speed_buff_time = 44;
+    CharacterBuffType vision_buff = 45;
+    double vision_buff_time = 46;
 }
 
 message MessageOfBarracks

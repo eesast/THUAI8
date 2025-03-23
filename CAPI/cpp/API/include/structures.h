@@ -232,6 +232,8 @@ namespace THUAI8
         double berserkTime;
         CharacterState burnedState;
         double burnedTime;
+        CharacterState harmCutState;
+        double harmCutTime;
         CharacterState deceasedState;
 
         int32_t x;
@@ -256,6 +258,15 @@ namespace THUAI8
         int32_t shild;
         EquipmentType shoesEquipment;
         double shoesTime;
+
+        CharacterBuffType attackBuff;
+        double attackBuffTime;
+        CharacterBuffType defenseBuff;
+        double defenseBuffTime;
+        CharacterBuffType speedBuff;
+        double speedBuffTime;
+        CharacterBuffType visionBuff;
+        double visionBuffTime;
     };
 
     struct Team
