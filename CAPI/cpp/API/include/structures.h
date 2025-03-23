@@ -214,16 +214,25 @@ namespace THUAI8
         int64_t teamID;
         int64_t playerID;
 
-        // 待定
         CharacterType characterType;
-        CharacterState characterState;
-        double damageRedunction;
-        bool burned;
-        Timer ? burnedTimer;  // 类型？
-        int32_t skikkShield;
-        CharacterBuffType attackBuff;
-        CharacterBuffType speedBuff;
-        CharacterBuffType visionBuff;
+
+        CharacterState characterActiveState;
+
+        CharacterState blindState;
+        double blindTime;
+        CharacterState knockbackState;
+        double knockbackTime;
+        CharacterState stunnedState;
+        double stunnedTime;
+        CharacterState invisibleState;
+        double invisibleTime;
+        CharacterState healingState;
+        double healingTime;
+        CharacterState berserkState;
+        double berserkTime;
+        CharacterState burnedState;
+        double burnedTime;
+        CharacterState deceasedState;
 
         int32_t x;
         int32_t y;
@@ -232,21 +241,21 @@ namespace THUAI8
         int32_t speed;
         int32_t viewRange;
 
-        int32_t skillCD;
+        int32_t commonAttack;
+        double commonAttackCD;
+        int32_t commonAttackRange;
+
+        double skillAttackCD;
 
         int32_t economyDepletion;
         int32_t killScore;
 
         int32_t hp;
 
-        // // 待定
-        // EquipmentType equipmentType;
-        // EquipmentType healthPotionEquipment;
-        // EquipmentType shildEquipment;
-        // EquipmentType speedShoesEquipment;
-        // EquipmentType purificationPotionEquipment;
-        // EquipmentType invisibilityPotionEquipment;
-        // EquipmentType berserkPotionEquipment;
+        EquipmentType shieldEquipment;
+        int32_t shild;
+        EquipmentType shoesEquipment;
+        double shoesTime;
     };
 
     struct Team
