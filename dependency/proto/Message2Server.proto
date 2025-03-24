@@ -52,7 +52,6 @@ message AttackMsg // 普通攻击
     int64 attacked_team = 5;
 }
 
-
 message CastMsg // 释放技能
 {
     int64 character_id = 1;
