@@ -30,7 +30,7 @@ namespace Server
                         return Farm(construction);
                     return null;
                 case GameObjType.TRAP:
-                    return Trap((Trap)gameObj);
+                    return Traps(gameObj);
                 default: return null;
             }
         }
@@ -191,18 +191,28 @@ namespace Server
             return msg;
         }
 
-        private static MessageOfObj Trap(Trap trap)
+        private static MessageOfObj Traps(GameObj trap)
         {
             MessageOfObj msg = new()
             {
                 TrapMessage = new()
                 {
+                    TrapType = trap switch
+                    {
+                        Trap _ => Protobuf.TrapType.Hole,
+                        Cage _ => Protobuf.TrapType.Cage,
+                    },
+
                     X = trap.Position.x,
                     Y = trap.Position.y,
 
                     //Hp = (int)trap.HP,            ����û��HP
 
-                    TeamId = trap.TeamID,
+                    TeamId = trap switch
+                    {
+                        Trap t => t.TeamID,
+                        Cage c => c.TeamID,
+                    }
                 }
             };
             return msg;
