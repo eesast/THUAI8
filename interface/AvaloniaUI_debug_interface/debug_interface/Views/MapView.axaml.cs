@@ -8,6 +8,9 @@ using debug_interface.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using Avalonia.Media.Imaging;
+using Avalonia.Platform;
+
 
 namespace debug_interface.Views
 {
@@ -15,7 +18,8 @@ namespace debug_interface.Views
     {
         private Canvas? characterCanvas;
         private ItemsControl? mapItemsControl;
-        private Dictionary<string, Ellipse> characterEllipses = new Dictionary<string, Ellipse>();
+        //private Dictionary<string, Ellipse> characterEllipses = new Dictionary<string, Ellipse>();
+        private Dictionary<string, Control> characterElements = new Dictionary<string, Control>();
         private MainWindowViewModel? viewModel;
 
         public MapView()
@@ -84,7 +88,7 @@ namespace debug_interface.Views
 
             // Clear existing characters
             characterCanvas.Children.Clear();
-            characterEllipses.Clear();
+            characterElements.Clear(); // 使用新的字典名称
 
             // Re-add all characters
             InitializeCharacters(viewModel.RedTeamCharacters, Colors.Red);
@@ -117,6 +121,7 @@ namespace debug_interface.Views
             }
         }
 
+
         private void InitializeCharacters<T>(System.Collections.ObjectModel.ObservableCollection<T> characters, Color color) where T : CharacterViewModel
         {
             if (characterCanvas == null) return;
@@ -126,44 +131,117 @@ namespace debug_interface.Views
                 var character = characters[i];
                 var id = color == Colors.Red ? $"red_{i}" : $"blue_{i}";
 
-                var ellipse = new Ellipse
+                // 创建一个Grid作为容器，包含边框和文本/图标
+                var grid = new Grid
                 {
-                    Width = 12,
-                    Height = 12,
-                    Fill = new SolidColorBrush(color),
-                    Stroke = new SolidColorBrush(Colors.White),
-                    StrokeThickness = 1,
+                    Width = 15,
+                    Height = 15,
+                };
+
+                // 创建带颜色边框的圆形
+                var borderellipse = new Ellipse
+                {
+                    Width = 15,
+                    Height = 15,
+                    Fill = new SolidColorBrush(Colors.White), // 白色背景
+                    Stroke = new SolidColorBrush(color), // 队伍颜色边框
+                    StrokeThickness = 2,
                     Tag = character.Name,
                 };
 
-                // Set tooltip
-                ToolTip.SetTip(ellipse, character.Name);
+                grid.Children.Add(borderellipse);
 
-                // Set initial position
-                Canvas.SetLeft(ellipse, character.PosY * 15);
-                Canvas.SetTop(ellipse, character.PosX * 15);
+                // ===== 选项1: 显示数字编号 =====
+                // 如果不需要数字编号，注释掉下面这段代码
+                //var textBlock = new TextBlock
+                //{
+                //    Text = (i + 1).ToString(), // 使用编号(从1开始)
+                //    HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
+                //    VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
+                //    FontSize = 8,
+                //    Foreground = new SolidColorBrush(color), // 文本颜色与队伍颜色一致
+                //    FontWeight = FontWeight.Bold,
+                //};
+                //grid.Children.Add(textBlock);
 
-                characterCanvas.Children.Add(ellipse);
-                characterEllipses[id] = ellipse;
 
-                // Set up property changed handlers
+                // ===== 选项2: 显示角色图标 =====
+                //如果不需要图标，注释掉下面这段代码
+                //获取角色类型或ID，用于选择对应的图标
+                //string iconKey = character.Type ?? $"Character{i + 1}"; // 根据需要更改，这里假设有Type属性
+
+                //try
+                //{
+                //    // 创建资源URI并加载图片
+                //    var uri = new Uri("avares://debug_interface/Assets/tangseng2.png");
+                //    using var stream = AssetLoader.Open(uri);
+                //    var originalBitmap = new Bitmap(stream);
+
+                //    // 创建用于显示图片的圆形
+                //    var imageEllipse = new Ellipse
+                //    {
+                //        Width = 15,
+                //        Height = 15,
+                //    };
+
+                //    // 使用ImageBrush填充圆形
+                //    var imageBrush = new ImageBrush
+                //    {
+                //        Source = originalBitmap, // 直接使用原始Bitmap
+                //        Stretch = Stretch.UniformToFill,
+                //        // 可以通过调整以下属性来"模拟"裁剪效果
+                //        // 例如，只显示图像的顶部
+                //        SourceRect = new RelativeRect(0, 0, 1, 0.7, RelativeUnit.Relative), // 只显示顶部1/3
+                //        AlignmentX = AlignmentX.Center,
+                //        AlignmentY = AlignmentY.Top
+                //    };
+                //    imageEllipse.Fill = imageBrush;
+
+                //    // 添加到Grid
+                //    grid.Children.Add(imageEllipse);
+                //}
+                //catch (Exception ex)
+                //{
+                //    Console.WriteLine($"图片加载异常: {ex.Message}");
+                //    Console.WriteLine($"堆栈跟踪: {ex.StackTrace}");
+                //    System.Diagnostics.Debug.WriteLine($"图片加载异常: {ex.Message}");
+                //    System.Diagnostics.Debug.WriteLine($"堆栈跟踪: {ex.StackTrace}");
+                //}
+                // ===== 选项2结束 =====
+
+                // 设置提示信息
+                ToolTip.SetTip(grid, character.Name);
+
+                // 设置初始位置
+                Canvas.SetLeft(grid, character.PosY * 15);
+                Canvas.SetTop(grid, character.PosX * 15);
+
+                characterCanvas.Children.Add(grid);
+
+                // 存储Grid到字典中
+                characterElements[id] = grid;
+
+                // 设置属性更改处理器
                 character.PropertyChanged += (s, e) =>
                 {
                     if (e.PropertyName == nameof(CharacterViewModel.PosX) || e.PropertyName == nameof(CharacterViewModel.PosY))
                     {
-                        UpdateCharacterPosition(ellipse, character.PosX, character.PosY);
+                        // 更新Grid的位置
+                        UpdateCharacterPosition(grid, character.PosX, character.PosY);
                     }
                 };
             }
         }
 
-        private void UpdateCharacterPosition(Ellipse ellipse, int x, int y)
+        // 修改位置更新方法，接受任何UIElement
+        private void UpdateCharacterPosition(Control element, int x, int y)
         {
-            // Convert grid position to pixels
-            Canvas.SetLeft(ellipse, y * 15);
-            Canvas.SetTop(ellipse, x * 15);
+            // 转换网格位置为像素
+            Canvas.SetLeft(element, y * 15);
+            Canvas.SetTop(element, x * 15);
         }
 
+       
         private void RedTeamCharacters_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
         {
             // When collection changes, refresh all characters for simplicity
