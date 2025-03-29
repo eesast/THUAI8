@@ -67,7 +67,7 @@ namespace Gaming
                 else
                 {
                     character.HP.SubPositiveV(subHP);
-                }
+                }         
                 if (character.HP == 0)
                 {
                     long score = 0;
@@ -83,7 +83,6 @@ namespace Gaming
                     Remove(character);
                 }
             }
-
             public void BeAttacked(Character character, long AP)//此部分适用于中立资源攻击及技能攻击
             {
                 long subHP = (long)(AP * (1 - character.HarmCut));
