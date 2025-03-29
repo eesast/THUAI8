@@ -51,7 +51,7 @@ public class Construction(XY initPos)
                         HP.SetMaxV(GameData.FarmHP);
                         constructSpeed = GameData.FarmConstructSpeed;
                         break;
-                    case ConstructionType.TRAP:
+                    case ConstructionType.HOLE:
                         constructSpeed = GameData.TrapConstructSpeed;
                         break;
                     case ConstructionType.CAGE:
@@ -74,7 +74,7 @@ public class Construction(XY initPos)
     public bool BeAttacked(Character character)
     {
         var previousActivated = IsActivated.Get();
-        if (constructionType == ConstructionType.TRAP || constructionType == ConstructionType.CAGE)
+        if (constructionType == ConstructionType.HOLE || constructionType == ConstructionType.CAGE)
         {
             return previousActivated;
         }
@@ -88,7 +88,7 @@ public class Construction(XY initPos)
     public bool BeAttacked(Character character, long AP)
     {
         var previousActivated = IsActivated.Get();
-        if (constructionType == ConstructionType.TRAP || constructionType == ConstructionType.CAGE)
+        if (constructionType == ConstructionType.HOLE || constructionType == ConstructionType.CAGE)
         {
             return previousActivated;
         }

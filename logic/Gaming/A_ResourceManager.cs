@@ -121,7 +121,14 @@ namespace Gaming
                             }
                             break;
                         case A_ResourceType.WIDE_VIEW:
-                            { score = 3000; }
+                            {
+                                score = 3000;
+                                foreach (var teamcharacter in characters)
+                                {
+                                    teamcharacter.CanSeeAll = true;
+                                    teamcharacter.WideViewTime = Environment.TickCount64;
+                                }
+                            }
                             break;
                     }
                     var team = game.TeamList[(int)character.TeamID.Get()];

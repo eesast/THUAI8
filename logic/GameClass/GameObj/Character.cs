@@ -44,6 +44,10 @@ public class Character : Movable, ICharacter
     public int CrazyManNum = 0;
     public int EconomyDepletion = 0;
     public bool IsShield = false;
+    public bool CanSeeAll = false;//视野之灵buff生效时为true
+    public long WideViewTime = long.MaxValue;//视野之灵计时器
+    public bool Purified = false;//净化药水效果，该效果下免疫控制
+    public long PurifiedTime = long.MaxValue;
     public void StartSkillCD()
     {
         skillCD = Environment.TickCount64;
@@ -167,23 +171,26 @@ public class Character : Movable, ICharacter
             if (nowState1 == value1 && nowState2 == value2) return -1;
             if (value2 == CharacterState.NULL_CHARACTER_STATE)
                 value2 = nowState2;
-            //此部分代码存在问题需要解决：当角色通过商店等获取新的被动状态时，原有的被动状态会因此被覆盖失效
-            switch (nowState2)
+            if (nowState2 == CharacterState.KNOCKED_BACK)
+                return -1;
+            switch (value1)
             {
-                case CharacterState.BLIND://致盲时无法攻击或使用技能
-                    if (value1 == CharacterState.ATTACKING || value1 == CharacterState.SKILL_CASTING)
+                case CharacterState.ATTACKING:
+                    if (nowState2 == CharacterState.BLIND || blind == true)
                         return -1;
                     else
                         return ChangeCharacterState(value1, value2, gameobj);
-                case CharacterState.STUNNED://被定身时无法移动
-                    if (value1 == CharacterState.MOVING)
+                case CharacterState.MOVING:
+                    if (nowState2 == CharacterState.STUNNED || stunned == true)
                         return -1;
                     else
                         return ChangeCharacterState(value1, value2, gameobj);
-                case CharacterState.KNOCKED_BACK://击退时无法进行任何操作
-                    return -1;
-                default:
-                    return ChangeCharacterState(value1, value2, gameobj);
+                case CharacterState.SKILL_CASTING:
+                    if (nowState2 == CharacterState.BLIND || blind == true)
+                        return -1;
+                    else
+                        return ChangeCharacterState(value1, value2, gameobj);
+                default: return ChangeCharacterState(value1, value2, gameobj);
             }
         }
     }
@@ -325,6 +332,13 @@ public class Character : Movable, ICharacter
                     AttackPower.AddPositiveV((long)(0.2 * AttackPower.GetValue()));
                     ATKFrequency = GameData.CrazyATKFreq;
                     Shoes.AddPositiveV(GameData.CrazySpeed);
+                    SubMoney(EquipmentFactory.FindCost(equiptype));
+                    return true;
+                }
+            case EquipmentType.PURIFICATION_POTION:
+                {
+                    Purified = true;
+                    PurifiedTime = Environment.TickCount64;
                     SubMoney(EquipmentFactory.FindCost(equiptype));
                     return true;
                 }
