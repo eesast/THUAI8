@@ -38,7 +38,7 @@ namespace Preparation.Utility
         LIFE_POOL2 = 5,
         LIFE_POOL3 = 6,
         QUICK_STEP = 7,
-        WIDE_VIEW = 8,
+        WIDE_VIEW = 8
     }
     public enum CharacterState //角色状态
     {

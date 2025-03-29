@@ -69,7 +69,20 @@ enum CharacterState // 角色状态
     HEALING = 11;
     BERSERK = 12;
     BURNED = 13;
-    DECEASED = 14;
+    HARM_CUT = 14;
+    DECEASED = 15;
+}
+
+enum CharacterBuffType
+{
+    NULL_CHARACTER_BUFF_TYPE = 0;
+
+    ATTACK_BUFF1 = 1;
+    ATTACK_BUFF2 = 2;
+    ATTACK_BUFF3 = 3;
+    DEFENSE_BUFF = 4;
+    SPEED_BUFF = 5;
+    VISION_BUFF = 6;
 }
 
 

@@ -16,9 +16,9 @@ public class Debugger : SingletonMono<Debugger>
     void Start()
     {
 
-        info = System.IO.File.ReadAllText(@"D:\Projects\THUAI8\interface\Unity\interface-live\Assets\message(1).json");
+        info = System.IO.File.ReadAllText(@"D:\Projects\THUAI8\interface\Unity\interface-live\Assets\message 0.json");
         UpdateManager.GetInstance().UpdateMessageByJson(info);
-        info = System.IO.File.ReadAllText(@"D:\Projects\THUAI8\interface\Unity\interface-live\Assets\message.json");
+        info = System.IO.File.ReadAllText(@"D:\Projects\THUAI8\interface\Unity\interface-live\Assets\message 1.json");
         UpdateManager.GetInstance().UpdateMessageByJson(info);
         /*MessageOfSpring messageOfFort = new MessageOfSpring()
         {
@@ -41,8 +41,9 @@ public class Debugger : SingletonMono<Debugger>
         UpdateManager.GetInstance().UpdateMessageByJson(info);*/
     }
 
-    void Update()
+    public void OnDebugPressed()
     {
-
+        info = System.IO.File.ReadAllText(@"D:\Projects\THUAI8\interface\Unity\interface-live\Assets\message 2.json");
+        UpdateManager.GetInstance().UpdateMessageByJson(info);
     }
 }

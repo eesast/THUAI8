@@ -30,7 +30,7 @@ namespace Server
                         return Farm(construction);
                     return null;
                 case GameObjType.TRAP:
-                    return Trap((Trap)gameObj);
+                    return Traps(gameObj);
                 default: return null;
             }
         }
@@ -64,10 +64,8 @@ namespace Server
         }
         private static MessageOfObj? Character(Character player, long time)
         {
-            MessageOfCharacter a;
             MessageOfObj msg = new()
             {
-
                 CharacterMessage = new()
                 {
                     Guid = player.ID,
@@ -75,10 +73,28 @@ namespace Server
                     TeamId = player.TeamID,
                     PlayerId = player.PlayerID,
 
-
                     CharacterType = Transformation.CharacterTypeToProto(player.CharacterType),
-                    CharacterState1 = Transformation.CharacterStateToProto(player.CharacterState1),
-                    CharacterState2 = Transformation.CharacterStateToProto(player.CharacterState2),
+
+                    CharacterActiveState = Transformation.CharacterStateToProto(player.CharacterActiveState),
+
+                    // 待修改，被动状态用CharacterStateType还是bool
+                    BlindState = (player.blind) ? Protobuf.CharacterState.BLIND : Protobuf.CharacterState.NULL_CHARACTER_STATE,
+                    BlindTime = (double)player.BlindTime, // 待修改，时间是否应该用double
+                    // 待修改，Character.cs中没有knockedback
+                    KnockbackState = (player.knockedback) ? Protobuf.CharacterState.KNOCKED_BACK : Protobuf.CharacterState.NULL_CHARACTER_STATE,
+                    KnockbackTime = (double)player.KnockedBackTime,
+                    StunnedState = (player.stunned) ? Protobuf.CharacterState.STUNNED : Protobuf.CharacterState.NULL_CHARACTER_STATE,
+                    StunnedTime = (double)player.StunnedTime,
+                    InvisibleState = (player.visible) ? Protobuf.CharacterState.NULL_CHARACTER_STATE : Protobuf.CharacterState.INVISIBLE,
+                    // 待修改，Character.cs中没有InvisibleTime
+                    InvisibleTime = (double)player.InvisibleTime,
+                    HealingState = (player.healing) ? Protobuf.CharacterState.HEALING : Protobuf.CharacterState.NULL_CHARACTER_STATE,
+                    HealingTime = (double)player.HealingTime,
+                    BerserkState = (player.crazyman) ? Protobuf.CharacterState.BERSERK : Protobuf.CharacterState.NULL_CHARACTER_STATE,
+                    BerserkTime = (double)CrazyManTime,
+                    BurnedState = (player.burned) ? Protobuf.CharacterState.BURNED : Protobuf.CharacterState.NULL_CHARACTER_STATE,
+                    BurnedTime = (double)BurnedTime,
+                    DeceasedState = (player.deceased) ? Protobuf.CharacterState.DECEASED : Protobuf.CharacterState.NULL_CHARACTER_STATE,
 
                     X = player.Position.x,
                     Y = player.Position.y,
@@ -87,18 +103,24 @@ namespace Server
                     Speed = player.MoveSpeed,
                     ViewRange = player.ViewRange,
 
-                    Atk = (int)player.AttackPower,
-                    AttackSize = (int)player.AttackSize,
+                    CommonAttack = (int)player.AttackPower,
+                    // 待修改，Character.cs中没有CommonAttackCD
+                    CommonAttackCD = (double)player.AttackCD,
+                    CommonAttackRange = (int)player.AttackSize,
 
-                    SkillCd = player.skillCD,
+                    SkillAttackCD = (double)player.skillCD,
 
                     EconomyDepletion = player.EconomyDepletion,
                     KillScore = (int)player.GetCost(),
 
-                    Hp = (int)player.HP,
+                    HP = (int)player.HP,
 
+                    // 待修改，Character.cs中没有区分ShieldEquipment\ShoesEquipment类型
                     Shield = player.Shield,
                     Shoes = player.Shoes,
+
+                    // 
+                    //AttackBuff = 
                 }
             };
             return msg;
@@ -191,18 +213,28 @@ namespace Server
             return msg;
         }
 
-        private static MessageOfObj Trap(Trap trap)
+        private static MessageOfObj Traps(GameObj trap)
         {
             MessageOfObj msg = new()
             {
                 TrapMessage = new()
                 {
+                    TrapType = trap switch
+                    {
+                        Trap _ => Protobuf.TrapType.Hole,
+                        Cage _ => Protobuf.TrapType.Cage,
+                    },
+
                     X = trap.Position.x,
                     Y = trap.Position.y,
 
                     //Hp = (int)trap.HP,            ����û��HP
 
-                    TeamId = trap.TeamID,
+                    TeamId = trap switch
+                    {
+                        Trap t => t.TeamID,
+                        Cage c => c.TeamID,
+                    }
                 }
             };
             return msg;
