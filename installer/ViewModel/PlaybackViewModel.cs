@@ -14,26 +14,28 @@ using System.Windows.Input;
 using System.Timers;
 using System.IO;
 using installer.Services;
+using Microsoft.Maui.Storage;
+using Microsoft.Maui.Devices;
 
 namespace installer.ViewModel
 {
     public class PlaybackViewModel : LaunchViewModel
     {
-        private readonly IFilePicker FilePicker;
+        private readonly Microsoft.Maui.Storage.IFilePicker FilePicker;
         
-        public PlaybackViewModel(IFilePicker filePicker, Downloader downloader) : base(downloader)
+        public PlaybackViewModel(Microsoft.Maui.Storage.IFilePicker filePicker, Downloader downloader) : base(downloader)
         {
             FilePicker = filePicker;
 
-            options = new PickOptions()
+            options = new Microsoft.Maui.Storage.PickOptions()
             {
-                FileTypes = new FilePickerFileType(
-                    new Dictionary<DevicePlatform, IEnumerable<string>>
+                FileTypes = new Microsoft.Maui.Storage.FilePickerFileType(
+                    new Dictionary<Microsoft.Maui.Devices.DevicePlatform, IEnumerable<string>>
                     {
-                        { DevicePlatform.Android, new [] { "application/com.thueesast.thuaiplayback" } },
-                        { DevicePlatform.iOS, new [] { "com.thueesast.thuaiplayback" } },
-                        { DevicePlatform.WinUI, new [] { ".thuaipb" } },
-                        { DevicePlatform.macOS, new [] { "thuaipb" } }
+                        { Microsoft.Maui.Devices.DevicePlatform.Android, new [] { "application/com.thueesast.thuaiplayback" } },
+                        { Microsoft.Maui.Devices.DevicePlatform.iOS, new [] { "com.thueesast.thuaiplayback" } },
+                        { Microsoft.Maui.Devices.DevicePlatform.WinUI, new [] { ".thuaipb" } },
+                        { Microsoft.Maui.Devices.DevicePlatform.MacCatalyst, new [] { "thuaipb" } }
                     }
                 ),
                 PickerTitle = "请选择回放文件"
@@ -57,7 +59,7 @@ namespace installer.ViewModel
         public ICommand SaveBtnClickedCommand { get; }
         #endregion
 
-        protected PickOptions options;
+        protected Microsoft.Maui.Storage.PickOptions options;
         
         #region 属性
         private bool browseEnabled = true;
