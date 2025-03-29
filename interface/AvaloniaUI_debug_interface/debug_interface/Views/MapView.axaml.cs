@@ -4,21 +4,21 @@ using Avalonia.Controls;
 using Avalonia.Controls.Shapes;
 using Avalonia.Media;
 using Avalonia.VisualTree;
+using debug_interface.Controls;
+using debug_interface.Models;
 using debug_interface.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using Avalonia.Media.Imaging;
-using Avalonia.Platform;
 
 
 namespace debug_interface.Views
 {
     public partial class MapView : UserControl
     {
+
         private Canvas? characterCanvas;
-        private ItemsControl? mapItemsControl;
-        //private Dictionary<string, Ellipse> characterEllipses = new Dictionary<string, Ellipse>();
+        private Grid? mapGrid;
         private Dictionary<string, Control> characterElements = new Dictionary<string, Control>();
         private MainWindowViewModel? viewModel;
 
@@ -30,10 +30,9 @@ namespace debug_interface.Views
             this.DataContextChanged += MapView_DataContextChanged;
         }
 
+
         private void MapView_DataContextChanged(object? sender, EventArgs e)
         {
-            // When the data context changes, get the parent window's DataContext
-            // which should be the MainWindowViewModel
             var mainWindow = this.FindAncestorOfType<MainWindow>();
             if (mainWindow != null && mainWindow.DataContext is MainWindowViewModel vm)
             {
@@ -44,9 +43,8 @@ namespace debug_interface.Views
         private void MapView_AttachedToVisualTree(object? sender, VisualTreeAttachmentEventArgs e)
         {
             characterCanvas = this.FindControl<Canvas>("CharacterCanvas");
-            mapItemsControl = this.FindControl<ItemsControl>("MapItemsControl");
+            mapGrid = this.FindControl<Grid>("MapGrid"); // 修改这里，对应XAML
 
-            // Get the MainWindowViewModel from the parent MainWindow
             var mainWindow = this.FindAncestorOfType<MainWindow>();
             if (mainWindow != null && mainWindow.DataContext is MainWindowViewModel vm)
             {
@@ -54,9 +52,9 @@ namespace debug_interface.Views
             }
         }
 
+
         private void SetupViewModel(MainWindowViewModel vm)
         {
-            // Clean up previous handlers if any
             if (viewModel != null)
             {
                 viewModel.RedTeamCharacters.CollectionChanged -= RedTeamCharacters_CollectionChanged;
@@ -65,32 +63,52 @@ namespace debug_interface.Views
 
             viewModel = vm;
 
-            // Set the ItemsSource programmatically
-            if (mapItemsControl != null && viewModel.MapVM != null)
+            // 初始化地图网格
+            if (mapGrid != null && viewModel.MapVM != null)
             {
-                mapItemsControl.ItemsSource = viewModel.MapVM.MapCells;
+                // 直接使用现有的mapGrid
+                MapHelper.InitializeMapGrid(mapGrid, viewModel.MapVM);
+
             }
 
-            // Listen for changes to character collections
+            // 监听角色集合变化
             viewModel.RedTeamCharacters.CollectionChanged += RedTeamCharacters_CollectionChanged;
             viewModel.BlueTeamCharacters.CollectionChanged += BlueTeamCharacters_CollectionChanged;
 
-            // Initialize existing characters
+            // 初始化角色
             RefreshCharacters();
-
-            // Initialize random positions if not set
             InitializeRandomPositions();
+
+            // 监听地图单元格变化（如果模型提供了这种能力）
+            if (viewModel.MapVM != null)
+            {
+                // 如果MapCell类型实现了INotifyPropertyChanged，您可以在这里监听属性变化
+                foreach (var cell in viewModel.MapVM.MapCells)
+                {
+                    cell.PropertyChanged += (s, e) => {
+                        if (s is MapCell mapCell)
+                        {
+                            if (e.PropertyName == nameof(MapCell.DisplayColor))
+                            {
+                                MapHelper.UpdateCellColor(mapCell.CellX, mapCell.CellY, mapCell.DisplayColor);
+                            }
+                            else if (e.PropertyName == nameof(MapCell.DisplayText))
+                            {
+                                MapHelper.UpdateCellText(mapCell.CellX, mapCell.CellY, mapCell.DisplayText);
+                            }
+                        }
+                    };
+                }
+            }
         }
 
         private void RefreshCharacters()
         {
             if (characterCanvas == null || viewModel == null) return;
 
-            // Clear existing characters
             characterCanvas.Children.Clear();
-            characterElements.Clear(); // 使用新的字典名称
+            characterElements.Clear();
 
-            // Re-add all characters
             InitializeCharacters(viewModel.RedTeamCharacters, Colors.Red);
             InitializeCharacters(viewModel.BlueTeamCharacters, Colors.Blue);
         }
@@ -163,51 +181,6 @@ namespace debug_interface.Views
                 //    FontWeight = FontWeight.Bold,
                 //};
                 //grid.Children.Add(textBlock);
-
-
-                // ===== 选项2: 显示角色图标 =====
-                //如果不需要图标，注释掉下面这段代码
-                //获取角色类型或ID，用于选择对应的图标
-                //string iconKey = character.Type ?? $"Character{i + 1}"; // 根据需要更改，这里假设有Type属性
-
-                //try
-                //{
-                //    // 创建资源URI并加载图片
-                //    var uri = new Uri("avares://debug_interface/Assets/tangseng2.png");
-                //    using var stream = AssetLoader.Open(uri);
-                //    var originalBitmap = new Bitmap(stream);
-
-                //    // 创建用于显示图片的圆形
-                //    var imageEllipse = new Ellipse
-                //    {
-                //        Width = 15,
-                //        Height = 15,
-                //    };
-
-                //    // 使用ImageBrush填充圆形
-                //    var imageBrush = new ImageBrush
-                //    {
-                //        Source = originalBitmap, // 直接使用原始Bitmap
-                //        Stretch = Stretch.UniformToFill,
-                //        // 可以通过调整以下属性来"模拟"裁剪效果
-                //        // 例如，只显示图像的顶部
-                //        SourceRect = new RelativeRect(0, 0, 1, 0.7, RelativeUnit.Relative), // 只显示顶部1/3
-                //        AlignmentX = AlignmentX.Center,
-                //        AlignmentY = AlignmentY.Top
-                //    };
-                //    imageEllipse.Fill = imageBrush;
-
-                //    // 添加到Grid
-                //    grid.Children.Add(imageEllipse);
-                //}
-                //catch (Exception ex)
-                //{
-                //    Console.WriteLine($"图片加载异常: {ex.Message}");
-                //    Console.WriteLine($"堆栈跟踪: {ex.StackTrace}");
-                //    System.Diagnostics.Debug.WriteLine($"图片加载异常: {ex.Message}");
-                //    System.Diagnostics.Debug.WriteLine($"堆栈跟踪: {ex.StackTrace}");
-                //}
-                // ===== 选项2结束 =====
 
                 // 设置提示信息
                 ToolTip.SetTip(grid, character.Name);
