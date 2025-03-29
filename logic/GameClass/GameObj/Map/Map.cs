@@ -129,6 +129,8 @@ namespace GameClass.GameObj.Map
             XY del = pos1 - pos2;
             if (del * del > character.ViewRange * character.ViewRange)
                 return false;
+            if (character.CanSeeAll)
+                return true;
             if (del.x > del.y)
             {
                 var beginx = GameData.PosGridToCellX(pos1) + GameData.NumOfPosGridPerCell;
@@ -171,6 +173,15 @@ namespace GameClass.GameObj.Map
                     }
                 }
             }
+            return true;
+        }
+        public bool InAttackSize(Character character, GameObj gameObj)
+        {
+            XY pos1 = character.Position;
+            XY pos2 = gameObj.Position;
+            XY del = pos1 - pos2;
+            if (del * del > character.AttackSize * character.AttackSize)
+                return false;
             return true;
         }
         public bool Remove(GameObj gameObj)
@@ -227,6 +238,9 @@ namespace GameClass.GameObj.Map
                             break;
                         case PlaceType.ECONOMY_RESOURCE:
                             Add(new E_Resource(GameData.GetCellCenterPos(i, j)));
+                            break;
+                        case PlaceType.SPACE:
+                            Add(new Space(GameData.GetCellCenterPos(i, j)));
                             break;
                     }
                 }

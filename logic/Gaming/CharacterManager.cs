@@ -190,7 +190,6 @@ namespace Gaming
                     character.CageTime = Environment.TickCount64;
                     //HP.SubV(GameData.TrapDamage);
                     //SetCharacterState(CharacterState.STUNNED);
-
                 }
             }
             public void CheckCage(Character character)
@@ -260,14 +259,34 @@ namespace Gaming
                 if (nowtime - character.CrazyManTime >= (15 + character.CrazyManNum * 15))
                 {
                     character.AttackPower.SubPositiveV(5 + character.CrazyManNum * 5);
+                    character.CrazyManTime = long.MaxValue;
                 }
             }
             public void CheckQuickStepTime(Character character)
             {
                 long nowtime = Environment.TickCount64;
-                if (nowtime - character.CrazyManTime >= 60000)
+                if (nowtime - character.QuickStepTime >= 60000)
                 {
                     character.Shoes.SubPositiveV(500);
+                    character.QuickStepTime = long.MaxValue;
+                }
+            }
+            public void CheckWideViewTime(Character character)
+            {
+                long nowtime = Environment.TickCount64;
+                if (nowtime - character.WideViewTime >= 60000)
+                {
+                    character.CanSeeAll = false;
+                    character.WideViewTime = long.MaxValue;
+                }
+            }
+            public void CheckPurified(Character character)
+            {
+                long nowtime = Environment.TickCount64;
+                if (nowtime - character.PurifiedTime >= 30000)
+                {
+                    character.Purified = false;
+                    character.PurifiedTime = long.MaxValue;
                 }
             }
         }
