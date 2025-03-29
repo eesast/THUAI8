@@ -26,6 +26,7 @@ namespace Preparation.Utility
         TRAP = 7,
         HOME = 8,
         OUTOFBOUNDBLOCK = 9,
+        SPACE = 10,
     }
 
     public enum A_ResourceType
@@ -118,7 +119,7 @@ namespace Preparation.Utility
         BARRACKS = 1,
         SPRING = 2,
         FARM = 3,
-        TRAP = 4,
+        HOLE = 4,
         CAGE = 5,
     }
 

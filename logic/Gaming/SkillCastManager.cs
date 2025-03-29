@@ -93,9 +93,14 @@ namespace Gaming
                                 {
                                     case GameObjType.CHARACTER:
                                         {
-                                            ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.BLIND);
-                                            ObjBeingShot.blind = true;
-                                            ObjBeingShot.BlindTime = Environment.TickCount64;
+                                            if (ObjBeingShot.Purified == true)
+                                                continue;
+                                            else
+                                            {
+                                                ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.BLIND);
+                                                ObjBeingShot.blind = true;
+                                                ObjBeingShot.BlindTime = Environment.TickCount64;
+                                            }
                                         }
                                         break;
                                     default: break;
@@ -190,11 +195,14 @@ namespace Gaming
                                 {
                                     case GameObjType.CHARACTER:
                                         {
-                                            if (ObjBeingShot.CharacterState2 == CharacterState.BURNED)
+                                            if (ObjBeingShot.CharacterState2 == CharacterState.BURNED || ObjBeingShot.burned)
                                             {
                                                 characterManager.BeAttacked(ObjBeingShot, GameData.TieShanSkillATK);
                                             }
-                                            ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.KNOCKED_BACK);
+                                            if (ObjBeingShot.Purified == true)
+                                                continue;
+                                            else
+                                                ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.KNOCKED_BACK);
                                         }
                                         break;
                                     default: break;
@@ -217,9 +225,14 @@ namespace Gaming
                                     case GameObjType.CHARACTER:
                                         {
                                             characterManager.BeAttacked(ObjBeingShot, GameData.ZhiZhujingSkillATK);
-                                            ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.STUNNED);//尚未加入时间限制
-                                            ObjBeingShot.stunned = true;
-                                            ObjBeingShot.StunnedTime = Environment.TickCount64;
+                                            if (ObjBeingShot.Purified == true)
+                                                continue;
+                                            else
+                                            {
+                                                ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.STUNNED);//尚未加入时间限制
+                                                ObjBeingShot.stunned = true;
+                                                ObjBeingShot.StunnedTime = Environment.TickCount64;
+                                            }
                                         }
                                         break;
                                     default: break;
