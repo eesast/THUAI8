@@ -4,8 +4,8 @@ using Preparation.Utility.Value.SafeValue.Atomic;
 
 namespace GameClass.GameObj.Areas;
 
-public class Cage(XY initPos)//cageÎÞ·¨±»¹¥»÷Ïú»Ù£¬Òò´Ë²»ÒÔconstructionÎª»ùÀà
-    : Immovable(initPos, int.MaxValue, GameObjType.TRAP)
+public class Cage(XY initPos)//cageæ— æ³•è¢«æ”»å‡»é”€æ¯ï¼Œå› æ­¤ä¸ä»¥constructionä¸ºåŸºç±»
+    : Immovable(initPos, GameData.NumOfPosGridPerCell / 2, GameObjType.TRAP)
 {
     public override bool IsRigid(bool args = false) => true;
     public override ShapeType Shape => ShapeType.SQUARE;

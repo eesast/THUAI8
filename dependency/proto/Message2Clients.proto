@@ -19,43 +19,62 @@ message MessageOfCharacter
     int64 player_id = 3;
 
     CharacterType character_type = 4;
-    CharacterState character_state1 = 5;
-    CharacterState character_state2 = 6;
 
-    // 待定 是否加Timer?
-    // double damage_reduction = ; // 伤害减免
-    // bool burned = ; // 是否燃烧
-    // Timer? burned_timer = ; // 燃烧持续时间 感觉不能用Timer
-    // int32 skill_shield = ; // 技能护盾能抵挡的伤害
-    // CharacterBuffType attack_buff = ; // 狂战士之力
-    // CharacterBuffType speed_buff = ; // 疾步之灵
-    // CharacterBuffType vision_buff = ; // 视野之灵
+    // 主动状态
+    CharacterState character_active_state = 5;
 
-    int32 x = 7;
-    int32 y = 8;
+    // 被动状态
+    CharacterState blind_state = 6;
+    double blind_time = 7;
+    CharacterState knockback_state = 8;
+    double knockback_time = 9;
+    CharacterState stunned_state = 10;
+    double stunned_time = 11;
+    CharacterState invisible_state = 12;
+    double invisible_time = 13;
+    CharacterState healing_state = 14;
+    double healing_time = 15;
+    CharacterState berserk_state = 16;
+    double berserk_time = 17;
+    CharacterState burned_state = 18;
+    double burned_time = 19;
+    CharacterState harm_cut_state = 20;
+    double harm_cut_time = 21;
+    CharacterState deceased_state = 22; // 死亡状态不需要持续时间
 
-    double facing_direction = 9;
-    int32 speed = 10;
-    int32 view_range = 11;
+    int32 x = 23;
+    int32 y = 24;
 
-    int32 atk =12;
-    int32 attack_size = 13;
+    double facing_direction = 25;
+    int32 speed = 26;
+    int32 view_range = 27;
 
-    int64 skill_cd = 14;
+    int32 common_attack = 28;
+    double common_attack_cd = 29;
+    int32 common_attack_range = 30;
 
-    int32 economy_depletion = 15;
-    int32 kill_score = 16;
+    double skill_attack_cd = 31;
+
+    int32 economy_depletion = 32; // 经济资源消耗
+    int32 kill_score = 33; // 击杀得分
     
-    int32 hp = 17; 
+    int32 hp = 34; 
 
-   int64 shield = 18;
-   int64 shoes = 19;
-    // EquipmentType health_potion_equipment = ;
-    // EquipmentType shild_equipment =;
-    // EquipmentType speed_shoes_equipment =;
-    // EquipmentType purification_potion_equipment =;
-    // EquipmentType invisibility_potion_equipment =;
-    // EquipmentType berserk_potion_equipment =;
+    // 其它装备都是直接消耗，不需要记录
+    EquipmentType shield_equipment = 35; // NULL_EQUIPMENT_TYPE表示没有装备
+    int32 shild = 36; // 护盾剩余
+    EquipmentType shoes_equipment = 37;
+    double shoes_time = 38;
+
+    // 加成资源的Buff
+    CharacterBuffType attack_buff = 39;
+    double attack_buff_time = 40;
+    CharacterBuffType defense_buff = 41;
+    double defense_buff_time = 42;
+    CharacterBuffType speed_buff = 43;
+    double speed_buff_time = 44;
+    CharacterBuffType vision_buff = 45;
+    double vision_buff_time = 46;
 }
 
 message MessageOfBarracks

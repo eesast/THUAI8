@@ -123,7 +123,7 @@ namespace Gaming
                         case A_ResourceType.WIDE_VIEW:
                             { score = 3000; }
                             break;
-                    }//此部分缺失加得分代码
+                    }
                     var team = game.TeamList[(int)character.TeamID.Get()];
                     team.MoneyPool.AddScore(score);
                     AResource.SetARState(AdditionResourceState.BEATEN);
