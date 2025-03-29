@@ -6,7 +6,7 @@ using Preparation.Utility.Value.SafeValue.LockedValue;
 namespace GameClass.GameObj.Areas;
 
 public class Construction(XY initPos)
-    : Immovable(initPos, GameData.NumOfPosGridPerCell / 2, GameObjType.Construction)
+    : Immovable(initPos, GameData.NumOfPosGridPerCell / 2, GameObjType.CONSTRUCTION)
 {
     public AtomicLong TeamID { get; } = new(long.MaxValue);
     public InVariableRange<long> HP { get; } = new(0, GameData.ConstructionHP);
@@ -28,7 +28,7 @@ public class Construction(XY initPos)
 
     public bool Construct(ConstructionType constructionType, Character character)//这里修改了函数的参数列表删除了int constructSpeed
     {
-        int constructSpeed;
+        int constructSpeed = 0;
         if (constructionType == ConstructionType.NULL_CONSTRUCTION_TYPE)
             return false;
         lock (lockOfConstructionType)
@@ -51,7 +51,7 @@ public class Construction(XY initPos)
                         HP.SetMaxV(GameData.FarmHP);
                         constructSpeed = GameData.FarmConstructSpeed;
                         break;
-                    case ConstructionType.TRAP:
+                    case ConstructionType.HOLE:
                         constructSpeed = GameData.TrapConstructSpeed;
                         break;
                     case ConstructionType.CAGE:
@@ -74,7 +74,7 @@ public class Construction(XY initPos)
     public bool BeAttacked(Character character)
     {
         var previousActivated = IsActivated.Get();
-        if (constructionType == ConstructionType.TRAP || constructionType == ConstructionType.CAGE)
+        if (constructionType == ConstructionType.HOLE || constructionType == ConstructionType.CAGE)
         {
             return previousActivated;
         }
@@ -88,7 +88,7 @@ public class Construction(XY initPos)
     public bool BeAttacked(Character character, long AP)
     {
         var previousActivated = IsActivated.Get();
-        if (constructionType == ConstructionType.TRAP || constructionType == ConstructionType.CAGE)
+        if (constructionType == ConstructionType.HOLE || constructionType == ConstructionType.CAGE)
         {
             return previousActivated;
         }

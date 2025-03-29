@@ -9,15 +9,19 @@ namespace Preparation.Utility
         public const int CheckInterval = 10;                // 检查间隔
         public const uint GameDurationInSecond = 60 * 10;   // 游戏时长
         public const int LimitOfStopAndMove = 15;           // 停止和移动的最大间隔
+        public const int ProduceSpeedPerSecond = 200;       // 每秒生产值
 
         public const int TolerancesLength = 3;
         public const int AdjustLength = 3;
         //character cost
+        public const int TangSengcost = 0;
         public const int SunWukongcost = 5000;
         public const int ZhuBajiecost = 4000;
         public const int ShaWujingcost = 3000;
         public const int BaiLongmacost = 4000;
         public const int Monkidcost = 1000;
+
+        public const int JiuLingcost = 0;
         public const int HongHaiercost = 5000;
         public const int NiuMowangcost = 4000;
         public const int TieShancost = 3000;
@@ -73,6 +77,12 @@ namespace Preparation.Utility
 
         public const int SkillRange1 = 6000;            //技能释放范围，适用除“龙腾四海”外的范围型技能
         public const int SkillRange2 = 10000;           //技能释放范围，适用“龙腾四海”
+        public const long SunWukongSkillATK = 50;
+        public const long BaiLongmaSkillATK = 20;
+        public const long HongHaierSkillATK = 15;
+        public const long NiuMowangShield = 100;
+        public const long TieShanSkillATK = 20;
+        public const long ZhiZhujingSkillATK = 10;
 
         public const int CharacterRadius = 400;
         public const int AResourceRadius = 400;
@@ -106,6 +116,29 @@ namespace Preparation.Utility
         public static bool IsInTheRange(XY pos1, XY pos2, int range)
         {
             return (pos1 - pos2).Length() <= range;
+        }
+        public static bool IsOnTheSameLine(XY pos1, XY pos2, double angle)//以pos1为基准，检测pos2是否在以pos1为端点、与x轴正方向呈angle角的射线上（逆时针为正方向）
+        {
+            double sinx = (pos2 - pos1).y / (pos2 - pos1).Length();
+            double cosx = (pos2 - pos1).x / (pos2 - pos1).Length();
+            if (Math.Abs(sinx - Math.Sin(angle)) < 0.01 && Math.Abs(cosx - Math.Cos(angle)) < 0.01)
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+        public static bool NeedCopy(GameObjType gameObjType)
+        {
+            return gameObjType != GameObjType.NULL &&
+                   gameObjType != GameObjType.BARRIER &&
+                   gameObjType != GameObjType.BUSH &&
+                   gameObjType != GameObjType.ECONOMY_RESOURCE &&
+                   gameObjType != GameObjType.ADDITIONAL_RESOURCE &&
+                   gameObjType != GameObjType.CONSTRUCTION &&
+                   gameObjType != GameObjType.TRAP &&
+                   gameObjType != GameObjType.HOME &&
+                    gameObjType != GameObjType.OUTOFBOUNDBLOCK;
         }
         public const int ConstructionHP = 1000;//建筑物的默认HP
         public const int BarracksHP = 600;
@@ -141,5 +174,40 @@ namespace Preparation.Utility
         public const int LifePoolATK = 10;
         public const int QuickStepATK = 10;
         public const int WideViewATK = 10;
+
+        //装备
+        public const int LifeMedicine1cost = 1500;
+        public const int LifeMedicine2cost = 3000;
+        public const int LifeMedicine3cost = 4500;
+        public const int LifeMedicine1HP = 50;
+        public const int LifeMedicine2HP = 100;
+        public const int LifeMedicine3HP = 150;
+
+        public const int Shield1cost = 2000;
+        public const int Shield2cost = 3500;
+        public const int Shield3cost = 5000;
+        public const int Shield1 = 50;
+        public const int Shield2 = 100;
+        public const int Shield3 = 150;
+
+        public const int ShoesCost = 1500;
+        public const int ShoesSpeed = 500;
+
+        public const int PurificationCost = 2000;
+        public const int PurificationTime = 30000;
+
+        public const int InvisibleCost = 4000;
+        public const int InvisibleTime = 10000;
+
+        public const int CrazyCost = 10000;
+        public const int CrazyTime = 30000;
+        public const double CrazyPower = 1.2;
+        public const double CrazyATKFreq = 1.25;
+        public const int CrazySpeed = 300;
+        public const int ScoreFarmPerSecond = 100;
+        public const int MaxCharacterNum = 1;
+        public const int InitialMoney = 5000;
+        public const int CharacterTotalNumMax = 6;
+        public const double RecycleRate = 0.5;
     }
 }

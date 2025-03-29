@@ -14,7 +14,7 @@ namespace Gaming
 {
     public partial class Game
     {
-        private readonly AttackManager AttackeManager;
+        private readonly AttackManager attackManager;
         private class AttackManager
         {
             private readonly Game game;
@@ -50,7 +50,20 @@ namespace Gaming
                 {
                     return false;
                 }
+                if (!gameMap.InAttackSize(character, gameobj))
+                {
+                    return false;
+                }
+                if (gameobj.visible == false || gameobj.CharacterState2 == CharacterState.INVISIBLE)
+                {
+                    return false;
+                }
                 characterManager.BeAttacked(gameobj, character);
+                if (character.CharacterState2 == CharacterState.INVISIBLE || character.visible == false)
+                {
+                    character.visible = true;
+                    character.SetCharacterState(character.CharacterState1, CharacterState.NULL_CHARACTER_STATE);//破隐
+                }
                 return true;
             }
             public bool Attack(Character character, A_Resource gameobj)
@@ -63,7 +76,13 @@ namespace Gaming
                 {
                     return false;
                 }
+                if (!gameMap.InAttackSize(character, gameobj))
+                {
+                    return false;
+                }
                 ARManager.BeAttacked(gameobj, character);
+                if (character.CharacterState2 == CharacterState.INVISIBLE)
+                    character.SetCharacterState(character.CharacterState1, CharacterState.NULL_CHARACTER_STATE);//破隐
                 return true;
             }
             public bool Attack(Character character, Construction gameobj)
@@ -76,8 +95,48 @@ namespace Gaming
                 {
                     return false;
                 }
+                if (!gameMap.InAttackSize(character, gameobj))
+                {
+                    return false;
+                }
                 gameobj.BeAttacked(character);
+                if (character.CharacterState2 == CharacterState.INVISIBLE)
+                    character.SetCharacterState(character.CharacterState1, CharacterState.NULL_CHARACTER_STATE);//破隐
                 return true;
+            }
+            public bool AttackResource(Character character)
+            {
+                A_Resource? Aresource = (A_Resource?)gameMap.OneForInteract(character.Position, GameObjType.ADDITIONAL_RESOURCE);
+                if (Aresource == null)
+                {
+                    return false;
+                }
+                if (Aresource.HP == 0)
+                {
+                    return false;
+                }
+                long stateNum = character.SetCharacterState(CharacterState.ATTACKING, character.CharacterState2);
+                if (stateNum == -1)
+                {
+                    return false;
+                }
+                new Thread
+                (
+                    () =>
+                    {
+                        character.ThreadNum.WaitOne();
+                        if (!character.StartThread(stateNum))
+                        {
+                            character.ThreadNum.Release();
+                            return;
+                        }
+                        //Eresource.AddProduceNum();
+                        Thread.Sleep(GameData.CheckInterval);
+                        Attack(character, Aresource);
+                    }
+                )
+                { IsBackground = true }.Start();
+                return false;
             }
         }
     }

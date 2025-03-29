@@ -27,6 +27,9 @@ namespace Server
         [Option('g', "gameTimeInSecond", Required = false, HelpText = "The time of the game in second, 10 minutes by default")]
         public uint GameTimeInSecond { get; set; } = GameData.GameDurationInSecond;
 
+        [Option("homeNum", Required = false, HelpText = "The number of Home , 1 by default")]
+        public ushort HomeCount { get; set; } = 1;
+
         [Option('f', "fileName", Required = false, HelpText = "The file to store playback file or to read file.")]
         public string FileName { get; set; } = "xxxxxxxxx";
 

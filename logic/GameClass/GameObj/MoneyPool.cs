@@ -20,4 +20,12 @@ public class MoneyPool : IMoneyPool
     {
         return Money.SubRNow(sub);
     }
+    public long AddScore(long add)
+    {
+        return Score.AddRNow(add);
+    }
+    public long SubScore(long sub)
+    {
+        return Score.SubRNow(sub);
+    }
 }

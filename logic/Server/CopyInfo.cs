@@ -14,23 +14,23 @@ namespace Server
                 return null;
             switch (gameObj.Type)
             {
-                case GameObjType.Character:
+                case GameObjType.CHARACTER:
                     return Character((Character)gameObj, time);
-                case GameObjType.EconomyResource:
-                    return EconomyResource((EconomyResource)gameObj);
-                case GameObjType.AdditionResource:
-                    return AdditionResource((AdditionResource)gameObj);
-                case GameObjType.Construction:
+                case GameObjType.ECONOMY_RESOURCE:
+                    return EconomyResource((E_Resource)gameObj);
+                case GameObjType.ADDITIONAL_RESOURCE:
+                    return AdditionResource((A_Resource)gameObj);
+                case GameObjType.CONSTRUCTION:
                     Construction construction = (Construction)gameObj;
-                    if (construction.ConstructionType == Utility.ConstructionType.Barracks)
+                    if (construction.ConstructionType == Utility.ConstructionType.BARRACKS)
                         return Barracks(construction);
-                    else if (construction.ConstructionType == Utility.ConstructionType.Spring)
+                    else if (construction.ConstructionType == Utility.ConstructionType.SPRING)
                         return Spring(construction);
-                    else if (construction.ConstructionType == Utility.ConstructionType.Farm)
+                    else if (construction.ConstructionType == Utility.ConstructionType.FARM)
                         return Farm(construction);
                     return null;
-                case GameObjType.Trap:
-                    return Trap((Trap)gameObj);
+                case GameObjType.TRAP:
+                    return Traps(gameObj);
                 default: return null;
             }
         }
@@ -43,7 +43,25 @@ namespace Server
             };
             return objMsg;
         }
+        private static MessageOfObj? Base(Base player, long time)
+        {
+            MessageOfObj msg = new()
+            {
+                TeamMessage = new()
+                {
+                    TeamId = player.TeamID,
+                    PlayerId = player.PlayerID,
+                    Score = player.MoneyPool.Score,
+                    Energy = player.MoneyPool.Money,
+                }
+            };
+            return msg;
+        }
 
+        public static MessageOfObj? Auto(Base @base, long time)
+        {
+            return Base(@base, time);
+        }
         private static MessageOfObj? Character(Character player, long time)
         {
             MessageOfObj msg = new()
@@ -56,7 +74,27 @@ namespace Server
                     PlayerId = player.PlayerID,
 
                     CharacterType = Transformation.CharacterTypeToProto(player.CharacterType),
-                    CharacterState = Transformation.CharacterStateToProto(player.CharacterState),
+
+                    CharacterActiveState = Transformation.CharacterStateToProto(player.CharacterActiveState),
+
+                    // 待修改，被动状态用CharacterStateType还是bool
+                    BlindState = (player.blind) ? Protobuf.CharacterState.BLIND : Protobuf.CharacterState.NULL_CHARACTER_STATE,
+                    BlindTime = (double)player.BlindTime, // 待修改，时间是否应该用double
+                    // 待修改，Character.cs中没有knockedback
+                    KnockbackState = (player.knockedback) ? Protobuf.CharacterState.KNOCKED_BACK : Protobuf.CharacterState.NULL_CHARACTER_STATE,
+                    KnockbackTime = (double)player.KnockedBackTime,
+                    StunnedState = (player.stunned) ? Protobuf.CharacterState.STUNNED : Protobuf.CharacterState.NULL_CHARACTER_STATE,
+                    StunnedTime = (double)player.StunnedTime,
+                    InvisibleState = (player.visible) ? Protobuf.CharacterState.NULL_CHARACTER_STATE : Protobuf.CharacterState.INVISIBLE,
+                    // 待修改，Character.cs中没有InvisibleTime
+                    InvisibleTime = (double)player.InvisibleTime,
+                    HealingState = (player.healing) ? Protobuf.CharacterState.HEALING : Protobuf.CharacterState.NULL_CHARACTER_STATE,
+                    HealingTime = (double)player.HealingTime,
+                    BerserkState = (player.crazyman) ? Protobuf.CharacterState.BERSERK : Protobuf.CharacterState.NULL_CHARACTER_STATE,
+                    BerserkTime = (double)CrazyManTime,
+                    BurnedState = (player.burned) ? Protobuf.CharacterState.BURNED : Protobuf.CharacterState.NULL_CHARACTER_STATE,
+                    BurnedTime = (double)BurnedTime,
+                    DeceasedState = (player.deceased) ? Protobuf.CharacterState.DECEASED : Protobuf.CharacterState.NULL_CHARACTER_STATE,
 
                     X = player.Position.x,
                     Y = player.Position.y,
@@ -65,48 +103,54 @@ namespace Server
                     Speed = player.MoveSpeed,
                     ViewRange = player.ViewRange,
 
-                    Atk = player.ATK,
-                    AttackRange = player.AttackRange,
+                    CommonAttack = (int)player.AttackPower,
+                    // 待修改，Character.cs中没有CommonAttackCD
+                    CommonAttackCD = (double)player.AttackCD,
+                    CommonAttackRange = (int)player.AttackSize,
 
-                    SkillCD = player.SkillCD,
+                    SkillAttackCD = (double)player.skillCD,
 
                     EconomyDepletion = player.EconomyDepletion,
-                    KillSvore = player.KillScore,
+                    KillScore = (int)player.GetCost(),
 
-                    Hp = (int)player.HP,
+                    HP = (int)player.HP,
 
-                    EquipmentType = Transformation.EquipmentTypeToProto(player.EquipmentType),
+                    // 待修改，Character.cs中没有区分ShieldEquipment\ShoesEquipment类型
+                    Shield = player.Shield,
+                    Shoes = player.Shoes,
+
+                    // 
+                    //AttackBuff = 
                 }
             };
             return msg;
         }
 
-        private static MessageOfObj EconomyResource(EconomyResource economyresource)
+        private static MessageOfObj EconomyResource(E_Resource economyresource)
         {
             MessageOfObj msg = new()
             {
                 EconomyResourceMessage = new()
                 {
-                    Type = Transformation.EconomyResourceToProto(economyresource.TypeOfEconomyResource),
-                    State = Transformation.EconomyResourceStateToProto(economyresource.EconomyResourceState),
+                    EconomyResourceState = Transformation.EconomyResourceStateToProto(economyresource.ERstate),
 
                     X = economyresource.Position.x,
                     Y = economyresource.Position.y,
 
-                    Progress = (int)economyresource.Progress,
+                    Process = (int)economyresource.HP,      //����������
                 }
             };
             return msg;
         }
 
-        private static MessageOfObj AdditionResource(AdditionResource additionResource)
+        private static MessageOfObj AdditionResource(A_Resource additionResource)
         {
             MessageOfObj msg = new()
             {
                 AdditionResourceMessage = new()
                 {
-                    Type = Transformation.AdditionResourceToProto(additionResource.TypeOfAdditionResource),
-                    State = Transformation.AdditionResourceStateToProto(additionResource.AdditionResourceState),
+                    AdditionResourceType = (AdditionResourceType)additionResource.AResourceType,
+                    AdditionResourceState = (Protobuf.AdditionResourceState)additionResource.ARstate,
 
                     X = additionResource.Position.x,
                     Y = additionResource.Position.y,
@@ -169,18 +213,28 @@ namespace Server
             return msg;
         }
 
-        private static MessageOfObj Trap(Trap trap)
+        private static MessageOfObj Traps(GameObj trap)
         {
             MessageOfObj msg = new()
             {
                 TrapMessage = new()
                 {
+                    TrapType = trap switch
+                    {
+                        Trap _ => Protobuf.TrapType.Hole,
+                        Cage _ => Protobuf.TrapType.Cage,
+                    },
+
                     X = trap.Position.x,
                     Y = trap.Position.y,
 
-                    Hp = (int)trap.HP,
+                    //Hp = (int)trap.HP,            ����û��HP
 
-                    TeamId = trap.TeamID,
+                    TeamId = trap switch
+                    {
+                        Trap t => t.TeamID,
+                        Cage c => c.TeamID,
+                    }
                 }
             };
             return msg;

@@ -53,6 +53,13 @@ namespace THUAI8
         MonstersTeam = 2,
     };
 
+    enum class PlayerType : unsigned char
+    {
+        NullPlayerType = 0,
+        Character = 1,
+        Team = 2,
+    };
+
     enum class CharacterType : unsigned char
     {
         NullCharacterType = 0,
@@ -109,6 +116,18 @@ namespace THUAI8
         Berserk = 12,
         Burned = 13,
     };
+
+    enum class CharacterBuffType : unsigned char
+    {
+        NullCharacterBuffType = 0,
+
+        AttackBuff1 = 1,
+        AttackBuff2 = 2,
+        AttackBuff3 = 3,
+        DefenseBuff = 4,
+        SpeedBuff = 5,
+        VisionBuff = 6,
+    }
 
     enum class EconomyResourceType : unsigned char
     {
@@ -196,7 +215,26 @@ namespace THUAI8
         int64_t playerID;
 
         CharacterType characterType;
-        CharacterState characterState;
+
+        CharacterState characterActiveState;
+
+        CharacterState blindState;
+        double blindTime;
+        CharacterState knockbackState;
+        double knockbackTime;
+        CharacterState stunnedState;
+        double stunnedTime;
+        CharacterState invisibleState;
+        double invisibleTime;
+        CharacterState healingState;
+        double healingTime;
+        CharacterState berserkState;
+        double berserkTime;
+        CharacterState burnedState;
+        double burnedTime;
+        CharacterState harmCutState;
+        double harmCutTime;
+        CharacterState deceasedState;
 
         int32_t x;
         int32_t y;
@@ -205,14 +243,30 @@ namespace THUAI8
         int32_t speed;
         int32_t viewRange;
 
-        int32_t skillCD;
+        int32_t commonAttack;
+        double commonAttackCD;
+        int32_t commonAttackRange;
+
+        double skillAttackCD;
 
         int32_t economyDepletion;
         int32_t killScore;
 
         int32_t hp;
 
-        EquipmentType equipmentType;
+        EquipmentType shieldEquipment;
+        int32_t shild;
+        EquipmentType shoesEquipment;
+        double shoesTime;
+
+        CharacterBuffType attackBuff;
+        double attackBuffTime;
+        CharacterBuffType defenseBuff;
+        double defenseBuffTime;
+        CharacterBuffType speedBuff;
+        double speedBuffTime;
+        CharacterBuffType visionBuff;
+        double visionBuffTime;
     };
 
     struct Team

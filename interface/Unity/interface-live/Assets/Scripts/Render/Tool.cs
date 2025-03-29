@@ -2,27 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tool : Singleton<Tool>
+public static class Tool
 {
-    readonly System.Random a = new System.Random();
-    public int GetRandom(int min, int max)
+    readonly static System.Random a = new();
+    public static int GetRandom(int min, int max)
     {
         return a.Next(min, max);
     }
 
-    public T RandomSelect<T>(IList<T> list)
+    public static T RandomSelect<T>(IList<T> list)
     {
         return list[GetRandom(0, list.Count)];
     }
-    public Vector2 CellToUxy(int cellx, int celly)
+    public static Vector2 CellToUxy(int cellx, int celly)
     {
         return new Vector2(celly, 50 - cellx);
     }
-    public Vector2 GridToUxy(float gridx, float gridy)
+    public static Vector2 GridToUxy(float gridx, float gridy)
     {
         return new Vector2(gridy / 1000 - 0.5f, 50.5f - gridx / 1000);
     }
-    public Vector2 GridToCell(Vector2 grid)
+    public static Vector2 GridToCell(Vector2 grid)
     {
         return new Vector2((int)(grid.x + 0.5f), (int)(grid.y + 0.5f));
     }
@@ -30,13 +30,13 @@ public class Tool : Singleton<Tool>
     // {
     //     return new Vector2(-0.5f + cell.y, 51.5f - cell.x);
     // }
-    public bool CheckBeside(Vector2 grid, Vector2 cell)
+    public static bool CheckBeside(Vector2 grid, Vector2 cell)
     {
         if (Mathf.Abs(GridToCell(grid).x - cell.x) + Mathf.Abs(GridToCell(grid).y - cell.y) <= 2)
             return true;
         return false;
     }
-    public bool CheckDistance(Vector2 grid, Vector2 cell, float dist)
+    public static bool CheckDistance(Vector2 grid, Vector2 cell, float dist)
     {
         if ((grid - cell).magnitude <= dist)
             return true;

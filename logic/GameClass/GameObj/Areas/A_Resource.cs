@@ -11,7 +11,7 @@ public class A_Resource
 {
     public InVariableRange<long> HP { get; }
     public InVariableRange<long> AttackPower { get; }
-    public override bool IsRigid(bool args = false) => false;
+    public override bool IsRigid(bool args = false) => true;
     protected readonly object actionLock = new();
     public object ActionLock => actionLock;
     public IAROccupation Occupation { get; }
@@ -47,9 +47,9 @@ public class A_Resource
         AttackPower.SetVToMaxV();
     }
     public A_Resource(int radius, A_ResourceType type, XY initPos) :
-        base(initPos, radius, GameObjType.A_Resource)
+        base(initPos, radius, GameObjType.ADDITIONAL_RESOURCE)
     {
-        Occupation = ARFactory.FindAROccupation(Type = type);
+        Occupation = ARFactory.FindAROccupation(type);
         HP = new(Occupation.MaxHp);
         AttackPower = new(Occupation.AttackPower);
         Init();
