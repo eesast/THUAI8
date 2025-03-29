@@ -12,13 +12,22 @@ public struct GameObjectList
 public class ObjCreater : SingletonMono<ObjCreater>
 {
     public List<GameObjectList> placeList;
-    public GameObject[] characterList, constructionList, trapType, economyResourceList, additionResourceList;
+    public GameObject[] characterList;
+    public GameObject[] constructionList, trapType, economyResourceList, additionResourceList;
     public Transform mapRoot;
     public GameObject CreateObj(PlaceType placeType, Vector2 Pos, Quaternion? quaternion = null)
     {
         int enumValue = Convert.ToInt32(placeType);
         if (enumValue >= 2 && placeList[enumValue - 2].p.Count > 0)
-            return Instantiate(Tool.GetInstance().RandomSelect(placeList[enumValue - 2].p), Pos, quaternion ?? Quaternion.identity, mapRoot);
+        {
+            Quaternion rotation = quaternion ?? Quaternion.identity;
+
+            // Override rotation for space tiles
+            if (placeType == PlaceType.Space)
+                rotation = Quaternion.Euler(0, 0, 90 * Tool.GetRandom(0, 4));
+
+            return Instantiate(Tool.RandomSelect(placeList[enumValue - 2].p), Pos, rotation, mapRoot);
+        }
         return null;
     }
 

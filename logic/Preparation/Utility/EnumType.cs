@@ -15,30 +15,31 @@ namespace Preparation.Utility
 
     public enum GameObjType : uint
     {
-        Null = 0,
-        Character = 1,
+        NULL = 0,
+        CHARACTER = 1,
 
-        Barrier = 2,
-        Bush = 3,
-        E_Resource = 4,//经济资源
-        A_Resource = 5,//加成资源
-        Construction = 6,
-        Trap = 7,
-        Home = 8,
-        OutOfBoundBlock = 9,
+        BARRIER = 2,
+        BUSH = 3,
+        ECONOMY_RESOURCE = 4,//经济资源
+        ADDITIONAL_RESOURCE = 5,//加成资源
+        CONSTRUCTION = 6,
+        TRAP = 7,
+        HOME = 8,
+        OUTOFBOUNDBLOCK = 9,
+        SPACE = 10,
     }
 
     public enum A_ResourceType
     {
         NULL = 0,
-        CrazyMan1 = 1,
-        CrazyMan2 = 2,
-        CrazyMan3 = 3,
-        LifePool1 = 4,
-        LifePool2 = 5,
-        LifePool3 = 6,
-        QuickStep = 7,
-        WideView = 8,
+        CRAZY_MAN1 = 1,
+        CRAZY_MAN2 = 2,
+        CRAZY_MAN3 = 3,
+        LIFE_POOL1 = 4,
+        LIFE_POOL2 = 5,
+        LIFE_POOL3 = 6,
+        QUICK_STEP = 7,
+        WIDE_VIEW = 8
     }
     public enum CharacterState //角色状态
     {
@@ -77,6 +78,14 @@ namespace Preparation.Utility
         BEING_HARVESTED = 2,
         HARVESTED = 3,
     }
+    public enum EconomyResourceType // 经济资源
+    {
+        NULL_ECONOMY_RESOURCE_TYPE = 0,
+
+        SMALL_ECONOMY_RESOURCE = 1,
+        MEDIUM_ECONOMY_RESOURCE = 2,
+        LARGE_ECONOMY_RESOURCE = 3,
+    }
 
     public enum AdditionResourceState //加成资源状态
     {
@@ -110,7 +119,7 @@ namespace Preparation.Utility
         BARRACKS = 1,
         SPRING = 2,
         FARM = 3,
-        TRAP = 4,
+        HOLE = 4,
         CAGE = 5,
     }
 

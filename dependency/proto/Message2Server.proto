@@ -16,9 +16,13 @@ message CharacterMsg
     int64 character_id = 1;
     int64 team_id = 2;
     CharacterType character_type = 3;
+    int32 side_flag = 4;
 }
 
+message EconomyReourceMsg
+{
 
+}
 message MoveMsg
 {
     int64 character_id = 1;
@@ -45,6 +49,7 @@ message AttackMsg // 普通攻击
     int64 team_id = 2;
     int32 attack_range = 3; // 攻击范围
     int64 attacked_character_id = 4; // 攻击对象
+    int64 attacked_team = 5;
 }
 
 message CastMsg // 释放技能

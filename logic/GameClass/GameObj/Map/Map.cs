@@ -22,6 +22,11 @@ namespace GameClass.GameObj.Map
 
         private readonly MyTimer timer = new();
         public IMyTimer Timer => timer;
+        private readonly long currentHomeNum = 0;
+        public bool TeamExists(long teamID)
+        {
+            return teamID < currentHomeNum;
+        }
 
         #region GetPlaceType
         public PlaceType GetPlaceType(IGameObj obj)
@@ -64,11 +69,11 @@ namespace GameClass.GameObj.Map
 
         public Character? FindCharacterInID(long ID)
         {
-            return (Character?)GameObjDict[GameObjType.Character].Find(gameObj => (ID == ((Character)gameObj).ID));
+            return (Character?)GameObjDict[GameObjType.CHARACTER].Find(gameObj => (ID == ((Character)gameObj).ID));
         }
         public Character? FindCharacterInPlayerID(long teamID, long playerID)
         {
-            return (Character?)GameObjDict[GameObjType.Character].Find(gameObj => (teamID == ((Character)gameObj).TeamID) && playerID == ((Character)gameObj).PlayerID);
+            return (Character?)GameObjDict[GameObjType.CHARACTER].Find(gameObj => (teamID == ((Character)gameObj).TeamID) && playerID == ((Character)gameObj).PlayerID);
         }
         public GameObj? OneForInteract(XY Pos, GameObjType gameObjType)
         {
@@ -94,13 +99,28 @@ namespace GameClass.GameObj.Map
         }
         public List<Character>? CharacterInTheRangeNotTeamID(XY Pos, int range, long teamID)
         {
-            return GameObjDict[GameObjType.Character].Cast<Character>()?.FindAll(character =>
+            return GameObjDict[GameObjType.CHARACTER].Cast<Character>()?.FindAll(character =>
                 (GameData.IsInTheRange(character.Position, Pos, range) && character.TeamID != teamID));
+        }
+        public List<Character>? CharacterOnTheSameLineNotTeamID(XY Pos, double theta, long teamID)
+        {
+            return GameObjDict[GameObjType.CHARACTER].Cast<Character>()?.FindAll(character =>
+            (GameData.IsOnTheSameLine(Pos, character.Position, theta) && character.TeamID != teamID));
+        }
+        public List<Character>? CharacterInTheRangeInTeamID(XY Pos, int range, long teamID)
+        {
+            return GameObjDict[GameObjType.CHARACTER].Cast<Character>()?.FindAll(character =>
+                (GameData.IsInTheRange(character.Position, Pos, range) && character.TeamID == teamID));
         }
         public List<Character>? CharacterInTheList(List<CellXY> PosList)
         {
-            return GameObjDict[GameObjType.Character].Cast<Character>()?.FindAll(character =>
+            return GameObjDict[GameObjType.CHARACTER].Cast<Character>()?.FindAll(character =>
                 PosList.Contains(GameData.PosGridToCellXY(character.Position)));
+        }
+        public List<Character>? CharacterInTeamID(long teamID)
+        {
+            return GameObjDict[GameObjType.CHARACTER].Cast<Character>()?.FindAll(character =>
+                 character.TeamID == teamID);
         }
         public bool CanSee(Character character, GameObj gameObj)
         {
@@ -109,6 +129,8 @@ namespace GameClass.GameObj.Map
             XY del = pos1 - pos2;
             if (del * del > character.ViewRange * character.ViewRange)
                 return false;
+            if (character.CanSeeAll)
+                return true;
             if (del.x > del.y)
             {
                 var beginx = GameData.PosGridToCellX(pos1) + GameData.NumOfPosGridPerCell;
@@ -153,6 +175,15 @@ namespace GameClass.GameObj.Map
             }
             return true;
         }
+        public bool InAttackSize(Character character, GameObj gameObj)
+        {
+            XY pos1 = character.Position;
+            XY pos2 = gameObj.Position;
+            XY del = pos1 - pos2;
+            if (del * del > character.AttackSize * character.AttackSize)
+                return false;
+            return true;
+        }
         public bool Remove(GameObj gameObj)
         {
             GameObj? ans = (GameObj?)GameObjDict[gameObj.Type].RemoveOne(obj => gameObj.ID == obj.ID);
@@ -176,12 +207,12 @@ namespace GameClass.GameObj.Map
         {
             GameObjDict[gameObj.Type].Add(gameObj);
         }
-        public Map(MapStruct mapResource, A_ResourceType type = A_ResourceType.NULL)
+        public Map(MapStruct mapResource, A_ResourceType Atype = A_ResourceType.NULL)
         {
             gameObjDict = [];
             foreach (GameObjType idx in Enum.GetValues(typeof(GameObjType)))
             {
-                if (idx != GameObjType.Null)
+                if (idx != GameObjType.NULL)
                     gameObjDict.TryAdd(idx, new LockedClassList<IGameObj>());
             }
             height = mapResource.height;
@@ -194,16 +225,22 @@ namespace GameClass.GameObj.Map
                     switch (mapResource.map[i, j])
                     {
                         case PlaceType.BARRIER:
-                            Add(new BARRIER(GameData.GetCellCenterPos(i, j)));
+                            Add(new Barriers(GameData.GetCellCenterPos(i, j)));
                             break;
                         case PlaceType.BUSH:
                             Add(new Bush(GameData.GetCellCenterPos(i, j)));
                             break;
                         case PlaceType.ADDITION_RESOURCE:
-                            Add(new A_Resource(GameData.AResourceRadius, type, GameData.GetCellCenterPos(i, j)));
+                            Add(new A_Resource(GameData.AResourceRadius, Atype, GameData.GetCellCenterPos(i, j)));
                             break;
                         case PlaceType.CONSTRUCTION:
                             Add(new Construction(GameData.GetCellCenterPos(i, j)));
+                            break;
+                        case PlaceType.ECONOMY_RESOURCE:
+                            Add(new E_Resource(GameData.GetCellCenterPos(i, j)));
+                            break;
+                        case PlaceType.SPACE:
+                            Add(new Space(GameData.GetCellCenterPos(i, j)));
                             break;
                     }
                 }

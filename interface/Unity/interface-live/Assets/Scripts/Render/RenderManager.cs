@@ -131,7 +131,7 @@ public class RenderManager : SingletonMono<RenderManager>
     {
         for (int row = 0; row < map.Height; row++)
             for (int col = 0; col < map.Width; col++)
-                ObjCreater.GetInstance().CreateObj(map.Rows[row].Cols[col], Tool.GetInstance().CellToUxy(row, col));
+                ObjCreater.GetInstance().CreateObj(map.Rows[row].Cols[col], Tool.CellToUxy(row, col));
     }
     void ShowCharacter(Dictionary<long, MessageOfCharacter> characters)
     {
@@ -143,17 +143,18 @@ public class RenderManager : SingletonMono<RenderManager>
                 {
                     CoreParam.charactersG[character.Value.TeamId * 4 + character.Value.PlayerId - 1] =
                         ObjCreater.GetInstance().CreateObj(character.Value.CharacterType,
-                            Tool.GetInstance().GridToUxy(character.Value.X, character.Value.Y),
-                            Quaternion.Euler(0, 0, (float)character.Value.FacingDirection));
-                    RendererControl.GetInstance().SetColToChild((PlayerTeam)(character.Value.TeamId + 1),
-                        CoreParam.charactersG[character.Value.TeamId * 4 + character.Value.PlayerId - 1].transform);
+                            Tool.GridToUxy(character.Value.X, character.Value.Y),
+                            /*Quaternion.Euler(0, 0, (float)character.Value.FacingDirection)*/
+                            Quaternion.identity);
+                    /*RendererControl.GetInstance().SetColToChild((PlayerTeam)(character.Value.TeamId + 1),
+                        CoreParam.charactersG[character.Value.TeamId * 4 + character.Value.PlayerId - 1].transform);*/
                 }
                 else
                 {
                     CoreParam.charactersG[character.Value.TeamId * 4 + character.Value.PlayerId - 1].transform.position =
-                        Tool.GetInstance().GridToUxy(character.Value.X, character.Value.Y);
-                    CoreParam.charactersG[character.Value.TeamId * 4 + character.Value.PlayerId - 1].transform.rotation =
-                        Quaternion.AngleAxis((float)character.Value.FacingDirection * Mathf.Rad2Deg + 180, Vector3.forward);
+                        Tool.GridToUxy(character.Value.X, character.Value.Y);
+                    /*CoreParam.charactersG[character.Value.TeamId * 4 + character.Value.PlayerId - 1].transform.rotation =
+                        Quaternion.AngleAxis((float)character.Value.FacingDirection * Mathf.Rad2Deg + 180, Vector3.forward);*/
                 }
             }
         }
@@ -209,17 +210,17 @@ public class RenderManager : SingletonMono<RenderManager>
         return obj switch
         {
             MessageOfBarracks barracks => creater.CreateObj(ConstructionType.Barracks,
-                Tool.GetInstance().GridToUxy(barracks.X, barracks.Y)),
+                Tool.GridToUxy(barracks.X, barracks.Y)),
             MessageOfSpring spring => creater.CreateObj(ConstructionType.Spring,
-                Tool.GetInstance().GridToUxy(spring.X, spring.Y)),
+                Tool.GridToUxy(spring.X, spring.Y)),
             MessageOfFarm farm => creater.CreateObj(ConstructionType.Farm,
-                Tool.GetInstance().GridToUxy(farm.X, farm.Y)),
+                Tool.GridToUxy(farm.X, farm.Y)),
             MessageOfTrap trap => creater.CreateObj(trap.TrapType,
-                Tool.GetInstance().GridToUxy(trap.X, trap.Y)),
+                Tool.GridToUxy(trap.X, trap.Y)),
             MessageOfEconomyResource resourceE => creater.CreateObj(resourceE.EconomyResourceType,
-                Tool.GetInstance().GridToUxy(resourceE.X, resourceE.Y)),
+                Tool.GridToUxy(resourceE.X, resourceE.Y)),
             MessageOfAdditionResource resourceA => creater.CreateObj(resourceA.AdditionResourceType,
-                Tool.GetInstance().GridToUxy(resourceA.X, resourceA.Y)),
+                Tool.GridToUxy(resourceA.X, resourceA.Y)),
             _ => null,
         };
     }
@@ -228,12 +229,12 @@ public class RenderManager : SingletonMono<RenderManager>
     {
         return obj switch
         {
-            MessageOfBarracks barracks => Tool.GetInstance().GridToUxy(barracks.X, barracks.Y),
-            MessageOfSpring spring => Tool.GetInstance().GridToUxy(spring.X, spring.Y),
-            MessageOfFarm farm => Tool.GetInstance().GridToUxy(farm.X, farm.Y),
-            MessageOfTrap trap => Tool.GetInstance().GridToUxy(trap.X, trap.Y),
-            MessageOfEconomyResource resourceE => Tool.GetInstance().GridToUxy(resourceE.X, resourceE.Y),
-            MessageOfAdditionResource resourceA => Tool.GetInstance().GridToUxy(resourceA.X, resourceA.Y),
+            MessageOfBarracks barracks => Tool.GridToUxy(barracks.X, barracks.Y),
+            MessageOfSpring spring => Tool.GridToUxy(spring.X, spring.Y),
+            MessageOfFarm farm => Tool.GridToUxy(farm.X, farm.Y),
+            MessageOfTrap trap => Tool.GridToUxy(trap.X, trap.Y),
+            MessageOfEconomyResource resourceE => Tool.GridToUxy(resourceE.X, resourceE.Y),
+            MessageOfAdditionResource resourceA => Tool.GridToUxy(resourceA.X, resourceA.Y),
             _ => Vector3.zero,
         };
     }
@@ -247,14 +248,14 @@ public class RenderManager : SingletonMono<RenderManager>
                 {
                     CoreParam.barracksG[barrack.Key] =
                         ObjCreater.GetInstance().CreateObj(ConstructionType.Barracks,
-                            Tool.GetInstance().GridToUxy(barrack.Value.X, barrack.Value.Y));
+                            Tool.GridToUxy(barrack.Value.X, barrack.Value.Y));
                     // RendererControl.GetInstance().SetColToChild((PlayerTeam)(barrack.Value.TeamId + 1),
                     //     CoreParam.factoriesG[barrack.Key].transform, 5);
 
                 }
                 else
                 {
-                    CoreParam.barracksG[barrack.Key].transform.position = Tool.GetInstance().GridToUxy(barrack.Value.X, barrack.Value.Y);
+                    CoreParam.barracksG[barrack.Key].transform.position = Tool.GridToUxy(barrack.Value.X, barrack.Value.Y);
                     // CoreParam.factoriesG[barrack.Key].transform.rotation =
                     //     Quaternion.AngleAxis((float)barrack.Value.FacingDirection * Mathf.Rad2Deg + 180, Vector3.forward);
                 }
@@ -283,14 +284,14 @@ public class RenderManager : SingletonMono<RenderManager>
                 {
                     CoreParam.springsG[spring.Key] =
                         ObjCreater.GetInstance().CreateObj(ConstructionType.Spring,
-                            Tool.GetInstance().GridToUxy(spring.Value.X, spring.Value.Y));
+                            Tool.GridToUxy(spring.Value.X, spring.Value.Y));
                     // RendererControl.GetInstance().SetColToChild((PlayerTeam)(spring.Value.TeamId + 1),
                     //     CoreParam.springsG[spring.Key].transform);
 
                 }
                 else
                 {
-                    CoreParam.springsG[spring.Key].transform.position = Tool.GetInstance().GridToUxy(spring.Value.X, spring.Value.Y);
+                    CoreParam.springsG[spring.Key].transform.position = Tool.GridToUxy(spring.Value.X, spring.Value.Y);
                     // CoreParam.springsG[spring.Key].transform.rotation =
                     //     Quaternion.AngleAxis((float)spring.Value.FacingDirection * Mathf.Rad2Deg + 180, Vector3.forward);
                 }
@@ -311,8 +312,8 @@ public class RenderManager : SingletonMono<RenderManager>
     }*/
     void ShowAllMessage(MessageToClient messageToClient)
     {
-        /*gameTime.text = "GameTime:" + messageToClient.AllMessage.GameTime;
+        gameTime.text = "GameTime:" + messageToClient.AllMessage.GameTime;
         score.text = "Score(Buddhists:Monsters):" + messageToClient.AllMessage.BuddhistsTeamScore + ":" + messageToClient.AllMessage.MonstersTeamScore;
-        economy.text = "Economy(Buddhists:Monsters):" + messageToClient.AllMessage.BuddhistsTeamEconomy + ":" + messageToClient.AllMessage.MonstersTeamEconomy;*/
+        economy.text = "Economy(Buddhists:Monsters):" + messageToClient.AllMessage.BuddhistsTeamEconomy + ":" + messageToClient.AllMessage.MonstersTeamEconomy;
     }
 }

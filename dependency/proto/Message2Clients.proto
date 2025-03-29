@@ -4,6 +4,13 @@ package protobuf;
 
 import "MessageType.proto";
 
+message MessageOfMonkeySkill
+{
+    int64 team_id = 1;
+    int64 player_id = 2;
+    double angle = 3;
+}
+
 message MessageOfCharacter
 {
     int64 guid = 1;
@@ -12,26 +19,62 @@ message MessageOfCharacter
     int64 player_id = 3;
 
     CharacterType character_type = 4;
-    CharacterState character_state = 5;
 
-    int32 x = 6;
-    int32 y = 7;
+    // 主动状态
+    CharacterState character_active_state = 5;
 
-    double facing_direction = 8;
-    int32 speed = 9;
-    int32 view_range = 10;
+    // 被动状态
+    CharacterState blind_state = 6;
+    double blind_time = 7;
+    CharacterState knockback_state = 8;
+    double knockback_time = 9;
+    CharacterState stunned_state = 10;
+    double stunned_time = 11;
+    CharacterState invisible_state = 12;
+    double invisible_time = 13;
+    CharacterState healing_state = 14;
+    double healing_time = 15;
+    CharacterState berserk_state = 16;
+    double berserk_time = 17;
+    CharacterState burned_state = 18;
+    double burned_time = 19;
+    CharacterState harm_cut_state = 20;
+    double harm_cut_time = 21;
+    CharacterState deceased_state = 22; // 死亡状态不需要持续时间
 
-    int32 atk =11;
-    int32 attack_range = 12;
+    int32 x = 23;
+    int32 y = 24;
 
-    int32 skill_cd = 13;
+    double facing_direction = 25;
+    int32 speed = 26;
+    int32 view_range = 27;
 
-    int32 economy_depletion = 14;
-    int32 kill_score = 15;
+    int32 common_attack = 28;
+    double common_attack_cd = 29;
+    int32 common_attack_range = 30;
+
+    double skill_attack_cd = 31;
+
+    int32 economy_depletion = 32; // 经济资源消耗
+    int32 kill_score = 33; // 击杀得分
     
-    int32 hp = 16; 
+    int32 hp = 34; 
 
-    EquipmentType equipment_type = 17;
+    // 其它装备都是直接消耗，不需要记录
+    EquipmentType shield_equipment = 35; // NULL_EQUIPMENT_TYPE表示没有装备
+    int32 shild = 36; // 护盾剩余
+    EquipmentType shoes_equipment = 37;
+    double shoes_time = 38;
+
+    // 加成资源的Buff
+    CharacterBuffType attack_buff = 39;
+    double attack_buff_time = 40;
+    CharacterBuffType defense_buff = 41;
+    double defense_buff_time = 42;
+    CharacterBuffType speed_buff = 43;
+    double speed_buff_time = 44;
+    CharacterBuffType vision_buff = 45;
+    double vision_buff_time = 46;
 }
 
 message MessageOfBarracks
@@ -89,6 +132,7 @@ message MessageOfEconomyResource
     int32 process = 5; // 采集进度 等价于血量
 
     int32 id = 6;
+
 }
 
 message MessageOfAdditionResource

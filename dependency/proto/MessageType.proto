@@ -33,29 +33,27 @@ enum ShapeType //
 enum CharacterType // 
 {
     NULL_CHARACTER_TYPE = 0;
-
     // 取经团队阵营角色
-    CAMP1_CHARACTER1 = 1;
-    CAMP1_CHARACTER2 = 2;
-    CAMP1_CHARACTER3 = 3;
-    CAMP1_CHARACTER4 = 4;
-    CAMP1_CHARACTER5 = 5;
-    CAMP1_CHARACTER6 = 6;
+    TangSeng = 1;
+    SunWukong = 2;
+    ZhuBajie = 3;
+    ShaWujing = 4;
+    BaiLongma = 5;
+    Monkid = 6;
     
     // 妖怪团队阵营角色
-    CAMP2_CHARACTER1 = 7;
-    CAMP2_CHARACTER2 = 8;
-    CAMP2_CHARACTER3 = 9;
-    CAMP2_CHARACTER4 = 10;
-    CAMP2_CHARACTER5 = 11;
-    CAMP2_CHARACTER6 = 12;
+    JiuLing = 7;
+    HongHaier = 8;
+    NiuMowang = 9;
+    TieShan = 10;
+    ZhiZhujing = 11;
+    Pawn = 12;
 }
 
 enum CharacterState // 角色状态
 {
     NULL_CHARACTER_STATE = 0;
 
-    // 主动状态
     IDLE = 1;
     HARVESTING = 2;
     ATTACKING = 3;
@@ -63,7 +61,7 @@ enum CharacterState // 角色状态
     CONSTRUCTING = 5;
     MOVING = 6;
 
-    // 被动状态
+
     BLIND = 7;
     KNOCKED_BACK = 8;
     STUNNED = 9;
@@ -71,7 +69,22 @@ enum CharacterState // 角色状态
     HEALING = 11;
     BERSERK = 12;
     BURNED = 13;
+    HARM_CUT = 14;
+    DECEASED = 15;
 }
+
+enum CharacterBuffType
+{
+    NULL_CHARACTER_BUFF_TYPE = 0;
+
+    ATTACK_BUFF1 = 1;
+    ATTACK_BUFF2 = 2;
+    ATTACK_BUFF3 = 3;
+    DEFENSE_BUFF = 4;
+    SPEED_BUFF = 5;
+    VISION_BUFF = 6;
+}
+
 
 enum EconomyResourceType // 经济资源
 {
@@ -86,17 +99,17 @@ enum AdditionResourceType // 加成资源
 {
     NULL_ADDITION_RESOURCE_TYPE = 0;
 
-    SMALL_ADDITION_RESOURCE1 = 1;
-    MEDIUM_ADDITION_RESOURCE1 = 2;
-    LARGE_ADDITION_RESOURCE1 = 3;
+    LIFE_POOL1 = 1;
+    LIFE_POOL2 = 2;
+    LIFE_POOL3 = 3;
 
-    SMALL_ADDITION_RESOURCE2 = 4;
-    MEDIUM_ADDITION_RESOURCE2 = 5;
-    LARGE_ADDITION_RESOURCE2 = 6;
+    CRAZY_MAN1 = 4;
+    CRAZY_MAN2 = 5;
+    CRAZY_MAN3 = 6;
 
-    ADDITION_RESOURCE3 = 7;
+    QUICK_STEP = 7;
 
-    ADDITION_RESOURCE4 = 8;
+    WIDE_VIEW = 8;
 }
 
 enum EconomyResourceState // 

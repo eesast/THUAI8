@@ -1,8 +1,11 @@
 ﻿using GameClass.GameObj;
+using GameClass.GameObj.Areas;
+using GameClass.GameObj.Equipments;
 using GameClass.GameObj.Map;
 using Preparation.Utility;
 using Preparation.Utility.Value;
 using System.Threading;
+using System.Threading.Tasks.Dataflow;
 
 
 namespace Gaming
@@ -59,6 +62,8 @@ namespace Gaming
                     else
                         score = character.GetCost();
                     //此处缺失加分代码。由于阵营是分明的（妖怪和取经团队，THUAI7阵营并无明显差别），可以直接将得分加至相应阵营。小局结束后再加到队伍得分。
+                    var team = game.TeamList[(int)character.TeamID.Get()];
+                    team.MoneyPool.SubScore(score);
                     Remove(character);
                 }
             }
@@ -83,12 +88,13 @@ namespace Gaming
                         score = 500;
                     else
                         score = character.GetCost();
-                    //此处缺失加分代码。由于阵营是分明的（妖怪和取经团队，THUAI7阵营并无明显差别），可以直接将得分加至相应阵营。小局结束后再加到队伍得分。
+                    var team = game.TeamList[(int)character.TeamID.Get()];
+                    team.MoneyPool.SubScore(score);
                     Remove(character);
                 }
             }
 
-            public static bool Recover(Character character, long recover)
+            public bool Recover(Character character, long recover)
             {
                 if (recover <= 0)
                     return false;
@@ -104,42 +110,171 @@ namespace Gaming
                 }
                 gameMap.Remove(character);
             }
-            public static bool ImproveATK(Character character, long ATK)
+            public bool Recycle(Character character)
+            {
+                long characterValue =
+                    (long)(character.GetCost() * character.HP.GetDivideValueByMaxV() * GameData.RecycleRate);
+                CharacterManagerLogging.logger.ConsoleLogDebug(
+                    LoggingFunctional.CharacterLogInfo(character)
+                    + $" 's value is {characterValue}");
+                character.AddMoney(characterValue);
+                CharacterManagerLogging.logger.ConsoleLogDebug(
+                    LoggingFunctional.CharacterLogInfo(character)
+                    + " is recycled!");
+                Remove(character);
+                return false;
+            }
+            public bool ImproveATK(Character character, long ATK)
             {
                 if (ATK <= 0)
                     return false;
                 character.AttackPower.AddPositiveV(ATK);//暂未添加时间限制
                 return true;
             }
-            public static bool ImproveSpeed(Character character, long speed)
+            public bool ImproveSpeed(Character character, long speed)
             {
                 if (speed <= 0)
                     return false;
                 character.Shoes.AddPositiveV(speed);//暂未添加时间限制
                 return true;
             }
-            public static bool SkillCasting(Character character, double theta = 0.0)
+            public void InTrap(Trap trap, Character character)
             {
-                if (!character.Commandable() || character.CharacterState2 == CharacterState.BLIND)
-                    return false;
-                switch (character.CharacterType)
+
+                if (!character.trapped && character.InSquare(trap.Position, GameData.TrapRange) && trap.TeamID != character.TeamID)
                 {
-                    case CharacterType.SunWukong:
-                        {
-                            break;
-                        }
-                    case CharacterType.ZhuBajie:
-                        {
-                            Recover(character, 150);//回复一半血量
-                            character.HarmCut = 0.5;//设置伤害减免。此处尚未增加时间限制
-                        }
-                        break;
-                    case CharacterType.ShaWujing:
-                        {
-                            break;
-                        }
+                    character.visible = true;
+                    character.trapped = true;
+                    character.TrapTime = Environment.TickCount64;
+                    //HP.SubV(GameData.TrapDamage);
+                    //SetCharacterState(CharacterState.STUNNED);
                 }
-                return true;
+            }
+            public void CheckTrap(Character character)
+            {
+                long nowtime = Environment.TickCount64;
+                if (nowtime - character.TrapTime >= 5000)
+                {
+                    character.TrapTime = long.MaxValue;
+                    character.trapped = false;
+                }
+                else
+                {
+                    if ((nowtime - character.TrapTime) % 1000 <= 25 || (nowtime - character.TrapTime) % 1000 >= 975)
+                    {
+                        BeAttacked(character, GameData.TrapDamage);
+                    }
+                }
+            }
+            public void InCage(Cage cage, Character character)
+            {
+                if (!character.caged && character.InSquare(cage.Position, GameData.TrapRange) && cage.TeamID != character.TeamID)
+                {
+                    character.visible = true;
+                    character.caged = true;
+                    character.stunned = true;
+                    character.CageTime = Environment.TickCount64;
+                    //HP.SubV(GameData.TrapDamage);
+                    //SetCharacterState(CharacterState.STUNNED);
+                }
+            }
+            public void CheckCage(Character character)
+            {
+                long nowtime = Environment.TickCount64;
+                if (nowtime - character.CageTime >= 30000)
+                {
+                    character.CageTime = long.MaxValue;
+                    character.caged = false;
+                }
+            }
+            public void CheckBurned(Character character)
+            {
+                long nowtime = Environment.TickCount64;
+                if (nowtime - character.BurnedTime >= 5000)
+                {
+                    character.BurnedTime = long.MaxValue;
+                    character.burned = false;
+                }
+                else
+                {
+                    if ((nowtime - character.TrapTime) % 1000 <= 25 || (nowtime - character.TrapTime) % 1000 >= 975)
+                    {
+                        BeAttacked(character, GameData.HongHaierSkillATK);
+                    }
+                }
+            }
+            public void CheckBlind(Character character)
+            {
+                long nowtime = Environment.TickCount64;
+                if (nowtime - character.BlindTime >= 5000)
+                {
+                    character.BlindTime = long.MaxValue;
+                    character.blind = false;
+                }
+            }
+            public void CheckStunned(Character character)
+            {
+                long nowtime = Environment.TickCount64;
+                if (nowtime - character.StunnedTime >= 5000)
+                {
+                    character.StunnedTime = long.MaxValue;
+                    character.stunned = false;
+                }
+            }
+            public void CheckHarmCut(Character character)
+            {
+                long nowtime = Environment.TickCount64;
+                if (nowtime - character.BurnedTime >= 15000)
+                {
+                    character.HarmCutTime = long.MaxValue;
+                    character.HarmCut = 0;
+                }
+            }
+            public void CheckSkillTime(Character character)
+            {
+                long nowtime = Environment.TickCount64;
+                if (nowtime - character.GetSkillTime() >= 6000)
+                {
+                    character.canskill = true;
+                    character.ResetSkillCD();
+                }
+            }
+            public void CheckCrazyManTime(Character character)
+            {
+                long nowtime = Environment.TickCount64;
+                if (nowtime - character.CrazyManTime >= (15 + character.CrazyManNum * 15))
+                {
+                    character.AttackPower.SubPositiveV(5 + character.CrazyManNum * 5);
+                    character.CrazyManTime = long.MaxValue;
+                }
+            }
+            public void CheckQuickStepTime(Character character)
+            {
+                long nowtime = Environment.TickCount64;
+                if (nowtime - character.QuickStepTime >= 60000)
+                {
+                    character.Shoes.SubPositiveV(500);
+                    character.QuickStepTime = long.MaxValue;
+                }
+            }
+            public void CheckWideViewTime(Character character)
+            {
+                long nowtime = Environment.TickCount64;
+                if (nowtime - character.WideViewTime >= 60000)
+                {
+                    character.CanSeeAll = false;
+                    character.WideViewTime = long.MaxValue;
+                }
+            }
+            public void CheckPurified(Character character)
+            {
+                long nowtime = Environment.TickCount64;
+                if (nowtime - character.PurifiedTime >= 30000)
+                {
+                    character.Purified = false;
+                    character.PurifiedTime = long.MaxValue;
+
+                }
             }
         }
     }
