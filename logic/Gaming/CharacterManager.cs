@@ -44,10 +44,26 @@ namespace Gaming
                     return;
                 }
                 long subHP = (long)(obj.AttackPower * (1 - character.HarmCut));
-                if (character.Shield > 0)
+                /*if (character.Shield > 0)
                 {
                     character.Shield.SubPositiveV(subHP);
                 }
+                else
+                {
+                    character.HP.SubPositiveV(subHP);
+                }*/
+                if(character.NiuShield>subHP)
+                {
+                    break;
+                }
+                character.NiuShield.SubPositiveV(subHP);
+                subHP-= character.NiuShield;
+                else if(character.Shiled>subHP)
+                {
+                    break;
+                }
+                character.Shield.SubPositiveV(subHP);
+                subHP-= character.Shield;
                 else
                 {
                     character.HP.SubPositiveV(subHP);
