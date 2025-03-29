@@ -21,7 +21,8 @@ public static class Transformation
         PlaceType.CONSTRUCTION => ProtoPlace.Construction,
         PlaceType.TRAP => ProtoPlace.Trap,
         PlaceType.HOME => ProtoPlace.Home,
-        PlaceType.NULL_PLACE_TYPE => ProtoPlace.NullPlaceType
+        PlaceType.NULL_PLACE_TYPE => ProtoPlace.NullPlaceType,
+        _ => ProtoPlace.NullPlaceType
     };
     public static PlaceType PlaceTypeFromProto(ProtoPlace placeType) => placeType switch
     {
@@ -33,7 +34,8 @@ public static class Transformation
         ProtoPlace.Construction => PlaceType.CONSTRUCTION,
         ProtoPlace.Trap => PlaceType.TRAP,
         ProtoPlace.Home => PlaceType.HOME,
-        ProtoPlace.NullPlaceType => PlaceType.NULL_PLACE_TYPE
+        ProtoPlace.NullPlaceType => PlaceType.NULL_PLACE_TYPE,
+        _ => PlaceType.NULL_PLACE_TYPE
     };
     public static ProtoCharacterType CharacterTypeToProto(CharacterType charactertype) => charactertype switch
     {
@@ -48,7 +50,8 @@ public static class Transformation
         CharacterType.NiuMowang => ProtoCharacterType.NiuMowang,
         CharacterType.TieShan => ProtoCharacterType.TieShan,
         CharacterType.ZhiZhujing => ProtoCharacterType.ZhiZhujing,
-        CharacterType.Pawn => ProtoCharacterType.Pawn
+        CharacterType.Pawn => ProtoCharacterType.Pawn,
+        _ => ProtoCharacterType.NullCharacterType
     };
     public static CharacterType CharacterTypeFromProto(ProtoCharacterType charactertype) => charactertype switch
     {
@@ -63,7 +66,8 @@ public static class Transformation
         ProtoCharacterType.NiuMowang => CharacterType.NiuMowang,
         ProtoCharacterType.TieShan => CharacterType.TieShan,
         ProtoCharacterType.ZhiZhujing => CharacterType.ZhiZhujing,
-        ProtoCharacterType.Pawn => CharacterType.Pawn
+        ProtoCharacterType.Pawn => CharacterType.Pawn,
+        _ => CharacterType.Null
     };
     public static ProtoCharacterState CharacterStateToProto(CharacterState characterstate) => characterstate switch
     {
@@ -81,7 +85,8 @@ public static class Transformation
         CharacterState.INVISIBLE => ProtoCharacterState.Invisible,
         CharacterState.KNOCKED_BACK => ProtoCharacterState.KnockedBack,
         CharacterState.STUNNED => ProtoCharacterState.Stunned,
-        CharacterState.DECEASED => ProtoCharacterState.Deceased
+        CharacterState.DECEASED => ProtoCharacterState.Deceased,
+        _ => ProtoCharacterState.NullCharacterState
     };
     public static CharacterState CharacterStateFromProto(ProtoCharacterState characterstate) => characterstate switch
     {
@@ -99,21 +104,24 @@ public static class Transformation
         ProtoCharacterState.Invisible => CharacterState.INVISIBLE,
         ProtoCharacterState.KnockedBack => CharacterState.KNOCKED_BACK,
         ProtoCharacterState.Stunned => CharacterState.STUNNED,
-        ProtoCharacterState.Deceased => CharacterState.DECEASED
+        ProtoCharacterState.Deceased => CharacterState.DECEASED,
+        _ => CharacterState.NULL_CHARACTER_STATE
     };
     public static ProtoEconomyResourceState EconomyResourceStateToProto(EconomyResourceState ERstate) => ERstate switch
     {
         EconomyResourceState.HARVESTABLE => ProtoEconomyResourceState.Harvestable,
         EconomyResourceState.BEING_HARVESTED => ProtoEconomyResourceState.BeingHarvested,
         EconomyResourceState.HARVESTED => ProtoEconomyResourceState.Harvested,
-        EconomyResourceState.NULL_ECONOMY_RESOURCE_STATE => ProtoEconomyResourceState.NullEconomyResourceStste
+        EconomyResourceState.NULL_ECONOMY_RESOURCE_STATE => ProtoEconomyResourceState.NullEconomyResourceStste,
+        _ => ProtoEconomyResourceState.NullEconomyResourceStste
     };
     public static EconomyResourceState EconomyResourceStateFromProto(ProtoEconomyResourceState ERstate) => ERstate switch
     {
         ProtoEconomyResourceState.Harvestable => EconomyResourceState.HARVESTABLE,
         ProtoEconomyResourceState.BeingHarvested => EconomyResourceState.BEING_HARVESTED,
         ProtoEconomyResourceState.Harvested => EconomyResourceState.HARVESTED,
-        ProtoEconomyResourceState.NullEconomyResourceStste => EconomyResourceState.NULL_ECONOMY_RESOURCE_STATE
+        ProtoEconomyResourceState.NullEconomyResourceStste => EconomyResourceState.NULL_ECONOMY_RESOURCE_STATE,
+        _ => EconomyResourceState.NULL_ECONOMY_RESOURCE_STATE
     };
     public static ProtoEconomyResourceType EconomyResourceTypeToProto(EconomyResourceType ERtype) => ERtype switch
     {
@@ -121,6 +129,7 @@ public static class Transformation
         EconomyResourceType.SMALL_ECONOMY_RESOURCE => ProtoEconomyResourceType.SmallEconomyResource,
         EconomyResourceType.MEDIUM_ECONOMY_RESOURCE => ProtoEconomyResourceType.MediumEconomyResource,
         EconomyResourceType.LARGE_ECONOMY_RESOURCE => ProtoEconomyResourceType.LargeEconomyResource,
+        _ => ProtoEconomyResourceType.NullEconomyResourceType
     };
     public static EconomyResourceType EconomyResourceTypeFromProto(ProtoEconomyResourceType ERtype) => ERtype switch
     {
@@ -128,6 +137,7 @@ public static class Transformation
         ProtoEconomyResourceType.SmallEconomyResource => EconomyResourceType.SMALL_ECONOMY_RESOURCE,
         ProtoEconomyResourceType.MediumEconomyResource => EconomyResourceType.MEDIUM_ECONOMY_RESOURCE,
         ProtoEconomyResourceType.LargeEconomyResource => EconomyResourceType.LARGE_ECONOMY_RESOURCE,
+        _ => EconomyResourceType.NULL_ECONOMY_RESOURCE_TYPE
     };
     public static ProtoEquipmentType EquipmentTypeToProto(EquipmentType equipmenttype) => equipmenttype switch
     {
@@ -141,7 +151,8 @@ public static class Transformation
         EquipmentType.SPEEDBOOTS => ProtoEquipmentType.Speedboots,
         EquipmentType.PURIFICATION_POTION => ProtoEquipmentType.PurificationPotion,
         EquipmentType.INVISIBILITY_POTION => ProtoEquipmentType.InvisibilityPotion,
-        EquipmentType.BERSERK_POTION => ProtoEquipmentType.BerserkPotion
+        EquipmentType.BERSERK_POTION => ProtoEquipmentType.BerserkPotion,
+        _ => ProtoEquipmentType.NullEquipmentType
     };
     public static EquipmentType EquipmentTypeFromProto(ProtoEquipmentType equipmenttype) => equipmenttype switch
     {
@@ -155,7 +166,8 @@ public static class Transformation
         ProtoEquipmentType.Speedboots => EquipmentType.SPEEDBOOTS,
         ProtoEquipmentType.PurificationPotion => EquipmentType.PURIFICATION_POTION,
         ProtoEquipmentType.InvisibilityPotion => EquipmentType.INVISIBILITY_POTION,
-        ProtoEquipmentType.BerserkPotion => EquipmentType.BERSERK_POTION
+        ProtoEquipmentType.BerserkPotion => EquipmentType.BERSERK_POTION,
+        _ => EquipmentType.NULL_EQUIPMENT_TYPE
     };
     public static ProtoConstructionType ConstructionToProto(ConstructionType constructiontype) => constructiontype switch
     {
@@ -163,6 +175,7 @@ public static class Transformation
         ConstructionType.FARM => ProtoConstructionType.Farm,
         ConstructionType.SPRING => ProtoConstructionType.Spring,
         ConstructionType.BARRACKS => ProtoConstructionType.Barracks,
+        _ => ProtoConstructionType.NullConstructionType
     };
     public static ConstructionType ConstructionFromProto(ProtoConstructionType constructiontype) => constructiontype switch
     {
@@ -170,16 +183,19 @@ public static class Transformation
         ProtoConstructionType.Farm => ConstructionType.FARM,
         ProtoConstructionType.Spring => ConstructionType.SPRING,
         ProtoConstructionType.Barracks => ConstructionType.BARRACKS,
+        _ => ConstructionType.NULL_CONSTRUCTION_TYPE
     };
     public static ProtoTrapType TrapTypeToProto(ConstructionType traptype) => traptype switch
     {
-        ConstructionType.TRAP => ProtoTrapType.Hole,
-        ConstructionType.CAGE => ProtoTrapType.Cage
+        ConstructionType.HOLE => ProtoTrapType.Hole,
+        ConstructionType.CAGE => ProtoTrapType.Cage,
+        _ => ProtoTrapType.NullTrapType
     };
     public static ConstructionType TrapTypeFromProto(ProtoTrapType traptype) => traptype switch
     {
-        ProtoTrapType.Hole => ConstructionType.TRAP,
-        ProtoTrapType.Cage => ConstructionType.CAGE
+        ProtoTrapType.Hole => ConstructionType.HOLE,
+        ProtoTrapType.Cage => ConstructionType.CAGE,
+        _ => ConstructionType.NULL_CONSTRUCTION_TYPE
     };
     public static ProtoAdditionalResourceType AResourceToProto(A_ResourceType ARtype) => ARtype switch
     {
@@ -191,7 +207,8 @@ public static class Transformation
         A_ResourceType.CRAZY_MAN2 => ProtoAdditionalResourceType.CrazyMan2,
         A_ResourceType.CRAZY_MAN3 => ProtoAdditionalResourceType.CrazyMan3,
         A_ResourceType.QUICK_STEP => ProtoAdditionalResourceType.QuickStep,
-        A_ResourceType.WIDE_VIEW => ProtoAdditionalResourceType.WideView
+        A_ResourceType.WIDE_VIEW => ProtoAdditionalResourceType.WideView,
+        _ => ProtoAdditionalResourceType.NullAdditionResourceType
     };
     public static A_ResourceType AResourceFromProto(ProtoAdditionalResourceType ARtype) => ARtype switch
     {
@@ -203,7 +220,8 @@ public static class Transformation
         ProtoAdditionalResourceType.CrazyMan2 => A_ResourceType.CRAZY_MAN2,
         ProtoAdditionalResourceType.CrazyMan3 => A_ResourceType.CRAZY_MAN3,
         ProtoAdditionalResourceType.QuickStep => A_ResourceType.QUICK_STEP,
-        ProtoAdditionalResourceType.WideView => A_ResourceType.WIDE_VIEW
+        ProtoAdditionalResourceType.WideView => A_ResourceType.WIDE_VIEW,
+        _ => A_ResourceType.NULL
     };
     public static ProtoAdditionalResourceState AResourceStateToProto(AdditionResourceState State) => State switch
     {
@@ -211,6 +229,7 @@ public static class Transformation
         AdditionResourceState.BEATABLE => ProtoAdditionalResourceState.Beatable,
         AdditionResourceState.BEING_BEATEN => ProtoAdditionalResourceState.BeingBeaten,
         AdditionResourceState.BEATEN => ProtoAdditionalResourceState.Beaten,
+        _ => ProtoAdditionalResourceState.NullAdditionResourceState
     };
     public static AdditionResourceState AResourceStateFromProto(ProtoAdditionalResourceState State) => State switch
     {
@@ -218,5 +237,6 @@ public static class Transformation
         ProtoAdditionalResourceState.Beatable => AdditionResourceState.BEATABLE,
         ProtoAdditionalResourceState.BeingBeaten => AdditionResourceState.BEING_BEATEN,
         ProtoAdditionalResourceState.Beaten => AdditionResourceState.BEATEN,
+        _ => AdditionResourceState.NULL_ADDITION_RESOURCE_STATE
     };
 }

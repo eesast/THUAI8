@@ -50,6 +50,10 @@ namespace Gaming
                 {
                     return false;
                 }
+                if(!gameMap.InAttackSize(character,gameobj))
+                {
+                    return false;
+                }
                 if (gameobj.visible == false || gameobj.CharacterState2 == CharacterState.INVISIBLE)
                 {
                     return false;
@@ -72,6 +76,10 @@ namespace Gaming
                 {
                     return false;
                 }
+                if (!gameMap.InAttackSize(character, gameobj))
+                {
+                    return false;
+                }
                 ARManager.BeAttacked(gameobj, character);
                 if (character.CharacterState2 == CharacterState.INVISIBLE)
                     character.SetCharacterState(character.CharacterState1, CharacterState.NULL_CHARACTER_STATE);//破隐
@@ -84,6 +92,10 @@ namespace Gaming
                     return false;
                 }
                 if (!gameMap.CanSee(character, gameobj))
+                {
+                    return false;
+                }
+                if (!gameMap.InAttackSize(character, gameobj))
                 {
                     return false;
                 }
