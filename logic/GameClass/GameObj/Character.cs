@@ -276,7 +276,10 @@ public class Character : Movable, ICharacter
                 }
             case EquipmentType.SMALL_SHIELD:
                 {
-                    if(IsShield) return false;
+                    if(IsShield)
+                    {
+                        return false;
+                    } 
                     Shield.AddPositiveV(GameData.Shield1);
                     SubMoney(EquipmentFactory.FindCost(equiptype));
                     IsShield = true;
@@ -284,7 +287,10 @@ public class Character : Movable, ICharacter
                 }
             case EquipmentType.MEDIUM_SHIELD:
                 {
-                    if(IsShield) return false;
+                    if(IsShield)
+                    {
+                        return false;
+                    }
                     Shield.AddPositiveV(GameData.Shield2);
                     SubMoney(EquipmentFactory.FindCost(equiptype));
                     IsShield = true;
@@ -292,7 +298,10 @@ public class Character : Movable, ICharacter
                 }
             case EquipmentType.LARGE_SHIELD:
                 {
-                    if(IsShield) return false;
+                    if(IsShield)
+                    {
+                        return false;
+                    }
                     Shield.AddPositiveV(GameData.Shield3);
                     SubMoney(EquipmentFactory.FindCost(equiptype));
                     IsShield = true;
