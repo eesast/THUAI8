@@ -121,7 +121,7 @@ namespace Gaming
                             }
                             break;
                         case A_ResourceType.WIDE_VIEW:
-                            { 
+                            {
                                 score = 3000;
                                 foreach (var teamcharacter in characters)
                                 {

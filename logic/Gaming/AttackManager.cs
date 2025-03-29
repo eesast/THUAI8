@@ -50,7 +50,7 @@ namespace Gaming
                 {
                     return false;
                 }
-                if(!gameMap.InAttackSize(character,gameobj))
+                if (!gameMap.InAttackSize(character, gameobj))
                 {
                     return false;
                 }

@@ -260,7 +260,7 @@ namespace Gaming
             public void CheckWideViewTime(Character character)
             {
                 long nowtime = Environment.TickCount64;
-                if(nowtime-character.WideViewTime>=60000)
+                if (nowtime - character.WideViewTime >= 60000)
                 {
                     character.CanSeeAll = false;
                     character.WideViewTime = long.MaxValue;
