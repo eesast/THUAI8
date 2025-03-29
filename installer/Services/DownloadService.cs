@@ -114,4 +114,4 @@ namespace installer.Services
             _cancellationTokenSource?.Cancel();
         }
     }
-} 
+}

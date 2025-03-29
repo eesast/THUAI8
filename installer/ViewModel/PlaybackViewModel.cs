@@ -22,7 +22,7 @@ namespace installer.ViewModel
     public class PlaybackViewModel : LaunchViewModel
     {
         private readonly Microsoft.Maui.Storage.IFilePicker FilePicker;
-        
+
         public PlaybackViewModel(Microsoft.Maui.Storage.IFilePicker filePicker, Downloader downloader) : base(downloader)
         {
             FilePicker = filePicker;
@@ -45,7 +45,7 @@ namespace installer.ViewModel
             BrowseBtnClickedCommand = new RelayCommand(BrowseBtnClicked);
             PlaybackStartBtnClickedCommand = new AsyncRelayCommand(PlaybackStartBtnClicked);
             SaveBtnClickedCommand = new RelayCommand(SaveBtnClicked);
-            
+
             // 设置默认回放文件
             if (string.IsNullOrEmpty(PlaybackFile))
             {
@@ -60,7 +60,7 @@ namespace installer.ViewModel
         #endregion
 
         protected Microsoft.Maui.Storage.PickOptions options;
-        
+
         #region 属性
         private bool browseEnabled = true;
         public bool BrowseEnabled
@@ -82,12 +82,12 @@ namespace installer.ViewModel
                 await Application.Current.MainPage.DisplayAlert("错误", "请输入回放文件路径", "确定");
                 return;
             }
-            
+
             LogMessage($"开始回放: {PlaybackFile}");
-            
+
             // 保存设置
             SaveSettings();
-            
+
             await Task.Run(() => LaunchPlayback());
         }
 
@@ -101,28 +101,30 @@ namespace installer.ViewModel
                     var p = result?.Result?.FullPath;
                     PlaybackFile = string.IsNullOrEmpty(p) ? PlaybackFile : p;
                 }
-                
-                MainThread.BeginInvokeOnMainThread(() => {
+
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
                     BrowseEnabled = true;
                 });
             });
         }
-        
+
         private void SaveBtnClicked()
         {
             SaveSettings();
-            MainThread.BeginInvokeOnMainThread(async () => {
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
                 await Application.Current.MainPage.DisplayAlert("成功", "设置已保存", "确定");
             });
         }
-        
+
         private void SaveSettings()
         {
             try
             {
                 // 保存回放文件路径
                 Downloader.Data.Config.Commands.PlaybackFile = PlaybackFile;
-                
+
                 // 正确处理速度的转换
                 if (double.TryParse(PlaybackSpeed, out double speed))
                 {
@@ -135,7 +137,7 @@ namespace installer.ViewModel
                     // 更新UI中显示的值
                     PlaybackSpeed = "1.0";
                 }
-                
+
                 Downloader.Data.Config.SaveFile();
                 LogMessage("设置已保存");
             }
@@ -144,26 +146,27 @@ namespace installer.ViewModel
                 LogMessage($"保存设置失败: {ex.Message}");
             }
         }
-        
+
         public bool LaunchPlayback()
         {
             try
             {
                 LogMessage("启动回放客户端");
-                
+
                 // 构建启动参数
                 var clientPath = Path.Combine(Downloader.Data.Config.InstallPath, "logic", "Client", "Client.exe");
-                
+
                 // 检查客户端是否存在
                 if (!File.Exists(clientPath))
                 {
                     LogMessage($"回放客户端不存在: {clientPath}");
-                    MainThread.BeginInvokeOnMainThread(async () => {
+                    MainThread.BeginInvokeOnMainThread(async () =>
+                    {
                         await Application.Current.MainPage.DisplayAlert("错误", $"回放客户端不存在: {clientPath}", "确定");
                     });
                     return false;
                 }
-                
+
                 // 检查回放文件是否已设置
                 string playbackFilePath = "";
                 if (!string.IsNullOrEmpty(PlaybackFile))
@@ -187,10 +190,10 @@ namespace installer.ViewModel
                         }
                     }
                 }
-                
+
                 // 构造启动参数
                 string arguments = "-b"; // 开启回放模式
-                
+
                 // 如果回放文件存在，添加文件参数
                 if (!string.IsNullOrEmpty(playbackFilePath) && File.Exists(playbackFilePath))
                 {
@@ -201,7 +204,7 @@ namespace installer.ViewModel
                 {
                     LogMessage("未找到有效回放文件，将使用默认文件");
                 }
-                
+
                 // 添加速度参数
                 if (double.TryParse(PlaybackSpeed, out double speed))
                 {
@@ -210,7 +213,7 @@ namespace installer.ViewModel
                     arguments += $" --playbackSpeed {speed}";
                     LogMessage($"设置回放速度: {speed}x");
                 }
-                
+
                 // 构造启动过程
                 ProcessStartInfo startInfo = new ProcessStartInfo
                 {
@@ -218,24 +221,25 @@ namespace installer.ViewModel
                     Arguments = arguments,
                     UseShellExecute = true
                 };
-                
+
                 // 启动客户端
                 LogMessage($"启动命令: {clientPath} {arguments}");
                 Process.Start(startInfo);
                 LogMessage("回放客户端已启动");
-                
+
                 return true;
             }
             catch (Exception ex)
             {
                 LogMessage($"启动回放客户端失败: {ex.Message}");
-                MainThread.BeginInvokeOnMainThread(async () => {
+                MainThread.BeginInvokeOnMainThread(async () =>
+                {
                     await Application.Current.MainPage.DisplayAlert("错误", $"启动回放客户端失败: {ex.Message}", "确定");
                 });
                 return false;
             }
         }
-        
+
         private void LogMessage(string message)
         {
             Debug.WriteLine($"[PlaybackControl] {message}");

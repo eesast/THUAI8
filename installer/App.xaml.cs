@@ -9,7 +9,7 @@ namespace installer
             try
             {
                 InitializeComponent();
-                
+
                 Debug.WriteLine("正在初始化THUAI8安装程序...");
                 MainPage = new AppShell();
                 Debug.WriteLine("主页面已创建");
@@ -18,7 +18,7 @@ namespace installer
             {
                 Debug.WriteLine($"初始化错误: {ex.Message}");
                 Debug.WriteLine($"堆栈跟踪: {ex.StackTrace}");
-                
+
                 // 尝试显示错误信息
                 try
                 {

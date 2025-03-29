@@ -315,13 +315,13 @@ namespace installer.ViewModel
 
             // 构建命令行参数
             string arguments = $"--ip {IP} --port {Port} --teamID {team} --playerID {player}";
-            
+
             // 如果是非零的角色类型，添加角色类型参数
             if (character > 0)
             {
                 arguments += $" --characterType {character}";
             }
-            
+
             Log.LogInfo($"启动客户端，参数: {arguments}");
 
             var client = Process.Start(new ProcessStartInfo()

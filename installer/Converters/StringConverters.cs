@@ -10,7 +10,7 @@ namespace installer.Converters
         {
             if (value == null)
                 return false;
-                
+
             string strValue = value.ToString();
             return !string.IsNullOrEmpty(strValue);
         }
@@ -20,4 +20,4 @@ namespace installer.Converters
             return null;
         }
     }
-} 
+}

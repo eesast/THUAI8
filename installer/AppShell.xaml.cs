@@ -10,7 +10,7 @@ namespace installer
             {
                 InitializeComponent();
                 Debug.WriteLine("AppShell组件已初始化");
-                
+
                 // 注册路由
                 RegisterRoutes();
                 Debug.WriteLine("路由已注册");
@@ -21,7 +21,7 @@ namespace installer
                 Debug.WriteLine($"堆栈跟踪: {ex.StackTrace}");
             }
         }
-        
+
         private void RegisterRoutes()
         {
             // 注册所有页面路由
@@ -30,7 +30,7 @@ namespace installer
             Routing.RegisterRoute("PlaybackPage", typeof(Page.PlaybackPage));
             Routing.RegisterRoute("LoginPage", typeof(Page.LoginPage));
         }
-        
+
         protected override void OnNavigating(ShellNavigatingEventArgs args)
         {
             base.OnNavigating(args);

@@ -15,7 +15,7 @@ public partial class PlaybackPage : ContentPage
             var services = Application.Current.Handler.MauiContext.Services;
             var downloader = services.GetService<Downloader>();
             var filePicker = services.GetService<IFilePicker>() ?? FilePicker.Default;
-            
+
             if (downloader != null)
             {
                 this.BindingContext = new PlaybackViewModel(filePicker, downloader);

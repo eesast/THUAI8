@@ -27,37 +27,37 @@ namespace installer.Services
         private double _playbackSpeed;
         private DateTime _startTime;
         private TcpClient _controlConnection;
-        
+
         public bool IsRunning { get; private set; }
-        
+
         public MockPlaybackClient(string playbackFilePath, double initialSpeed, int controlPort)
         {
             _playbackFilePath = playbackFilePath;
             _initialSpeed = initialSpeed;
             _playbackSpeed = initialSpeed;
             _controlPort = controlPort;
-            
+
             // 模拟从回放文件读取总帧数
             FileInfo fileInfo = new FileInfo(playbackFilePath);
             _totalFrames = (int)(fileInfo.Length / 1024);  // 假设每帧1KB
         }
-        
+
         public async Task StartAsync()
         {
             try
             {
                 // 模拟初始化
                 await Task.Delay(500);
-                
+
                 // 连接到控制器
                 await ConnectToControllerAsync();
-                
+
                 if (_isConnected)
                 {
                     Debug.WriteLine($"MockClient: 已连接到控制器");
                     IsRunning = true;
                     _startTime = DateTime.Now;
-                    
+
                     // 启动模拟播放线程
                     _ = Task.Run(RunPlaybackLoopAsync, _cts.Token);
                 }
@@ -71,7 +71,7 @@ namespace installer.Services
                 Debug.WriteLine($"MockClient: 启动错误 - {ex.Message}");
             }
         }
-        
+
         private async Task ConnectToControllerAsync()
         {
             try
@@ -79,7 +79,7 @@ namespace installer.Services
                 _controlConnection = new TcpClient();
                 await _controlConnection.ConnectAsync(IPAddress.Loopback, _controlPort);
                 _isConnected = true;
-                
+
                 // 启动命令监听
                 _ = Task.Run(ListenForCommandsAsync, _cts.Token);
             }
@@ -89,14 +89,14 @@ namespace installer.Services
                 _isConnected = false;
             }
         }
-        
+
         private async Task ListenForCommandsAsync()
         {
             try
             {
                 byte[] buffer = new byte[1024];
                 NetworkStream stream = _controlConnection.GetStream();
-                
+
                 while (_isConnected && !_cts.Token.IsCancellationRequested)
                 {
                     if (stream.DataAvailable)
@@ -108,7 +108,7 @@ namespace installer.Services
                             ProcessCommand(command);
                         }
                     }
-                    
+
                     await Task.Delay(100, _cts.Token);
                 }
             }
@@ -118,11 +118,11 @@ namespace installer.Services
                 _isConnected = false;
             }
         }
-        
+
         private void ProcessCommand(string command)
         {
             Debug.WriteLine($"MockClient: 收到命令 - {command}");
-            
+
             if (command == "PAUSE")
             {
                 _isPaused = true;
@@ -148,7 +148,7 @@ namespace installer.Services
                 }
             }
         }
-        
+
         private void SendStatusResponse()
         {
             try
@@ -156,10 +156,10 @@ namespace installer.Services
                 // 计算当前播放时间
                 TimeSpan elapsed = TimeSpan.FromSeconds(_currentFrame / (30.0 * _playbackSpeed));
                 string timeStr = $"{elapsed.Minutes:00}:{elapsed.Seconds:00}";
-                
+
                 // 构建状态响应
                 string response = $"FRAME:{_currentFrame}/{_totalFrames};TIME:{timeStr};PAUSED:{(_isPaused ? "TRUE" : "FALSE")};COMPLETED:{(_currentFrame >= _totalFrames ? "TRUE" : "FALSE")};SPEED:{_playbackSpeed}";
-                
+
                 // 发送响应
                 if (_isConnected)
                 {
@@ -175,7 +175,7 @@ namespace installer.Services
                 _isConnected = false;
             }
         }
-        
+
         private async Task RunPlaybackLoopAsync()
         {
             try
@@ -186,9 +186,9 @@ namespace installer.Services
                     {
                         // 模拟帧率为30fps
                         await Task.Delay((int)(1000 / (30 * _playbackSpeed)), _cts.Token);
-                        
+
                         _currentFrame++;
-                        
+
                         // 每10帧发送一次状态更新
                         if (_currentFrame % 10 == 0)
                         {
@@ -201,7 +201,7 @@ namespace installer.Services
                         await Task.Delay(100, _cts.Token);
                     }
                 }
-                
+
                 // 播放结束
                 if (_currentFrame >= _totalFrames)
                 {
@@ -209,7 +209,7 @@ namespace installer.Services
                     SendStatusResponse();
                     Debug.WriteLine("MockClient: 播放已完成");
                 }
-                
+
                 IsRunning = false;
             }
             catch (OperationCanceledException)
@@ -225,14 +225,14 @@ namespace installer.Services
                 IsRunning = false;
             }
         }
-        
+
         public void Stop()
         {
             try
             {
                 _cts.Cancel();
                 IsRunning = false;
-                
+
                 if (_controlConnection != null)
                 {
                     _controlConnection.Close();
@@ -245,4 +245,4 @@ namespace installer.Services
             }
         }
     }
-} 
+}

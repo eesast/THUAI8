@@ -20,13 +20,13 @@ namespace installer
     {
         // 添加UI线程同步对象
         public static SynchronizationContext? UISynchronizationContext { get; private set; }
-        
+
         // public static Model.Logger logger = Model.LoggerProvider.FromFile(@"E:\bin\log\123.log");
         public static bool ErrorTrigger_WhileDebug = true;
         public static bool RefreshLogs_WhileDebug = false;
         public static string SecretID = "***";
         public static string SecretKey = "***";
-        
+
         public static MauiApp CreateMauiApp()
         {
             try
@@ -34,11 +34,11 @@ namespace installer
                 // 首先初始化调试工具
                 DebugTool.Initialize();
                 DebugTool.Log("开始创建MAUI应用程序");
-                
+
                 // 捕获UI线程同步上下文
                 UISynchronizationContext = SynchronizationContext.Current;
                 DebugTool.Log("UI同步上下文已捕获");
-                
+
                 // read SecretID & SecretKey from filePath for debug
                 var filePath = Debugger.IsAttached ? "D:\\Secret.csv" : Path.Combine(AppContext.BaseDirectory, "Secret.csv");
                 try
@@ -49,7 +49,7 @@ namespace installer
                         var lines = File.ReadAllLines(filePath);
                         if (lines.Length >= 4)
                         {
-                            try 
+                            try
                             {
                                 lines = lines.Select(s => s.Trim().Trim('\r', '\n')).ToArray();
                                 using (Aes aes = Aes.Create())
@@ -59,7 +59,7 @@ namespace installer
                                         aes.Key = Convert.FromBase64String(lines[0]);
                                         aes.IV = Convert.FromBase64String(lines[1]);
                                         var decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
-                                        
+
                                         try
                                         {
                                             using (MemoryStream memory = new MemoryStream(Convert.FromBase64String(lines[2])))
@@ -70,7 +70,7 @@ namespace installer
                                                         SecretID = reader.ReadToEnd();
                                                 }
                                             }
-                                            
+
                                             using (MemoryStream memory = new MemoryStream(Convert.FromBase64String(lines[3])))
                                             {
                                                 using (CryptoStream crypto = new CryptoStream(memory, decryptor, CryptoStreamMode.Read))
@@ -134,8 +134,8 @@ namespace installer
                 builder
                     .UseMauiApp<App>()
                     .UseMauiCommunityToolkitCore();
-                
-                try 
+
+                try
                 {
                     // 尝试单独使用CommunityToolkit
                     builder.UseMauiCommunityToolkit();
@@ -145,7 +145,7 @@ namespace installer
                     DebugTool.LogException(ex, "初始化CommunityToolkit");
                     // 继续执行，不要中断应用初始化
                 }
-                
+
                 builder.ConfigureFonts(fonts =>
                     {
                         fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -190,9 +190,9 @@ namespace installer
 
                 // 注册特定业务服务
                 DebugTool.Log("注册特定服务");
-                
+
                 // 如果需要在视图模型注入之前添加特定的服务依赖，可以在这里添加
-                
+
                 DebugTool.Log("开始注册视图模型和页面");
                 AddViewModelService(builder);
                 AddPageService(builder);
