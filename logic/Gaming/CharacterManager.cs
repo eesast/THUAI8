@@ -52,17 +52,17 @@ namespace Gaming
                 {
                     character.HP.SubPositiveV(subHP);
                 }*/
+                character.NiuShield.SubPositiveV(subHP);
                 if(character.NiuShield > subHP)
                 {
                     break;
                 }
-                character.NiuShield.SubPositiveV(subHP);
                 subHP -= character.NiuShield;
+                character.Shield.SubPositiveV(subHP);
                 else if(character.Shiled > subHP)
                 {
                     break;
                 }
-                character.Shield.SubPositiveV(subHP);
                 subHP -= character.Shield;
                 else
                 {
