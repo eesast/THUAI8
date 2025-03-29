@@ -130,7 +130,7 @@ namespace Gaming
                                 }
                             }
                             break;
-                    }//此部分缺失加得分代码
+                    }
                     var team = game.TeamList[(int)character.TeamID.Get()];
                     team.MoneyPool.AddScore(score);
                     AResource.SetARState(AdditionResourceState.BEATEN);
