@@ -67,7 +67,7 @@ namespace Gaming
                 else
                 {
                     character.HP.SubPositiveV(subHP);
-                }        
+                }
                 if (character.HP == 0)
                 {
                     long score = 0;
