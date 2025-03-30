@@ -140,7 +140,6 @@ namespace Server
                     SpeedBuffTime = player.QuickStepTime,
                     // VisionBuff = (player.CanSeeAll) ? Protobuf.CharacterBuffType.VisionBuff : Protobuf.CharacterBuffType.NullCharacterBuffType,
                     VisionBuffTime = player.WideViewTime,
-                    
                 }
             };
             return msg;
