@@ -65,7 +65,7 @@ enum CharacterState // 角色状态
     KNOCKED_BACK = 8;
     STUNNED = 9;
     INVISIBLE = 10;
-    // HEALING = 11;
+    HEALING = 11;
     BERSERK = 12;
     BURNED = 13;
     // HARM_CUT = 14;
