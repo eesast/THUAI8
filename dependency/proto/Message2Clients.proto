@@ -25,56 +25,62 @@ message MessageOfCharacter
 
     // 被动状态
     CharacterState blind_state = 6;
-    double blind_time = 7;
-    CharacterState knockback_state = 8;
-    double knockback_time = 9;
-    CharacterState stunned_state = 10;
-    double stunned_time = 11;
-    CharacterState invisible_state = 12;
-    double invisible_time = 13;
-    CharacterState healing_state = 14;
-    double healing_time = 15;
-    CharacterState berserk_state = 16;
-    double berserk_time = 17;
-    CharacterState burned_state = 18;
-    double burned_time = 19;
-    CharacterState harm_cut_state = 20;
-    double harm_cut_time = 21;
-    CharacterState deceased_state = 22; // 死亡状态不需要持续时间
+    long blind_time = 7;
+    // CharacterState knockback_state = 8;
+    // double knockback_time = 9;
+    CharacterState stunned_state = 8;
+    long stunned_time = 9;
+    CharacterState invisible_state = 10;
+    long invisible_time = 11;
+    // CharacterState healing_state = 14;
+    // long healing_time = 15;
+    // CharacterState berserk_state = 16;
+    // long berserk_time = 17;
+    CharacterState burned_state = 12;
+    long burned_time = 13;
+    double harm_cut = 14;
+    long harm_cut_time = 15;
+    CharacterState deceased_state = 16; // 死亡状态不需要持续时间
 
-    int32 x = 23;
-    int32 y = 24;
+    CharacterState character_passive_state = 17; // 最新被动状态状态
 
-    double facing_direction = 25;
-    int32 speed = 26;
-    int32 view_range = 27;
+    int32 x = 18;
+    int32 y = 19;
 
-    int32 common_attack = 28;
-    double common_attack_cd = 29;
-    int32 common_attack_range = 30;
+    double facing_direction = 20;
+    int32 speed = 21;
+    int32 view_range = 22;
 
-    double skill_attack_cd = 31;
+    int32 common_attack = 23;
+    long common_attack_cd = 24;
+    int32 common_attack_range = 25;
 
-    int32 economy_depletion = 32; // 经济资源消耗
-    int32 kill_score = 33; // 击杀得分
+    long skill_attack_cd = 26;
+
+    int32 economy_depletion = 27; // 经济资源消耗
+    int32 kill_score = 28; // 击杀得分
     
-    int32 hp = 34; 
+    int32 hp = 29; 
 
     // 其它装备都是直接消耗，不需要记录
-    EquipmentType shield_equipment = 35; // NULL_EQUIPMENT_TYPE表示没有装备
-    int32 shild = 36; // 护盾剩余
-    EquipmentType shoes_equipment = 37;
-    double shoes_time = 38;
+    int32 shield_equipment = 30; // 护盾剩余值，只含装备
+    // EquipmentType shoes_equipment = ; // 鞋子装备
+    int32 shoes_equipment = 31;
+    long shoes_equipment_time = 32;
+    // EquipmentType purification_equipment = ;
+    long purification_equipment_time = 33;
+    // EquipmentType invisibility_equipment = ;
+    // long invisibility_equipment_time = ;
+    // EquipmentType berserk_equipment = ;
+    // long berserk_equipment_time = ;
 
     // 加成资源的Buff
-    CharacterBuffType attack_buff = 39;
-    double attack_buff_time = 40;
-    CharacterBuffType defense_buff = 41;
-    double defense_buff_time = 42;
-    CharacterBuffType speed_buff = 43;
-    double speed_buff_time = 44;
-    CharacterBuffType vision_buff = 45;
-    double vision_buff_time = 46;
+    // CharacterBuffType attack_buff = 39;
+    long attack_buff_time = 34;
+    // CharacterBuffType speed_buff = 43;
+    long speed_buff_time = 35;
+    // CharacterBuffType vision_buff = 45;
+    long vision_buff_time = 36;
 }
 
 message MessageOfBarracks
