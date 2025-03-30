@@ -110,7 +110,7 @@ namespace Server
 
                     CommonAttack = (int)player.AttackPower,
                     // 待修改，Character.cs中没有CommonAttackCD
-                    CommonAttackCd = (int)1 / player.ATKFrequency,
+                    CommonAttackCd = (int)(1 / player.ATKFrequency),
                     CommonAttackRange = (int)player.AttackSize,
 
                     SkillAttackCd = player.skillCD,

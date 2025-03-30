@@ -40,7 +40,7 @@ message MessageOfCharacter
     int64 burned_time = 13;
     double harm_cut = 14;
     int64 harm_cut_time = 15;
-    // CharacterState deceased_state = 16; // 死亡状态不需要持续时间
+    CharacterState deceased_state = 16; // 死亡状态不需要持续时间
 
     CharacterState character_passive_state = 17; // 最新被动状态状态
 
