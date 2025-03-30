@@ -97,7 +97,7 @@ namespace Server
                     BurnedTime = player.BurnedTime,
                     HarmCut = player.HarmCut,
                     HarmCutTime = player.HarmCutTime,
-                    DeceasedState = (player.characterState2 == CharacterState.DECEASED) ? Protobuf.CharacterState.Deceased : Protobuf.CharacterState.NullCharacterState,
+                    DeceasedState = (player.CharacterState2 == Preparation.Utility.CharacterState.DECEASED) ? Protobuf.CharacterState.Deceased : Protobuf.CharacterState.NullCharacterState,
 
                     CharacterPassiveState = Transformation.CharacterStateToProto(player.CharacterState2),
 
@@ -110,7 +110,7 @@ namespace Server
 
                     CommonAttack = (int)player.AttackPower,
                     // 待修改，Character.cs中没有CommonAttackCD
-                    CommonAttackCd = 1 / player.ATKFrequency,
+                    CommonAttackCd = (int)1 / player.ATKFrequency,
                     CommonAttackRange = (int)player.AttackSize,
 
                     SkillAttackCd = player.skillCD,
