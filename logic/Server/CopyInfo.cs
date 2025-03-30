@@ -82,7 +82,7 @@ namespace Server
                     // 待修改，Character.cs中没有knockedback
                     // KnockbackState = (player.knockedback) ? Protobuf.CharacterState.KnockedBack : Protobuf.CharacterState.NullCharacterState,
                     // KnockbackTime = player.KnockedBackTime,
-                    StunnedState = (player.stunned) ? Protobuf.CharacterState.STUNNED : Protobuf.CharacterState.NullCharacterState,
+                    StunnedState = (player.stunned) ? Protobuf.CharacterState.Stunned : Protobuf.CharacterState.NullCharacterState,
                     StunnedTime = player.StunnedTime,
                     InvisibleState = (player.visible) ? Protobuf.CharacterState.NullCharacterState : Protobuf.CharacterState.Invisible,
                     // 待修改，Character.cs中没有InvisibleTime
@@ -94,10 +94,10 @@ namespace Server
                     // BerserkState = (player.CrazyManNum == 1) ? Protobuf.CharacterState.Berserk : Protobuf.CharacterState.NullCharacterState,
                     // BerserkTime = CrazyManTime,
                     BurnedState = (player.burned) ? Protobuf.CharacterState.Burned : Protobuf.CharacterState.NullCharacterState,
-                    BurnedTime = BurnedTime,
+                    BurnedTime = player.BurnedTime,
                     HarmCut = player.HarmCut,
                     HarmCutTime = player.HarmCutTime,
-                    DeceasedState = (player.deceased) ? Protobuf.CharacterState.Deceased : Protobuf.CharacterState.NullCharacterState,
+                    DeceasedState = (player.characterState2 == CharacterState.DECEASED) ? Protobuf.CharacterState.Deceased : Protobuf.CharacterState.NullCharacterState,
 
                     CharacterPassiveState = Transformation.CharacterStateToProto(player.CharacterState2),
 
@@ -110,15 +110,15 @@ namespace Server
 
                     CommonAttack = (int)player.AttackPower,
                     // 待修改，Character.cs中没有CommonAttackCD
-                    CommonAttackCD = 1 / player.ATKFrequency,
+                    CommonAttackCd = 1 / player.ATKFrequency,
                     CommonAttackRange = (int)player.AttackSize,
 
-                    SkillAttackCD = player.skillCD,
+                    SkillAttackCd = player.skillCD,
 
                     EconomyDepletion = player.EconomyDepletion,
                     KillScore = (int)player.GetCost(),
 
-                    HP = (int)player.HP,
+                    Hp = (int)player.HP,
 
                     // 待修改，Shield要分两类
                     ShieldEquipment = (int)player.Shield, // 加成值，只包含护盾装备
