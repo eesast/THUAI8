@@ -214,16 +214,29 @@ namespace THUAI8
         int64_t teamID;
         int64_t playerID;
 
-        // 待定
         CharacterType characterType;
-        CharacterState characterState;
-        double damageRedunction;
-        bool burned;
-        Timer ? burnedTimer;  // 类型？
-        int32_t skikkShield;
-        CharacterBuffType attackBuff;
-        CharacterBuffType speedBuff;
-        CharacterBuffType visionBuff;
+
+        CharacterState characterActiveState;
+
+        CharacterState blindState;
+        long blindTime;
+        // CharacterState knockbackState;
+        // double knockbackTime;
+        CharacterState stunnedState;
+        long stunnedTime;
+        CharacterState invisibleState;
+        long invisibleTime;
+        // CharacterState healingState;
+        // double healingTime;
+        // CharacterState berserkState;
+        // double berserkTime;
+        CharacterState burnedState;
+        long burnedTime;
+        double harmCut;
+        long harmCutTime;
+        CharacterState deceasedState;
+
+        CharacterState characterPassiveState;
 
         int32_t x;
         int32_t y;
@@ -232,21 +245,31 @@ namespace THUAI8
         int32_t speed;
         int32_t viewRange;
 
-        int32_t skillCD;
+        int32_t commonAttack;
+        long commonAttackCD;
+        int32_t commonAttackRange;
+
+        long skillAttackCD;
 
         int32_t economyDepletion;
         int32_t killScore;
 
         int32_t hp;
 
-        // // 待定
-        // EquipmentType equipmentType;
-        // EquipmentType healthPotionEquipment;
-        // EquipmentType shildEquipment;
-        // EquipmentType speedShoesEquipment;
-        // EquipmentType purificationPotionEquipment;
-        // EquipmentType invisibilityPotionEquipment;
-        // EquipmentType berserkPotionEquipment;
+        int32_t shieldEquipment;
+        // int32_t shild;
+        int32_t shoesEquipment;
+        long shoesEquipmentTime;
+        long purificationEquipmentTime;
+
+        // CharacterBuffType attackBuff;
+        long attackBuffTime;
+        // CharacterBuffType defenseBuff;
+        // long defenseBuffTime;
+        // CharacterBuffType speedBuff;
+        long speedBuffTime;
+        // CharacterBuffType visionBuff;
+        long visionBuffTime;
     };
 
     struct Team

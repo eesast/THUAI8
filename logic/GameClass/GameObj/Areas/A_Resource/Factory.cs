@@ -15,5 +15,6 @@ public static class ARFactory
         A_ResourceType.LIFE_POOL3 => new LifePool3(),
         A_ResourceType.QUICK_STEP => new QuickStep(),
         A_ResourceType.WIDE_VIEW => new WideView(),
+        _ => new NullA_Resource(),
     };
 }

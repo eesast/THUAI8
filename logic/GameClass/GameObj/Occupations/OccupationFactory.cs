@@ -19,6 +19,7 @@ namespace GameClass.GameObj.Occupations
             CharacterType.TieShan => new TieShan(),
             CharacterType.ZhiZhujing => new ZhiZhujing(),
             CharacterType.Pawn => new Pawn(),
+            _ => new NullOccupation(),
         };
     }
 }

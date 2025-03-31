@@ -7,7 +7,7 @@ namespace GameClass.GameObj.Areas;
 public class Trap(XY initPos)//trap无法被攻击销毁，因此不以construction为基类
     : Immovable(initPos, int.MaxValue, GameObjType.TRAP)
 {
-    public override bool IsRigid(bool args = false) => true;
+    public override bool IsRigid(bool args = false) => false;
     public override ShapeType Shape => ShapeType.SQUARE;
     public AtomicLong TeamID { get; } = new(long.MaxValue);
 

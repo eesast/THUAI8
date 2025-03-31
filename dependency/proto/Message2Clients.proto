@@ -4,6 +4,13 @@ package protobuf;
 
 import "MessageType.proto";
 
+message MessageOfMonkeySkill
+{
+    int64 team_id = 1;
+    int64 player_id = 2;
+    double angle = 3;
+}
+
 message MessageOfCharacter
 {
     int64 guid = 1;
@@ -12,43 +19,68 @@ message MessageOfCharacter
     int64 player_id = 3;
 
     CharacterType character_type = 4;
-    CharacterState character_state1 = 5;
-    CharacterState character_state2 = 6;
 
-    // 待定 是否加Timer?
-    // double damage_reduction = ; // 伤害减免
-    // bool burned = ; // 是否燃烧
-    // Timer? burned_timer = ; // 燃烧持续时间 感觉不能用Timer
-    // int32 skill_shield = ; // 技能护盾能抵挡的伤害
-    // CharacterBuffType attack_buff = ; // 狂战士之力
-    // CharacterBuffType speed_buff = ; // 疾步之灵
-    // CharacterBuffType vision_buff = ; // 视野之灵
+    // 主动状态
+    CharacterState character_active_state = 5;
 
-    int32 x = 7;
-    int32 y = 8;
+    // 被动状态
+    CharacterState blind_state = 6;
+    int64 blind_time = 7;
+    // CharacterState knockback_state = 8;
+    // double knockback_time = 9;
+    CharacterState stunned_state = 8;
+    int64 stunned_time = 9;
+    CharacterState invisible_state = 10;
+    int64 invisible_time = 11;
+    // CharacterState healing_state = 14;
+    // long healing_time = 15;
+    // CharacterState berserk_state = 16;
+    // long berserk_time = 17;
+    CharacterState burned_state = 12;
+    int64 burned_time = 13;
+    double harm_cut = 14;
+    int64 harm_cut_time = 15;
+    CharacterState deceased_state = 16; // 死亡状态不需要持续时间
 
-    double facing_direction = 9;
-    int32 speed = 10;
-    int32 view_range = 11;
+    CharacterState character_passive_state = 17; // 最新被动状态状态
 
-    int32 atk =12;
-    int32 attack_size = 13;
+    int32 x = 18;
+    int32 y = 19;
 
-    int64 skill_cd = 14;
+    double facing_direction = 20;
+    int32 speed = 21;
+    int32 view_range = 22;
 
-    int32 economy_depletion = 15;
-    int32 kill_score = 16;
+    int32 common_attack = 23;
+    int64 common_attack_cd = 24;
+    int32 common_attack_range = 25;
+
+    int64 skill_attack_cd = 26;
+
+    int32 economy_depletion = 27; // 经济资源消耗
+    int32 kill_score = 28; // 击杀得分
     
-    int32 hp = 17; 
+    int32 hp = 29; 
 
-   int64 shield = 18;
-   int64 shoes = 19;
-    // EquipmentType health_potion_equipment = ;
-    // EquipmentType shild_equipment =;
-    // EquipmentType speed_shoes_equipment =;
-    // EquipmentType purification_potion_equipment =;
-    // EquipmentType invisibility_potion_equipment =;
-    // EquipmentType berserk_potion_equipment =;
+    // 其它装备都是直接消耗，不需要记录
+    int32 shield_equipment = 30; // 护盾剩余值，只含装备
+    // EquipmentType shoes_equipment = ; // 鞋子装备
+    int32 shoes_equipment = 31;
+    int64 shoes_equipment_time = 32;
+    // EquipmentType purification_equipment = ;
+    int64 purification_equipment_time = 33;
+    // EquipmentType invisibility_equipment = ;
+    // long invisibility_equipment_time = ;
+    // EquipmentType berserk_equipment = ;
+    // long berserk_equipment_time = ;
+
+    // 加成资源的Buff
+    // CharacterBuffType attack_buff = 39;
+    int64 attack_buff_time = 34;
+    // CharacterBuffType speed_buff = 43;
+    int64 speed_buff_time = 35;
+    // CharacterBuffType vision_buff = 45;
+    int64 vision_buff_time = 36;
 }
 
 message MessageOfBarracks
