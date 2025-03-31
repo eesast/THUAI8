@@ -132,7 +132,7 @@ namespace GameEngine
             return true;
         }
 
-        public void MoveObj(IMovable obj, int moveTime, double direction, long stateNum)
+        public void MoveObj(IMovable obj, int moveTime, double direction, long stateNum, long Shoes = 0)
         {
             GameEngineLogging.logger.ConsoleLogDebug(
                 Logger.ObjInfo(obj)
@@ -143,7 +143,6 @@ namespace GameEngine
                 if (!obj.IsAvailableForMove) { EndMove(obj); return; }
                 obj.IsMoving.SetROri(true);
             }
-
             new Thread
             (
                 () =>
@@ -237,7 +236,7 @@ namespace GameEngine
                             do
                             {
                                 flag = false;
-                                moveVecLength = (double)deltaLen + leftTime * obj.MoveSpeed / GameData.NumOfPosGridPerCell;
+                                moveVecLength = (double)deltaLen + leftTime * (obj.MoveSpeed + Shoes) / GameData.NumOfPosGridPerCell;
                                 res = new XY(direction, moveVecLength);
                                 if ((collisionObj = collisionChecker.CheckCollisionWhenMoving(obj, res)) == null)
                                 {

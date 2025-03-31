@@ -22,12 +22,14 @@ namespace Gaming
             private readonly CharacterManager characterManager;
             private readonly MoveEngine moveEngine;
             private readonly A_ResourceManager ARManager;
-            public SkillCastManager(Game game, Map gameMap, CharacterManager characterManager, A_ResourceManager a_ResourceManager)
+            private readonly ActionManager actionManager;
+            public SkillCastManager(Game game, Map gameMap, CharacterManager characterManager, A_ResourceManager a_ResourceManager, ActionManager actionManager)
             {
                 this.game = game;
                 this.gameMap = gameMap;
                 this.characterManager = characterManager;
                 this.ARManager = a_ResourceManager;
+                this.actionManager = actionManager;
                 moveEngine = new(
                     gameMap: gameMap,
                     OnCollision: (obj, collisionObj, moveVec) =>
@@ -202,7 +204,18 @@ namespace Gaming
                                             if (ObjBeingShot.Purified == true)
                                                 continue;
                                             else
+                                            {
                                                 ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.KNOCKED_BACK);
+                                                double angleToBeKnockedBack;
+                                                double tantheta = (ObjBeingShot.Position.y - character.Position.y) / (ObjBeingShot.Position.x - character.Position.x);
+                                                if ((ObjBeingShot.Position.x - character.Position.x) > 0)
+                                                    angleToBeKnockedBack = Math.Atan(tantheta);
+                                                else if ((ObjBeingShot.Position.y - character.Position.y) > 0)
+                                                    angleToBeKnockedBack = Math.PI - Math.Atan(tantheta);
+                                                else
+                                                    angleToBeKnockedBack = -Math.PI - Math.Atan(tantheta);
+                                                actionManager.KnockBackCharacter(ObjBeingShot, angleToBeKnockedBack);
+                                            }
                                         }
                                         break;
                                     default: break;

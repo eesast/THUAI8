@@ -28,7 +28,7 @@ namespace Gaming
         private readonly Map gameMap;
         public Map GameMap => gameMap;
         private readonly Random random = new();
-        public long AddPlayer(PlayerInitInfo playerInitInfo)
+        public long AddCharacter(PlayerInitInfo playerInitInfo)
         {
             if (teamList[(int)playerInitInfo.teamID].CharacterNum >= GameData.CharacterTotalNumMax)
             {
@@ -341,9 +341,9 @@ namespace Gaming
             gameMap = new(mapResource);
             characterManager = new(this, gameMap);
             ARManager = new(this, gameMap, characterManager);
-            skillCastManager = new(this, gameMap, characterManager, ARManager);
             actionManager = new(this, gameMap, characterManager);
             attackManager = new(this, gameMap, characterManager);
+            skillCastManager = new(this, gameMap, characterManager, ARManager, actionManager);
             teamList = [];
             gameMap.GameObjDict[GameObjType.HOME].Cast<GameObj>()?.ForEach(
                 delegate (GameObj gameObj)
@@ -380,7 +380,7 @@ namespace Gaming
             }
             return false;
         }
-        public bool Attack(long teamID, long characterID, double angle, long ATKteamID, long ATKcharacterID)
+        public bool Attack(long teamID, long characterID, long ATKteamID, long ATKcharacterID)
         {
             if (!gameMap.Timer.IsGaming)
                 return false;

@@ -58,7 +58,11 @@ namespace Gaming
                 {
                     return false;
                 }
+                long nowtime = Environment.TickCount64;
+                if (nowtime - character.LastAttackTime < 1 / (character.ATKFrequency * 1000))
+                    return false;
                 characterManager.BeAttacked(gameobj, character);
+                character.LastAttackTime = nowtime;
                 if (character.CharacterState2 == CharacterState.INVISIBLE || character.visible == false)
                 {
                     character.visible = true;
@@ -80,7 +84,11 @@ namespace Gaming
                 {
                     return false;
                 }
+                long nowtime = Environment.TickCount64;
+                if (nowtime - character.LastAttackTime < 1 / (character.ATKFrequency * 1000))
+                    return false;
                 ARManager.BeAttacked(gameobj, character);
+                character.LastAttackTime = nowtime;
                 if (character.CharacterState2 == CharacterState.INVISIBLE)
                     character.SetCharacterState(character.CharacterState1, CharacterState.NULL_CHARACTER_STATE);//破隐
                 return true;
@@ -99,7 +107,11 @@ namespace Gaming
                 {
                     return false;
                 }
+                long nowtime = Environment.TickCount64;
+                if (nowtime - character.LastAttackTime < 1 / (character.ATKFrequency * 1000))
+                    return false;
                 gameobj.BeAttacked(character);
+                character.LastAttackTime = nowtime;
                 if (character.CharacterState2 == CharacterState.INVISIBLE)
                     character.SetCharacterState(character.CharacterState1, CharacterState.NULL_CHARACTER_STATE);//破隐
                 return true;

@@ -288,6 +288,34 @@ namespace Gaming
 
                 }
             }
+            public void CheckBerkserk(Character character)
+            {
+                long nowtime = Environment.TickCount64;
+                if (character.IsBerserk)
+                {
+                    if (nowtime - character.BerserkTime >= GameData.CrazyTime)
+                    {
+                        character.AttackPower.SetRNow(character.Occupation.AttackPower);
+                        character.Shoes.SubPositiveV(GameData.CrazySpeed);
+                        character.ATKFrequency = GameData.ATKFreq;
+                        character.BerserkTime = long.MaxValue;
+                    }
+                }
+            }
+            public void CheckShoes(Character character)
+            {
+                long nowtime = Environment.TickCount64;
+                if (character.IsShoes)
+                {
+                    if (nowtime - character.ShoesTime >= GameData.ShoesTime)
+                    {
+                        character.Shoes.SubPositiveV(GameData.ShoesSpeed);
+                        character.ShoesTime = long.MaxValue;
+                        character.IsShoes = false;
+                    }
+                }
+
+            }
         }
     }
 }
