@@ -1,4 +1,5 @@
 ﻿using GameClass.GameObj.Areas;
+using GameClass.GameObj.Equipments;
 using GameClass.MapGenerator;
 using Preparation.Interface;
 using Preparation.Utility;
@@ -21,6 +22,7 @@ namespace GameClass.GameObj.Map
         public PlaceType[,] ProtoGameMap => protoGameMap;
 
         private readonly MyTimer timer = new();
+        public List<Home> Homes { get; }
         public IMyTimer Timer => timer;
         private readonly long currentHomeNum = 0;
         public bool TeamExists(long teamID)
@@ -242,9 +244,16 @@ namespace GameClass.GameObj.Map
                         case PlaceType.SPACE:
                             Add(new Space(GameData.GetCellCenterPos(i, j)));
                             break;
+                        case PlaceType.HOME:
+                            if (i < 25)
+                                Add(new Home(GameData.GetCellCenterPos(i, j), currentHomeNum++, 1));
+                            else
+                                Add(new Home(GameData.GetCellCenterPos(i, j), currentHomeNum++, 0));
+                            break;
                     }
                 }
             }
+            Homes = GameObjDict[GameObjType.HOME].Cast<Home>()?.ToNewList()!;
         }
     }
 }

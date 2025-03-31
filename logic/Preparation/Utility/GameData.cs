@@ -4,12 +4,15 @@ namespace Preparation.Utility
 {
     public static class GameData
     {
-        public const int NumOfStepPerSecond = 2500;         // 每秒行走基础步数.由于移速buff的存在，角色的具体移动速度会发生变化，相应代码需调整
+        public const int NumOfStepPerSecond = 100;          // 每秒行走步数
+        public const int BaseCharacterSpeed = 2500;         // 角色基础移动速度
         public const int FrameDuration = 50;                // 每帧时长
         public const int CheckInterval = 10;                // 检查间隔
         public const uint GameDurationInSecond = 60 * 10;   // 游戏时长
         public const int LimitOfStopAndMove = 15;           // 停止和移动的最大间隔
         public const int ProduceSpeedPerSecond = 200;       // 每秒生产值
+        public const int KnockedBackTime = 50;
+        public const int KnockedBackSpeed = 1500;           // 击退速度(额外速度，需加上基础移速）
 
         public const int TolerancesLength = 3;
         public const int AdjustLength = 3;
@@ -192,6 +195,7 @@ namespace Preparation.Utility
 
         public const int ShoesCost = 1500;
         public const int ShoesSpeed = 500;
+        public const int ShoesTime = 60000;
 
         public const int PurificationCost = 2000;
         public const int PurificationTime = 30000;
@@ -203,6 +207,7 @@ namespace Preparation.Utility
         public const int CrazyTime = 30000;
         public const double CrazyPower = 1.2;
         public const double CrazyATKFreq = 1.25;
+        public const double ATKFreq = 1.0;
         public const int CrazySpeed = 300;
         public const int ScoreFarmPerSecond = 100;
         public const int MaxCharacterNum = 1;

@@ -5,7 +5,7 @@ namespace GameClass.GameObj.Occupations
 {
     public class SunWukong : IOccupation
     {
-        public int MoveSpeed { get; } = GameData.NumOfStepPerSecond;
+        public int MoveSpeed { get; } = GameData.BaseCharacterSpeed;
         public int MaxHp { get; } = GameData.SunWukongHP;
         public int ViewRange { get; } = GameData.Viewrange;
         public int Cost { get; } = GameData.SunWukongcost;
