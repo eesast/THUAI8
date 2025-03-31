@@ -299,6 +299,7 @@ namespace Gaming
                         character.Shoes.SubPositiveV(GameData.CrazySpeed);
                         character.ATKFrequency = GameData.ATKFreq;
                         character.BerserkTime = long.MaxValue;
+                        character.IsBerserk = false;
                     }
                 }
             }
