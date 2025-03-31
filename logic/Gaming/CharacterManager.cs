@@ -44,14 +44,27 @@ namespace Gaming
                     return;
                 }
                 long subHP = (long)(obj.AttackPower * (1 - character.HarmCut));
-                if (character.Shield > 0)
+                /*if (character.Shield > 0)
                 {
                     character.Shield.SubPositiveV(subHP);
                 }
                 else
                 {
                     character.HP.SubPositiveV(subHP);
+                }*/
+                character.NiuShield.SubPositiveV(subHP);
+                if (character.NiuShield > subHP)
+                {
+                    return;
                 }
+                subHP -= character.NiuShield;
+                character.Shield.SubPositiveV(subHP);
+                if (character.Shield > subHP)
+                {
+                    return;
+                }
+                subHP -= character.Shield;
+                character.HP.SubPositiveV(subHP);
                 if (character.HP == 0)
                 {
                     long score = 0;
@@ -67,7 +80,6 @@ namespace Gaming
                     Remove(character);
                 }
             }
-
             public void BeAttacked(Character character, long AP)//此部分适用于中立资源攻击及技能攻击
             {
                 long subHP = (long)(AP * (1 - character.HarmCut));
@@ -275,6 +287,34 @@ namespace Gaming
                     character.PurifiedTime = long.MaxValue;
 
                 }
+            }
+            public void CheckBerkserk(Character character)
+            {
+                long nowtime = Environment.TickCount64;
+                if (character.IsBerserk)
+                {
+                    if (nowtime - character.BerserkTime >= GameData.CrazyTime)
+                    {
+                        character.AttackPower.SetRNow(character.Occupation.AttackPower);
+                        character.Shoes.SubPositiveV(GameData.CrazySpeed);
+                        character.ATKFrequency = GameData.ATKFreq;
+                        character.BerserkTime = long.MaxValue;
+                    }
+                }
+            }
+            public void CheckShoes(Character character)
+            {
+                long nowtime = Environment.TickCount64;
+                if (character.IsShoes)
+                {
+                    if (nowtime - character.ShoesTime >= GameData.ShoesTime)
+                    {
+                        character.Shoes.SubPositiveV(GameData.ShoesSpeed);
+                        character.ShoesTime = long.MaxValue;
+                        character.IsShoes = false;
+                    }
+                }
+
             }
         }
     }

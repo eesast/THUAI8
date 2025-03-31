@@ -4,18 +4,22 @@ using Avalonia.Controls;
 using Avalonia.Controls.Shapes;
 using Avalonia.Media;
 using Avalonia.VisualTree;
+using debug_interface.Controls;
+using debug_interface.Models;
 using debug_interface.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 
+
 namespace debug_interface.Views
 {
     public partial class MapView : UserControl
     {
+
         private Canvas? characterCanvas;
-        private ItemsControl? mapItemsControl;
-        private Dictionary<string, Ellipse> characterEllipses = new Dictionary<string, Ellipse>();
+        private Grid? mapGrid;
+        private Dictionary<string, Control> characterElements = new Dictionary<string, Control>();
         private MainWindowViewModel? viewModel;
 
         public MapView()
@@ -26,10 +30,9 @@ namespace debug_interface.Views
             this.DataContextChanged += MapView_DataContextChanged;
         }
 
+
         private void MapView_DataContextChanged(object? sender, EventArgs e)
         {
-            // When the data context changes, get the parent window's DataContext
-            // which should be the MainWindowViewModel
             var mainWindow = this.FindAncestorOfType<MainWindow>();
             if (mainWindow != null && mainWindow.DataContext is MainWindowViewModel vm)
             {
@@ -40,9 +43,8 @@ namespace debug_interface.Views
         private void MapView_AttachedToVisualTree(object? sender, VisualTreeAttachmentEventArgs e)
         {
             characterCanvas = this.FindControl<Canvas>("CharacterCanvas");
-            mapItemsControl = this.FindControl<ItemsControl>("MapItemsControl");
+            mapGrid = this.FindControl<Grid>("MapGrid"); // 修改这里，对应XAML
 
-            // Get the MainWindowViewModel from the parent MainWindow
             var mainWindow = this.FindAncestorOfType<MainWindow>();
             if (mainWindow != null && mainWindow.DataContext is MainWindowViewModel vm)
             {
@@ -50,9 +52,9 @@ namespace debug_interface.Views
             }
         }
 
+
         private void SetupViewModel(MainWindowViewModel vm)
         {
-            // Clean up previous handlers if any
             if (viewModel != null)
             {
                 viewModel.RedTeamCharacters.CollectionChanged -= RedTeamCharacters_CollectionChanged;
@@ -61,32 +63,52 @@ namespace debug_interface.Views
 
             viewModel = vm;
 
-            // Set the ItemsSource programmatically
-            if (mapItemsControl != null && viewModel.MapVM != null)
+            // 初始化地图网格
+            if (mapGrid != null && viewModel.MapVM != null)
             {
-                mapItemsControl.ItemsSource = viewModel.MapVM.MapCells;
+                // 直接使用现有的mapGrid
+                MapHelper.InitializeMapGrid(mapGrid, viewModel.MapVM);
+
             }
 
-            // Listen for changes to character collections
+            // 监听角色集合变化
             viewModel.RedTeamCharacters.CollectionChanged += RedTeamCharacters_CollectionChanged;
             viewModel.BlueTeamCharacters.CollectionChanged += BlueTeamCharacters_CollectionChanged;
 
-            // Initialize existing characters
+            // 初始化角色
             RefreshCharacters();
-
-            // Initialize random positions if not set
             InitializeRandomPositions();
+
+            // 监听地图单元格变化（如果模型提供了这种能力）
+            if (viewModel.MapVM != null)
+            {
+                // 如果MapCell类型实现了INotifyPropertyChanged，您可以在这里监听属性变化
+                foreach (var cell in viewModel.MapVM.MapCells)
+                {
+                    cell.PropertyChanged += (s, e) => {
+                        if (s is MapCell mapCell)
+                        {
+                            if (e.PropertyName == nameof(MapCell.DisplayColor))
+                            {
+                                MapHelper.UpdateCellColor(mapCell.CellX, mapCell.CellY, mapCell.DisplayColor);
+                            }
+                            else if (e.PropertyName == nameof(MapCell.DisplayText))
+                            {
+                                MapHelper.UpdateCellText(mapCell.CellX, mapCell.CellY, mapCell.DisplayText);
+                            }
+                        }
+                    };
+                }
+            }
         }
 
         private void RefreshCharacters()
         {
             if (characterCanvas == null || viewModel == null) return;
 
-            // Clear existing characters
             characterCanvas.Children.Clear();
-            characterEllipses.Clear();
+            characterElements.Clear();
 
-            // Re-add all characters
             InitializeCharacters(viewModel.RedTeamCharacters, Colors.Red);
             InitializeCharacters(viewModel.BlueTeamCharacters, Colors.Blue);
         }
@@ -117,6 +139,7 @@ namespace debug_interface.Views
             }
         }
 
+
         private void InitializeCharacters<T>(System.Collections.ObjectModel.ObservableCollection<T> characters, Color color) where T : CharacterViewModel
         {
             if (characterCanvas == null) return;
@@ -126,44 +149,72 @@ namespace debug_interface.Views
                 var character = characters[i];
                 var id = color == Colors.Red ? $"red_{i}" : $"blue_{i}";
 
-                var ellipse = new Ellipse
+                // 创建一个Grid作为容器，包含边框和文本/图标
+                var grid = new Grid
                 {
-                    Width = 12,
-                    Height = 12,
-                    Fill = new SolidColorBrush(color),
-                    Stroke = new SolidColorBrush(Colors.White),
-                    StrokeThickness = 1,
+                    Width = 15,
+                    Height = 15,
+                };
+
+                // 创建带颜色边框的圆形
+                var borderellipse = new Ellipse
+                {
+                    Width = 15,
+                    Height = 15,
+                    Fill = new SolidColorBrush(Colors.White), // 白色背景
+                    Stroke = new SolidColorBrush(color), // 队伍颜色边框
+                    StrokeThickness = 2,
                     Tag = character.Name,
                 };
 
-                // Set tooltip
-                ToolTip.SetTip(ellipse, character.Name);
+                grid.Children.Add(borderellipse);
 
-                // Set initial position
-                Canvas.SetLeft(ellipse, character.PosY * 15);
-                Canvas.SetTop(ellipse, character.PosX * 15);
+                // ===== 选项1: 显示数字编号 =====
+                // 如果不需要数字编号，注释掉下面这段代码
+                //var textBlock = new TextBlock
+                //{
+                //    Text = (i + 1).ToString(), // 使用编号(从1开始)
+                //    HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
+                //    VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
+                //    FontSize = 8,
+                //    Foreground = new SolidColorBrush(color), // 文本颜色与队伍颜色一致
+                //    FontWeight = FontWeight.Bold,
+                //};
+                //grid.Children.Add(textBlock);
 
-                characterCanvas.Children.Add(ellipse);
-                characterEllipses[id] = ellipse;
+                // 设置提示信息
+                ToolTip.SetTip(grid, character.Name);
 
-                // Set up property changed handlers
+                // 设置初始位置
+                Canvas.SetLeft(grid, character.PosY * 15);
+                Canvas.SetTop(grid, character.PosX * 15);
+
+                characterCanvas.Children.Add(grid);
+
+                // 存储Grid到字典中
+                characterElements[id] = grid;
+
+                // 设置属性更改处理器
                 character.PropertyChanged += (s, e) =>
                 {
                     if (e.PropertyName == nameof(CharacterViewModel.PosX) || e.PropertyName == nameof(CharacterViewModel.PosY))
                     {
-                        UpdateCharacterPosition(ellipse, character.PosX, character.PosY);
+                        // 更新Grid的位置
+                        UpdateCharacterPosition(grid, character.PosX, character.PosY);
                     }
                 };
             }
         }
 
-        private void UpdateCharacterPosition(Ellipse ellipse, int x, int y)
+        // 修改位置更新方法，接受任何UIElement
+        private void UpdateCharacterPosition(Control element, int x, int y)
         {
-            // Convert grid position to pixels
-            Canvas.SetLeft(ellipse, y * 15);
-            Canvas.SetTop(ellipse, x * 15);
+            // 转换网格位置为像素
+            Canvas.SetLeft(element, y * 15);
+            Canvas.SetTop(element, x * 15);
         }
 
+       
         private void RedTeamCharacters_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
         {
             // When collection changes, refresh all characters for simplicity

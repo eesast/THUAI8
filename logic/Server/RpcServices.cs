@@ -136,7 +136,7 @@ namespace Server
             lock (addPlayerLock)
             {
                 Game.PlayerInitInfo playerInitInfo = new(request.TeamId, request.CharacterId, Transformation.CharacterTypeFromProto(request.CharacterType), request.SideFlag);
-                long newPlayerID = game.AddPlayer(playerInitInfo);
+                long newPlayerID = game.AddCharacter(playerInitInfo);
                 if (newPlayerID == GameObj.invalidID)
                 {
                     GameServerLogging.logger.ConsoleLogDebug("FAIL AddPlayer");
@@ -385,7 +385,7 @@ namespace Server
             // var gameID = communicationToGameID[request.TeamId][request.PlayerId];
             boolRes.ActSuccess = game.Attack(
                 request.TeamId, request.CharacterId,
-                request.AttackRange, request.AttackedCharacterId, request.AttackedTeam);
+                 request.AttackedCharacterId, request.AttackedTeam);
             GameServerLogging.logger.ConsoleLogDebug("END Attack");
             return Task.FromResult(boolRes);
         }

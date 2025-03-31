@@ -6,7 +6,7 @@ namespace GameClass.GameObj.Occupations
 {
     public class HongHaier : IOccupation
     {
-        public int MoveSpeed { get; } = GameData.NumOfStepPerSecond;
+        public int MoveSpeed { get; } = GameData.BaseCharacterSpeed;
         public int MaxHp { get; } = GameData.HongHaierHP;
         public int ViewRange { get; } = GameData.Viewrange;
         public int Cost { get; } = GameData.HongHaiercost;
