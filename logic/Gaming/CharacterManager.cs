@@ -140,6 +140,7 @@ namespace Gaming
             }
             public void InTrap(Trap trap, Character character)
             {
+
                 if (!character.trapped && character.InSquare(trap.Position, GameData.TrapRange) && trap.TeamID != character.TeamID)
                 {
                     character.visible = true;
@@ -272,6 +273,7 @@ namespace Gaming
                 {
                     character.Purified = false;
                     character.PurifiedTime = long.MaxValue;
+
                 }
             }
         }
