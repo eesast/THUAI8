@@ -48,6 +48,10 @@ public class Character : Movable, ICharacter
     public long WideViewTime = long.MaxValue;//视野之灵计时器
     public bool Purified = false;//净化药水效果，该效果下免疫控制
     public long PurifiedTime = long.MaxValue;
+    public long ShoesTime = long.MaxValue;//鞋子buff计时器
+    public bool IsShoes = false;
+    public long BerserkTime = long.MaxValue;//狂暴buff计时器
+    public bool IsBerserk = false;
     public void StartSkillCD()
     {
         skillCD = Environment.TickCount64;
@@ -316,6 +320,12 @@ public class Character : Movable, ICharacter
                 }
             case EquipmentType.SPEEDBOOTS:
                 {
+                    if (IsShoes)
+                    {
+                        return false;
+                    }
+                    IsShoes = true;
+                    ShoesTime = Environment.TickCount64;
                     Shoes.AddPositiveV(GameData.ShoesSpeed);
                     SubMoney(EquipmentFactory.FindCost(equiptype));
                     return true;
@@ -328,6 +338,12 @@ public class Character : Movable, ICharacter
                 }
             case EquipmentType.BERSERK_POTION:
                 {
+                    if (IsBerserk)
+                    {
+                        return false;
+                    }
+                    IsBerserk = true;
+                    BerserkTime = Environment.TickCount64;
                     SetCharacterState(CharacterState1, CharacterState.BERSERK);//此处缺少时间限制
                     AttackPower.AddPositiveV((long)(0.2 * AttackPower.GetValue()));
                     ATKFrequency = GameData.CrazyATKFreq;

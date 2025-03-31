@@ -192,6 +192,7 @@ namespace Preparation.Utility
 
         public const int ShoesCost = 1500;
         public const int ShoesSpeed = 500;
+        public const int ShoesTime = 60000;
 
         public const int PurificationCost = 2000;
         public const int PurificationTime = 30000;
@@ -203,6 +204,7 @@ namespace Preparation.Utility
         public const int CrazyTime = 30000;
         public const double CrazyPower = 1.2;
         public const double CrazyATKFreq = 1.25;
+        public const double ATKFreq = 1.0;
         public const int CrazySpeed = 300;
         public const int ScoreFarmPerSecond = 100;
         public const int MaxCharacterNum = 1;
