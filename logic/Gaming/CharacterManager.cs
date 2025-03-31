@@ -88,7 +88,6 @@ namespace Gaming
                         score = 500;
                     else
                         score = character.GetCost();
-                    //此处缺失加分代码。由于阵营是分明的（妖怪和取经团队，THUAI7阵营并无明显差别），可以直接将得分加至相应阵营。小局结束后再加到队伍得分。
                     var team = game.TeamList[(int)character.TeamID.Get()];
                     team.MoneyPool.SubScore(score);
                     Remove(character);
@@ -141,6 +140,7 @@ namespace Gaming
             }
             public void InTrap(Trap trap, Character character)
             {
+
                 if (!character.trapped && character.InSquare(trap.Position, GameData.TrapRange) && trap.TeamID != character.TeamID)
                 {
                     character.visible = true;
@@ -176,7 +176,6 @@ namespace Gaming
                     character.CageTime = Environment.TickCount64;
                     //HP.SubV(GameData.TrapDamage);
                     //SetCharacterState(CharacterState.STUNNED);
-
                 }
             }
             public void CheckCage(Character character)
@@ -246,14 +245,35 @@ namespace Gaming
                 if (nowtime - character.CrazyManTime >= (15 + character.CrazyManNum * 15))
                 {
                     character.AttackPower.SubPositiveV(5 + character.CrazyManNum * 5);
+                    character.CrazyManTime = long.MaxValue;
                 }
             }
             public void CheckQuickStepTime(Character character)
             {
                 long nowtime = Environment.TickCount64;
-                if (nowtime - character.CrazyManTime >= 60000)
+                if (nowtime - character.QuickStepTime >= 60000)
                 {
                     character.Shoes.SubPositiveV(500);
+                    character.QuickStepTime = long.MaxValue;
+                }
+            }
+            public void CheckWideViewTime(Character character)
+            {
+                long nowtime = Environment.TickCount64;
+                if (nowtime - character.WideViewTime >= 60000)
+                {
+                    character.CanSeeAll = false;
+                    character.WideViewTime = long.MaxValue;
+                }
+            }
+            public void CheckPurified(Character character)
+            {
+                long nowtime = Environment.TickCount64;
+                if (nowtime - character.PurifiedTime >= 30000)
+                {
+                    character.Purified = false;
+                    character.PurifiedTime = long.MaxValue;
+
                 }
             }
         }

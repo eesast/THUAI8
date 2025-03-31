@@ -6,10 +6,10 @@ using System.Threading.Tasks.Dataflow;
 namespace GameClass.GameObj.Areas;
 
 public class E_Resource(XY initPos)
-    : Immovable(initPos, int.MaxValue, GameObjType.NULL)
+    : Immovable(initPos, int.MaxValue, GameObjType.ECONOMY_RESOURCE)
 {
     public InVariableRange<long> HP { get; } = new(GameData.ResourceHP);
-    public override bool IsRigid(bool args = false) => false;
+    public override bool IsRigid(bool args = false) => true;
     public override ShapeType Shape => ShapeType.NULL_SHAPE_TYPE;
     protected readonly object actionLock = new();
     public object ActionLock => actionLock;

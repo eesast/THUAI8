@@ -26,6 +26,7 @@ namespace Preparation.Utility
         TRAP = 7,
         HOME = 8,
         OUTOFBOUNDBLOCK = 9,
+        SPACE = 10,
     }
 
     public enum A_ResourceType
@@ -38,7 +39,7 @@ namespace Preparation.Utility
         LIFE_POOL2 = 5,
         LIFE_POOL3 = 6,
         QUICK_STEP = 7,
-        WIDE_VIEW = 8,
+        WIDE_VIEW = 8
     }
     public enum CharacterState //角色状态
     {
@@ -118,7 +119,7 @@ namespace Preparation.Utility
         BARRACKS = 1,
         SPRING = 2,
         FARM = 3,
-        TRAP = 4,
+        HOLE = 4,
         CAGE = 5,
     }
 

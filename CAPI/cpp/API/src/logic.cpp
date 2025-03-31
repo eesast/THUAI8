@@ -508,7 +508,7 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
                 break;
             case THUAI8::MessageOfObj::TrapMessage:
                 // 待定
-                if (item.trap_message().team_id() == teamID || AssistFunction::HaveView(x, y, item.trap_message().x(), item.trap_message().y(), viewRange, bufferState->gameMap) && currentState->characterSelf->visionBuff == THUAI8::CharacterBuffType::VisionBuff)
+                if (item.trap_message().team_id() == teamID || AssistFunction::HaveView(x, y, item.trap_message().x(), item.trap_message().y(), viewRange, bufferState->gameMap) && currentState->characterSelf->visionBuffTime > 0)
                 {
                     auto pos = THUAI8::cellxy_t(
                         AssistFunction::GridToCell(item.trap_message().x()),
@@ -603,7 +603,7 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
         {
             for (const auto& character : bufferState->characters)
             {
-                if (AssistFunction::HaveView(character->x, character->y, targetX, targetY, character->viewRange, bufferState->gameMap) && character->visionBuff == THUAI8::CharacterBuffType::VisionBuff)
+                if (AssistFunction::HaveView(character->x, character->y, targetX, targetY, character->viewRange, bufferState->gameMap) && character->visionBuffTime > 0)
                     return true;
             }
             return false;
