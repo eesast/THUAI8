@@ -15,15 +15,20 @@ class Setting:
         return False
 
     @staticmethod
-    def CharacterTypes() -> List[THUAI8.CharacterType]:
+    def BuddhistsCharacterTypes() -> List[THUAI8.CharacterType]:
         return [
             THUAI8.CharacterType.Monk,
             THUAI8.CharacterType.MonkyKing,
             THUAI8.CharacterType.Pigsy,
             THUAI8.CharacterType.ShaWujing,
             THUAI8.CharacterType.Whitedragonhorse,
+        ]
+
+    @staticmethod
+    def MonsterCharacterTypes() -> List[THUAI8.CharacterType]:
+        return [
             THUAI8.CharacterType.JiuTouYuanSheng,
-            THUAI8.CharacterType.Honghaier,
+            THUAI8.CharacterType.HongHaier,
             THUAI8.CharacterType.Gyuumao,
             THUAI8.CharacterType.Princess_Iron_Fan,
             THUAI8.CharacterType.Spider,
