@@ -431,7 +431,7 @@ namespace Gaming
                     return false;
                 }
             }
-            else if(equiptype == EquipmentType.BERSERK_POTION)
+            else if (equiptype == EquipmentType.BERSERK_POTION)
             {
                 return false;
             }
