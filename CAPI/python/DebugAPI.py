@@ -1,3 +1,4 @@
+import PyAPI.structures as THUAI8
 import logging
 import os
 import datetime
