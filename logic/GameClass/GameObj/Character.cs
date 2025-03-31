@@ -20,6 +20,7 @@ public class Character : Movable, ICharacter
     public InVariableRange<long> AttackPower { get; }
     public InVariableRange<long> AttackSize { get; }
     public InVariableRange<long> Shield { get; }
+    public InVariableRange<long> NiuShield { get; }
     public InVariableRange<long> Shoes { get; }//移速加成（注意是加成值，实际移速为基础移速+移速加成）
     public CharacterType CharacterType { get; }
     public bool trapped { get; set; } = false;
@@ -43,6 +44,7 @@ public class Character : Movable, ICharacter
     public long QuickStepTime = long.MaxValue;
     public int CrazyManNum = 0;
     public int EconomyDepletion = 0;
+    public bool IsShield = false;
     public bool CanSeeAll = false;//视野之灵buff生效时为true
     public long WideViewTime = long.MaxValue;//视野之灵计时器
     public bool Purified = false;//净化药水效果，该效果下免疫控制
@@ -245,6 +247,7 @@ public class Character : Movable, ICharacter
         ViewRange = Occupation.ViewRange;
         Shoes = new(0);
         Shield = new(0);
+        NiuShield = new(0);
         AttackSize = new(Occupation.BaseAttackSize);
         AttackPower = new(Occupation.AttackPower);
         MoneyPool = pool;
@@ -281,20 +284,35 @@ public class Character : Movable, ICharacter
                 }
             case EquipmentType.SMALL_SHIELD:
                 {
+                    if (IsShield)
+                    {
+                        return false;
+                    }
                     Shield.AddPositiveV(GameData.Shield1);
                     SubMoney(EquipmentFactory.FindCost(equiptype));
+                    IsShield = true;
                     return true;
                 }
             case EquipmentType.MEDIUM_SHIELD:
                 {
+                    if (IsShield)
+                    {
+                        return false;
+                    }
                     Shield.AddPositiveV(GameData.Shield2);
                     SubMoney(EquipmentFactory.FindCost(equiptype));
+                    IsShield = true;
                     return true;
                 }
             case EquipmentType.LARGE_SHIELD:
                 {
+                    if (IsShield)
+                    {
+                        return false;
+                    }
                     Shield.AddPositiveV(GameData.Shield3);
                     SubMoney(EquipmentFactory.FindCost(equiptype));
+                    IsShield = true;
                     return true;
                 }
             case EquipmentType.SPEEDBOOTS:

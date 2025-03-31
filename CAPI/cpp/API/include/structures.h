@@ -219,22 +219,24 @@ namespace THUAI8
         CharacterState characterActiveState;
 
         CharacterState blindState;
-        double blindTime;
-        CharacterState knockbackState;
-        double knockbackTime;
+        long blindTime;
+        // CharacterState knockbackState;
+        // double knockbackTime;
         CharacterState stunnedState;
-        double stunnedTime;
+        long stunnedTime;
         CharacterState invisibleState;
-        double invisibleTime;
-        CharacterState healingState;
-        double healingTime;
-        CharacterState berserkState;
-        double berserkTime;
+        long invisibleTime;
+        // CharacterState healingState;
+        // double healingTime;
+        // CharacterState berserkState;
+        // double berserkTime;
         CharacterState burnedState;
-        double burnedTime;
-        CharacterState harmCutState;
-        double harmCutTime;
+        long burnedTime;
+        double harmCut;
+        long harmCutTime;
         CharacterState deceasedState;
+
+        CharacterState characterPassiveState;
 
         int32_t x;
         int32_t y;
@@ -244,29 +246,30 @@ namespace THUAI8
         int32_t viewRange;
 
         int32_t commonAttack;
-        double commonAttackCD;
+        long commonAttackCD;
         int32_t commonAttackRange;
 
-        double skillAttackCD;
+        long skillAttackCD;
 
         int32_t economyDepletion;
         int32_t killScore;
 
         int32_t hp;
 
-        EquipmentType shieldEquipment;
-        int32_t shild;
-        EquipmentType shoesEquipment;
-        double shoesTime;
+        int32_t shieldEquipment;
+        // int32_t shild;
+        int32_t shoesEquipment;
+        long shoesEquipmentTime;
+        long purificationEquipmentTime;
 
-        CharacterBuffType attackBuff;
-        double attackBuffTime;
-        CharacterBuffType defenseBuff;
-        double defenseBuffTime;
-        CharacterBuffType speedBuff;
-        double speedBuffTime;
-        CharacterBuffType visionBuff;
-        double visionBuffTime;
+        // CharacterBuffType attackBuff;
+        long attackBuffTime;
+        // CharacterBuffType defenseBuff;
+        // long defenseBuffTime;
+        // CharacterBuffType speedBuff;
+        long speedBuffTime;
+        // CharacterBuffType visionBuff;
+        long visionBuffTime;
     };
 
     struct Team

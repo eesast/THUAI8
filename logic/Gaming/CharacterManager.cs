@@ -44,14 +44,27 @@ namespace Gaming
                     return;
                 }
                 long subHP = (long)(obj.AttackPower * (1 - character.HarmCut));
-                if (character.Shield > 0)
+                /*if (character.Shield > 0)
                 {
                     character.Shield.SubPositiveV(subHP);
                 }
                 else
                 {
                     character.HP.SubPositiveV(subHP);
+                }*/
+                character.NiuShield.SubPositiveV(subHP);
+                if (character.NiuShield > subHP)
+                {
+                    return;
                 }
+                subHP -= character.NiuShield;
+                character.Shield.SubPositiveV(subHP);
+                if (character.Shield > subHP)
+                {
+                    return;
+                }
+                subHP -= character.Shield;
+                character.HP.SubPositiveV(subHP);
                 if (character.HP == 0)
                 {
                     long score = 0;
@@ -67,7 +80,6 @@ namespace Gaming
                     Remove(character);
                 }
             }
-
             public void BeAttacked(Character character, long AP)//此部分适用于中立资源攻击及技能攻击
             {
                 long subHP = (long)(AP * (1 - character.HarmCut));
@@ -140,6 +152,7 @@ namespace Gaming
             }
             public void InTrap(Trap trap, Character character)
             {
+
                 if (!character.trapped && character.InSquare(trap.Position, GameData.TrapRange) && trap.TeamID != character.TeamID)
                 {
                     character.visible = true;
@@ -272,6 +285,7 @@ namespace Gaming
                 {
                     character.Purified = false;
                     character.PurifiedTime = long.MaxValue;
+
                 }
             }
         }
