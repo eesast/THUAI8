@@ -333,11 +333,6 @@ public class Character : Movable, ICharacter
                 }
             case EquipmentType.INVISIBILITY_POTION:
                 {
-                    int nowtime = gameMap.Timer.NowTime();
-                    if (nowtime >= GameData.SevenMinutes)
-                    {
-                        return false;
-                    }
                     SetCharacterState(CharacterState1, CharacterState.INVISIBLE);//此处缺少时间限制
                     visible = false;
                     SubMoney(EquipmentFactory.FindCost(equiptype));
@@ -345,11 +340,6 @@ public class Character : Movable, ICharacter
                 }
             case EquipmentType.BERSERK_POTION:
                 {
-                    nowtime = gameMap.Timer.NowTime();
-                    if (IsBerserk || nowtime < GameData.SevenMinutes)
-                    {
-                        return false;
-                    }
                     IsBerserk = true;
                     BerserkTime = Environment.TickCount64;
                     SetCharacterState(CharacterState1, CharacterState.BERSERK);//此处缺少时间限制
