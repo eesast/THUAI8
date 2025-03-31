@@ -11,6 +11,8 @@ using System.Windows.Input;
 using CommunityToolkit.Maui.Storage;
 using installer.Model;
 using installer.Services;
+using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace installer.ViewModel
 {
@@ -18,6 +20,9 @@ namespace installer.ViewModel
     {
         private readonly Downloader Downloader;
         private readonly IFolderPicker FolderPicker;
+        private readonly DownloadService _downloadService;
+        private bool _isDownloading;
+        private bool _isPaused;
         public ObservableCollection<LogRecord> LogCollection { get => Log.List; }
 
         private Timer timer;
@@ -27,6 +32,7 @@ namespace installer.ViewModel
         {
             Downloader = downloader;
             FolderPicker = folderPicker;
+            _downloadService = new DownloadService();
 
             DownloadPath = Downloader.Data.Config.InstallPath;
             Installed = Downloader.Data.Installed;
@@ -45,6 +51,8 @@ namespace installer.ViewModel
             CheckUpdBtnClickedCommand = new RelayCommand(CheckUpdBtnClicked);
             DownloadBtnClickedCommand = new RelayCommand(DownloadBtnClicked);
             UpdateBtnClickedCommand = new RelayCommand(UpdateBtnClicked);
+            PauseResumeCommand = new RelayCommand(PauseResumeDownload);
+            CancelCommand = new RelayCommand(CancelDownload);
 
             Downloader.CloudReport.PropertyChanged += ProgressReport;
         }
@@ -222,36 +230,45 @@ namespace installer.ViewModel
         public ICommand BrowseBtnClickedCommand { get; }
         private void BrowseBtnClicked()
         {
-            // DebugAlert = "Browse Button Clicked";
             BrowseEnabled = false;
             CheckEnabled = false;
             DownloadEnabled = false;
             UpdateEnabled = false;
-            FolderPicker.PickAsync(DownloadPath).ContinueWith(result =>
+
+            if ((OperatingSystem.IsWindows() && !string.IsNullOrEmpty(DownloadPath)) ||
+                (OperatingSystem.IsMacCatalyst() && RuntimeInformation.OSDescription.Contains("14")))
             {
-                if (result.Result.IsSuccessful)
+                FolderPicker.PickAsync(DownloadPath, CancellationToken.None).ContinueWith(result =>
                 {
-                    DownloadPath = result.Result.Folder.Path;
-                }
-                else
-                {
-                    DownloadEnabled = true;
-                    CheckEnabled = true;
-                }
+                    if (result.Result.IsSuccessful)
+                    {
+                        DownloadPath = result.Result.Folder.Path;
+                    }
+                    else
+                    {
+                        DownloadEnabled = true;
+                        CheckEnabled = true;
+                    }
+                    BrowseEnabled = true;
+                });
+            }
+            else
+            {
+                Log.LogWarning("当前平台不支持文件夹选择器");
                 BrowseEnabled = true;
-            });
+            }
         }
         public ICommand CheckUpdBtnClickedCommand { get; }
-        private void CheckUpdBtnClicked()
+        private async void CheckUpdBtnClicked()
         {
-            // DebugAlert = "Check Button Clicked";
             BrowseEnabled = false;
             CheckEnabled = false;
             DownloadEnabled = false;
             UpdateEnabled = false;
-            Downloader.CheckUpdateAsync().ContinueWith(r =>
+
+            try
             {
-                var updated = r.Result;
+                var updated = await Downloader.CheckUpdateAsync();
                 if (updated)
                 {
                     DebugAlert = "Need to update.";
@@ -262,48 +279,145 @@ namespace installer.ViewModel
                     DebugAlert = "Nothing to update.";
                     UpdateEnabled = false;
                 }
+            }
+            catch (Exception ex)
+            {
+                Log.LogError($"检查更新失败: {ex.Message}");
+                DebugAlert = "检查更新失败";
+                UpdateEnabled = false;
+            }
+            finally
+            {
                 BrowseEnabled = true;
                 CheckEnabled = true;
-            });
+            }
         }
         public ICommand DownloadBtnClickedCommand { get; }
-        private void DownloadBtnClicked()
+        private async void DownloadBtnClicked()
         {
-            // DebugAlert = "Download Button Clicked";
-            BrowseEnabled = false;
-            CheckEnabled = false;
-            DownloadEnabled = false;
-            UpdateEnabled = false;
-            Task t;
-            if (Installed)
+            if (_isDownloading)
             {
-                t = Downloader.ResetInstallPathAsync(DownloadPath);
+                return;
             }
-            else
+
+            try
             {
-                t = Downloader.InstallAsync(DownloadPath);
+                _isDownloading = true;
+                CanPauseResume = true;
+                CanCancel = true;
+                DownloadEnabled = false;
+                BrowseEnabled = false;
+
+                var progress = new Progress<double>(value =>
+                {
+                    NumPro = value;
+                    NumReport = $"下载进度: {value:P2}";
+                });
+
+                await _downloadService.DownloadFileAsync(
+                    "https://thuai7-1319625962.cos.ap-beijing.myqcloud.com/THUAI8.tar.gz",
+                    Path.Combine(DownloadPath, "THUAI8.zip"),
+                    progress
+                );
+
+                Installed = true;
+                Log.LogInfo("下载完成");
             }
-            t.ContinueWith(_ =>
+            catch (Exception ex)
             {
-                Installed = Downloader.Data.Installed;
+                Log.LogError($"下载失败: {ex.Message}");
+            }
+            finally
+            {
+                _isDownloading = false;
+                CanPauseResume = false;
+                CanCancel = false;
+                DownloadEnabled = true;
                 BrowseEnabled = true;
-                CheckEnabled = true;
-            });
+            }
         }
         public ICommand UpdateBtnClickedCommand { get; }
-        private void UpdateBtnClicked()
+        private async void UpdateBtnClicked()
         {
-            // DebugAlert = "Update Button Clicked";
             BrowseEnabled = false;
             CheckEnabled = false;
             DownloadEnabled = false;
             UpdateEnabled = false;
 
-            Downloader.UpdateAsync().ContinueWith(_ =>
+            try
+            {
+                await Downloader.UpdateAsync();
+            }
+            catch (Exception ex)
+            {
+                Log.LogError($"更新失败: {ex.Message}");
+            }
+            finally
             {
                 BrowseEnabled = true;
                 CheckEnabled = true;
-            });
+            }
+        }
+        public ICommand PauseResumeCommand { get; }
+        public ICommand CancelCommand { get; }
+
+        private bool _canPauseResume;
+        public bool CanPauseResume
+        {
+            get => _canPauseResume;
+            set
+            {
+                _canPauseResume = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _canCancel;
+        public bool CanCancel
+        {
+            get => _canCancel;
+            set
+            {
+                _canCancel = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _pauseResumeText = "暂停";
+        public string PauseResumeText
+        {
+            get => _pauseResumeText;
+            set
+            {
+                _pauseResumeText = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private void PauseResumeDownload()
+        {
+            if (_isPaused)
+            {
+                _downloadService.Resume();
+                PauseResumeText = "暂停";
+            }
+            else
+            {
+                _downloadService.Pause();
+                PauseResumeText = "继续";
+            }
+            _isPaused = !_isPaused;
+        }
+
+        private void CancelDownload()
+        {
+            _downloadService.Cancel();
+            _isDownloading = false;
+            CanPauseResume = false;
+            CanCancel = false;
+            DownloadEnabled = true;
+            BrowseEnabled = true;
+            Log.LogInfo("下载已取消");
         }
         #endregion
     }
