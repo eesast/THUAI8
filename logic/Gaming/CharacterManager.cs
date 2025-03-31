@@ -297,7 +297,7 @@ namespace Gaming
                     {
                         character.AttackPower.SetRNow(character.Occupation.AttackPower);
                         character.Shoes.SubPositiveV(GameData.CrazySpeed);
-                        character.ATKFrequency= GameData.ATKFreq;
+                        character.ATKFrequency = GameData.ATKFreq;
                         character.BerserkTime = long.MaxValue;
                     }
                 }
