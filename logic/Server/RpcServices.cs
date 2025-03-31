@@ -385,7 +385,7 @@ namespace Server
             // var gameID = communicationToGameID[request.TeamId][request.PlayerId];
             boolRes.ActSuccess = game.Attack(
                 request.TeamId, request.CharacterId,
-                request.AttackRange, request.AttackedCharacterId, request.AttackedTeam);
+                 request.AttackedCharacterId, request.AttackedTeam);
             GameServerLogging.logger.ConsoleLogDebug("END Attack");
             return Task.FromResult(boolRes);
         }
