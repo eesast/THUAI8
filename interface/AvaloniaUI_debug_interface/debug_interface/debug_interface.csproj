@@ -6,6 +6,7 @@
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+	<AssemblyName>debug_interface</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,11 +29,6 @@
 		</Compile>
 	</ItemGroup>
 	
-	<ItemGroup>
-    <None Remove="Assets\eesast_logo_32x32.png" />
-    <None Remove="Assets\nailong.jpg" />
-    <None Remove="Assets\tangseng.jpg" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="11.2.5" />
