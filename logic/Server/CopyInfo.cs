@@ -75,26 +75,31 @@ namespace Server
 
                     CharacterType = Transformation.CharacterTypeToProto(player.CharacterType),
 
-                    CharacterActiveState = Transformation.CharacterStateToProto(player.CharacterActiveState),
+                    CharacterActiveState = Transformation.CharacterStateToProto(player.CharacterState1),
 
-                    // 待修改，被动状态用CharacterStateType还是bool
-                    BlindState = (player.blind) ? Protobuf.CharacterState.BLIND : Protobuf.CharacterState.NULL_CHARACTER_STATE,
-                    BlindTime = (double)player.BlindTime, // 待修改，时间是否应该用double
+                    BlindState = (player.blind) ? Protobuf.CharacterState.Blind : Protobuf.CharacterState.NullCharacterState,
+                    BlindTime = player.BlindTime,
                     // 待修改，Character.cs中没有knockedback
-                    KnockbackState = (player.knockedback) ? Protobuf.CharacterState.KNOCKED_BACK : Protobuf.CharacterState.NULL_CHARACTER_STATE,
-                    KnockbackTime = (double)player.KnockedBackTime,
-                    StunnedState = (player.stunned) ? Protobuf.CharacterState.STUNNED : Protobuf.CharacterState.NULL_CHARACTER_STATE,
-                    StunnedTime = (double)player.StunnedTime,
-                    InvisibleState = (player.visible) ? Protobuf.CharacterState.NULL_CHARACTER_STATE : Protobuf.CharacterState.INVISIBLE,
+                    // KnockbackState = (player.knockedback) ? Protobuf.CharacterState.KnockedBack : Protobuf.CharacterState.NullCharacterState,
+                    // KnockbackTime = player.KnockedBackTime,
+                    StunnedState = (player.stunned) ? Protobuf.CharacterState.Stunned : Protobuf.CharacterState.NullCharacterState,
+                    StunnedTime = player.StunnedTime,
+                    InvisibleState = (player.visible) ? Protobuf.CharacterState.NullCharacterState : Protobuf.CharacterState.Invisible,
                     // 待修改，Character.cs中没有InvisibleTime
-                    InvisibleTime = (double)player.InvisibleTime,
-                    HealingState = (player.healing) ? Protobuf.CharacterState.HEALING : Protobuf.CharacterState.NULL_CHARACTER_STATE,
-                    HealingTime = (double)player.HealingTime,
-                    BerserkState = (player.crazyman) ? Protobuf.CharacterState.BERSERK : Protobuf.CharacterState.NULL_CHARACTER_STATE,
-                    BerserkTime = (double)CrazyManTime,
-                    BurnedState = (player.burned) ? Protobuf.CharacterState.BURNED : Protobuf.CharacterState.NULL_CHARACTER_STATE,
-                    BurnedTime = (double)BurnedTime,
-                    DeceasedState = (player.deceased) ? Protobuf.CharacterState.DECEASED : Protobuf.CharacterState.NULL_CHARACTER_STATE,
+                    // InvisibleTime = (double)player.InvisibleTime,
+                    // 貌似不需要治疗时间
+                    // HealingState = (player.healing) ? Protobuf.CharacterState.Healing : Protobuf.CharacterState.NullCharacterState,
+                    // HealingTime = (double)player.HealingTime,
+                    // 待修改，crazyman不知道是buff还是药水
+                    // BerserkState = (player.CrazyManNum == 1) ? Protobuf.CharacterState.Berserk : Protobuf.CharacterState.NullCharacterState,
+                    // BerserkTime = CrazyManTime,
+                    BurnedState = (player.burned) ? Protobuf.CharacterState.Burned : Protobuf.CharacterState.NullCharacterState,
+                    BurnedTime = player.BurnedTime,
+                    HarmCut = player.HarmCut,
+                    HarmCutTime = player.HarmCutTime,
+                    DeceasedState = (player.CharacterState2 == Preparation.Utility.CharacterState.DECEASED) ? Protobuf.CharacterState.Deceased : Protobuf.CharacterState.NullCharacterState,
+
+                    CharacterPassiveState = Transformation.CharacterStateToProto(player.CharacterState2),
 
                     X = player.Position.x,
                     Y = player.Position.y,
@@ -105,22 +110,36 @@ namespace Server
 
                     CommonAttack = (int)player.AttackPower,
                     // 待修改，Character.cs中没有CommonAttackCD
-                    CommonAttackCD = (double)player.AttackCD,
+                    CommonAttackCd = (int)(1 / player.ATKFrequency),
                     CommonAttackRange = (int)player.AttackSize,
 
-                    SkillAttackCD = (double)player.skillCD,
+                    SkillAttackCd = player.skillCD,
 
                     EconomyDepletion = player.EconomyDepletion,
                     KillScore = (int)player.GetCost(),
 
-                    HP = (int)player.HP,
+                    Hp = (int)player.HP,
 
-                    // 待修改，Character.cs中没有区分ShieldEquipment\ShoesEquipment类型
-                    Shield = player.Shield,
-                    Shoes = player.Shoes,
+                    // 待修改，Shield要分两类
+                    ShieldEquipment = (int)player.Shield, // 加成值，只包含护盾装备
+                    ShoesEquipment = (int)player.Shoes, // 加成值
+                    ShoesEquipmentTime = player.QuickStepTime, // 包含所有速度加成的时间
+                    // 待修改，Transformation缺东西
+                    // PurificationEquipment = (player.Purified) ? Protobuf.EquipmentType.PurificationPotion : Protobuf.PurificationEquipmentType.NullEquipmentType,
+                    PurificationEquipmentTime = player.PurifiedTime,
+                    // 待修改，Character.cs没有隐身时间，没有狂暴药水
+                    // InvisibilityEquipment = player.Invisibility,
+                    // InvisibilityEquipmentTime = player.InsvisibilityTime,
+                    // Berserk = player.CrazyManNum, // 数值，1~3表示等级，0表示没有
+                    // BerserkTime = player.CrazyManTime,
 
-                    // 
-                    //AttackBuff = 
+                    // 待修改，Transformation缺东西
+                    // AttackBuff = (player.CrazyManNum == 1) ? Protobuf.CharacterBuffType.AttackBuff1 : (player.CrazyManNum == 2) ? Protobuf.CharacterBuffType.AttackBuff2 : (player.CrazyManNum == 3) ? Protobuf.CharacterBuffType.AttackBuff3 : Protobuf.CharacterBuffType.NullAttackBuff,
+                    AttackBuffTime = player.CrazyManTime,
+                    // 待修改
+                    SpeedBuffTime = player.QuickStepTime,
+                    // VisionBuff = (player.CanSeeAll) ? Protobuf.CharacterBuffType.VisionBuff : Protobuf.CharacterBuffType.NullCharacterBuffType,
+                    VisionBuffTime = player.WideViewTime,
                 }
             };
             return msg;
