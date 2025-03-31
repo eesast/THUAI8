@@ -315,7 +315,14 @@ namespace Gaming
                         character.IsShoes = false;
                     }
                 }
-
+            }
+            public void CheckInvisibility(Character character)
+            {
+                int nowtime = gameMap.Timer.NowTime();
+                if (nowtime >= 420000)
+                {
+                    character.visible = true;
+                }
             }
         }
     }
