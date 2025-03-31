@@ -5,7 +5,7 @@ namespace GameClass.GameObj.Occupations
 {
     public class JiuLing : IOccupation
     {
-        public int MoveSpeed { get; } = GameData.NumOfStepPerSecond;
+        public int MoveSpeed { get; } = GameData.BaseCharacterSpeed;
         public int MaxHp { get; } = GameData.JiuLingHP;
         public int ViewRange { get; } = GameData.Viewrange;
         public int Cost { get; } = 0;

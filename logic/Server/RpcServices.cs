@@ -136,7 +136,7 @@ namespace Server
             lock (addPlayerLock)
             {
                 Game.PlayerInitInfo playerInitInfo = new(request.TeamId, request.CharacterId, Transformation.CharacterTypeFromProto(request.CharacterType), request.SideFlag);
-                long newPlayerID = game.AddPlayer(playerInitInfo);
+                long newPlayerID = game.AddCharacter(playerInitInfo);
                 if (newPlayerID == GameObj.invalidID)
                 {
                     GameServerLogging.logger.ConsoleLogDebug("FAIL AddPlayer");
