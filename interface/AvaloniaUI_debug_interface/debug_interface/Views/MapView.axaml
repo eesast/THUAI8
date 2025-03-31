@@ -1,4 +1,4 @@
-<!--MapView.axaml-->
+<!--  MapView.axaml  -->
 <UserControl
     x:Class="debug_interface.Views.MapView"
     xmlns="https://github.com/avaloniaui"
@@ -9,31 +9,11 @@
     xmlns:vm="using:debug_interface.ViewModels"
     mc:Ignorable="d">
 
-	<Grid>
-		<!-- Map Cells Grid - no binding in XAML -->
-		<ItemsControl Name="MapItemsControl">
-			<ItemsControl.ItemsPanel>
-				<ItemsPanelTemplate>
-					<UniformGrid Columns="50" Rows="50" />
-				</ItemsPanelTemplate>
-			</ItemsControl.ItemsPanel>
-			<ItemsControl.ItemTemplate>
-				<DataTemplate DataType="{x:Type models:MapCell}">
-					<Border Background="{Binding DisplayColor}"
-                            BorderThickness="0.4"
-                            Width="15"
-                            Height="15"
-                            BorderBrush="Gray">
-						<TextBlock Text="{Binding DisplayText}"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   FontSize="6"/>
-					</Border>
-				</DataTemplate>
-			</ItemsControl.ItemTemplate>
-		</ItemsControl>
+    <Grid>
+        <!--  使用空的Grid，将在代码中填充  -->
+        <Grid Name="MapGrid" />
 
-		<!-- Character Positions Canvas - with transparent background -->
-		<Canvas Name="CharacterCanvas" Width="750" Height="750" Background="Transparent" />
-	</Grid>
+        <!--  Character Positions Canvas  -->
+        <Canvas Name="CharacterCanvas" Background="Transparent" />
+    </Grid>
 </UserControl>

@@ -24,16 +24,7 @@ namespace debug_interface.ViewModels
         // 可能值: "空置","开采","攻击","释放技能","建造","移动"
         [ObservableProperty]
         private string activeState = "空置";
-        //public string ActiveState
-        //{
-        //    get => activeState;
-        //    set
-        //    {
-        //        if (value == activeState) return;
-        //        activeState = value;
-        //        OnPropertyChanged(nameof(DisplayStates));
-        //    }
-        //}
+
         // 被动状态（可叠加）
         // 可能值: "致盲","击退","定身","隐身" 等，可由服务器控制增减
         public ObservableCollection<string> PassiveStates { get; } = new ObservableCollection<string>();
