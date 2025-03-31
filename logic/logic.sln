@@ -19,6 +19,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Proto", "..\dependency\prot
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientTest", "ClientTest\ClientTest.csproj", "{240D57BD-671E-4A84-9A26-82150229B98E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "解决方案项", "解决方案项", "{11DF0425-CEB7-43A8-8626-B42A61BDF972}"
+	ProjectSection(SolutionItems) = preProject
+		..\.editorconfig = ..\.editorconfig
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
