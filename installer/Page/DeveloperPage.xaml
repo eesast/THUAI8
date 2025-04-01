@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="installer.Page.DeveloperPage"
+             Title="开发者模式">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <Frame BorderColor="Gray" Padding="15" CornerRadius="5">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="腾讯云密钥配置" FontSize="20" FontAttributes="Bold" />
+                    <Label Text="此配置仅供开发人员使用。普通用户无需设置此项，直接使用程序内置的密钥即可。" 
+                           TextColor="Gray" />
+                    
+                    <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto" ColumnSpacing="10" RowSpacing="15">
+                        <Label Text="腾讯云SecretID:" Grid.Row="0" Grid.Column="0" VerticalOptions="Center" />
+                        <Entry x:Name="SecretIDEntry" Grid.Row="0" Grid.Column="1" IsPassword="True" />
+                        
+                        <Label Text="腾讯云SecretKey:" Grid.Row="1" Grid.Column="0" VerticalOptions="Center" />
+                        <Entry x:Name="SecretKeyEntry" Grid.Row="1" Grid.Column="1" IsPassword="True" />
+                    </Grid>
+                    
+                    <Label Text="加密密码（用于保护密钥，请务必记住此密码）:" />
+                    <Entry x:Name="EncryptionPasswordEntry" IsPassword="True" />
+                    
+                    <Button x:Name="GenerateKeyButton" Text="生成加密密钥" Clicked="OnGenerateKeyClicked" 
+                            HorizontalOptions="Start" Margin="0,10,0,0" />
+                    
+                    <Label x:Name="StatusLabel" TextColor="Gray" />
+                </VerticalStackLayout>
+            </Frame>
+            
+            <Frame BorderColor="Gray" Padding="15" CornerRadius="5" IsVisible="{Binding ResourceKeyGenerated}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="嵌入式资源密钥" FontSize="18" FontAttributes="Bold" />
+                    <Label Text="请将以下文件添加为项目的嵌入式资源。添加后，所有用户都可以使用此密钥，无需额外配置。" 
+                           TextColor="Gray" />
+                    
+                    <Label Text="加密密钥文件路径:" />
+                    <Label x:Name="KeyFilePathLabel" TextColor="Blue" />
+                    
+                    <Button x:Name="OpenFolderButton" Text="打开文件位置" Clicked="OnOpenFolderClicked" 
+                            HorizontalOptions="Start" />
+                    
+                    <Button x:Name="CopyPathButton" Text="复制路径" Clicked="OnCopyPathClicked" 
+                            HorizontalOptions="Start" />
+                </VerticalStackLayout>
+            </Frame>
+            
+            <Frame BorderColor="Gray" Padding="15" CornerRadius="5">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="使用说明" FontSize="18" FontAttributes="Bold" />
+                    <Label Text="1. 输入腾讯云SecretID、SecretKey和用于加密的密码" />
+                    <Label Text="2. 点击'生成加密密钥'按钮生成密钥文件" />
+                    <Label Text="3. 将生成的密钥文件添加为项目的嵌入式资源" />
+                    <Label Text="4. 重新编译项目后，所有用户都能无需配置地使用腾讯云服务" />
+                    <Label Text="注意：密码仅用于加密本地文件，不会被保存或上传" TextColor="Red" />
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage> 

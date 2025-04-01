@@ -138,4 +138,8 @@
 		</PropertyGroup>
 	</Target>
 
+	<ItemGroup>
+		<EmbeddedResource Include="Resources\Raw\secured_key.csv" Condition="Exists('Resources\Raw\secured_key.csv')" />
+	</ItemGroup>
+
 </Project>

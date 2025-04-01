@@ -5,11 +5,32 @@
              x:Class="installer.Page.HelpPage"
              Title="Help">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="DevModeHeaderStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="10" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="TextColor" Value="Transparent" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ScrollView
         WidthRequest="750"
         HeightRequest="500"
         HorizontalOptions="Center">
-        <VerticalStackLayout>
+        <VerticalStackLayout Padding="10" Spacing="10">
+
+            <Label x:Name="HeaderLabel" 
+                   Text="THUAI8 帮助" 
+                   FontSize="20" 
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,10">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnHeaderTapped" />
+                </Label.GestureRecognizers>
+            </Label>
 
             <Label
                 Text="Installer"

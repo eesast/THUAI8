@@ -36,11 +36,18 @@ namespace installer.Model
         public Logger Log;
 
         public LoginStatus Status = LoginStatus.offline;
-        public Tencent_Cos EEsast_Cos { get; protected set; } = new Tencent_Cos("1255334966", "ap-beijing", "eesast");//服务器应该还能用吧
+        public Tencent_Cos EEsast_Cos { get; protected set; } = new Tencent_Cos("1255334966", "ap-beijing", "eesast");
+
         public EEsast(Logger? _log = null)
         {
             Log = _log ?? LoggerProvider.FromConsole();
             Log.PartnerInfo = "[EESAST]";
+            
+            // 使用全局密钥
+            if (!string.IsNullOrEmpty(MauiProgram.SecretID) && !string.IsNullOrEmpty(MauiProgram.SecretKey))
+            {
+                EEsast_Cos.UpdateSecret(MauiProgram.SecretID, MauiProgram.SecretKey);
+            }
         }
         public async Task LoginToEEsast(HttpClient client, string useremail = "", string userpassword = "")
         {
