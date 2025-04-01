@@ -199,5 +199,28 @@ namespace installer.Page
                 DebugTool.LogException(ex, "复制路径");
             }
         }
+
+        private async void OnExitButtonClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                // 返回到主Shell
+                await Shell.Current.GoToAsync("//InstallPage");
+            }
+            catch (Exception ex)
+            {
+                // 如果导航失败，记录错误并尝试使用其他导航方式
+                DebugTool.LogException(ex, "退出开发者模式");
+                try
+                {
+                    // 尝试返回
+                    await Shell.Current.GoToAsync("..");
+                }
+                catch
+                {
+                    // 忽略错误
+                }
+            }
+        }
     }
 }

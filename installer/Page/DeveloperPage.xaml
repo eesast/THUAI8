@@ -56,6 +56,14 @@
                     <Label Text="注意：密码仅用于加密本地文件，不会被保存或上传" TextColor="Red" />
                 </VerticalStackLayout>
             </Frame>
+            
+            <Button x:Name="ExitButton" 
+                    Text="退出开发者模式" 
+                    Clicked="OnExitButtonClicked"
+                    BackgroundColor="#FFD2D2"
+                    TextColor="Black"
+                    Margin="0,20,0,0"
+                    HorizontalOptions="Center" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage> 
