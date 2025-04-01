@@ -35,7 +35,7 @@ namespace Gaming
                 return GameObj.invalidID;
             }
             teamList[(int)playerInitInfo.teamID].CharacterNum.Add(1);
-            if (gameMap.TeamExists(playerInitInfo.teamID))
+            if (!gameMap.TeamExists(playerInitInfo.teamID))
             {
                 return GameObj.invalidID;
             }
