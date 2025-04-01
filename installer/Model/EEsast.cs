@@ -42,7 +42,7 @@ namespace installer.Model
         {
             Log = _log ?? LoggerProvider.FromConsole();
             Log.PartnerInfo = "[EESAST]";
-            
+
             // 使用全局密钥
             if (!string.IsNullOrEmpty(MauiProgram.SecretID) && !string.IsNullOrEmpty(MauiProgram.SecretKey))
             {

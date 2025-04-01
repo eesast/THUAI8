@@ -56,7 +56,7 @@ namespace installer
                 SecretID = "***";
                 SecretKey = "***";
 
-                try 
+                try
                 {
                     // 首先尝试从嵌入式资源中读取密钥
                     try
@@ -177,7 +177,7 @@ namespace installer
                 // 列出所有嵌入资源以进行调试
                 var resources = assembly.GetManifestResourceNames();
                 DebugTool.Log($"可用资源: {string.Join(", ", resources)}");
-                
+
                 using (Stream? stream = assembly.GetManifestResourceStream(resourceName))
                 {
                     if (stream != null)

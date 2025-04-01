@@ -45,7 +45,7 @@ namespace installer.Model
                         .SetRegion(Region)  // 设置一个默认的存储桶地域
                         .SetDebugLog(true)  // 显示日志
                         .Build();           // 创建 CosXmlConfig 对象
-                
+
             // 使用全局密钥
             string secretId = MauiProgram.SecretID;
             string secretKey = MauiProgram.SecretKey;

@@ -34,8 +34,8 @@ namespace installer.Page
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(SecretIDEntry.Text) || 
-                    string.IsNullOrWhiteSpace(SecretKeyEntry.Text) || 
+                if (string.IsNullOrWhiteSpace(SecretIDEntry.Text) ||
+                    string.IsNullOrWhiteSpace(SecretKeyEntry.Text) ||
                     string.IsNullOrWhiteSpace(EncryptionPasswordEntry.Text))
                 {
                     await DisplayAlert("输入错误", "请填写所有必填字段", "确定");
@@ -48,7 +48,8 @@ namespace installer.Page
                 GenerateKeyButton.IsEnabled = false;
 
                 // 在后台线程中执行密钥生成
-                await Task.Run(() => {
+                await Task.Run(() =>
+                {
                     try
                     {
                         // 创建安全随机密钥和IV
@@ -56,9 +57,9 @@ namespace installer.Page
                         {
                             // 从密码生成密钥
                             using (var deriveBytes = new Rfc2898DeriveBytes(
-                                EncryptionPasswordEntry.Text, 
+                                EncryptionPasswordEntry.Text,
                                 new byte[16], // 静态盐，在解密时需要相同
-                                10000, 
+                                10000,
                                 HashAlgorithmName.SHA256))
                             {
                                 aes.Key = deriveBytes.GetBytes(32); // 256位密钥
@@ -83,7 +84,8 @@ namespace installer.Page
                                 File.WriteAllText(_encryptedKeyFilePath, resourceContent);
 
                                 // 更新UI必须在主线程中执行
-                                MainThread.BeginInvokeOnMainThread(() => {
+                                MainThread.BeginInvokeOnMainThread(() =>
+                                {
                                     KeyFilePathLabel.Text = _encryptedKeyFilePath;
                                     ResourceKeyGenerated = true;
                                     StatusLabel.Text = "密钥已生成，请将其添加为嵌入式资源";
@@ -94,7 +96,8 @@ namespace installer.Page
                             catch (Exception ex)
                             {
                                 DebugTool.LogException(ex, "保存加密密钥文件");
-                                MainThread.BeginInvokeOnMainThread(async () => {
+                                MainThread.BeginInvokeOnMainThread(async () =>
+                                {
                                     await DisplayAlert("错误", $"保存密钥文件失败: {ex.Message}", "确定");
                                     StatusLabel.Text = "保存密钥文件失败，请检查日志";
                                     StatusLabel.TextColor = Colors.Red;
@@ -106,7 +109,8 @@ namespace installer.Page
                     catch (Exception ex)
                     {
                         DebugTool.LogException(ex, "生成密钥加密过程");
-                        MainThread.BeginInvokeOnMainThread(async () => {
+                        MainThread.BeginInvokeOnMainThread(async () =>
+                        {
                             await DisplayAlert("错误", $"加密密钥失败: {ex.Message}", "确定");
                             StatusLabel.Text = "加密密钥失败，请重试";
                             StatusLabel.TextColor = Colors.Red;
@@ -136,8 +140,8 @@ namespace installer.Page
                 using (MemoryStream memoryStream = new MemoryStream())
                 {
                     using (CryptoStream cryptoStream = new CryptoStream(
-                        memoryStream, 
-                        aes.CreateEncryptor(), 
+                        memoryStream,
+                        aes.CreateEncryptor(),
                         CryptoStreamMode.Write))
                     {
                         using (StreamWriter writer = new StreamWriter(cryptoStream))
@@ -196,4 +200,4 @@ namespace installer.Page
             }
         }
     }
-} 
+}
