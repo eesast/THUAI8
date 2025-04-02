@@ -341,10 +341,6 @@ public class Character : Movable, ICharacter
                 }
             case EquipmentType.BERSERK_POTION:
                 {
-                    if (IsBerserk)
-                    {
-                        return false;
-                    }
                     IsBerserk = true;
                     BerserkTime = Environment.TickCount64;
                     SetCharacterState(CharacterState1, CharacterState.BERSERK);//此处缺少时间限制
