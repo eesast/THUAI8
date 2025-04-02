@@ -8,23 +8,26 @@
 // 为假则play()期间确保游戏状态不更新，为真则只保证游戏状态在调用相关方法时不更新，大致一帧更新一次
 extern const bool asynchronous = false;
 
-// 选手需要依次将player1到player4的角色类型在这里定义
-extern const std::array<THUAI8::CharacterType, 12> CharacterTypeDict = {
+// 选手需要依次将player1到player5的角色类型在这里定义
+extern const std::array<THUAI8::CharacterType, 5> BuddhistsCharacterTypeDict = {
     THUAI8::CharacterType::Monk,
     THUAI8::CharacterType::MonkeyKing,
     THUAI8::CharacterType::Pigsy,
     THUAI8::CharacterType::ShaWujing,
     THUAI8::CharacterType::Whitedragonhorse,
+};
+
+extern const std::array<THUAI8::CharacterType, 5> MonstersCharacterTypeDict = {
     THUAI8::CharacterType::JiuTouYuanSheng,
     THUAI8::CharacterType::Honghaier,
     THUAI8::CharacterType::Gyuumao,
     THUAI8::CharacterType::Princess_Iron_Fan,
     THUAI8::CharacterType::Spider,
-};
+}
 
 // 可以在AI.cpp内部声明变量与函数
 
-void AI::play(ICharacterAPI& api)
+void AI::play(ICharacterAPI & api)
 {
     if (this->playerID == 1)
     {
