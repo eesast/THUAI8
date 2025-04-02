@@ -1,29 +1,19 @@
-﻿// ViewModels/MainWindowViewModel.cs
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System;
 using System.Collections.ObjectModel;
-using System;
-using System.Timers;
-using debug_interface.ViewModels;
+using CommunityToolkit.Mvvm.ComponentModel;
+using installer.Model;
+using installer.Data;
 
 namespace debug_interface.ViewModels
 {
     public partial class MainWindowViewModel : ViewModelBase
     {
-        // Keep only one definition of MapVM
+        // 属性定义
         [ObservableProperty]
-        private MapViewModel mapVM;
-
-        public ObservableCollection<CharacterViewModel> RedTeamCharacters { get; }
-        public ObservableCollection<CharacterViewModel> BlueTeamCharacters { get; }
+        private string gameLog = "等待连接...";
 
         [ObservableProperty]
-        private string someBuildingInfo = "红方建筑信息...";
-
-        [ObservableProperty]
-        private string anotherBuildingInfo = "蓝方建筑信息...";
-
-        [ObservableProperty]
-        private string currentTime = DateTime.Now.ToString("HH:mm:ss");
+        private string currentTime = "00:00";
 
         [ObservableProperty]
         private int redScore = 0;
@@ -32,85 +22,74 @@ namespace debug_interface.ViewModels
         private int blueScore = 0;
 
         [ObservableProperty]
-        private bool isBlueView = true;
-
-        public bool IsRedView
-        {
-            get => !IsBlueView;
-            set => IsBlueView = !value;
-        }
+        private string someBuildingInfo = "";
 
         [ObservableProperty]
-        private string gameLog = "地图...";
+        private string anotherBuildingInfo = "";
 
-        private Timer _timer;
+        [ObservableProperty]
+        private int buddhistTeamEconomy = 0;
 
-        public MainWindowViewModel()
+        [ObservableProperty]
+        private int monstersTeamEconomy = 0;
+
+        [ObservableProperty]
+        private MapViewModel mapVM;
+
+        // 团队角色集合
+        public ObservableCollection<CharacterViewModel> RedTeamCharacters { get; } = new();
+        public ObservableCollection<CharacterViewModel> BlueTeamCharacters { get; } = new();
+
+        // 构造函数
+        public MainWindowViewModel(Logger logger, ConfigData config) : base(logger)
         {
-            // Initialize collections first
-            RedTeamCharacters = new ObservableCollection<CharacterViewModel>();
-            BlueTeamCharacters = new ObservableCollection<CharacterViewModel>();
-
-            // Initialize characters
-            for (int i = 0; i < 6; i++)
-            {
-                var redChar = new CharacterViewModel()
-                {
-                    Name = "红方角色" + (i + 1),
-                    Hp = 1000 * (i + 1),
-                    ActiveState = i % 2 == 0 ? "攻击" : "移动",
-                };
-                redChar.PassiveStates.Add("致盲");
-                if (i % 3 == 0) redChar.PassiveStates.Add("定身");
-                redChar.EquipmentInventory.Add(new EquipmentItem("小血瓶", 2));
-                if (i % 2 == 0)
-                    redChar.EquipmentInventory.Add(new EquipmentItem("大护盾", 1));
-
-                RedTeamCharacters.Add(redChar);
-
-                var blueChar = new CharacterViewModel()
-                {
-                    Name = "蓝方角色" + (i + 1),
-                    Hp = 1500 + i * 500,
-                    ActiveState = "空置",
-                };
-                blueChar.PassiveStates.Add("隐身");
-                blueChar.EquipmentInventory.Add(new EquipmentItem("净化药水", 3));
-                if (i % 2 == 1)
-                    blueChar.EquipmentInventory.Add(new EquipmentItem("鞋子", 1));
-
-                BlueTeamCharacters.Add(blueChar);
-            }
-
-            // Initialize MapViewModel
+            // 初始化MapViewModel
             MapVM = new MapViewModel();
 
-            // Assign random initial positions to characters
-            Random rnd = new Random();
-            foreach (var character in RedTeamCharacters)
+            // 如果在设计模式下，可以添加一些测试数据
+            if (Avalonia.Controls.Design.IsDesignMode)
             {
-                character.PosX = rnd.Next(10, 40);
-                character.PosY = rnd.Next(10, 40);
+                InitializeDesignTimeData();
             }
 
-            foreach (var character in BlueTeamCharacters)
-            {
-                character.PosX = rnd.Next(10, 40);
-                character.PosY = rnd.Next(10, 40);
-            }
-
-            _timer = new Timer(1000);
-            _timer.Elapsed += Timer_Elapsed;
-            _timer.Start();
+            // 启动UI更新定时器
+            StartUiUpdateTimer();
         }
 
-        private void Timer_Elapsed(object? sender, ElapsedEventArgs e)
+        // 设计时数据
+        private void InitializeDesignTimeData()
         {
-            CurrentTime = DateTime.Now.ToString("HH:mm:ss");
-            Avalonia.Threading.Dispatcher.UIThread.Post(() =>
+            GameLog = "设计模式 - 模拟数据";
+            CurrentTime = "12:34";
+            RedScore = 50;
+            BlueScore = 30;
+
+            // 添加一些测试角色
+            for (int i = 0; i < 3; i++)
             {
-                OnPropertyChanged(nameof(CurrentTime));
-            });
+                RedTeamCharacters.Add(new CharacterViewModel
+                {
+                    CharacterId = i + 1,
+                    Name = $"取经队角色{i + 1}",
+                    Hp = 1000,
+                    ActiveState = "空置"
+                });
+
+                BlueTeamCharacters.Add(new CharacterViewModel
+                {
+                    CharacterId = i + 101,
+                    Name = $"妖怪队角色{i + 1}",
+                    Hp = 1200,
+                    ActiveState = "移动"
+                });
+            }
+        }
+
+        // 定时器更新方法
+        protected override void OnTimerTick(object? sender, EventArgs e)
+        {
+            // 更新当前时间显示
+            CurrentTime = DateTime.Now.ToString("HH:mm:ss");
         }
     }
 }

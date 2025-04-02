@@ -1,20 +1,18 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Data.Core;
-using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
+using debug_interface.Services;
 using debug_interface.ViewModels;
 using debug_interface.Views;
-using System.Linq;
+using System;
+using System.IO;
+using installer.Model;
+using installer.Data;
 
 namespace debug_interface
 {
-    /// <summary>
-    /// 应用程序的后置代码，负责初始化和启动主窗口。
-    /// </summary>
     public partial class App : Application
     {
-
         public override void Initialize()
         {
             AvaloniaXamlLoader.Load(this);
@@ -24,34 +22,43 @@ namespace debug_interface
         {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                // Avoid duplicate validations from both Avalonia and the CommunityToolkit. 
-                // More info: https://docs.avaloniaui.net/docs/guides/development-guides/data-validation#manage-validationplugins
-                DisableAvaloniaDataAnnotationValidation();
+                // 加载配置
+                var config = new ConfigData();
 
-                var mainWindowViewModel = new MainWindowViewModel();
+                // 设置日志目录
+                string logDir = Path.Combine(config.InstallPath, "Logs");
+                Directory.CreateDirectory(logDir);
 
+                // 创建日志记录器
+                var logFilePath = Path.Combine(logDir, $"debug_interface_{DateTime.Now:yyyyMMdd_HHmmss}.log");
+                var logger = new FileLogger(logFilePath);
+
+                // 创建主窗口视图模型
+                var mainWindowViewModel = new MainWindowViewModel(logger, config);
+
+                // 创建服务器通信服务
+                var serverCommunicationService = new ServerCommunicationService(mainWindowViewModel, logger, config);
+
+                // 设置主窗口
                 desktop.MainWindow = new MainWindow
                 {
-                    DataContext = new MainWindowViewModel(),
+                    DataContext = mainWindowViewModel
                 };
+
+                // 尝试连接服务器或启动回放
+                if (string.IsNullOrEmpty(config.Commands.PlaybackFile))
+                {
+                    // 连接到服务器
+                    _ = serverCommunicationService.ConnectToServer();
+                }
+                else
+                {
+                    // 启动回放模式
+                    serverCommunicationService.StartPlaybackMode();
+                }
             }
 
             base.OnFrameworkInitializationCompleted();
         }
-
-        private void DisableAvaloniaDataAnnotationValidation()
-        {
-            // Get an array of plugins to remove
-            var dataValidationPluginsToRemove =
-                BindingPlugins.DataValidators.OfType<DataAnnotationsValidationPlugin>().ToArray();
-
-            // remove each entry found
-            foreach (var plugin in dataValidationPluginsToRemove)
-            {
-                BindingPlugins.DataValidators.Remove(plugin);
-            }
-        }
-
-
     }
 }
