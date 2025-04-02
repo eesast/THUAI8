@@ -35,7 +35,7 @@ namespace Gaming
                 return GameObj.invalidID;
             }
             teamList[(int)playerInitInfo.teamID].CharacterNum.Add(1);
-            if (gameMap.TeamExists(playerInitInfo.teamID))
+            if (!gameMap.TeamExists(playerInitInfo.teamID))
             {
                 return GameObj.invalidID;
             }
@@ -423,6 +423,18 @@ namespace Gaming
         {
             if (!gameMap.Timer.IsGaming)
                 return false;
+            int nowtime = gameMap.Timer.NowTime();
+            if (nowtime >= GameData.SevenMinutes)
+            {
+                if (equiptype == EquipmentType.INVISIBILITY_POTION)
+                {
+                    return false;
+                }
+            }
+            else if (equiptype == EquipmentType.BERSERK_POTION)
+            {
+                return false;
+            }
             Character? character = gameMap.FindCharacterInPlayerID(teamID, characterID);
             if (character != null && character.IsRemoved == false)
                 return equipManager.GetEquipment(character, equiptype);

@@ -299,6 +299,7 @@ namespace Gaming
                         character.Shoes.SubPositiveV(GameData.CrazySpeed);
                         character.ATKFrequency = GameData.ATKFreq;
                         character.BerserkTime = long.MaxValue;
+                        character.IsBerserk = false;
                     }
                 }
             }
@@ -314,7 +315,15 @@ namespace Gaming
                         character.IsShoes = false;
                     }
                 }
-
+            }
+            public void CheckInvisibility(Character character)
+            {
+                int nowtime = gameMap.Timer.NowTime();
+                if (nowtime >= GameData.SevenMinutes
+                )
+                {
+                    character.visible = true;
+                }
             }
         }
     }
