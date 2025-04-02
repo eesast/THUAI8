@@ -1,137 +1,201 @@
-﻿//MapViewModel.cs
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
-using System.Collections.ObjectModel;
-using debug_interface.Models;
 using Avalonia.Media;
+using debug_interface.Models;
 
 namespace debug_interface.ViewModels
 {
-    // 地图视图模型，管理整个 50×50 的地图数据
-    public partial class MapViewModel : ObservableObject
+    public partial class MapViewModel : ViewModelBase
     {
-        // 定义地图网格大小为 50（行）× 50（列）
-        public const int GridSize = 50;
+        private const int GridSize = 50;
 
-        // ObservableCollection 存放 2500 个 MapCell 对象，每个对象代表一个地图格子
-        // 数据绑定到视图后，界面会显示出整个地图
-        public ObservableCollection<MapCell> MapCells { get; }
-        public ObservableCollection<CharacterViewModel> RedTeamCharacters { get; }
-        public ObservableCollection<CharacterViewModel> BlueTeamCharacters { get; }
+        [ObservableProperty]
+        private ObservableCollection<MapCell> mapCells = new();
 
-        public MapViewModel(ObservableCollection<CharacterViewModel> redTeam, ObservableCollection<CharacterViewModel> blueTeam)
-        {
-            MapCells = new ObservableCollection<MapCell>();
-            RedTeamCharacters = redTeam;
-            BlueTeamCharacters = blueTeam;
-            InitializeDefaultMap();
-        }
-        // 构造函数，用于测试
         public MapViewModel()
         {
-            MapCells = new ObservableCollection<MapCell>();
-            InitializeDefaultMap();
+            // 初始化地图单元格
+            InitializeMapCells();
         }
 
-        // 初始化默认地图数据，用于测试效果
-        private void InitializeDefaultMap()
+        private void InitializeMapCells()
         {
-            // 遍历所有行和列
-            for (int i = 0; i < GridSize; i++)
+            MapCells.Clear();
+            for (int i = 0; i < GridSize * GridSize; i++)
             {
-                for (int j = 0; j < GridSize; j++)
+                MapCells.Add(new MapCell
                 {
-                    // 创建一个 MapCell 对象，并设置行列信息
-                    var cell = new MapCell
-                    {
-                        CellX = i,
-                        CellY = j,
-                        // 根据坐标决定默认单元格类型
-                        CellType = GetDefaultCellType(i, j),
-                        DisplayText = "" // 默认无文本显示，可后续根据需要设置
-                    };
-                    // 设置显示颜色，根据单元格类型获取颜色
-                    cell.DisplayColor = new SolidColorBrush(GetColorForCellType(cell.CellType));
-
-                    MapCells.Add(cell);
-                }
+                    Row = i / GridSize,
+                    Col = i % GridSize,
+                    CellType = MapCellType.Empty,
+                    DisplayText = "",
+                    DisplayColor = new SolidColorBrush(Colors.White),
+                    BackgroundColor = new SolidColorBrush(Colors.LightGray)
+                });
             }
         }
 
-        // 根据单元格在地图中的坐标决定默认类型
-        private MapCellType GetDefaultCellType(int i, int j)
+        // 更新整个地图
+        public void UpdateMap(int[,] mapData)
         {
-            // 1. 边界（第一行、最后一行、第一列、最后一列）均设为障碍物
-            if (i == 0 || i == GridSize - 1 || j == 0 || j == GridSize - 1)
-            {
-                return MapCellType.Obstacle;
-            }
-            // 2. 在特定位置放置资源点（测试用）
-            if ((i == 10 && j == 10) || (i == 20 && j == 20) || (i == 30 && j == 30))
-            {
-                return MapCellType.Resource;
-            }
-            // 3. 在特定位置放置草丛（测试用）
-            if ((i == 15 && j == 35) || (i == 35 && j == 15))
-            {
-                return MapCellType.Grass;
-            }
-            // 4. 可预留一个建筑点，例如 (25,25)
-            if (i == 25 && j == 25)
-            {
-                return MapCellType.Building;
-            }
-            // 5. 其他区域默认为空地
-            return MapCellType.OpenLand;
-        }
-
-        // 根据单元格类型返回对应的颜色（可根据需要调整颜色）
-        private Color GetColorForCellType(MapCellType type)
-        {
-            switch (type)
-            {
-                case MapCellType.Obstacle:
-                    return Colors.DarkGray;
-                case MapCellType.OpenLand:
-                    return Colors.LightGreen;
-                case MapCellType.Grass:
-                    return Colors.Green;
-                case MapCellType.Resource:
-                    return Colors.Yellow;
-                case MapCellType.Building:
-                    return Colors.Orange;
-                default:
-                    return Colors.Black;
-            }
-        }
-
-        // 用于更新地图数据的方法，
-        // newMapData 是一个 50x50 的二维整型数组，数值应能映射为 MapCellType 枚举值
-        public void UpdateMap(int[,] newMapData)
-        {
-            if (newMapData.GetLength(0) != GridSize || newMapData.GetLength(1) != GridSize)
-                throw new ArgumentException("地图数据尺寸不正确");
-
-            // 遍历二维数组更新每个 MapCell 对象
             for (int i = 0; i < GridSize; i++)
             {
                 for (int j = 0; j < GridSize; j++)
                 {
                     int index = i * GridSize + j;
-                    // 将整型转换为 MapCellType 枚举
-                    MapCellType newType = (MapCellType)newMapData[i, j];
-                    var cell = MapCells[index];
-                    cell.CellType = newType;
-                    // 更新颜色
-                    cell.DisplayColor = new SolidColorBrush(GetColorForCellType(newType));
-                    // 如果需要，可以根据新数据更新文本（例如建筑血量、资源剩余）
-                    cell.DisplayText = "123"; // 这里留空，可扩展
+                    if (index < MapCells.Count)
+                    {
+                        int cellType = mapData[i, j];
+                        UpdateCellType(MapCells[index], cellType);
+                    }
                 }
+            }
+
+            OnPropertyChanged(nameof(MapCells));
+        }
+
+        private void UpdateCellType(MapCell cell, int cellType)
+        {
+            // 根据cellType设置单元格属性
+            // 这里简化处理
+            switch (cellType)
+            {
+                case 0: // 空地
+                    cell.CellType = MapCellType.Empty;
+                    cell.BackgroundColor = new SolidColorBrush(Colors.White);
+                    break;
+                case 1: // 障碍物
+                    cell.CellType = MapCellType.Obstacle;
+                    cell.BackgroundColor = new SolidColorBrush(Colors.DarkGray);
+                    break;
+                case 2: // 资源
+                    cell.CellType = MapCellType.Resource;
+                    cell.BackgroundColor = new SolidColorBrush(Colors.Green);
+                    break;
+                default:
+                    cell.CellType = MapCellType.Empty;
+                    cell.BackgroundColor = new SolidColorBrush(Colors.LightGray);
+                    break;
+            }
+        }
+
+        // 更新角色位置
+        public void UpdateCharacterPosition(long characterId, long teamId, int x, int y, string name)
+        {
+            // 简化实现
+            int index = x * GridSize + y;
+            if (index >= 0 && index < MapCells.Count)
+            {
+                MapCells[index].DisplayText = name.Substring(0, 1);
+                MapCells[index].DisplayColor = teamId == 1
+                    ? new SolidColorBrush(Colors.Red)
+                    : new SolidColorBrush(Colors.Blue);
+
+                OnPropertyChanged(nameof(MapCells));
+            }
+        }
+
+        // 更新建筑
+        public void UpdateBuildingCell(int x, int y, string team, string buildingType, int hp)
+        {
+            int index = x * GridSize + y;
+            if (index >= 0 && index < MapCells.Count)
+            {
+                MapCells[index].CellType = MapCellType.Building;
+                MapCells[index].DisplayText = buildingType.Substring(0, 1);
+                MapCells[index].DisplayColor = team == "取经队"
+                    ? new SolidColorBrush(Colors.DarkRed)
+                    : new SolidColorBrush(Colors.DarkBlue);
+
+                OnPropertyChanged(nameof(MapCells));
+            }
+        }
+
+        // 更新陷阱
+        public void UpdateTrapCell(int x, int y, string team, string trapType)
+        {
+            int index = x * GridSize + y;
+            if (index >= 0 && index < MapCells.Count)
+            {
+                MapCells[index].CellType = MapCellType.Obstacle;
+                MapCells[index].DisplayText = trapType.Substring(0, 1);
+                MapCells[index].DisplayColor = team == "取经队"
+                    ? new SolidColorBrush(Colors.IndianRed)
+                    : new SolidColorBrush(Colors.CornflowerBlue);
+
+                OnPropertyChanged(nameof(MapCells));
+            }
+        }
+
+        // 更新资源
+        public void UpdateResourceCell(int x, int y, string resourceType, int process)
+        {
+            int index = x * GridSize + y;
+            if (index >= 0 && index < MapCells.Count)
+            {
+                MapCells[index].CellType = MapCellType.Resource;
+                MapCells[index].DisplayText = process.ToString();
+                MapCells[index].DisplayColor = new SolidColorBrush(Colors.DarkGreen);
+
+                OnPropertyChanged(nameof(MapCells));
+            }
+        }
+
+        // 更新额外资源
+        public void UpdateAdditionResourceCell(int x, int y, string resourceName, int value)
+        {
+            int index = x * GridSize + y;
+            if (index >= 0 && index < MapCells.Count)
+            {
+                MapCells[index].CellType = MapCellType.Resource;
+                MapCells[index].DisplayText = value.ToString();
+
+                // 根据资源类型选择颜色
+                if (resourceName.Contains("生命池"))
+                {
+                    MapCells[index].DisplayColor = new SolidColorBrush(Colors.LightGreen);
+                }
+                else if (resourceName.Contains("疯人"))
+                {
+                    MapCells[index].DisplayColor = new SolidColorBrush(Colors.OrangeRed);
+                }
+                else
+                {
+                    MapCells[index].DisplayColor = new SolidColorBrush(Colors.Purple);
+                }
+
+                OnPropertyChanged(nameof(MapCells));
             }
         }
     }
+
+    //public enum MapCellType
+    //{
+    //    Empty,
+    //    Obstacle,
+    //    Building,
+    //    Resource,
+    //    Character
+    //}
+
+    //public partial class MapCell : ViewModelBase
+    //{
+    //    [ObservableProperty]
+    //    private int row;
+
+    //    [ObservableProperty]
+    //    private int col;
+
+    //    [ObservableProperty]
+    //    private MapCellType cellType;
+
+    //    [ObservableProperty]
+    //    private string displayText = "";
+
+    //    [ObservableProperty]
+    //    private IBrush displayColor = new SolidColorBrush(Colors.Black);
+
+    //    [ObservableProperty]
+    //    private IBrush backgroundColor = new SolidColorBrush(Colors.White);
+    //}
 }
