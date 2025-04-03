@@ -9,11 +9,11 @@
     xmlns:vm="using:debug_interface.ViewModels"
     mc:Ignorable="d">
 
-    <Grid>
-        <!--  使用空的Grid，将在代码中填充  -->
-        <Grid Name="MapGrid" />
+	<Grid>
+		<!--  使用空的Grid，将在代码中填充  -->
+		<Grid Name="MapGrid" />
 
-        <!--  Character Positions Canvas  -->
-        <Canvas Name="CharacterCanvas" Background="Transparent" />
-    </Grid>
+		<!--  Character Positions Canvas  -->
+		<Canvas Name="CharacterCanvas" Background="Transparent" />
+	</Grid>
 </UserControl>

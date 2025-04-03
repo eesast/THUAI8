@@ -1,4 +1,5 @@
-﻿using System.Collections.Concurrent;
+﻿//Logger.cs
+using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.IO;
