@@ -14,6 +14,7 @@ namespace ClientTest
             {
                 CharacterId = 0,
                 TeamId = 0,
+                SideFlag = 0,
                 CharacterType = CharacterType.TangSeng
             };
             var call = client.AddCharacter(playerInfo);
