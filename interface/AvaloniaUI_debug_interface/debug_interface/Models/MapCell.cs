@@ -1,6 +1,7 @@
 ﻿//MapCell.cs
 using Avalonia.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
+using debug_interface.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -22,7 +22,7 @@ namespace Constants
     SCCI int32_t DestroyFarmBonus = 4000;
     // SCCI double recoverMultiplier = 1.2;
     // SCCI double recycleMultiplier = 0.5;
-    //角色
+    // 角色
     SCCI int32_t sizeofCharacter = 800;
     SCCI int32_t Speed = 2500;
     struct Monk
@@ -92,39 +92,39 @@ namespace Constants
         SCCI int32_t attackRange = 5;
         SCCI int32_t Cost = 3000;
     };
-    //模块
+    // 模块
 
-    struct resumption  //生命之泉
+    struct resumption  // 生命之泉
     {
         SCCI int32_t recovery1 = 50;
         SCCI int32_t recovery2 = 100;
         SCCI int32_t recovery3 = 150;
-        SCCI int32_t score1 = 2000;  //一级生命之泉分数
-        SCCI int32_t score2 = 3000;  //二级生命之泉分数
-        SCCI int32_t score3 = 4000;  //三级生命之泉分数
-        SCCI int32_t maxHp1 = 200;   //一级生命之泉守关怪物血量
-        SCCI int32_t maxHp2 = 300;   //二级生命之泉守关怪物血量
-        SCCI int32_t maxHp3 = 400;   //三级生命之泉守关怪物血量
-        SCCI int32_t attack = 10;    //生命之泉守关怪物攻击力
+        SCCI int32_t score1 = 2000;  // 一级生命之泉分数
+        SCCI int32_t score2 = 3000;  // 二级生命之泉分数
+        SCCI int32_t score3 = 4000;  // 三级生命之泉分数
+        SCCI int32_t maxHp1 = 200;   // 一级生命之泉守关怪物血量
+        SCCI int32_t maxHp2 = 300;   // 二级生命之泉守关怪物血量
+        SCCI int32_t maxHp3 = 400;   // 三级生命之泉守关怪物血量
+        SCCI int32_t attack = 10;    // 生命之泉守关怪物攻击力
     };
 
-    struct Attack_Boost  //狂战士之力
+    struct Attack_Boost  // 狂战士之力
     {
         SCCI int32_t attack_boost1 = 10;
         SCCI int32_t attack_boost2 = 15;
         SCCI int32_t attack_boost3 = 20;
-        SCCI int32_t time1 = 30;     //一级狂战士之力持续时间
-        SCCI int32_t time2 = 45;     //二级狂战士之力持续时间
-        SCCI int32_t time3 = 60;     //三级狂战士之力持续时间
-        SCCI int32_t score1 = 4000;  //一级狂战士之力分数
-        SCCI int32_t score2 = 5000;  //二级狂战士之力分数
-        SCCI int32_t score3 = 6000;  //三级狂战士之力分数
-        SCCI int32_t maxHp1 = 400;   //一级狂战士之力守关怪物血量
-        SCCI int32_t maxHp2 = 500;   //二级狂战士之力守关怪物血量
-        SCCI int32_t maxHp3 = 600;   //三级狂战士之力守关怪物血量
-        SCCI int32_t attack1 = 10;   //一级狂战士之力守关怪物攻击力
-        SCCI int32_t attack2 = 15;   //二级狂战士之力守关怪物攻击力
-        SCCI int32_t attack3 = 20;   //三级狂战士之力守关怪物攻击力
+        SCCI int32_t time1 = 30;     // 一级狂战士之力持续时间
+        SCCI int32_t time2 = 45;     // 二级狂战士之力持续时间
+        SCCI int32_t time3 = 60;     // 三级狂战士之力持续时间
+        SCCI int32_t score1 = 4000;  // 一级狂战士之力分数
+        SCCI int32_t score2 = 5000;  // 二级狂战士之力分数
+        SCCI int32_t score3 = 6000;  // 三级狂战士之力分数
+        SCCI int32_t maxHp1 = 400;   // 一级狂战士之力守关怪物血量
+        SCCI int32_t maxHp2 = 500;   // 二级狂战士之力守关怪物血量
+        SCCI int32_t maxHp3 = 600;   // 三级狂战士之力守关怪物血量
+        SCCI int32_t attack1 = 10;   // 一级狂战士之力守关怪物攻击力
+        SCCI int32_t attack2 = 15;   // 二级狂战士之力守关怪物攻击力
+        SCCI int32_t attack3 = 20;   // 三级狂战士之力守关怪物攻击力
     };
 
     struct Speed_Boost
@@ -168,7 +168,7 @@ namespace Constants
         SCCI int32_t time_cost = 10;
     };
 
-    struct Trap
+    struct Hole
     {
         SCCI int32_t cost = 1000;
         SCCI int32_t time = 5;
@@ -182,7 +182,7 @@ namespace Constants
         SCCI int32_t time = 5;
         SCCI int32_t continous_time = 30;
     };
-    //商店商品
+    // 商店商品
     struct blood_vial
     {
         SCCI int32_t cost1 = 1500;
@@ -226,9 +226,9 @@ namespace Constants
     {
         SCCI int32_t cost = 10000;
         SCCI int32_t time = 30;
-        SCCI int32_t attack_boost = 1.2;        //注意这是提升的倍数
-        SCCI int32_t speed_boost = 300;         //注意这是直接叠加
-        SCCI int32_t attack_freq_boost = 1.25;  //注意这是提升的倍数
+        SCCI int32_t attack_boost = 1.2;        // 注意这是提升的倍数
+        SCCI int32_t speed_boost = 300;         // 注意这是直接叠加
+        SCCI int32_t attack_freq_boost = 1.25;  // 注意这是提升的倍数
     };
 }  // namespace Constants
 #endif

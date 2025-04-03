@@ -1,4 +1,3 @@
-﻿//ViewModeBase.cs
 using System;
 
 using Avalonia.Threading;

@@ -253,6 +253,7 @@ public class Character : Movable, ICharacter
         Shield = new(0);
         NiuShield = new(0);
         AttackSize = new(Occupation.BaseAttackSize);
+        HP = new(Occupation.MaxHp);
         AttackPower = new(Occupation.AttackPower);
         MoneyPool = pool;
         Init();
@@ -340,10 +341,6 @@ public class Character : Movable, ICharacter
                 }
             case EquipmentType.BERSERK_POTION:
                 {
-                    if (IsBerserk)
-                    {
-                        return false;
-                    }
                     IsBerserk = true;
                     BerserkTime = Environment.TickCount64;
                     SetCharacterState(CharacterState1, CharacterState.BERSERK);//此处缺少时间限制
