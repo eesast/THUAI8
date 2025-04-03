@@ -6,13 +6,6 @@ using Avalonia.Markup.Xaml;
 namespace debug_interface.Views
 {
 
-    //public partial class MainWindow : Window
-    //{
-    //    public MainWindow()
-    //    {
-    //        InitializeComComponent();
-    //    }
-    //}
 
     /// <summary>
     /// 主窗口的后置代码，负责初始化组件。
