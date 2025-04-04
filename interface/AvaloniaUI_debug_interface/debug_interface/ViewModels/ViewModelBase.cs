@@ -88,6 +88,7 @@ namespace debug_interface.ViewModels
                     };
 
                     ConnectToServer(comInfo);
+                    myLogger?.LogInfo("Trying to connect to server...");
                     OnReceive();
                 }
                 else
@@ -108,9 +109,10 @@ namespace debug_interface.ViewModels
         /// <param name="comInfo">包含 ip、port、playerID、teamID、shipTypeID 的数组</param>
         public void ConnectToServer(string[] comInfo)
         {
+            
             if (isPlaybackMode) return;
             if (Convert.ToInt64(comInfo[2]) > 2023)
-            {
+            {myLogger?.LogInfo("isSpectatorMode = true");
                 isSpectatorMode = true;
                 myLogger?.LogInfo("isSpectatorMode = true");
             }
@@ -148,6 +150,7 @@ namespace debug_interface.ViewModels
                 };
             }
             responseStream = client.AddCharacter(playerMsg);
+            myLogger?.LogInfo("ResponseStream created successfully.");
         }
 
         /// <summary>
