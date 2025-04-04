@@ -11,12 +11,10 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 
-
 namespace debug_interface.Views
 {
     public partial class MapView : UserControl
     {
-
         private Canvas? characterCanvas;
         private Grid? mapGrid;
         private Dictionary<string, Control> characterElements = new Dictionary<string, Control>();
@@ -29,7 +27,6 @@ namespace debug_interface.Views
             this.AttachedToVisualTree += MapView_AttachedToVisualTree;
             this.DataContextChanged += MapView_DataContextChanged;
         }
-
 
         private void MapView_DataContextChanged(object? sender, EventArgs e)
         {
@@ -52,13 +49,13 @@ namespace debug_interface.Views
             }
         }
 
-
         private void SetupViewModel(MainWindowViewModel vm)
         {
             if (viewModel != null)
             {
-                viewModel.RedTeamCharacters.CollectionChanged -= RedTeamCharacters_CollectionChanged;
-                viewModel.BlueTeamCharacters.CollectionChanged -= BlueTeamCharacters_CollectionChanged;
+                // 修改这里，使用正确的集合名称
+                viewModel.BuddhistsTeamCharacters.CollectionChanged -= BuddhistsTeamCharacters_CollectionChanged;
+                viewModel.MonstersTeamCharacters.CollectionChanged -= MonstersTeamCharacters_CollectionChanged;
             }
 
             viewModel = vm;
@@ -68,12 +65,12 @@ namespace debug_interface.Views
             {
                 // 直接使用现有的mapGrid
                 MapHelper.InitializeMapGrid(mapGrid, viewModel.MapVM);
-
             }
 
             // 监听角色集合变化
-            viewModel.RedTeamCharacters.CollectionChanged += RedTeamCharacters_CollectionChanged;
-            viewModel.BlueTeamCharacters.CollectionChanged += BlueTeamCharacters_CollectionChanged;
+            // 修改这里，使用正确的集合名称
+            viewModel.BuddhistsTeamCharacters.CollectionChanged += BuddhistsTeamCharacters_CollectionChanged;
+            viewModel.MonstersTeamCharacters.CollectionChanged += MonstersTeamCharacters_CollectionChanged;
 
             // 初始化角色
             RefreshCharacters();
@@ -109,8 +106,9 @@ namespace debug_interface.Views
             characterCanvas.Children.Clear();
             characterElements.Clear();
 
-            InitializeCharacters(viewModel.RedTeamCharacters, Colors.Red);
-            InitializeCharacters(viewModel.BlueTeamCharacters, Colors.Blue);
+            // 修改这里，使用正确的集合名称
+            InitializeCharacters(viewModel.BuddhistsTeamCharacters, Colors.Red);
+            InitializeCharacters(viewModel.MonstersTeamCharacters, Colors.Blue);
         }
 
         private void InitializeRandomPositions()
@@ -118,7 +116,8 @@ namespace debug_interface.Views
             if (viewModel == null) return;
 
             Random rnd = new Random();
-            foreach (var character in viewModel.RedTeamCharacters)
+            // 修改这里，使用正确的集合名称
+            foreach (var character in viewModel.BuddhistsTeamCharacters)
             {
                 // Only set position if it's still at default (0,0)
                 if (character.PosX == 0 && character.PosY == 0)
@@ -128,7 +127,8 @@ namespace debug_interface.Views
                 }
             }
 
-            foreach (var character in viewModel.BlueTeamCharacters)
+            // 修改这里，使用正确的集合名称
+            foreach (var character in viewModel.MonstersTeamCharacters)
             {
                 // Only set position if it's still at default (0,0)
                 if (character.PosX == 0 && character.PosY == 0)
@@ -139,164 +139,69 @@ namespace debug_interface.Views
             }
         }
 
-
         private void InitializeCharacters<T>(System.Collections.ObjectModel.ObservableCollection<T> characters, Color color) where T : CharacterViewModel
         {
             if (characterCanvas == null) return;
 
-            //bool isRedTeam = color.Equals(Colors.Red);
-
-            //// 形状选择 - 红队使用圆形，蓝队使用正方形
-            //for (int i = 0; i < characters.Count; i++)
-            //{
-            //    var character = characters[i];
-
-            //    // 创建容器 - 用于定位
-            //    var container = new Canvas
-            //    {
-            //        Width = 16,
-            //        Height = 16,
-            //        Tag = character
-            //    };
-
-            //    Control characterShape;
-
-            //    if (isRedTeam)
-            //    {
-            //        // 红队使用圆形
-            //        characterShape = new Ellipse
-            //        {
-            //            Width = 14,
-            //            Height = 14,
-            //            Fill = new SolidColorBrush(color) { Opacity = 0.7 },
-            //            Stroke = Brushes.White,
-            //            StrokeThickness = 1
-            //        };
-            //    }
-            //    else
-            //    {
-            //        // 蓝队使用正方形
-            //        characterShape = new Rectangle
-            //        {
-            //            Width = 14,
-            //            Height = 14,
-            //            Fill = new SolidColorBrush(color) { Opacity = 0.7 },
-            //            Stroke = Brushes.White,
-            //            StrokeThickness = 1
-            //        };
-            //    }
-
-            //    // 添加形状到容器
-            //    Canvas.SetLeft(characterShape, 1);
-            //    Canvas.SetTop(characterShape, 1);
-            //    container.Children.Add(characterShape);
-
-            //    // 添加标识符 - 使用不同的方式标识队伍内部的角色
-            //    var identifier = new TextBlock
-            //    {
-            //        Text = (i + 1).ToString(),
-            //        FontSize = 8,
-            //        Foreground = Brushes.White,
-            //        HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
-            //        VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center
-            //    };
-
-            //    // 为标识符添加背景以增强可读性
-            //    var textContainer = new Border
-            //    {
-            //        Child = identifier,
-            //        Width = 14,
-            //        Height = 14,
-            //        Background = Brushes.Transparent,
-            //        HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
-            //        VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center
-            //    };
-
-            //    Canvas.SetLeft(textContainer, 1);
-            //    Canvas.SetTop(textContainer, 1);
-            //    container.Children.Add(textContainer);
-
-            //    // 添加工具提示，显示详细信息
-            //    var tooltip = new ToolTip
-            //    {
-            //        // 使用角色的泛型属性，确保可以访问
-            //        Content = new TextBlock { Text = $"{(isRedTeam ? "红队" : "蓝队")} 角色 {i + 1}" }
-            //    };
-            //    ToolTip.SetTip(container, tooltip);
-
-            //    // 将容器添加到画布
-            //    characterCanvas.Children.Add(container);
-            //    characterElements[character.Name] = container;
-
-            //    // 初始定位 - 稍后会更新
-
-            //    Canvas.SetLeft(container, i*i * i*i);
-            //    Canvas.SetTop(container, i*i * i * i );
-            //}
-            /////////////////////////////////////
-            /////////////////////////////////////
-            ////////////////////////////////////
+            // 使用简化版本的角色创建
             for (int i = 0; i < characters.Count; i++)
             {
+                var character = characters[i];
+                var id = color == Colors.Red ? $"red_{i}" : $"blue_{i}";
+
+                // 创建一个Grid作为容器，包含边框和文本/图标
+                var grid = new Grid
                 {
-                    var character = characters[i];
-                    var id = color == Colors.Red ? $"red_{i}" : $"blue_{i}";
+                    Width = 15,
+                    Height = 15,
+                };
 
-                    // 创建一个Grid作为容器，包含边框和文本/图标
-                    var grid = new Grid
+                // 创建带颜色边框的圆形
+                var borderellipse = new Ellipse
+                {
+                    Width = 15,
+                    Height = 15,
+                    Fill = new SolidColorBrush(Colors.White), // 白色背景
+                    Stroke = new SolidColorBrush(color), // 队伍颜色边框
+                    StrokeThickness = 2,
+                    Tag = character.Name,
+                };
+
+                grid.Children.Add(borderellipse);
+
+                // 可选: 添加文本标签
+                var textBlock = new TextBlock
+                {
+                    Text = (i + 1).ToString(), // 使用编号(从1开始)
+                    HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
+                    VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
+                    FontSize = 8,
+                    Foreground = new SolidColorBrush(color), // 文本颜色与队伍颜色一致
+                    FontWeight = FontWeight.Bold,
+                };
+                //grid.Children.Add(textBlock);
+
+                // 设置提示信息
+                ToolTip.SetTip(grid, character.Name);
+
+                // 设置初始位置
+                Canvas.SetLeft(grid, character.PosY * 15);
+                Canvas.SetTop(grid, character.PosX * 15);
+
+                characterCanvas.Children.Add(grid);
+
+                // 存储Grid到字典中
+                characterElements[id] = grid;
+
+                // 设置属性更改处理器
+                character.PropertyChanged += (s, e) =>
+                {
+                    if (e.PropertyName == nameof(CharacterViewModel.PosX) || e.PropertyName == nameof(CharacterViewModel.PosY))
                     {
-                        Width = 15,
-                        Height = 15,
-                    };
-
-                    // 创建带颜色边框的圆形
-                    var borderellipse = new Ellipse
-                    {
-                        Width = 15,
-                        Height = 15,
-                        Fill = new SolidColorBrush(Colors.White), // 白色背景
-                        Stroke = new SolidColorBrush(color), // 队伍颜色边框
-                        StrokeThickness = 2,
-                        Tag = character.Name,
-                    };
-
-                    grid.Children.Add(borderellipse);
-
-                    // ===== 选项1: 显示数字编号 =====
-                    // 如果不需要数字编号，注释掉下面这段代码
-                    var textBlock = new TextBlock
-                    {
-                        Text = (i + 1).ToString(), // 使用编号(从1开始)
-                        HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
-                        VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
-                        FontSize = 8,
-                        Foreground = new SolidColorBrush(color), // 文本颜色与队伍颜色一致
-                        FontWeight = FontWeight.Bold,
-                    };
-                    //grid.Children.Add(textBlock);
-
-                    // 设置提示信息
-                    ToolTip.SetTip(grid, character.Name);
-
-                    // 设置初始位置
-                    Canvas.SetLeft(grid, character.PosY * 15);
-                    Canvas.SetTop(grid, character.PosX * 15);
-
-                    characterCanvas.Children.Add(grid);
-
-                    // 存储Grid到字典中
-                    characterElements[id] = grid;
-
-                    // 设置属性更改处理器
-                    character.PropertyChanged += (s, e) =>
-                    {
-                        if (e.PropertyName == nameof(CharacterViewModel.PosX) || e.PropertyName == nameof(CharacterViewModel.PosY))
-                        {
-                            // 更新Grid的位置
-                            UpdateCharacterPosition(grid, character.PosX, character.PosY);
-                        }
-                    };
-                }
+                        // 更新Grid的位置
+                        UpdateCharacterPosition(grid, character.PosX, character.PosY);
+                    }
+                };
             }
         }
 
@@ -308,20 +213,20 @@ namespace debug_interface.Views
             Canvas.SetTop(element, x * 15);
         }
 
-       
-        private void RedTeamCharacters_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        // 修改事件处理程序名称
+        private void BuddhistsTeamCharacters_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
         {
             // When collection changes, refresh all characters for simplicity
             RefreshCharacters();
         }
 
-        private void BlueTeamCharacters_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        private void MonstersTeamCharacters_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
         {
             // When collection changes, refresh all characters for simplicity
             RefreshCharacters();
         }
 
-
+        // 辅助方法 - 可能不需要了，但保留以确保没有被引用的代码块
         public void UpdateCharacterPosition(long characterId, int x, int y, bool isRedTeam, string name)
         {
             // 查找现有角色标记或创建新标记

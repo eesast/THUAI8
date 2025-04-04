@@ -13,8 +13,9 @@
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup>
 
+	<!-- 添加对 proto 项目的直接引用 -->
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\logic\proto\proto.csproj" />
+		<ProjectReference Include="..\..\..\dependency\proto\proto.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -52,8 +53,7 @@
 	<ItemGroup>
 		<Folder Include="Utili\" />
 	</ItemGroup>
+	
 
-	<ItemGroup>
-	  <ProjectReference Include="..\..\..\dependency\proto\Proto.csproj" />
-	</ItemGroup>
+
 </Project>
