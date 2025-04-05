@@ -7,6 +7,11 @@ namespace ClientTest
     {
         public static Task Main(string[] args)
         {
+            if (args.Length < 2)
+            {
+                Console.WriteLine("Please provide both CharacterId and TeamId as arguments.");
+                return Task.CompletedTask;
+            }
             if (!int.TryParse(args[0], out int characterId))
             {
                 Console.WriteLine("Invalid CharacterId. Please provide a valid integer.");
