@@ -1,24 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<OutputType>WinExe</OutputType>
-		<TargetFramework>net8.0-windows</TargetFramework>
-		<Nullable>enable</Nullable>
-		<BuiltInComInteropSupport>true</BuiltInComInteropSupport>
-		<ApplicationManifest>app.manifest</ApplicationManifest>
-		<AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
-		<AssemblyName>debug_interface</AssemblyName>
-	</PropertyGroup>
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+	<AssemblyName>debug_interface</AssemblyName>
+  </PropertyGroup>
 
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\**" />
+  </ItemGroup>
+
+	<!-- 添加对 proto 项目的直接引用 -->
 	<ItemGroup>
-		<AvaloniaResource Include="Assets\**" />
+		<ProjectReference Include="..\..\..\dependency\proto\proto.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<!-- 相对路径 -->
-		<Protobuf Include="..\..\..\dependency\proto\*.proto" GrpcServices="Client">
-			<Link>Protos\%(RecursiveDir)%(Filename)%(Extension)</Link>
-		</Protobuf>
-	</ItemGroup>
 	<ItemGroup>
 		<!-- 使用正斜杠 / 确保跨平台兼容 -->
 		<Compile Include="..\..\..\installer\Data\ConfigFileData.cs" Link="Interact/ConfigFileData.cs">
@@ -30,28 +29,32 @@
 			<Error Condition="!Exists('../../installer/Model/Logger.cs')" />
 		</Compile>
 	</ItemGroup>
+	
 
-
-	<ItemGroup>
-		<PackageReference Include="Avalonia" Version="11.2.5" />
-		<PackageReference Include="Avalonia.Desktop" Version="11.2.5" />
-		<PackageReference Include="Avalonia.Themes.Fluent" Version="11.2.5" />
-		<PackageReference Include="Avalonia.Fonts.Inter" Version="11.2.5" />
-		<!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-		<PackageReference Include="Avalonia.Diagnostics" Version="11.2.5">
-			<IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
-			<PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
-		</PackageReference>
-		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
-		<PackageReference Include="Google.Protobuf" Version="3.30.2" />
-		<PackageReference Include="Grpc.Net.Client" Version="2.70.0" />
-		<PackageReference Include="Grpc.Tools" Version="2.71.0">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.2.5" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.2.5" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.2.5" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.2.5" />
+    <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+    <PackageReference Include="Avalonia.Diagnostics" Version="11.2.5">
+      <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
+      <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageReference Include="Google.Protobuf" Version="3.30.2" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.70.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.71.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.Reactive" Version="6.0.1" />
+  </ItemGroup>
 
 	<ItemGroup>
 		<Folder Include="Utili\" />
 	</ItemGroup>
+	
+
+
 </Project>

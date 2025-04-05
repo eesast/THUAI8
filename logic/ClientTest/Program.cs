@@ -7,15 +7,31 @@ namespace ClientTest
     {
         public static Task Main(string[] args)
         {
+            if (args.Length < 2)
+            {
+                Console.WriteLine("Please provide both CharacterId and TeamId as arguments.");
+                return Task.CompletedTask;
+            }
+            if (!int.TryParse(args[0], out int characterId))
+            {
+                Console.WriteLine("Invalid CharacterId. Please provide a valid integer.");
+                return Task.CompletedTask;
+            }
+
+            if (!int.TryParse(args[1], out int teamId))
+            {
+                Console.WriteLine("Invalid TeamId. Please provide a valid integer.");
+                return Task.CompletedTask;
+            }
             Thread.Sleep(3000);
             Channel channel = new("127.0.0.1:8888", ChannelCredentials.Insecure);
             var client = new AvailableService.AvailableServiceClient(channel);
             CharacterMsg playerInfo = new()
             {
-                CharacterId = 0,
-                TeamId = 0,
-                SideFlag = 0,
-                CharacterType = CharacterType.TangSeng
+                CharacterId = characterId,
+                TeamId = teamId,
+                CharacterType = teamId == 0 ? CharacterType.JiuLing : CharacterType.TangSeng,
+                SideFlag = 1 - teamId
             };
             var call = client.AddCharacter(playerInfo);
             MoveMsg moveMsg = new()

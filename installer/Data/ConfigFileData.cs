@@ -52,7 +52,7 @@ namespace installer.Data
 
         public int TeamID { get; set; } = 0;
 
-        public int PlayerID { get; set; } = 2024;
+        public int PlayerID { get; set; } = 2025;
 
         public int CharacterType { get; set; } = 0;
     }

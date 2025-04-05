@@ -1,4 +1,4 @@
-﻿//MapCell.cs
+﻿// MapCell.cs
 using Avalonia.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using debug_interface.ViewModels;
@@ -10,52 +10,40 @@ using System.Threading.Tasks;
 
 namespace debug_interface.Models
 {
-    //internal class MapCell
-    //{
-    //}
-    // 定义地图单元格的类型，根据游戏规则可包含障碍物、空地、草丛、资源、建筑等
     public enum MapCellType
     {
-        Empty,
-        Obstacle,
-        Building,
-        Resource,
-        Character
+        Obstacle,   // 障碍物
+        OpenLand,   // 空地
+        Grass,      // 草丛
+        Resource,   // 资源点
+        Building,   // 建筑
+        Trap        // 陷阱 
     }
 
-    public partial class MapCell : ViewModelBase
+    public partial class MapCell : ObservableObject
     {
         [ObservableProperty]
-        private int row;
+        private int cellX;
 
         [ObservableProperty]
-        private int col;
-
-        public int CellX
-        {
-            get => Col;
-            set => Col = value;
-        }
-
-        public int CellY
-        {
-            get => Row;
-            set => Row = value;
-        }
-
+        private int cellY;
 
         [ObservableProperty]
         private MapCellType cellType;
 
         [ObservableProperty]
-        private string displayText = "";
+        private SolidColorBrush displayColor = new SolidColorBrush(Colors.White); // 默认白色
 
         [ObservableProperty]
-        private IBrush displayColor = new SolidColorBrush(Colors.Black);
+        private string displayText = ""; // 用于显示血量等
 
         [ObservableProperty]
-        private IBrush backgroundColor = new SolidColorBrush(Colors.White);
+        private string toolTipText = ""; // 用于鼠标悬浮提示
+
+        // 可以选择性地添加血量信息，如果需要更复杂的绑定
+        // [ObservableProperty]
+        // private int currentHp;
+        // [ObservableProperty]
+        // private int maxHp;
     }
 }
-
-
