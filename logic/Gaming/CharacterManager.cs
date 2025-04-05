@@ -323,7 +323,7 @@ namespace Gaming
                 {
                     if (nowtime - character.InvisibleTime >= GameData.InvisibleTime)
                     {
-                        visible = true;
+                        character.visible = true;
                         character.InvisibleTime = long.MaxValue;
                     }
                 }
