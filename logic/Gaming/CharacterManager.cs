@@ -319,6 +319,14 @@ namespace Gaming
             public void CheckInvisibility(Character character)
             {
                 int nowtime = gameMap.Timer.NowTime();
+                if (!character.visible)
+                {
+                    if (nowtime - character.InvisibleTime >= GameData.InvisibleTime)
+                    {
+                        visible = true;
+                        character.InvisibleTime = long.MaxValue;
+                    }
+                }
                 if (nowtime >= GameData.SevenMinutes
                 )
                 {
