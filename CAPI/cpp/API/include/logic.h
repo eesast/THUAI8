@@ -39,10 +39,10 @@
 class Logic : public ILogic
 {
 private:
-    //日志组件
+    // 日志组件
     std::unique_ptr<spdlog::logger> logger;
 
-    //通信组件
+    // 通信组件
     std::unique_ptr<Communication> pComm;
 
     // ID
@@ -61,33 +61,33 @@ private:
     std::condition_variable cvBuffer;
     std::condition_variable cvAI;
 
-    //信息队列
+    // 信息队列
     ConcurrentQueue<std::pair<int64_t, std::string>> messageQueue;
 
-    //存储状态，分别是现在的状态和缓冲区的状态。
+    // 存储状态，分别是现在的状态和缓冲区的状态。
     State state[2];
     State* currentState;
     State* bufferState;
 
-    //保存缓冲区数
+    // 保存缓冲区数
     int32_t counterState = 0;
     int32_t counterBuffer = 0;
 
     TUHAI8::GameState gameState = THUAI8::GameState::NullGameState;
 
-    //是否应该执行player()
+    // 是否应该执行player()
     std::atomic_bool AILoop = true;
 
     // buffer是否更新完毕
     bool bufferUpdated = false;
 
-    //是否应当启动AI
+    // 是否应当启动AI
     bool AIStart = false;
 
     // asynchronous = true 时控制内容更新的变量
     std::atomic_bool freshed = false;
 
-    //提供给API使用的函数
+    // 提供给API使用的函数
 
     [[nodiscard]] std::vector<std::shared_ptr<const THUAI8::Character>> GetCharacters() const;
     [[nodiscard]] std::vector<std::shared_ptr<const THUAI8::Character>> GetEnemyCharacters() const;
@@ -102,7 +102,7 @@ private:
     [[nodiscard]] int32_t GetScore() const;
     [[nodiscard]] std::shared_ptr<const THUAI8::Character> GetSelfInfo() const;
 
-    //供IAPI是使用的操作相关的部分
+    // 供IAPI是使用的操作相关的部分
     bool Send(int32_t toPlayerID, std::string message, bool binary);
     bool HaveMessage();
     std::pair<int32_t, std::string> GetMessage();
@@ -112,13 +112,13 @@ private:
 
     // ICharacterAPI使用的部分
     bool Move(int32_t speed, int64_t timeInMilliseconds, double angleInRadian) = 0;
-    //向特定方向移动
+    // 向特定方向移动
     bool MoveRight(int32_t speed, int64_t timeInMilliseconds);
     bool MoveUp(int32_t speed, int64_t timeInMilliseconds);
     bool MoveLeft(int32_t speed, int64_t timeInMilliseconds);
     bool MoveDown(int32_t speed, int64_t timeInMilliseconds);
-    bool Skill_Attack(double angleInRadian);
-    bool Common_Attack(double angleInRadian);
+    bool Skill_Attack(int32_t playerID, int32_t teamID, double angleInRadian);
+    bool Common_Attack(int32_t playerID, int32_t teamID, int32_t ATKplayerID, int32_t ATKteamID);
     bool Recover(int64_t recover);
     bool Produce();
     bool Rebuild(THUAI8::ConstructionType constructionType);
@@ -133,18 +133,18 @@ private:
     bool TryConnection();
     void ProcessMessage();
 
-    //将信息加载到buffer
+    // 将信息加载到buffer
     void LoadBufferSelf(const protobuf::MessageToClient& message);
     void LoadBufferCase(const protobuf::MessageOfObj& item);
     void LoadBuffer(const protobuf::MessageToClient& message);
 
-    //解锁AI线程
+    // 解锁AI线程
     void UnBlockAI();
 
-    //更新状态
+    // 更新状态
     void Update() noexcept;
 
-    //等待
+    // 等待
     void Wait() noexcept;
 
 public:
