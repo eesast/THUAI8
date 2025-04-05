@@ -82,7 +82,7 @@
                     
                     <Grid ColumnDefinitions="Auto, *" ColumnSpacing="15">
                         <Label Grid.Column="0" 
-                               Text="{Binding PlaybackSpeed, StringFormat='速度: {0:F2}x'}" 
+                               Text="{Binding PlaybackSpeed, StringFormat='速度: {0:F1}x'}" 
                                VerticalOptions="Center"
                                WidthRequest="100" 
                                TextColor="#2c3e50"/>

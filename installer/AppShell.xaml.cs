@@ -29,6 +29,8 @@ namespace installer
             Routing.RegisterRoute("DebugPage", typeof(Page.DebugPage));
             Routing.RegisterRoute("PlaybackPage", typeof(Page.PlaybackPage));
             Routing.RegisterRoute("LoginPage", typeof(Page.LoginPage));
+            Routing.RegisterRoute("HelpPage", typeof(Page.HelpPage));
+            Routing.RegisterRoute("DeveloperPage", typeof(Page.DeveloperPage));
         }
 
         protected override void OnNavigating(ShellNavigatingEventArgs args)

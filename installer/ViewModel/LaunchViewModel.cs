@@ -29,7 +29,7 @@ namespace installer.ViewModel
             IP = Downloader.Data.Config.Commands.IP;
             Port = Downloader.Data.Config.Commands.Port;
             PlaybackFile = Downloader.Data.Config.Commands.PlaybackFile;
-            PlaybackSpeed = Downloader.Data.Config.Commands.PlaybackSpeed.ToString();
+            PlaybackSpeed = Downloader.Data.Config.Commands.PlaybackSpeed.ToString("F1");
 
             ipChanged = false;
             portChanged = false;
@@ -127,8 +127,15 @@ namespace installer.ViewModel
             get => playbackSpeed;
             set
             {
-                playbackSpeed = value;
-                if (playbackSpeed == Downloader.Data.Config.Commands.PlaybackSpeed.ToString())
+                if (double.TryParse(value, out double speed))
+                {
+                    playbackSpeed = speed.ToString("F1");
+                }
+                else
+                {
+                    playbackSpeed = value;
+                }
+                if (playbackSpeed == Downloader.Data.Config.Commands.PlaybackSpeed.ToString("F1"))
                     playbackSpeedChanged = false;
                 else
                     playbackSpeedChanged = true;

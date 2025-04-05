@@ -50,4 +50,9 @@
         </StackLayout>
     </Shell.FlyoutFooter>
 
+    <!-- 注册开发者页面的路由，但不在TabBar中显示 -->
+    <ShellContent
+        Title="开发者模式"
+        ContentTemplate="{DataTemplate page:DeveloperPage}"
+        Route="DeveloperPage" />
 </Shell>

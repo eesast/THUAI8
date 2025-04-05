@@ -46,6 +46,9 @@
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-windows10.0.19041.0|AnyCPU'">
 		<ApplicationDisplayVersion>1.0.0</ApplicationDisplayVersion>
 		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+		<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+		<WindowsAppSDKBootstrapAutoInitialize>true</WindowsAppSDKBootstrapAutoInitialize>
+		<UseRidGraph>true</UseRidGraph>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-windows10.0.19041.0|AnyCPU'">
@@ -131,7 +134,12 @@
 		Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
 		<PropertyGroup>
 			<WindowsAppSDKBootstrapAutoInitialize>true</WindowsAppSDKBootstrapAutoInitialize>
+			<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
 		</PropertyGroup>
 	</Target>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Resources\Raw\secured_key.csv" Condition="Exists('Resources\Raw\secured_key.csv')" />
+	</ItemGroup>
 
 </Project>
