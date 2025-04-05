@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:debug_interface.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:debug_interface.Models"
     xmlns:vm="using:debug_interface.ViewModels"
     x:Name="MainWindowElement"
     Title="THUAI8 调试界面"
@@ -35,40 +36,46 @@
         <!--  左侧区域  -->
         <Grid Background="AliceBlue" RowDefinitions="*,*">
 
-            <Grid Grid.Row="0" RowDefinitions="1*,7*,3*">
+            <!--  取经队区域  -->
+            <Grid Grid.Row="0" RowDefinitions="Auto,1*,Auto">
 
-                <!--  红方队伍标题行  -->
-                <StackPanel Grid.Row="0" Orientation="Horizontal">
-
-
+                <!--  取经队伍标题行  -->
+                <StackPanel
+                    Grid.Row="0"
+                    Margin="5"
+                    Orientation="Horizontal">
                     <TextBlock
-                        Margin="5"
+                        Margin="0,0,10,0"
                         Background="LightGoldenrodYellow"
                         FontSize="16"
                         FontWeight="Bold"
                         Foreground="Brown"
                         Text="取经队伍" />
                     <TextBlock
-                        Margin="5,2"
                         VerticalAlignment="Center"
                         FontSize="12"
-                        Text="经济: 60000" />
+                        Text="{Binding BuddhistTeamEconomy, StringFormat='经济: {0}'}" />
                 </StackPanel>
 
-
-                <!--  红方团队角色信息  -->
-                <UniformGrid Grid.Row="1" Margin="2">
-                    <ItemsControl ItemsSource="{Binding BuddhistsTeamCharacters }">
+                <!--  取经团队角色信息  -->
+                <ScrollViewer
+                    Grid.Row="1"
+                    Margin="2"
+                    VerticalScrollBarVisibility="Auto">
+                    <ItemsControl ItemsSource="{Binding BuddhistsTeamCharacters}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <UniformGrid Columns="3" />
+                                <!--  使用 WrapPanel 或 StackPanel 可能比 UniformGrid 好，因为角色卡片大小不一  -->
+                                <WrapPanel ItemWidth="140" Orientation="Horizontal" />
+                                <!-- <UniformGrid Columns="3" /> -->
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
 
                         <ItemsControl.ItemTemplate>
                             <DataTemplate x:DataType="vm:CharacterViewModel">
                                 <Border
-                                    Margin="2"
+                                    MinWidth="130"
+                                    Margin="3"
                                     Padding="5"
                                     BorderBrush="Gray"
                                     BorderThickness="1">
@@ -77,83 +84,93 @@
                                         <TextBlock
                                             Margin="5,2"
                                             HorizontalAlignment="Center"
-                                            FontSize="10"
-                                            Text="{Binding Name}" />
+                                            FontSize="12"
+                                            FontWeight="Bold"
+                                            Text="{Binding Name}"
+                                            ToolTip.Tip="{Binding CharacterId, StringFormat='ID: {0}'}" />
                                         <!--  血量  -->
-                                        <Border Width="130" BorderThickness="1">
+                                        <Border Margin="0,2" BorderThickness="1">
+                                            <!--  TODO: Max HP for ProgressBar should come from CharacterViewModel  -->
                                             <ProgressBar
-                                                Height="18"
-                                                MaxWidth="80"
-                                                Margin="5,2,5,2"
-                                                HorizontalAlignment="Center"
-                                                FontSize="10"
-                                                Foreground="LightGoldenrodYellow"
-                                                Maximum="{Binding Hp}"
-                                                ProgressTextFormat="{} 血量:{0}/{3} ({1:0}%)"
+                                                Height="16"
+                                                MinWidth="100"
+                                                Margin="2"
+                                                FontSize="9"
+                                                Foreground="LightGreen"
+                                                Maximum="1000"
+                                                ProgressTextFormat="{}{0} / {3}"
                                                 ShowProgressText="True"
-                                                Value="609" />
+                                                Value="{Binding Hp}" />
+                                            <!--  Maximum 应该绑定到角色的最大HP  -->
                                         </Border>
-                                        <!--<TextBlock
-                                                Margin="5,2"
-                                                HorizontalAlignment="Center"
-                                                FontSize="10"
-                                                Text="{Binding Hp, StringFormat=血量: {0}}" />-->
-
                                         <!--  状态显示 (主动/被动)  -->
                                         <TextBlock
                                             Margin="5,2"
                                             HorizontalAlignment="Center"
-                                            FontSize="10"
-                                            Text="{Binding DisplayStates}" />
+                                            FontSize="9"
+                                            Text="{Binding DisplayStates}"
+                                            TextWrapping="Wrap" />
                                         <!--  装备显示  -->
                                         <TextBlock
                                             Margin="5,2"
                                             HorizontalAlignment="Center"
-                                            FontSize="10"
-                                            Text="{Binding DisplayEquipments}" />
+                                            FontSize="9"
+                                            Text="{Binding DisplayEquipments}"
+                                            TextWrapping="Wrap" />
                                     </StackPanel>
                                 </Border>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                </UniformGrid>
+                </ScrollViewer>
 
-                <!--  红方建筑信息  -->
+                <!--  取经方建筑信息 (绑定到新的属性)  -->
                 <TextBlock
                     Grid.Row="2"
                     Margin="5"
+                    FontSize="10"
                     FontStyle="Italic"
-                    Text="{Binding SomeBuildingInfo}" />
+                    Text="{Binding BuddhistTeamBuildingInfo}"
+                    TextWrapping="Wrap" />
             </Grid>
-            <!--  蓝方队伍标题  -->
-            <Grid Grid.Row="1" RowDefinitions="1*,7*,3*">
-                <StackPanel Grid.Row="0" Orientation="Horizontal">
+
+            <!--  妖怪队区域  -->
+            <Grid Grid.Row="1" RowDefinitions="Auto,1*,Auto">
+                <!--  妖怪队伍标题行  -->
+                <StackPanel
+                    Grid.Row="0"
+                    Margin="5"
+                    Orientation="Horizontal">
                     <TextBlock
-                        Margin="5"
+                        Margin="0,0,10,0"
                         Background="LightBlue"
                         FontSize="16"
                         FontWeight="Bold"
-                        Foreground="Brown"
+                        Foreground="DarkBlue"
                         Text="妖怪队伍" />
                     <TextBlock
-                        Margin="5,2"
                         VerticalAlignment="Center"
                         FontSize="12"
-                        Text="经济: 10000" />
+                        Text="{Binding MonstersTeamEconomy, StringFormat='经济: {0}'}" />
                 </StackPanel>
-                <!--  蓝方团队角色信息  -->
-                <UniformGrid Grid.Row="1" Margin="5">
+
+                <!--  妖怪团队角色信息  -->
+                <ScrollViewer
+                    Grid.Row="1"
+                    Margin="2"
+                    VerticalScrollBarVisibility="Auto">
                     <ItemsControl ItemsSource="{Binding MonstersTeamCharacters}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <UniformGrid Columns="3" />
+                                <WrapPanel ItemWidth="140" Orientation="Horizontal" />
+                                <!-- <UniformGrid Columns="3" /> -->
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
-
                         <ItemsControl.ItemTemplate>
                             <DataTemplate x:DataType="vm:CharacterViewModel">
                                 <Border
-                                    Margin="2"
+                                    MinWidth="130"
+                                    Margin="3"
                                     Padding="5"
                                     BorderBrush="Gray"
                                     BorderThickness="1">
@@ -162,47 +179,54 @@
                                         <TextBlock
                                             Margin="5,2"
                                             HorizontalAlignment="Center"
-                                            FontSize="10"
-                                            Text="{Binding Name}" />
+                                            FontSize="12"
+                                            FontWeight="Bold"
+                                            Text="{Binding Name}"
+                                            ToolTip.Tip="{Binding CharacterId, StringFormat='ID: {0}'}" />
                                         <!--  血量  -->
-                                        <Border Width="130" BorderThickness="1">
+                                        <Border Margin="0,2" BorderThickness="1">
+                                            <!--  TODO: Max HP for ProgressBar should come from CharacterViewModel  -->
                                             <ProgressBar
-                                                Height="18"
-                                                MaxWidth="80"
-                                                Margin="5,2,5,2"
-                                                HorizontalAlignment="Center"
-                                                FontSize="10"
-                                                Foreground="LightBlue"
-                                                Maximum="{Binding Hp}"
-                                                ProgressTextFormat="{} 血量:{0}/{3} ({1:0}%)"
+                                                Height="16"
+                                                MinWidth="100"
+                                                Margin="2"
+                                                FontSize="9"
+                                                Foreground="LightCoral"
+                                                Maximum="1000"
+                                                ProgressTextFormat="{}{0} / {3}"
                                                 ShowProgressText="True"
-                                                Value="450" />
+                                                Value="{Binding Hp}" />
+                                            <!--  Maximum 应该绑定到角色的最大HP  -->
                                         </Border>
                                         <!--  状态显示 (主动/被动)  -->
                                         <TextBlock
                                             Margin="5,2"
                                             HorizontalAlignment="Center"
-                                            FontSize="10"
-                                            Text="{Binding DisplayStates}" />
+                                            FontSize="9"
+                                            Text="{Binding DisplayStates}"
+                                            TextWrapping="Wrap" />
                                         <!--  装备显示  -->
                                         <TextBlock
                                             Margin="5,2"
                                             HorizontalAlignment="Center"
-                                            FontSize="10"
-                                            Text="{Binding DisplayEquipments}" />
+                                            FontSize="9"
+                                            Text="{Binding DisplayEquipments}"
+                                            TextWrapping="Wrap" />
                                     </StackPanel>
                                 </Border>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                </UniformGrid>
+                </ScrollViewer>
 
-                <!--  蓝方建筑信息  -->
+                <!--  妖怪方建筑信息 (绑定到新的属性)  -->
                 <TextBlock
                     Grid.Row="2"
                     Margin="5"
+                    FontSize="10"
                     FontStyle="Italic"
-                    Text="{Binding AnotherBuildingInfo}" />
+                    Text="{Binding MonstersTeamBuildingInfo}"
+                    TextWrapping="Wrap" />
             </Grid>
         </Grid>
 
@@ -213,14 +237,55 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
+            <!--  *** 浮动的 Expander ***  -->
+            <Canvas Panel.ZIndex="1">
+                <!--  确保 Canvas 在上层  -->
+                <Expander
+                    Canvas.Top="10"
+                    Canvas.Right="10"
+                    MaxWidth="200"
+                    Padding="5"
+                    Background="#AAFFFFFF"
+                    BorderBrush="Gray"
+                    BorderThickness="1"
+                    ExpandDirection="Down">
+                    <Expander.Header>
+                        <TextBlock FontWeight="Bold" Text="地图图例" />
+                    </Expander.Header>
+                    <ScrollViewer MaxHeight="400">
+                        <!--  *** 使用 ItemsControl 绑定图例数据 ***  -->
+                        <ItemsControl ItemsSource="{Binding MapLegendItems}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="models:LegendItem">
+                                    <!--  设置 DataTemplate 的数据类型  -->
+                                    <StackPanel Margin="2" Orientation="Horizontal">
+                                        <!--  色块  -->
+                                        <Border
+                                            Width="15"
+                                            Height="15"
+                                            Margin="0,0,5,0"
+                                            Background="{Binding Color}"
+                                            BorderBrush="{Binding Stroke, FallbackValue={x:Null}}"
+                                            BorderThickness="{Binding StrokeThickness, FallbackValue=0}" />
+                                        <!--  描述文本  -->
+                                        <TextBlock
+                                            VerticalAlignment="Center"
+                                            FontSize="10"
+                                            Text="{Binding Description}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Expander>
+            </Canvas>
+
             <!--  时间、比分  -->
             <StackPanel
-                Margin="2"
+                Margin="5"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Orientation="Horizontal">
-
-
                 <TextBlock
                     Margin="20,0,10,0"
                     VerticalAlignment="Center"
@@ -229,30 +294,41 @@
                 <TextBlock
                     Margin="10,0"
                     VerticalAlignment="Center"
-                    Text="红方得分:" />
+                    Foreground="Red"
+                    Text="取经队得分:" />
                 <TextBlock
                     Margin="5,0"
                     VerticalAlignment="Center"
+                    Foreground="Red"
                     Text="{Binding RedScore}" />
                 <TextBlock
-                    Margin="10,0"
+                    Margin="20,0,10,0"
                     VerticalAlignment="Center"
-                    Text="蓝方得分:" />
+                    Foreground="Blue"
+                    Text="妖怪队得分:" />
                 <TextBlock
                     Margin="5,0"
                     VerticalAlignment="Center"
+                    Foreground="Blue"
                     Text="{Binding BlueScore}" />
             </StackPanel>
-
 
             <!--  地图  -->
             <Border
                 Grid.Row="1"
                 Margin="5"
                 BorderBrush="Gray"
-                BorderThickness="1">
+                BorderThickness="1"
+                ClipToBounds="True">
+                <!--  MapView 保持不变  -->
                 <local:MapView />
             </Border>
+
+
+            <!--  ?或使用图标  -->
+
+
         </Grid>
+
     </Grid>
 </Window>
