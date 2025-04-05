@@ -27,9 +27,9 @@ Logic::Logic(int32_t pID, int32_t tID, THUAI8::PlayerType pType, THUAI8::Charact
     bufferState->gameInfo = std::make_shared<THUAI8::GameInfo>();
     bufferState->mapInfo = std::make_shared<THUAI8::GameMap>();
     if (teamID == 0)
-        playerTeam = THUAI8::PlayerTeam::Red;
+        playerTeam = THUAI8::PlayerTeam::BuddhistsTeam;
     else if (teamID == 1)
-        playerTeam = THUAI8::PlayerTeam::Blue;
+        playerTeam = THUAI8::PlayerTeam::MonstersTeam;
     else
         playerTeam = THUAI8::PlayerTeam::NullTeam;
 }
@@ -42,7 +42,7 @@ std::vector<std::shared_ptr<const THUAI8::Character>> Logic::GetCharacters() con
     return temp;
 }
 
-std::vector<std::shared_ptr<const THUAI8::Character>> Logic::GetEnemySCharacters() const
+std::vector<std::shared_ptr<const THUAI8::Character>> Logic::GetEnemyCharacters() const
 {
     std::unique_lock<std::mutex> lock(mtxState);
     std::vector<std::shared_ptr<const THUAI8::Character>> temp(currentState->enemyCharacters.begin(), currentState->enemyCharacters.end());

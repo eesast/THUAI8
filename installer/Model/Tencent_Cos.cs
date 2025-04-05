@@ -45,7 +45,25 @@ namespace installer.Model
                         .SetRegion(Region)  // 设置一个默认的存储桶地域
                         .SetDebugLog(true)  // 显示日志
                         .Build();           // 创建 CosXmlConfig 对象
-            QCloudCredentialProvider cosCredentialProvider = new DefaultQCloudCredentialProvider("***", "***", 1000);
+
+            // 使用全局密钥
+            string secretId = MauiProgram.SecretID;
+            string secretKey = MauiProgram.SecretKey;
+
+            // 确保密钥值有效，如果没有则使用默认值
+            if (string.IsNullOrEmpty(secretId) || secretId == "***")
+            {
+                secretId = "***"; // 默认值或占位符
+                Log.LogWarning("使用默认SecretID - 注意：这将导致API访问受限");
+            }
+
+            if (string.IsNullOrEmpty(secretKey) || secretKey == "***")
+            {
+                secretKey = "***"; // 默认值或占位符
+                Log.LogWarning("使用默认SecretKey - 注意：这将导致API访问受限");
+            }
+
+            QCloudCredentialProvider cosCredentialProvider = new DefaultQCloudCredentialProvider(secretId, secretKey, 1000);
             cosXml = new CosXmlServer(config, cosCredentialProvider);
             transfer = new TransferConfig()
             {

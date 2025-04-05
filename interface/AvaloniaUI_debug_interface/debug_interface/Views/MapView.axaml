@@ -11,7 +11,7 @@
 
     <Grid>
         <!--  使用空的Grid，将在代码中填充  -->
-        <Grid Name="MapGrid" />
+        <Grid Name="MapGrid" Background="Transparent" />
 
         <!--  Character Positions Canvas  -->
         <Canvas Name="CharacterCanvas" Background="Transparent" />
