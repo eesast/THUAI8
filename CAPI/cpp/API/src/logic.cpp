@@ -217,16 +217,16 @@ std::pair<int32_t, std::string> Logic::GetMessage()
         }
 }
 
-bool Logic::Common_Attack(int32_t attacked_playerID, int32_t attacked_teamID)
+bool Logic::Common_Attack(int32_t playerID, int32_t teamID, int32_t attacked_playerID, int32_t attacked_teamID)
 {
     logger->debug("Called Attack");
-    return pComm->Attack(attacked_playerID, attacked_teamID);
+    return pComm->Attack(playerID, teamID, attacked_playerID, attacked_teamID);
 }
 
-bool Logic::Skill_Attack(int32_t attacked_playerID, int32_t attacked_teamID)
+bool Logic::Skill_Attack(int32_t attacked_playerID, int32_t attacked_teamID, double angle)
 {
     logger->debug("Called SkillAttack");
-    return pComm->SkillAttack(attacked_playerID, attacked_teamID);
+    return pComm->SkillAttack(attacked_playerID, attacked_teamID, angle);
 }
 
 bool Logic::Recover(int64_t recover)
