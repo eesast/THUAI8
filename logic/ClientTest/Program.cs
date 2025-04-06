@@ -30,8 +30,8 @@ namespace ClientTest
             {
                 CharacterId = characterId,
                 TeamId = teamId,
-                CharacterType = teamId == 0 ? CharacterType.JiuLing : CharacterType.TangSeng,
-                SideFlag = 1 - teamId
+                CharacterType = teamId == 1 ? CharacterType.JiuLing : CharacterType.TangSeng,
+                SideFlag = teamId
             };
             var call = client.AddCharacter(playerInfo);
             MoveMsg moveMsg = new()

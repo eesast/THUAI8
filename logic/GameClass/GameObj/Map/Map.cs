@@ -246,9 +246,9 @@ namespace GameClass.GameObj.Map
                             break;
                         case PlaceType.HOME:
                             if (i < 25)
-                                Add(new Home(GameData.GetCellCenterPos(i, j), currentHomeNum++, 1));
-                            else
                                 Add(new Home(GameData.GetCellCenterPos(i, j), currentHomeNum++, 0));
+                            else
+                                Add(new Home(GameData.GetCellCenterPos(i, j), currentHomeNum++, 1));
                             break;
                     }
                 }
