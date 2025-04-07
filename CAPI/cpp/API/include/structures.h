@@ -218,23 +218,16 @@ namespace THUAI8
 
         CharacterState characterActiveState;
 
-        CharacterState blindState;
+        bool isBlind;
         long blindTime;
-        // CharacterState knockbackState;
-        // double knockbackTime;
-        CharacterState stunnedState;
+        bool isStunned;
         long stunnedTime;
-        CharacterState invisibleState;
+        bool isInvisible;
         long invisibleTime;
-        // CharacterState healingState;
-        // double healingTime;
-        // CharacterState berserkState;
-        // double berserkTime;
-        CharacterState burnedState;
+        bool isBurned;
         long burnedTime;
         double harmCut;
         long harmCutTime;
-        CharacterState deceasedState;
 
         CharacterState characterPassiveState;
 
@@ -246,10 +239,10 @@ namespace THUAI8
         int32_t viewRange;
 
         int32_t commonAttack;
-        long commonAttackCD;
+        int64_t commonAttackCD;
         int32_t commonAttackRange;
 
-        long skillAttackCD;
+        int64_t skillAttackCD;
 
         int32_t economyDepletion;
         int32_t killScore;
@@ -259,20 +252,16 @@ namespace THUAI8
         int32_t shieldEquipment;
         // int32_t shild;
         int32_t shoesEquipment;
-        long shoesEquipmentTime;
-        bool purified;
-        long purificationEquipmentTime;
+        int64_t shoesTime;
+        bool isPurified;
+        int64_t purifiedTime;
         bool isBerserk;
-        long berserkTime;
+        int64_t berserkTime;
 
-        // CharacterBuffType attackBuff;
-        long attackBuffTime;
-        // CharacterBuffType defenseBuff;
-        // long defenseBuffTime;
-        // CharacterBuffType speedBuff;
-        long speedBuffTime;
-        // CharacterBuffType visionBuff;
-        long visionBuffTime;
+        int32_t attackBuffNum;
+        int64_t attackBuffTime;
+        int64_t speedBuffTime;
+        int64_t visionBuffTime;
     };
 
     struct Team

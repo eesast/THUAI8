@@ -210,15 +210,45 @@ namespace Proto2THUAI8
     inline std::shared_ptr<THUAI8::Character> Protobuf2THUAI8Character(const protobuf::MessageOfCharacter& CharacterMsg)
     {
         auto character = std::make_shared<THUAI8::Character>();
-        character->characterType = characterTypeDict.at(CharacterMsg.character().characterType());
-        character->hp = CharacterMsg.character().hp();
+        character->guid = CharacterMsg.character().guid();
         character->teamID = CharacterMsg.character().teamid();
         character->playerID = CharacterMsg.character().playerid();
+        character->characterType = characterTypeDict.at(CharacterMsg.character().charactertype());
+        character->characterActiveState = characterStateDict.at(CharacterMsg.character().characteractivestate());
+        character->isBlind = CharacterMsg.character().isblind();
+        character->blindTime = CharacterMsg.character().blindtime();
+        character->isStunned = CharacterMsg.character().isstunned();
+        character->stunnedTime = CharacterMsg.character().stunnedtime();
+        character->isInvisible = CharacterMsg.character().isinvisible();
+        character->invisibleTime = CharacterMsg.character().invisibletime();
+        character->isBurned = CharacterMsg.character().isburned();
+        character->burnedTime = CharacterMsg.character().burnedtime();
+        character->harmCut = CharacterMsg.character().harmcut();
+        character->harmCutTime = CharacterMsg.character().harmcuttime();
+        character->characterPassiveState = characterStateDict.at(CharacterMsg.character().characterpassivestate());
         character->x = CharacterMsg.character().x();
         character->y = CharacterMsg.character().y();
-        character->state = characterStateDict.at(CharacterMsg.character().state());
-        character->equipmentType = equipmentTypeDict.at(CharacterMsg.character().equipmenttype());
-        return character;
+        character->facingDirection = CharacterMsg.character().facingdirection();
+        character->speed = CharacterMsg.character().speed();
+        character->viewRange = CharacterMsg.character().viewrange();
+        character->commonAttack = CharacterMsg.character().commonattack();
+        character->commonAttackCD = CharacterMsg.character().commonattackcd();
+        character->commonAttackRange = CharacterMsg.character().commonattackrange();
+        character->skillAttackCD = CharacterMsg.character().skillattackcd();
+        character->economyDepletion = CharacterMsg.character().economydepletion();
+        character->killScore = CharacterMsg.character().killscore();
+        character->hp = CharacterMsg.character().hp();
+        character->shieldEquipment = CharacterMsg.character().shieldequipment();
+        character->shoesEquipment = CharacterMsg.character().shoesequipment();
+        character->shoesTime = CharacterMsg.character().shoestime();
+        character->isPurified = CharacterMsg.character().ispurified();
+        character->purifiedTime = CharacterMsg.character().purifiedtime();
+        character->isBerserk = CharacterMsg.character().isberserk();
+        character->berserkTime = CharacterMsg.character().berserktime();
+        character->attackBuffNum = CharacterMsg.character().attackbuffnum();
+        character->attackBuffTime = CharacterMsg.character().attackbufftime();
+        character->speedBuffTime = CharacterMsg.character().speedbufftime();
+        character->visionBuffTime = CharacterMsg.character().visionbufftime();
     }
 
     inline std::shared_ptr<THUAI8::Team> Protobuf2THUAI8Team(const protobuf::MessageOfTeam& TeamMsg)
@@ -280,35 +310,36 @@ namespace Proto2THUAI8
         return constructionState;
     }
 
-    inline std::shared_ptr<THUAI8::GameMap> Protobuf2THUAI8GameMap(const protobuf::MessageOfGameMap& GameMapMsg)
-    {
-        auto gameMap = std::make_shared<THUAI8::GameMap>();
-        for (const auto& barracks : GameMapMsg.gamemap().barracksstate())
-        {
-            gameMap->barracksState[{barracks.first.x(), barracks.first.y()}] = {barracks.second.teamid(), barracks.second.hp()};
-        }
-        for (const auto& spring : GameMapMsg.gamemap().springstate())
-        {
-            gameMap->springState[{spring.first.x(), spring.first.y()}] = {spring.second.teamid(), spring.second.hp()};
-        }
-        for (const auto& farm : GameMapMsg.gamemap().farmstate())
-        {
-            gameMap->farmState[{farm.first.x(), farm.first.y()}] = {farm.second.teamid(), farm.second.hp()};
-        }
-        for (const auto& trap : GameMapMsg.gamemap().trapstate())
-        {
-            gameMap->trapState[{trap.first.x(), trap.first.y()}] = {trap.second.teamid(), trap.second.hp()};
-        }
-        for (const auto& economyResource : GameMapMsg.gamemap().economyresource())
-        {
-            gameMap->economyResource[{economyResource.first.x(), economyResource.first.y()}] = economyResource.second;
-        }
-        for (const auto& additionResource : GameMapMsg.gamemap().additionresource())
-        {
-            gameMap->additionResource[{additionResource.first.x(), additionResource.first.y()}] = additionResource.second;
-        }
-        return gameMap;
-    }
+    // ?
+    // inline std::shared_ptr<THUAI8::GameMap> Protobuf2THUAI8GameMap(const protobuf::MessageOfGameMap& GameMapMsg)
+    // {
+    //     auto gameMap = std::make_shared<THUAI8::GameMap>();
+    //     for (const auto& barracks : GameMapMsg.gamemap().barracksstate())
+    //     {
+    //         gameMap->barracksState[{barracks.first.x(), barracks.first.y()}] = {barracks.second.teamid(), barracks.second.hp()};
+    //     }
+    //     for (const auto& spring : GameMapMsg.gamemap().springstate())
+    //     {
+    //         gameMap->springState[{spring.first.x(), spring.first.y()}] = {spring.second.teamid(), spring.second.hp()};
+    //     }
+    //     for (const auto& farm : GameMapMsg.gamemap().farmstate())
+    //     {
+    //         gameMap->farmState[{farm.first.x(), farm.first.y()}] = {farm.second.teamid(), farm.second.hp()};
+    //     }
+    //     for (const auto& trap : GameMapMsg.gamemap().trapstate())
+    //     {
+    //         gameMap->trapState[{trap.first.x(), trap.first.y()}] = {trap.second.teamid(), trap.second.hp()};
+    //     }
+    //     for (const auto& economyResource : GameMapMsg.gamemap().economyresource())
+    //     {
+    //         gameMap->economyResource[{economyResource.first.x(), economyResource.first.y()}] = economyResource.second;
+    //     }
+    //     for (const auto& additionResource : GameMapMsg.gamemap().additionresource())
+    //     {
+    //         gameMap->additionResource[{additionResource.first.x(), additionResource.first.y()}] = additionResource.second;
+    //     }
+    //     return gameMap;
+    // }
 }  // namespace Proto2THUAI8
 // 辅助函数，用于将proto信息转换为THUAI8的信息
 namespace THUAI8Proto
@@ -485,7 +516,7 @@ namespace THUAI8Proto
         return equipMsg;
     }
 
-    inline protobuf::CreatCharacterMsg(int64_t team_id, THUAI8::CharacterType character_type, int32_t birthpoint_index)
+    inline protobuf::CreatCharacterMsg THUAI82ProtobufCreatCharacterMsg(int64_t team_id, THUAI8::CharacterType character_type, int32_t birthpoint_index)
     {
         protobuf::CreatCharacterMsg creatCharacterMsg;
         creatCharacterMsg.set_team_id(team_id);
@@ -494,7 +525,7 @@ namespace THUAI8Proto
         return creatCharacterMsg;
     }
 
-    inline protobuf::ConstructMsg(int64_t character_id, int64_t team_id, THUAI8::ConstructionType construction_type, int32_t x, int32_t y)
+    inline protobuf::ConstructMsg THUAI82ProtobufConstructMsg(int64_t character_id, int64_t team_id, THUAI8::ConstructionType construction_type)
     {
         protobuf::ConstructMsg constructMsg;
         constructMsg.set_character_id(character_id);
@@ -503,7 +534,7 @@ namespace THUAI8Proto
         return constructMsg;
     }
 
-    inline protobuf::CharacterMsg(int64_t character_id, int64_t team_id, THUAI8::CharacterType character_type)
+    inline protobuf::CharacterMsg THUAI82ProtobufCharacterMsg(int64_t character_id, int64_t team_id, THUAI8::CharacterType character_type)
     {
         protobuf::CharacterMsg characterMsg;
         characterMsg.set_character_id(character_id);
@@ -512,7 +543,7 @@ namespace THUAI8Proto
         return characterMsg;
     }
 
-    inline protobuf::CastMsg(int64_t character_id, int64_t skill_id, int64_t team_id, int32_t attack_range, int32_t x, int32_t y, double angle)
+    inline protobuf::CastMsg THUAI82ProtobufCastMsg(int64_t character_id, int64_t skill_id, int64_t team_id, int32_t attack_range, int32_t x, int32_t y, double angle)
     {
         protobuf::CastMsg castMsg;
         castMsg.set_character_id(character_id);
@@ -525,7 +556,7 @@ namespace THUAI8Proto
         return castMsg;
     }
 
-    inline protobuf::AttackMsg(int64_t character_id, int64_t team_id, int64_t attacked_character_id, int32_t attack_range)
+    inline protobuf::AttackMsg THUAI82ProtobufAttackMsg(int64_t character_id, int64_t team_id, int64_t attacked_character_id, int32_t attack_range)
     {
         protobuf::AttackMsg attackMsg;
         attackMsg.set_character_id(character_id);

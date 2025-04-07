@@ -57,12 +57,12 @@ std::shared_ptr<const THUAI8::Character> Logic::GetSelfInfo() const
     return currentState->characterSelf;
 }
 
-// std::shared_ptr<const THUAI8::Team> Logic::TeamGetSelfInfo() const
-// {
-//     std::unique_lock<std::mutex> lock(mtxState);
-//     logger->debug("Called TeamGetSelfInfo");
-//     return currentState->teamSelf;
-// }
+std::shared_ptr<const THUAI8::Team> Logic::TeamGetSelfInfo() const
+{
+        std::unique_lock<std::mutex> lock(mtxState);
+        logger->debug("Called TeamGetSelfInfo");
+        return currentState->teamSelf;
+}
 
 std::vector<std::vector<THUAI8::PlaceType>> Logic::GetFullMap() const
 {
@@ -611,11 +611,22 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
         switch (Proto2THUAI8::messageOfObjDict[item.message_of_obj_case()])
         {
             case THUAI8::MessageOfObj::CharacterMessage:
-                if (item.character_message().team_id() != teamID && HaveOverView(item.character_message().x(), item.character_message().y()))
+                if (item.character_message().team_id() != teamID && HaveOverView(item.character_message().x(), item.character_message().y()) && !item.character_message().is_invisible())
                 {
                     std::shared_ptr<THUAI8::Character> Character = Proto2THUAI8::Protobuf2THUAI8Character(item.character_message());
                     bufferState->enemyCharacters.push_back(Character);
                     logger->debug("Load EnemyCharacter!");
+                }
+                else if (item.character_message().team_id() == teamID && playerID != item.character_message().player_id())
+                {
+                    std::shared_ptr<THUAI8::Character> Character = Proto2THUAI8::Protobuf2THUAI8Character(item.character_message());
+                    bufferState->characters.push_back(Character);
+                    logger->debug("Load Character!");
+                }
+                else if (item.character_message().team_id() == teamID && playerID == item.character_message().player_id())
+                {
+                    bufferState->characterSelf = Proto2THUAI8::Protobuf2THUAI8Character(item.character_message());
+                    logger->debug("Load Self Character!");
                 }
                 break;
             case THUAI8::MessageOfObj::BarracksMessage:

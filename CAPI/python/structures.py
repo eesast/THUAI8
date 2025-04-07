@@ -181,40 +181,109 @@ class NewsType(Enum):
 
 
 class Character:
+    """
+    :attr guid: 玩家唯一标识符
+    :attr teamID: 玩家所在队伍ID
+    :attr playerID: 玩家ID
+    :attr characterType: 玩家角色类型
+    :attr characterActiveState: 玩家主动状态
+    :attr isBlind: 是否失明
+    :attr blindTime: 失明时间
+    :attr isStunned: 是否眩晕
+    :attr stunnedTime: 眩晕时间
+    :attr isInvisible: 是否隐身
+    :attr invisibleTime: 隐身时间
+    :attr isBurned: 是否烧伤
+    :attr burnedTime: 烧伤时间
+    :attr harmCut: 伤害减免比例
+    :attr harmCutTime: 伤害减免时间
+    :attr characterPassiveState: 玩家最新被动状态
+    :attr x: 玩家坐标x
+    :attr y: 玩家坐标y
+    :attr facingDirection: 玩家朝向
+    :attr speed: 玩家速度
+    :attr viewRange: 玩家视野范围
+    :attr commonAttack: 普通攻击力
+    :attr commonAttackCD: 普通攻击冷却时间
+    :attr commonAttackRange: 普通攻击范围
+    :attr skillAttackCD: 技能攻击冷却时间
+    :attr economyDepletion: 经济消耗
+    :attr killScore: 击杀得分
+    :attr hp: 玩家血量
+    :attr shieldEquipment: 装备护盾剩余值
+    :attr shoesEquipment: 装备鞋子加成值
+    :attr shoesTime: 鞋子加成时间
+    :attr isPurified: 是否被净化
+    :attr purifiedTime: 净化时间
+    :attr isBerserk: 是否狂暴
+    :attr berserkTime: 狂暴时间
+    :attr attackBuffNum: 加成资源attackBuff等级
+    :attr attackBuffTime: 加成资源attackBuff时间
+    :attr speedBuffTime: 加成资源speedBuff时间
+    :attr visionBuffTime: 加成资源visionBuff时间
+    """
+
     def __init__(self):
         self.guid: int = 0
         self.teamID: int = 0
         self.playerID: int = 0
-        self.characterType: CharacterType = CharacterType.NullChatacterType
+        self.characterType: CharacterType = CharacterType.NullCharacterType
+
+        # 主动状态
         self.characterActiveState: CharacterState = CharacterState.NullCharacterState
-        self.blindState: CharacterState = CharacterState.NullCharacterState
+
+        # 被动状态
+        self.isBlind: bool = False
         self.blindTime: int = 0
-        self.stunnedState: CharacterState = CharacterState.NullCharacterState
+        self.isStunned: bool = False
         self.stunnedTime: int = 0
-        self.invisibleState: CharacterState = CharacterState.NullCharacterState
+        self.isInvisible: bool = False
         self.invisibleTime: int = 0
-        self.burnedState: CharacterState = CharacterState.NullCharacterState
+        self.isBurned: bool = False
         self.burnedTime: int = 0
-        self.harmCut: float = 0.0
+        self.harmCut: float = 1.0
         self.harmCutTime: int = 0
-        self.deceasedState: CharacterState = CharacterState.NullCharacterState
+
+        # 最新被动状态状态
         self.characterPassiveState: CharacterState = CharacterState.NullCharacterState
+
+        # 坐标位置和朝向
         self.x: int = 0
         self.y: int = 0
+
+        # 朝向和速度
         self.facingDirection: float = 0.0
         self.speed: int = 0
         self.viewRange: int = 0
+
+        # 普通攻击相关属性
         self.commonAttack: int = 0
         self.commonAttackCD: int = 0
         self.commonAttackRange: int = 0
+
+        # 技能攻击相关属性
         self.skillAttackCD: int = 0
+
+        # 消耗资源相关属性
         self.economyDepletion: int = 0
+
+        # 击杀得分相关属性
         self.killScore: int = 0
+
+        # 血量相关属性
         self.hp: int = 0
+
+        # 装备相关属性，装备护盾剩余值?
         self.shieldEquipment: int = 0
         self.shoesEquipment: int = 0
-        self.shoesEquipmentTime: int = 0
-        self.purificationEquipmentTime: int = 0
+        self.shoesTime: int = 0
+        self.isPurified: bool = False
+        self.purifiedTime: int = 0
+        self.isBerserk: bool = False
+        self.berserkTime: int = 0
+
+        # 加成资源的Buff
+        self.attackBuffNum: int = 0
         self.attackBuffTime: int = 0
         self.speedBuffTime: int = 0
         self.visionBuffTime: int = 0
@@ -272,14 +341,16 @@ class ConstructionState:
         self.constructionType: ConstructionType = ConstructionType.NullConstructionType
 
 
-class ConstructionState:
-    def __init__(self, teamID, HP, type: ConstructionType):
-        self.teamID = teamID
-        self.hp = HP
-        self.constructionType = type
-
-
 class GameMap:
+    """
+    :attr barracksState: 兵营状态
+    :attr springState: 泉水状态
+    :attr farmState: 农场状态
+    :attr trapState: 陷阱状态
+    :attr economyResource: 经济资源状态
+    :attr additionResource: 加成资源状态
+    """
+
     def __init__(self):
         self.barracksState: Dict[Tuple[int, int], Tuple[int, int]] = {}
         self.springState: Dict[Tuple[int, int], Tuple[int, int]] = {}
@@ -290,16 +361,6 @@ class GameMap:
 
 
 class GameInfo:
-    """
-    :attr gameTime: 当前游戏时间
-    :attr redScore: 红队当前分数
-    :attr redEnergy: 红队当前经济
-    :attr redHomeHp: 红队当前基地血量
-    :attr blueScore: 蓝队当前分数
-    :attr blueEnergy: 蓝队当前经济
-    :attr blueHomeHp: 蓝队当前基地血量
-    """
-
     def __init__(self):
         self.gameTime: int = 0
         self.buddhistsTeamScore: int = 0
