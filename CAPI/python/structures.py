@@ -46,8 +46,7 @@ class PlayerType(Enum):
 
 
 class CharacterType(Enum):
-    NullChatacterType = 0
-
+    NullCharacterType = 0
     Camp1Character1 = 1
     Camp1Character2 = 2
     Camp1Character3 = 3
