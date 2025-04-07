@@ -86,7 +86,7 @@ namespace Server
                     StunnedTime = player.StunnedTime,
                     InvisibleState = (player.visible) ? Protobuf.CharacterState.NullCharacterState : Protobuf.CharacterState.Invisible,
                     // 待修改，Character.cs中没有InvisibleTime
-                    // InvisibleTime = (double)player.InvisibleTime,
+                    InvisibleTime = player.InvisibleTime,
                     // 貌似不需要治疗时间
                     // HealingState = (player.healing) ? Protobuf.CharacterState.Healing : Protobuf.CharacterState.NullCharacterState,
                     // HealingTime = (double)player.HealingTime,
@@ -123,18 +123,19 @@ namespace Server
                     // 待修改，Shield要分两类
                     ShieldEquipment = (int)player.Shield, // 加成值，只包含护盾装备
                     ShoesEquipment = (int)player.Shoes, // 加成值
-                    ShoesEquipmentTime = player.QuickStepTime, // 包含所有速度加成的时间
+                    ShoesEquipmentTime = player.ShoesTime, // 包含所有速度加成的时间
                     // 待修改，Transformation缺东西
-                    // PurificationEquipment = (player.Purified) ? Protobuf.EquipmentType.PurificationPotion : Protobuf.PurificationEquipmentType.NullEquipmentType,
+                    PurificationEquipment = (player.Purified) ? Protobuf.EquipmentType.PurificationPotion : Protobuf.PurificationEquipmentType.NullEquipmentType, // 数值，1~3表示等级，0表示没有
                     PurificationEquipmentTime = player.PurifiedTime,
                     // 待修改，Character.cs没有隐身时间，没有狂暴药水
                     // InvisibilityEquipment = player.Invisibility,
                     // InvisibilityEquipmentTime = player.InsvisibilityTime,
-                    // Berserk = player.CrazyManNum, // 数值，1~3表示等级，0表示没有
-                    // BerserkTime = player.CrazyManTime,
+                    BerserkEquipment = (player.IsBerserk) ? Protobuf.EquipmentType.BerserkPotion : Protobuf.EquipmentType.NullEquipmentType, // 数值，1~3表示等级，0表示没有
+                    BerserkTime = player.BerserkTime,
 
                     // 待修改，Transformation缺东西
                     // AttackBuff = (player.CrazyManNum == 1) ? Protobuf.CharacterBuffType.AttackBuff1 : (player.CrazyManNum == 2) ? Protobuf.CharacterBuffType.AttackBuff2 : (player.CrazyManNum == 3) ? Protobuf.CharacterBuffType.AttackBuff3 : Protobuf.CharacterBuffType.NullAttackBuff,
+                    AttackBuffNum = (int)player.CrazyManNum,
                     AttackBuffTime = player.CrazyManTime,
                     // 待修改
                     SpeedBuffTime = player.QuickStepTime,

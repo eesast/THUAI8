@@ -76,11 +76,12 @@ message MessageOfCharacter
 
     // 加成资源的Buff
     // CharacterBuffType attack_buff = 39;
-    int64 attack_buff_time = 34;
+    int32 attack_buff_num = 34;
+    int64 attack_buff_time = 35;
     // CharacterBuffType speed_buff = 43;
-    int64 speed_buff_time = 35;
+    int64 speed_buff_time = 36;
     // CharacterBuffType vision_buff = 45;
-    int64 vision_buff_time = 36;
+    int64 vision_buff_time = 37;
 }
 
 message MessageOfBarracks

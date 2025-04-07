@@ -71,12 +71,12 @@ namespace THUAI8
         Camp1Character5 = 5,
         Camp1Character6 = 6,
 
-        CampCharacter1 = 7,
-        CampCharacter2 = 8,
-        CampCharacter3 = 9,
-        CampCharacter4 = 10,
-        CampCharacter5 = 11,
-        CampCharacter6 = 12,
+        Camp2Character1 = 7,
+        Camp2Character2 = 8,
+        Camp2Character3 = 9,
+        Camp2Character4 = 10,
+        Camp2Character5 = 11,
+        Camp2Character6 = 12,
     };
 
     enum class EquipmentType : unsigned char
