@@ -125,12 +125,12 @@ namespace Server
                     ShoesEquipment = (int)player.Shoes, // 加成值
                     ShoesEquipmentTime = player.ShoesTime, // 包含所有速度加成的时间
                     // 待修改，Transformation缺东西
-                    PurificationEquipment = (player.Purified) ? Protobuf.EquipmentType.PurificationPotion : Protobuf.PurificationEquipmentType.NullEquipmentType, // 数值，1~3表示等级，0表示没有
+                    Purified = player.Purified,
                     PurificationEquipmentTime = player.PurifiedTime,
                     // 待修改，Character.cs没有隐身时间，没有狂暴药水
                     // InvisibilityEquipment = player.Invisibility,
                     // InvisibilityEquipmentTime = player.InsvisibilityTime,
-                    BerserkEquipment = (player.IsBerserk) ? Protobuf.EquipmentType.BerserkPotion : Protobuf.EquipmentType.NullEquipmentType, // 数值，1~3表示等级，0表示没有
+                    IsBerserk = player.IsBerserk,
                     BerserkTime = player.BerserkTime,
 
                     // 待修改，Transformation缺东西

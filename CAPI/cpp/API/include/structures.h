@@ -260,7 +260,10 @@ namespace THUAI8
         // int32_t shild;
         int32_t shoesEquipment;
         long shoesEquipmentTime;
+        bool purified;
         long purificationEquipmentTime;
+        bool isBerserk;
+        long berserkTime;
 
         // CharacterBuffType attackBuff;
         long attackBuffTime;

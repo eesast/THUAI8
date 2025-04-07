@@ -67,21 +67,22 @@ message MessageOfCharacter
     // EquipmentType shoes_equipment = ; // 鞋子装备
     int32 shoes_equipment = 31;
     int64 shoes_equipment_time = 32;
+    bool purified = 33;
     // EquipmentType purification_equipment = ;
-    int64 purification_equipment_time = 33;
+    int64 purification_equipment_time = 34;
     // EquipmentType invisibility_equipment = ;
     // long invisibility_equipment_time = ;
-    // EquipmentType berserk_equipment = ;
-    // long berserk_equipment_time = ;
+    bool is_berserk = 35;
+    int64 berserk_time = 36;
 
     // 加成资源的Buff
     // CharacterBuffType attack_buff = 39;
-    int32 attack_buff_num = 34;
-    int64 attack_buff_time = 35;
+    int32 attack_buff_num = 37;
+    int64 attack_buff_time = 38;
     // CharacterBuffType speed_buff = 43;
-    int64 speed_buff_time = 36;
+    int64 speed_buff_time = 39;
     // CharacterBuffType vision_buff = 45;
-    int64 vision_buff_time = 37;
+    int64 vision_buff_time = 40;
 }
 
 message MessageOfBarracks
