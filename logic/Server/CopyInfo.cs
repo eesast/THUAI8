@@ -81,7 +81,7 @@ namespace Server
                     BlindTime = player.BlindTime,
                     IsStunned = player.stunned,
                     StunnedTime = player.StunnedTime,
-                    IsInvisible = ! player.visible,
+                    IsInvisible = !player.visible,
                     InvisibleTime = player.InvisibleTime,
                     IsBurned = player.burned,
                     BurnedTime = player.BurnedTime,
