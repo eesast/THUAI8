@@ -53,6 +53,7 @@ public class Character : Movable, ICharacter
     public bool IsShoes = false;
     public long BerserkTime = long.MaxValue;//狂暴buff计时器
     public bool IsBerserk = false;
+    public long InvisibleTime = long.MaxValue;//隐身药水计时器
     public void StartSkillCD()
     {
         skillCD = Environment.TickCount64;
