@@ -57,11 +57,11 @@ document.getElementById("bush").onclick = function () {
     currentColor = 2;
     document.getElementById("current").innerHTML = "当前：Bush";
 }
-document.getElementById("a_resource").onclick = function () {
+document.getElementById("Aresource").onclick = function () {
     currentColor = 3;
     document.getElementById("current").innerHTML = "当前：A_Resource";
 }
-document.getElementById("e_resource").onclick = function () {
+document.getElementById("Eresource").onclick = function () {
     currentColor = 4;
     document.getElementById("current").innerHTML = "当前：E_Resource";
 }
@@ -225,7 +225,7 @@ function generateConstruction(num = 5) {
 function generateBush(prob = 0.015, crossBonus = 23) {
     for (var i = 0; i < 50; i++) {
         for (var j = 0; j < 50; j++) {
-            if (map[i][j] == 1 && Math.random() < prob * (haveSthCross(i, j, 1, placeType.Shadow) * crossBonus + 1)) {
+            if (map[i][j] == 1 && Math.random() < prob * (haveSthCross(i, j, 1, placeType.Bush) * crossBonus + 1)) {
                 map[i][j] = placeType.Bush;
                 map[49 - i][49 - j] = placeType.Bush;
             }
@@ -237,7 +237,6 @@ function generateBarrier(prob = 0.01, crossBonus = 40) {
     for (var i = 2; i < 48; i++) {
         for (var j = 2; j < 48; j++) {
             if ((map[i][j] == 1 || map[i][j] == 3) &&
-                !haveSthNearby(i, j, 1, placeType.Barrier) &&
                 !haveSthNearby(i, j, 1, placeType.Home) &&
                 Math.random() < prob * (haveSthCross(i, j, 1, placeType.Barrier) * (haveSthCross(i, j, 1, placeType.Barrier) > 1 ? 0 : crossBonus) + 1)) {
                 map[i][j] = 2;
