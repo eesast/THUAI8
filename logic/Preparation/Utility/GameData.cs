@@ -14,6 +14,10 @@ namespace Preparation.Utility
         public const int KnockedBackTime = 50;
         public const int KnockedBackSpeed = 1500;           // 击退速度(额外速度，需加上基础移速）
 
+        public const long MaxShield = 150;
+        public const long MaxNiuShield = 100;
+        public const long MaxShoes = 1000;
+
         public const int TolerancesLength = 3;
         public const int AdjustLength = 3;
         //character cost

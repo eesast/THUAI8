@@ -53,17 +53,18 @@ namespace Gaming
                     character.HP.SubPositiveV(subHP);
                 }*/
                 character.NiuShield.SubPositiveV(subHP);
-                if (character.NiuShield > subHP)
+                if (character.NiuShield > 0)
                 {
                     return;
                 }
                 subHP -= character.NiuShield;
                 character.Shield.SubPositiveV(subHP);
-                if (character.Shield > subHP)
+                if (character.Shield > 0)
                 {
                     return;
                 }
                 subHP -= character.Shield;
+                character.IsShield = false;
                 character.HP.SubPositiveV(subHP);
                 if (character.HP == 0)
                 {
@@ -83,14 +84,28 @@ namespace Gaming
             public void BeAttacked(Character character, long AP)//此部分适用于中立资源攻击及技能攻击
             {
                 long subHP = (long)(AP * (1 - character.HarmCut));
-                if (character.Shield > 0)
+                /*if (character.Shield > 0)
                 {
                     character.Shield.SubPositiveV(subHP);
                 }
                 else
                 {
                     character.HP.SubPositiveV(subHP);
+                }*/
+                character.NiuShield.SubPositiveV(subHP);
+                if (character.NiuShield > 0)
+                {
+                    return;
                 }
+                subHP -= character.NiuShield;
+                character.Shield.SubPositiveV(subHP);
+                if (character.Shield > 0)
+                {
+                    return;
+                }
+                subHP -= character.Shield;
+                character.IsShield = false;
+                character.HP.SubPositiveV(subHP);
                 if (character.HP == 0)
                 {
                     long score = 0;
