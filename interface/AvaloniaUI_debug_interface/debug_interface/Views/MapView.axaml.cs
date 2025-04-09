@@ -13,7 +13,8 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq; // For Linq
 using System.Reactive.Linq;
-using System.Reactive.Subjects;
+using installer.Model;
+using System.ComponentModel;
 
 
 
@@ -23,49 +24,54 @@ namespace debug_interface.Views
     {
         private Canvas? characterCanvas;
         private Grid? mapGrid;
-        private Dictionary<long, Control> characterElements = new Dictionary<long, Control>();
+        private Dictionary<long, Control> characterElements = new Dictionary<long, Control>(); // Key 是 Guid
         private MainWindowViewModel? viewModel;
-        private bool isMapInitialized = false; // 添加一个标志位
+        private bool isMapInitialized = false;
+        private IDisposable? _boundsSubscription;
+        private Logger? myLogger; // Logger 引用
+
 
         //public MapView()
         //{
         //    InitializeComponent();
-        //    this.AttachedToVisualTree += MapView_AttachedToVisualTree;
         //    this.DataContextChanged += MapView_DataContextChanged;
-        //    // 监听 Canvas 尺寸变化以更新缩放因子
-        //    // Use a lambda expression here:
-        //    this.GetObservable(BoundsProperty).Subscribe(bounds => UpdateCharacterScaling((Rect)bounds)); // Pass bounds explicitly
-
+        //    this.AttachedToVisualTree += MapView_AttachedToVisualTree;
+        //    // 获取 Logger (假设 ViewModelBase 有 Logger)
+        //    this.DataContextChanged += (s, e) => {
+        //        if (this.DataContext is ViewModelBase vmBase && vmBase.myLogger != null)
+        //        {
+        //            myLogger = vmBase.myLogger;
+        //            myLogger?.LogDebug("MapView: Logger 获取成功。");
+        //        }
+        //        else if (this.DataContext is MainWindowViewModel mwvm && mwvm.myLogger != null) // 备用方案
+        //        {
+        //            myLogger = mwvm.myLogger;
+        //            myLogger?.LogDebug("MapView: Logger 获取成功 (来自 MainWindowViewModel)。");
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine("MapView: DataContext 变化，但无法获取 Logger。"); // fallback to console
+        //        }
+        //    };
         //}
 
         public MapView()
         {
             InitializeComponent();
-            this.AttachedToVisualTree += MapView_AttachedToVisualTree;
+            // *** 确保 Canvas 背景色便于观察 ***
+            var canvas = this.FindControl<Canvas>("CharacterCanvas");
+            if (canvas != null)
+            {
+                 //canvas.Background = Brushes.LightPink; // 取消或保留此行以观察 Canvas 区域
+                // *** 添加 ZIndex ***
+                canvas.SetValue(Panel.ZIndexProperty, 1);
+            }
+
             this.DataContextChanged += MapView_DataContextChanged;
-
-            BoundsProperty.Changed
-                .Where(args => args.Sender == this)
-                .Select(args => args.NewValue.GetValueOrDefault()) // 返回 Rect
-                .Subscribe(newBounds => // newBounds 是 Rect 类型
-                {
-                    // 直接使用 newBounds，不再需要检查 HasValue 或访问 Value
-                    // Rect currentBounds = newBounds; // 这行是多余的
-
-                    // 使用之前的 IsEmpty 替代方案
-                    bool isEffectivelyEmpty = newBounds.Width <= 0 || newBounds.Height <= 0;
-
-                    if (isEffectivelyEmpty)
-                    {
-                        // Console.WriteLine("Bounds are effectively empty, skipping scaling.");
-                    }
-                    else
-                    {
-                        // 直接传递 newBounds
-                        Dispatcher.UIThread.InvokeAsync(() => UpdateCharacterScaling(newBounds));
-                    }
-                });
+            this.AttachedToVisualTree += MapView_AttachedToVisualTree;
+            this.DataContextChanged += (s, e) => { /* ... Logger 获取逻辑 ... */ };
         }
+
 
         // 当 Canvas 尺寸变化时，重新计算所有角色的位置
         private void UpdateCharacterScaling(Rect bounds)
@@ -73,91 +79,137 @@ namespace debug_interface.Views
             // if (viewModel == null || characterCanvas == null || bounds.IsEmpty == true) return; // 暂时移除检查
             if (viewModel == null || characterCanvas == null) return; // 保留这两个检查
 
-            // 这里的代码现在保证在 UI 线程执行
+            myLogger?.LogInfo($"MapView: UpdateCharacterScaling - Canvas Bounds: {bounds}");
+
+            // 遍历所有 *有 Guid* 的角色来更新视觉（包括位置和可能的缩放调整）
             foreach (var character in viewModel.BuddhistsTeamCharacters.Concat(viewModel.MonstersTeamCharacters))
             {
-                UpdateCharacterVisual(character); // 重用更新逻辑来重新定位
+                if (character.Guid > 0) // 只处理已分配 Guid 的角色
+                {
+                    // myLogger?.LogTrace($"  -> UpdateCharacterScaling: 调用 UpdateCharacterVisual for Guid={character.Guid}");
+                    UpdateCharacterVisual(character); // 重用更新逻辑来重新定位/缩放
+                }
             }
         }
 
         private void MapView_DataContextChanged(object? sender, EventArgs e)
         {
-            // 当 DataContext 变化时，尝试设置 ViewModel 并初始化地图
             if (this.DataContext is MainWindowViewModel vm)
             {
-                viewModel = vm; // 获取 ViewModel
-                TryInitializeMap(); // 尝试初始化
+                // myLogger?.LogDebug("MapView: DataContext 变为 MainWindowViewModel，尝试初始化...");
+                viewModel = vm;
+                TryInitializeMap(); // 尝试初始化或重新初始化
             }
             else
             {
-                // DataContext 被清空，清理资源
-                CleanupViewModel();
+                myLogger?.LogDebug("MapView: DataContext 清空或类型不匹配，清理...");
+                CleanupViewModel(); // 清理旧订阅
                 viewModel = null;
-                isMapInitialized = false; // 重置标志位
-                mapGrid?.Children.Clear(); // 清空地图Grid内容
-                characterCanvas?.Children.Clear(); // 清空角色Canvas内容
+                isMapInitialized = false;
+                mapGrid?.Children.Clear();
+                characterCanvas?.Children.Clear();
+                characterElements.Clear();
             }
         }
 
         private void MapView_AttachedToVisualTree(object? sender, VisualTreeAttachmentEventArgs e)
         {
-            // 当附加到可视化树时，查找控件并尝试初始化地图
+             myLogger?.LogDebug("MapView: 已附加到可视化树。");
             characterCanvas = this.FindControl<Canvas>("CharacterCanvas");
             mapGrid = this.FindControl<Grid>("MapGrid");
-            TryInitializeMap(); // 尝试初始化
+            TryInitializeMap();
         }
 
 
         // 尝试初始化地图和角色（核心逻辑）
         private void TryInitializeMap()
         {
-            // 只有当 ViewModel 和 MapGrid 都准备好，并且地图尚未初始化时才执行
-            if (viewModel != null && mapGrid != null && !isMapInitialized)
+            if (viewModel != null && mapGrid != null && characterCanvas != null && !isMapInitialized)
             {
-                // 检查 MapVM 是否也准备好了
                 if (viewModel.MapVM != null)
                 {
-                    Console.WriteLine("MapView: Initializing Map Grid and Characters..."); // 添加日志
-                    CleanupViewModel(); // 清理旧的订阅（如果之前有的话）
+                    myLogger?.LogDebug("MapView: 开始初始化地图网格和角色...");
+                    CleanupViewModel(); // 清理可能存在的旧订阅
 
-                    // 设置 ViewModel 的事件监听等
+                    // 设置 ViewModel 订阅 (包括 CollectionChanged)
                     SetupViewModelSubscriptions();
+                    myLogger?.LogDebug("  -> ViewModel 订阅已设置。");
 
-                    // 初始化地图 Grid
+                    // 初始化地图格子 (只做一次)
                     MapHelper.InitializeMapGrid(mapGrid, viewModel.MapVM);
+                    myLogger?.LogDebug("  -> 地图网格已初始化。");
 
-                    // 初始化角色 Canvas
-                    RefreshCharacters();
+                    // *** 不再需要 RefreshCharacters() 在这里调用，由 CollectionChanged 处理初始添加 ***
+                    // RefreshCharacters(); // 移除
 
-                    isMapInitialized = true; // 标记地图已初始化
+                    // 订阅 Bounds 变化 (保持)
+                    SubscribeToBoundsChanges();
+                    myLogger?.LogDebug("  -> Canvas 尺寸变化订阅已设置。");
+
+                    isMapInitialized = true;
+                    myLogger?.LogDebug("MapView: 初始化完成。");
                 }
                 else
                 {
-                    Console.WriteLine("MapView: ViewModel is ready, but MapVM is null."); // 日志
+                    myLogger?.LogWarning("MapView: ViewModel 已就绪, 但 MapVM 为 null。等待 MapVM...");
                 }
             }
-            // else
-            // {
-            // 可以加日志说明为什么没初始化
-            // Console.WriteLine($"MapView: Initialize skipped. ViewModel: {viewModel != null}, MapGrid: {mapGrid != null}, Initialized: {isMapInitialized}");
-            // }
+            // else block for logging why skipped (optional)
         }
+
+
+
+        private void SubscribeToBoundsChanges()
+        {
+            _boundsSubscription?.Dispose();
+            if (characterCanvas == null) return;
+            _boundsSubscription = characterCanvas.GetObservable(BoundsProperty)
+                 .Select(bounds => bounds)
+                 .Where(bounds => bounds.Width > 0 && bounds.Height > 0)
+                 .DistinctUntilChanged()
+                 .Throttle(TimeSpan.FromMilliseconds(100))
+                 .Subscribe(newBounds =>
+                 {
+                     Dispatcher.UIThread.InvokeAsync(() =>
+                     {
+                         if (this.IsAttachedToVisualTree() && characterCanvas != null)
+                         {
+                             // myLogger?.LogDebug($"MapView: Canvas Bounds 变化: {newBounds}");
+                             UpdateCharacterScaling(newBounds);
+                         }
+                     });
+                 }, ex => myLogger?.LogError($"MapView: Bounds 订阅出错: {ex}"));
+        }
+        private bool IsAttachedToVisualTree() => this.Parent != null || (this.VisualRoot != null);
+
+
+
+
+
+
         private void CleanupViewModel()
         {
+            _boundsSubscription?.Dispose();
+            _boundsSubscription = null;
+
             if (viewModel != null)
             {
-                // 取消之前的集合和属性变更订阅
+                // 取消集合变化订阅
                 viewModel.BuddhistsTeamCharacters.CollectionChanged -= TeamCharacters_CollectionChanged;
                 viewModel.MonstersTeamCharacters.CollectionChanged -= TeamCharacters_CollectionChanged;
+
+                // 取消所有现有角色的属性变化订阅 (重要！)
                 foreach (var character in viewModel.BuddhistsTeamCharacters.Concat(viewModel.MonstersTeamCharacters))
                 {
                     character.PropertyChanged -= Character_PropertyChanged;
                 }
-                // 注意：这里不清空 viewModel 变量，DataContextChanged 会处理
+                myLogger?.LogDebug("MapView: 清理 ViewModel 订阅完成。");
             }
-            // characterElements 和 characterCanvas 的清理移到 RefreshCharacters 或 DataContext 被清空时
-            // characterElements.Clear();
-            // characterCanvas?.Children.Clear();
+
+            // 清理 Canvas 和字典
+            characterCanvas?.Children.Clear();
+            characterElements.Clear();
+            isMapInitialized = false; // 允许重新初始化
         }
 
         private void SetupViewModel(MainWindowViewModel vm)
@@ -191,44 +243,130 @@ namespace debug_interface.Views
         {
             if (viewModel == null) return;
 
-            // 监听角色集合变化
+            // --- 订阅集合变化 ---
+            viewModel.BuddhistsTeamCharacters.CollectionChanged -= TeamCharacters_CollectionChanged; // 先移除确保不重复
             viewModel.BuddhistsTeamCharacters.CollectionChanged += TeamCharacters_CollectionChanged;
+            viewModel.MonstersTeamCharacters.CollectionChanged -= TeamCharacters_CollectionChanged; // 先移除确保不重复
             viewModel.MonstersTeamCharacters.CollectionChanged += TeamCharacters_CollectionChanged;
 
-            // 监听所有现有角色的属性变化
-            foreach (var character in viewModel.BuddhistsTeamCharacters.Concat(viewModel.MonstersTeamCharacters))
-            {
-                // 确保只添加一次监听器
-                character.PropertyChanged -= Character_PropertyChanged; // 先移除，防止重复添加
-                character.PropertyChanged += Character_PropertyChanged;
-            }
+            // --- 处理当前已存在的角色 (如果 ViewModel 非空启动) ---
+            // (这个逻辑现在由 CollectionChanged 首次触发 Add 来处理)
+            // 也可以在这里手动调用一次处理逻辑，确保启动时就有角色
+            ProcessNewCollection(viewModel.BuddhistsTeamCharacters);
+            ProcessNewCollection(viewModel.MonstersTeamCharacters);
         }
 
         private void TeamCharacters_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
         {
-            // 集合发生变化时（理论上不应频繁发生，因为是占位符），刷新整个角色UI
-            Avalonia.Threading.Dispatcher.UIThread.InvokeAsync(RefreshCharacters);
+            Dispatcher.UIThread.InvokeAsync(() => // 确保在 UI 线程操作 Canvas
+            {
+                if (e.Action == NotifyCollectionChangedAction.Add && e.NewItems != null)
+                {
+                    foreach (CharacterViewModel character in e.NewItems)
+                    {
+                        AddCharacterVisual(character);
+                    }
+                }
+                else if (e.Action == NotifyCollectionChangedAction.Remove && e.OldItems != null)
+                {
+                    foreach (CharacterViewModel character in e.OldItems)
+                    {
+                        RemoveCharacterVisual(character);
+                    }
+                }
+                else if (e.Action == NotifyCollectionChangedAction.Reset) // 处理列表清空的情况
+                {
+                    myLogger?.LogWarning("MapView: 角色集合被重置 (Reset)，清理所有角色视觉元素。");
+                    characterCanvas?.Children.Clear();
+                    characterElements.Clear();
+                    // 可能需要重新订阅所有角色的 PropertyChanged，或者重新初始化
+                }
+                // 可以根据需要处理 Replace, Move 等其他 Action
+            });
+        }
+
+        private void ProcessNewCollection(IEnumerable<CharacterViewModel> characters)
+        {
+            foreach (var character in characters)
+            {
+                AddCharacterVisual(character);
+            }
+        }
+
+        private void AddCharacterVisual(CharacterViewModel character)
+        {
+            if (characterCanvas == null || character.Guid <= 0 || characterElements.ContainsKey(character.Guid)) return;
+
+            Color teamColor = character.TeamId == 0 ? Colors.Red : Colors.Blue; // Team 0=取经(红), Team 1=妖怪(蓝)
+            var characterVisual = CreateCharacterVisual(character, teamColor);
+
+            characterCanvas.Children.Add(characterVisual);
+            characterElements[character.Guid] = characterVisual;
+
+            // 订阅属性变化
+            character.PropertyChanged -= Character_PropertyChanged; // 防重复
+            character.PropertyChanged += Character_PropertyChanged;
+
+            myLogger?.LogDebug($"MapView: Added visual element and subscribed PropertyChanged for Guid={character.Guid}, Name='{character.Name}'");
+
+            // 初始调用 UpdateCharacterVisual 以设置位置/可见性
+            UpdateCharacterVisual(character);
+        }
+
+        private void RemoveCharacterVisual(CharacterViewModel character)
+        {
+            if (characterCanvas == null || character.Guid <= 0 || !characterElements.TryGetValue(character.Guid, out var element))
+            {
+                // myLogger?.LogTrace($"MapView: 跳过移除视觉元素 Guid={character.Guid} (未找到或无效)");
+                return; // 元素不存在
+            }
+
+            // 取消属性变化订阅 (非常重要，防止内存泄漏)
+            character.PropertyChanged -= Character_PropertyChanged;
+
+            characterCanvas.Children.Remove(element);
+            characterElements.Remove(character.Guid);
+
+            myLogger?.LogDebug($"MapView: 移除视觉元素 Guid={character.Guid}, Name='{character.Name}'");
         }
 
 
+        // 刷新角色时，确保先清理旧的
         private void RefreshCharacters()
         {
             if (characterCanvas == null || viewModel == null) return;
+            myLogger?.LogDebug("MapView: RefreshCharacters - 开始执行...");
 
-            // 清理旧的 UI 元素和事件监听器
-            foreach (var kvp in characterElements)
-            {
-                characterCanvas.Children.Remove(kvp.Value);
-                // 理论上应该在 CleanupViewModel 中统一处理旧 ViewModel 的事件注销
-            }
+            // 1. 清理 Canvas 和字典 (以防万一有残留)
+            characterCanvas.Children.Clear();
             characterElements.Clear();
+            myLogger?.LogDebug("  -> Canvas 和字典已清理。");
 
-            // 为 ViewModel 中的所有角色（包括占位符）创建或更新 UI 元素
-            InitializeTeamCharacters(viewModel.BuddhistsTeamCharacters, Colors.Red);
-            InitializeTeamCharacters(viewModel.MonstersTeamCharacters, Colors.Blue);
 
-            // 更新缩放以确保初始位置正确
-            UpdateCharacterScaling(this.Bounds);
+            // 2. 遍历 ViewModel 中的所有角色，触发 UpdateCharacterVisual
+            // 这将为 Guid > 0 的角色创建或更新视觉元素
+            int createdCount = 0;
+            foreach (var character in viewModel.BuddhistsTeamCharacters.Concat(viewModel.MonstersTeamCharacters))
+            {
+                UpdateCharacterVisual(character); // 让这个方法处理创建/更新/隐藏
+                if (character.Guid > 0 && characterElements.ContainsKey(character.Guid)) createdCount++;
+            }
+            myLogger?.LogDebug($"  -> UpdateCharacterVisual 已为所有 ViewModel 角色调用。当前有效角色元素数: {createdCount}");
+
+
+            // 3. 应用缩放 (如果 Canvas 已有尺寸)
+            if (characterCanvas.Bounds.Width > 0 && characterCanvas.Bounds.Height > 0)
+            {
+                UpdateCharacterScaling(characterCanvas.Bounds);
+                myLogger?.LogDebug($"  -> 初始缩放应用完成 (基于Canvas Bounds: {characterCanvas.Bounds})。");
+
+            }
+            else
+            {
+                myLogger?.LogDebug("  -> Canvas 初始尺寸无效，稍后 Bounds 变化时再应用缩放。");
+            }
+            myLogger?.LogDebug("MapView: RefreshCharacters - 执行完毕。");
+
         }
 
         // 重命名方法以反映其处理单个队伍
@@ -238,21 +376,24 @@ namespace debug_interface.Views
 
             foreach (var character in characters)
             {
-                // 如果该角色的 UI 元素已存在，跳过创建，只需确保事件监听器已附加
-                if (characterElements.ContainsKey(character.CharacterId)) continue;
+                if (character.Guid <= 0) continue; // 跳过未分配的占位符
 
-                // 创建角色视觉元素 (例如一个 Grid 包含 Ellipse 和 TextBlock)
+                if (characterElements.ContainsKey(character.Guid))
+                {
+                    // myLogger?.LogTrace($"MapView: Guid={character.Guid} 已存在，跳过创建。");
+                    continue; // 如果已存在，跳过创建，确保 UpdateCharacterVisual 会处理它
+                }
+
+
                 var characterVisual = CreateCharacterVisual(character, teamColor);
-
-                // 添加到 Canvas
                 characterCanvas.Children.Add(characterVisual);
-                characterElements[character.CharacterId] = characterVisual; // 存入字典
+                characterElements[character.Guid] = characterVisual;
 
-                // 监听角色属性变化
-                character.PropertyChanged += Character_PropertyChanged;
+                // *** 增加日志记录元素添加 ***
+                myLogger?.LogDebug($"MapView: 添加角色元素到 Canvas: Guid={character.Guid}, Name='{character.Name}', TeamColor={teamColor}");
 
-                // 设置初始位置和可见性
-                UpdateCharacterVisual(character);
+                // UpdateCharacterVisual 会在 PropertyChanged 时调用，或者在 RefreshCharacters 最后统一调用
+                // UpdateCharacterVisual(character); // 不在此处单独调用，由 RefreshCharacters 统一处理或 PropertyChanged 触发
             }
         }
 
@@ -263,7 +404,7 @@ namespace debug_interface.Views
             {
                 Width = 12, // 调整大小
                 Height = 12,
-                Tag = character.CharacterId // 存储 ID 以便查找
+                Tag = character.Guid // 存储 guID 以便查找
             };
 
             var ellipse = new Ellipse
@@ -288,15 +429,16 @@ namespace debug_interface.Views
                 VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
                 IsHitTestVisible = false
             };
+           
             grid.Children.Add(textBlock);
 
 
-            ToolTip.SetTip(grid, $"{character.Name} (ID: {character.CharacterId})\nHP: {character.Hp}\n状态: {character.ActiveState}"); // 初始 Tooltip
+           
 
             return grid;
         }
 
-        // 获取角色名称首字母或标识符
+        //获取角色名称首字母或标识符
         private string GetCharacterInitial(string name)
         {
             if (string.IsNullOrEmpty(name) || name.EndsWith("?")) return "?";
@@ -317,55 +459,128 @@ namespace debug_interface.Views
 
 
         // 角色属性变化时的处理
-        private void Character_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void Character_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
             if (sender is CharacterViewModel character)
             {
-                // 在 UI 线程上更新视觉元素
-                Avalonia.Threading.Dispatcher.UIThread.InvokeAsync(() => UpdateCharacterVisual(character));
+                // myLogger?.LogTrace($"MapView: PropertyChanged received for Guid={character.Guid}, Property={e.PropertyName}");
+                Dispatcher.UIThread.InvokeAsync(() =>
+                {
+                    if (viewModel != null && this.IsAttachedToVisualTree())
+                    {
+                        // 不论哪个属性变化，都调用 UpdateCharacterVisual，让它决定如何处理
+                        UpdateCharacterVisual(character);
+                    }
+                });
             }
         }
 
-        // 更新单个角色的视觉状态（位置、可见性、Tooltip）
+        // 更新单个角色的视觉状态（位置、可见性）
+        // 更新视觉状态时添加详细日志
         private void UpdateCharacterVisual(CharacterViewModel character)
         {
-            if (characterElements.TryGetValue(character.CharacterId, out var element))
+            // *** 1. 检查基本条件 ***
+            if (characterCanvas == null)
             {
-                // 更新 Tooltip
-                ToolTip.SetTip(element, $"{character.Name} (ID: {character.CharacterId})\nHP: {character.Hp}\n状态: {character.ActiveState}\n位置: ({character.PosX},{character.PosY})");
+                myLogger?.LogWarning($"MapView: UpdateCharacterVisual - Canvas is null, cannot update Guid={character.Guid}");
+                return;
+            }
+            if (character.Guid <= 0)
+            {
+                // myLogger?.LogTrace($"MapView: UpdateCharacterVisual - Skipping Guid={character.Guid} (<=0)");
+                return; // 不处理无效 Guid
+            }
 
-                // 检查角色是否有效且应显示在地图上
-                bool shouldBeVisible = character.Hp > 0 && // 活着
-                                      !character.Name.EndsWith("?") && // 不是纯占位符
-                                      !character.PassiveStates.Contains("已死亡") && // 没有死亡状态
-                                      character.PosX >= 0 && character.PosX < 50 && // 在地图网格内
-                                      character.PosY >= 0 && character.PosY < 50;
-
-                element.IsVisible = shouldBeVisible;
-
-                if (shouldBeVisible)
+            // *** 2. 获取或创建视觉元素 ***
+            if (!characterElements.TryGetValue(character.Guid, out var element))
+            {
+                // 如果元素不存在，可能 AddCharacterVisual 还没执行或失败，这里尝试补救添加
+                myLogger?.LogWarning($"MapView: UpdateCharacterVisual - Element for Guid={character.Guid} not found in dictionary, attempting to add.");
+                AddCharacterVisual(character); // 尝试添加
+                if (!characterElements.TryGetValue(character.Guid, out element)) // 再次检查
                 {
-                    // 计算缩放后的像素位置
-                    double cellWidth = characterCanvas?.Bounds.Width / 50.0 ?? 0;
-                    double cellHeight = characterCanvas?.Bounds.Height / 50.0 ?? 0;
-                    double left = character.PosY * cellWidth + (cellWidth / 2.0) - (element.Bounds.Width / 2.0);
-                    double top = character.PosX * cellHeight + (cellHeight / 2.0) - (element.Bounds.Height / 2.0);
-
-                    Canvas.SetLeft(element, left);
-                    Canvas.SetTop(element, top);
+                    myLogger?.LogError($"MapView: UpdateCharacterVisual - Failed to get or add element for Guid={character.Guid}. Aborting update.");
+                    return; // 如果添加后仍然找不到，则放弃
                 }
             }
+
+            // *** 3. 确定可见性 (再次确认 HP>0 检查是否注释掉) ***
+            // bool shouldBeVisible = character.Hp > 0 && // 如果需要恢复检查，取消此行注释
+            //                        character.Guid > 0 &&
+            //                        !character.PassiveStates.Contains("已死亡") &&
+            //                        character.PosX >= 0 && character.PosX <= 50000 &&
+            //                        character.PosY >= 0 && character.PosY <= 50000;
+
+            // *** 强制可见 (用于调试) ***
+            bool shouldBeVisible = character.Guid > 0 &&
+                                   // !character.PassiveStates.Contains("已死亡") && // 暂时忽略死亡状态
+                                   character.PosX >= 0 && character.PosX <= 50000 &&
+                                   character.PosY >= 0 && character.PosY <= 50000;
+            element.IsVisible = shouldBeVisible;
+            // myLogger?.LogTrace($"MapView: Update Guid={character.Guid}, Name='{character.Name}', HP={character.Hp}, Pos=({character.PosX},{character.PosY}), ShouldBeVisible={shouldBeVisible}");
+
+
+            // *** 4. 如果可见，计算并设置位置 ***
+            if (shouldBeVisible)
+            {
+                double gameMaxX = 50000.0;
+                double gameMaxY = 50000.0;
+                double canvasWidth = characterCanvas.Bounds.Width;
+                double canvasHeight = characterCanvas.Bounds.Height;
+
+                // *** 检查 Canvas 尺寸 ***
+                if (canvasWidth > 1 && canvasHeight > 1)
+                {
+                    // 获取元素尺寸 (如果首次布局可能为 0，使用默认值)
+                    double elementWidth = element.Bounds.Width > 0 ? element.Bounds.Width : 12.0;
+                    double elementHeight = element.Bounds.Height > 0 ? element.Bounds.Height : 12.0;
+
+                    // 计算缩放
+                    double scaleXToCanvasHeight = canvasHeight / gameMaxX; // X -> Top -> Height
+                    double scaleYToCanvasWidth = canvasWidth / gameMaxY;   // Y -> Left -> Width
+
+                    // 计算目标中心点
+                    double targetTop = character.PosX * scaleXToCanvasHeight;
+                    double targetLeft = character.PosY * scaleYToCanvasWidth;
+
+                    // 计算左上角坐标以居中
+                    double finalTop = targetTop - (elementHeight / 2.0);
+                    double finalLeft = targetLeft - (elementWidth / 2.0);
+
+                    // *** 添加详细坐标日志 ***
+                    myLogger?.LogDebug($"MapView: SetPos Guid={character.Guid}, " +
+                                       $"GamePos=({character.PosX},{character.PosY}), " +
+                                       $"CanvasSize=({canvasWidth:F1},{canvasHeight:F1}), " +
+                                       $"ScaleXY=({scaleYToCanvasWidth:F5},{scaleXToCanvasHeight:F5}), " + // Log Y scale then X scale
+                                       $"TargetTL=({targetLeft:F1},{targetTop:F1}), " +
+                                       $"ElementWH=({elementWidth:F1},{elementHeight:F1}), " +
+                                       $"FinalTL=({finalLeft:F1},{finalTop:F1})");
+
+                    // *** 确保最终坐标不小于 0 ***
+                    finalTop = Math.Max(0, finalTop);
+                    finalLeft = Math.Max(0, finalLeft);
+
+                    //myLogger?.LogDebug($"MapView: SetPos Guid={character.Guid}, FinalTL_Clamped=({finalLeft:F1},{finalTop:F1})"); 
+
+                    // *** 设置位置 ***
+                    Canvas.SetLeft(element, finalLeft);
+                    Canvas.SetTop(element, finalTop);
+
+                    // 更新 Tooltip
+                    //ToolTip.SetTip(element, $"{character.Name} (Guid: {character.Guid})\nHP: {character.Hp}/{character.MaxHp}\nPos: ({character.PosX},{character.PosY})\n状态: {character.DisplayStates}");
+                }
+                else
+                {
+                    myLogger?.LogWarning($"MapView: SetPos Guid={character.Guid} - Canvas size invalid (W:{canvasWidth:F1}, H:{canvasHeight:F1}), cannot calculate position.");
+                }
+            }
+            // else // 如果不可见，不需要设置位置
+            // {
+            //    myLogger?.LogTrace($"MapView: Guid={character.Guid} is not visible, skipping position set.");
+            // }
         }
 
 
-
-        // --- 旧的或不再需要的方法 ---
-        // private void InitializeRandomPositions() { ... } // 不需要了
-        // private void InitializeCharacters<T>(...) { ... } // 已被 InitializeTeamCharacters 替代
-        // private void UpdateCharacterPosition(Control element, int x, int y) { ... } // 已合并到 UpdateCharacterVisual
-        // public void UpdateCharacterPosition(long characterId, int x, int y, bool isRedTeam, string name) { ... } // 不再需要，由 ViewModel 驱动
-        // private Ellipse FindCharacterMarker(long characterId) { ... } // 不再需要
-        // private TextBlock FindCharacterLabel(long characterId) { ... } // 不再需要
 
     }
 }

@@ -9,6 +9,8 @@ using System.Linq;
 using System.Collections.Generic;
 using debug_interface.Models;
 using Avalonia.Media;
+using Avalonia;
+using Avalonia.Threading;
 
 
 namespace debug_interface.ViewModels
@@ -35,11 +37,6 @@ namespace debug_interface.ViewModels
         [ObservableProperty]
         private string monstersTeamBuildingInfo = "妖怪队建筑: 无";
 
-        //[ObservableProperty]
-        //private string someBuildingInfo = "";
-
-        //[ObservableProperty]
-        //private string anotherBuildingInfo = "";
 
         [ObservableProperty]
         private int buddhistTeamEconomy = 0;
@@ -51,8 +48,8 @@ namespace debug_interface.ViewModels
         private MapViewModel mapVM;
 
         // 团队角色集合
-        public ObservableCollection<CharacterViewModel> BuddhistsTeamCharacters { get; } = new();
-        public ObservableCollection<CharacterViewModel> MonstersTeamCharacters { get; } = new();
+        public ObservableCollection<CharacterViewModel> BuddhistsTeamCharacters { get; } = new(); // 取经队 TeamID = 0
+        public ObservableCollection<CharacterViewModel> MonstersTeamCharacters { get; } = new();  // 妖怪队 TeamID = 1
 
         //图例项集合
         public ObservableCollection<LegendItem> MapLegendItems { get; } = new();
@@ -60,87 +57,22 @@ namespace debug_interface.ViewModels
         // 默认构造函数
         public MainWindowViewModel() : base() // 调用基类构造函数
         {
-            // 初始化MapViewModel
             MapVM = new MapViewModel();
-
-            // 初始化占位角色
-            InitializePlaceholderCharacters();
-
-            InitializeMapLegend(); // <--- 调用填充图例的方法
+            InitializeMapLegend(); // 初始化图例
 
 
-            // 如果在设计模式下，可以添加一些测试数据覆盖占位符
+            // 设计模式数据 (如果需要，可以手动添加几个用于预览)
             if (Avalonia.Controls.Design.IsDesignMode)
             {
-                InitializeDesignTimeData(); // 设计时数据可以覆盖部分占位符
+                // 可以添加一些设计时数据到集合中，如果需要预览效果
+                BuddhistsTeamCharacters.Add(new CharacterViewModel { Guid = -1, Name = "唐僧(设计)", Hp = 1000, MaxHp = 1000, PosX = 5000, PosY = 5000, TeamId = 0 });
+                MonstersTeamCharacters.Add(new CharacterViewModel { Guid = -7, Name = "九头(设计)", Hp = 1000, MaxHp = 1000, PosX = 45000, PosY = 45000, TeamId = 1 });
             }
         }
 
-        // 带参数的构造函数 (如果使用)
-        // public MainWindowViewModel(Logger? logger, ConfigData? config) : base() // 调用基类构造函数
-        // {
-        // if (logger != null)
-        //     myLogger = logger;
-
-        // // 初始化MapViewModel
-        // MapVM = new MapViewModel();
-
-        // // 初始化占位角色
-        // InitializePlaceholderCharacters();
-
-        // // 如果在设计模式下，可以添加一些测试数据
-        // if (Avalonia.Controls.Design.IsDesignMode)
-        // {
-        //     InitializeDesignTimeData();
-        // }
-        // }
-
-        // 初始化占位符角色
-        private void InitializePlaceholderCharacters()
-        {
-            BuddhistsTeamCharacters.Clear();
-            MonstersTeamCharacters.Clear();
-
-            // PlayerID 0-5 为取经， 7-12 为妖怪？ (规则说 PlayerID=0 是核心)
-            // 假设ID 0 是核心，1-5 是队员
-            // 或者根据 CharacterType 来创建？ 规则里 CharacterType 定义了角色
-            // 更好的方法是创建固定数量的占位符，然后用服务器数据填充
-
-            // 取经队 (唐僧 + 5个队员/猴子)
-            BuddhistsTeamCharacters.Add(CreatePlaceholderCharacter(0, "唐僧?", Protobuf.CharacterType.TangSeng)); // 核心
-            for (int i = 1; i <= 5; i++)
-            {
-                BuddhistsTeamCharacters.Add(CreatePlaceholderCharacter(i, $"取经队员{i}?", Protobuf.CharacterType.NullCharacterType));
-            }
 
 
-            // 妖怪队 (九头元圣 + 5个队员/小妖)
-            MonstersTeamCharacters.Add(CreatePlaceholderCharacter(7, "九头元圣?", Protobuf.CharacterType.JiuLing)); // 核心 (假设ID=7?)
-            for (int i = 8; i <= 12; i++) // 假设ID 8-12
-            {
-                MonstersTeamCharacters.Add(CreatePlaceholderCharacter(i, $"妖怪队员{i}?", Protobuf.CharacterType.NullCharacterType));
-            }
-        }
-
-        // 创建单个占位符角色的辅助方法
-        private CharacterViewModel CreatePlaceholderCharacter(long id, string defaultName, Protobuf.CharacterType type = Protobuf.CharacterType.NullCharacterType)
-        {
-            return new CharacterViewModel
-            {
-                CharacterId = id, // 临时ID或标识符
-                Name = defaultName,
-                Hp = 0,
-                PosX = -1, // 初始位置无效
-                PosY = -1,
-                ActiveState = "未知",
-                // PassiveStates 和 EquipmentInventory 默认为空
-            };
-        }
-
-
-
-
-        // 设计时数据
+        // 设计数据
         private void InitializeDesignTimeData()
         {
             GameLog = "设计模式 - 模拟数据";
@@ -178,198 +110,142 @@ namespace debug_interface.ViewModels
             // ... 可以添加更多设计时数据
         }
 
-        //private void InitializeDesignTimeData()
-        //{
-        //    GameLog = "设计模式 - 模拟数据";
-        //    CurrentTime = "12:34";
-        //    RedScore = 50;
-        //    BlueScore = 30;
-
-        //    // 添加一些测试角色
-        //    for (int i = 0; i < 3; i++)
-        //    {
-        //        BuddhistsTeamCharacters.Add(new CharacterViewModel
-        //        {
-        //            CharacterId = i + 1,
-        //            Name = $"取经队角色{i + 1}",
-        //            Hp = 1000,
-        //            ActiveState = "空置"
-        //        });
-
-        //        MonstersTeamCharacters.Add(new CharacterViewModel
-        //        {
-        //            CharacterId = i + 101,
-        //            Name = $"妖怪队角色{i + 1}",
-        //            Hp = 1200,
-        //            ActiveState = "移动"
-        //        });
-        //    }
-        //}
-
-        // 定时器更新方法
-        //protected override void OnTimerTick(object? sender, EventArgs e)
-        //{
-        //    // 更新当前时间显示
-        //    CurrentTime = DateTime.Now.ToString("HH:mm:ss");
-        //}
-        // // 更新当前时间显示 - 这个逻辑应该在 UpdateGameStatus 里基于服务器时间更新
-        // // CurrentTime = DateTime.Now.ToString("HH:mm:ss"); // 不再需要
-
+        // ViewModels\MainWindowViewModel.cs - UpdateCharacters 方法内
         public void UpdateCharacters()
         {
-            // 记录已更新的角色ID，以便处理未在消息中出现的角色（可能死亡或离开视野）
-            var updatedBuddhistIds = new HashSet<long>();
-            var updatedMonsterIds = new HashSet<long>();
+            var currentFrameGuids = new HashSet<long>(); // 存储本帧出现的所有角色 Guid
 
             lock (drawPicLock) // 确保线程安全
             {
+                // myLogger?.LogDebug($"开始更新角色视图模型，服务器原始数据数量: {listOfCharacters.Count}");
+
+                // 1. 更新或添加角色
                 foreach (var data in listOfCharacters) // listOfCharacters 来自 ViewModelBase
                 {
-                    CharacterViewModel? targetCharacter = null;
-                    ObservableCollection<CharacterViewModel>? targetList = null;
+                    currentFrameGuids.Add(data.Guid); // 记录本帧出现的 Guid
 
-                    // 根据 TeamId 选择列表并查找角色
-                    if (data.TeamId == (int)PlayerTeam.BuddhistsTeam)
+                    ObservableCollection<CharacterViewModel>? targetList = null;
+                    CharacterViewModel? existingCharacter = null;
+
+                    // *** 修正 Team ID 映射 ***
+                    if (data.TeamId == 0) // Team 0 = 取经队 (Buddhists)
                     {
                         targetList = BuddhistsTeamCharacters;
-                        targetCharacter = targetList.FirstOrDefault(c => c.CharacterId == data.PlayerId);
-                        updatedBuddhistIds.Add(data.PlayerId);
                     }
-                    else if (data.TeamId == (int)PlayerTeam.MonstersTeam)
+                    else if (data.TeamId == 1) // Team 1 = 妖怪队 (Monsters)
                     {
                         targetList = MonstersTeamCharacters;
-                        targetCharacter = targetList.FirstOrDefault(c => c.CharacterId == data.PlayerId);
-                        updatedMonsterIds.Add(data.PlayerId);
                     }
-
-                    // 如果找到了对应的角色ViewModel (应该总能找到，因为有占位符)
-                    if (targetCharacter != null)
+                    else
                     {
-                        // 更新角色信息
-                        targetCharacter.Name = GetCharacterName(data.CharacterType); // 更新名字
-                        targetCharacter.Hp = data.Hp;
-                        targetCharacter.PosX = data.X / 1000; // 转换为网格坐标 X
-                        targetCharacter.PosY = data.Y / 1000; // 转换为网格坐标 Y
-                        targetCharacter.ActiveState = data.CharacterActiveState.ToString(); // 主动状态
-
-                        // 清空并更新被动状态
-                        targetCharacter.PassiveStates.Clear();
-                        if (data.BlindState != CharacterState.NullCharacterState)
-                            targetCharacter.PassiveStates.Add($"致盲({data.BlindTime}ms)"); // 显示时间
-                        if (data.StunnedState != CharacterState.NullCharacterState)
-                            targetCharacter.PassiveStates.Add($"眩晕({data.StunnedTime}ms)");
-                        if (data.InvisibleState != CharacterState.NullCharacterState)
-                            targetCharacter.PassiveStates.Add($"隐身({data.InvisibleTime}ms)");
-                        if (data.BurnedState != CharacterState.NullCharacterState)
-                            targetCharacter.PassiveStates.Add($"燃烧({data.BurnedTime}ms)");
-                        // 添加其他状态，如击退、定身、死亡等
-                        if (data.CharacterPassiveState == CharacterState.KnockedBack) // 使用 CharacterPassiveState
-                            targetCharacter.PassiveStates.Add("击退"); // 击退通常是瞬时的，没有时间
-                        if (data.CharacterPassiveState == CharacterState.Stunned) // 确认 Stunned 是用 StunnedState 还是 PassiveState
-                            targetCharacter.PassiveStates.Add($"定身({data.StunnedTime}ms)"); // 假设 Stunned 对应定身
-                        if (data.DeceasedState != CharacterState.NullCharacterState) // 死亡状态
-                            targetCharacter.PassiveStates.Add("已死亡");
-
-
-                        // 清空并更新装备
-
-                        targetCharacter.EquipmentInventory.Clear();
-                        if (data.ShieldEquipment > 0) // 护盾显示剩余值
-                            targetCharacter.EquipmentInventory.Add(new EquipmentItem("护盾", data.ShieldEquipment));
-                        if (data.ShoesEquipment > 0) // 鞋子是状态，显示剩余时间
-                            targetCharacter.PassiveStates.Add($"鞋子({~(data.ShoesEquipmentTime / 1000)}s)"); // 显示秒
-                        // 其他装备如净化、隐身、狂暴是 Buff 或一次性效果，看是否需要在装备栏显示
-                        if (data.PurificationEquipmentTime > 0)
-                            targetCharacter.PassiveStates.Add($"净化({~(data.PurificationEquipmentTime / 1000)}s)"); // 显示秒
-                        if (data.AttackBuffTime > 0)
-                            targetCharacter.PassiveStates.Add($"攻击Buff({~(data.AttackBuffTime / 1000)}s)");
-                        if (data.SpeedBuffTime > 0)
-                            targetCharacter.PassiveStates.Add($"移速Buff({~(data.SpeedBuffTime / 1000)}s)");
-                        if (data.VisionBuffTime > 0)
-                            targetCharacter.PassiveStates.Add($"视野Buff({~(data.VisionBuffTime / 1000)}s)");
-
-
-                        // 触发 PropertyChanged 以更新UI绑定 (虽然 ObservableObject 会自动做，但显式调用一下没坏处)(不行嘻嘻)
-                        //targetCharacter.OnPropertyChanged(nameof(CharacterViewModel.DisplayStates));
-                        //targetCharacter.OnPropertyChanged(nameof(CharacterViewModel.DisplayEquipments));
+                        myLogger?.LogWarning($"收到未知 TeamID: {data.TeamId} 的角色消息 (Guid: {data.Guid})");
+                        continue; // 跳过未知队伍
                     }
-                    // else
-                    // {
-                    //     // 如果没找到，可能是新的 PlayerID 或逻辑错误，可以记录日志
-                    //     myLogger?.LogWarning($"未找到 PlayerID {data.PlayerId} (Team {data.TeamId}) 的占位符 ViewModel。");
-                    // }
+
+                    // 在目标列表中查找现有角色
+                    existingCharacter = targetList.FirstOrDefault(c => c.Guid == data.Guid);
+
+                    if (existingCharacter == null) // 处理添加新角色
+                    {
+                        var newCharacter = new CharacterViewModel();
+                        newCharacter.Guid = data.Guid;
+                        UpdateCharacterViewModel(newCharacter, data); // 使用辅助方法填充数据
+
+                        myLogger?.LogInfo($"添加新角色到列表: Guid={newCharacter.Guid}, Name='{newCharacter.Name}', TeamId={newCharacter.TeamId} ({(data.TeamId == 0 ? "Buddhists" : "Monsters")})"); // 添加队伍名日志
+
+                        Dispatcher.UIThread.InvokeAsync(() => targetList.Add(newCharacter));
+                    }
+                    else // 更新现有角色
+                    {
+                        UpdateCharacterViewModel(existingCharacter, data);
+                    }
                 }
 
-                // 处理未在消息中出现的角色（可能死亡、离开视野或未出生）
-                // 我们可以选择将他们标记为“未知”或“死亡”（如果之前是活的）
-                ResetUnseenCharacters(BuddhistsTeamCharacters, updatedBuddhistIds);
-                ResetUnseenCharacters(MonstersTeamCharacters, updatedMonsterIds);
-            }
+                // 2. 处理消失的角色 (从两个列表中移除)
+                RemoveUnseenCharacters(BuddhistsTeamCharacters, currentFrameGuids);
+                RemoveUnseenCharacters(MonstersTeamCharacters, currentFrameGuids);
+
+                // myLogger?.LogDebug("角色视图模型更新循环结束。");
+            } // lock 结束
         }
+
+        private void UpdateCharacterViewModel(CharacterViewModel vm, MessageOfCharacter data)
+        {
+            vm.CharacterId = data.PlayerId; // 可以保留 PlayerId
+            vm.TeamId = data.TeamId;
+            vm.CharacterType = data.CharacterType;
+            vm.Name = GetCharacterName(data.CharacterType);
+            vm.MaxHp = GetCharacterMaxHp(data.CharacterType);
+            vm.Hp = data.Hp;
+            vm.PosX = data.X; // 存储原始 X
+            vm.PosY = data.Y; // 存储原始 Y
+            vm.ActiveState = data.CharacterActiveState.ToString();
+
+
+            // 更新主动状态
+            if (data.CharacterActiveState == CharacterState.NullCharacterState)
+            {
+                vm.ActiveState = "空闲/未知"; // 或者更合适的描述
+            }
+            else
+            {
+                vm.ActiveState = data.CharacterActiveState.ToString();
+            }
+
+            vm.StatusEffects.Clear();
+
+            // 更新被动状态 (省略重复代码)
+            if (data.IsBlind) vm.StatusEffects.Add($"致盲 ({data.BlindTime}ms)");
+            if (data.IsStunned) vm.StatusEffects.Add($"眩晕 ({data.StunnedTime}ms)"); // 合并显示
+            if (data.IsInvisible) vm.StatusEffects.Add($"隐身 ({data.InvisibleTime}ms)");
+            if (data.IsBurned) vm.StatusEffects.Add($"燃烧 ({data.BurnedTime}ms)");
+            if (data.CharacterPassiveState == CharacterState.KnockedBack) vm.StatusEffects.Add("被击退"); // 更明确的描述
+
+            // **死亡状态**
+            if (vm.Hp <= 0)
+            {
+                vm.StatusEffects.Add("已死亡");
+            }
+
+            // **护盾**
+            if (data.ShieldEquipment > 0)
+            {
+                vm.StatusEffects.Add($"护盾剩余: {data.ShieldEquipment}");
+            }
+
+
+            // **装备/Buff 效果 (带时间)**
+            if (data.ShoesTime > 0) vm.StatusEffects.Add($"加速 ({data.ShoesTime / 1000}s)");
+            if (data.IsPurified) vm.StatusEffects.Add($"净化效果 ({data.PurifiedTime / 1000}s)");
+            if (data.IsBerserk) vm.StatusEffects.Add($"狂暴效果 ({data.BerserkTime / 1000}s)");
+            if (data.AttackBuffTime > 0) vm.StatusEffects.Add($"攻击Buff({data.AttackBuffNum}) ({data.AttackBuffTime / 1000}s)");
+            if (data.SpeedBuffTime > 0) vm.StatusEffects.Add($"移速Buff ({data.SpeedBuffTime / 1000}s)");
+            if (data.VisionBuffTime > 0) vm.StatusEffects.Add($"视野Buff ({data.VisionBuffTime / 1000}s)");
+
+            vm.EquipmentInventory.Clear();
+        }
+
 
         // 重置未出现在当前帧消息中的角色状态
-        private void ResetUnseenCharacters(ObservableCollection<CharacterViewModel> teamList, HashSet<long> seenIds)
+        private void RemoveUnseenCharacters(ObservableCollection<CharacterViewModel> characterList, HashSet<long> seenGuids)
         {
-            foreach (var character in teamList)
+            // 使用 ToList() 创建副本进行迭代，因为不能在迭代时修改集合
+            var charactersToRemove = characterList.Where(c => !seenGuids.Contains(c.Guid)).ToList();
+
+            if (charactersToRemove.Any())
             {
-                if (!seenIds.Contains(character.CharacterId))
+                // *** 确保在 UI 线程上移除 ***
+                Dispatcher.UIThread.InvokeAsync(() =>
                 {
-                    // 如果角色之前是“活”的（例如有HP，不在地图外），现在可能死亡或离开视野
-                    // if (character.Hp > 0 && character.PosX >= 0)
-                    // {
-                    //     // 这里可以根据游戏逻辑判断是标记为“未知”、“离开视野”还是保留最后状态
-                    //     // 简单起见，我们先重置部分状态，或者标记为未知
-                    //     character.ActiveState = "未知/离线";
-                    //     character.Hp = 0; // 或者保持最后血量？
-                    //     character.PosX = -1; // 移出地图
-                    //     character.PosY = -1;
-                    //     character.PassiveStates.Clear();
-                    //     character.EquipmentInventory.Clear();
-                    // }
-                    // 或者，如果角色本来就是占位符，则保持占位符状态
-                    if (character.Name.EndsWith("?")) // 检查是否是初始占位符
+                    foreach (var character in charactersToRemove)
                     {
-                        // 保持占位符状态不变
+                        myLogger?.LogInfo($"移除消失的角色: Guid={character.Guid}, Name='{character.Name}'");
+                        characterList.Remove(character);
+                        // MapView 中的 CollectionChanged 事件会处理 UI 元素的移除
                     }
-                    else // 如果是之前更新过的角色，现在看不到了
-                    {
-                        // 决定如何处理，例如标记为死亡或未知
-                        if (!character.PassiveStates.Contains("已死亡")) // 如果之前没死
-                        {
-                            character.ActiveState = "视野丢失/死亡?";
-                            // character.PosX = -1; // 不再地图上显示
-                            // character.PosY = -1;
-                            // 可以不清空血量，显示最后状态
-                        }
-                    }
-                }
+                });
             }
         }
-
-        //不再需要这个方法，更新逻辑合并到 UpdateCharacters
-        //private void UpdateOrAddCharacter(ObservableCollection<CharacterViewModel> list, CharacterViewModel newCharacter)
-        //{
-        //    // 尝试找到现有角色并更新
-        //    var existing = list.FirstOrDefault(c => c.CharacterId == newCharacter.CharacterId);
-        //    if (existing != null)
-        //    {
-        //        existing.Hp = newCharacter.Hp;
-        //        existing.PosX = newCharacter.PosX;
-        //        existing.PosY = newCharacter.PosY;
-        //        existing.ActiveState = newCharacter.ActiveState;
-        //        existing.PassiveStates.Clear();
-        //        foreach (var state in newCharacter.PassiveStates)
-        //            existing.PassiveStates.Add(state);
-        //        existing.EquipmentInventory.Clear();
-        //        foreach (var equip in newCharacter.EquipmentInventory)
-        //            existing.EquipmentInventory.Add(equip);
-        //    }
-        //    else
-        //    {
-        //        // 添加新角色
-        //        list.Add(newCharacter);
-        //    }
-        //}
 
 
         // 获取角色名称的辅助方法 (根据 Proto MessageType.proto)
@@ -394,25 +270,25 @@ namespace debug_interface.ViewModels
             };
         }
 
-        //private string GetCharacterName(CharacterType type)
-        //{
-        //    return type switch
-        //    {
-        //        CharacterType.TangSeng => "唐僧",
-        //        CharacterType.SunWukong => "孙悟空",
-        //        CharacterType.ZhuBajie => "猪八戒",
-        //        CharacterType.ShaWujing => "沙悟净",
-        //        CharacterType.BaiLongma => "白龙马",
-        //        CharacterType.Monkid => "小僧",
-        //        CharacterType.JiuLing => "九灵",
-        //        CharacterType.HongHaier => "红孩儿",
-        //        CharacterType.NiuMowang => "牛魔王",
-        //        CharacterType.TieShan => "铁扇",
-        //        CharacterType.ZhiZhujing => "蜘蛛精",
-        //        CharacterType.Pawn => "小妖",
-        //        _ => "未知角色"
-        //    };
-        //}
+        private int GetCharacterMaxHp(Protobuf.CharacterType type)
+        {
+            return type switch
+            {
+                CharacterType.TangSeng => 1000,
+                CharacterType.SunWukong => 200,
+                CharacterType.ZhuBajie => 300,
+                CharacterType.ShaWujing => 150,
+                CharacterType.BaiLongma => 150,
+                CharacterType.Monkid => 50, // 猴子猴孙
+                CharacterType.JiuLing => 1000, // 九头元圣
+                CharacterType.HongHaier => 200,
+                CharacterType.NiuMowang => 300,
+                CharacterType.TieShan => 150, // 铁扇公主
+                CharacterType.ZhiZhujing => 150, // 蜘蛛精 (规则未明确，暂定150)
+                CharacterType.Pawn => 50,     // 无名小妖
+                _ => 1 // 默认为1防止除零错误或无效进度条
+            };
+        }
 
 
         // 地图元素更新方法
@@ -423,8 +299,9 @@ namespace debug_interface.ViewModels
 
             lock (drawPicLock)
             {
+
                 // 更新地图地形 (如果需要，基于 MapMessage)
-                // MapVM.UpdateMap(receivedMapMessage); // 假设 receivedMapMessage 在某处获得
+                //MapVM.UpdateMap(MapMessage); // 假设 receivedMapMessage 在某处获得
 
                 // 清除动态元素的旧状态 (例如，一个格子之前是建筑，现在不是了)
                 // 最好在 MapViewModel 中处理：在更新前重置所有动态格子的状态为基础地形
@@ -618,34 +495,26 @@ namespace debug_interface.ViewModels
         // 填充图例数据的方法
         private void InitializeMapLegend()
         {
-            MapLegendItems.Clear(); // 清空旧数据
-
-            // 添加基础地形
+            MapLegendItems.Clear();
+            // ... (地形和其他) ...
             MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.Cyan), "家园"));
-            MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.White), "空地", Brushes.LightGray, 1)); // 白色加边框
+            MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.White), "空地", Brushes.LightGray, new Thickness(1)));
             MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.DarkGray), "障碍物"));
             MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.LightGreen), "草丛"));
-            MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.LightGray), "未知区域", Brushes.DimGray, 1));
+            MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.LightGray), "未知区域", Brushes.DimGray, new Thickness(1)));
 
-            // 添加建筑 (队伍)
-            MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.DarkRed), "取经队建筑"));
-            MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.DarkBlue), "妖怪队建筑"));
-
-            // 添加陷阱 (队伍)
-            MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.IndianRed), "取经队陷阱"));
-            MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.CornflowerBlue), "妖怪队陷阱"));
-
-            // 添加经济资源
+            // *** 修正队伍颜色和标签 ***
+            MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.DarkRed), "取经队建筑 (Team 0)")); // 取经队 = 红色
+            MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.DarkBlue), "妖怪队建筑 (Team 1)")); // 妖怪队 = 蓝色
+            MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.IndianRed), "取经队陷阱 (Team 0)")); // 取经队 = 红色系
+            MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.CornflowerBlue), "妖怪队陷阱 (Team 1)")); // 妖怪队 = 蓝色系
+                                                                                                              // ... (资源) ...
             MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.Gold), "经济资源"));
-
-            // 添加加成资源 (根据 MapViewModel 中的颜色)
             MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.LightPink), "加成 (生命泉)"));
             MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.OrangeRed), "加成 (狂战士)"));
             MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.LightSkyBlue), "加成 (疾步灵)"));
             MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.MediumPurple), "加成 (视野灵)"));
             MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.Purple), "加成 (未知)"));
-
-            // 根据需要添加更多条目
         }
 
     }
