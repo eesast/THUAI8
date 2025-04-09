@@ -37,13 +37,6 @@ namespace debug_interface.Models
         [ObservableProperty]
         private string displayText = ""; // 用于显示血量等
 
-        [ObservableProperty]
-        private string toolTipText = ""; // 用于鼠标悬浮提示
 
-        // 可以选择性地添加血量信息，如果需要更复杂的绑定
-        // [ObservableProperty]
-        // private int currentHp;
-        // [ObservableProperty]
-        // private int maxHp;
     }
 }

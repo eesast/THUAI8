@@ -30,10 +30,10 @@ namespace debug_interface.ViewModels
         [ObservableProperty]
         private ObservableCollection<MapCell> mapCells = new();
 
-        // 添加缺失的字段
-        private Canvas? characterCanvas;
-        private Dictionary<string, Grid> characterElements = new Dictionary<string, Grid>();
-        private MainWindowViewModel? viewModel;
+        //// 添加缺失的字段
+        //private Canvas? characterCanvas;
+        //private Dictionary<string, Grid> characterElements = new Dictionary<string, Grid>();
+        //private MainWindowViewModel? viewModel;
 
         public MapViewModel()
         {
@@ -42,60 +42,60 @@ namespace debug_interface.ViewModels
         }
 
         // 设置Canvas和ViewModel引用的方法
-        public void SetCanvasAndViewModel(Canvas canvas, MainWindowViewModel vm)
-        {
-            characterCanvas = canvas;
-            viewModel = vm;
-            RefreshCharacters();
-        }
+        //public void SetCanvasAndViewModel(Canvas canvas, MainWindowViewModel vm)
+        //{
+        //    characterCanvas = canvas;
+        //    viewModel = vm;
+        //    RefreshCharacters();
+        //}
 
         // 更新角色位置的方法
-        private void UpdateCharacterPosition(Grid element, int x, int y)
-        {
-            if (characterCanvas == null) return;
+        //private void UpdateCharacterPosition(Grid element, int x, int y)
+        //{
+        //    if (characterCanvas == null) return;
 
-            // 更新位置
-            Canvas.SetLeft(element, x);
-            Canvas.SetTop(element, y);
-        }
+        //    // 更新位置
+        //    Canvas.SetLeft(element, x);
+        //    Canvas.SetTop(element, y);
+        //}
 
-        private void InitializeCharacters(IEnumerable<CharacterViewModel> characters, Color color)
-        {
-            if (characterCanvas == null || viewModel == null) return;
+        //private void InitializeCharacters(IEnumerable<CharacterViewModel> characters, Color color)
+        //{
+        //    if (characterCanvas == null || viewModel == null) return;
 
-            foreach (var character in characters)
-            {
-                var id = $"{color.ToString()}_{character.Name}";
-                if (!characterElements.ContainsKey(id))
-                {
-                    var grid = new Grid { Width = 15, Height = 15 };
-                    var ellipse = new Ellipse
-                    {
-                        Width = 15,
-                        Height = 15,
-                        Fill = new SolidColorBrush(Colors.White),
-                        Stroke = new SolidColorBrush(color),
-                        StrokeThickness = 2,
-                        Tag = character.Name
-                    };
-                    grid.Children.Add(ellipse);
-                    ToolTip.SetTip(grid, character.Name);
-                    characterCanvas.Children.Add(grid);
-                    characterElements[id] = grid;
-                }
+        //    foreach (var character in characters)
+        //    {
+        //        var id = $"{color.ToString()}_{character.Name}";
+        //        if (!characterElements.ContainsKey(id))
+        //        {
+        //            var grid = new Grid { Width = 15, Height = 15 };
+        //            var ellipse = new Ellipse
+        //            {
+        //                Width = 15,
+        //                Height = 15,
+        //                Fill = new SolidColorBrush(Colors.White),
+        //                Stroke = new SolidColorBrush(color),
+        //                StrokeThickness = 2,
+        //                Tag = character.Name
+        //            };
+        //            grid.Children.Add(ellipse);
+        //            ToolTip.SetTip(grid, character.Name);
+        //            characterCanvas.Children.Add(grid);
+        //            characterElements[id] = grid;
+        //        }
 
-                var element = characterElements[id];
-                UpdateCharacterPosition(element, character.PosX, character.PosY);
+        //        var element = characterElements[id];
+        //        UpdateCharacterPosition(element, character.PosX, character.PosY);
 
-                character.PropertyChanged += (s, e) =>
-                {
-                    if (e.PropertyName == nameof(CharacterViewModel.PosX) || e.PropertyName == nameof(CharacterViewModel.PosY))
-                    {
-                        UpdateCharacterPosition(element, character.PosX, character.PosY);
-                    }
-                };
-            }
-        }
+        //        character.PropertyChanged += (s, e) =>
+        //        {
+        //            if (e.PropertyName == nameof(CharacterViewModel.PosX) || e.PropertyName == nameof(CharacterViewModel.PosY))
+        //            {
+        //                UpdateCharacterPosition(element, character.PosX, character.PosY);
+        //            }
+        //        };
+        //    }
+        //}
 
         //初始化地图单元格
         public void InitializeMapCells()
@@ -120,14 +120,23 @@ namespace debug_interface.ViewModels
         // 更新整个地图
         public void UpdateMap(MessageOfMap mapMessage)
         {
+            if (mapMessage == null || mapMessage.Rows == null) return; // 添加空检查
+
+            // 先重置所有非障碍物格子的基础状态，防止旧的建筑/资源信息残留
+            // （或者在 UpdateCellType 中处理，如果 PlaceType 是 Space/Bush 就覆盖旧信息）
+            // 也可以选择在 MainWindowViewModel 更新元素前调用一个 ClearDynamicElements 方法
+
             for (int i = 0; i < mapMessage.Rows.Count && i < GridSize; i++)
             {
-                for (int j = 0; j < mapMessage.Rows[i].Cols.Count && j < GridSize; j++)
+                var row = mapMessage.Rows[i];
+                if (row == null || row.Cols == null) continue;
+
+                for (int j = 0; j < row.Cols.Count && j < GridSize; j++)
                 {
                     int index = i * GridSize + j;
-                    if (index < MapCells.Count)
+                    if (index >= 0 && index < MapCells.Count) // 增加 index >= 0 检查
                     {
-                        UpdateCellType(i, j, mapMessage.Rows[i].Cols[j]);
+                        UpdateCellType(i, j, row.Cols[j]);
                     }
                 }
             }
@@ -136,48 +145,60 @@ namespace debug_interface.ViewModels
         private void UpdateCellType(int x, int y, PlaceType placeType)
         {
             int index = x * GridSize + y;
-            if (index >= 0 && index < MapCells.Count)
-            {
-                var cell = MapCells[index];
-                cell.DisplayText = ""; // 重置文本
-                cell.ToolTipText = ""; // 重置提示
+            // index 检查已在外层 UpdateMap 完成，此处不再重复
+            var cell = MapCells[index];
 
-                // 根据地形类型设置单元格属性
-                switch (placeType)
-                {
-                    case PlaceType.Home: // 出生点通常也是建筑或特殊区域
-                        cell.CellType = MapCellType.Building; // 假设是建筑
-                        cell.DisplayColor = new SolidColorBrush(Colors.Cyan); // 特殊颜色标记出生点
-                        cell.ToolTipText = "家园";
-                        break;
-                    case PlaceType.Space:
-                        cell.CellType = MapCellType.OpenLand;
-                        cell.DisplayColor = new SolidColorBrush(Colors.White);
-                        cell.ToolTipText = "空地";
-                        break;
-                    case PlaceType.Barrier:
-                        cell.CellType = MapCellType.Obstacle;
-                        cell.DisplayColor = new SolidColorBrush(Colors.DarkGray);
-                        cell.ToolTipText = "障碍物";
-                        break;
-                    case PlaceType.Bush:
-                        cell.CellType = MapCellType.Grass;
-                        cell.DisplayColor = new SolidColorBrush(Colors.LightGreen);
-                        cell.ToolTipText = "草丛";
-                        break;
-                    // 资源和建筑类型由特定的 UpdateXXX 方法处理，这里不再覆盖颜色和类型
-                    // case PlaceType.EconomyResource:
-                    // case PlaceType.AdditionResource:
-                    // case PlaceType.Construction:
-                    // case PlaceType.Trap:
-                    //     break; // 由其他方法设置详细信息
-                    default:
-                        cell.CellType = MapCellType.OpenLand; // 未知视为OpenLand
-                        cell.DisplayColor = new SolidColorBrush(Colors.LightGray); // 用浅灰标记未知
-                        cell.ToolTipText = "空地";
-                        break;
-                }
-                // 如果placeType是资源/建筑/陷阱，后续的 UpdateXXX 会覆盖这里的设置
+            // !!! 关键: 只有当地形是基础类型时才重置文本和Tooltip
+            // 如果是建筑/资源等，它们的专用更新方法会设置文本和Tooltip
+            bool isBaseTerrain = placeType == PlaceType.Space ||
+                                 placeType == PlaceType.Barrier ||
+                                 placeType == PlaceType.Bush ||
+                                 placeType == PlaceType.Home; // Home 可能被建筑覆盖，但可以先设个基础
+
+            if (isBaseTerrain)
+            {
+                cell.DisplayText = ""; // 重置文本
+
+            }
+
+            // 根据地形类型设置单元格属性
+            switch (placeType)
+            {
+                case PlaceType.Home:
+                    cell.CellType = MapCellType.Building; // 假设家也是一种建筑区域
+                    cell.DisplayColor = new SolidColorBrush(Colors.Cyan); // 特殊颜色标记家园
+
+                    break;
+                case PlaceType.Space:
+                    cell.CellType = MapCellType.OpenLand;
+                    cell.DisplayColor = new SolidColorBrush(Colors.White);
+
+                    break;
+                case PlaceType.Barrier:
+                    cell.CellType = MapCellType.Obstacle;
+                    cell.DisplayColor = new SolidColorBrush(Colors.DarkGray);
+
+                    break;
+                case PlaceType.Bush:
+                    cell.CellType = MapCellType.Grass;
+                    cell.DisplayColor = new SolidColorBrush(Colors.LightGreen);
+
+                    break;
+                // 其他类型 (Resource, Construction, Trap) 由特定方法处理颜色、文本、提示
+                // 不在此处设置默认值，以免覆盖后续的详细信息
+                case PlaceType.EconomyResource:
+                case PlaceType.AdditionResource:
+                case PlaceType.Construction:
+                case PlaceType.Trap:
+                    // 这里可以设置一个临时的 CellType，如果需要的话
+                    // cell.CellType = MapCellType.Resource; // or Building or Trap
+                    // 但颜色、文本、提示由 UpdateXXXCell 设置
+                    break;
+                default: // 未知类型
+                    cell.CellType = MapCellType.OpenLand; // 视为OpenLand
+                    cell.DisplayColor = new SolidColorBrush(Colors.LightGray); // 用浅灰标记未知区域
+                    cell.DisplayText = "?"; // 可以显示一个问号
+                    break;
             }
         }
 
@@ -228,20 +249,20 @@ namespace debug_interface.ViewModels
         //    }
         //}
 
-        public void UpdateCharacterPositions(IEnumerable<CharacterViewModel> buddhistsTeam, IEnumerable<CharacterViewModel> monstersTeam)
-        {
-            // 使用System.Linq的Concat扩展方法
-            var allCharacters = buddhistsTeam.Concat(monstersTeam);
+        //public void UpdateCharacterPositions(IEnumerable<CharacterViewModel> buddhistsTeam, IEnumerable<CharacterViewModel> monstersTeam)
+        //{
+        //    // 使用System.Linq的Concat扩展方法
+        //    var allCharacters = buddhistsTeam.Concat(monstersTeam);
 
-            foreach (var character in allCharacters)
-            {
-                int index = (int)(character.PosX * GridSize + character.PosY);
-                if (index >= 0 && index < MapCells.Count)
-                {
-                    MapCells[index].DisplayText = character.Name;
-                }
-            }
-        }
+        //    foreach (var character in allCharacters)
+        //    {
+        //        int index = (int)(character.PosX * GridSize + character.PosY);
+        //        if (index >= 0 && index < MapCells.Count)
+        //        {
+        //            MapCells[index].DisplayText = character.Name;
+        //        }
+        //    }
+        //}
 
 
         // 更新建筑
@@ -263,7 +284,7 @@ namespace debug_interface.ViewModels
                 // TODO: 获取建筑的最大HP (可能需要从游戏规则或新消息字段获取)
                 int maxHp = GetBuildingMaxHp(buildingType); // 需要实现这个辅助方法
                 cell.DisplayText = $"{hp}/{maxHp}";
-                cell.ToolTipText = $"类型: {buildingType}\n队伍: {team}\n血量: {hp}/{maxHp}";
+                //cell.ToolTipText = $"类型: {buildingType}\n队伍: {team}\n血量: {hp}/{maxHp}";
 
                 // 触发UI更新 (如果MapCell的属性变更没有自动通知)
                 // OnPropertyChanged(nameof(MapCells)); // ObservableCollection通常会自动处理子项变更通知，但如果直接修改子项属性，有时需要手动触发
@@ -293,14 +314,14 @@ namespace debug_interface.ViewModels
             {
                 var cell = MapCells[index];
                 cell.CellType = MapCellType.Trap; // 使用新的类型
-                                                  //cell.DisplayText = trapType.Substring(0, 1);
+                //cell.DisplayText = trapType.Substring(0, 1);
                 cell.DisplayColor = team == "取经队"
                     ? new SolidColorBrush(Colors.IndianRed) // 可以为不同陷阱设置不同颜色
                     : new SolidColorBrush(Colors.CornflowerBlue);
 
                 // 更新Tooltip (陷阱没有血量)
                 cell.DisplayText = ""; // 陷阱通常不显示血量文本
-                cell.ToolTipText = $"类型: {trapType}\n队伍: {team}";
+                //cell.ToolTipText = $"类型: {trapType}\n队伍: {team}";
 
                 // OnPropertyChanged(nameof(MapCells));
             }
@@ -335,7 +356,7 @@ namespace debug_interface.ViewModels
                 // 更新HP和Tooltip
                 int maxResource = 10000; // 根据规则，经济资源上限1w
                 cell.DisplayText = $"{process}/{maxResource}";
-                cell.ToolTipText = $"类型: {resourceType}\n剩余量: {process}/{maxResource}";
+                //cell.ToolTipText = $"类型: {resourceType}\n剩余量: {process}/{maxResource}";
 
 
                 // OnPropertyChanged(nameof(MapCells));
@@ -390,7 +411,7 @@ namespace debug_interface.ViewModels
                 // TODO: 获取加成资源Boss的最大HP (可能需要从游戏规则或新消息字段获取)
                 int maxHp = GetAdditionResourceMaxHp(resourceName); // 需要实现此辅助方法
                 cell.DisplayText = $"{hp}/{maxHp}";
-                cell.ToolTipText = $"类型: {resourceName} (Boss)\n血量: {hp}/{maxHp}";
+                //cell.ToolTipText = $"类型: {resourceName} (Boss)\n血量: {hp}/{maxHp}";
 
                 // OnPropertyChanged(nameof(MapCells));
             }
@@ -422,16 +443,16 @@ namespace debug_interface.ViewModels
         //    }
         //}
 
-        private void RefreshCharacters()
-        {
-            if (characterCanvas == null || viewModel == null) return;
+        //private void RefreshCharacters()
+        //{
+        //    if (characterCanvas == null || viewModel == null) return;
 
-            characterCanvas.Children.Clear();
-            characterElements.Clear();
+        //    characterCanvas.Children.Clear();
+        //    characterElements.Clear();
 
-            InitializeCharacters(viewModel.BuddhistsTeamCharacters, Colors.Red);
-            InitializeCharacters(viewModel.MonstersTeamCharacters, Colors.Blue);
-        }
+        //    InitializeCharacters(viewModel.BuddhistsTeamCharacters, Colors.Red);
+        //    InitializeCharacters(viewModel.MonstersTeamCharacters, Colors.Blue);
+        //}
 
 
 
