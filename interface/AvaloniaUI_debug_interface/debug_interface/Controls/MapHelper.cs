@@ -149,13 +149,6 @@ namespace debug_interface.Controls
                             Mode = BindingMode.OneWay
                         };
 
-                        // *** Bind ToolTip property ***
-                        rectangle[!ToolTip.TipProperty] = new Binding(nameof(MapCell.ToolTipText))
-                        {
-                            Source = cell,
-                            Mode = BindingMode.OneWay
-                        };
-
                         // Create TextBlock
                         var textBlock = new TextBlock
                         {
