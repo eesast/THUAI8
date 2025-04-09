@@ -253,6 +253,9 @@ public class Character : Movable, ICharacter
         Shoes = new(0);
         Shield = new(0);
         NiuShield = new(0);
+        Shield.SetMaxV(GameData.MaxShield);
+        NiuShield.SetMaxV(GameData.MaxNiuShield);
+        Shoes.SetMaxV(GameData.MaxShoes);
         AttackSize = new(Occupation.BaseAttackSize);
         HP = new(Occupation.MaxHp);
         AttackPower = new(Occupation.AttackPower);
