@@ -19,20 +19,20 @@ var color = [
 ];
 
 const placeType = {
-    Home: 0,
-    Space: 1,
-    Barrier: 2,
-    Bush: 3,
-    E_Resource: 4,
-    A_Resource: 5,
-    Construction: 6,
+    Home: 1,
+    Space: 2,
+    Barrier: 3,
+    Bush: 4,
+    E_Resource: 5,
+    A_Resource: 6,
+    Construction: 7,
 };
 
 function draw() {
     ctx.clearRect(0, 0, 500, 500);
     for (var i = 0; i < 50; i++) {
         for (var j = 0; j < 50; j++) {
-            ctx.fillStyle = color[map[i][j]];
+            ctx.fillStyle = color[map[i][j]-1];
             ctx.fillRect(i * 10, j * 10, 10, 10);
         }
     }
@@ -46,31 +46,31 @@ canvas.onmousedown = function (e) {
 }
 
 document.getElementById("space").onclick = function () {
-    currentColor = 0;
+    currentColor = 2;
     document.getElementById("current").innerHTML = "当前：Space";
 }
 document.getElementById("barrier").onclick = function () {
-    currentColor = 1;
+    currentColor = 3;
     document.getElementById("current").innerHTML = "当前：Barrier";
 }
 document.getElementById("bush").onclick = function () {
-    currentColor = 2;
+    currentColor = 4;
     document.getElementById("current").innerHTML = "当前：Bush";
 }
 document.getElementById("Aresource").onclick = function () {
-    currentColor = 3;
+    currentColor = 6;
     document.getElementById("current").innerHTML = "当前：A_Resource";
 }
 document.getElementById("Eresource").onclick = function () {
-    currentColor = 4;
+    currentColor = 5;
     document.getElementById("current").innerHTML = "当前：E_Resource";
 }
 document.getElementById("construction").onclick = function () {
-    currentColor = 5;
+    currentColor = 7;
     document.getElementById("current").innerHTML = "当前：Construction";
 }
 document.getElementById("home").onclick = function () {
-    currentColor = 7;
+    currentColor = 1;
     document.getElementById("current").innerHTML = "当前：Home";
 }
 
@@ -131,7 +131,7 @@ function saveAsPng() {
 function isEmptyNearby(x, y, radius) {
     for (var i = (x - radius >= 0 ? x - radius : 0); i <= (x + radius <= 49 ? x + radius : 49); i++) {
         for (var j = (y - radius >= 0 ? y - radius : 0); j <= (y + radius <= 49 ? y + radius : 49); j++) {
-            if (map[i][j] != 1) {
+            if (map[i][j] != 2) {
                 return false;
             }
         }
@@ -225,7 +225,7 @@ function generateConstruction(num = 5) {
 function generateBush(prob = 0.015, crossBonus = 23) {
     for (var i = 0; i < 50; i++) {
         for (var j = 0; j < 50; j++) {
-            if (map[i][j] == 1 && Math.random() < prob * (haveSthCross(i, j, 1, placeType.Bush) * crossBonus + 1)) {
+            if (map[i][j] == 2 && Math.random() < prob * (haveSthCross(i, j, 1, placeType.Bush) * crossBonus + 1)) {
                 map[i][j] = placeType.Bush;
                 map[49 - i][49 - j] = placeType.Bush;
             }
@@ -236,11 +236,11 @@ function generateBush(prob = 0.015, crossBonus = 23) {
 function generateBarrier(prob = 0.01, crossBonus = 40) {
     for (var i = 2; i < 48; i++) {
         for (var j = 2; j < 48; j++) {
-            if ((map[i][j] == 1 || map[i][j] == 3) &&
+            if ((map[i][j] == 2 || map[i][j] == 4) &&
                 !haveSthNearby(i, j, 1, placeType.Home) &&
                 Math.random() < prob * (haveSthCross(i, j, 1, placeType.Barrier) * (haveSthCross(i, j, 1, placeType.Barrier) > 1 ? 0 : crossBonus) + 1)) {
-                map[i][j] = 2;
-                map[49 - i][49 - j] = 2;
+                map[i][j] = 3;
+                map[49 - i][49 - j] = 3;
             }
         }
     }
@@ -250,7 +250,7 @@ function clearCanvas() {
     for (var i = 0; i < 50; i++) {
         map[i] = new Array(50);
         for (var j = 0; j < 50; j++) {
-            map[i][j] = 1;
+            map[i][j] = 2;
         }
     }
     // generateBorderRuin();
@@ -262,7 +262,7 @@ function random() {
     for (var i = 0; i < 50; i++) {
         map[i] = new Array(50);
         for (var j = 0; j < 50; j++) {
-            map[i][j] = 1;
+            map[i][j] = 2;
         }
     }
     var EresourceNum = parseInt(document.getElementById("Eresource-num").value);
