@@ -25,14 +25,14 @@ namespace installer.Page
         private string _baseDir = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         private string tempDir = Path.Combine(Path.GetTempPath(), "THUAI8_Temp");
 
-        public string BaseDir 
-        { 
-            get => _baseDir; 
-            set 
-            { 
-                _baseDir = value; 
-                OnPropertyChanged(nameof(BaseDir)); 
-            } 
+        public string BaseDir
+        {
+            get => _baseDir;
+            set
+            {
+                _baseDir = value;
+                OnPropertyChanged(nameof(BaseDir));
+            }
         }
 
         public bool ResourceKeyGenerated
@@ -50,21 +50,21 @@ namespace installer.Page
             InitializeComponent();
             BindingContext = this;
             cosClient = new Tencent_Cos(
-                appid: "1352014406", 
-                region: "ap-beijing", 
+                appid: "1352014406",
+                region: "ap-beijing",
                 bucketName: "thuai8",
                 _log: Log
             );
-            
+
             // 创建临时目录
             if (!Directory.Exists(tempDir))
             {
                 Directory.CreateDirectory(tempDir);
             }
-            
+
             Log.LogInfo("开发者页面已加载");
             BaseDirLabel.Text = BaseDir;
-            
+
             // 设置默认版本号
             VersionEntry.Text = "1.0.0";
         }
@@ -113,7 +113,7 @@ if ($folderBrowser.ShowDialog() -eq 'OK') {
                     if (!string.IsNullOrEmpty(selectedPath) && selectedPath != "cancelled")
                     {
                         // 验证是否是THUAI8源代码目录
-                        if (Directory.Exists(Path.Combine(selectedPath, "THUAI8")) || 
+                        if (Directory.Exists(Path.Combine(selectedPath, "THUAI8")) ||
                             selectedPath.Contains("thuai8", StringComparison.OrdinalIgnoreCase))
                         {
                             BaseDir = selectedPath;
@@ -122,10 +122,10 @@ if ($folderBrowser.ShowDialog() -eq 'OK') {
                         }
                         else
                         {
-                            bool confirm = await DisplayAlert("警告", 
-                                "所选目录可能不是THUAI8源代码目录。是否仍要使用此目录?", 
+                            bool confirm = await DisplayAlert("警告",
+                                "所选目录可能不是THUAI8源代码目录。是否仍要使用此目录?",
                                 "是", "否");
-                            
+
                             if (confirm)
                             {
                                 BaseDir = selectedPath;
@@ -138,10 +138,10 @@ if ($folderBrowser.ShowDialog() -eq 'OK') {
                 else
                 {
                     // 非Windows平台使用文本输入
-                    string result = await DisplayPromptAsync("选择源代码目录", 
-                        "请输入THUAI8源代码根目录的完整路径:", 
+                    string result = await DisplayPromptAsync("选择源代码目录",
+                        "请输入THUAI8源代码根目录的完整路径:",
                         initialValue: BaseDir);
-                    
+
                     if (!string.IsNullOrEmpty(result) && Directory.Exists(result))
                     {
                         BaseDir = result;
@@ -224,7 +224,7 @@ if ($folderBrowser.ShowDialog() -eq 'OK') {
                                     StatusLabel.Text = "密钥已生成，请将其添加为嵌入式资源";
                                     StatusLabel.TextColor = Colors.Green;
                                     GenerateKeyButton.IsEnabled = true;
-                                    
+
                                     // 更新COS客户端密钥
                                     cosClient.UpdateSecret(SecretIDEntry.Text, SecretKeyEntry.Text);
                                 });
@@ -340,7 +340,7 @@ if ($folderBrowser.ShowDialog() -eq 'OK') {
         private async void OnGenerateTemplatesClicked(object sender, EventArgs e)
         {
             LogOperation("开始生成选手模板文件...");
-            
+
             try
             {
                 string version = VersionEntry.Text.Trim();
@@ -349,11 +349,11 @@ if ($folderBrowser.ShowDialog() -eq 'OK') {
                     await DisplayAlert("错误", "请输入有效的版本号", "确定");
                     return;
                 }
-                
+
                 // 创建C++模板文件 - 使用正确的路径
                 string cppTemplatePath = Path.Combine(tempDir, $"t.{version}.cpp");
                 string cppSourcePath = Path.Combine(BaseDir, @"THUAI8\CAPI\cpp\API\src\AI.cpp");
-                
+
                 if (File.Exists(cppSourcePath))
                 {
                     File.Copy(cppSourcePath, cppTemplatePath, true);
@@ -363,11 +363,11 @@ if ($folderBrowser.ShowDialog() -eq 'OK') {
                 {
                     LogOperation($"错误: C++模板源文件不存在: {cppSourcePath}", true);
                 }
-                
+
                 // 创建Python模板文件 - 使用正确的路径
                 string pyTemplatePath = Path.Combine(tempDir, $"t.{version}.py");
                 string pySourcePath = Path.Combine(BaseDir, @"THUAI8\CAPI\python\AI.py");
-                
+
                 if (File.Exists(pySourcePath))
                 {
                     File.Copy(pySourcePath, pyTemplatePath, true);
@@ -377,7 +377,7 @@ if ($folderBrowser.ShowDialog() -eq 'OK') {
                 {
                     LogOperation($"错误: Python模板源文件不存在: {pySourcePath}", true);
                 }
-                
+
                 LogOperation("选手模板文件生成完成");
             }
             catch (Exception ex)
@@ -385,22 +385,22 @@ if ($folderBrowser.ShowDialog() -eq 'OK') {
                 LogOperation($"生成选手模板文件时出错: {ex.Message}", true);
             }
         }
-        
+
         private async void OnGenerateProtoClicked(object sender, EventArgs e)
         {
             LogOperation("开始生成Proto库文件...");
-            
+
             try
             {
                 // 源proto目录
                 string protoSourceDir = Path.Combine(BaseDir, @"THUAI8\CAPI\cpp\proto");
-                
+
                 if (!Directory.Exists(protoSourceDir))
                 {
                     LogOperation($"错误: 源proto目录不存在: {protoSourceDir}", true);
                     return;
                 }
-                
+
                 // 创建临时proto目录
                 string tempProtoDir = Path.Combine(tempDir, "proto");
                 if (Directory.Exists(tempProtoDir))
@@ -408,28 +408,28 @@ if ($folderBrowser.ShowDialog() -eq 'OK') {
                     Directory.Delete(tempProtoDir, true);
                 }
                 Directory.CreateDirectory(tempProtoDir);
-                
+
                 // 复制proto文件
                 foreach (string file in Directory.GetFiles(protoSourceDir))
                 {
                     File.Copy(file, Path.Combine(tempProtoDir, Path.GetFileName(file)));
                 }
-                
+
                 // 创建tar.gz文件 - 修改输出路径
                 string protoCppPath = Path.Combine(tempDir, "Setup", "proto", "protoCpp.tar.gz");
-                
+
                 // 确保目录存在
                 Directory.CreateDirectory(Path.GetDirectoryName(protoCppPath));
-                
+
                 // 删除已存在的文件
                 if (File.Exists(protoCppPath))
                 {
                     File.Delete(protoCppPath);
                 }
-                
+
                 // 创建tar.gz文件
                 await CreateTarGzAsync(tempProtoDir, protoCppPath);
-                
+
                 LogOperation($"Proto库文件已生成: {protoCppPath}");
             }
             catch (Exception ex)
@@ -437,22 +437,22 @@ if ($folderBrowser.ShowDialog() -eq 'OK') {
                 LogOperation($"生成Proto库文件时出错: {ex.Message}", true);
             }
         }
-        
+
         private async void OnGenerateMainPackageClicked(object sender, EventArgs e)
         {
             LogOperation("开始生成主安装包...");
-            
+
             try
             {
                 // 要打包的目录
-                string[] sourceDirs = new string[] 
+                string[] sourceDirs = new string[]
                 {
                     Path.Combine(BaseDir, @"THUAI8\logic"),
                     Path.Combine(BaseDir, @"THUAI8\interface"),
                     Path.Combine(BaseDir, @"THUAI8\dependency"),
                     Path.Combine(BaseDir, @"THUAI8\resource")
                 };
-                
+
                 // 检查目录是否存在
                 foreach (string dir in sourceDirs)
                 {
@@ -462,7 +462,7 @@ if ($folderBrowser.ShowDialog() -eq 'OK') {
                         return;
                     }
                 }
-                
+
                 // 创建临时主包目录
                 string tempMainDir = Path.Combine(tempDir, "THUAI8");
                 if (Directory.Exists(tempMainDir))
@@ -470,27 +470,27 @@ if ($folderBrowser.ShowDialog() -eq 'OK') {
                     Directory.Delete(tempMainDir, true);
                 }
                 Directory.CreateDirectory(tempMainDir);
-                
+
                 // 复制文件夹
                 foreach (string dir in sourceDirs)
                 {
                     string dirName = new DirectoryInfo(dir).Name;
                     string destDir = Path.Combine(tempMainDir, dirName);
                     CopyDirectory(dir, destDir);
-                    }
-                    
-                    // 创建tar.gz文件
+                }
+
+                // 创建tar.gz文件
                 string mainPackagePath = Path.Combine(tempDir, "THUAI8.tar.gz");
-                
+
                 // 删除已存在的文件
                 if (File.Exists(mainPackagePath))
                 {
                     File.Delete(mainPackagePath);
                 }
-                
+
                 // 创建tar.gz文件
                 await CreateTarGzAsync(tempMainDir, mainPackagePath);
-                
+
                 LogOperation($"主安装包已生成: {mainPackagePath}");
             }
             catch (Exception ex)
@@ -498,11 +498,11 @@ if ($folderBrowser.ShowDialog() -eq 'OK') {
                 LogOperation($"生成主安装包时出错: {ex.Message}", true);
             }
         }
-        
+
         private async void OnGenerateHashClicked(object sender, EventArgs e)
         {
             LogOperation("开始生成Hash文件...");
-            
+
             try
             {
                 string version = VersionEntry.Text.Trim();
@@ -511,7 +511,7 @@ if ($folderBrowser.ShowDialog() -eq 'OK') {
                     await DisplayAlert("错误", "请输入有效的版本号", "确定");
                     return;
                 }
-                
+
                 // 要计算哈希的文件映射为COS上的路径
                 var filesToHash = new Dictionary<string, string>
                 {
@@ -520,12 +520,12 @@ if ($folderBrowser.ShowDialog() -eq 'OK') {
                     { Path.Combine(tempDir, $"t.{version}.py"), $"Templates/t.{version}.py" },
                     { Path.Combine(tempDir, "Setup", "proto", "protoCpp.tar.gz"), "Setup/proto/protoCpp.tar.gz" }
                 };
-                
+
                 // 检查文件是否存在并计算哈希
                 bool allFilesExist = true;
                 var rootObject = new Dictionary<string, object>();
                 var filesDict = new Dictionary<string, string>();
-                
+
                 foreach (var file in filesToHash)
                 {
                     if (!File.Exists(file.Key))
@@ -534,7 +534,7 @@ if ($folderBrowser.ShowDialog() -eq 'OK') {
                         allFilesExist = false;
                         continue;
                     }
-                    
+
                     try
                     {
                         string hash = FileService.GetFileMd5Hash(file.Key);
@@ -548,25 +548,25 @@ if ($folderBrowser.ShowDialog() -eq 'OK') {
                             filesDict.Add(file.Value, hash);
                             LogOperation($"计算哈希: {file.Value} -> {hash}");
                         }
-            }
-            catch (Exception ex)
-            {
+                    }
+                    catch (Exception ex)
+                    {
                         LogOperation($"计算哈希时出错: {file.Key} - {ex.Message}", true);
                         allFilesExist = false;
                     }
                 }
-                
+
                 if (!allFilesExist)
                 {
                     LogOperation("由于部分文件缺失或哈希计算失败，无法生成完整的hash.json文件", true);
                     return;
                 }
-                
+
                 string hashFilePath = Path.Combine(tempDir, "hash.json");
-                
+
                 // 调用新方法生成标准格式的hash.json
                 GenerateMD5Json(hashFilePath, filesDict, version);
-                
+
                 LogOperation($"Hash文件已生成: {hashFilePath}");
             }
             catch (Exception ex)
@@ -578,7 +578,7 @@ if ($folderBrowser.ShowDialog() -eq 'OK') {
         private async void OnUploadAllClicked(object sender, EventArgs e)
         {
             LogOperation("开始上传所有文件...");
-            
+
             try
             {
                 string version = VersionEntry.Text.Trim();
@@ -587,7 +587,7 @@ if ($folderBrowser.ShowDialog() -eq 'OK') {
                     await DisplayAlert("错误", "请输入有效的版本号", "确定");
                     return;
                 }
-                
+
                 // 要上传的文件 - 修改protoCpp.tar.gz的路径
                 var filesToUpload = new Dictionary<string, string>
                 {
@@ -597,7 +597,7 @@ if ($folderBrowser.ShowDialog() -eq 'OK') {
                     { Path.Combine(tempDir, $"t.{version}.py"), $"Templates/t.{version}.py" },
                     { Path.Combine(tempDir, "Setup", "proto", "protoCpp.tar.gz"), "Setup/proto/protoCpp.tar.gz" }
                 };
-                
+
                 // 检查文件是否存在
                 foreach (var kvp in filesToUpload)
                 {
@@ -607,42 +607,42 @@ if ($folderBrowser.ShowDialog() -eq 'OK') {
                         return;
                     }
                 }
-                
+
                 // 上传文件并验证
                 bool allUploaded = true;
                 int totalFiles = filesToUpload.Count;
                 int completedFiles = 0;
-                var progressIndicator = new Progress<double>(value => 
+                var progressIndicator = new Progress<double>(value =>
                 {
                     // 更新UI上的进度显示
                     double overallProgress = (completedFiles + value) / totalFiles;
                     UploadProgressBar.Progress = overallProgress;
                     UploadProgressLabel.Text = $"上传进度: {overallProgress:P0}";
                 });
-                
+
                 // 注册全局上传进度事件
-                cosClient.UploadReport.ProgressChanged += (sender, value) => 
+                cosClient.UploadReport.ProgressChanged += (sender, value) =>
                 {
-                    MainThread.BeginInvokeOnMainThread(() => 
+                    MainThread.BeginInvokeOnMainThread(() =>
                     {
                         string currentFile = filesToUpload.ElementAt(completedFiles).Value;
                         LogOperation($"上传中: {currentFile} - {value:P0}");
                     });
                 };
-                
+
                 // 显示进度UI
                 UploadProgressBar.IsVisible = true;
                 UploadProgressLabel.IsVisible = true;
                 UploadProgressBar.Progress = 0;
-                
+
                 foreach (var kvp in filesToUpload)
-        {
-            try
-            {
+                {
+                    try
+                    {
                         LogOperation($"正在上传: {Path.GetFileName(kvp.Key)} -> {kvp.Value}");
                         await cosClient.UploadFileAsync(kvp.Key, kvp.Value, progressIndicator);
                         completedFiles++;
-                        
+
                         // 验证上传是否成功
                         if (cosClient.DetectFile(kvp.Value))
                         {
@@ -660,16 +660,16 @@ if ($folderBrowser.ShowDialog() -eq 'OK') {
                         allUploaded = false;
                     }
                 }
-                
+
                 // 隐藏进度UI
                 UploadProgressBar.IsVisible = false;
                 UploadProgressLabel.IsVisible = false;
-                
+
                 if (allUploaded)
                 {
                     LogOperation("所有文件上传成功");
                     await DisplayAlert("成功", "所有文件已成功上传并验证", "确定");
-                    
+
                     // 清理临时文件
                     try
                     {
@@ -681,16 +681,16 @@ if ($folderBrowser.ShowDialog() -eq 'OK') {
                                 LogOperation($"已删除临时文件: {file}");
                             }
                         }
-                        
+
                         // 清理临时目录
                         if (Directory.Exists(tempDir) && !Directory.EnumerateFileSystemEntries(tempDir).Any())
                         {
                             Directory.Delete(tempDir);
                             LogOperation($"已删除临时目录: {tempDir}");
                         }
-            }
-            catch (Exception ex)
-            {
+                    }
+                    catch (Exception ex)
+                    {
                         LogOperation($"清理临时文件时出错: {ex.Message}", true);
                     }
                 }
@@ -706,7 +706,7 @@ if ($folderBrowser.ShowDialog() -eq 'OK') {
                 await DisplayAlert("错误", $"上传失败: {ex.Message}", "确定");
             }
         }
-        
+
         private async void OnExitButtonClicked(object sender, EventArgs e)
         {
             try
@@ -748,14 +748,14 @@ if ($folderBrowser.ShowDialog() -eq 'OK') {
                 OperationLogLabel.Text += $"{message}\n";
             }
         }
-        
+
         private async Task CreateTarGzAsync(string sourceDir, string outputFile)
         {
             try
             {
                 // 创建临时tar文件
                 string tempTarPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName() + ".tar");
-                
+
                 try
                 {
                     // 第一步：创建tar文件
@@ -789,13 +789,13 @@ if ($folderBrowser.ShowDialog() -eq 'OK') {
                 throw;
             }
         }
-        
+
         private void CopyDirectory(string sourceDirName, string destDirName)
         {
             // 创建目标目录
             Directory.CreateDirectory(destDirName);
-                
-                // 复制文件
+
+            // 复制文件
             foreach (string file in Directory.GetFiles(sourceDirName))
             {
                 string fileName = Path.GetFileName(file);
@@ -825,7 +825,7 @@ if ($folderBrowser.ShowDialog() -eq 'OK') {
                     versionParts.Length > 2 ? int.Parse(versionParts[2]) : 0,
                     versionParts.Length > 3 ? int.Parse(versionParts[3]) : 0
                 );
-                
+
                 // 创建MD5DataFile对象
                 var md5Data = new Data.MD5DataFile
                 {
@@ -841,13 +841,13 @@ if ($folderBrowser.ShowDialog() -eq 'OK') {
                     BugFixed = "修复了已知问题",
                     BugGenerated = "可能包含新问题"
                 };
-                
+
                 // 序列化并保存
                 string jsonContent = System.Text.Json.JsonSerializer.Serialize(md5Data, new System.Text.Json.JsonSerializerOptions
                 {
                     WriteIndented = true
                 });
-                
+
                 File.WriteAllText(targetPath, jsonContent);
                 LogOperation($"MD5数据文件已生成: {targetPath}");
             }

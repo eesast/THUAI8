@@ -54,7 +54,7 @@ namespace installer.Model
             Log.PartnerInfo = "[COS]";
             Report = new DownloadReport();
             UploadReport = new UploadReport();
-            
+
             try
             {
                 // 初始化CosXmlConfig（提供配置SDK接口）
@@ -74,7 +74,7 @@ namespace installer.Model
                     Log.LogInfo($"使用SecretID: {secretId.Substring(0, Math.Min(4, secretId.Length))}*** (长度:{secretId.Length})");
                 else
                     Log.LogWarning("SecretID为null");
-                
+
                 if (secretKey != null)
                     Log.LogInfo($"使用SecretKey: {secretKey.Substring(0, Math.Min(4, secretKey.Length))}*** (长度:{secretKey.Length})");
                 else
@@ -84,11 +84,11 @@ namespace installer.Model
                 if (string.IsNullOrEmpty(secretId) || secretId == "***")
                 {
                     Log.LogWarning("SecretID无效或未设置 - 尝试重新从资源加载");
-                    try 
+                    try
                     {
                         // 尝试重新加载嵌入资源中的密钥
-                        if (typeof(MauiProgram).GetMethod("LoadSecretFromEmbeddedResource", 
-                            System.Reflection.BindingFlags.Static | 
+                        if (typeof(MauiProgram).GetMethod("LoadSecretFromEmbeddedResource",
+                            System.Reflection.BindingFlags.Static |
                             System.Reflection.BindingFlags.NonPublic) is System.Reflection.MethodInfo method)
                         {
                             method.Invoke(null, null);
@@ -101,7 +101,7 @@ namespace installer.Model
                     {
                         Log.LogError($"重新加载密钥资源失败: {ex.Message}");
                     }
-                    
+
                     // 再次检查密钥是否有效
                     if (string.IsNullOrEmpty(secretId) || secretId == "***")
                     {
@@ -130,9 +130,9 @@ namespace installer.Model
                         SliceSizeForDownload = 10 << 20,    // 下载分块大小为10MB
                     };
                     manager = new TransferManager(cosXml, transfer);
-                    
+
                     Log.LogInfo($"COS客户端初始化完成: Bucket={BucketName}, Region={Region}, APPID={Appid}");
-                    
+
                     // 验证密钥有效性
                     if (secretId == "placeholder" || secretKey == "placeholder")
                     {
@@ -144,7 +144,7 @@ namespace installer.Model
                         try
                         {
                             // 使用远程存储桶检查密钥是否有效，不影响构造函数完成
-                            Task.Run(() => 
+                            Task.Run(() =>
                             {
                                 try
                                 {
@@ -213,14 +213,14 @@ namespace installer.Model
                     ?? throw new Exception("本地文件夹路径获取失败");
                 string localFileName = Path.GetFileName(savePath);    // 指定本地保存的文件名
                 remotePath = remotePath?.Replace('\\', '/')?.TrimStart('.').TrimStart('/');
-                
+
                 Log.LogInfo(thID, $"检查文件是否存在: Bucket={bucket}, RemotePath={remotePath}");
-                
+
                 try
                 {
                     var head = cosXml.HeadObject(new HeadObjectRequest(bucket, remotePath ?? localFileName));
                     Log.LogInfo(thID, $"文件存在，大小: {head.size} 字节");
-                    
+
                     long c = 0;
                     if (head.size > (1 << 20))
                     {
@@ -275,27 +275,27 @@ namespace installer.Model
 
                     if (Report.BigFileTraceEnabled)
                         Report.Completed = Report.Total;
-                    
+
                     return thID;
                 }
-                catch(COSXML.CosException.CosServerException serverEx)
+                catch (COSXML.CosException.CosServerException serverEx)
                 {
                     // 处理COS服务器返回的错误
                     Log.LogError(thID, $"COS服务器错误: 状态码={serverEx.statusCode}, 错误码={serverEx.errorCode}, 错误信息={serverEx.errorMessage}");
-                    
-                    if(serverEx.statusCode == 403)
+
+                    if (serverEx.statusCode == 403)
                     {
                         Log.LogError(thID, "权限错误(403 Forbidden)：可能是SecretID/SecretKey无效，或没有访问权限");
                     }
-                    else if(serverEx.statusCode == 404)
+                    else if (serverEx.statusCode == 404)
                     {
                         Log.LogError(thID, $"文件不存在(404 Not Found)：路径 \"{remotePath ?? localFileName}\" 在存储桶 \"{bucket}\" 中不存在");
                     }
-                    
+
                     Log.LogDebug(thID, $"Download task: {{\"{remotePath}\"->\"{savePath}\"}} ended with server error.");
                     return -1;
                 }
-                catch(COSXML.CosException.CosClientException clientEx)
+                catch (COSXML.CosException.CosClientException clientEx)
                 {
                     // 处理客户端错误
                     Log.LogError(thID, $"COS客户端错误: {clientEx.Message}");
@@ -413,11 +413,11 @@ namespace installer.Model
                         string.Format("{0:##.#}GB", ((double)fi.Length) / (1 << 30)) :
                         string.Format("{0:##.#}MB", ((double)fi.Length) / (1 << 20));
                     Log.LogWarning($"上传大文件({size})，请保持网络稳定!");
-                    
+
                     UploadReport.Total = fi.Length;
                     UploadReport.Completed = 0;
                     UploadReport.BigFileTraceEnabled = true;
-                    
+
                     uploadTask.progressCallback = (completed, total) =>
                     {
                         double progressValue = (double)completed / total;
@@ -425,31 +425,31 @@ namespace installer.Model
                         UploadReport.Completed = completed;
                         UploadReport.Total = total;
                         UploadReport.OnProgressChanged(progressValue);
-                        
+
                         if (completed > 1 << 30 && completed - c > 100 << 20)
                         {
-                            Log.LogDebug(string.Format("uploaded = {0:##.#}GB, progress = {1:##.##}%", 
-                                ((double)completed) / (1 << 30), 
+                            Log.LogDebug(string.Format("uploaded = {0:##.#}GB, progress = {1:##.##}%",
+                                ((double)completed) / (1 << 30),
                                 progressValue * 100.0));
                             c = completed;
                         }
                         if (completed < 1 << 30 && completed - c > 10 << 20)
                         {
-                            Log.LogDebug(string.Format("uploaded = {0:##.#}MB, progress = {1:##.##}%", 
-                                ((double)completed) / (1 << 20), 
+                            Log.LogDebug(string.Format("uploaded = {0:##.#}MB, progress = {1:##.##}%",
+                                ((double)completed) / (1 << 20),
                                 progressValue * 100.0));
                             c = completed;
                         }
                     };
                 }
-                
+
                 COSXMLUploadTask.UploadTaskResult r = manager.UploadAsync(uploadTask).Result;
                 if (r.httpCode != 200)
                     Log.LogError(thID, $"Upload task: {{\"{localPath}\"->\"{targetPath}\"}} failed, message: {r.httpMessage}");
                 string eTag = r.eTag;
                 //到这里应该是成功了，但是因为我没有试过，也不知道具体情况，可能还要根据result的内容判断
                 Log.LogInfo(thID, $"Upload task: {{\"{localPath}\"->\"{targetPath}\"}} finished.");
-                
+
                 // 清理上传进度
                 if (UploadReport.BigFileTraceEnabled)
                 {
@@ -471,14 +471,14 @@ namespace installer.Model
             string bucket = $"{BucketName}-{Appid}";
             remotePath = remotePath.TrimStart('.').TrimStart('/');
             Log.LogInfo(thID, $"检查文件是否存在: Bucket={bucket}, RemotePath={remotePath}");
-            
+
             //执行请求
             try
             {
                 DoesObjectExistRequest requestd = new DoesObjectExistRequest(bucket, remotePath);
                 bool exists = cosXml.DoesObjectExist(requestd);
-                Log.LogInfo(thID, exists ? 
-                    $"文件存在: {remotePath}" : 
+                Log.LogInfo(thID, exists ?
+                    $"文件存在: {remotePath}" :
                     $"文件不存在: {remotePath}");
                 return exists;
             }
@@ -490,12 +490,12 @@ namespace installer.Model
             catch (COSXML.CosException.CosServerException serverEx)
             {
                 Log.LogError(thID, $"COS服务器错误: 状态码={serverEx.statusCode}, 错误码={serverEx.errorCode}, 错误信息={serverEx.errorMessage}");
-                
-                if(serverEx.statusCode == 403)
+
+                if (serverEx.statusCode == 403)
                 {
                     Log.LogError(thID, "权限错误(403 Forbidden)：可能是SecretID/SecretKey无效，或没有访问权限");
                 }
-                
+
                 return false;
             }
             catch (Exception ex)
@@ -598,7 +598,7 @@ namespace installer.Model
             int thID = Log.StartNew();
             string bucket = $"{BucketName}-{Appid}";
             Log.LogInfo(thID, "验证COS密钥有效性...");
-            
+
             try
             {
                 // 尝试列出存储桶，这个操作需要有效的密钥
@@ -606,7 +606,7 @@ namespace installer.Model
                 // 设置最大返回数量为1，只需要验证连接成功即可
                 request.SetMaxKeys("1");
                 GetBucketResult result = cosXml.GetBucket(request);
-                
+
                 if (result.httpCode == 200)
                 {
                     Log.LogInfo(thID, "COS密钥验证成功，连接正常");
