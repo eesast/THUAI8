@@ -190,6 +190,40 @@ namespace Gaming
                 }
                 gameMap.Remove(AResource);
             }
+            public void LevelUp(A_Resource AResource)
+            {
+                int nowtime = gameMap.Timer.NowTime();
+                if (nowtime >= GameData.SevenMinutes)
+                {
+                    if (AResource.AResourceType == A_ResourceType.CRAZY_MAN2)
+                    {
+                        A_Resource newAR = AddAResource(A_ResourceType.CRAZY_MAN3, AResource.Position);
+                        activateAR(newAR);
+                        Remove(AResource);
+                    }
+                    if (AResource.AResourceType == A_ResourceType.LIFE_POOL2)
+                    {
+                        A_Resource newAR = AddAResource(A_ResourceType.LIFE_POOL3, AResource.Position);
+                        activateAR(newAR);
+                        Remove(AResource);
+                    }
+                }
+                else if (nowtime >= GameData.ThreeMinutes)
+                {
+                    if (AResource.AResourceType == A_ResourceType.CRAZY_MAN1)
+                    {
+                        A_Resource newAR = AddAResource(A_ResourceType.CRAZY_MAN2, AResource.Position);
+                        activateAR(newAR);
+                        Remove(AResource);
+                    }
+                    if (AResource.AResourceType == A_ResourceType.LIFE_POOL1)
+                    {
+                        A_Resource newAR = AddAResource(A_ResourceType.LIFE_POOL2, AResource.Position);
+                        activateAR(newAR);
+                        Remove(AResource);
+                    }
+                }
+            }
         }
     }
 }
