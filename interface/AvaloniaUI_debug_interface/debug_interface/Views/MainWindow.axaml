@@ -342,7 +342,7 @@
                     Canvas.Top="0"
                     Canvas.Right="5"
                     MaxWidth="200"
-                    MaxHeight="150"
+                    
                     Padding="2"
                     Background="#80FFFFFF"
                     BorderBrush="Gray"

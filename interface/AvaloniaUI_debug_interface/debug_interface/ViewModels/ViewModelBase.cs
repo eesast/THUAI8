@@ -127,7 +127,7 @@ namespace debug_interface.ViewModels
             myLogger?.LogInfo("开始尝试连接服务器...");
 
             // 确定是否为旁观者模式 (可以在这里加逻辑，例如 PlayerID > 某个值)
-            isSpectatorMode = playerID > 2025; // 示例逻辑
+            isSpectatorMode = playerID > 2020; // 示例逻辑
             if (isSpectatorMode) myLogger?.LogInfo("检测到旁观者模式。");
 
             while (!_isConnected && (_cts == null || !_cts.IsCancellationRequested))
@@ -377,7 +377,7 @@ namespace debug_interface.ViewModels
             GC.SuppressFinalize(this);
         }
 
-        // *** Refresh 方法 (保持不变) ***
+        // *** Refresh 方法  更新人物地图状态 ***
         private void Refresh(object? sender, EventArgs e)
         {
             try
@@ -400,10 +400,10 @@ namespace debug_interface.ViewModels
             }
         }
 
-        // *** OnTimerTick 方法 (保持不变) ***
+        // *** OnTimerTick 方法***
         protected virtual void OnTimerTick(object? sender, EventArgs e) { }
 
-        // *** Playback 方法 (保持不变) ***
+        // *** Playback 方法  ***
         private void Playback(string fileName, double pbSpeed = 2.0)
         {
             isPlaybackMode = true;
@@ -412,10 +412,6 @@ namespace debug_interface.ViewModels
             // TODO: 实现回放逻辑
         }
 
-        // *** 删除旧的 ConnectToServer 方法 ***
-        // public void ConnectToServer(string[] comInfo) { ... }
 
-        // *** 删除旧的 OnReceive 方法 ***
-        // private async void OnReceive() { ... }
     }
 }

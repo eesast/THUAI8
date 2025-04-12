@@ -20,81 +20,6 @@ namespace debug_interface.Controls
         private static Grid? gridContainer; // Grid 容器引用
 
         /// <summary>
-        /// 初始化地图网格
-        /// </summary>
-        public static Grid CreateMapGrid(MapViewModel mapViewModel)
-        {
-            // 清空现有记录
-            cellRectangles.Clear();
-
-            // 创建Grid容器，设置为50x50的网格
-            var grid = new Grid();
-            gridContainer = grid;
-
-            // 定义列
-            for (int i = 0; i < 50; i++)
-            {
-                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-            }
-
-            // 定义行
-            for (int i = 0; i < 50; i++)
-            {
-                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
-            }
-
-            // 绘制单元格
-            for (int i = 0; i < 50; i++)
-            {
-                for (int j = 0; j < 50; j++)
-                {
-                    int index = i * 50 + j;
-
-                    if (index < mapViewModel.MapCells.Count)
-                    {
-                        var cell = mapViewModel.MapCells[index];
-
-                        // 创建矩形单元格
-                        var rectangle = new Rectangle
-                        {
-                            Fill = cell.DisplayColor,
-                            Margin = new Thickness(0),
-                            [Grid.RowProperty] = i,
-                            [Grid.ColumnProperty] = j,
-                            IsHitTestVisible = true, // 确保它参与命中测试
-                            ZIndex = 0 // 确保它在 Z 轴上有明确的层级 (低于 TextBlock 和网格线)
-                        };
-
-                        // 为单元格添加文本（如果有）
-                        if (!string.IsNullOrEmpty(cell.DisplayText))
-                        {
-                            var textBlock = new TextBlock
-                            {
-                                Text = cell.DisplayText,
-                                FontSize = 6,
-                                TextAlignment = TextAlignment.Center,
-                                VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
-                                HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
-                                [Grid.RowProperty] = i,
-                                [Grid.ColumnProperty] = j,
-                                ZIndex = 1 // 确保文本在矩形上方
-                            };
-                            grid.Children.Add(textBlock);
-                        }
-
-                        // 存储矩形引用以便后续更新
-                        cellRectangles[index] = rectangle;
-                        grid.Children.Add(rectangle);
-                    }
-                }
-            }
-
-            // 添加网格线（在单元格上方）
-            //AddGridLines(grid);
-
-            return grid;
-        }
-        /// <summary>
         /// 初始化地图网格，包括单元格、文本和 Tooltip
         /// </summary>
         public static void InitializeMapGrid(Grid grid, MapViewModel mapViewModel)
@@ -103,9 +28,7 @@ namespace debug_interface.Controls
             grid.Children.Clear();
             grid.RowDefinitions.Clear();
             grid.ColumnDefinitions.Clear();
-            //cellRectangles.Clear();
-            //cellTextBlocks.Clear(); // 清空文本引用
-            gridContainer = grid;
+            // gridContainer = grid; // 如果 gridContainer 还有其他用处，保留此行
 
             // 定义列和行 (50x50)
             for (int i = 0; i < 50; i++)
@@ -114,13 +37,7 @@ namespace debug_interface.Controls
                 grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
             }
 
-            //for (int i = 0; i < 50; i++)
-            //{
-            //    grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-            //    grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
-            //}
-
-            // 绘制单元格、文本和设置Tooltip
+            // 绘制单元格、文本并设置绑定
             for (int i = 0; i < 50; i++)
             {
                 for (int j = 0; j < 50; j++)
@@ -131,63 +48,82 @@ namespace debug_interface.Controls
                     {
                         var cell = mapViewModel.MapCells[index];
 
-                        // Create Rectangle
+                        // 创建矩形 (Rectangle)
                         var rectangle = new Rectangle
                         {
                             Margin = new Thickness(0),
                             [Grid.RowProperty] = i,
                             [Grid.ColumnProperty] = j,
-                            Tag = index,
-                            IsHitTestVisible = true,
-                            ZIndex = 0
+                            // Tag = index, // Tag 可能不再需要，因为我们依赖绑定
+                            IsHitTestVisible = true, // 允许命中测试（如果需要 Tooltip 或点击）
+                            ZIndex = 0 // 在文本下方
                         };
 
-                        // *** Bind Fill property ***
+                        // *** 绑定 Fill 属性到 MapCell.DisplayColor ***
                         rectangle[!Shape.FillProperty] = new Binding(nameof(MapCell.DisplayColor))
                         {
                             Source = cell,
-                            Mode = BindingMode.OneWay
+                            Mode = BindingMode.OneWay // 通常颜色是单向绑定
                         };
 
-                        // Create TextBlock
+                        // 创建文本块 (TextBlock)
                         var textBlock = new TextBlock
                         {
-                            FontSize = 8,
+                            FontSize = 8, // 或者你测试后确定的最佳字号
+                            // Foreground = Brushes.Black, // 可以设置默认色，或绑定颜色
+                            Foreground = GetTextColorBasedOnBackground(cell.DisplayColor), // *** 尝试动态文本颜色 ***
                             TextAlignment = TextAlignment.Center,
                             VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
                             HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
-                            Foreground = Brushes.Black, // Consider binding this too if needed
                             [Grid.RowProperty] = i,
                             [Grid.ColumnProperty] = j,
-                            IsHitTestVisible = false,
-                            ZIndex = 1
+                            IsHitTestVisible = false, // 文本块本身通常不需要交互
+                            ZIndex = 1 // 在矩形上方
                         };
 
-                        // *** Bind Text property ***
+                        // *** 绑定 Text 属性到 MapCell.DisplayText ***
                         textBlock[!TextBlock.TextProperty] = new Binding(nameof(MapCell.DisplayText))
                         {
                             Source = cell,
-                            Mode = BindingMode.OneWay
+                            Mode = BindingMode.OneWay // 文本通常也是单向绑定
                         };
 
-                        // Add to Grid
+                        // *** (可选) 绑定文本颜色到背景色，通过转换器决定用深色还是浅色 ***
+                        // 需要创建一个 IValueConverter (e.g., BackgroundToForegroundConverter)
+                        // textBlock[!TextBlock.ForegroundProperty] = new Binding(nameof(MapCell.DisplayColor))
+                        // {
+                        //     Source = cell,
+                        //     Mode = BindingMode.OneWay,
+                        //     Converter = (IValueConverter)Application.Current.FindResource("BackgroundToForegroundConverter") // 假设转换器已在 App.axaml 定义
+                        // };
+
+
+                        // 添加到 Grid
                         grid.Children.Add(rectangle);
                         grid.Children.Add(textBlock);
-
-                        // --- *** REMOVE PropertyChanged Handler Attachment *** ---
-                        // cell.PropertyChanged -= Cell_PropertyChanged; // Ensure removed if re-initializing
-                        // cell.PropertyChanged += Cell_PropertyChanged; // Remove this line!
-
-                        // Optional: Store refs if still needed, but binding makes them less necessary for updates
-                        // cellRectangles[index] = rectangle;
-                        // cellTextBlocks[index] = textBlock;
                     }
                 }
             }
 
-            // 添加网格线（在单元格和文本上方）
-            //AddGridLines(grid);
+            // 添加网格线（如果需要）
+            AddGridLines(grid);
         }
+
+        // *** 新增：根据背景色决定文本颜色的辅助方法 ***
+        private static IBrush GetTextColorBasedOnBackground(IBrush background)
+        {
+            if (background is SolidColorBrush solidColor)
+            {
+                var color = solidColor.Color;
+                // 简单的亮度计算 (YIQ 公式近似)
+                double luminance = (0.299 * color.R + 0.587 * color.G + 0.114 * color.B) / 255.0;
+                // 如果背景亮度大于 0.5 (亮色)，用黑色文本，否则用白色文本
+                return luminance > 0.5 ? Brushes.Black : Brushes.White;
+            }
+            // 对于非纯色背景，默认返回黑色
+            return Brushes.Black;
+        }
+
 
         /// <summary>
         /// 添加网格线
@@ -244,69 +180,11 @@ namespace debug_interface.Controls
             }
         }
 
-        // (可选) 辅助方法判断背景色是否需要深色文本
-        private static bool NeedsDarkText(IBrush background)
-        {
-            if (background is SolidColorBrush solidColor)
-            {
-                var color = solidColor.Color;
-                // 基于亮度简单判断 (这是一个简化的亮度计算)
-                double luminance = (0.299 * color.R + 0.587 * color.G + 0.114 * color.B) / 255;
-                return luminance > 0.5; // 如果背景亮，用深色文本
-            }
-            return true; // 默认用深色
-        }
 
 
 
 
-        /// <summary>
-        /// 更新单元格颜色
-        /// </summary>
-        //public static void UpdateCellColor(int x, int y, IBrush color)
-        //{
-        //    int index = x * 50 + y;
-        //    if (cellRectangles.ContainsKey(index))
-        //    {
-        //        cellRectangles[index].Fill = color;
-        //    }
-        //}
 
-        /// <summary>
-        /// 更新单元格文本
-        /// </summary>
-        //public static void UpdateCellText(int x, int y, string text)
-        //{
-        //    if (gridContainer == null) return;
-
-        //    // 查找对应位置的TextBlock并更新
-        //    foreach (var child in gridContainer.Children)
-        //    {
-        //        if (child is TextBlock textBlock &&
-        //            Grid.GetRow(textBlock) == x &&
-        //            Grid.GetColumn(textBlock) == y)
-        //        {
-        //            textBlock.Text = text;
-        //            return;
-        //        }
-        //    }
-
-        //    // 如果没有找到现有的TextBlock，创建新的
-        //    if (!string.IsNullOrEmpty(text))
-        //    {
-        //        var textBlock = new TextBlock
-        //        {
-        //            Text = text,
-        //            FontSize = 6,
-        //            TextAlignment = TextAlignment.Center,
-        //            VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
-        //            HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
-        //            [Grid.RowProperty] = x,
-        //            [Grid.ColumnProperty] = y,
-        //            ZIndex = 1
-        //        };
-        //        gridContainer.Children.Add(textBlock);
-        //    }
-        //}
+       
     }
 }

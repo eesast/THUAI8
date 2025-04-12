@@ -49,6 +49,8 @@ namespace Playback
             GC.SuppressFinalize(this);
         }
 
+
+
         protected virtual void Dispose(bool disposing)
         {
             if (Disposed) return;
@@ -58,6 +60,9 @@ namespace Playback
             }
             Disposed = true;
         }
+
+
+
 
         ~MessageReader()
         {
