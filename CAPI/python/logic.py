@@ -229,7 +229,7 @@ class Logic(ILogic):
             )
 
         def BuildCharacter(
-            self, CharacterType: THUAI8.CharacterType, birthIndex: int
+            self, characterType: THUAI8.CharacterType, birthIndex: int
         ) -> bool:
             self.__logger.debug("Called BuildCharacter")
             return self.__comm.BuildCharacter(self.__teamID, characterType, birthIndex)
