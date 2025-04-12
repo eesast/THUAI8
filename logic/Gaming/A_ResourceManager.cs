@@ -190,7 +190,7 @@ namespace Gaming
                 }
                 gameMap.Remove(AResource);
             }
-            public void LevelUp(A_Resource AResource)
+            public void LevelUpAR(A_Resource AResource)
             {
                 int nowtime = gameMap.Timer.NowTime();
                 if (nowtime >= GameData.SevenMinutes)
