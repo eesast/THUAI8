@@ -840,8 +840,7 @@ class Logic(ILogic):
                             self.__messageQueue.append(
                                 (news.from_id, news.text_message)
                             )
-                            se
-                            lf.__logger.debug("Load Text News!")
+                            self.__logger.debug("Load Text News!")
                         elif news_type == THUAI8.NewsType.BinaryMessage:
                             self.__messageQueue.append(
                                 (news.from_id, news.binary_message)
