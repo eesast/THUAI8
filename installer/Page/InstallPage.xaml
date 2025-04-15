@@ -3,138 +3,203 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:installer.ViewModel"
              x:Class="installer.Page.InstallPage"
-             Title="Installer">
-    <ScrollView
-        Margin="20">
+             Title="Installer"
+             BackgroundColor="#f5f5f5">
 
-        <Grid
-            HorizontalOptions="Center"
-            WidthRequest="600"
-            RowDefinitions="*,*,*,*,*,*,*,*,*,*"
-            ColumnDefinitions="*">
-
-            <VerticalStackLayout
-                Grid.Row="0"
-                Grid.RowSpan="9"
-                HorizontalOptions="Center"
-                VerticalOptions="Center">
-
-                <HorizontalStackLayout>
-                    <Label
-                        WidthRequest="100"
-                        Text="文件路径:"
-                        VerticalOptions="Center"
-                        FontSize="16"/>
-                    <Entry
-                        WidthRequest="380"
-                        Placeholder="请输入文件路径……"
-                        Text="{Binding DownloadPath}"
-                        FontSize="16"/>
-                    <Button
-                        WidthRequest="120"
-                        Text="选择文件夹"
-                        BorderWidth="2"
-                        Command="{Binding BrowseBtnClickedCommand}"
-                        IsEnabled="{Binding BrowseEnabled}"
-                        BackgroundColor="{Binding ConstBackgroundColor}"
-                        TextColor="{Binding ConstTextColor}"/>
-                </HorizontalStackLayout>
-
-                <Button
-                    Text="{Binding DownloadBtnText}"
-                    BorderWidth="2"
-                    Command="{Binding DownloadBtnClickedCommand}"
-                    IsEnabled="{Binding DownloadEnabled}"
-                    BackgroundColor="{Binding ConstBackgroundColor}"
-                    FontSize="{Binding ConstFontSize}"
-                    TextColor="{Binding ConstTextColor}"/>
-
-                <HorizontalStackLayout>
-                    <Button
-                        WidthRequest="200"
-                        Text="检查更新"
-                        BorderWidth="2"
-                        Command="{Binding CheckUpdBtnClickedCommand}"
-                        IsEnabled="{Binding CheckEnabled}"
-                        BackgroundColor="{Binding ConstBackgroundColor}"
-                        FontSize="{Binding ConstFontSize}"
-                        TextColor="{Binding ConstTextColor}"/>
-                    <Button
-                        WidthRequest="400"
-                        Text="更新"
-                        BorderWidth="2"
-                        Command="{Binding UpdateBtnClickedCommand}"
-                        IsEnabled="{Binding UpdateEnabled}"
-                        BackgroundColor="{Binding ConstBackgroundColor}"
-                        FontSize="{Binding ConstFontSize}"
-                        TextColor="{Binding ConstTextColor}"/>
-                </HorizontalStackLayout>
-
-                <HorizontalStackLayout>
-                    <CheckBox
-                        IsChecked="{Binding Installed}"
-                        IsEnabled="False"/>
-                    <Label
-                        WidthRequest="200"
-                        Text="是否已下载选手包"
-                        VerticalOptions="Center"
-                        FontSize="{Binding ConstFontSize}"/>
-                </HorizontalStackLayout>
-
-                <Label
-                    Text="{Binding DebugAlert}"/>
-
-                <VerticalStackLayout>
-                    <Label
-                        Text="{Binding NumReport}"
-                        HorizontalOptions="End"
-                        FontSize="14"/>
-                    <ProgressBar
-                        Progress="{Binding NumPro}"
-                        HeightRequest="10"
-                        WidthRequest="580"/>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="CardStyle" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="Margin" Value="0,10" />
+                <Setter Property="Padding" Value="20" />
+                <Setter Property="HasShadow" Value="True" />
+                <Setter Property="BorderColor" Value="Transparent" />
+            </Style>
+            
+            <Style x:Key="PrimaryButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#3498db" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="Padding" Value="10" />
+                <Setter Property="MinimumHeightRequest" Value="45" />
+            </Style>
+            
+            <Style x:Key="SecondaryButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#95a5a6" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="Padding" Value="10" />
+                <Setter Property="MinimumHeightRequest" Value="45" />
+            </Style>
+            
+            <Style x:Key="DangerButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#e74c3c" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="Padding" Value="10" />
+                <Setter Property="MinimumHeightRequest" Value="45" />
+            </Style>
+            
+            <Style x:Key="SuccessButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#2ecc71" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="Padding" Value="10" />
+                <Setter Property="MinimumHeightRequest" Value="45" />
+            </Style>
+            
+            <Style x:Key="HeaderLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Margin" Value="0,0,0,10" />
+                <Setter Property="TextColor" Value="#2c3e50" />
+            </Style>
+            
+            <Style x:Key="SubHeaderLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Margin" Value="0,5" />
+                <Setter Property="TextColor" Value="#34495e" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ScrollView Padding="20">
+        <VerticalStackLayout Spacing="15" MaximumWidthRequest="800" HorizontalOptions="Center">
+            
+            <!-- 顶部标题 -->
+            <Label Text="THUAI8 选手包安装器" 
+                   Style="{StaticResource HeaderLabel}" 
+                   FontSize="24" 
+                   HorizontalOptions="Center"
+                   Margin="0,10,0,20"/>
+            
+            <!-- 路径选择区域 -->
+            <Frame Style="{StaticResource CardStyle}">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="下载路径" Style="{StaticResource HeaderLabel}"/>
+                    
+                    <Grid ColumnDefinitions="*, Auto" ColumnSpacing="10">
+                        <Entry Grid.Column="0"
+                               Placeholder="请选择下载路径..."
+                               Text="{Binding DownloadPath}"
+                               FontSize="16"/>
+                        
+                        <Button Grid.Column="1"
+                                Text="浏览"
+                                Style="{StaticResource SecondaryButton}"
+                                Command="{Binding BrowseBtnClickedCommand}"
+                                IsEnabled="{Binding BrowseEnabled}"
+                                WidthRequest="100"/>
+                    </Grid>
                 </VerticalStackLayout>
-
-                <VerticalStackLayout
-                    IsVisible="{Binding BigFileProEnabled}">
-                    <Label
-                        Text="{Binding FileReport}"
-                        HorizontalOptions="End"
-                        FontSize="14"/>
-                    <ProgressBar
-                        Progress="{Binding FilePro}"
-                        HeightRequest="10"
-                        WidthRequest="580"/>
+            </Frame>
+            
+            <!-- 下载区域 -->
+            <Frame Style="{StaticResource CardStyle}">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="下载选手包" Style="{StaticResource HeaderLabel}"/>
+                    
+                    <Button Text="{Binding DownloadBtnText}"
+                            Style="{StaticResource PrimaryButton}"
+                            Command="{Binding DownloadBtnClickedCommand}"
+                            IsEnabled="{Binding DownloadEnabled}"/>
+                    
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="{Binding NumReport}"
+                               HorizontalOptions="End"
+                               FontSize="14"/>
+                        <ProgressBar Progress="{Binding NumPro}"
+                                     ProgressColor="#3498db"
+                                     HeightRequest="10"/>
+                    </VerticalStackLayout>
+                    
+                    <VerticalStackLayout Spacing="5" IsVisible="{Binding BigFileProEnabled}">
+                        <Label Text="{Binding FileReport}"
+                               HorizontalOptions="End"
+                               FontSize="14"/>
+                        <ProgressBar Progress="{Binding FilePro}"
+                                     ProgressColor="#2ecc71"
+                                     HeightRequest="10"/>
+                    </VerticalStackLayout>
                 </VerticalStackLayout>
-
-                <Frame
-                    BorderColor="Gray"
-                    Padding="3"
-                    Margin="5"
-                    WidthRequest="600"
-                    HeightRequest="250">
-
-                    <CollectionView
-                        BackgroundColor="LightGray"
-                        ItemsSource="{Binding LogCollection}"
-                        ItemsUpdatingScrollMode="KeepLastItemInView"
-                        VerticalScrollBarVisibility="Always">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-
-                                <Label
-                                    WidthRequest="570"
-                                    Text="{Binding Message}"
-                                    TextColor="{Binding Color}"/>
-
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-
-                </Frame>
-
-            </VerticalStackLayout>
-
-        </Grid>
+            </Frame>
+            
+            <!-- 更新区域 -->
+            <Frame Style="{StaticResource CardStyle}">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="检查和更新" Style="{StaticResource HeaderLabel}"/>
+                    
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                        <Button Grid.Column="0"
+                                Text="检查更新"
+                                Style="{StaticResource SecondaryButton}"
+                                Command="{Binding CheckUpdBtnClickedCommand}"
+                                IsEnabled="{Binding CheckEnabled}"
+                                WidthRequest="150"/>
+                        
+                        <Button Grid.Column="1"
+                                Text="更新"
+                                Style="{StaticResource SuccessButton}"
+                                Command="{Binding UpdateBtnClickedCommand}"
+                                IsEnabled="{Binding UpdateEnabled}"/>
+                    </Grid>
+                    
+                    <HorizontalStackLayout Spacing="10">
+                        <CheckBox IsChecked="{Binding Installed}"
+                                IsEnabled="False"
+                                Color="#3498db"/>
+                        <Label Text="已下载选手包"
+                            VerticalOptions="Center"
+                            Style="{StaticResource SubHeaderLabel}"/>
+                    </HorizontalStackLayout>
+                    
+                    <Label Text="{Binding DebugAlert}"
+                           TextColor="#e74c3c"
+                           IsVisible="{Binding DebugAlert, Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"/>
+                </VerticalStackLayout>
+            </Frame>
+            
+            <!-- 日志区域 -->
+            <Frame Style="{StaticResource CardStyle}" HeightRequest="250">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="操作日志" Style="{StaticResource HeaderLabel}"/>
+                    
+                    <Frame BackgroundColor="#f9f9f9"
+                           BorderColor="#e0e0e0"
+                           CornerRadius="5"
+                           Padding="10"
+                           HasShadow="False">
+                        <CollectionView ItemsSource="{Binding LogCollection}"
+                                      ItemsUpdatingScrollMode="KeepLastItemInView"
+                                      VerticalScrollBarVisibility="Always">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Label Text="{Binding Message}"
+                                         TextColor="{Binding Color}"
+                                         Margin="0,2"
+                                         LineBreakMode="WordWrap"/>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Frame>
+                </VerticalStackLayout>
+            </Frame>
+            
+            <!-- 底部信息 -->
+            <Label Text="THUAI8 © 2025 EESAST"
+                 HorizontalOptions="Center"
+                 TextColor="#7f8c8d"
+                 Margin="0,20,0,10"
+                 FontSize="12"/>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

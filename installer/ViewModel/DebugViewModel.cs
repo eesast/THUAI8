@@ -8,6 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Windows.Input;
+using Microsoft.Maui.Controls;
+using installer.Services;
 
 namespace installer.ViewModel
 {
@@ -313,9 +316,21 @@ namespace installer.ViewModel
                 File.Delete(Path.Combine(Downloader.Data.LogPath, $"lock.{team}.{player}.log"));
             }
 
+            // 构建命令行参数
+            string arguments = $"--ip {IP} --port {Port} --teamID {team} --playerID {player}";
+
+            // 如果是非零的角色类型，添加角色类型参数
+            if (character > 0)
+            {
+                arguments += $" --characterType {character}";
+            }
+
+            Log.LogInfo($"启动客户端，参数: {arguments}");
+
             var client = Process.Start(new ProcessStartInfo()
             {
                 FileName = Downloader.Data.Config.DevClientPath ?? Path.Combine(Downloader.Data.Config.InstallPath, "logic", "Client", "Client.exe"),
+                Arguments = arguments,
                 WorkingDirectory = Downloader.Data.Config.InstallPath,
                 RedirectStandardError = true,
             });
@@ -379,7 +394,7 @@ namespace installer.ViewModel
             }
             else
             {
-                Log.LogError("请先生成cpp对应可执行文件后再启动，参见“Help-Launch-CPP可执行文件构建”");
+                Log.LogError("请先生成cpp对应可执行文件后再启动，参见\"Help-Launch-CPP可执行文件构建\"");
                 if (!ExplorerLaunched_CppAPI)
                 {
                     Process.Start(new ProcessStartInfo()
@@ -427,7 +442,7 @@ namespace installer.ViewModel
             }
             else
             {
-                DebugAlert = "请构建proto后安装，参见“Help-Launch-Python proto构建”";
+                DebugAlert = "请构建proto后安装，参见\"Help-Launch-Python proto构建\"";
                 if (!ExplorerLaunched_PyAPI)
                 {
                     Process.Start(new ProcessStartInfo()

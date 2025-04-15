@@ -22,12 +22,14 @@ namespace Gaming
             private readonly CharacterManager characterManager;
             private readonly MoveEngine moveEngine;
             private readonly A_ResourceManager ARManager;
-            public SkillCastManager(Game game, Map gameMap, CharacterManager characterManager, A_ResourceManager a_ResourceManager)
+            private readonly ActionManager actionManager;
+            public SkillCastManager(Game game, Map gameMap, CharacterManager characterManager, A_ResourceManager a_ResourceManager, ActionManager actionManager)
             {
                 this.game = game;
                 this.gameMap = gameMap;
                 this.characterManager = characterManager;
                 this.ARManager = a_ResourceManager;
+                this.actionManager = actionManager;
                 moveEngine = new(
                     gameMap: gameMap,
                     OnCollision: (obj, collisionObj, moveVec) =>
@@ -93,9 +95,14 @@ namespace Gaming
                                 {
                                     case GameObjType.CHARACTER:
                                         {
-                                            ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.BLIND);
-                                            ObjBeingShot.blind = true;
-                                            ObjBeingShot.BlindTime = Environment.TickCount64;
+                                            if (ObjBeingShot.Purified == true)
+                                                continue;
+                                            else
+                                            {
+                                                ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.BLIND);
+                                                ObjBeingShot.blind = true;
+                                                ObjBeingShot.BlindTime = Environment.TickCount64;
+                                            }
                                         }
                                         break;
                                     default: break;
@@ -190,11 +197,25 @@ namespace Gaming
                                 {
                                     case GameObjType.CHARACTER:
                                         {
-                                            if (ObjBeingShot.CharacterState2 == CharacterState.BURNED)
+                                            if (ObjBeingShot.CharacterState2 == CharacterState.BURNED || ObjBeingShot.burned)
                                             {
                                                 characterManager.BeAttacked(ObjBeingShot, GameData.TieShanSkillATK);
                                             }
-                                            ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.KNOCKED_BACK);
+                                            if (ObjBeingShot.Purified == true)
+                                                continue;
+                                            else
+                                            {
+                                                ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.KNOCKED_BACK);
+                                                double angleToBeKnockedBack;
+                                                double tantheta = (ObjBeingShot.Position.y - character.Position.y) / (ObjBeingShot.Position.x - character.Position.x);
+                                                if ((ObjBeingShot.Position.x - character.Position.x) > 0)
+                                                    angleToBeKnockedBack = Math.Atan(tantheta);
+                                                else if ((ObjBeingShot.Position.y - character.Position.y) > 0)
+                                                    angleToBeKnockedBack = Math.PI - Math.Atan(tantheta);
+                                                else
+                                                    angleToBeKnockedBack = -Math.PI - Math.Atan(tantheta);
+                                                actionManager.KnockBackCharacter(ObjBeingShot, angleToBeKnockedBack);
+                                            }
                                         }
                                         break;
                                     default: break;
@@ -217,9 +238,14 @@ namespace Gaming
                                     case GameObjType.CHARACTER:
                                         {
                                             characterManager.BeAttacked(ObjBeingShot, GameData.ZhiZhujingSkillATK);
-                                            ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.STUNNED);//尚未加入时间限制
-                                            ObjBeingShot.stunned = true;
-                                            ObjBeingShot.StunnedTime = Environment.TickCount64;
+                                            if (ObjBeingShot.Purified == true)
+                                                continue;
+                                            else
+                                            {
+                                                ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.STUNNED);//尚未加入时间限制
+                                                ObjBeingShot.stunned = true;
+                                                ObjBeingShot.StunnedTime = Environment.TickCount64;
+                                            }
                                         }
                                         break;
                                     default: break;

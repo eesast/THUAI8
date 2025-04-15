@@ -27,9 +27,9 @@ Logic::Logic(int32_t pID, int32_t tID, THUAI8::PlayerType pType, THUAI8::Charact
     bufferState->gameInfo = std::make_shared<THUAI8::GameInfo>();
     bufferState->mapInfo = std::make_shared<THUAI8::GameMap>();
     if (teamID == 0)
-        playerTeam = THUAI8::PlayerTeam::Red;
+        playerTeam = THUAI8::PlayerTeam::BuddhistsTeam;
     else if (teamID == 1)
-        playerTeam = THUAI8::PlayerTeam::Blue;
+        playerTeam = THUAI8::PlayerTeam::MonstersTeam;
     else
         playerTeam = THUAI8::PlayerTeam::NullTeam;
 }
@@ -42,7 +42,7 @@ std::vector<std::shared_ptr<const THUAI8::Character>> Logic::GetCharacters() con
     return temp;
 }
 
-std::vector<std::shared_ptr<const THUAI8::Character>> Logic::GetEnemySCharacters() const
+std::vector<std::shared_ptr<const THUAI8::Character>> Logic::GetEnemyCharacters() const
 {
     std::unique_lock<std::mutex> lock(mtxState);
     std::vector<std::shared_ptr<const THUAI8::Character>> temp(currentState->enemyCharacters.begin(), currentState->enemyCharacters.end());
@@ -57,12 +57,12 @@ std::shared_ptr<const THUAI8::Character> Logic::GetSelfInfo() const
     return currentState->characterSelf;
 }
 
-// std::shared_ptr<const THUAI8::Team> Logic::TeamGetSelfInfo() const
-// {
-//     std::unique_lock<std::mutex> lock(mtxState);
-//     logger->debug("Called TeamGetSelfInfo");
-//     return currentState->teamSelf;
-// }
+std::shared_ptr<const THUAI8::Team> Logic::TeamGetSelfInfo() const
+{
+        std::unique_lock<std::mutex> lock(mtxState);
+        logger->debug("Called TeamGetSelfInfo");
+        return currentState->teamSelf;
+}
 
 std::vector<std::vector<THUAI8::PlaceType>> Logic::GetFullMap() const
 {
@@ -217,16 +217,16 @@ std::pair<int32_t, std::string> Logic::GetMessage()
         }
 }
 
-bool Logic::Common_Attack(int32_t attacked_playerID, int32_t attacked_teamID)
+bool Logic::Common_Attack(int32_t playerID, int32_t teamID, int32_t attacked_playerID, int32_t attacked_teamID)
 {
     logger->debug("Called Attack");
-    return pComm->Attack(attacked_playerID, attacked_teamID);
+    return pComm->Attack(playerID, teamID, attacked_playerID, attacked_teamID);
 }
 
-bool Logic::Skill_Attack(int32_t attacked_playerID, int32_t attacked_teamID)
+bool Logic::Skill_Attack(int32_t playerID, int32_t teamID, double angle)
 {
     logger->debug("Called SkillAttack");
-    return pComm->SkillAttack(attacked_playerID, attacked_teamID);
+    return pComm->SkillAttack(playerID, teamID, angle);
 }
 
 bool Logic::Recover(int64_t recover)
@@ -414,7 +414,7 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
             case THUAI8::MessageOfObj::CharacterMessage:
                 if (teamID != item.character_message().team_id())
                 {
-                    if (AssistFunction::HaveView(x, y, item.character_message().x(), item.character_message().y(), viewRange, bufferState->gameMap))
+                    if (AssistFunction::HaveView(x, y, item.character_message().x(), item.character_message().y(), viewRange, bufferState->gameMap) && !item.character_message().is_invisible())
                     {
                         std::shared_ptr<THUAI8::Character> Character = Proto2THUAI8::Protobuf2THUAI8Character(item.character_message());
                         bufferState->enemyCharacters.push_back(Character);
@@ -508,7 +508,7 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
                 break;
             case THUAI8::MessageOfObj::TrapMessage:
                 // 待定
-                if (item.trap_message().team_id() == teamID || AssistFunction::HaveView(x, y, item.trap_message().x(), item.trap_message().y(), viewRange, bufferState->gameMap) && currentState->characterSelf->visionBuff == THUAI8::CharacterBuffType::VisionBuff)
+                if (item.trap_message().team_id() == teamID || AssistFunction::HaveView(x, y, item.trap_message().x(), item.trap_message().y(), viewRange, bufferState->gameMap) && currentState->characterSelf->visionBuffTime > 0)
                 {
                     auto pos = THUAI8::cellxy_t(
                         AssistFunction::GridToCell(item.trap_message().x()),
@@ -603,7 +603,7 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
         {
             for (const auto& character : bufferState->characters)
             {
-                if (AssistFunction::HaveView(character->x, character->y, targetX, targetY, character->viewRange, bufferState->gameMap) && character->visionBuff == THUAI8::CharacterBuffType::VisionBuff)
+                if (AssistFunction::HaveView(character->x, character->y, targetX, targetY, character->viewRange, bufferState->gameMap) && character->visionBuffTime > 0)
                     return true;
             }
             return false;
@@ -611,11 +611,22 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
         switch (Proto2THUAI8::messageOfObjDict[item.message_of_obj_case()])
         {
             case THUAI8::MessageOfObj::CharacterMessage:
-                if (item.character_message().team_id() != teamID && HaveOverView(item.character_message().x(), item.character_message().y()))
+                if (item.character_message().team_id() != teamID && HaveOverView(item.character_message().x(), item.character_message().y()) && !item.character_message().is_invisible())
                 {
                     std::shared_ptr<THUAI8::Character> Character = Proto2THUAI8::Protobuf2THUAI8Character(item.character_message());
                     bufferState->enemyCharacters.push_back(Character);
                     logger->debug("Load EnemyCharacter!");
+                }
+                else if (item.character_message().team_id() == teamID && playerID != item.character_message().player_id())
+                {
+                    std::shared_ptr<THUAI8::Character> Character = Proto2THUAI8::Protobuf2THUAI8Character(item.character_message());
+                    bufferState->characters.push_back(Character);
+                    logger->debug("Load Character!");
+                }
+                else if (item.character_message().team_id() == teamID && playerID == item.character_message().player_id())
+                {
+                    bufferState->characterSelf = Proto2THUAI8::Protobuf2THUAI8Character(item.character_message());
+                    logger->debug("Load Self Character!");
                 }
                 break;
             case THUAI8::MessageOfObj::BarracksMessage:

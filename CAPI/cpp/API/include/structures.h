@@ -71,12 +71,12 @@ namespace THUAI8
         Camp1Character5 = 5,
         Camp1Character6 = 6,
 
-        CampCharacter1 = 7,
-        CampCharacter2 = 8,
-        CampCharacter3 = 9,
-        CampCharacter4 = 10,
-        CampCharacter5 = 11,
-        CampCharacter6 = 12,
+        Camp2Character1 = 7,
+        Camp2Character2 = 8,
+        Camp2Character3 = 9,
+        Camp2Character4 = 10,
+        Camp2Character5 = 11,
+        Camp2Character6 = 12,
     };
 
     enum class EquipmentType : unsigned char
@@ -214,16 +214,22 @@ namespace THUAI8
         int64_t teamID;
         int64_t playerID;
 
-        // 待定
         CharacterType characterType;
-        CharacterState characterState;
-        double damageRedunction;
-        bool burned;
-        Timer ? burnedTimer;  // 类型？
-        int32_t skikkShield;
-        CharacterBuffType attackBuff;
-        CharacterBuffType speedBuff;
-        CharacterBuffType visionBuff;
+
+        CharacterState characterActiveState;
+
+        bool isBlind;
+        long blindTime;
+        bool isStunned;
+        long stunnedTime;
+        bool isInvisible;
+        long invisibleTime;
+        bool isBurned;
+        long burnedTime;
+        double harmCut;
+        long harmCutTime;
+
+        CharacterState characterPassiveState;
 
         int32_t x;
         int32_t y;
@@ -232,21 +238,30 @@ namespace THUAI8
         int32_t speed;
         int32_t viewRange;
 
-        int32_t skillCD;
+        int32_t commonAttack;
+        int64_t commonAttackCD;
+        int32_t commonAttackRange;
+
+        int64_t skillAttackCD;
 
         int32_t economyDepletion;
         int32_t killScore;
 
         int32_t hp;
 
-        // // 待定
-        // EquipmentType equipmentType;
-        // EquipmentType healthPotionEquipment;
-        // EquipmentType shildEquipment;
-        // EquipmentType speedShoesEquipment;
-        // EquipmentType purificationPotionEquipment;
-        // EquipmentType invisibilityPotionEquipment;
-        // EquipmentType berserkPotionEquipment;
+        int32_t shieldEquipment;
+        // int32_t shild;
+        int32_t shoesEquipment;
+        int64_t shoesTime;
+        bool isPurified;
+        int64_t purifiedTime;
+        bool isBerserk;
+        int64_t berserkTime;
+
+        int32_t attackBuffNum;
+        int64_t attackBuffTime;
+        int64_t speedBuffTime;
+        int64_t visionBuffTime;
     };
 
     struct Team

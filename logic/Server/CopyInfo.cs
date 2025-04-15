@@ -64,10 +64,8 @@ namespace Server
         }
         private static MessageOfObj? Character(Character player, long time)
         {
-            MessageOfCharacter a;
             MessageOfObj msg = new()
             {
-
                 CharacterMessage = new()
                 {
                     Guid = player.ID,
@@ -75,10 +73,22 @@ namespace Server
                     TeamId = player.TeamID,
                     PlayerId = player.PlayerID,
 
-
                     CharacterType = Transformation.CharacterTypeToProto(player.CharacterType),
-                    CharacterState1 = Transformation.CharacterStateToProto(player.CharacterState1),
-                    CharacterState2 = Transformation.CharacterStateToProto(player.CharacterState2),
+
+                    CharacterActiveState = Transformation.CharacterStateToProto(player.CharacterState1),
+
+                    IsBlind = player.blind,
+                    BlindTime = player.BlindTime,
+                    IsStunned = player.stunned,
+                    StunnedTime = player.StunnedTime,
+                    IsInvisible = !player.visible,
+                    InvisibleTime = player.InvisibleTime,
+                    IsBurned = player.burned,
+                    BurnedTime = player.BurnedTime,
+                    HarmCut = player.HarmCut,
+                    HarmCutTime = player.HarmCutTime,
+
+                    CharacterPassiveState = Transformation.CharacterStateToProto(player.CharacterState2),
 
                     X = player.Position.x,
                     Y = player.Position.y,
@@ -87,18 +97,31 @@ namespace Server
                     Speed = player.MoveSpeed,
                     ViewRange = player.ViewRange,
 
-                    Atk = (int)player.AttackPower,
-                    AttackSize = (int)player.AttackSize,
+                    CommonAttack = (int)player.AttackPower,
+                    // 待修改，Character.cs中没有CommonAttackCD
+                    CommonAttackCd = (int)(1 / player.ATKFrequency),
+                    CommonAttackRange = (int)player.AttackSize,
 
-                    SkillCd = player.skillCD,
+                    SkillAttackCd = player.skillCD,
 
                     EconomyDepletion = player.EconomyDepletion,
                     KillScore = (int)player.GetCost(),
 
                     Hp = (int)player.HP,
 
-                    Shield = player.Shield,
-                    Shoes = player.Shoes,
+                    // 待修改，Shield要分两类
+                    ShieldEquipment = (int)player.Shield, // 护盾装备
+                    ShoesEquipment = (int)player.Shoes, // 加成值
+                    ShoesTime = player.ShoesTime, // 包含所有速度加成的时间
+                    IsPurified = player.Purified,
+                    PurifiedTime = player.PurifiedTime,
+                    IsBerserk = player.IsBerserk,
+                    BerserkTime = player.BerserkTime,
+
+                    AttackBuffNum = (int)player.CrazyManNum,
+                    AttackBuffTime = player.CrazyManTime,
+                    SpeedBuffTime = player.QuickStepTime,
+                    VisionBuffTime = player.WideViewTime,
                 }
             };
             return msg;

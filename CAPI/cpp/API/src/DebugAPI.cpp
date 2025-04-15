@@ -561,7 +561,7 @@ void TeamDebugAPI::PrintSelfInfo() const
     logger->info("*********************\n");
 }
 
-void ShipDebugAPI::Play(IAI& ai)
+void CharacterDebugAPI::Play(IAI& ai)
 {
     ai.play(*this);
 }

@@ -53,8 +53,36 @@ namespace Gaming
                             characterToMove.ThreadNum.Release();
                             return;
                         }
-                        moveEngine.MoveObj(characterToMove, moveTimeInMilliseconds, moveDirection, characterToMove.StateNum);
+                        moveEngine.MoveObj(characterToMove, moveTimeInMilliseconds, moveDirection, characterToMove.StateNum, characterToMove.Shoes);
                         Thread.Sleep(moveTimeInMilliseconds);
+                        //characterToMove.ResetCharacterState(stateNum);
+                    }
+                )
+                { IsBackground = true }.Start();
+                return true;
+            }
+            public bool KnockBackCharacter(Character characterToMove, double moveDirection)
+            {
+                long stateNum = characterToMove.SetCharacterState(characterToMove.CharacterState1, CharacterState.KNOCKED_BACK);
+                CharacterState tempState = characterToMove.CharacterState2;
+                if (stateNum == -1)
+                {
+                    ActionManagerLogging.logger.ConsoleLogDebug("Character can not be knocked back");
+                    return false;
+                }
+                new Thread
+                (
+                    () =>
+                    {
+                        characterToMove.ThreadNum.WaitOne();
+                        if (!characterToMove.StartThread(stateNum))
+                        {
+                            characterToMove.ThreadNum.Release();
+                            return;
+                        }
+                        moveEngine.MoveObj(characterToMove, GameData.KnockedBackTime, moveDirection, characterToMove.StateNum, GameData.KnockedBackSpeed);
+                        Thread.Sleep(GameData.KnockedBackTime);
+                        characterToMove.SetCharacterState(characterToMove.CharacterState1, tempState);
                         //characterToMove.ResetCharacterState(stateNum);
                     }
                 )

@@ -20,6 +20,7 @@ namespace Server
         private readonly object spectatorJoinLock = new();
         protected object spectatorLock = new();
         protected bool isSpectatorJoin = false;
+        int a_b_c_d = 1;
         protected bool IsSpectatorJoin
         {
             get

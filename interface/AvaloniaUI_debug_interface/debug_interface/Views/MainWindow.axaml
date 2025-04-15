@@ -4,8 +4,9 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:debug_interface.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:debug_interface.Models"
     xmlns:vm="using:debug_interface.ViewModels"
     x:Name="MainWindowElement"
     Title="THUAI8 调试界面"
@@ -32,198 +33,361 @@
 
 
     <Grid ColumnDefinitions="3*,5.5*" RowDefinitions="*">
+
         <!--  左侧区域  -->
-        <Grid Background="AliceBlue" RowDefinitions="*,*">
+        <Grid Background="AliceBlue" RowDefinitions="5*,5*,*">
 
-            <Grid Grid.Row="0" RowDefinitions="1*,7*,3*">
+            <!--  取经队区域  -->
+            <Grid Grid.Row="0" RowDefinitions="Auto,1*,Auto">
 
-                <!--  红方队伍标题行  -->
-                <StackPanel Grid.Row="0" Orientation="Horizontal">
-
-
+                <!--  取经队伍标题行  -->
+                <StackPanel
+                    Grid.Row="0"
+                    Margin="5"
+                    Orientation="Horizontal">
                     <TextBlock
-                        Margin="5"
+                        Margin="0,0,10,0"
                         Background="LightGoldenrodYellow"
                         FontSize="16"
                         FontWeight="Bold"
                         Foreground="Brown"
                         Text="取经队伍" />
                     <TextBlock
-                        Margin="5,2"
                         VerticalAlignment="Center"
                         FontSize="12"
-                        Text="经济: 60000" />
+                        Text="{Binding BuddhistTeamEconomy, StringFormat='经济: {0}'}" />
                 </StackPanel>
 
-
-                <!--  红方团队角色信息  -->
-                <UniformGrid Grid.Row="1" Margin="2">
-                    <ItemsControl ItemsSource="{Binding RedTeamCharacters}">
+                <!--  取经团队角色信息  -->
+                <ScrollViewer
+                    Grid.Row="1"
+                    Margin="2"
+                    VerticalScrollBarVisibility="Auto">
+                    <ItemsControl ItemsSource="{Binding BuddhistsTeamCharacters}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <UniformGrid Columns="3" />
+                                <!--  使用 WrapPanel 或 StackPanel 可能比 UniformGrid 好，因为角色卡片大小不一  -->
+                                <WrapPanel ItemWidth="140" Orientation="Horizontal" />
+                                <!-- <UniformGrid Columns="3" /> -->
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
 
                         <ItemsControl.ItemTemplate>
                             <DataTemplate x:DataType="vm:CharacterViewModel">
                                 <Border
-                                    Margin="2"
+                                    MinWidth="130"
+                                    Margin="3"
                                     Padding="5"
                                     BorderBrush="Gray"
                                     BorderThickness="1">
-                                    <StackPanel>
+                                    <!--  *** 使用垂直 StackPanel ***  -->
+                                    <StackPanel Spacing="3">
+                                        <!--  添加一点间距  -->
                                         <!--  名字  -->
                                         <TextBlock
-                                            Margin="5,2"
                                             HorizontalAlignment="Center"
-                                            FontSize="10"
-                                            Text="{Binding Name}" />
-                                        <!--  血量  -->
-                                        <Border Width="130" BorderThickness="1">
+                                            FontSize="12"
+                                            FontWeight="Bold"
+                                            Text="{Binding Name}"
+                                            ToolTip.Tip="{Binding Guid, StringFormat='Guid: {0}'}" />
+                                        <!--  血量条  -->
+                                        <Border BorderThickness="1">
                                             <ProgressBar
-                                                Height="18"
-                                                MaxWidth="80"
-                                                Margin="5,2,5,2"
-                                                HorizontalAlignment="Center"
-                                                FontSize="10"
-                                                Foreground="LightGoldenrodYellow"
-                                                Maximum="{Binding Hp}"
-                                                ProgressTextFormat="{} 血量:{0}/{3} ({1:0}%)"
+                                                Height="16"
+                                                MinWidth="100"
+                                                Margin="1"
+                                                FontSize="9"
+                                                Foreground="{Binding TeamId, Converter={StaticResource TeamIdToColorConverter}}"
+                                                Maximum="{Binding MaxHp}"
+                                                ProgressTextFormat="{}{0} / {1}"
                                                 ShowProgressText="True"
-                                                Value="609" />
+                                                Value="{Binding Hp}" />
                                         </Border>
-                                        <!--<TextBlock
-                                                Margin="5,2"
-                                                HorizontalAlignment="Center"
-                                                FontSize="10"
-                                                Text="{Binding Hp, StringFormat=血量: {0}}" />-->
 
-                                        <!--  状态显示 (主动/被动)  -->
+                                        <!--  主动状态  -->
+                                        <TextBlock FontSize="10">
+                                            <Run FontWeight="SemiBold" Text="状态: " />
+                                            <Run Text="{Binding ActiveState}" />
+                                        </TextBlock>
+
+                                        <!--  状态效果 (使用 ItemsControl)  -->
+                                        <!--  只在有效果时显示标题和列表  -->
+                                        <StackPanel Margin="0,3,0,0" IsVisible="{Binding StatusEffects.Count}">
+                                            <TextBlock
+                                                FontSize="10"
+                                                FontWeight="SemiBold"
+                                                Text="效果/状态:" />
+                                            <ItemsControl Margin="5,0,0,0" ItemsSource="{Binding StatusEffects}">
+                                                <!--  加一点缩进  -->
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock
+                                                            FontSize="9"
+                                                            Text="{Binding}"
+                                                            TextWrapping="Wrap" />
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </StackPanel>
+
+
+                                        <!--  装备清单 (如果需要显示)  -->
+                                        <!--  只在有装备时显示标题和列表  -->
+                                        <StackPanel Margin="0,3,0,0" IsVisible="{Binding EquipmentInventory.Count}">
+                                            <TextBlock
+                                                FontSize="10"
+                                                FontWeight="SemiBold"
+                                                Text="装备:" />
+                                            <ItemsControl Margin="5,0,0,0" ItemsSource="{Binding EquipmentInventory}">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate x:DataType="vm:EquipmentItem">
+                                                        <!--  指定类型  -->
+                                                        <TextBlock
+                                                            FontSize="9"
+                                                            Text="{Binding}"
+                                                            TextWrapping="Wrap" />
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                            <!--  或者如果 EquipmentInventory 很少，可以直接用 TextBlock  -->
+                                            <!-- <TextBlock FontSize="9" Text="{Binding FormattedEquipment}" Margin="5,0,0,0"/> -->
+                                        </StackPanel>
+                                        <!--  如果装备列表总是空的，可以简化或移除这个 StackPanel  -->
                                         <TextBlock
-                                            Margin="5,2"
-                                            HorizontalAlignment="Center"
-                                            FontSize="10"
-                                            Text="{Binding DisplayStates}" />
-                                        <!--  装备显示  -->
-                                        <TextBlock
-                                            Margin="5,2"
-                                            HorizontalAlignment="Center"
-                                            FontSize="10"
-                                            Text="{Binding DisplayEquipments}" />
+                                            FontSize="9"
+                                            FontStyle="Italic"
+                                            IsVisible="{Binding !EquipmentInventory.Count}"
+                                            Text="装备: 无" />
+
                                     </StackPanel>
                                 </Border>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                </UniformGrid>
+                </ScrollViewer>
 
-                <!--  红方建筑信息  -->
+                <!--  取经方建筑信息 (绑定到新的属性)  -->
                 <TextBlock
                     Grid.Row="2"
                     Margin="5"
+                    FontSize="10"
                     FontStyle="Italic"
-                    Text="{Binding SomeBuildingInfo}" />
+                    Text="{Binding BuddhistTeamBuildingInfo}"
+                    TextWrapping="Wrap" />
             </Grid>
-            <!--  蓝方队伍标题  -->
-            <Grid Grid.Row="1" RowDefinitions="1*,7*,3*">
-                <StackPanel Grid.Row="0" Orientation="Horizontal">
+
+            <!--  妖怪队区域  -->
+            <Grid Grid.Row="1" RowDefinitions="Auto,1*,Auto">
+                <!--  妖怪队伍标题行  -->
+                <StackPanel
+                    Grid.Row="0"
+                    Margin="5"
+                    Orientation="Horizontal">
                     <TextBlock
-                        Margin="5"
+                        Margin="0,0,10,0"
                         Background="LightBlue"
                         FontSize="16"
                         FontWeight="Bold"
-                        Foreground="Brown"
+                        Foreground="DarkBlue"
                         Text="妖怪队伍" />
                     <TextBlock
-                        Margin="5,2"
                         VerticalAlignment="Center"
                         FontSize="12"
-                        Text="经济: 10000" />
+                        Text="{Binding MonstersTeamEconomy, StringFormat='经济: {0}'}" />
                 </StackPanel>
-                <!--  蓝方团队角色信息  -->
-                <UniformGrid Grid.Row="1" Margin="5">
-                    <ItemsControl ItemsSource="{Binding BlueTeamCharacters}">
+
+                <!--  妖怪团队角色信息  -->
+                <ScrollViewer
+                    Grid.Row="1"
+                    Margin="2"
+                    VerticalScrollBarVisibility="Auto">
+                    <ItemsControl ItemsSource="{Binding MonstersTeamCharacters}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <UniformGrid Columns="3" />
+                                <WrapPanel ItemWidth="140" Orientation="Horizontal" />
+                                <!-- <UniformGrid Columns="3" /> -->
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
 
+                        <!--  Views\MainWindow.axaml  -->
+                        <!--  在 ItemsControl for BuddhistsTeamCharacters/MonstersTeamCharacters 内部  -->
                         <ItemsControl.ItemTemplate>
                             <DataTemplate x:DataType="vm:CharacterViewModel">
                                 <Border
-                                    Margin="2"
+                                    MinWidth="130"
+                                    Margin="3"
                                     Padding="5"
                                     BorderBrush="Gray"
                                     BorderThickness="1">
-                                    <StackPanel>
+                                    <!--  *** 使用垂直 StackPanel ***  -->
+                                    <StackPanel Spacing="3">
+                                        <!--  添加一点间距  -->
                                         <!--  名字  -->
                                         <TextBlock
-                                            Margin="5,2"
                                             HorizontalAlignment="Center"
-                                            FontSize="10"
-                                            Text="{Binding Name}" />
-                                        <!--  血量  -->
-                                        <Border Width="130" BorderThickness="1">
+                                            FontSize="12"
+                                            FontWeight="Bold"
+                                            Text="{Binding Name}"
+                                            ToolTip.Tip="{Binding Guid, StringFormat='Guid: {0}'}" />
+                                        <!--  血量条  -->
+                                        <Border BorderThickness="1">
                                             <ProgressBar
-                                                Height="18"
-                                                MaxWidth="80"
-                                                Margin="5,2,5,2"
-                                                HorizontalAlignment="Center"
-                                                FontSize="10"
-                                                Foreground="LightBlue"
-                                                Maximum="{Binding Hp}"
-                                                ProgressTextFormat="{} 血量:{0}/{3} ({1:0}%)"
+                                                Height="16"
+                                                MinWidth="100"
+                                                Margin="1"
+                                                FontSize="9"
+                                                Foreground="{Binding TeamId, Converter={StaticResource TeamIdToColorConverter}}"
+                                                Maximum="{Binding MaxHp}"
+                                                ProgressTextFormat="{}{0} / {1}"
                                                 ShowProgressText="True"
-                                                Value="450" />
+                                                Value="{Binding Hp}" />
                                         </Border>
-                                        <!--  状态显示 (主动/被动)  -->
+
+                                        <!--  主动状态  -->
+                                        <TextBlock FontSize="10">
+                                            <Run FontWeight="SemiBold" Text="状态: " />
+                                            <Run Text="{Binding ActiveState}" />
+                                        </TextBlock>
+
+                                        <!--  状态效果 (使用 ItemsControl)  -->
+                                        <!--  只在有效果时显示标题和列表  -->
+                                        <StackPanel Margin="0,3,0,0" IsVisible="{Binding StatusEffects.Count}">
+                                            <TextBlock
+                                                FontSize="10"
+                                                FontWeight="SemiBold"
+                                                Text="效果/状态:" />
+                                            <ItemsControl Margin="5,0,0,0" ItemsSource="{Binding StatusEffects}">
+                                                <!--  加一点缩进  -->
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock
+                                                            FontSize="9"
+                                                            Text="{Binding}"
+                                                            TextWrapping="Wrap" />
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </StackPanel>
+
+
+                                        <!--  装备清单 (如果需要显示)  -->
+                                        <!--  只在有装备时显示标题和列表  -->
+                                        <StackPanel Margin="0,3,0,0" IsVisible="{Binding EquipmentInventory.Count}">
+                                            <TextBlock
+                                                FontSize="10"
+                                                FontWeight="SemiBold"
+                                                Text="装备:" />
+                                            <ItemsControl Margin="5,0,0,0" ItemsSource="{Binding EquipmentInventory}">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate x:DataType="vm:EquipmentItem">
+                                                        <!--  指定类型  -->
+                                                        <TextBlock
+                                                            FontSize="9"
+                                                            Text="{Binding}"
+                                                            TextWrapping="Wrap" />
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                            <!--  或者如果 EquipmentInventory 很少，可以直接用 TextBlock  -->
+                                            <!-- <TextBlock FontSize="9" Text="{Binding FormattedEquipment}" Margin="5,0,0,0"/> -->
+                                        </StackPanel>
+                                        <!--  如果装备列表总是空的，可以简化或移除这个 StackPanel  -->
                                         <TextBlock
-                                            Margin="5,2"
-                                            HorizontalAlignment="Center"
-                                            FontSize="10"
-                                            Text="{Binding DisplayStates}" />
-                                        <!--  装备显示  -->
-                                        <TextBlock
-                                            Margin="5,2"
-                                            HorizontalAlignment="Center"
-                                            FontSize="10"
-                                            Text="{Binding DisplayEquipments}" />
+                                            FontSize="9"
+                                            FontStyle="Italic"
+                                            IsVisible="{Binding !EquipmentInventory.Count}"
+                                            Text="装备: 无" />
+
                                     </StackPanel>
                                 </Border>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                </UniformGrid>
+                </ScrollViewer>
 
-                <!--  蓝方建筑信息  -->
+                <!--  妖怪方建筑信息 (绑定到新的属性)  -->
                 <TextBlock
                     Grid.Row="2"
                     Margin="5"
+                    FontSize="10"
                     FontStyle="Italic"
-                    Text="{Binding AnotherBuildingInfo}" />
+                    Text="{Binding MonstersTeamBuildingInfo}"
+                    TextWrapping="Wrap" />
+
+
             </Grid>
+
+            <TextBlock
+                Grid.Row="2"
+                Margin="5"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                FontSize="10"
+                Foreground="Gray"
+                Text="{Binding ConnectionStatus}" />
+
         </Grid>
 
         <!--  右侧区域  -->
-        <Grid
-            Grid.Column="1"
-            Margin="2"
-            >
+        <Grid Grid.Column="1" Margin="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
+            <!--  *** 浮动的 Expander ***  -->
+            <Canvas Panel.ZIndex="1">
+                <!--  确保 Canvas 在上层  -->
+                <Expander
+                    Canvas.Top="0"
+                    Canvas.Right="5"
+                    MaxWidth="200"
+                    MaxHeight="150"
+                    Padding="2"
+                    Background="#80FFFFFF"
+                    BorderBrush="Gray"
+                    BorderThickness="0.5"
+                    ExpandDirection="">
+                    <Expander.Header>
+                        <TextBlock
+                            MaxHeight="100"
+                            FontWeight="Bold"
+                            Text="地图图例" />
+                    </Expander.Header>
+                    <ScrollViewer MaxHeight="400">
+                        <!--  *** 使用 ItemsControl 绑定图例数据 ***  -->
+                        <ItemsControl ItemsSource="{Binding MapLegendItems}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="models:LegendItem">
+                                    <!--  设置 DataTemplate 的数据类型  -->
+                                    <StackPanel Margin="2" Orientation="Horizontal">
+                                        <!--  色块  -->
+                                        <Border
+                                            Width="15"
+                                            Height="15"
+                                            Margin="0,0,5,0"
+                                            Background="{Binding Color}"
+                                            BorderBrush="{Binding Stroke, FallbackValue={x:Null}}"
+                                            BorderThickness="{Binding BorderThickness}" />
+                                        <!--  描述文本  -->
+                                        <TextBlock
+                                            VerticalAlignment="Center"
+                                            FontSize="10"
+                                            Text="{Binding Description}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Expander>
+            </Canvas>
+
             <!--  时间、比分  -->
             <StackPanel
-                Margin="2"
+                Margin="5"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Orientation="Horizontal">
-
-
                 <TextBlock
                     Margin="20,0,10,0"
                     VerticalAlignment="Center"
@@ -232,30 +396,39 @@
                 <TextBlock
                     Margin="10,0"
                     VerticalAlignment="Center"
-                    Text="红方得分:" />
+                    Foreground="Red"
+                    Text="取经队得分:" />
                 <TextBlock
                     Margin="5,0"
                     VerticalAlignment="Center"
+                    Foreground="Red"
                     Text="{Binding RedScore}" />
                 <TextBlock
-                    Margin="10,0"
+                    Margin="20,0,10,0"
                     VerticalAlignment="Center"
-                    Text="蓝方得分:" />
+                    Foreground="Blue"
+                    Text="妖怪队得分:" />
                 <TextBlock
                     Margin="5,0"
                     VerticalAlignment="Center"
+                    Foreground="Blue"
                     Text="{Binding BlueScore}" />
             </StackPanel>
 
+            <!--  地图  -->
+            <Border
+                Grid.Row="1"
+                Margin="5"
+                BorderBrush="Gray"
+                BorderThickness="1"
+                ClipToBounds="True">
+                <!--  MapView 保持不变  -->
+                <local:MapView />
+            </Border>
 
-			<!-- 地图  -->
-			<Border
-            Grid.Row="1"
-            Margin="5"
-            BorderBrush="Gray"
-            BorderThickness="1">
-			<local:MapView />
-			</Border>
-		</Grid>
+
+
+        </Grid>
+
     </Grid>
 </Window>

@@ -19,43 +19,58 @@ message MessageOfCharacter
     int64 player_id = 3;
 
     CharacterType character_type = 4;
-    CharacterState character_state1 = 5;
-    CharacterState character_state2 = 6;
 
-    // 待定 是否加Timer?
-    // double damage_reduction = ; // 伤害减免
-    // bool burned = ; // 是否燃烧
-    // Timer? burned_timer = ; // 燃烧持续时间 感觉不能用Timer
-    // int32 skill_shield = ; // 技能护盾能抵挡的伤害
-    // CharacterBuffType attack_buff = ; // 狂战士之力
-    // CharacterBuffType speed_buff = ; // 疾步之灵
-    // CharacterBuffType vision_buff = ; // 视野之灵
+    // 主动状态
+    CharacterState character_active_state = 5;
 
-    int32 x = 7;
-    int32 y = 8;
+    // 被动状态
+    bool is_blind = 6;
+    int64 blind_time = 7;
+    bool is_stunned = 8;
+    int64 stunned_time = 9;
+    bool is_invisible = 10;
+    int64 invisible_time = 11;
+    bool is_burned = 12;
+    int64 burned_time = 13;
 
-    double facing_direction = 9;
-    int32 speed = 10;
-    int32 view_range = 11;
+    // 伤害减免
+    double harm_cut = 14;
+    int64 harm_cut_time = 15;
 
-    int32 atk =12;
-    int32 attack_size = 13;
+    CharacterState character_passive_state = 16; // 最新被动状态状态
 
-    int64 skill_cd = 14;
+    int32 x = 17;
+    int32 y = 18;
 
-    int32 economy_depletion = 15;
-    int32 kill_score = 16;
+    double facing_direction = 19;
+    int32 speed = 20;
+    int32 view_range = 21;
+
+    int32 common_attack = 22;
+    int64 common_attack_cd = 23;
+    int32 common_attack_range = 24;
+
+    int64 skill_attack_cd = 25;
+
+    int32 economy_depletion = 26; // 经济资源消耗
+    int32 kill_score = 27; // 击杀得分
     
-    int32 hp = 17; 
+    int32 hp = 28; 
 
-   int64 shield = 18;
-   int64 shoes = 19;
-    // EquipmentType health_potion_equipment = ;
-    // EquipmentType shild_equipment =;
-    // EquipmentType speed_shoes_equipment =;
-    // EquipmentType purification_potion_equipment =;
-    // EquipmentType invisibility_potion_equipment =;
-    // EquipmentType berserk_potion_equipment =;
+    // 其它装备都是直接消耗，不需要记录
+    int32 shield_equipment = 29; // 装备护盾剩余值?
+    int32 shoes_equipment = 30;
+    int64 shoes_time = 31;
+    bool is_purified = 32;
+    int64 purified_time = 33;
+    bool is_berserk = 34;
+    int64 berserk_time = 35;
+
+    // 加成资源的Buff
+    int32 attack_buff_num = 36;
+    int64 attack_buff_time = 37;
+    int64 speed_buff_time = 38;
+    int64 vision_buff_time = 39;
 }
 
 message MessageOfBarracks

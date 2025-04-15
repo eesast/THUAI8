@@ -3,35 +3,56 @@
     x:Class="installer.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:installer.Page"
+    xmlns:page="clr-namespace:installer.Page"
     Shell.FlyoutBehavior="Disabled"
-    Title="THUAI7">
+    Shell.NavBarIsVisible="True"
+    Shell.TabBarIsVisible="True"
+    Shell.NavBarHasShadow="True"
+    Title="THUAI8 安装器">
 
-    <FlyoutItem
-        FlyoutDisplayOptions="AsMultipleItems">
+    <TabBar>
+        <ShellContent
+            Title="安装"
+            Icon="install_icon.png"
+            ContentTemplate="{DataTemplate page:InstallPage}"
+            Route="InstallPage" />
 
         <ShellContent
-            Title="Install"
-            ContentTemplate="{DataTemplate local:InstallPage}"/>
-
-        <Tab
-            Title="Launch">
-            <ShellContent
-                Title="Debug"
-                ContentTemplate="{DataTemplate local:DebugPage}"/>
-            <ShellContent
-                Title="Playback"
-                ContentTemplate="{DataTemplate local:PlaybackPage}"/>
-        </Tab>
+            Title="调试"
+            Icon="debug_icon.png"
+            ContentTemplate="{DataTemplate page:DebugPage}"
+            Route="DebugPage" />
 
         <ShellContent
-            Title="Login"
-            ContentTemplate="{DataTemplate local:LoginPage}"/>
+            Title="回放"
+            Icon="playback_icon.png"
+            ContentTemplate="{DataTemplate page:PlaybackPage}"
+            Route="PlaybackPage" />
 
-        <!-- <ShellContent
-            Title="Help"
-            ContentTemplate="{DataTemplate local:HelpPage}"/> -->
+        <ShellContent
+            Title="登录"
+            Icon="login_icon.png"
+            ContentTemplate="{DataTemplate page:LoginPage}"
+            Route="LoginPage" />
 
-    </FlyoutItem>
+        <ShellContent
+            Title="帮助"
+            Icon="help_icon.png"
+            ContentTemplate="{DataTemplate page:HelpPage}"
+            Route="HelpPage" />
+    </TabBar>
 
+    <Shell.FlyoutFooter>
+        <StackLayout Padding="20">
+            <Label Text="THUAI8 © 2025 EESAST" 
+                   HorizontalOptions="Center"
+                   FontSize="12" />
+        </StackLayout>
+    </Shell.FlyoutFooter>
+
+    <!-- 注册开发者页面的路由，但不在TabBar中显示 -->
+    <ShellContent
+        Title="开发者模式"
+        ContentTemplate="{DataTemplate page:DeveloperPage}"
+        Route="DeveloperPage" />
 </Shell>

@@ -44,14 +44,28 @@ namespace Gaming
                     return;
                 }
                 long subHP = (long)(obj.AttackPower * (1 - character.HarmCut));
-                if (character.Shield > 0)
+                /*if (character.Shield > 0)
                 {
                     character.Shield.SubPositiveV(subHP);
                 }
                 else
                 {
                     character.HP.SubPositiveV(subHP);
+                }*/
+                character.NiuShield.SubPositiveV(subHP);
+                if (character.NiuShield > 0)
+                {
+                    return;
                 }
+                subHP -= character.NiuShield;
+                character.Shield.SubPositiveV(subHP);
+                if (character.Shield > 0)
+                {
+                    return;
+                }
+                subHP -= character.Shield;
+                character.IsShield = false;
+                character.HP.SubPositiveV(subHP);
                 if (character.HP == 0)
                 {
                     long score = 0;
@@ -67,18 +81,31 @@ namespace Gaming
                     Remove(character);
                 }
             }
-
             public void BeAttacked(Character character, long AP)//此部分适用于中立资源攻击及技能攻击
             {
                 long subHP = (long)(AP * (1 - character.HarmCut));
-                if (character.Shield > 0)
+                /*if (character.Shield > 0)
                 {
                     character.Shield.SubPositiveV(subHP);
                 }
                 else
                 {
                     character.HP.SubPositiveV(subHP);
+                }*/
+                character.NiuShield.SubPositiveV(subHP);
+                if (character.NiuShield > 0)
+                {
+                    return;
                 }
+                subHP -= character.NiuShield;
+                character.Shield.SubPositiveV(subHP);
+                if (character.Shield > 0)
+                {
+                    return;
+                }
+                subHP -= character.Shield;
+                character.IsShield = false;
+                character.HP.SubPositiveV(subHP);
                 if (character.HP == 0)
                 {
                     long score = 0;
@@ -88,7 +115,6 @@ namespace Gaming
                         score = 500;
                     else
                         score = character.GetCost();
-                    //此处缺失加分代码。由于阵营是分明的（妖怪和取经团队，THUAI7阵营并无明显差别），可以直接将得分加至相应阵营。小局结束后再加到队伍得分。
                     var team = game.TeamList[(int)character.TeamID.Get()];
                     team.MoneyPool.SubScore(score);
                     Remove(character);
@@ -141,6 +167,7 @@ namespace Gaming
             }
             public void InTrap(Trap trap, Character character)
             {
+
                 if (!character.trapped && character.InSquare(trap.Position, GameData.TrapRange) && trap.TeamID != character.TeamID)
                 {
                     character.visible = true;
@@ -176,7 +203,6 @@ namespace Gaming
                     character.CageTime = Environment.TickCount64;
                     //HP.SubV(GameData.TrapDamage);
                     //SetCharacterState(CharacterState.STUNNED);
-
                 }
             }
             public void CheckCage(Character character)
@@ -246,14 +272,80 @@ namespace Gaming
                 if (nowtime - character.CrazyManTime >= (15 + character.CrazyManNum * 15))
                 {
                     character.AttackPower.SubPositiveV(5 + character.CrazyManNum * 5);
+                    character.CrazyManTime = long.MaxValue;
                 }
             }
             public void CheckQuickStepTime(Character character)
             {
                 long nowtime = Environment.TickCount64;
-                if (nowtime - character.CrazyManTime >= 60000)
+                if (nowtime - character.QuickStepTime >= 60000)
                 {
                     character.Shoes.SubPositiveV(500);
+                    character.QuickStepTime = long.MaxValue;
+                }
+            }
+            public void CheckWideViewTime(Character character)
+            {
+                long nowtime = Environment.TickCount64;
+                if (nowtime - character.WideViewTime >= 60000)
+                {
+                    character.CanSeeAll = false;
+                    character.WideViewTime = long.MaxValue;
+                }
+            }
+            public void CheckPurified(Character character)
+            {
+                long nowtime = Environment.TickCount64;
+                if (nowtime - character.PurifiedTime >= 30000)
+                {
+                    character.Purified = false;
+                    character.PurifiedTime = long.MaxValue;
+
+                }
+            }
+            public void CheckBerkserk(Character character)
+            {
+                long nowtime = Environment.TickCount64;
+                if (character.IsBerserk)
+                {
+                    if (nowtime - character.BerserkTime >= GameData.CrazyTime)
+                    {
+                        character.AttackPower.SetRNow(character.Occupation.AttackPower);
+                        character.Shoes.SubPositiveV(GameData.CrazySpeed);
+                        character.ATKFrequency = GameData.ATKFreq;
+                        character.BerserkTime = long.MaxValue;
+                        character.IsBerserk = false;
+                    }
+                }
+            }
+            public void CheckShoes(Character character)
+            {
+                long nowtime = Environment.TickCount64;
+                if (character.IsShoes)
+                {
+                    if (nowtime - character.ShoesTime >= GameData.ShoesTime)
+                    {
+                        character.Shoes.SubPositiveV(GameData.ShoesSpeed);
+                        character.ShoesTime = long.MaxValue;
+                        character.IsShoes = false;
+                    }
+                }
+            }
+            public void CheckInvisibility(Character character)
+            {
+                int nowtime = gameMap.Timer.NowTime();
+                if (!character.visible)
+                {
+                    if (nowtime - character.InvisibleTime >= GameData.InvisibleTime)
+                    {
+                        character.visible = true;
+                        character.InvisibleTime = long.MaxValue;
+                    }
+                }
+                if (nowtime >= GameData.SevenMinutes
+                )
+                {
+                    character.visible = true;
                 }
             }
         }

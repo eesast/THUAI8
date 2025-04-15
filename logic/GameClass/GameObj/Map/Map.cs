@@ -1,4 +1,5 @@
 ﻿using GameClass.GameObj.Areas;
+using GameClass.GameObj.Equipments;
 using GameClass.MapGenerator;
 using Preparation.Interface;
 using Preparation.Utility;
@@ -21,6 +22,7 @@ namespace GameClass.GameObj.Map
         public PlaceType[,] ProtoGameMap => protoGameMap;
 
         private readonly MyTimer timer = new();
+        public List<Home> Homes { get; }
         public IMyTimer Timer => timer;
         private readonly long currentHomeNum = 0;
         public bool TeamExists(long teamID)
@@ -129,6 +131,8 @@ namespace GameClass.GameObj.Map
             XY del = pos1 - pos2;
             if (del * del > character.ViewRange * character.ViewRange)
                 return false;
+            if (character.CanSeeAll)
+                return true;
             if (del.x > del.y)
             {
                 var beginx = GameData.PosGridToCellX(pos1) + GameData.NumOfPosGridPerCell;
@@ -173,6 +177,15 @@ namespace GameClass.GameObj.Map
             }
             return true;
         }
+        public bool InAttackSize(Character character, GameObj gameObj)
+        {
+            XY pos1 = character.Position;
+            XY pos2 = gameObj.Position;
+            XY del = pos1 - pos2;
+            if (del * del > character.AttackSize * character.AttackSize)
+                return false;
+            return true;
+        }
         public bool Remove(GameObj gameObj)
         {
             GameObj? ans = (GameObj?)GameObjDict[gameObj.Type].RemoveOne(obj => gameObj.ID == obj.ID);
@@ -207,6 +220,7 @@ namespace GameClass.GameObj.Map
             height = mapResource.height;
             width = mapResource.width;
             protoGameMap = mapResource.map;
+            int count = 0;
             for (int i = 0; i < height; ++i)
             {
                 for (int j = 0; j < width; ++j)
@@ -220,7 +234,17 @@ namespace GameClass.GameObj.Map
                             Add(new Bush(GameData.GetCellCenterPos(i, j)));
                             break;
                         case PlaceType.ADDITION_RESOURCE:
-                            Add(new A_Resource(GameData.AResourceRadius, Atype, GameData.GetCellCenterPos(i, j)));
+                            if (count++ == 0)
+                                Add(new A_Resource(GameData.AResourceRadius, A_ResourceType.CRAZY_MAN1, GameData.GetCellCenterPos(i, j)));
+                            else if (count++ == 1)
+                                Add(new A_Resource(GameData.AResourceRadius, A_ResourceType.LIFE_POOL1, GameData.GetCellCenterPos(i, j)));
+                            else if (count++ == 2)
+                                Add(new A_Resource(GameData.AResourceRadius, A_ResourceType.WIDE_VIEW, GameData.GetCellCenterPos(i, j)));
+                            else
+                            {
+                                Add(new A_Resource(GameData.AResourceRadius, A_ResourceType.QUICK_STEP, GameData.GetCellCenterPos(i, j)));
+                                count = 0;
+                            }
                             break;
                         case PlaceType.CONSTRUCTION:
                             Add(new Construction(GameData.GetCellCenterPos(i, j)));
@@ -228,9 +252,19 @@ namespace GameClass.GameObj.Map
                         case PlaceType.ECONOMY_RESOURCE:
                             Add(new E_Resource(GameData.GetCellCenterPos(i, j)));
                             break;
+                        case PlaceType.SPACE:
+                            Add(new Space(GameData.GetCellCenterPos(i, j)));
+                            break;
+                        case PlaceType.HOME:
+                            if (i < 25)
+                                Add(new Home(GameData.GetCellCenterPos(i, j), currentHomeNum++, 0));
+                            else
+                                Add(new Home(GameData.GetCellCenterPos(i, j), currentHomeNum++, 1));
+                            break;
                     }
                 }
             }
+            Homes = GameObjDict[GameObjType.HOME].Cast<Home>()?.ToNewList()!;
         }
     }
 }

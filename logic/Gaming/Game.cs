@@ -28,14 +28,14 @@ namespace Gaming
         private readonly Map gameMap;
         public Map GameMap => gameMap;
         private readonly Random random = new();
-        public long AddPlayer(PlayerInitInfo playerInitInfo)
+        public long AddCharacter(PlayerInitInfo playerInitInfo)
         {
             if (teamList[(int)playerInitInfo.teamID].CharacterNum >= GameData.CharacterTotalNumMax)
             {
                 return GameObj.invalidID;
             }
             teamList[(int)playerInitInfo.teamID].CharacterNum.Add(1);
-            if (gameMap.TeamExists(playerInitInfo.teamID))
+            if (!gameMap.TeamExists(playerInitInfo.teamID))
             {
                 return GameObj.invalidID;
             }
@@ -341,9 +341,9 @@ namespace Gaming
             gameMap = new(mapResource);
             characterManager = new(this, gameMap);
             ARManager = new(this, gameMap, characterManager);
-            skillCastManager = new(this, gameMap, characterManager, ARManager);
             actionManager = new(this, gameMap, characterManager);
             attackManager = new(this, gameMap, characterManager);
+            skillCastManager = new(this, gameMap, characterManager, ARManager, actionManager);
             teamList = [];
             gameMap.GameObjDict[GameObjType.HOME].Cast<GameObj>()?.ForEach(
                 delegate (GameObj gameObj)
@@ -380,7 +380,7 @@ namespace Gaming
             }
             return false;
         }
-        public bool Attack(long teamID, long characterID, double angle, long ATKteamID, long ATKcharacterID)
+        public bool Attack(long teamID, long characterID, long ATKteamID, long ATKcharacterID)
         {
             if (!gameMap.Timer.IsGaming)
                 return false;
@@ -423,6 +423,18 @@ namespace Gaming
         {
             if (!gameMap.Timer.IsGaming)
                 return false;
+            int nowtime = gameMap.Timer.NowTime();
+            if (nowtime >= GameData.SevenMinutes)
+            {
+                if (equiptype == EquipmentType.INVISIBILITY_POTION)
+                {
+                    return false;
+                }
+            }
+            else if (equiptype == EquipmentType.BERSERK_POTION)
+            {
+                return false;
+            }
             Character? character = gameMap.FindCharacterInPlayerID(teamID, characterID);
             if (character != null && character.IsRemoved == false)
                 return equipManager.GetEquipment(character, equiptype);
