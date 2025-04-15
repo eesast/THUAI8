@@ -123,11 +123,11 @@ private:
     bool Produce();
     bool Rebuild(THUAI8::ConstructionType constructionType);
     bool Construct(THUAI8::ConstructionType constructionType);
-    [[nodiscard]] bool HaveView(int32_t targetX, int32_t targetY) const;
+    [[nodiscard]] bool HaveView(int32_t selfX, int32_t selfY, int32_t targetX, int32_t targetY) const;
 
     // ITeamAPI
     bool InstallEquipment(int32_t playerID, THUAI8::EquipmentType equipmenttype);
-    bool Recycle(int32_t playerID);
+    bool Recycle(int32_t playerID);  // ?
     bool BuildCharacter(THUAI8::CharacterType CharacterType, int32_t birthIndex);
 
     bool TryConnection();
