@@ -8,6 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Windows.Input;
+using Microsoft.Maui.Controls;
+using installer.Services;
 
 namespace installer.ViewModel
 {
