@@ -43,6 +43,7 @@ public class Construction(XY initPos)
                         HP.SetMaxV(GameData.BarracksHP);
                         constructSpeed = GameData.BarracksConstructSpeed;
                         break;
+
                     case ConstructionType.SPRING:
                         HP.SetMaxV(GameData.SpringHP);
                         constructSpeed = GameData.SpringConstructSpeed;
@@ -69,7 +70,6 @@ public class Construction(XY initPos)
         }
 
         return HP.AddVUseOtherRChange<long>(constructSpeed, character.MoneyPool.Money, 1) > 0;//原程序constructSpeed的内涵问清楚后再改
-
     }
     public bool BeAttacked(Character character)
     {

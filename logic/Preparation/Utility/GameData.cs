@@ -91,6 +91,9 @@ namespace Preparation.Utility
         public const long TieShanSkillATK = 20;
         public const long ZhiZhujingSkillATK = 10;
 
+        public const int TrapCost = 1000;
+        public const int TrapRange = 2000;
+
         public const int CharacterRadius = 400;
         public const int AResourceRadius = 400;
         public static XY GetCellCenterPos(int x, int y)  // 求格子的中心坐标
@@ -157,7 +160,6 @@ namespace Preparation.Utility
         public const int TrapConstructSpeed = 20;//100/5
         public const int CageConstructSpeed = 20;//100/5
         public const int TimerInterval = 1000;
-        public const int TrapRange = 1;
         public const int TrapDamage = 20;
         public const int TrapTime = 5000;
 
