@@ -25,73 +25,86 @@ namespace Protobuf {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChVNZXNzYWdlMkNsaWVudHMucHJvdG8SCHByb3RvYnVmGhFNZXNzYWdlVHlw",
-            "ZS5wcm90byLAAwoSTWVzc2FnZU9mQ2hhcmFjdGVyEgwKBGd1aWQYASABKAMS",
-            "DwoHdGVhbV9pZBgCIAEoAxIRCglwbGF5ZXJfaWQYAyABKAMSLwoOY2hhcmFj",
-            "dGVyX3R5cGUYBCABKA4yFy5wcm90b2J1Zi5DaGFyYWN0ZXJUeXBlEjIKEGNo",
-            "YXJhY3Rlcl9zdGF0ZTEYBSABKA4yGC5wcm90b2J1Zi5DaGFyYWN0ZXJTdGF0",
-            "ZRIyChBjaGFyYWN0ZXJfc3RhdGUyGAYgASgOMhgucHJvdG9idWYuQ2hhcmFj",
-            "dGVyU3RhdGUSCQoBeBgHIAEoBRIJCgF5GAggASgFEhgKEGZhY2luZ19kaXJl",
-            "Y3Rpb24YCSABKAESDQoFc3BlZWQYCiABKAUSEgoKdmlld19yYW5nZRgLIAEo",
-            "BRILCgNhdGsYDCABKAUSEwoLYXR0YWNrX3NpemUYDSABKAUSEAoIc2tpbGxf",
-            "Y2QYDiABKAMSGQoRZWNvbm9teV9kZXBsZXRpb24YDyABKAUSEgoKa2lsbF9z",
-            "Y29yZRgQIAEoBRIKCgJocBgRIAEoBRIOCgZzaGllbGQYEiABKAMSDQoFc2hv",
-            "ZXMYEyABKAMiUgoRTWVzc2FnZU9mQmFycmFja3MSCQoBeBgBIAEoBRIJCgF5",
-            "GAIgASgFEgoKAmhwGAMgASgFEg8KB3RlYW1faWQYBCABKAMSCgoCaWQYBSAB",
-            "KAUiUAoPTWVzc2FnZU9mU3ByaW5nEgkKAXgYASABKAUSCQoBeRgCIAEoBRIK",
-            "CgJocBgDIAEoBRIPCgd0ZWFtX2lkGAQgASgDEgoKAmlkGAUgASgFIk4KDU1l",
-            "c3NhZ2VPZkZhcm0SCQoBeBgBIAEoBRIJCgF5GAIgASgFEgoKAmhwGAMgASgF",
-            "Eg8KB3RlYW1faWQYBCABKAMSCgoCaWQYBSABKAUiaQoNTWVzc2FnZU9mVHJh",
-            "cBIlCgl0cmFwX3R5cGUYASABKA4yEi5wcm90b2J1Zi5UcmFwVHlwZRIJCgF4",
-            "GAIgASgFEgkKAXkYAyABKAUSDwoHdGVhbV9pZBgEIAEoAxIKCgJpZBgFIAEo",
-            "BSLLAQoYTWVzc2FnZU9mRWNvbm9teVJlc291cmNlEjwKFWVjb25vbXlfcmVz",
-            "b3VyY2VfdHlwZRgBIAEoDjIdLnByb3RvYnVmLkVjb25vbXlSZXNvdXJjZVR5",
-            "cGUSPgoWZWNvbm9teV9yZXNvdXJjZV9zdGF0ZRgCIAEoDjIeLnByb3RvYnVm",
-            "LkVjb25vbXlSZXNvdXJjZVN0YXRlEgkKAXgYAyABKAUSCQoBeRgEIAEoBRIP",
-            "Cgdwcm9jZXNzGAUgASgFEgoKAmlkGAYgASgFIssBChlNZXNzYWdlT2ZBZGRp",
-            "dGlvblJlc291cmNlEj4KFmFkZGl0aW9uX3Jlc291cmNlX3R5cGUYASABKA4y",
-            "Hi5wcm90b2J1Zi5BZGRpdGlvblJlc291cmNlVHlwZRJAChdhZGRpdGlvbl9y",
-            "ZXNvdXJjZV9zdGF0ZRgCIAEoDjIfLnByb3RvYnVmLkFkZGl0aW9uUmVzb3Vy",
-            "Y2VTdGF0ZRIJCgF4GAMgASgFEgkKAXkYBCABKAUSCgoCaHAYBSABKAUSCgoC",
-            "aWQYBiABKAUigQEKDE1lc3NhZ2VPZk1hcBIOCgZoZWlnaHQYASABKA0SDQoF",
-            "d2lkdGgYAiABKA0SKAoEcm93cxgDIAMoCzIaLnByb3RvYnVmLk1lc3NhZ2VP",
-            "Zk1hcC5Sb3caKAoDUm93EiEKBGNvbHMYASADKA4yEy5wcm90b2J1Zi5QbGFj",
-            "ZVR5cGUiUgoNTWVzc2FnZU9mVGVhbRIPCgd0ZWFtX2lkGAEgASgDEhEKCXBs",
-            "YXllcl9pZBgCIAEoAxINCgVzY29yZRgDIAEoAxIOCgZlbmVyZ3kYBCABKAMi",
-            "zgQKDE1lc3NhZ2VPZk9iahI5ChFjaGFyYWN0ZXJfbWVzc2FnZRgBIAEoCzIc",
-            "LnByb3RvYnVmLk1lc3NhZ2VPZkNoYXJhY3RlckgAEjcKEGJhcnJhY2tzX21l",
-            "c3NhZ2UYAiABKAsyGy5wcm90b2J1Zi5NZXNzYWdlT2ZCYXJyYWNrc0gAEjMK",
-            "DnNwcmluZ19tZXNzYWdlGAMgASgLMhkucHJvdG9idWYuTWVzc2FnZU9mU3By",
-            "aW5nSAASLwoMZmFybV9tZXNzYWdlGAQgASgLMhcucHJvdG9idWYuTWVzc2Fn",
-            "ZU9mRmFybUgAEi8KDHRyYXBfbWVzc2FnZRgFIAEoCzIXLnByb3RvYnVmLk1l",
-            "c3NhZ2VPZlRyYXBIABJGChhlY29ub215X3Jlc291cmNlX21lc3NhZ2UYBiAB",
-            "KAsyIi5wcm90b2J1Zi5NZXNzYWdlT2ZFY29ub215UmVzb3VyY2VIABJIChlh",
-            "ZGRpdGlvbl9yZXNvdXJjZV9tZXNzYWdlGAcgASgLMiMucHJvdG9idWYuTWVz",
-            "c2FnZU9mQWRkaXRpb25SZXNvdXJjZUgAEi0KC21hcF9tZXNzYWdlGAggASgL",
-            "MhYucHJvdG9idWYuTWVzc2FnZU9mTWFwSAASLwoMbmV3c19tZXNzYWdlGAkg",
-            "ASgLMhcucHJvdG9idWYuTWVzc2FnZU9mTmV3c0gAEi8KDHRlYW1fbWVzc2Fn",
-            "ZRgKIAEoCzIXLnByb3RvYnVmLk1lc3NhZ2VPZlRlYW1IAEIQCg5tZXNzYWdl",
-            "X29mX29iaiLQAQoMTWVzc2FnZU9mQWxsEhEKCWdhbWVfdGltZRgBIAEoBRIc",
-            "ChRidWRkaGlzdHNfdGVhbV9zY29yZRgCIAEoBRIbChNtb25zdGVyc190ZWFt",
-            "X3Njb3JlGAMgASgFEh4KFmJ1ZGRoaXN0c190ZWFtX2Vjb25vbXkYBCABKAUS",
-            "HQoVbW9uc3RlcnNfdGVhbV9lY29ub215GAUgASgFEhkKEWJ1ZGRoaXN0c19o",
-            "ZXJvX2hwGAYgASgFEhgKEG1vbnN0ZXJzX2hlcm9faHAYByABKAUilAEKD01l",
-            "c3NhZ2VUb0NsaWVudBIrCgtvYmpfbWVzc2FnZRgBIAMoCzIWLnByb3RvYnVm",
-            "Lk1lc3NhZ2VPZk9iahInCgpnYW1lX3N0YXRlGAIgASgOMhMucHJvdG9idWYu",
-            "R2FtZVN0YXRlEisKC2FsbF9tZXNzYWdlGAMgASgLMhYucHJvdG9idWYuTWVz",
-            "c2FnZU9mQWxsIkoKB01vdmVSZXMSFAoMYWN0dWFsX3NwZWVkGAEgASgDEhQK",
-            "DGFjdHVhbF9hbmdsZRgCIAEoARITCgthY3Rfc3VjY2VzcxgDIAEoCCI7ChFD",
-            "cmVhdENoYXJhY3RlclJlcxITCgthY3Rfc3VjY2VzcxgBIAEoCBIRCglwbGF5",
-            "ZXJfaWQYAiABKAMiHgoHQm9vbFJlcxITCgthY3Rfc3VjY2VzcxgBIAEoCCJI",
-            "ChBDaGFyYWN0ZXJJbmZvUmVzEjQKDkNoYXJhY3Rlcl9pbmZvGAEgAygLMhwu",
-            "cHJvdG9idWYuTWVzc2FnZU9mQ2hhcmFjdGVyIhkKBkVjb1JlcxIPCgdlY29u",
-            "b215GAEgASgDInoKDU1lc3NhZ2VPZk5ld3MSFgoMdGV4dF9tZXNzYWdlGAEg",
-            "ASgJSAASGAoOYmluYXJ5X21lc3NhZ2UYAiABKAxIABIPCgdmcm9tX2lkGAMg",
-            "ASgDEg0KBXRvX2lkGAQgASgDEg8KB3RlYW1faWQYBSABKANCBgoEbmV3c2IG",
-            "cHJvdG8z"));
+            "ZS5wcm90byJJChRNZXNzYWdlT2ZNb25rZXlTa2lsbBIPCgd0ZWFtX2lkGAEg",
+            "ASgDEhEKCXBsYXllcl9pZBgCIAEoAxINCgVhbmdsZRgDIAEoASKzBwoSTWVz",
+            "c2FnZU9mQ2hhcmFjdGVyEgwKBGd1aWQYASABKAMSDwoHdGVhbV9pZBgCIAEo",
+            "AxIRCglwbGF5ZXJfaWQYAyABKAMSLwoOY2hhcmFjdGVyX3R5cGUYBCABKA4y",
+            "Fy5wcm90b2J1Zi5DaGFyYWN0ZXJUeXBlEjgKFmNoYXJhY3Rlcl9hY3RpdmVf",
+            "c3RhdGUYBSABKA4yGC5wcm90b2J1Zi5DaGFyYWN0ZXJTdGF0ZRIQCghpc19i",
+            "bGluZBgGIAEoCBISCgpibGluZF90aW1lGAcgASgDEhIKCmlzX3N0dW5uZWQY",
+            "CCABKAgSFAoMc3R1bm5lZF90aW1lGAkgASgDEhQKDGlzX2ludmlzaWJsZRgK",
+            "IAEoCBIWCg5pbnZpc2libGVfdGltZRgLIAEoAxIRCglpc19idXJuZWQYDCAB",
+            "KAgSEwoLYnVybmVkX3RpbWUYDSABKAMSEAoIaGFybV9jdXQYDiABKAESFQoN",
+            "aGFybV9jdXRfdGltZRgPIAEoAxI5ChdjaGFyYWN0ZXJfcGFzc2l2ZV9zdGF0",
+            "ZRgQIAEoDjIYLnByb3RvYnVmLkNoYXJhY3RlclN0YXRlEgkKAXgYESABKAUS",
+            "CQoBeRgSIAEoBRIYChBmYWNpbmdfZGlyZWN0aW9uGBMgASgBEg0KBXNwZWVk",
+            "GBQgASgFEhIKCnZpZXdfcmFuZ2UYFSABKAUSFQoNY29tbW9uX2F0dGFjaxgW",
+            "IAEoBRIYChBjb21tb25fYXR0YWNrX2NkGBcgASgDEhsKE2NvbW1vbl9hdHRh",
+            "Y2tfcmFuZ2UYGCABKAUSFwoPc2tpbGxfYXR0YWNrX2NkGBkgASgDEhkKEWVj",
+            "b25vbXlfZGVwbGV0aW9uGBogASgFEhIKCmtpbGxfc2NvcmUYGyABKAUSCgoC",
+            "aHAYHCABKAUSGAoQc2hpZWxkX2VxdWlwbWVudBgdIAEoBRIXCg9zaG9lc19l",
+            "cXVpcG1lbnQYHiABKAUSEgoKc2hvZXNfdGltZRgfIAEoAxITCgtpc19wdXJp",
+            "ZmllZBggIAEoCBIVCg1wdXJpZmllZF90aW1lGCEgASgDEhIKCmlzX2JlcnNl",
+            "cmsYIiABKAgSFAoMYmVyc2Vya190aW1lGCMgASgDEhcKD2F0dGFja19idWZm",
+            "X251bRgkIAEoBRIYChBhdHRhY2tfYnVmZl90aW1lGCUgASgDEhcKD3NwZWVk",
+            "X2J1ZmZfdGltZRgmIAEoAxIYChB2aXNpb25fYnVmZl90aW1lGCcgASgDIlIK",
+            "EU1lc3NhZ2VPZkJhcnJhY2tzEgkKAXgYASABKAUSCQoBeRgCIAEoBRIKCgJo",
+            "cBgDIAEoBRIPCgd0ZWFtX2lkGAQgASgDEgoKAmlkGAUgASgFIlAKD01lc3Nh",
+            "Z2VPZlNwcmluZxIJCgF4GAEgASgFEgkKAXkYAiABKAUSCgoCaHAYAyABKAUS",
+            "DwoHdGVhbV9pZBgEIAEoAxIKCgJpZBgFIAEoBSJOCg1NZXNzYWdlT2ZGYXJt",
+            "EgkKAXgYASABKAUSCQoBeRgCIAEoBRIKCgJocBgDIAEoBRIPCgd0ZWFtX2lk",
+            "GAQgASgDEgoKAmlkGAUgASgFImkKDU1lc3NhZ2VPZlRyYXASJQoJdHJhcF90",
+            "eXBlGAEgASgOMhIucHJvdG9idWYuVHJhcFR5cGUSCQoBeBgCIAEoBRIJCgF5",
+            "GAMgASgFEg8KB3RlYW1faWQYBCABKAMSCgoCaWQYBSABKAUiywEKGE1lc3Nh",
+            "Z2VPZkVjb25vbXlSZXNvdXJjZRI8ChVlY29ub215X3Jlc291cmNlX3R5cGUY",
+            "ASABKA4yHS5wcm90b2J1Zi5FY29ub215UmVzb3VyY2VUeXBlEj4KFmVjb25v",
+            "bXlfcmVzb3VyY2Vfc3RhdGUYAiABKA4yHi5wcm90b2J1Zi5FY29ub215UmVz",
+            "b3VyY2VTdGF0ZRIJCgF4GAMgASgFEgkKAXkYBCABKAUSDwoHcHJvY2VzcxgF",
+            "IAEoBRIKCgJpZBgGIAEoBSLLAQoZTWVzc2FnZU9mQWRkaXRpb25SZXNvdXJj",
+            "ZRI+ChZhZGRpdGlvbl9yZXNvdXJjZV90eXBlGAEgASgOMh4ucHJvdG9idWYu",
+            "QWRkaXRpb25SZXNvdXJjZVR5cGUSQAoXYWRkaXRpb25fcmVzb3VyY2Vfc3Rh",
+            "dGUYAiABKA4yHy5wcm90b2J1Zi5BZGRpdGlvblJlc291cmNlU3RhdGUSCQoB",
+            "eBgDIAEoBRIJCgF5GAQgASgFEgoKAmhwGAUgASgFEgoKAmlkGAYgASgFIoEB",
+            "CgxNZXNzYWdlT2ZNYXASDgoGaGVpZ2h0GAEgASgNEg0KBXdpZHRoGAIgASgN",
+            "EigKBHJvd3MYAyADKAsyGi5wcm90b2J1Zi5NZXNzYWdlT2ZNYXAuUm93GigK",
+            "A1JvdxIhCgRjb2xzGAEgAygOMhMucHJvdG9idWYuUGxhY2VUeXBlIlIKDU1l",
+            "c3NhZ2VPZlRlYW0SDwoHdGVhbV9pZBgBIAEoAxIRCglwbGF5ZXJfaWQYAiAB",
+            "KAMSDQoFc2NvcmUYAyABKAMSDgoGZW5lcmd5GAQgASgDIs4ECgxNZXNzYWdl",
+            "T2ZPYmoSOQoRY2hhcmFjdGVyX21lc3NhZ2UYASABKAsyHC5wcm90b2J1Zi5N",
+            "ZXNzYWdlT2ZDaGFyYWN0ZXJIABI3ChBiYXJyYWNrc19tZXNzYWdlGAIgASgL",
+            "MhsucHJvdG9idWYuTWVzc2FnZU9mQmFycmFja3NIABIzCg5zcHJpbmdfbWVz",
+            "c2FnZRgDIAEoCzIZLnByb3RvYnVmLk1lc3NhZ2VPZlNwcmluZ0gAEi8KDGZh",
+            "cm1fbWVzc2FnZRgEIAEoCzIXLnByb3RvYnVmLk1lc3NhZ2VPZkZhcm1IABIv",
+            "Cgx0cmFwX21lc3NhZ2UYBSABKAsyFy5wcm90b2J1Zi5NZXNzYWdlT2ZUcmFw",
+            "SAASRgoYZWNvbm9teV9yZXNvdXJjZV9tZXNzYWdlGAYgASgLMiIucHJvdG9i",
+            "dWYuTWVzc2FnZU9mRWNvbm9teVJlc291cmNlSAASSAoZYWRkaXRpb25fcmVz",
+            "b3VyY2VfbWVzc2FnZRgHIAEoCzIjLnByb3RvYnVmLk1lc3NhZ2VPZkFkZGl0",
+            "aW9uUmVzb3VyY2VIABItCgttYXBfbWVzc2FnZRgIIAEoCzIWLnByb3RvYnVm",
+            "Lk1lc3NhZ2VPZk1hcEgAEi8KDG5ld3NfbWVzc2FnZRgJIAEoCzIXLnByb3Rv",
+            "YnVmLk1lc3NhZ2VPZk5ld3NIABIvCgx0ZWFtX21lc3NhZ2UYCiABKAsyFy5w",
+            "cm90b2J1Zi5NZXNzYWdlT2ZUZWFtSABCEAoObWVzc2FnZV9vZl9vYmoi0AEK",
+            "DE1lc3NhZ2VPZkFsbBIRCglnYW1lX3RpbWUYASABKAUSHAoUYnVkZGhpc3Rz",
+            "X3RlYW1fc2NvcmUYAiABKAUSGwoTbW9uc3RlcnNfdGVhbV9zY29yZRgDIAEo",
+            "BRIeChZidWRkaGlzdHNfdGVhbV9lY29ub215GAQgASgFEh0KFW1vbnN0ZXJz",
+            "X3RlYW1fZWNvbm9teRgFIAEoBRIZChFidWRkaGlzdHNfaGVyb19ocBgGIAEo",
+            "BRIYChBtb25zdGVyc19oZXJvX2hwGAcgASgFIpQBCg9NZXNzYWdlVG9DbGll",
+            "bnQSKwoLb2JqX21lc3NhZ2UYASADKAsyFi5wcm90b2J1Zi5NZXNzYWdlT2ZP",
+            "YmoSJwoKZ2FtZV9zdGF0ZRgCIAEoDjITLnByb3RvYnVmLkdhbWVTdGF0ZRIr",
+            "CgthbGxfbWVzc2FnZRgDIAEoCzIWLnByb3RvYnVmLk1lc3NhZ2VPZkFsbCJK",
+            "CgdNb3ZlUmVzEhQKDGFjdHVhbF9zcGVlZBgBIAEoAxIUCgxhY3R1YWxfYW5n",
+            "bGUYAiABKAESEwoLYWN0X3N1Y2Nlc3MYAyABKAgiOwoRQ3JlYXRDaGFyYWN0",
+            "ZXJSZXMSEwoLYWN0X3N1Y2Nlc3MYASABKAgSEQoJcGxheWVyX2lkGAIgASgD",
+            "Ih4KB0Jvb2xSZXMSEwoLYWN0X3N1Y2Nlc3MYASABKAgiSAoQQ2hhcmFjdGVy",
+            "SW5mb1JlcxI0Cg5DaGFyYWN0ZXJfaW5mbxgBIAMoCzIcLnByb3RvYnVmLk1l",
+            "c3NhZ2VPZkNoYXJhY3RlciIZCgZFY29SZXMSDwoHZWNvbm9teRgBIAEoAyJ6",
+            "Cg1NZXNzYWdlT2ZOZXdzEhYKDHRleHRfbWVzc2FnZRgBIAEoCUgAEhgKDmJp",
+            "bmFyeV9tZXNzYWdlGAIgASgMSAASDwoHZnJvbV9pZBgDIAEoAxINCgV0b19p",
+            "ZBgEIAEoAxIPCgd0ZWFtX2lkGAUgASgDQgYKBG5ld3NiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Protobuf.MessageTypeReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protobuf.MessageOfCharacter), global::Protobuf.MessageOfCharacter.Parser, new[]{ "Guid", "TeamId", "PlayerId", "CharacterType", "CharacterState1", "CharacterState2", "X", "Y", "FacingDirection", "Speed", "ViewRange", "Atk", "AttackSize", "SkillCd", "EconomyDepletion", "KillScore", "Hp", "Shield", "Shoes" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protobuf.MessageOfMonkeySkill), global::Protobuf.MessageOfMonkeySkill.Parser, new[]{ "TeamId", "PlayerId", "Angle" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protobuf.MessageOfCharacter), global::Protobuf.MessageOfCharacter.Parser, new[]{ "Guid", "TeamId", "PlayerId", "CharacterType", "CharacterActiveState", "IsBlind", "BlindTime", "IsStunned", "StunnedTime", "IsInvisible", "InvisibleTime", "IsBurned", "BurnedTime", "HarmCut", "HarmCutTime", "CharacterPassiveState", "X", "Y", "FacingDirection", "Speed", "ViewRange", "CommonAttack", "CommonAttackCd", "CommonAttackRange", "SkillAttackCd", "EconomyDepletion", "KillScore", "Hp", "ShieldEquipment", "ShoesEquipment", "ShoesTime", "IsPurified", "PurifiedTime", "IsBerserk", "BerserkTime", "AttackBuffNum", "AttackBuffTime", "SpeedBuffTime", "VisionBuffTime" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protobuf.MessageOfBarracks), global::Protobuf.MessageOfBarracks.Parser, new[]{ "X", "Y", "Hp", "TeamId", "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protobuf.MessageOfSpring), global::Protobuf.MessageOfSpring.Parser, new[]{ "X", "Y", "Hp", "TeamId", "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protobuf.MessageOfFarm), global::Protobuf.MessageOfFarm.Parser, new[]{ "X", "Y", "Hp", "TeamId", "Id" }, null, null, null, null),
@@ -116,6 +129,278 @@ namespace Protobuf {
   }
   #region Messages
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class MessageOfMonkeySkill : pb::IMessage<MessageOfMonkeySkill>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<MessageOfMonkeySkill> _parser = new pb::MessageParser<MessageOfMonkeySkill>(() => new MessageOfMonkeySkill());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<MessageOfMonkeySkill> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[0]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MessageOfMonkeySkill() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MessageOfMonkeySkill(MessageOfMonkeySkill other) : this() {
+      teamId_ = other.teamId_;
+      playerId_ = other.playerId_;
+      angle_ = other.angle_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MessageOfMonkeySkill Clone() {
+      return new MessageOfMonkeySkill(this);
+    }
+
+    /// <summary>Field number for the "team_id" field.</summary>
+    public const int TeamIdFieldNumber = 1;
+    private long teamId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long TeamId {
+      get { return teamId_; }
+      set {
+        teamId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "player_id" field.</summary>
+    public const int PlayerIdFieldNumber = 2;
+    private long playerId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long PlayerId {
+      get { return playerId_; }
+      set {
+        playerId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "angle" field.</summary>
+    public const int AngleFieldNumber = 3;
+    private double angle_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public double Angle {
+      get { return angle_; }
+      set {
+        angle_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as MessageOfMonkeySkill);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(MessageOfMonkeySkill other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (TeamId != other.TeamId) return false;
+      if (PlayerId != other.PlayerId) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Angle, other.Angle)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (TeamId != 0L) hash ^= TeamId.GetHashCode();
+      if (PlayerId != 0L) hash ^= PlayerId.GetHashCode();
+      if (Angle != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Angle);
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (TeamId != 0L) {
+        output.WriteRawTag(8);
+        output.WriteInt64(TeamId);
+      }
+      if (PlayerId != 0L) {
+        output.WriteRawTag(16);
+        output.WriteInt64(PlayerId);
+      }
+      if (Angle != 0D) {
+        output.WriteRawTag(25);
+        output.WriteDouble(Angle);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (TeamId != 0L) {
+        output.WriteRawTag(8);
+        output.WriteInt64(TeamId);
+      }
+      if (PlayerId != 0L) {
+        output.WriteRawTag(16);
+        output.WriteInt64(PlayerId);
+      }
+      if (Angle != 0D) {
+        output.WriteRawTag(25);
+        output.WriteDouble(Angle);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (TeamId != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(TeamId);
+      }
+      if (PlayerId != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(PlayerId);
+      }
+      if (Angle != 0D) {
+        size += 1 + 8;
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(MessageOfMonkeySkill other) {
+      if (other == null) {
+        return;
+      }
+      if (other.TeamId != 0L) {
+        TeamId = other.TeamId;
+      }
+      if (other.PlayerId != 0L) {
+        PlayerId = other.PlayerId;
+      }
+      if (other.Angle != 0D) {
+        Angle = other.Angle;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            TeamId = input.ReadInt64();
+            break;
+          }
+          case 16: {
+            PlayerId = input.ReadInt64();
+            break;
+          }
+          case 25: {
+            Angle = input.ReadDouble();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            TeamId = input.ReadInt64();
+            break;
+          }
+          case 16: {
+            PlayerId = input.ReadInt64();
+            break;
+          }
+          case 25: {
+            Angle = input.ReadDouble();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class MessageOfCharacter : pb::IMessage<MessageOfCharacter>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -130,7 +415,7 @@ namespace Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[0]; }
+      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -154,21 +439,41 @@ namespace Protobuf {
       teamId_ = other.teamId_;
       playerId_ = other.playerId_;
       characterType_ = other.characterType_;
-      characterState1_ = other.characterState1_;
-      characterState2_ = other.characterState2_;
+      characterActiveState_ = other.characterActiveState_;
+      isBlind_ = other.isBlind_;
+      blindTime_ = other.blindTime_;
+      isStunned_ = other.isStunned_;
+      stunnedTime_ = other.stunnedTime_;
+      isInvisible_ = other.isInvisible_;
+      invisibleTime_ = other.invisibleTime_;
+      isBurned_ = other.isBurned_;
+      burnedTime_ = other.burnedTime_;
+      harmCut_ = other.harmCut_;
+      harmCutTime_ = other.harmCutTime_;
+      characterPassiveState_ = other.characterPassiveState_;
       x_ = other.x_;
       y_ = other.y_;
       facingDirection_ = other.facingDirection_;
       speed_ = other.speed_;
       viewRange_ = other.viewRange_;
-      atk_ = other.atk_;
-      attackSize_ = other.attackSize_;
-      skillCd_ = other.skillCd_;
+      commonAttack_ = other.commonAttack_;
+      commonAttackCd_ = other.commonAttackCd_;
+      commonAttackRange_ = other.commonAttackRange_;
+      skillAttackCd_ = other.skillAttackCd_;
       economyDepletion_ = other.economyDepletion_;
       killScore_ = other.killScore_;
       hp_ = other.hp_;
-      shield_ = other.shield_;
-      shoes_ = other.shoes_;
+      shieldEquipment_ = other.shieldEquipment_;
+      shoesEquipment_ = other.shoesEquipment_;
+      shoesTime_ = other.shoesTime_;
+      isPurified_ = other.isPurified_;
+      purifiedTime_ = other.purifiedTime_;
+      isBerserk_ = other.isBerserk_;
+      berserkTime_ = other.berserkTime_;
+      attackBuffNum_ = other.attackBuffNum_;
+      attackBuffTime_ = other.attackBuffTime_;
+      speedBuffTime_ = other.speedBuffTime_;
+      visionBuffTime_ = other.visionBuffTime_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -226,32 +531,164 @@ namespace Protobuf {
       }
     }
 
-    /// <summary>Field number for the "character_state1" field.</summary>
-    public const int CharacterState1FieldNumber = 5;
-    private global::Protobuf.CharacterState characterState1_ = global::Protobuf.CharacterState.NullCharacterState;
+    /// <summary>Field number for the "character_active_state" field.</summary>
+    public const int CharacterActiveStateFieldNumber = 5;
+    private global::Protobuf.CharacterState characterActiveState_ = global::Protobuf.CharacterState.NullCharacterState;
+    /// <summary>
+    /// 主动状态
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Protobuf.CharacterState CharacterState1 {
-      get { return characterState1_; }
+    public global::Protobuf.CharacterState CharacterActiveState {
+      get { return characterActiveState_; }
       set {
-        characterState1_ = value;
+        characterActiveState_ = value;
       }
     }
 
-    /// <summary>Field number for the "character_state2" field.</summary>
-    public const int CharacterState2FieldNumber = 6;
-    private global::Protobuf.CharacterState characterState2_ = global::Protobuf.CharacterState.NullCharacterState;
+    /// <summary>Field number for the "is_blind" field.</summary>
+    public const int IsBlindFieldNumber = 6;
+    private bool isBlind_;
+    /// <summary>
+    /// 被动状态
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Protobuf.CharacterState CharacterState2 {
-      get { return characterState2_; }
+    public bool IsBlind {
+      get { return isBlind_; }
       set {
-        characterState2_ = value;
+        isBlind_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "blind_time" field.</summary>
+    public const int BlindTimeFieldNumber = 7;
+    private long blindTime_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long BlindTime {
+      get { return blindTime_; }
+      set {
+        blindTime_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "is_stunned" field.</summary>
+    public const int IsStunnedFieldNumber = 8;
+    private bool isStunned_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool IsStunned {
+      get { return isStunned_; }
+      set {
+        isStunned_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "stunned_time" field.</summary>
+    public const int StunnedTimeFieldNumber = 9;
+    private long stunnedTime_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long StunnedTime {
+      get { return stunnedTime_; }
+      set {
+        stunnedTime_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "is_invisible" field.</summary>
+    public const int IsInvisibleFieldNumber = 10;
+    private bool isInvisible_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool IsInvisible {
+      get { return isInvisible_; }
+      set {
+        isInvisible_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "invisible_time" field.</summary>
+    public const int InvisibleTimeFieldNumber = 11;
+    private long invisibleTime_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long InvisibleTime {
+      get { return invisibleTime_; }
+      set {
+        invisibleTime_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "is_burned" field.</summary>
+    public const int IsBurnedFieldNumber = 12;
+    private bool isBurned_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool IsBurned {
+      get { return isBurned_; }
+      set {
+        isBurned_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "burned_time" field.</summary>
+    public const int BurnedTimeFieldNumber = 13;
+    private long burnedTime_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long BurnedTime {
+      get { return burnedTime_; }
+      set {
+        burnedTime_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "harm_cut" field.</summary>
+    public const int HarmCutFieldNumber = 14;
+    private double harmCut_;
+    /// <summary>
+    /// 伤害减免
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public double HarmCut {
+      get { return harmCut_; }
+      set {
+        harmCut_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "harm_cut_time" field.</summary>
+    public const int HarmCutTimeFieldNumber = 15;
+    private long harmCutTime_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long HarmCutTime {
+      get { return harmCutTime_; }
+      set {
+        harmCutTime_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "character_passive_state" field.</summary>
+    public const int CharacterPassiveStateFieldNumber = 16;
+    private global::Protobuf.CharacterState characterPassiveState_ = global::Protobuf.CharacterState.NullCharacterState;
+    /// <summary>
+    /// 最新被动状态状态
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Protobuf.CharacterState CharacterPassiveState {
+      get { return characterPassiveState_; }
+      set {
+        characterPassiveState_ = value;
       }
     }
 
     /// <summary>Field number for the "x" field.</summary>
-    public const int XFieldNumber = 7;
+    public const int XFieldNumber = 17;
     private int x_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -263,7 +700,7 @@ namespace Protobuf {
     }
 
     /// <summary>Field number for the "y" field.</summary>
-    public const int YFieldNumber = 8;
+    public const int YFieldNumber = 18;
     private int y_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -275,7 +712,7 @@ namespace Protobuf {
     }
 
     /// <summary>Field number for the "facing_direction" field.</summary>
-    public const int FacingDirectionFieldNumber = 9;
+    public const int FacingDirectionFieldNumber = 19;
     private double facingDirection_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -287,7 +724,7 @@ namespace Protobuf {
     }
 
     /// <summary>Field number for the "speed" field.</summary>
-    public const int SpeedFieldNumber = 10;
+    public const int SpeedFieldNumber = 20;
     private int speed_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -299,7 +736,7 @@ namespace Protobuf {
     }
 
     /// <summary>Field number for the "view_range" field.</summary>
-    public const int ViewRangeFieldNumber = 11;
+    public const int ViewRangeFieldNumber = 21;
     private int viewRange_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -310,45 +747,60 @@ namespace Protobuf {
       }
     }
 
-    /// <summary>Field number for the "atk" field.</summary>
-    public const int AtkFieldNumber = 12;
-    private int atk_;
+    /// <summary>Field number for the "common_attack" field.</summary>
+    public const int CommonAttackFieldNumber = 22;
+    private int commonAttack_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int Atk {
-      get { return atk_; }
+    public int CommonAttack {
+      get { return commonAttack_; }
       set {
-        atk_ = value;
+        commonAttack_ = value;
       }
     }
 
-    /// <summary>Field number for the "attack_size" field.</summary>
-    public const int AttackSizeFieldNumber = 13;
-    private int attackSize_;
+    /// <summary>Field number for the "common_attack_cd" field.</summary>
+    public const int CommonAttackCdFieldNumber = 23;
+    private long commonAttackCd_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int AttackSize {
-      get { return attackSize_; }
+    public long CommonAttackCd {
+      get { return commonAttackCd_; }
       set {
-        attackSize_ = value;
+        commonAttackCd_ = value;
       }
     }
 
-    /// <summary>Field number for the "skill_cd" field.</summary>
-    public const int SkillCdFieldNumber = 14;
-    private long skillCd_;
+    /// <summary>Field number for the "common_attack_range" field.</summary>
+    public const int CommonAttackRangeFieldNumber = 24;
+    private int commonAttackRange_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public long SkillCd {
-      get { return skillCd_; }
+    public int CommonAttackRange {
+      get { return commonAttackRange_; }
       set {
-        skillCd_ = value;
+        commonAttackRange_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "skill_attack_cd" field.</summary>
+    public const int SkillAttackCdFieldNumber = 25;
+    private long skillAttackCd_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long SkillAttackCd {
+      get { return skillAttackCd_; }
+      set {
+        skillAttackCd_ = value;
       }
     }
 
     /// <summary>Field number for the "economy_depletion" field.</summary>
-    public const int EconomyDepletionFieldNumber = 15;
+    public const int EconomyDepletionFieldNumber = 26;
     private int economyDepletion_;
+    /// <summary>
+    /// 经济资源消耗
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int EconomyDepletion {
@@ -359,8 +811,11 @@ namespace Protobuf {
     }
 
     /// <summary>Field number for the "kill_score" field.</summary>
-    public const int KillScoreFieldNumber = 16;
+    public const int KillScoreFieldNumber = 27;
     private int killScore_;
+    /// <summary>
+    /// 击杀得分
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int KillScore {
@@ -371,7 +826,7 @@ namespace Protobuf {
     }
 
     /// <summary>Field number for the "hp" field.</summary>
-    public const int HpFieldNumber = 17;
+    public const int HpFieldNumber = 28;
     private int hp_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -382,35 +837,141 @@ namespace Protobuf {
       }
     }
 
-    /// <summary>Field number for the "shield" field.</summary>
-    public const int ShieldFieldNumber = 18;
-    private long shield_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public long Shield {
-      get { return shield_; }
-      set {
-        shield_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "shoes" field.</summary>
-    public const int ShoesFieldNumber = 19;
-    private long shoes_;
+    /// <summary>Field number for the "shield_equipment" field.</summary>
+    public const int ShieldEquipmentFieldNumber = 29;
+    private int shieldEquipment_;
     /// <summary>
-    /// EquipmentType health_potion_equipment = ;
-    /// EquipmentType shild_equipment =;
-    /// EquipmentType speed_shoes_equipment =;
-    /// EquipmentType purification_potion_equipment =;
-    /// EquipmentType invisibility_potion_equipment =;
-    /// EquipmentType berserk_potion_equipment =;
+    /// 其它装备都是直接消耗，不需要记录
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public long Shoes {
-      get { return shoes_; }
+    public int ShieldEquipment {
+      get { return shieldEquipment_; }
       set {
-        shoes_ = value;
+        shieldEquipment_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "shoes_equipment" field.</summary>
+    public const int ShoesEquipmentFieldNumber = 30;
+    private int shoesEquipment_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int ShoesEquipment {
+      get { return shoesEquipment_; }
+      set {
+        shoesEquipment_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "shoes_time" field.</summary>
+    public const int ShoesTimeFieldNumber = 31;
+    private long shoesTime_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long ShoesTime {
+      get { return shoesTime_; }
+      set {
+        shoesTime_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "is_purified" field.</summary>
+    public const int IsPurifiedFieldNumber = 32;
+    private bool isPurified_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool IsPurified {
+      get { return isPurified_; }
+      set {
+        isPurified_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "purified_time" field.</summary>
+    public const int PurifiedTimeFieldNumber = 33;
+    private long purifiedTime_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long PurifiedTime {
+      get { return purifiedTime_; }
+      set {
+        purifiedTime_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "is_berserk" field.</summary>
+    public const int IsBerserkFieldNumber = 34;
+    private bool isBerserk_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool IsBerserk {
+      get { return isBerserk_; }
+      set {
+        isBerserk_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "berserk_time" field.</summary>
+    public const int BerserkTimeFieldNumber = 35;
+    private long berserkTime_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long BerserkTime {
+      get { return berserkTime_; }
+      set {
+        berserkTime_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "attack_buff_num" field.</summary>
+    public const int AttackBuffNumFieldNumber = 36;
+    private int attackBuffNum_;
+    /// <summary>
+    /// 加成资源的Buff
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int AttackBuffNum {
+      get { return attackBuffNum_; }
+      set {
+        attackBuffNum_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "attack_buff_time" field.</summary>
+    public const int AttackBuffTimeFieldNumber = 37;
+    private long attackBuffTime_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long AttackBuffTime {
+      get { return attackBuffTime_; }
+      set {
+        attackBuffTime_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "speed_buff_time" field.</summary>
+    public const int SpeedBuffTimeFieldNumber = 38;
+    private long speedBuffTime_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long SpeedBuffTime {
+      get { return speedBuffTime_; }
+      set {
+        speedBuffTime_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "vision_buff_time" field.</summary>
+    public const int VisionBuffTimeFieldNumber = 39;
+    private long visionBuffTime_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long VisionBuffTime {
+      get { return visionBuffTime_; }
+      set {
+        visionBuffTime_ = value;
       }
     }
 
@@ -433,21 +994,41 @@ namespace Protobuf {
       if (TeamId != other.TeamId) return false;
       if (PlayerId != other.PlayerId) return false;
       if (CharacterType != other.CharacterType) return false;
-      if (CharacterState1 != other.CharacterState1) return false;
-      if (CharacterState2 != other.CharacterState2) return false;
+      if (CharacterActiveState != other.CharacterActiveState) return false;
+      if (IsBlind != other.IsBlind) return false;
+      if (BlindTime != other.BlindTime) return false;
+      if (IsStunned != other.IsStunned) return false;
+      if (StunnedTime != other.StunnedTime) return false;
+      if (IsInvisible != other.IsInvisible) return false;
+      if (InvisibleTime != other.InvisibleTime) return false;
+      if (IsBurned != other.IsBurned) return false;
+      if (BurnedTime != other.BurnedTime) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(HarmCut, other.HarmCut)) return false;
+      if (HarmCutTime != other.HarmCutTime) return false;
+      if (CharacterPassiveState != other.CharacterPassiveState) return false;
       if (X != other.X) return false;
       if (Y != other.Y) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(FacingDirection, other.FacingDirection)) return false;
       if (Speed != other.Speed) return false;
       if (ViewRange != other.ViewRange) return false;
-      if (Atk != other.Atk) return false;
-      if (AttackSize != other.AttackSize) return false;
-      if (SkillCd != other.SkillCd) return false;
+      if (CommonAttack != other.CommonAttack) return false;
+      if (CommonAttackCd != other.CommonAttackCd) return false;
+      if (CommonAttackRange != other.CommonAttackRange) return false;
+      if (SkillAttackCd != other.SkillAttackCd) return false;
       if (EconomyDepletion != other.EconomyDepletion) return false;
       if (KillScore != other.KillScore) return false;
       if (Hp != other.Hp) return false;
-      if (Shield != other.Shield) return false;
-      if (Shoes != other.Shoes) return false;
+      if (ShieldEquipment != other.ShieldEquipment) return false;
+      if (ShoesEquipment != other.ShoesEquipment) return false;
+      if (ShoesTime != other.ShoesTime) return false;
+      if (IsPurified != other.IsPurified) return false;
+      if (PurifiedTime != other.PurifiedTime) return false;
+      if (IsBerserk != other.IsBerserk) return false;
+      if (BerserkTime != other.BerserkTime) return false;
+      if (AttackBuffNum != other.AttackBuffNum) return false;
+      if (AttackBuffTime != other.AttackBuffTime) return false;
+      if (SpeedBuffTime != other.SpeedBuffTime) return false;
+      if (VisionBuffTime != other.VisionBuffTime) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -459,21 +1040,41 @@ namespace Protobuf {
       if (TeamId != 0L) hash ^= TeamId.GetHashCode();
       if (PlayerId != 0L) hash ^= PlayerId.GetHashCode();
       if (CharacterType != global::Protobuf.CharacterType.NullCharacterType) hash ^= CharacterType.GetHashCode();
-      if (CharacterState1 != global::Protobuf.CharacterState.NullCharacterState) hash ^= CharacterState1.GetHashCode();
-      if (CharacterState2 != global::Protobuf.CharacterState.NullCharacterState) hash ^= CharacterState2.GetHashCode();
+      if (CharacterActiveState != global::Protobuf.CharacterState.NullCharacterState) hash ^= CharacterActiveState.GetHashCode();
+      if (IsBlind != false) hash ^= IsBlind.GetHashCode();
+      if (BlindTime != 0L) hash ^= BlindTime.GetHashCode();
+      if (IsStunned != false) hash ^= IsStunned.GetHashCode();
+      if (StunnedTime != 0L) hash ^= StunnedTime.GetHashCode();
+      if (IsInvisible != false) hash ^= IsInvisible.GetHashCode();
+      if (InvisibleTime != 0L) hash ^= InvisibleTime.GetHashCode();
+      if (IsBurned != false) hash ^= IsBurned.GetHashCode();
+      if (BurnedTime != 0L) hash ^= BurnedTime.GetHashCode();
+      if (HarmCut != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(HarmCut);
+      if (HarmCutTime != 0L) hash ^= HarmCutTime.GetHashCode();
+      if (CharacterPassiveState != global::Protobuf.CharacterState.NullCharacterState) hash ^= CharacterPassiveState.GetHashCode();
       if (X != 0) hash ^= X.GetHashCode();
       if (Y != 0) hash ^= Y.GetHashCode();
       if (FacingDirection != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(FacingDirection);
       if (Speed != 0) hash ^= Speed.GetHashCode();
       if (ViewRange != 0) hash ^= ViewRange.GetHashCode();
-      if (Atk != 0) hash ^= Atk.GetHashCode();
-      if (AttackSize != 0) hash ^= AttackSize.GetHashCode();
-      if (SkillCd != 0L) hash ^= SkillCd.GetHashCode();
+      if (CommonAttack != 0) hash ^= CommonAttack.GetHashCode();
+      if (CommonAttackCd != 0L) hash ^= CommonAttackCd.GetHashCode();
+      if (CommonAttackRange != 0) hash ^= CommonAttackRange.GetHashCode();
+      if (SkillAttackCd != 0L) hash ^= SkillAttackCd.GetHashCode();
       if (EconomyDepletion != 0) hash ^= EconomyDepletion.GetHashCode();
       if (KillScore != 0) hash ^= KillScore.GetHashCode();
       if (Hp != 0) hash ^= Hp.GetHashCode();
-      if (Shield != 0L) hash ^= Shield.GetHashCode();
-      if (Shoes != 0L) hash ^= Shoes.GetHashCode();
+      if (ShieldEquipment != 0) hash ^= ShieldEquipment.GetHashCode();
+      if (ShoesEquipment != 0) hash ^= ShoesEquipment.GetHashCode();
+      if (ShoesTime != 0L) hash ^= ShoesTime.GetHashCode();
+      if (IsPurified != false) hash ^= IsPurified.GetHashCode();
+      if (PurifiedTime != 0L) hash ^= PurifiedTime.GetHashCode();
+      if (IsBerserk != false) hash ^= IsBerserk.GetHashCode();
+      if (BerserkTime != 0L) hash ^= BerserkTime.GetHashCode();
+      if (AttackBuffNum != 0) hash ^= AttackBuffNum.GetHashCode();
+      if (AttackBuffTime != 0L) hash ^= AttackBuffTime.GetHashCode();
+      if (SpeedBuffTime != 0L) hash ^= SpeedBuffTime.GetHashCode();
+      if (VisionBuffTime != 0L) hash ^= VisionBuffTime.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -508,65 +1109,145 @@ namespace Protobuf {
         output.WriteRawTag(32);
         output.WriteEnum((int) CharacterType);
       }
-      if (CharacterState1 != global::Protobuf.CharacterState.NullCharacterState) {
+      if (CharacterActiveState != global::Protobuf.CharacterState.NullCharacterState) {
         output.WriteRawTag(40);
-        output.WriteEnum((int) CharacterState1);
+        output.WriteEnum((int) CharacterActiveState);
       }
-      if (CharacterState2 != global::Protobuf.CharacterState.NullCharacterState) {
+      if (IsBlind != false) {
         output.WriteRawTag(48);
-        output.WriteEnum((int) CharacterState2);
+        output.WriteBool(IsBlind);
+      }
+      if (BlindTime != 0L) {
+        output.WriteRawTag(56);
+        output.WriteInt64(BlindTime);
+      }
+      if (IsStunned != false) {
+        output.WriteRawTag(64);
+        output.WriteBool(IsStunned);
+      }
+      if (StunnedTime != 0L) {
+        output.WriteRawTag(72);
+        output.WriteInt64(StunnedTime);
+      }
+      if (IsInvisible != false) {
+        output.WriteRawTag(80);
+        output.WriteBool(IsInvisible);
+      }
+      if (InvisibleTime != 0L) {
+        output.WriteRawTag(88);
+        output.WriteInt64(InvisibleTime);
+      }
+      if (IsBurned != false) {
+        output.WriteRawTag(96);
+        output.WriteBool(IsBurned);
+      }
+      if (BurnedTime != 0L) {
+        output.WriteRawTag(104);
+        output.WriteInt64(BurnedTime);
+      }
+      if (HarmCut != 0D) {
+        output.WriteRawTag(113);
+        output.WriteDouble(HarmCut);
+      }
+      if (HarmCutTime != 0L) {
+        output.WriteRawTag(120);
+        output.WriteInt64(HarmCutTime);
+      }
+      if (CharacterPassiveState != global::Protobuf.CharacterState.NullCharacterState) {
+        output.WriteRawTag(128, 1);
+        output.WriteEnum((int) CharacterPassiveState);
       }
       if (X != 0) {
-        output.WriteRawTag(56);
+        output.WriteRawTag(136, 1);
         output.WriteInt32(X);
       }
       if (Y != 0) {
-        output.WriteRawTag(64);
+        output.WriteRawTag(144, 1);
         output.WriteInt32(Y);
       }
       if (FacingDirection != 0D) {
-        output.WriteRawTag(73);
+        output.WriteRawTag(153, 1);
         output.WriteDouble(FacingDirection);
       }
       if (Speed != 0) {
-        output.WriteRawTag(80);
+        output.WriteRawTag(160, 1);
         output.WriteInt32(Speed);
       }
       if (ViewRange != 0) {
-        output.WriteRawTag(88);
+        output.WriteRawTag(168, 1);
         output.WriteInt32(ViewRange);
       }
-      if (Atk != 0) {
-        output.WriteRawTag(96);
-        output.WriteInt32(Atk);
+      if (CommonAttack != 0) {
+        output.WriteRawTag(176, 1);
+        output.WriteInt32(CommonAttack);
       }
-      if (AttackSize != 0) {
-        output.WriteRawTag(104);
-        output.WriteInt32(AttackSize);
+      if (CommonAttackCd != 0L) {
+        output.WriteRawTag(184, 1);
+        output.WriteInt64(CommonAttackCd);
       }
-      if (SkillCd != 0L) {
-        output.WriteRawTag(112);
-        output.WriteInt64(SkillCd);
+      if (CommonAttackRange != 0) {
+        output.WriteRawTag(192, 1);
+        output.WriteInt32(CommonAttackRange);
+      }
+      if (SkillAttackCd != 0L) {
+        output.WriteRawTag(200, 1);
+        output.WriteInt64(SkillAttackCd);
       }
       if (EconomyDepletion != 0) {
-        output.WriteRawTag(120);
+        output.WriteRawTag(208, 1);
         output.WriteInt32(EconomyDepletion);
       }
       if (KillScore != 0) {
-        output.WriteRawTag(128, 1);
+        output.WriteRawTag(216, 1);
         output.WriteInt32(KillScore);
       }
       if (Hp != 0) {
-        output.WriteRawTag(136, 1);
+        output.WriteRawTag(224, 1);
         output.WriteInt32(Hp);
       }
-      if (Shield != 0L) {
-        output.WriteRawTag(144, 1);
-        output.WriteInt64(Shield);
+      if (ShieldEquipment != 0) {
+        output.WriteRawTag(232, 1);
+        output.WriteInt32(ShieldEquipment);
       }
-      if (Shoes != 0L) {
-        output.WriteRawTag(152, 1);
-        output.WriteInt64(Shoes);
+      if (ShoesEquipment != 0) {
+        output.WriteRawTag(240, 1);
+        output.WriteInt32(ShoesEquipment);
+      }
+      if (ShoesTime != 0L) {
+        output.WriteRawTag(248, 1);
+        output.WriteInt64(ShoesTime);
+      }
+      if (IsPurified != false) {
+        output.WriteRawTag(128, 2);
+        output.WriteBool(IsPurified);
+      }
+      if (PurifiedTime != 0L) {
+        output.WriteRawTag(136, 2);
+        output.WriteInt64(PurifiedTime);
+      }
+      if (IsBerserk != false) {
+        output.WriteRawTag(144, 2);
+        output.WriteBool(IsBerserk);
+      }
+      if (BerserkTime != 0L) {
+        output.WriteRawTag(152, 2);
+        output.WriteInt64(BerserkTime);
+      }
+      if (AttackBuffNum != 0) {
+        output.WriteRawTag(160, 2);
+        output.WriteInt32(AttackBuffNum);
+      }
+      if (AttackBuffTime != 0L) {
+        output.WriteRawTag(168, 2);
+        output.WriteInt64(AttackBuffTime);
+      }
+      if (SpeedBuffTime != 0L) {
+        output.WriteRawTag(176, 2);
+        output.WriteInt64(SpeedBuffTime);
+      }
+      if (VisionBuffTime != 0L) {
+        output.WriteRawTag(184, 2);
+        output.WriteInt64(VisionBuffTime);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -594,65 +1275,145 @@ namespace Protobuf {
         output.WriteRawTag(32);
         output.WriteEnum((int) CharacterType);
       }
-      if (CharacterState1 != global::Protobuf.CharacterState.NullCharacterState) {
+      if (CharacterActiveState != global::Protobuf.CharacterState.NullCharacterState) {
         output.WriteRawTag(40);
-        output.WriteEnum((int) CharacterState1);
+        output.WriteEnum((int) CharacterActiveState);
       }
-      if (CharacterState2 != global::Protobuf.CharacterState.NullCharacterState) {
+      if (IsBlind != false) {
         output.WriteRawTag(48);
-        output.WriteEnum((int) CharacterState2);
+        output.WriteBool(IsBlind);
+      }
+      if (BlindTime != 0L) {
+        output.WriteRawTag(56);
+        output.WriteInt64(BlindTime);
+      }
+      if (IsStunned != false) {
+        output.WriteRawTag(64);
+        output.WriteBool(IsStunned);
+      }
+      if (StunnedTime != 0L) {
+        output.WriteRawTag(72);
+        output.WriteInt64(StunnedTime);
+      }
+      if (IsInvisible != false) {
+        output.WriteRawTag(80);
+        output.WriteBool(IsInvisible);
+      }
+      if (InvisibleTime != 0L) {
+        output.WriteRawTag(88);
+        output.WriteInt64(InvisibleTime);
+      }
+      if (IsBurned != false) {
+        output.WriteRawTag(96);
+        output.WriteBool(IsBurned);
+      }
+      if (BurnedTime != 0L) {
+        output.WriteRawTag(104);
+        output.WriteInt64(BurnedTime);
+      }
+      if (HarmCut != 0D) {
+        output.WriteRawTag(113);
+        output.WriteDouble(HarmCut);
+      }
+      if (HarmCutTime != 0L) {
+        output.WriteRawTag(120);
+        output.WriteInt64(HarmCutTime);
+      }
+      if (CharacterPassiveState != global::Protobuf.CharacterState.NullCharacterState) {
+        output.WriteRawTag(128, 1);
+        output.WriteEnum((int) CharacterPassiveState);
       }
       if (X != 0) {
-        output.WriteRawTag(56);
+        output.WriteRawTag(136, 1);
         output.WriteInt32(X);
       }
       if (Y != 0) {
-        output.WriteRawTag(64);
+        output.WriteRawTag(144, 1);
         output.WriteInt32(Y);
       }
       if (FacingDirection != 0D) {
-        output.WriteRawTag(73);
+        output.WriteRawTag(153, 1);
         output.WriteDouble(FacingDirection);
       }
       if (Speed != 0) {
-        output.WriteRawTag(80);
+        output.WriteRawTag(160, 1);
         output.WriteInt32(Speed);
       }
       if (ViewRange != 0) {
-        output.WriteRawTag(88);
+        output.WriteRawTag(168, 1);
         output.WriteInt32(ViewRange);
       }
-      if (Atk != 0) {
-        output.WriteRawTag(96);
-        output.WriteInt32(Atk);
+      if (CommonAttack != 0) {
+        output.WriteRawTag(176, 1);
+        output.WriteInt32(CommonAttack);
       }
-      if (AttackSize != 0) {
-        output.WriteRawTag(104);
-        output.WriteInt32(AttackSize);
+      if (CommonAttackCd != 0L) {
+        output.WriteRawTag(184, 1);
+        output.WriteInt64(CommonAttackCd);
       }
-      if (SkillCd != 0L) {
-        output.WriteRawTag(112);
-        output.WriteInt64(SkillCd);
+      if (CommonAttackRange != 0) {
+        output.WriteRawTag(192, 1);
+        output.WriteInt32(CommonAttackRange);
+      }
+      if (SkillAttackCd != 0L) {
+        output.WriteRawTag(200, 1);
+        output.WriteInt64(SkillAttackCd);
       }
       if (EconomyDepletion != 0) {
-        output.WriteRawTag(120);
+        output.WriteRawTag(208, 1);
         output.WriteInt32(EconomyDepletion);
       }
       if (KillScore != 0) {
-        output.WriteRawTag(128, 1);
+        output.WriteRawTag(216, 1);
         output.WriteInt32(KillScore);
       }
       if (Hp != 0) {
-        output.WriteRawTag(136, 1);
+        output.WriteRawTag(224, 1);
         output.WriteInt32(Hp);
       }
-      if (Shield != 0L) {
-        output.WriteRawTag(144, 1);
-        output.WriteInt64(Shield);
+      if (ShieldEquipment != 0) {
+        output.WriteRawTag(232, 1);
+        output.WriteInt32(ShieldEquipment);
       }
-      if (Shoes != 0L) {
-        output.WriteRawTag(152, 1);
-        output.WriteInt64(Shoes);
+      if (ShoesEquipment != 0) {
+        output.WriteRawTag(240, 1);
+        output.WriteInt32(ShoesEquipment);
+      }
+      if (ShoesTime != 0L) {
+        output.WriteRawTag(248, 1);
+        output.WriteInt64(ShoesTime);
+      }
+      if (IsPurified != false) {
+        output.WriteRawTag(128, 2);
+        output.WriteBool(IsPurified);
+      }
+      if (PurifiedTime != 0L) {
+        output.WriteRawTag(136, 2);
+        output.WriteInt64(PurifiedTime);
+      }
+      if (IsBerserk != false) {
+        output.WriteRawTag(144, 2);
+        output.WriteBool(IsBerserk);
+      }
+      if (BerserkTime != 0L) {
+        output.WriteRawTag(152, 2);
+        output.WriteInt64(BerserkTime);
+      }
+      if (AttackBuffNum != 0) {
+        output.WriteRawTag(160, 2);
+        output.WriteInt32(AttackBuffNum);
+      }
+      if (AttackBuffTime != 0L) {
+        output.WriteRawTag(168, 2);
+        output.WriteInt64(AttackBuffTime);
+      }
+      if (SpeedBuffTime != 0L) {
+        output.WriteRawTag(176, 2);
+        output.WriteInt64(SpeedBuffTime);
+      }
+      if (VisionBuffTime != 0L) {
+        output.WriteRawTag(184, 2);
+        output.WriteInt64(VisionBuffTime);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -676,38 +1437,71 @@ namespace Protobuf {
       if (CharacterType != global::Protobuf.CharacterType.NullCharacterType) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) CharacterType);
       }
-      if (CharacterState1 != global::Protobuf.CharacterState.NullCharacterState) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) CharacterState1);
+      if (CharacterActiveState != global::Protobuf.CharacterState.NullCharacterState) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) CharacterActiveState);
       }
-      if (CharacterState2 != global::Protobuf.CharacterState.NullCharacterState) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) CharacterState2);
+      if (IsBlind != false) {
+        size += 1 + 1;
       }
-      if (X != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(X);
+      if (BlindTime != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(BlindTime);
       }
-      if (Y != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Y);
+      if (IsStunned != false) {
+        size += 1 + 1;
       }
-      if (FacingDirection != 0D) {
+      if (StunnedTime != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(StunnedTime);
+      }
+      if (IsInvisible != false) {
+        size += 1 + 1;
+      }
+      if (InvisibleTime != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(InvisibleTime);
+      }
+      if (IsBurned != false) {
+        size += 1 + 1;
+      }
+      if (BurnedTime != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(BurnedTime);
+      }
+      if (HarmCut != 0D) {
         size += 1 + 8;
       }
+      if (HarmCutTime != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(HarmCutTime);
+      }
+      if (CharacterPassiveState != global::Protobuf.CharacterState.NullCharacterState) {
+        size += 2 + pb::CodedOutputStream.ComputeEnumSize((int) CharacterPassiveState);
+      }
+      if (X != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(X);
+      }
+      if (Y != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(Y);
+      }
+      if (FacingDirection != 0D) {
+        size += 2 + 8;
+      }
       if (Speed != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Speed);
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(Speed);
       }
       if (ViewRange != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ViewRange);
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(ViewRange);
       }
-      if (Atk != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Atk);
+      if (CommonAttack != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(CommonAttack);
       }
-      if (AttackSize != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(AttackSize);
+      if (CommonAttackCd != 0L) {
+        size += 2 + pb::CodedOutputStream.ComputeInt64Size(CommonAttackCd);
       }
-      if (SkillCd != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(SkillCd);
+      if (CommonAttackRange != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(CommonAttackRange);
+      }
+      if (SkillAttackCd != 0L) {
+        size += 2 + pb::CodedOutputStream.ComputeInt64Size(SkillAttackCd);
       }
       if (EconomyDepletion != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(EconomyDepletion);
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(EconomyDepletion);
       }
       if (KillScore != 0) {
         size += 2 + pb::CodedOutputStream.ComputeInt32Size(KillScore);
@@ -715,11 +1509,38 @@ namespace Protobuf {
       if (Hp != 0) {
         size += 2 + pb::CodedOutputStream.ComputeInt32Size(Hp);
       }
-      if (Shield != 0L) {
-        size += 2 + pb::CodedOutputStream.ComputeInt64Size(Shield);
+      if (ShieldEquipment != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(ShieldEquipment);
       }
-      if (Shoes != 0L) {
-        size += 2 + pb::CodedOutputStream.ComputeInt64Size(Shoes);
+      if (ShoesEquipment != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(ShoesEquipment);
+      }
+      if (ShoesTime != 0L) {
+        size += 2 + pb::CodedOutputStream.ComputeInt64Size(ShoesTime);
+      }
+      if (IsPurified != false) {
+        size += 2 + 1;
+      }
+      if (PurifiedTime != 0L) {
+        size += 2 + pb::CodedOutputStream.ComputeInt64Size(PurifiedTime);
+      }
+      if (IsBerserk != false) {
+        size += 2 + 1;
+      }
+      if (BerserkTime != 0L) {
+        size += 2 + pb::CodedOutputStream.ComputeInt64Size(BerserkTime);
+      }
+      if (AttackBuffNum != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(AttackBuffNum);
+      }
+      if (AttackBuffTime != 0L) {
+        size += 2 + pb::CodedOutputStream.ComputeInt64Size(AttackBuffTime);
+      }
+      if (SpeedBuffTime != 0L) {
+        size += 2 + pb::CodedOutputStream.ComputeInt64Size(SpeedBuffTime);
+      }
+      if (VisionBuffTime != 0L) {
+        size += 2 + pb::CodedOutputStream.ComputeInt64Size(VisionBuffTime);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -745,11 +1566,41 @@ namespace Protobuf {
       if (other.CharacterType != global::Protobuf.CharacterType.NullCharacterType) {
         CharacterType = other.CharacterType;
       }
-      if (other.CharacterState1 != global::Protobuf.CharacterState.NullCharacterState) {
-        CharacterState1 = other.CharacterState1;
+      if (other.CharacterActiveState != global::Protobuf.CharacterState.NullCharacterState) {
+        CharacterActiveState = other.CharacterActiveState;
       }
-      if (other.CharacterState2 != global::Protobuf.CharacterState.NullCharacterState) {
-        CharacterState2 = other.CharacterState2;
+      if (other.IsBlind != false) {
+        IsBlind = other.IsBlind;
+      }
+      if (other.BlindTime != 0L) {
+        BlindTime = other.BlindTime;
+      }
+      if (other.IsStunned != false) {
+        IsStunned = other.IsStunned;
+      }
+      if (other.StunnedTime != 0L) {
+        StunnedTime = other.StunnedTime;
+      }
+      if (other.IsInvisible != false) {
+        IsInvisible = other.IsInvisible;
+      }
+      if (other.InvisibleTime != 0L) {
+        InvisibleTime = other.InvisibleTime;
+      }
+      if (other.IsBurned != false) {
+        IsBurned = other.IsBurned;
+      }
+      if (other.BurnedTime != 0L) {
+        BurnedTime = other.BurnedTime;
+      }
+      if (other.HarmCut != 0D) {
+        HarmCut = other.HarmCut;
+      }
+      if (other.HarmCutTime != 0L) {
+        HarmCutTime = other.HarmCutTime;
+      }
+      if (other.CharacterPassiveState != global::Protobuf.CharacterState.NullCharacterState) {
+        CharacterPassiveState = other.CharacterPassiveState;
       }
       if (other.X != 0) {
         X = other.X;
@@ -766,14 +1617,17 @@ namespace Protobuf {
       if (other.ViewRange != 0) {
         ViewRange = other.ViewRange;
       }
-      if (other.Atk != 0) {
-        Atk = other.Atk;
+      if (other.CommonAttack != 0) {
+        CommonAttack = other.CommonAttack;
       }
-      if (other.AttackSize != 0) {
-        AttackSize = other.AttackSize;
+      if (other.CommonAttackCd != 0L) {
+        CommonAttackCd = other.CommonAttackCd;
       }
-      if (other.SkillCd != 0L) {
-        SkillCd = other.SkillCd;
+      if (other.CommonAttackRange != 0) {
+        CommonAttackRange = other.CommonAttackRange;
+      }
+      if (other.SkillAttackCd != 0L) {
+        SkillAttackCd = other.SkillAttackCd;
       }
       if (other.EconomyDepletion != 0) {
         EconomyDepletion = other.EconomyDepletion;
@@ -784,11 +1638,38 @@ namespace Protobuf {
       if (other.Hp != 0) {
         Hp = other.Hp;
       }
-      if (other.Shield != 0L) {
-        Shield = other.Shield;
+      if (other.ShieldEquipment != 0) {
+        ShieldEquipment = other.ShieldEquipment;
       }
-      if (other.Shoes != 0L) {
-        Shoes = other.Shoes;
+      if (other.ShoesEquipment != 0) {
+        ShoesEquipment = other.ShoesEquipment;
+      }
+      if (other.ShoesTime != 0L) {
+        ShoesTime = other.ShoesTime;
+      }
+      if (other.IsPurified != false) {
+        IsPurified = other.IsPurified;
+      }
+      if (other.PurifiedTime != 0L) {
+        PurifiedTime = other.PurifiedTime;
+      }
+      if (other.IsBerserk != false) {
+        IsBerserk = other.IsBerserk;
+      }
+      if (other.BerserkTime != 0L) {
+        BerserkTime = other.BerserkTime;
+      }
+      if (other.AttackBuffNum != 0) {
+        AttackBuffNum = other.AttackBuffNum;
+      }
+      if (other.AttackBuffTime != 0L) {
+        AttackBuffTime = other.AttackBuffTime;
+      }
+      if (other.SpeedBuffTime != 0L) {
+        SpeedBuffTime = other.SpeedBuffTime;
+      }
+      if (other.VisionBuffTime != 0L) {
+        VisionBuffTime = other.VisionBuffTime;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -826,63 +1707,143 @@ namespace Protobuf {
             break;
           }
           case 40: {
-            CharacterState1 = (global::Protobuf.CharacterState) input.ReadEnum();
+            CharacterActiveState = (global::Protobuf.CharacterState) input.ReadEnum();
             break;
           }
           case 48: {
-            CharacterState2 = (global::Protobuf.CharacterState) input.ReadEnum();
+            IsBlind = input.ReadBool();
             break;
           }
           case 56: {
-            X = input.ReadInt32();
+            BlindTime = input.ReadInt64();
             break;
           }
           case 64: {
-            Y = input.ReadInt32();
+            IsStunned = input.ReadBool();
             break;
           }
-          case 73: {
-            FacingDirection = input.ReadDouble();
+          case 72: {
+            StunnedTime = input.ReadInt64();
             break;
           }
           case 80: {
-            Speed = input.ReadInt32();
+            IsInvisible = input.ReadBool();
             break;
           }
           case 88: {
-            ViewRange = input.ReadInt32();
+            InvisibleTime = input.ReadInt64();
             break;
           }
           case 96: {
-            Atk = input.ReadInt32();
+            IsBurned = input.ReadBool();
             break;
           }
           case 104: {
-            AttackSize = input.ReadInt32();
+            BurnedTime = input.ReadInt64();
             break;
           }
-          case 112: {
-            SkillCd = input.ReadInt64();
+          case 113: {
+            HarmCut = input.ReadDouble();
             break;
           }
           case 120: {
-            EconomyDepletion = input.ReadInt32();
+            HarmCutTime = input.ReadInt64();
             break;
           }
           case 128: {
-            KillScore = input.ReadInt32();
+            CharacterPassiveState = (global::Protobuf.CharacterState) input.ReadEnum();
             break;
           }
           case 136: {
-            Hp = input.ReadInt32();
+            X = input.ReadInt32();
             break;
           }
           case 144: {
-            Shield = input.ReadInt64();
+            Y = input.ReadInt32();
             break;
           }
-          case 152: {
-            Shoes = input.ReadInt64();
+          case 153: {
+            FacingDirection = input.ReadDouble();
+            break;
+          }
+          case 160: {
+            Speed = input.ReadInt32();
+            break;
+          }
+          case 168: {
+            ViewRange = input.ReadInt32();
+            break;
+          }
+          case 176: {
+            CommonAttack = input.ReadInt32();
+            break;
+          }
+          case 184: {
+            CommonAttackCd = input.ReadInt64();
+            break;
+          }
+          case 192: {
+            CommonAttackRange = input.ReadInt32();
+            break;
+          }
+          case 200: {
+            SkillAttackCd = input.ReadInt64();
+            break;
+          }
+          case 208: {
+            EconomyDepletion = input.ReadInt32();
+            break;
+          }
+          case 216: {
+            KillScore = input.ReadInt32();
+            break;
+          }
+          case 224: {
+            Hp = input.ReadInt32();
+            break;
+          }
+          case 232: {
+            ShieldEquipment = input.ReadInt32();
+            break;
+          }
+          case 240: {
+            ShoesEquipment = input.ReadInt32();
+            break;
+          }
+          case 248: {
+            ShoesTime = input.ReadInt64();
+            break;
+          }
+          case 256: {
+            IsPurified = input.ReadBool();
+            break;
+          }
+          case 264: {
+            PurifiedTime = input.ReadInt64();
+            break;
+          }
+          case 272: {
+            IsBerserk = input.ReadBool();
+            break;
+          }
+          case 280: {
+            BerserkTime = input.ReadInt64();
+            break;
+          }
+          case 288: {
+            AttackBuffNum = input.ReadInt32();
+            break;
+          }
+          case 296: {
+            AttackBuffTime = input.ReadInt64();
+            break;
+          }
+          case 304: {
+            SpeedBuffTime = input.ReadInt64();
+            break;
+          }
+          case 312: {
+            VisionBuffTime = input.ReadInt64();
             break;
           }
         }
@@ -921,63 +1882,143 @@ namespace Protobuf {
             break;
           }
           case 40: {
-            CharacterState1 = (global::Protobuf.CharacterState) input.ReadEnum();
+            CharacterActiveState = (global::Protobuf.CharacterState) input.ReadEnum();
             break;
           }
           case 48: {
-            CharacterState2 = (global::Protobuf.CharacterState) input.ReadEnum();
+            IsBlind = input.ReadBool();
             break;
           }
           case 56: {
-            X = input.ReadInt32();
+            BlindTime = input.ReadInt64();
             break;
           }
           case 64: {
-            Y = input.ReadInt32();
+            IsStunned = input.ReadBool();
             break;
           }
-          case 73: {
-            FacingDirection = input.ReadDouble();
+          case 72: {
+            StunnedTime = input.ReadInt64();
             break;
           }
           case 80: {
-            Speed = input.ReadInt32();
+            IsInvisible = input.ReadBool();
             break;
           }
           case 88: {
-            ViewRange = input.ReadInt32();
+            InvisibleTime = input.ReadInt64();
             break;
           }
           case 96: {
-            Atk = input.ReadInt32();
+            IsBurned = input.ReadBool();
             break;
           }
           case 104: {
-            AttackSize = input.ReadInt32();
+            BurnedTime = input.ReadInt64();
             break;
           }
-          case 112: {
-            SkillCd = input.ReadInt64();
+          case 113: {
+            HarmCut = input.ReadDouble();
             break;
           }
           case 120: {
-            EconomyDepletion = input.ReadInt32();
+            HarmCutTime = input.ReadInt64();
             break;
           }
           case 128: {
-            KillScore = input.ReadInt32();
+            CharacterPassiveState = (global::Protobuf.CharacterState) input.ReadEnum();
             break;
           }
           case 136: {
-            Hp = input.ReadInt32();
+            X = input.ReadInt32();
             break;
           }
           case 144: {
-            Shield = input.ReadInt64();
+            Y = input.ReadInt32();
             break;
           }
-          case 152: {
-            Shoes = input.ReadInt64();
+          case 153: {
+            FacingDirection = input.ReadDouble();
+            break;
+          }
+          case 160: {
+            Speed = input.ReadInt32();
+            break;
+          }
+          case 168: {
+            ViewRange = input.ReadInt32();
+            break;
+          }
+          case 176: {
+            CommonAttack = input.ReadInt32();
+            break;
+          }
+          case 184: {
+            CommonAttackCd = input.ReadInt64();
+            break;
+          }
+          case 192: {
+            CommonAttackRange = input.ReadInt32();
+            break;
+          }
+          case 200: {
+            SkillAttackCd = input.ReadInt64();
+            break;
+          }
+          case 208: {
+            EconomyDepletion = input.ReadInt32();
+            break;
+          }
+          case 216: {
+            KillScore = input.ReadInt32();
+            break;
+          }
+          case 224: {
+            Hp = input.ReadInt32();
+            break;
+          }
+          case 232: {
+            ShieldEquipment = input.ReadInt32();
+            break;
+          }
+          case 240: {
+            ShoesEquipment = input.ReadInt32();
+            break;
+          }
+          case 248: {
+            ShoesTime = input.ReadInt64();
+            break;
+          }
+          case 256: {
+            IsPurified = input.ReadBool();
+            break;
+          }
+          case 264: {
+            PurifiedTime = input.ReadInt64();
+            break;
+          }
+          case 272: {
+            IsBerserk = input.ReadBool();
+            break;
+          }
+          case 280: {
+            BerserkTime = input.ReadInt64();
+            break;
+          }
+          case 288: {
+            AttackBuffNum = input.ReadInt32();
+            break;
+          }
+          case 296: {
+            AttackBuffTime = input.ReadInt64();
+            break;
+          }
+          case 304: {
+            SpeedBuffTime = input.ReadInt64();
+            break;
+          }
+          case 312: {
+            VisionBuffTime = input.ReadInt64();
             break;
           }
         }
@@ -1002,7 +2043,7 @@ namespace Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[1]; }
+      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1351,7 +2392,7 @@ namespace Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[2]; }
+      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1700,7 +2741,7 @@ namespace Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[3]; }
+      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2049,7 +3090,7 @@ namespace Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[4]; }
+      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2395,7 +3436,7 @@ namespace Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[5]; }
+      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2781,7 +3822,7 @@ namespace Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[6]; }
+      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3164,7 +4205,7 @@ namespace Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[7]; }
+      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[8]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3622,7 +4663,7 @@ namespace Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[8]; }
+      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[9]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3934,7 +4975,7 @@ namespace Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[9]; }
+      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[10]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4652,7 +5693,7 @@ namespace Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[10]; }
+      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[11]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5072,7 +6113,7 @@ namespace Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[11]; }
+      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[12]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5342,7 +6383,7 @@ namespace Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[12]; }
+      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[13]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5614,7 +6655,7 @@ namespace Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[13]; }
+      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[14]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5849,7 +6890,7 @@ namespace Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[14]; }
+      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[15]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6047,7 +7088,7 @@ namespace Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[15]; }
+      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[16]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6234,7 +7275,7 @@ namespace Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[16]; }
+      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[17]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6432,7 +7473,7 @@ namespace Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[17]; }
+      get { return global::Protobuf.Message2ClientsReflection.Descriptor.MessageTypes[18]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
