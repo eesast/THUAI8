@@ -16,7 +16,7 @@ jobs:
         clangFormatVersion: 14
         exclude: |
             ./players
-            CAPI/cpp/grpc
+            CAPI/cpp/grpc/include
         inplace: False
 
   dotnet-format-checking:
