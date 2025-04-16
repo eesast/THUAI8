@@ -165,7 +165,7 @@ namespace Gaming
                 character.Shoes.AddPositiveV(speed);//暂未添加时间限制
                 return true;
             }
-            public void InTrap(Trap trap, Character character)
+            public void InHole(HOLE trap, Character character)
             {
 
                 if (!character.trapped && character.InSquare(trap.Position, GameData.TrapRange) && trap.TeamID != character.TeamID)
@@ -173,11 +173,11 @@ namespace Gaming
                     character.visible = true;
                     character.trapped = true;
                     character.TrapTime = Environment.TickCount64;
-                    //HP.SubV(GameData.TrapDamage);
-                    //SetCharacterState(CharacterState.STUNNED);
+                    character.HP.SubPositiveV(GameData.TrapDamage);
+                    //character.SetCharacterState(CharacterState.STUNNED);
                 }
             }
-            public void CheckTrap(Character character)
+            public void CheckHole(Character character)
             {
                 long nowtime = Environment.TickCount64;
                 if (nowtime - character.TrapTime >= 5000)
@@ -202,7 +202,7 @@ namespace Gaming
                     character.stunned = true;
                     character.CageTime = Environment.TickCount64;
                     //HP.SubV(GameData.TrapDamage);
-                    //SetCharacterState(CharacterState.STUNNED);
+                    character.SetCharacterState(CharacterState.STUNNED);
                 }
             }
             public void CheckCage(Character character)

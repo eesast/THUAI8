@@ -208,7 +208,8 @@ namespace Gaming
                                                 ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.KNOCKED_BACK);
                                                 double angleToBeKnockedBack;
                                                 double tantheta = (ObjBeingShot.Position.y - character.Position.y) / (ObjBeingShot.Position.x - character.Position.x);
-                                                if ((ObjBeingShot.Position.x - character.Position.x) > 0)
+                                                if ((ObjBeingShot
+                                                    .Position.x - character.Position.x) > 0)
                                                     angleToBeKnockedBack = Math.Atan(tantheta);
                                                 else if ((ObjBeingShot.Position.y - character.Position.y) > 0)
                                                     angleToBeKnockedBack = Math.PI - Math.Atan(tantheta);
