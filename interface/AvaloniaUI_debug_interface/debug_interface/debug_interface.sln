@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "debug_interface", "debug_in
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proto", "..\..\..\dependency\proto\Proto.csproj", "{B6C305C4-ACFA-467E-9408-9617886B7D4D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playback", "..\..\..\logic\PlayBack\Playback.csproj", "{133BEB5A-DEFA-47A8-9B3C-46166E862D25}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B6C305C4-ACFA-467E-9408-9617886B7D4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6C305C4-ACFA-467E-9408-9617886B7D4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6C305C4-ACFA-467E-9408-9617886B7D4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{133BEB5A-DEFA-47A8-9B3C-46166E862D25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{133BEB5A-DEFA-47A8-9B3C-46166E862D25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{133BEB5A-DEFA-47A8-9B3C-46166E862D25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{133BEB5A-DEFA-47A8-9B3C-46166E862D25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
