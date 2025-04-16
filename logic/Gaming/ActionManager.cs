@@ -159,7 +159,7 @@ namespace Gaming
             }
             public bool SetTrap(Character character, TrapType traptype)
             {
-                if (character.CharacterType != CharacterType.Monkid || character.CharacterType != CharacterType.Pawn)
+                if (character.CharacterType != CharacterType.Monkid && character.CharacterType != CharacterType.Pawn)
                 {
                     return false;
                 }
