@@ -18,13 +18,27 @@
 // -----------------------------------------------------------------------------
 //
 // This header file defines portable macros for performance optimization.
+//
+// This header is included in both C++ code and legacy C code and thus must
+// remain compatible with both C and C++. C compatibility will be removed if
+// the legacy code is removed or converted to C++. Do not include this header in
+// new code that requires C compatibility or assume C compatibility will remain
+// indefinitely.
+
+// SKIP_ABSL_INLINE_NAMESPACE_CHECK
 
 #ifndef ABSL_BASE_OPTIMIZATION_H_
 #define ABSL_BASE_OPTIMIZATION_H_
 
 #include <assert.h>
 
+#ifdef __cplusplus
+// Included for std::unreachable()
+#include <utility>
+#endif  // __cplusplus
+
 #include "absl/base/config.h"
+#include "absl/base/options.h"
 
 // ABSL_BLOCK_TAIL_CALL_OPTIMIZATION
 //
@@ -40,11 +54,7 @@
 //     return result;
 //   }
 #if defined(__pnacl__)
-#define ABSL_BLOCK_TAIL_CALL_OPTIMIZATION() \
-    if (volatile int x = 0)                 \
-    {                                       \
-        (void)x;                            \
-    }
+#define ABSL_BLOCK_TAIL_CALL_OPTIMIZATION() if (volatile int x = 0) { (void)x; }
 #elif defined(__clang__)
 // Clang will not tail call given inline volatile assembly.
 #define ABSL_BLOCK_TAIL_CALL_OPTIMIZATION() __asm__ __volatile__("")
@@ -56,11 +66,7 @@
 // The __nop() intrinsic blocks the optimisation.
 #define ABSL_BLOCK_TAIL_CALL_OPTIMIZATION() __nop()
 #else
-#define ABSL_BLOCK_TAIL_CALL_OPTIMIZATION() \
-    if (volatile int x = 0)                 \
-    {                                       \
-        (void)x;                            \
-    }
+#define ABSL_BLOCK_TAIL_CALL_OPTIMIZATION() if (volatile int x = 0) { (void)x; }
 #endif
 
 // ABSL_CACHELINE_SIZE
@@ -220,22 +226,20 @@
 // one has undefined behavior, and the compiler may optimize accordingly.
 #if ABSL_OPTION_HARDENED == 1 && defined(NDEBUG)
 // Abort in hardened mode to avoid dangerous undefined behavior.
-#define ABSL_UNREACHABLE()                    \
-    do                                        \
-    {                                         \
-        ABSL_INTERNAL_IMMEDIATE_ABORT_IMPL(); \
-        ABSL_INTERNAL_UNREACHABLE_IMPL();     \
-    } while (false)
+#define ABSL_UNREACHABLE()                \
+  do {                                    \
+    ABSL_INTERNAL_IMMEDIATE_ABORT_IMPL(); \
+    ABSL_INTERNAL_UNREACHABLE_IMPL();     \
+  } while (false)
 #else
 // The assert only fires in debug mode to aid in debugging.
 // When NDEBUG is defined, reaching ABSL_UNREACHABLE() is undefined behavior.
-#define ABSL_UNREACHABLE()                           \
-    do                                               \
-    {                                                \
-        /* NOLINTNEXTLINE: misc-static-assert */     \
-        assert(false && "ABSL_UNREACHABLE reached"); \
-        ABSL_INTERNAL_UNREACHABLE_IMPL();            \
-    } while (false)
+#define ABSL_UNREACHABLE()                       \
+  do {                                           \
+    /* NOLINTNEXTLINE: misc-static-assert */     \
+    assert(false && "ABSL_UNREACHABLE reached"); \
+    ABSL_INTERNAL_UNREACHABLE_IMPL();            \
+  } while (false)
 #endif
 
 // ABSL_ASSUME(cond)
@@ -269,25 +273,14 @@
 #elif defined(_MSC_VER)
 #define ABSL_ASSUME(cond) __assume(cond)
 #elif defined(__cpp_lib_unreachable) && __cpp_lib_unreachable >= 202202L
-#define ABSL_ASSUME(cond)       \
-    do                          \
-    {                           \
-        if (!(cond))            \
-            std::unreachable(); \
-    } while (false)
+#define ABSL_ASSUME(cond) ((cond) ? void() : std::unreachable())
 #elif defined(__GNUC__) || ABSL_HAVE_BUILTIN(__builtin_unreachable)
-#define ABSL_ASSUME(cond)            \
-    do                               \
-    {                                \
-        if (!(cond))                 \
-            __builtin_unreachable(); \
-    } while (false)
+#define ABSL_ASSUME(cond) ((cond) ? void() : __builtin_unreachable())
+#elif ABSL_INTERNAL_CPLUSPLUS_LANG >= 202002L
+// Unimplemented. Uses the same definition as ABSL_ASSERT in the NDEBUG case.
+#define ABSL_ASSUME(expr) (decltype((expr) ? void() : void())())
 #else
-#define ABSL_ASSUME(cond)                   \
-    do                                      \
-    {                                       \
-        static_cast<void>(false && (cond)); \
-    } while (false)
+#define ABSL_ASSUME(expr) (false ? ((expr) ? void() : void()) : void())
 #endif
 
 // ABSL_INTERNAL_UNIQUE_SMALL_NAME(cond)
@@ -311,7 +304,7 @@
 #define ABSL_INTERNAL_UNIQUE_SMALL_NAME2(x) #x
 #define ABSL_INTERNAL_UNIQUE_SMALL_NAME1(x) ABSL_INTERNAL_UNIQUE_SMALL_NAME2(x)
 #define ABSL_INTERNAL_UNIQUE_SMALL_NAME() \
-    asm(ABSL_INTERNAL_UNIQUE_SMALL_NAME1(.absl.__COUNTER__))
+  asm(ABSL_INTERNAL_UNIQUE_SMALL_NAME1(.absl.__COUNTER__))
 #else
 #define ABSL_INTERNAL_UNIQUE_SMALL_NAME()
 #endif
