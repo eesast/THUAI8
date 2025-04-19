@@ -31,30 +31,6 @@ namespace debug_interface.Views
         private Logger? myLogger; // Logger 引用
 
 
-        //public MapView()
-        //{
-        //    InitializeComponent();
-        //    this.DataContextChanged += MapView_DataContextChanged;
-        //    this.AttachedToVisualTree += MapView_AttachedToVisualTree;
-        //    // 获取 Logger (假设 ViewModelBase 有 Logger)
-        //    this.DataContextChanged += (s, e) => {
-        //        if (this.DataContext is ViewModelBase vmBase && vmBase.myLogger != null)
-        //        {
-        //            myLogger = vmBase.myLogger;
-        //            myLogger?.LogDebug("MapView: Logger 获取成功。");
-        //        }
-        //        else if (this.DataContext is MainWindowViewModel mwvm && mwvm.myLogger != null) // 备用方案
-        //        {
-        //            myLogger = mwvm.myLogger;
-        //            myLogger?.LogDebug("MapView: Logger 获取成功 (来自 MainWindowViewModel)。");
-        //        }
-        //        else
-        //        {
-        //            Console.WriteLine("MapView: DataContext 变化，但无法获取 Logger。"); // fallback to console
-        //        }
-        //    };
-        //}
-
         public MapView()
         {
             InitializeComponent();
