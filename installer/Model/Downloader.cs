@@ -10,6 +10,7 @@ using System.IO.Compression;
 using System.Formats.Tar;
 using installer.Data;
 using installer.Services;
+using System.Data;
 
 namespace installer.Model
 {

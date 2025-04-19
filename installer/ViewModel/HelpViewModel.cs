@@ -9,6 +9,8 @@ namespace installer.ViewModel
 {
     public class HelpViewModel : BaseViewModel
     {
+        private bool _isDownloading = false;
+        private string installationPlatform = "";
 
         public List<HelpMessage> InstallerHelp { get; }
         public List<HelpMessage> LauncherHelp { get; }

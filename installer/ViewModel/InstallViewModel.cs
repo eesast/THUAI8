@@ -20,8 +20,7 @@ namespace installer.ViewModel
     {
         private readonly Downloader Downloader;
         private readonly IFolderPicker FolderPicker;
-        private readonly DownloadService _downloadService;
-        private bool _isDownloading;
+        private bool _isDownloading = false;
         public ObservableCollection<LogRecord> LogCollection { get => Log.List; }
 
         private Timer timer;
@@ -31,7 +30,6 @@ namespace installer.ViewModel
         {
             Downloader = downloader;
             FolderPicker = folderPicker;
-            _downloadService = new DownloadService();
 
             DownloadPath = Downloader.Data.Config.InstallPath;
             Installed = Downloader.Data.Installed;
@@ -209,7 +207,7 @@ namespace installer.ViewModel
             {
                 downloadEnabled = value
                     && !DownloadPath.EndsWith(':') && !DownloadPath.EndsWith('\\')
-                    && Directory.Exists(DownloadPath);
+                    && Directory.Exists(DownloadPath) && Local_Data.CountFile(DownloadPath) == 0;
                 OnPropertyChanged();
             }
         }
