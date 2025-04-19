@@ -1,0 +1,18 @@
+name: deploy
+on: [push]
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+    - name: Setup tmate session
+      run: dotnet publish interface/AvaloniaUI_debug_interface/debug_interface/debug_interface.csproj -r win-x64 -c Release -o logic/Client
+    - name: package
+      uses: actions/upload-artifact@v4
+      with:
+        name: debug_interface
+        path: logic/Client
