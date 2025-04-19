@@ -36,24 +36,25 @@ namespace ClientTest
             var call = client.AddCharacter(playerInfo);
             MoveMsg moveMsg = new()
             {
-                CharacterId = 0,
+                CharacterId = 1,
                 TeamId = 0,
                 TimeInMilliseconds = 100,
                 Angle = 0
             };
             int tot = 0;
-            /*while (call.ResponseStream.MoveNext().Result)
+            while (call.ResponseStream.MoveNext().Result)
             {
                 var currentGameInfo = call.ResponseStream.Current;
                 if (currentGameInfo.GameState == GameState.GameStart) break;
-            }*/
+            }
             while (true)
             {
                 Thread.Sleep(50);
-                //MoveRes boolRes = client.Move(moveMsg);
-                //if (boolRes.ActSuccess == false) break;
+
+                MoveRes boolRes = client.Move(moveMsg);
+                if (boolRes.ActSuccess == false) break;
                 tot++;
-                //if (tot % 10 == 0) moveMsg.Angle += 1;
+                if (tot % 10 == 0) moveMsg.Angle += 1;
             }
             return Task.CompletedTask;
         }
