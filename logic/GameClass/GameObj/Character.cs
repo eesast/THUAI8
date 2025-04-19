@@ -165,7 +165,7 @@ public class Character : Movable, ICharacter
         InteractObj = gameobj;
         characterState1 = value1;
         characterState2 = value2;
-        return stateNum;
+        return ++stateNum;
     }
     public long SetCharacterState(CharacterState value1 = CharacterState.NULL_CHARACTER_STATE, CharacterState value2 = CharacterState.NULL_CHARACTER_STATE, IGameObj? obj = null)
     {
