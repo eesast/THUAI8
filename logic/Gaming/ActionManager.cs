@@ -251,6 +251,16 @@ namespace Gaming
                                                                     characterManager.InHole(hole, character);
                                                                 }
                                                                 gameMap.Remove(hole
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
                                                                     );//实时捕捉，用后即毁
                                                                 return true;
                                                             },
