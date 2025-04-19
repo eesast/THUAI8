@@ -14,7 +14,7 @@ jobs:
         source: '.'
         extensions: 'c,h,C,H,cpp,hpp,cc,hh,c++,h++,cxx,hxx,i,ixx,ipp,i++'
         clangFormatVersion: 14
-        exclude: './players ./CAPI/cpp/grpc/include ./CAPI/cpp/proto .CAPI\cpp\tclap'
+        exclude: './players ./CAPI/cpp/grpc/include ./CAPI/cpp/proto .CAPI\cpp\tclap\include'
         inplace: False
 
   dotnet-format-checking:
