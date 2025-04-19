@@ -20,23 +20,21 @@
 #include <cstddef>
 #include <cstring>
 
-#include "absl/base/port.h"      // disable some warnings on Windows
+#include "absl/base/port.h"  // disable some warnings on Windows
 #include "absl/strings/ascii.h"  // for absl::ascii_tolower
 
-namespace absl
-{
-    ABSL_NAMESPACE_BEGIN
-    namespace strings_internal
-    {
+namespace absl {
+ABSL_NAMESPACE_BEGIN
+namespace strings_internal {
 
-        // Performs a byte-by-byte comparison of `len` bytes of the strings `s1` and
-        // `s2`, ignoring the case of the characters. It returns an integer less than,
-        // equal to, or greater than zero if `s1` is found, respectively, to be less
-        // than, to match, or be greater than `s2`.
-        int memcasecmp(const char* s1, const char* s2, size_t len);
+// Performs a byte-by-byte comparison of `len` bytes of the strings `s1` and
+// `s2`, ignoring the case of the characters. It returns an integer less than,
+// equal to, or greater than zero if `s1` is found, respectively, to be less
+// than, to match, or be greater than `s2`.
+int memcasecmp(const char* s1, const char* s2, size_t len);
 
-    }  // namespace strings_internal
-    ABSL_NAMESPACE_END
+}  // namespace strings_internal
+ABSL_NAMESPACE_END
 }  // namespace absl
 
 #endif  // ABSL_STRINGS_INTERNAL_MEMUTIL_H_
