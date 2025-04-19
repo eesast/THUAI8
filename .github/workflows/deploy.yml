@@ -36,11 +36,15 @@ jobs:
       run: dotnet publish "./installer/installer.csproj" -o "D:\a\publish" -f net8.0-windows10.0.19041.0 -c Release -p:RuntimeIdentifierOverride=win10-x64 -p:WindowsPackageType=None -p:WindowsAppSDKSelfContained=true
     - name: Build debug_interface
       run: dotnet publish interface/AvaloniaUI_debug_interface/debug_interface/debug_interface.csproj -r win-x64 -c Release -o logic/Client
-    - name: package
+    - name: Create tar.gz archive
+      run: |
+        cd D:\a
+        tar -czf THUAI8.tar.gz -C mirror .
+    - name: package tar.gz
       uses: actions/upload-artifact@v4
       with:
-        name: thuai8
-        path: D:\a\mirror\
+        name: THUAI8.tar.gz
+        path: D:\a\THUAI8.tar.gz
     - name: package installer
       uses: actions/upload-artifact@v4
       with:
