@@ -21,7 +21,7 @@ namespace debug_interface.ViewModels
         private DispatcherTimer timerViewModel;
 
         [ObservableProperty]
-        private string title = "THUAI8";
+        private string title = "THUAI8"; // 标题
 
         // 连接相关字段
         private readonly string ip;
