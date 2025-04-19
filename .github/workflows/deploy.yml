@@ -9,10 +9,40 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    - name: Setup tmate session
+    - name: Setup dotnet-script
+      run: dotnet tool install --global dotnet-script
+    - name: Pre-Process
+      run: dotnet script .github/preProcess/AvaloniaEnvConfig.csx
+    - name: Install Workloads
+      run: dotnet workload install maui-windows
+    - name: Create Folders need
+      run: |
+        mkdir D:\a\installer
+        mkdir D:\a\publish
+    - name: Copy THUAI8
+      run: Copy-Item -recurse D:\a\THUAI8\THUAI8\ D:\a\mirror\
+    - name: Remove directories not needed
+      run: |
+        Remove-Item -recurse -force D:\a\mirror\.git
+        Remove-Item -recurse D:\a\mirror\.github
+        Remove-Item -recurse D:\a\mirror\installer
+        Remove-Item -recurse D:\a\mirror\interface
+        Remove-Item -recurse D:\a\mirror\logic
+    - name: Build Server
+      run: |
+        mkdir D:\a\mirror\logic
+        dotnet build "./logic/Server/Server.csproj" -o "D:\a\mirror\logic\Server" -p:WindowsAppSDKSelfContained=true -c Release
+    - name: Build installer
+      run: dotnet publish "./installer/installer.csproj" -o "D:\a\publish" -f net8.0-windows10.0.19041.0 -c Release -p:RuntimeIdentifierOverride=win10-x64 -p:WindowsPackageType=None -p:WindowsAppSDKSelfContained=true
+    - name: Build debug_interface
       run: dotnet publish interface/AvaloniaUI_debug_interface/debug_interface/debug_interface.csproj -r win-x64 -c Release -o logic/Client
     - name: package
       uses: actions/upload-artifact@v4
       with:
-        name: debug_interface
-        path: logic/Client
+        name: thuai8
+        path: D:\a\mirror\
+    - name: package installer
+      uses: actions/upload-artifact@v4
+      with:
+        name: installer
+        path: D:\a\publish\    
