@@ -57,7 +57,7 @@ switch (args[2])
 
         Cloud.UploadFile(Path.Combine(d.Data.Config.InstallPath, "CAPI", "cpp", "API", "src", "AI.cpp"),
             $"Templates/t.{d.CurrentVersion.TemplateVersion}.cpp");
-        Cloud.UploadFile(Path.Combine(d.Data.Config.InstallPath, "CAPI", "python", "PyAPI", "AI.py"),
+        Cloud.UploadFile(Path.Combine(d.Data.Config.InstallPath, "CAPI", "python",  "AI.py"),
             $"Templates/t.{d.CurrentVersion.TemplateVersion}.py");
         Log.LogInfo("User code uploaded.");
 
