@@ -31,7 +31,7 @@ extern const std::array<THUAI8::CharacterType, 6> MonstersCharacterTypeDict = {
 
 // 可以在AI.cpp内部声明变量与函数
 
-void AI::play(ICharacterAPI & api)
+void AI::play(ICharacterAPI& api)
 {
     if (this->playerID == 1)
     {
