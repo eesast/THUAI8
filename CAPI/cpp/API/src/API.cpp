@@ -1,3 +1,4 @@
+#include <memory>
 #include "AI.h"
 #include "API.h"
 
@@ -101,7 +102,7 @@ std::vector<std::shared_ptr<const THUAI8::Character>> TeamAPI::GetCharacters() c
 
 std::vector<std::shared_ptr<const THUAI8::Character>> CharacterAPI::GetEnemyCharacters() const
 {
-    return logic.GetEnemySCharacters();
+    return logic.GetEnemyCharacters();
 }
 
 std::vector<std::shared_ptr<const THUAI8::Character>> TeamAPI::GetEnemyCharacters() const
@@ -129,7 +130,7 @@ THUAI8::PlaceType TeamAPI::GetPlaceType(int32_t cellX, int32_t cellY) const
     return logic.GetPlaceType(cellX, cellY);
 }
 
-std::optional<THUAI8::ConstructionState> CharacterAPI::GetConstructionState(int32_t cellX, int32_t cellY) const
+/* std::optional<THUAI8::ConstructionState> CharacterAPI::GetConstructionState(int32_t cellX, int32_t cellY) const
 {
     return logic.GetConstructionState(cellX, cellY);
 }
@@ -137,24 +138,24 @@ std::optional<THUAI8::ConstructionState> CharacterAPI::GetConstructionState(int3
 std::optional<THUAI8::ConstructionState> TeamAPI::GetConstructionState(int32_t cellX, int32_t cellY) const
 {
     return logic.GetConstructionState(cellX, cellY);
-}
+}*/
 
-int32_t CharacterAPI::GetEconomyResourceState(int32_t cellX, int32_t cellY) const
+std::optional<THUAI8::EconomyResourceState> CharacterAPI::GetEnconomyResourceState(int32_t cellX, int32_t cellY) const
 {
-    return logic.GetEconomyResourceState(cellX, cellY);
+    return logic.GetEnconomyResourceState(cellX, cellY);
 }
 
-int32_t TeamAPI::GetEconomyResourceState(int32_t cellX, int32_t cellY) const
+std::optional<THUAI8::EconomyResourceState> TeamAPI::GetEnconomyResourceState(int32_t cellX, int32_t cellY) const
 {
-    return logic.GetEconomyResourceState(cellX, cellY);
+    return logic.GetEnconomyResourceState(cellX, cellY);
 }
 
-int32_t CharacterAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
+std::optional<std::pair<int32_t, int32_t>>CharacterAPI:: GetAdditionResourceState(int32_t cellX, int32_t cellY) const
 {
     return logic.GetAdditionResourceState(cellX, cellY);
 }
 
-int32_t TeamAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
+std::optional<std::pair<int32_t, int32_t>> TeamAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
 {
     return logic.GetAdditionResourceState(cellX, cellY);
 }
@@ -210,42 +211,51 @@ int32_t TeamAPI::GetEnergy() const
 }
 
 // Character独有
-std::future<bool> CharacterAPI::Move(int64_t timeInMilliseconds, double angleInRadian)
+// 修改后的实现需要严格匹配接口参数列表
+std::future<bool> CharacterAPI::Move(int64_t teamID, int64_t characterID, int32_t moveTimeInMilliseconds, double angle)
+{
+    // 参数顺序需要与接口声明一致：speed, time, angle
+    return std::async(std::launch::async, [=]()
+                      {
+                          return logic.Move(teamID, characterID, moveTimeInMilliseconds, angle);  // 传递三个参数
+                      });
+}
+
+// 下方各方向移动需要补充speed参数
+/* std::future<bool> CharacterAPI::MoveDown(int32_t speed, int64_t timeInMilliseconds)
+{
+    // 向下移动角度应为3π/2 (270度) 或根据坐标系定义确认
+    return Move(speed, timeInMilliseconds, PI * 1.5);
+}
+
+std::future<bool> CharacterAPI::MoveRight(int32_t speed, int64_t timeInMilliseconds)
+{
+    // 向右移动通常是0弧度（东方向）或 π/2（北方向），需确认坐标系定义
+    return Move(speed, timeInMilliseconds, 0);
+}
+
+std::future<bool> CharacterAPI::MoveUp(int32_t speed, int64_t timeInMilliseconds)
+{
+    // 向上移动通常是π/2（北方向）或 π（西方向），需确认坐标系定义
+    return Move(speed, timeInMilliseconds, PI / 2);
+}
+
+std::future<bool> CharacterAPI::MoveLeft(int32_t speed, int64_t timeInMilliseconds)
+{
+    // 向左移动通常是π弧度（西方向）或 3π/2（南方向）
+    return Move(speed, timeInMilliseconds, PI);
+}*/
+
+std::future<bool> CharacterAPI::Common_Attack(int64_t teamID, int64_t PlayerID, int64_t attackedTeamID, int64_t attackedPlayerID)
 {
     return std::async(std::launch::async, [=]()
-                      { return logic.Move(timeInMilliseconds, angleInRadian); });
+                      { return logic.Common_Attack(teamID, PlayerID, attackedTeamID, attackedPlayerID); });
 }
 
-std::future<bool> CharacterAPI::MoveDown(int64_t timeInMilliseconds)
-{
-    return Move(timeInMilliseconds, 0);
-}
-
-std::future<bool> CharacterAPI::MoveRight(int64_t timeInMilliseconds)
-{
-    return Move(timeInMilliseconds, PI * 0.5);
-}
-
-std::future<bool> CharacterAPI::MoveUp(int64_t timeInMilliseconds)
-{
-    return Move(timeInMilliseconds, PI);
-}
-
-std::future<bool> CharacterAPI::MoveLeft(int64_t timeInMilliseconds)
-{
-    return Move(timeInMilliseconds, PI * 1.5);
-}
-
-std::future<bool> CharacterAPI::Common_Attack(int64_t attackedPlayerID)
+std::future<bool> CharacterAPI::Skill_Attack(int64_t TeamID, int64_t PlayerID, double angle)
 {
     return std::async(std::launch::async, [=]()
-                      { return logic.Common_Attack(attackedPlayerID); });
-}
-
-std::future<bool> CharacterAPI::Skill_Attack(int64_t attackedPlayerID)
-{
-    return std::async(std::launch::async, [=]()
-                      { return logic.Skill_Attack(attackedPlayerID); });
+                      { return logic.Skill_Attack(TeamID, PlayerID, angle); });
 }
 
 std::future<bool> CharacterAPI::Recover(int64_t recover)
@@ -254,10 +264,10 @@ std::future<bool> CharacterAPI::Recover(int64_t recover)
                       { return logic.Recover(recover); });
 }
 
-std::future<bool> CharacterAPI::Produce()
+std::future<bool> CharacterAPI::Produce(int64_t playerID, int64_t teamID)
 {
     return std::async(std::launch::async, [=]()
-                      { return logic.Produce(); });
+                      { return logic.Produce(playerID, teamID); });
 }
 
 std::future<bool> CharacterAPI::Rebuild(THUAI8::ConstructionType constructionType)
@@ -272,10 +282,10 @@ std::future<bool> CharacterAPI::Construct(THUAI8::ConstructionType constructionT
                       { return logic.Construct(constructionType); });
 }
 
-bool CharacterAPI::HaveView(int32_t targetX, int32_t targetY) const
+bool CharacterAPI::HaveView(int32_t x, int32_t y, int32_t newX, int32_t newY, int32_t viewRange, std::vector<std::vector<THUAI8::PlaceType>>& map) const
 {
     auto selfInfo = GetSelfInfo();
-    return logic.HaveView(selfInfo->x, selfInfo->y, targetX, targetY, selfInfo->viewRange);
+    return logic.HaveView(x, y, newX, newY, viewRange, map);
 }
 
 void CharacterAPI::Play(IAI& ai)
@@ -290,10 +300,10 @@ std::future<bool> TeamAPI::InstallEquipment(int32_t playerID, const THUAI8::Equi
                       { return logic.InstallEquipment(playerID, equipmentType); });
 }
 
-std::future<bool> TeamAPI::Recycle(int32_t playerID)
+std::future<bool> TeamAPI::Recycle(int32_t playerID, int32_t targetID)
 {
     return std::async(std::launch::async, [=]()
-                      { return logic.Recycle(playerID); });
+                      { return logic.Recycle(playerID, targetID); });
 }
 
 std::future<bool> TeamAPI::BuildCharacter(THUAI8::CharacterType CharacterType, int32_t birthIndex)

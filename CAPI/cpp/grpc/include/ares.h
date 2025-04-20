@@ -106,7 +106,7 @@ extern "C" {
 */
 
 #if defined(_WIN32) || defined(__CYGWIN__) || defined(__SYMBIAN32__)
-#  ifdef CARES_STATICLIB
+#if 1
 #    define CARES_EXTERN
 #  else
 #    ifdef CARES_BUILDING_LIBRARY

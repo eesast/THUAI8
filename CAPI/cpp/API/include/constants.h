@@ -9,6 +9,7 @@
 #undef GetMessage
 #undef SendMessage
 #undef PeekMessage
+#include <cstdint>  // 可能会有问题
 namespace Constants
 {
     SCCI int32_t frameDuration = 50;  // 每帧毫秒数

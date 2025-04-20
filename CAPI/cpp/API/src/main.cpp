@@ -4,7 +4,7 @@
 #include <tclap/CmdLine.h>
 #include <array>
 #include <string_view>
-
+#include <memory>
 #undef GetMessage
 #undef SendMessage
 #undef PeekMessage
