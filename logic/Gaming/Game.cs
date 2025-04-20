@@ -285,6 +285,22 @@ namespace Gaming
                 return;
             teamList[(int)teamID].BirthPointList.Remove(pos);
         }
+        public void AddHoleTrap(long teamID, XY pos)
+        {
+            if (!gameMap.TeamExists(teamID))
+                return;
+            if (teamList[(int)teamID].HoleList.Contains(pos))
+                return;
+            teamList[(int)teamID].HoleList.Add(pos);
+        }
+        public void RemoveHoleTrap(long teamID, XY pos)
+        {
+            if (!gameMap.TeamExists(teamID))
+                return;
+            if (!teamList[(int)teamID].HoleList.Contains(pos))
+                return;
+            teamList[(int)teamID].HoleList.Remove(pos);
+        }
         public void AddFactory(long teamID)
         {
             if (!gameMap.TeamExists(teamID))

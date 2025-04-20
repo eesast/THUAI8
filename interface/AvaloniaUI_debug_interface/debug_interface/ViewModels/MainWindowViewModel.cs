@@ -46,6 +46,8 @@ namespace debug_interface.ViewModels
 
         [ObservableProperty]
         private MapViewModel mapVM;
+        [ObservableProperty]
+        private LogConsoleViewModel logConsoleVM;
 
         // 团队角色集合
         public ObservableCollection<CharacterViewModel> BuddhistsTeamCharacters { get; } = new(); // 取经队 TeamID = 0
@@ -59,7 +61,7 @@ namespace debug_interface.ViewModels
         {
             MapVM = new MapViewModel();
             InitializeMapLegend(); // 初始化图例
-
+            LogConsoleVM = new LogConsoleViewModel();
 
             // 设计模式数据 (如果需要，可以手动添加几个用于预览)
             if (Avalonia.Controls.Design.IsDesignMode)
@@ -127,7 +129,6 @@ namespace debug_interface.ViewModels
                     ObservableCollection<CharacterViewModel>? targetList = null;
                     CharacterViewModel? existingCharacter = null;
 
-                    // *** 修正 Team ID 映射 ***
                     if (data.TeamId == 0) // Team 0 = 取经队 (Buddhists)
                     {
                         targetList = BuddhistsTeamCharacters;
@@ -171,6 +172,7 @@ namespace debug_interface.ViewModels
 
         private void UpdateCharacterViewModel(CharacterViewModel vm, MessageOfCharacter data)
         {
+
             vm.CharacterId = data.PlayerId; // 可以保留 PlayerId
             vm.TeamId = data.TeamId;
             vm.CharacterType = data.CharacterType;
@@ -179,7 +181,11 @@ namespace debug_interface.ViewModels
             vm.Hp = data.Hp;
             vm.PosX = data.X; // 存储原始 X
             vm.PosY = data.Y; // 存储原始 Y
-            vm.ActiveState = data.CharacterActiveState.ToString();
+
+            CharacterState previousActiveState = vm.ActiveState == "空闲/未知"
+                ? CharacterState.NullCharacterState
+                : Enum.TryParse<CharacterState>(vm.ActiveState, out var state) ? state : CharacterState.NullCharacterState;
+            //vm.ActiveState = data.CharacterActiveState.ToString();
 
 
             // 更新主动状态
@@ -192,13 +198,24 @@ namespace debug_interface.ViewModels
                 vm.ActiveState = data.CharacterActiveState.ToString();
             }
 
+            if (data.CharacterActiveState == CharacterState.SkillCasting && previousActiveState != CharacterState.SkillCasting)
+            {
+                string logMessage = $"{vm.Name} (Guid: {vm.Guid}) 在 ({vm.PosX / 1000},{vm.PosY / 1000}) 释放了技能";
+                // Console.WriteLine($"[技能释放] {logMessage}"); // 可以保留或移除 Console 输出
+                //myLogger?.LogInfo($"[技能释放] {logMessage}"); // 记录到文件
+                LogConsoleVM.AddLog(logMessage, "SKILL"); // *** 添加到界面 Console ***
+            }
+
+
             vm.StatusEffects.Clear();
 
             // 更新被动状态 (省略重复代码)
-            if (data.IsBlind) vm.StatusEffects.Add($"致盲 ({data.BlindTime}ms)");
-            if (data.IsStunned) vm.StatusEffects.Add($"眩晕 ({data.StunnedTime}ms)"); // 合并显示
-            if (data.IsInvisible) vm.StatusEffects.Add($"隐身 ({data.InvisibleTime}ms)");
-            if (data.IsBurned) vm.StatusEffects.Add($"燃烧 ({data.BurnedTime}ms)");
+            if (data.IsBlind && data.BlindTime < long.MaxValue) vm.StatusEffects.Add($"致盲 ({data.BlindTime}ms)");
+            if (data.IsStunned && data.StunnedTime < long.MaxValue) vm.StatusEffects.Add($"眩晕 ({data.StunnedTime}ms)"); // 合并显示
+            if (data.IsInvisible && data.InvisibleTime < long.MaxValue) vm.StatusEffects.Add($"隐身 ({data.InvisibleTime}ms)");
+            if (data.IsBurned && data.BurnedTime < long.MaxValue) vm.StatusEffects.Add($"燃烧 ({data.BurnedTime}ms)");
+
+
             if (data.CharacterPassiveState == CharacterState.KnockedBack) vm.StatusEffects.Add("被击退"); // 更明确的描述
 
             // **死亡状态**
@@ -215,12 +232,12 @@ namespace debug_interface.ViewModels
 
 
             // **装备/Buff 效果 (带时间)**
-            if (data.ShoesTime > 0) vm.StatusEffects.Add($"加速 ({data.ShoesTime / 1000}s)");
-            if (data.IsPurified) vm.StatusEffects.Add($"净化效果 ({data.PurifiedTime / 1000}s)");
-            if (data.IsBerserk) vm.StatusEffects.Add($"狂暴效果 ({data.BerserkTime / 1000}s)");
-            if (data.AttackBuffTime > 0) vm.StatusEffects.Add($"攻击Buff({data.AttackBuffNum}) ({data.AttackBuffTime / 1000}s)");
-            if (data.SpeedBuffTime > 0) vm.StatusEffects.Add($"移速Buff ({data.SpeedBuffTime / 1000}s)");
-            if (data.VisionBuffTime > 0) vm.StatusEffects.Add($"视野Buff ({data.VisionBuffTime / 1000}s)");
+            if (data.ShoesTime > 0 && data.ShoesTime < long.MaxValue) vm.StatusEffects.Add($"加速 ({data.ShoesTime / 1000}s)");
+            if (data.IsPurified && data.PurifiedTime < long.MaxValue) vm.StatusEffects.Add($"净化效果 ({data.PurifiedTime / 1000}s)");
+            if (data.IsBerserk && data.BerserkTime < long.MaxValue) vm.StatusEffects.Add($"狂暴效果 ({data.BerserkTime / 1000}s)");
+            if (data.AttackBuffTime > 0 && data.AttackBuffTime < long.MaxValue) vm.StatusEffects.Add($"攻击Buff({data.AttackBuffNum}) ({data.AttackBuffTime / 1000}s)");
+            if (data.SpeedBuffTime > 0 && data.SpeedBuffTime < long.MaxValue) vm.StatusEffects.Add($"移速Buff ({data.SpeedBuffTime / 1000}s)");
+            if (data.VisionBuffTime > 0 && data.VisionBuffTime < long.MaxValue) vm.StatusEffects.Add($"视野Buff ({data.VisionBuffTime / 1000}s)");
 
             vm.EquipmentInventory.Clear();
         }
@@ -296,10 +313,15 @@ namespace debug_interface.ViewModels
         {
             // 先清除地图上旧的角色标记 (如果 MapViewModel 没有自动处理)
             // MapVM.ClearCharacterDisplay(); // 需要在 MapViewModel 实现此方法
-
+            myLogger?.LogInfo("--- UpdateMapElements called ---"); // 添加日志确认方法被调用
             lock (drawPicLock)
             {
-
+                myLogger?.LogDebug($"UpdateMapElements: listOfBarracks.Count = {listOfBarracks.Count}");
+                myLogger?.LogDebug($"UpdateMapElements: listOfSprings.Count = {listOfSprings.Count}");
+                myLogger?.LogDebug($"UpdateMapElements: listOfFarms.Count = {listOfFarms.Count}");
+                myLogger?.LogDebug($"UpdateMapElements: listOfTraps.Count = {listOfTraps.Count}");
+                myLogger?.LogDebug($"UpdateMapElements: listOfEconomyResources.Count = {listOfEconomyResources.Count}");
+                myLogger?.LogDebug($"UpdateMapElements: listOfAdditionResources.Count = {listOfAdditionResources.Count}");
                 // 更新地图地形 (如果需要，基于 MapMessage)
                 //MapVM.UpdateMap(MapMessage); // 假设 receivedMapMessage 在某处获得
 
@@ -496,25 +518,36 @@ namespace debug_interface.ViewModels
         private void InitializeMapLegend()
         {
             MapLegendItems.Clear();
-            // ... (地形和其他) ...
-            MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.Cyan), "家园"));
-            MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.White), "空地", Brushes.LightGray, new Thickness(1)));
-            MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.DarkGray), "障碍物"));
-            MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.LightGreen), "草丛"));
-            MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.LightGray), "未知区域", Brushes.DimGray, new Thickness(1)));
 
-            // *** 修正队伍颜色和标签 ***
-            MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.DarkRed), "取经队建筑 (Team 0)")); // 取经队 = 红色
-            MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.DarkBlue), "妖怪队建筑 (Team 1)")); // 妖怪队 = 蓝色
-            MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.IndianRed), "取经队陷阱 (Team 0)")); // 取经队 = 红色系
-            MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.CornflowerBlue), "妖怪队陷阱 (Team 1)")); // 妖怪队 = 蓝色系
-                                                                                                              // ... (资源) ...
-            MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.Gold), "经济资源"));
-            MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.LightPink), "加成 (生命泉)"));
-            MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.OrangeRed), "加成 (狂战士)"));
-            MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.LightSkyBlue), "加成 (疾步灵)"));
-            MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.MediumPurple), "加成 (视野灵)"));
-            MapLegendItems.Add(new LegendItem(new SolidColorBrush(Colors.Purple), "加成 (未知)"));
+            // 顺序按照你的要求
+            MapLegendItems.Add(new LegendItem(Brushes.Cyan, "兵营/家园")); // 使用 UpdateBuildingCell 中的家园颜色 Cyan (兵营也是家)
+            MapLegendItems.Add(new LegendItem(Brushes.White, "空地", Brushes.LightGray, new Thickness(1)));
+            MapLegendItems.Add(new LegendItem(Brushes.LightGreen, "草丛"));
+            MapLegendItems.Add(new LegendItem(Brushes.DarkGray, "障碍物"));
+            MapLegendItems.Add(new LegendItem(Brushes.Gold, "经济资源")); // 与 UpdateResourceCell 一致
+            MapLegendItems.Add(new LegendItem(Brushes.LightPink, "加成 (生命泉)")); // 与 UpdateAdditionResourceCell 一致
+            MapLegendItems.Add(new LegendItem(Brushes.OrangeRed, "加成 (狂战士)")); // 与 UpdateAdditionResourceCell 一致
+            MapLegendItems.Add(new LegendItem(Brushes.LightSkyBlue, "加成 (疾步灵)")); // 与 UpdateAdditionResourceCell 一致
+            MapLegendItems.Add(new LegendItem(Brushes.MediumPurple, "加成 (视野灵)")); // 与 UpdateAdditionResourceCell 一致
+
+            // 农场是建筑，颜色根据队伍区分
+            // Team 0 = 取经队 = DarkRed
+            // Team 1 = 妖怪队 = DarkBlue
+            MapLegendItems.Add(new LegendItem(Brushes.DarkRed, "取经队农场")); // 对应 UpdateBuildingCell Team 0 颜色
+            MapLegendItems.Add(new LegendItem(Brushes.DarkBlue, "妖怪队农场")); // 对应 UpdateBuildingCell Team 1 颜色
+
+            // 陷阱颜色根据队伍区分
+            // Team 0 = 取经队 = IndianRed
+            // Team 1 = 妖怪队 = CornflowerBlue
+            MapLegendItems.Add(new LegendItem(Brushes.IndianRed, "取经队坑洞")); // 对应 UpdateTrapCell Team 0 颜色
+            MapLegendItems.Add(new LegendItem(Brushes.CornflowerBlue, "妖怪队坑洞")); // 对应 UpdateTrapCell Team 1 颜色
+            MapLegendItems.Add(new LegendItem(Brushes.IndianRed, "取经队牢笼")); // 牢笼颜色与坑洞相同
+            MapLegendItems.Add(new LegendItem(Brushes.CornflowerBlue, "妖怪队牢笼")); // 牢笼颜色与坑洞相同
+
+            // (可选) 添加通用建筑颜色 (如果 MapMessage 中只有 CONSTRUCTION)
+            MapLegendItems.Add(new LegendItem(Brushes.Brown, "建筑点位 (未指定类型)"));
+            // (可选) 添加未知区域颜色
+             MapLegendItems.Add(new LegendItem(Brushes.Gainsboro, "未知区域"));
         }
 
     }

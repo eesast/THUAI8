@@ -200,6 +200,25 @@ public class Character : Movable, ICharacter
             }
         }
     }
+    public bool ResetCharacterState(long state, CharacterState value = CharacterState.NULL_CHARACTER_STATE)
+    {
+        lock (actionLock)
+        {
+            if (state != stateNum)
+            {
+                CharacterLogging.logger.ConsoleLogDebug(
+                    LoggingFunctional.CharacterLogInfo(this)
+                    + " ResetShipState failed");
+                return false;
+            }
+            characterState1 = value;
+            ++stateNum;
+            CharacterLogging.logger.ConsoleLogDebug(
+                LoggingFunctional.CharacterLogInfo(this)
+                + $" ResetShipState succeeded {stateNum}");
+            return true;
+        }
+    }
     public bool Commandable()
     {
         lock (ActionLock)
