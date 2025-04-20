@@ -52,11 +52,11 @@ namespace GameEngine
         /// </summary>
         /// <param name="obj">移动物体，默认obj.Rigid为true</param>
         /// <param name="moveVec">移动的位移向量</param>
-        private bool MoveMax(IMovable obj, XY moveVec, long stateNum)
+        private bool MoveMax(IMovable obj, XY moveVec, long stateNum, long shoes = 0)
         {
             /*由于四周是墙，所以人物永远不可能与越界方块碰撞*/
             double maxLen = collisionChecker.FindMax(obj, moveVec);
-            maxLen = Math.Min(maxLen, obj.MoveSpeed / GameData.NumOfStepPerSecond);
+            maxLen = Math.Min(maxLen, (obj.MoveSpeed + shoes) / GameData.NumOfStepPerSecond);
             //if (maxLen == 0)
             //{
             //    // 尝试滑动
@@ -92,9 +92,9 @@ namespace GameEngine
             return (obj.MovingSetPos(new XY(moveVec, maxLen), stateNum)) >= 0;
         }
 
-        private bool LoopDo(IMovable obj, double direction, ref double deltaLen, long stateNum)
+        private bool LoopDo(IMovable obj, double direction, ref double deltaLen, long stateNum, long shoes = 0)
         {
-            double moveVecLength = obj.MoveSpeed / GameData.NumOfStepPerSecond;
+            double moveVecLength = (obj.MoveSpeed + shoes) / GameData.NumOfStepPerSecond;
             XY res = new(direction, moveVecLength);
 
             // 越界情况处理：如果越界，则与越界方块碰撞
@@ -119,13 +119,12 @@ namespace GameEngine
                            + " and has been removed from the game");
                         return false;
                     case AfterCollision.MoveMax:
-                        if (!MoveMax(obj, res, stateNum)) return false;
+                        if (!MoveMax(obj, res, stateNum, shoes)) return false;
                         moveVecLength = 0;
                         res = new XY(direction, moveVecLength);
                         break;
                 }
             } while (flag);
-
             long moveL = obj.MovingSetPos(res, stateNum);
             if (moveL == -1) return false;
             deltaLen = deltaLen + moveVecLength - Math.Sqrt(moveL);
@@ -136,7 +135,7 @@ namespace GameEngine
         {
             GameEngineLogging.logger.ConsoleLogDebug(
                 Logger.ObjInfo(obj)
-                + $" position {obj.Position}, start moving in direction {direction}");
+                + $" position {obj.Position}, start moving in direction {direction}, with speed {obj.MoveSpeed + Shoes}");
             if (!gameTimer.IsGaming) return;
             lock (obj.ActionLock)
             {
@@ -196,7 +195,7 @@ namespace GameEngine
                                 {
                                     if (obj.StateNum != stateNum || !obj.CanMove || obj.IsRemoved)
                                         return !(isEnded = true);
-                                    return !(isEnded = !LoopDo(obj, direction, ref deltaLen, stateNum));
+                                    return !(isEnded = !LoopDo(obj, direction, ref deltaLen, stateNum, Shoes));
                                 },
                                 GameData.NumOfPosGridPerCell / GameData.NumOfStepPerSecond,
                                 () =>
@@ -218,7 +217,7 @@ namespace GameEngine
                                 }
                             }.Start();
                             if (!isEnded && obj.StateNum == stateNum && obj.CanMove && !obj.IsRemoved)
-                                isEnded = !LoopDo(obj, direction, ref deltaLen, stateNum);
+                                isEnded = !LoopDo(obj, direction, ref deltaLen, stateNum, Shoes);
                         }
                         if (isEnded)
                         {
@@ -258,7 +257,7 @@ namespace GameEngine
                                             isEnded = true;
                                             break;
                                         case AfterCollision.MoveMax:
-                                            MoveMax(obj, res, stateNum);
+                                            MoveMax(obj, res, stateNum, Shoes);
                                             moveVecLength = 0;
                                             res = new XY(direction, moveVecLength);
                                             break;

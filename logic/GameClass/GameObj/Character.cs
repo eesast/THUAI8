@@ -261,6 +261,7 @@ public class Character : Movable, ICharacter
     {
         HP.SetMaxV(Occupation.MaxHp);
         HP.SetVToMaxV();
+        MoveSpeed.SetROri(orgMoveSpeed = Occupation.MoveSpeed);
     }
     public Character(int radius, CharacterType type, MoneyPool pool) :
         base(GameData.PosNotInGame, radius, GameObjType.CHARACTER)
