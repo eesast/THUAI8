@@ -195,8 +195,8 @@ class Communication:
                     return False
                 self.__counter += 1
                 self.__counterMove += 1
-            endResult: Message2Clients.BoolRes = self.__THUAI7Stub.EndAllAction(
-                THUAI72Proto.THUAI72ProtobufIDMsg(playerID, teamID)
+            endResult: Message2Clients.BoolRes = self.__THUAI8Stub.EndAllAction(
+                THUAI82Proto.THUAI82ProtobufIDMsg(playerID, teamID)
             )
         except grpc.RpcError:
             return False

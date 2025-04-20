@@ -113,18 +113,6 @@
                             Command="{Binding DownloadBtnClickedCommand}"
                             IsEnabled="{Binding DownloadEnabled}"/>
                     
-                    <Grid ColumnDefinitions="*,*" IsVisible="{Binding CanPauseResume}">
-                        <Button Grid.Column="0"
-                                Text="{Binding PauseResumeText}"
-                                Style="{StaticResource SecondaryButton}"
-                                Command="{Binding PauseResumeCommand}"/>
-                        
-                        <Button Grid.Column="1"
-                                Text="取消"
-                                Style="{StaticResource DangerButton}"
-                                Command="{Binding CancelCommand}"/>
-                    </Grid>
-                    
                     <VerticalStackLayout Spacing="5">
                         <Label Text="{Binding NumReport}"
                                HorizontalOptions="End"

@@ -212,10 +212,11 @@ bool Logic::Common_Attack(int64_t playerID, int64_t teamID, int64_t attacked_pla
     return pComm->Common_Attack(playerID, teamID, attacked_playerID, attacked_playerID);
 }
 
-bool Logic::Skill_Attack(int64_t teamID, int64_t playerID, double angle)
+
+bool Logic::Skill_Attack(int32_t playerID, int32_t teamID, double angle)
 {
     logger->debug("Called SkillAttack");
-    return pComm->Skill_Attack(teamID, playerID, angle);
+    return pComm->SkillAttack(playerID, teamID, angle);
 }
 
 bool Logic::Recover(int64_t recover)
@@ -408,7 +409,7 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
         switch (Proto2THUAI8::messageOfObjDict[item.message_of_obj_case()])
         {
             case THUAI8::MessageOfObj::CharacterMessage:
-                {
+                
                     if (teamID != item.character_message().team_id())
                     {
                         if (AssistFunction::HaveView(x, y, item.character_message().x(), item.character_message().y(), viewRange, bufferState->gameMap))
@@ -419,6 +420,8 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
                         }
                     }
                     else if (teamID == item.character_message().team_id() && playerID != item.character_message().player_id())
+
+                    if (AssistFunction::HaveView(x, y, item.character_message().x(), item.character_message().y(), viewRange, bufferState->gameMap) && !item.character_message().is_invisible())
                     {
                         std::shared_ptr<THUAI8::Character> Character = Proto2THUAI8::Protobuf2THUAI8Character(item.character_message());
                         bufferState->characters.push_back(Character);

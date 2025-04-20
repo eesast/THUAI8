@@ -120,6 +120,7 @@ private:
     bool Produce(int64_t playerID, int64_t teamID);
     bool Rebuild(THUAI8::ConstructionType constructionType);
     bool Construct(THUAI8::ConstructionType constructionType);
+
     [[nodiscard]] bool HaveView(int32_t x, int32_t y, int32_t newX, int32_t newY, int32_t viewRange, std::vector<std::vector<THUAI8::PlaceType>>& map) const;
 
     // ITeamAPI

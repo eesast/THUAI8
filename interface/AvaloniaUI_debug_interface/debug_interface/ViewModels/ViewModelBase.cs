@@ -1,3 +1,4 @@
+// ViewModels\ViewModelBase.cs
 using System;
 using Avalonia.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -7,40 +8,56 @@ using installer.Data;
 using System.Collections.Generic;
 using Google.Protobuf;
 using Protobuf;
-
-
+using System.Threading.Tasks;
+using System.Threading;
+using System.IO;
+using Playback; // *** 添加 Playback 命名空间引用 ***
+using Timothy.FrameRateTask; // *** 添加 FrameRateTask 引用 ***
 
 namespace debug_interface.ViewModels
 {
-    public partial class ViewModelBase : ObservableObject
+    public partial class ViewModelBase : ObservableObject, IDisposable
     {
-        // 用于 UI 刷新的定时器（Avalonia 的 DispatcherTimer）
         private DispatcherTimer timerViewModel;
-        private int counterViewModelTest = 0;
 
-        // 使用 CommunityToolkit 的 ObservableProperty 自动实现 INotifyPropertyChanged
         [ObservableProperty]
-        private string title = "THUAI8";
+        private string title = "THUAI8"; // 标题
 
-        // 与服务器通信相关的字段
-        private long playerID;
+        // 连接相关字段
         private readonly string ip;
         private readonly string port;
-        public readonly long CharacterIdTypeID;
+        private long playerID;
         private long teamID;
+        private long CharacterIdTypeID;
 
-        // 与服务器通信相关的 gRPC 客户端
+        // gRPC 相关
         private AvailableService.AvailableServiceClient? client;
         private AsyncServerStreamingCall<MessageToClient>? responseStream;
-        private bool isSpectatorMode = false;
-        private bool isPlaybackMode = false;
+        private Task? _receiveTask;
+        private volatile bool _isConnected = false;
+        private volatile bool _isConnecting = false;
+        private const int ReconnectIntervalMs = 3000;
 
-        // 日志记录
-        public Logger? myLogger; //  ？表示可空
+        [ObservableProperty]
+        private string connectionStatus = "正在初始化...";
+
+        // 模式标志
+        private bool isSpectatorMode = false;
+        private bool isPlaybackMode = false; // 回放模式标志
+
+        // *** 通用 CancellationTokenSource ***
+        private CancellationTokenSource? _cts;
+
+        // *** 回放相关字段 ***
+        private FrameRateTaskExecutor<int>? _playbackExecutor; // TResult is int
+        private MessageReader? _playbackReader;
+        private long _playbackFrameDurationMs;
+
+        // 日志
+        public Logger? myLogger;
         public Logger? lockGenerator;
 
-        // 服务器消息相关的字段
-        public List<MessageOfMonkeySkill> listOfPMonkeySkill = new();
+        // 服务器/回放消息列表
         public List<MessageOfCharacter> listOfCharacters = new();
         public List<MessageOfBarracks> listOfBarracks = new();
         public List<MessageOfTrap> listOfTraps = new();
@@ -54,7 +71,6 @@ namespace debug_interface.ViewModels
 
         public ViewModelBase()
         {
-            // 读取配置
             try
             {
                 var d = new ConfigData();
@@ -66,138 +82,289 @@ namespace debug_interface.ViewModels
                 string? playbackFile = d.Commands.PlaybackFile;
                 double playbackSpeed = d.Commands.PlaybackSpeed;
 
-                //初始化日志记录器
-                myLogger = LoggerProvider.FromFile(System.IO.Path.Combine(d.InstallPath, "Logs", $"Client.{teamID}.{playerID}.log"));
-                lockGenerator = LoggerProvider.FromFile(System.IO.Path.Combine(d.InstallPath, "Logs", $"lock.{teamID}.{playerID}.log"));
+                string logDir = Path.Combine(d.InstallPath, "Logs");
+                Directory.CreateDirectory(logDir);
+                myLogger = LoggerProvider.FromFile(Path.Combine(logDir, $"Client.{teamID}.{playerID}.log"));
 
-                // 使用 Avalonia 的 DispatcherTimer 定时刷新 UI
                 timerViewModel = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(50) };
-                timerViewModel.Tick += Refresh;
+                timerViewModel.Tick += TimerTickHandler;
                 timerViewModel.Start();
 
-                //判断是否走回放模式
-                if (string.IsNullOrEmpty(d.Commands.PlaybackFile))
+                if (!string.IsNullOrEmpty(playbackFile) && File.Exists(playbackFile))
                 {
-                    string[] comInfo = new string[]
-                    {
-                        ip,
-                        port,
-                        Convert.ToString(playerID),
-                        Convert.ToString(teamID),
-                        Convert.ToString(CharacterIdTypeID),
-                    };
-
-                    ConnectToServer(comInfo);
-                    myLogger?.LogInfo("Trying to connect to server...");
-                    OnReceive();
+                    isPlaybackMode = true;
+                    myLogger?.LogInfo($"进入回放模式: {playbackFile}");
+                    ConnectionStatus = $"回放: {Path.GetFileName(playbackFile)}";
+                    // *** 启动异步回放 ***
+                    _ = PlaybackAsync(playbackFile, playbackSpeed);
+                }
+                else if (!string.IsNullOrEmpty(playbackFile))
+                {
+                    myLogger?.LogError($"回放文件不存在: {playbackFile}");
+                    ConnectionStatus = "错误: 回放文件未找到";
                 }
                 else
                 {
-                    myLogger?.LogInfo($"PlaybackFile: {d.Commands.PlaybackFile}");
-                    Playback(d.Commands.PlaybackFile, playbackSpeed);
+                    _ = TryConnectAndReceiveLoopAsync();
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"初始化ViewModelBase时出错: {ex.Message}");
+                Console.WriteLine($"初始化ViewModelBase时出错: {ex.Message}\n{ex.StackTrace}");
+                myLogger?.LogError($"初始化ViewModelBase时出错: {ex.Message}\n{ex.StackTrace}");
+                ConnectionStatus = "初始化失败";
             }
         }
 
-        /// <summary>
-        /// 连接到服务器，初始化 gRPC 客户端
-        /// </summary>
-        /// <param name="comInfo">包含 ip、port、playerID、teamID、shipTypeID 的数组</param>
-        public void ConnectToServer(string[] comInfo)
+        private void TimerTickHandler(object? sender, EventArgs e)
         {
-            
-            if (isPlaybackMode) return;
-            if (Convert.ToInt64(comInfo[2]) > 2023)
-            {myLogger?.LogInfo("isSpectatorMode = true");
-                isSpectatorMode = true;
-                myLogger?.LogInfo("isSpectatorMode = true");
-            }
-            if (comInfo.Length != 5)
-            {
-                throw new Exception("Error Registration Information！");
-            }
-
-            string connect = $"{comInfo[0]}:{comInfo[1]}";
-            Channel channel = new Channel(connect, ChannelCredentials.Insecure);
-            client = new AvailableService.AvailableServiceClient(channel);
-            CharacterMsg playerMsg = new CharacterMsg();
-            playerID = Convert.ToInt64(comInfo[2]);
-            playerMsg.CharacterId = playerID;
-            if (!isSpectatorMode)
-            {
-                teamID = Convert.ToInt64(comInfo[3]);
-                playerMsg.TeamId = teamID;
-
-                playerMsg.CharacterType = Convert.ToInt64(comInfo[4]) switch
-                {
-                    1 => CharacterType.TangSeng,
-                    2 => CharacterType.SunWukong,
-                    3 => CharacterType.ZhuBajie,
-                    4 => CharacterType.ShaWujing,
-                    5 => CharacterType.BaiLongma,
-                    6 => CharacterType.Monkid,
-                    // 妖怪团队阵营角色
-                    7 => CharacterType.JiuLing,
-                    8 => CharacterType.HongHaier,
-                    9 => CharacterType.NiuMowang,
-                    10 => CharacterType.TieShan,
-                    12 => CharacterType.Pawn,
-                    _ => CharacterType.NullCharacterType
-                };
-            }
-            responseStream = client.AddCharacter(playerMsg);
-            myLogger?.LogInfo("ResponseStream created successfully.");
+            Refresh(sender, e);
         }
 
-        /// <summary>
-        /// 异步接收服务器流消息
-        /// </summary>
-        private async void OnReceive()
+        // *** 回放主逻辑 ***
+        private async Task PlaybackAsync(string fileName, double pbSpeed = 2.0)
+        {
+            _cts?.Cancel(); // 取消之前的任务
+            _cts = new CancellationTokenSource();
+
+            _playbackReader = null;
+            try
+            {
+                _playbackReader = new MessageReader(fileName);
+                myLogger?.LogInfo($"PlaybackAsync: MessageReader 创建成功 for {fileName}");
+            }
+            catch (Exception ex)
+            {
+                myLogger?.LogError($"PlaybackAsync: 创建 MessageReader 失败: {ex.Message}");
+                ConnectionStatus = "错误: 无法读取回放文件";
+                isPlaybackMode = false;
+                return;
+            }
+
+            _playbackFrameDurationMs = Math.Max(1, (long)(50 / pbSpeed)); // 基础帧率 50ms
+            myLogger?.LogInfo($"PlaybackAsync: Playback speed={pbSpeed}x, Frame duration={_playbackFrameDurationMs}ms");
+
+            _playbackExecutor = new FrameRateTaskExecutor<int>(
+                PlaybackLoopCondition,    // Func<bool> loopCondition
+                PlaybackLoopAction,       // Func<bool> loopToDo
+                _playbackFrameDurationMs, // long timeInterval
+                PlaybackOnFinished        // Func<int> finallyReturn
+            );
+            // _playbackExecutor.AllowTimeExceed = true; // 如果需要
+
+            _playbackExecutor.Start(); // 非阻塞启动
+            myLogger?.LogInfo("PlaybackAsync: Playback executor started.");
+            await Task.CompletedTask; // PlaybackAsync 本身可以是非 async void，但 async Task 更规范
+        }
+
+        // *** 回放循环条件 ***
+        private bool PlaybackLoopCondition()
+        {
+            return !_cts!.IsCancellationRequested && _playbackReader != null;
+        }
+
+        // *** 回放循环动作 ***
+        private bool PlaybackLoopAction()
+        {
+            if (_cts!.IsCancellationRequested || _playbackReader == null) return false;
+
+            try
+            {
+                MessageToClient? content = _playbackReader.ReadOne();
+                if (content == null)
+                {
+                    myLogger?.LogInfo("PlaybackLoopAction: Reached end of file.");
+                    _cts.Cancel(); // 文件结束，请求停止
+                    return false;
+                }
+
+                lock (drawPicLock)
+                {
+                    // 清理当前帧数据列表
+                    listOfCharacters.Clear();
+                    listOfBarracks.Clear();
+                    listOfTraps.Clear();
+                    listOfSprings.Clear();
+                    listOfFarms.Clear();
+                    listOfEconomyResources.Clear();
+                    listOfAdditionResources.Clear();
+                    listOfAll.Clear();
+
+                    if (content.GameState != GameState.GameRunning && content.GameState != GameState.NullGameState)
+                        myLogger?.LogInfo($"Playback GameState: {content.GameState}");
+
+                    // 填充列表
+                    foreach (var obj in content.ObjMessage)
+                    {
+                        switch (obj.MessageOfObjCase)
+                        {
+                            case MessageOfObj.MessageOfObjOneofCase.CharacterMessage:
+                                listOfCharacters.Add(obj.CharacterMessage);
+                                break;
+                            case MessageOfObj.MessageOfObjOneofCase.BarracksMessage:
+                                listOfBarracks.Add(obj.BarracksMessage);
+                                break;
+                            case MessageOfObj.MessageOfObjOneofCase.TrapMessage:
+                                listOfTraps.Add(obj.TrapMessage);
+                                break;
+                            case MessageOfObj.MessageOfObjOneofCase.SpringMessage:
+                                listOfSprings.Add(obj.SpringMessage);
+                                break;
+                            case MessageOfObj.MessageOfObjOneofCase.FarmMessage:
+                                listOfFarms.Add(obj.FarmMessage);
+                                break;
+                            case MessageOfObj.MessageOfObjOneofCase.EconomyResourceMessage:
+                                listOfEconomyResources.Add(obj.EconomyResourceMessage);
+                                break;
+                            case MessageOfObj.MessageOfObjOneofCase.AdditionResourceMessage:
+                                listOfAdditionResources.Add(obj.AdditionResourceMessage);
+                                break;
+                            case MessageOfObj.MessageOfObjOneofCase.MapMessage:
+                                var mapMsg = obj.MapMessage;
+                                if (this is MainWindowViewModel vm && vm.MapVM != null)
+                                {
+                                    // 地图更新直接在回放线程安排到UI线程
+                                    Dispatcher.UIThread.InvokeAsync(() => vm.MapVM.UpdateMap(mapMsg));
+                                }
+                                break;
+                        }
+                    }
+                    if (content.AllMessage != null)
+                    {
+                        listOfAll.Add(content.AllMessage);
+                    }
+                } // lock 结束
+                return true; // 成功处理，继续循环
+            }
+            catch (Exception ex)
+            {
+                myLogger?.LogError($"PlaybackLoopAction: Error during frame processing: {ex.Message}");
+                _cts.Cancel(); // 出错时请求停止
+                return false;
+            }
+        }
+
+        // *** 回放结束回调 ***
+        private int PlaybackOnFinished()
+        {
+            myLogger?.LogInfo("PlaybackOnFinished called.");
+            ConnectionStatus = "回放结束";
+            _playbackReader?.Dispose();
+            _playbackReader = null;
+            return 0; // 返回结果
+        }
+
+        // *** 核心连接与接收循环 (基本不变, 使用 _cts) ***
+        private async Task TryConnectAndReceiveLoopAsync()
+        {
+            if (isPlaybackMode || _isConnected || _isConnecting) return;
+            _isConnecting = true;
+            ConnectionStatus = "正在连接服务器...";
+            myLogger?.LogInfo("开始尝试连接服务器...");
+            isSpectatorMode = playerID > 2020; // 保持旁观者判断逻辑
+            if (isSpectatorMode) myLogger?.LogInfo("检测到旁观者模式。");
+
+            while (!_isConnected && (_cts == null || !_cts.IsCancellationRequested))
+            {
+                Channel? channel = null;
+                try
+                {
+                    string connect = $"{ip}:{port}";
+                    var connectOptions = new List<ChannelOption> { /* ... */ new ChannelOption(ChannelOptions.MaxSendMessageLength, -1), new ChannelOption(ChannelOptions.MaxReceiveMessageLength, -1), };
+                    channel = new Channel(connect, ChannelCredentials.Insecure, connectOptions);
+
+                    myLogger?.LogDebug($"尝试连接到 {connect}(等待最多 5 秒)...");
+                    await channel.ConnectAsync(deadline: DateTime.UtcNow.AddSeconds(60));
+                    myLogger?.LogDebug("通道连接成功，创建客户端...");
+                    client = new AvailableService.AvailableServiceClient(channel);
+
+                    CharacterMsg playerMsg = new CharacterMsg { CharacterId = playerID };
+                    if (!isSpectatorMode)
+                    {
+                        playerMsg.TeamId = teamID;
+                        playerMsg.CharacterType = CharacterIdTypeID switch
+                        { /* ... case ... */
+                            1 => CharacterType.TangSeng,
+                            2 => CharacterType.SunWukong,
+                            3 => CharacterType.ZhuBajie,
+                            4 => CharacterType.ShaWujing,
+                            5 => CharacterType.BaiLongma,
+                            6 => CharacterType.Monkid,
+                            7 => CharacterType.JiuLing,
+                            8 => CharacterType.HongHaier,
+                            9 => CharacterType.NiuMowang,
+                            10 => CharacterType.TieShan,
+                            11 => CharacterType.ZhiZhujing,
+                            12 => CharacterType.Pawn,
+                            _ => CharacterType.NullCharacterType
+                        };
+                        myLogger?.LogDebug($"准备发送 AddCharacter: PlayerID={playerMsg.CharacterId}, TeamID={playerMsg.TeamId}, CharacterType={playerMsg.CharacterType}");
+                    }
+                    else
+                    {
+                        myLogger?.LogDebug($"准备发送 AddCharacter (旁观者): PlayerID={playerMsg.CharacterId} (TeamID和CharacterType将使用默认值)");
+                    }
+
+                    myLogger?.LogDebug("调用 AddCharacter...");
+                    _cts?.Cancel(); // 取消旧的
+                    _cts = new CancellationTokenSource();
+                    responseStream = client.AddCharacter(playerMsg, cancellationToken: _cts.Token);
+                    myLogger?.LogInfo("AddCharacter 调用成功，等待服务器消息...");
+
+                    _receiveTask = Task.Run(ReceiveMessagesAsync, _cts.Token);
+
+                    _isConnected = true;
+                    _isConnecting = false;
+                    ConnectionStatus = "已连接";
+                    myLogger?.LogInfo("服务器连接成功，开始接收消息。");
+                    break;
+                }
+                catch (RpcException ex) when (/* ... */ ex.StatusCode == StatusCode.Unavailable || ex.StatusCode == StatusCode.DeadlineExceeded || ex.StatusCode == StatusCode.Cancelled)
+                {
+                    myLogger?.LogWarning($"连接服务器失败 (Code: {ex.StatusCode})，将在 {ReconnectIntervalMs / 1000} 秒后重试...");
+                    ConnectionStatus = $"连接失败，{ReconnectIntervalMs / 1000}秒后重试...";
+                    await CleanupConnectionAsync();
+                    _cts?.Cancel(); _cts?.Dispose(); _cts = null; // 清理CTS
+                    await Task.Delay(ReconnectIntervalMs, CancellationToken.None);
+                }
+                catch (Exception ex)
+                {
+                    myLogger?.LogError($"连接过程中发生意外错误: {ex.Message}\n{ex.StackTrace}");
+                    ConnectionStatus = "连接出错，请检查";
+                    await CleanupConnectionAsync();
+                    _cts?.Cancel(); _cts?.Dispose(); _cts = null; // 清理CTS
+                    await Task.Delay(ReconnectIntervalMs * 2, CancellationToken.None);
+                }
+            }
+            _isConnecting = false;
+            if (!_isConnected && (_cts == null || !_cts.IsCancellationRequested)) { /* ... */ }
+        }
+
+        // *** 消息接收循环 (恢复地图直接更新) ***
+        private async Task ReceiveMessagesAsync()
         {
             try
             {
-                myLogger?.LogInfo("============= OnReceiving Server Stream ================");
-                while (responseStream != null && await responseStream.ResponseStream.MoveNext())
+                myLogger?.LogInfo("后台接收任务启动...");
+                while (responseStream != null && await responseStream.ResponseStream.MoveNext(_cts!.Token))
                 {
-                    myLogger?.LogInfo("============= Receiving Server Stream ================");
                     lock (drawPicLock)
                     {
-                        // 清除所有列表
-                        listOfCharacters.Clear();
-                        listOfBarracks.Clear();
-                        listOfTraps.Clear();
-                        listOfSprings.Clear();
-                        listOfFarms.Clear();
-                        listOfEconomyResources.Clear();
-                        listOfAdditionResources.Clear();
-                        listOfAll.Clear();
+                        // 清理列表
+                        listOfCharacters.Clear(); listOfBarracks.Clear(); listOfTraps.Clear();
+                        listOfSprings.Clear(); listOfFarms.Clear(); listOfEconomyResources.Clear();
+                        listOfAdditionResources.Clear(); listOfAll.Clear();
 
                         MessageToClient content = responseStream.ResponseStream.Current;
-                        MessageOfMap mapMessage = new MessageOfMap();
-                        bool hasMapMessage = false;
 
-                        switch (content.GameState)
-                        {
-                            case GameState.GameStart:
-                                myLogger?.LogInfo("============= GameState: Game Start ================");
-                                break;
-                            case GameState.GameRunning:
-                                myLogger?.LogInfo("============= GameState: Game Running ================");
-                                break;
-                            case GameState.GameEnd:
-                                myLogger?.LogInfo("============= GameState: Game End ================");
-                                break;
-                        }
+                        if (content.GameState != GameState.GameRunning)
+                            myLogger?.LogInfo($"GameState: {content.GameState}");
 
-                        // 处理所有消息
                         foreach (var obj in content.ObjMessage)
                         {
                             switch (obj.MessageOfObjCase)
                             {
+                                // ... (填充列表 case 不变) ...
                                 case MessageOfObj.MessageOfObjOneofCase.CharacterMessage:
                                     listOfCharacters.Add(obj.CharacterMessage);
                                     break;
@@ -220,79 +387,93 @@ namespace debug_interface.ViewModels
                                     listOfAdditionResources.Add(obj.AdditionResourceMessage);
                                     break;
                                 case MessageOfObj.MessageOfObjOneofCase.MapMessage:
-                                    mapMessage = obj.MapMessage;
-                                    hasMapMessage = true;
+                                    // *** 直接更新地图 ***
+                                    var mapMsg = obj.MapMessage;
+                                    if (this is MainWindowViewModel vm && vm.MapVM != null)
+                                    {
+                                        Dispatcher.UIThread.InvokeAsync(() => vm.MapVM.UpdateMap(mapMsg));
+                                    }
                                     break;
                             }
                         }
-
-                        // 存储全局游戏状态
-                        listOfAll.Add(content.AllMessage);
-
-                        // 如果有地图消息并且当前ViewModel是MainWindowViewModel
-                        if (hasMapMessage && this is MainWindowViewModel vm)
-                        {
-                            vm.MapVM.UpdateMap(mapMessage);
-                        }
-                    }
+                        if (content.AllMessage != null) { listOfAll.Add(content.AllMessage); }
+                    } // lock 结束
+                }
+                myLogger?.LogInfo("服务器消息流结束 (正常关闭或取消)。");
+            }
+            catch (RpcException ex) when (ex.StatusCode == StatusCode.Cancelled) { myLogger?.LogWarning("消息接收任务被取消。"); }
+            catch (IOException ex) when (ex.InnerException is System.Net.Sockets.SocketException socketEx) { myLogger?.LogError($"网络错误导致接收中断: {socketEx.Message}"); }
+            catch (Exception ex) { myLogger?.LogError($"接收消息时发生意外错误: {ex.Message}\n{ex.StackTrace}"); }
+            finally
+            {
+                myLogger?.LogInfo("后台接收任务结束。");
+                bool wasConnected = _isConnected;
+                await CleanupConnectionAsync();
+                if (wasConnected && !isPlaybackMode && (_cts == null || !_cts.IsCancellationRequested))
+                {
+                    myLogger?.LogInfo("检测到连接断开，尝试自动重连...");
+                    _ = TryConnectAndReceiveLoopAsync();
                 }
             }
-            catch (Exception ex)
-            {
-                myLogger?.LogError($"接收消息时出错: {ex.Message}");
-            }
         }
 
-        /// <summary>
-        /// 播放回放数据（示例方法）
-        /// </summary>
-        /// <param name="fileName">回放文件</param>
-        /// <param name="pbSpeed">播放速度</param>
-        private void Playback(string fileName, double pbSpeed = 2.0)
+        // *** 清理连接资源 (使用 _cts) ***
+        private async Task CleanupConnectionAsync()
         {
-            //myLogger.LogInfo($"Starting playback with file: {fileName} at speed {pbSpeed}");
-            // TODO: 实现回放逻辑
-            isPlaybackMode = true;
+            myLogger?.LogDebug("开始清理连接资源...");
+            _isConnected = false;
+            _isConnecting = false; // 确保重置
+            ConnectionStatus = "连接已断开";
+            if (_cts != null) { try { _cts.Cancel(); myLogger?.LogDebug(" CancellationToken 已请求取消。"); } catch (ObjectDisposedException) { } }
+            if (_receiveTask != null && !_receiveTask.IsCompleted) { /* ... 等待任务 ... */ try { myLogger?.LogDebug(" 等待接收任务结束..."); await Task.WhenAny(_receiveTask, Task.Delay(500)); if (!_receiveTask.IsCompleted) myLogger?.LogWarning(" 接收任务在超时后仍未结束。"); else myLogger?.LogDebug(" 接收任务已结束。"); } catch (Exception ex) { myLogger?.LogError($"等待接收任务结束时出错: {ex.Message}"); } }
+            if (responseStream != null) { try { responseStream.Dispose(); } catch { } responseStream = null; myLogger?.LogDebug(" responseStream 已 Dispose。"); }
+            // 不在此处 Dispose _cts，由调用者（Dispose 或重连逻辑）处理
+            client = null;
+            _receiveTask = null;
+            myLogger?.LogDebug("连接资源清理完毕 (除了CTS Dispose)。");
         }
 
-        /// <summary>
-        /// 可被子类重写的定时器事件处理方法
-        /// </summary>
-        protected virtual void OnTimerTick(object? sender, EventArgs e)
+        // *** Dispose 方法 (清理 _cts 和 _playbackReader) ***
+        public virtual void Dispose()
         {
-            // 基类实现为空，子类可以重写
+            myLogger?.LogInfo("ViewModelBase Dispose 开始...");
+            timerViewModel?.Stop();
+
+            _cts?.Cancel(); // 请求取消当前活动（gRPC 或 Playback）
+            CleanupConnectionAsync().ConfigureAwait(false).GetAwaiter().GetResult(); // 清理 gRPC 特定资源
+
+            _playbackReader?.Dispose(); // 清理回放 Reader
+            _playbackReader = null;
+
+            _cts?.Dispose(); // 最后 Dispose CTS
+            _cts = null;
+
+            myLogger?.LogInfo("ViewModelBase Dispose 完成。");
+            GC.SuppressFinalize(this);
         }
 
-        /// <summary>
-        /// 定时器回调方法，用于刷新 UI 与游戏状态
-        /// </summary>
+        // *** Refresh 方法 (更新 UI) ***
         private void Refresh(object? sender, EventArgs e)
         {
             try
             {
-                // 调用可被重写的方法
                 OnTimerTick(sender, e);
-
-                // 默认实现，更新UI
                 if (this is MainWindowViewModel vm)
                 {
-                    // 更新角色信息
+                    // 地图更新由 ReceiveMessagesAsync 或 PlaybackLoopAction 直接触发
+                    // Refresh 只负责根据列表更新其他 UI
                     vm.UpdateCharacters();
-
-                    // 更新地图上的各种元素
                     vm.UpdateMapElements();
-
-                    // 更新游戏状态信息
                     vm.UpdateGameStatus();
                 }
             }
             catch (Exception ex)
             {
-                if (myLogger != null)
-                    myLogger.LogError($"刷新UI时出错: {ex.Message}");
-                else
-                    Console.WriteLine($"刷新UI时出错: {ex.Message}");
+                myLogger?.LogError($"刷新UI时出错: {ex.Message}\n{ex.StackTrace}");
             }
         }
+
+        protected virtual void OnTimerTick(object? sender, EventArgs e) { }
+
     }
 }

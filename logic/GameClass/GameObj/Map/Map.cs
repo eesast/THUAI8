@@ -220,6 +220,7 @@ namespace GameClass.GameObj.Map
             height = mapResource.height;
             width = mapResource.width;
             protoGameMap = mapResource.map;
+            int count = 0;
             for (int i = 0; i < height; ++i)
             {
                 for (int j = 0; j < width; ++j)
@@ -233,7 +234,17 @@ namespace GameClass.GameObj.Map
                             Add(new Bush(GameData.GetCellCenterPos(i, j)));
                             break;
                         case PlaceType.ADDITION_RESOURCE:
-                            Add(new A_Resource(GameData.AResourceRadius, Atype, GameData.GetCellCenterPos(i, j)));
+                            if (count++ == 0)
+                                Add(new A_Resource(GameData.AResourceRadius, A_ResourceType.CRAZY_MAN1, GameData.GetCellCenterPos(i, j)));
+                            else if (count++ == 1)
+                                Add(new A_Resource(GameData.AResourceRadius, A_ResourceType.LIFE_POOL1, GameData.GetCellCenterPos(i, j)));
+                            else if (count++ == 2)
+                                Add(new A_Resource(GameData.AResourceRadius, A_ResourceType.WIDE_VIEW, GameData.GetCellCenterPos(i, j)));
+                            else
+                            {
+                                Add(new A_Resource(GameData.AResourceRadius, A_ResourceType.QUICK_STEP, GameData.GetCellCenterPos(i, j)));
+                                count = 0;
+                            }
                             break;
                         case PlaceType.CONSTRUCTION:
                             Add(new Construction(GameData.GetCellCenterPos(i, j)));
