@@ -213,7 +213,7 @@ namespace debug_interface.ViewModels
             {
                 var cell = MapCells[index];
                 cell.CellType = MapCellType.Economic_Resource;
-                // cell.DisplayText = process.ToString(); // 显示剩余量
+                cell.DisplayText = process.ToString(); // 显示剩余量
                 cell.DisplayColor = new SolidColorBrush(Colors.Gold); // 经济资源用金色
 
                 // 更新HP和Tooltip

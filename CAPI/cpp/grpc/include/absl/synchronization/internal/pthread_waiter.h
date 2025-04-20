@@ -16,48 +16,45 @@
 #ifndef ABSL_SYNCHRONIZATION_INTERNAL_PTHREAD_WAITER_H_
 #define ABSL_SYNCHRONIZATION_INTERNAL_PTHREAD_WAITER_H_
 
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__MINGW32__)
 #include <pthread.h>
 
 #include "absl/base/config.h"
 #include "absl/synchronization/internal/kernel_timeout.h"
 #include "absl/synchronization/internal/waiter_base.h"
 
-namespace absl
-{
-    ABSL_NAMESPACE_BEGIN
-    namespace synchronization_internal
-    {
+namespace absl {
+ABSL_NAMESPACE_BEGIN
+namespace synchronization_internal {
 
 #define ABSL_INTERNAL_HAVE_PTHREAD_WAITER 1
 
-        class PthreadWaiter : public WaiterCrtp<PthreadWaiter>
-        {
-        public:
-            PthreadWaiter();
+class PthreadWaiter : public WaiterCrtp<PthreadWaiter> {
+ public:
+  PthreadWaiter();
 
-            bool Wait(KernelTimeout t);
-            void Post();
-            void Poke();
+  bool Wait(KernelTimeout t);
+  void Post();
+  void Poke();
 
-            static constexpr char kName[] = "PthreadWaiter";
+  static constexpr char kName[] = "PthreadWaiter";
 
-        private:
-            int TimedWait(KernelTimeout t);
+ private:
+  int TimedWait(KernelTimeout t);
 
-            // REQUIRES: mu_ must be held.
-            void InternalCondVarPoke();
+  // REQUIRES: mu_ must be held.
+  void InternalCondVarPoke();
 
-            pthread_mutex_t mu_;
-            pthread_cond_t cv_;
-            int waiter_count_;
-            int wakeup_count_;  // Unclaimed wakeups.
-        };
+  pthread_mutex_t mu_;
+  pthread_cond_t cv_;
+  int waiter_count_;
+  int wakeup_count_;  // Unclaimed wakeups.
+};
 
-    }  // namespace synchronization_internal
-    ABSL_NAMESPACE_END
+}  // namespace synchronization_internal
+ABSL_NAMESPACE_END
 }  // namespace absl
 
-#endif  // ndef _WIN32
+#endif  // !defined(_WIN32) && !defined(__MINGW32__)
 
 #endif  // ABSL_SYNCHRONIZATION_INTERNAL_PTHREAD_WAITER_H_

@@ -47,142 +47,150 @@
 #include "absl/base/attributes.h"
 #include "absl/numeric/internal/bits.h"
 
-namespace absl
-{
-    ABSL_NAMESPACE_BEGIN
-#if !(defined(__cpp_lib_bitops) && __cpp_lib_bitops >= 201907L)
+namespace absl {
+ABSL_NAMESPACE_BEGIN
 
-    // rotating
-    template<class T>
-    ABSL_MUST_USE_RESULT constexpr
-        typename std::enable_if<std::is_unsigned<T>::value, T>::type
-        rotl(T x, int s) noexcept
-    {
-        return numeric_internal::RotateLeft(x, s);
-    }
+// https://github.com/llvm/llvm-project/issues/64544
+// libc++ had the wrong signature for std::rotl and std::rotr
+// prior to libc++ 18.0.
+//
+#if (defined(__cpp_lib_bitops) && __cpp_lib_bitops >= 201907L) &&     \
+    (!defined(_LIBCPP_VERSION) || _LIBCPP_VERSION >= 180000)
+using std::rotl;
+using std::rotr;
 
-    template<class T>
-    ABSL_MUST_USE_RESULT constexpr
-        typename std::enable_if<std::is_unsigned<T>::value, T>::type
-        rotr(T x, int s) noexcept
-    {
-        return numeric_internal::RotateRight(x, s);
-    }
+#else
 
-    // Counting functions
-    //
-    // While these functions are typically constexpr, on some platforms, they may
-    // not be marked as constexpr due to constraints of the compiler/available
-    // intrinsics.
-    template<class T>
-    ABSL_INTERNAL_CONSTEXPR_CLZ inline
-        typename std::enable_if<std::is_unsigned<T>::value, int>::type
-        countl_zero(T x) noexcept
-    {
-        return numeric_internal::CountLeadingZeroes(x);
-    }
+// Rotating functions
+template <class T>
+ABSL_MUST_USE_RESULT constexpr
+    typename std::enable_if<std::is_unsigned<T>::value, T>::type
+    rotl(T x, int s) noexcept {
+  return numeric_internal::RotateLeft(x, s);
+}
 
-    template<class T>
-    ABSL_INTERNAL_CONSTEXPR_CLZ inline
-        typename std::enable_if<std::is_unsigned<T>::value, int>::type
-        countl_one(T x) noexcept
-    {
-        // Avoid integer promotion to a wider type
-        return countl_zero(static_cast<T>(~x));
-    }
-
-    template<class T>
-    ABSL_INTERNAL_CONSTEXPR_CTZ inline
-        typename std::enable_if<std::is_unsigned<T>::value, int>::type
-        countr_zero(T x) noexcept
-    {
-        return numeric_internal::CountTrailingZeroes(x);
-    }
-
-    template<class T>
-    ABSL_INTERNAL_CONSTEXPR_CTZ inline
-        typename std::enable_if<std::is_unsigned<T>::value, int>::type
-        countr_one(T x) noexcept
-    {
-        // Avoid integer promotion to a wider type
-        return countr_zero(static_cast<T>(~x));
-    }
-
-    template<class T>
-    ABSL_INTERNAL_CONSTEXPR_POPCOUNT inline
-        typename std::enable_if<std::is_unsigned<T>::value, int>::type
-        popcount(T x) noexcept
-    {
-        return numeric_internal::Popcount(x);
-    }
-#else  // defined(__cpp_lib_bitops) && __cpp_lib_bitops >= 201907L
-
-    using std::countl_one;
-    using std::countl_zero;
-    using std::countr_one;
-    using std::countr_zero;
-    using std::popcount;
-    using std::rotl;
-    using std::rotr;
+template <class T>
+ABSL_MUST_USE_RESULT constexpr
+    typename std::enable_if<std::is_unsigned<T>::value, T>::type
+    rotr(T x, int s) noexcept {
+  return numeric_internal::RotateRight(x, s);
+}
 
 #endif
 
-#if !(defined(__cpp_lib_int_pow2) && __cpp_lib_int_pow2 >= 202002L)
-    // Returns: true if x is an integral power of two; false otherwise.
-    template<class T>
-    constexpr inline typename std::enable_if<std::is_unsigned<T>::value, bool>::type
-        has_single_bit(T x) noexcept
-    {
-        return x != 0 && (x & (x - 1)) == 0;
-    }
+// https://github.com/llvm/llvm-project/issues/64544
+// libc++ had the wrong signature for std::rotl and std::rotr
+// prior to libc++ 18.0.
+//
+#if (defined(__cpp_lib_bitops) && __cpp_lib_bitops >= 201907L)
 
-    // Returns: If x == 0, 0; otherwise one plus the base-2 logarithm of x, with any
-    // fractional part discarded.
-    template<class T>
-    ABSL_INTERNAL_CONSTEXPR_CLZ inline
-        typename std::enable_if<std::is_unsigned<T>::value, int>::type
-        bit_width(T x) noexcept
-    {
-        return std::numeric_limits<T>::digits - countl_zero(x);
-    }
+using std::countl_one;
+using std::countl_zero;
+using std::countr_one;
+using std::countr_zero;
+using std::popcount;
 
-    // Returns: If x == 0, 0; otherwise the maximal value y such that
-    // has_single_bit(y) is true and y <= x.
-    template<class T>
-    ABSL_INTERNAL_CONSTEXPR_CLZ inline
-        typename std::enable_if<std::is_unsigned<T>::value, T>::type
-        bit_floor(T x) noexcept
-    {
-        return x == 0 ? 0 : T{1} << (bit_width(x) - 1);
-    }
+#else
 
-    // Returns: N, where N is the smallest power of 2 greater than or equal to x.
-    //
-    // Preconditions: N is representable as a value of type T.
-    template<class T>
-    ABSL_INTERNAL_CONSTEXPR_CLZ inline
-        typename std::enable_if<std::is_unsigned<T>::value, T>::type
-        bit_ceil(T x)
-    {
-        // If T is narrower than unsigned, T{1} << bit_width will be promoted.  We
-        // want to force it to wraparound so that bit_ceil of an invalid value are not
-        // core constant expressions.
-        //
-        // BitCeilNonPowerOf2 triggers an overflow in constexpr contexts if we would
-        // undergo promotion to unsigned but not fit the result into T without
-        // truncation.
-        return has_single_bit(x) ? T{1} << (bit_width(x) - 1) : numeric_internal::BitCeilNonPowerOf2(x);
-    }
-#else  // defined(__cpp_lib_int_pow2) && __cpp_lib_int_pow2 >= 202002L
+// Counting functions
+//
+// While these functions are typically constexpr, on some platforms, they may
+// not be marked as constexpr due to constraints of the compiler/available
+// intrinsics.
+template <class T>
+ABSL_INTERNAL_CONSTEXPR_CLZ inline
+    typename std::enable_if<std::is_unsigned<T>::value, int>::type
+    countl_zero(T x) noexcept {
+  return numeric_internal::CountLeadingZeroes(x);
+}
 
-    using std::bit_ceil;
-    using std::bit_floor;
-    using std::bit_width;
-    using std::has_single_bit;
+template <class T>
+ABSL_INTERNAL_CONSTEXPR_CLZ inline
+    typename std::enable_if<std::is_unsigned<T>::value, int>::type
+    countl_one(T x) noexcept {
+  // Avoid integer promotion to a wider type
+  return countl_zero(static_cast<T>(~x));
+}
+
+template <class T>
+ABSL_INTERNAL_CONSTEXPR_CTZ inline
+    typename std::enable_if<std::is_unsigned<T>::value, int>::type
+    countr_zero(T x) noexcept {
+  return numeric_internal::CountTrailingZeroes(x);
+}
+
+template <class T>
+ABSL_INTERNAL_CONSTEXPR_CTZ inline
+    typename std::enable_if<std::is_unsigned<T>::value, int>::type
+    countr_one(T x) noexcept {
+  // Avoid integer promotion to a wider type
+  return countr_zero(static_cast<T>(~x));
+}
+
+template <class T>
+ABSL_INTERNAL_CONSTEXPR_POPCOUNT inline
+    typename std::enable_if<std::is_unsigned<T>::value, int>::type
+    popcount(T x) noexcept {
+  return numeric_internal::Popcount(x);
+}
 
 #endif
 
-    ABSL_NAMESPACE_END
+#if (defined(__cpp_lib_int_pow2) && __cpp_lib_int_pow2 >= 202002L)
+
+using std::bit_ceil;
+using std::bit_floor;
+using std::bit_width;
+using std::has_single_bit;
+
+#else
+
+// Returns: true if x is an integral power of two; false otherwise.
+template <class T>
+constexpr inline typename std::enable_if<std::is_unsigned<T>::value, bool>::type
+has_single_bit(T x) noexcept {
+  return x != 0 && (x & (x - 1)) == 0;
+}
+
+// Returns: If x == 0, 0; otherwise one plus the base-2 logarithm of x, with any
+// fractional part discarded.
+template <class T>
+ABSL_INTERNAL_CONSTEXPR_CLZ inline
+    typename std::enable_if<std::is_unsigned<T>::value, int>::type
+    bit_width(T x) noexcept {
+  return std::numeric_limits<T>::digits - countl_zero(x);
+}
+
+// Returns: If x == 0, 0; otherwise the maximal value y such that
+// has_single_bit(y) is true and y <= x.
+template <class T>
+ABSL_INTERNAL_CONSTEXPR_CLZ inline
+    typename std::enable_if<std::is_unsigned<T>::value, T>::type
+    bit_floor(T x) noexcept {
+  return x == 0 ? 0 : T{1} << (bit_width(x) - 1);
+}
+
+// Returns: N, where N is the smallest power of 2 greater than or equal to x.
+//
+// Preconditions: N is representable as a value of type T.
+template <class T>
+ABSL_INTERNAL_CONSTEXPR_CLZ inline
+    typename std::enable_if<std::is_unsigned<T>::value, T>::type
+    bit_ceil(T x) {
+  // If T is narrower than unsigned, T{1} << bit_width will be promoted.  We
+  // want to force it to wraparound so that bit_ceil of an invalid value are not
+  // core constant expressions.
+  //
+  // BitCeilNonPowerOf2 triggers an overflow in constexpr contexts if we would
+  // undergo promotion to unsigned but not fit the result into T without
+  // truncation.
+  return has_single_bit(x) ? T{1} << (bit_width(x) - 1)
+                           : numeric_internal::BitCeilNonPowerOf2(x);
+}
+
+#endif
+
+ABSL_NAMESPACE_END
 }  // namespace absl
 
 #endif  // ABSL_NUMERIC_BITS_H_
