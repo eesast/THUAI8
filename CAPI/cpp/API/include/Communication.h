@@ -41,7 +41,7 @@ public:
     // Team
     bool InstallEquipment(int32_t playerID, int32_t teamID, THUAI8::EquipmentType equipmentType);
     bool BuildCharacter(int32_t teamID, THUAI8::CharacterType CharacterType, int32_t birthIndex);
-    bool Recycle(int32_t playerID, int32_t teamID);  // 回收？
+    //bool Recycle(int32_t playerID, int32_t teamID);  // 回收？
 
 private:
     std::unique_ptr<protobuf::AvailableService::Stub> THUAI8Stub;

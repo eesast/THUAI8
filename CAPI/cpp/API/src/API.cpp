@@ -120,12 +120,12 @@ std::vector<std::vector<THUAI8::PlaceType>> TeamAPI::GetFullMap() const
     return logic.GetFullMap();
 }
 
-THUAI8::PlaceType CharacterAPI::GetPlaceType(int32_t cellX, int32_t cellY) const
+THUAI8::PlaceType CharacterDebugAPI::GetPlaceType(int32_t cellX, int32_t cellY) const
 {
     return logic.GetPlaceType(cellX, cellY);
 }
 
-THUAI8::PlaceType TeamAPI::GetPlaceType(int32_t cellX, int32_t cellY) const
+    THUAI8::PlaceType TeamAPI::GetPlaceType(int32_t cellX, int32_t cellY) const
 {
     return logic.GetPlaceType(cellX, cellY);
 }
@@ -199,6 +199,10 @@ int32_t TeamAPI::GetScore() const
 {
     return logic.GetScore();
 }
+THUAI8::PlaceType CharacterAPI::GetPlaceType(int32_t cellX, int32_t cellY) const
+{
+    return logic.GetPlaceType(cellX, cellY);
+}
 
 int32_t CharacterAPI::GetEnergy() const
 {
@@ -270,11 +274,11 @@ std::future<bool> CharacterAPI::Produce(int64_t playerID, int64_t teamID)
                       { return logic.Produce(playerID, teamID); });
 }
 
-std::future<bool> CharacterAPI::Rebuild(THUAI8::ConstructionType constructionType)
+/* std::future<bool> CharacterAPI::Rebuild(THUAI8::ConstructionType constructionType)
 {
     return std::async(std::launch::async, [=]()
                       { return logic.Rebuild(constructionType); });
-}
+}*/
 
 std::future<bool> CharacterAPI::Construct(THUAI8::ConstructionType constructionType)
 {
@@ -300,11 +304,11 @@ std::future<bool> TeamAPI::InstallEquipment(int32_t playerID, const THUAI8::Equi
                       { return logic.InstallEquipment(playerID, equipmentType); });
 }
 
-std::future<bool> TeamAPI::Recycle(int32_t playerID, int32_t targetID)
+/* std::future<bool> TeamAPI::Recycle(int32_t playerID, int32_t targetID)
 {
     return std::async(std::launch::async, [=]()
                       { return logic.Recycle(playerID, targetID); });
-}
+}*/
 
 std::future<bool> TeamAPI::BuildCharacter(THUAI8::CharacterType CharacterType, int32_t birthIndex)
 {

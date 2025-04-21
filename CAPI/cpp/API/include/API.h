@@ -62,14 +62,14 @@ public:
     virtual bool Move(int64_t teamID, int64_t characterID, int32_t moveTimeInMilliseconds, double angle) = 0;
     virtual bool Recover(int64_t recover) = 0;
     virtual bool Produce(int64_t playerID, int64_t teamID) = 0;
-    virtual bool Rebuild(THUAI8::ConstructionType constructionType) = 0;
+    //virtual bool Rebuild(THUAI8::ConstructionType constructionType) = 0;
     virtual bool Construct(THUAI8::ConstructionType constructionType) = 0;
     virtual bool Skill_Attack(int64_t teamID, int64_t playerID, double angle) = 0;
     virtual bool Common_Attack(int64_t playerID, int64_t teamID, int64_t ATKplayerID, int64_t ATKteamID) = 0;
     [[nodiscard]] virtual bool HaveView(int32_t x, int32_t y, int32_t newX, int32_t newY, int32_t viewRange, std::vector<std::vector<THUAI8::PlaceType>>& map) const = 0;
 
     // Team使用的部分
-    virtual bool Recycle(int32_t playerID, int32_t targetID) = 0;
+    //virtual bool Recycle(int32_t playerID, int32_t targetID) = 0;
     virtual bool InstallEquipment(int32_t playerID, THUAI8::EquipmentType equipmentType) = 0;
     virtual bool BuildCharacter(THUAI8::CharacterType CharacterType, int32_t birthIndex) = 0;
 };
@@ -137,7 +137,7 @@ public:
     virtual std::future<bool> Common_Attack(int64_t teamID, int64_t PlayerID, int64_t attackedTeamID, int64_t attackedPlayerID) = 0;
     virtual std::future<bool> Recover(int64_t recover) = 0;
     virtual std::future<bool> Produce(int64_t playerID, int64_t teamID) = 0;
-    virtual std::future<bool> Rebuild(THUAI8::ConstructionType constructionType) = 0;
+    //virtual std::future<bool> Rebuild(THUAI8::ConstructionType constructionType) = 0;
     virtual std::future<bool> Construct(THUAI8::ConstructionType constructionType) = 0;
     virtual std::shared_ptr<const THUAI8::Character> GetSelfInfo() const = 0;
     virtual bool HaveView(int32_t x, int32_t y, int32_t newX, int32_t newY, int32_t viewRange, std::vector<std::vector<THUAI8::PlaceType>>& map) const = 0;
@@ -148,7 +148,7 @@ class ITeamAPI : public IAPI
 public:
     [[nodiscard]] virtual std::shared_ptr<const THUAI8::Team> GetSelfInfo() const = 0;
     virtual std::future<bool> InstallEquipment(int32_t playerID, THUAI8::EquipmentType equipmenttype) = 0;
-    virtual std::future<bool> Recycle(int32_t playerID, int32_t targetID) = 0;
+    //virtual std::future<bool> Recycle(int32_t playerID, int32_t targetID) = 0;
     virtual std::future<bool> BuildCharacter(THUAI8::CharacterType CharacterType, int32_t birthIndex) = 0;
 };
 
@@ -194,7 +194,7 @@ public:
     std::future<bool> Common_Attack(int64_t teamID, int64_t PlayerID, int64_t attackedTeamID, int64_t attackedPlayerID) override;
     std::future<bool> Recover(int64_t recover) override;
     std::future<bool> Produce(int64_t playerID, int64_t teamID) override;
-    std::future<bool> Rebuild(THUAI8::ConstructionType constructionType) override;
+    //std::future<bool> Rebuild(THUAI8::ConstructionType constructionType) override;
     std::future<bool> Construct(THUAI8::ConstructionType constructionType) override;
 
     [[nodiscard]] std::vector<std::shared_ptr<const THUAI8::Character>> GetCharacters() const override;
@@ -264,7 +264,7 @@ public:
     [[nodiscard]] int32_t GetScore() const override;
     [[nodiscard]] std::shared_ptr<const THUAI8::Team> GetSelfInfo() const override;
     std::future<bool> InstallEquipment(int32_t playerID, THUAI8::EquipmentType equipmenttype) override;
-    std::future<bool> Recycle(int32_t playerID, int32_t targetID) override;
+    //std::future<bool> Recycle(int32_t playerID, int32_t targetID) override;
     std::future<bool> BuildCharacter(THUAI8::CharacterType CharacterType, int32_t birthIndex) override;
     void Print(std::string str) const
     {
@@ -307,7 +307,7 @@ public:
     std::future<bool> Common_Attack(int64_t teamID, int64_t PlayerID, int64_t attackedTeamID, int64_t attackedPlayerID) override;
     std::future<bool> Recover(int64_t recover) override;
     std::future<bool> Produce(int64_t playerID, int64_t teamID);
-    std::future<bool> Rebuild(THUAI8::ConstructionType constructionType) override;
+    //std::future<bool> Rebuild(THUAI8::ConstructionType constructionType) override;
     std::future<bool> Construct(THUAI8::ConstructionType constructionType) override;
 
     [[nodiscard]] std::vector<std::shared_ptr<const THUAI8::Character>> GetCharacters() const override;
@@ -340,6 +340,7 @@ private:
 class TeamDebugAPI : public ITeamAPI, public IGameTimer
 {
 public:
+    
     TeamDebugAPI(ILogic& logic, bool file, bool print, bool warnOnly, int32_t TeamID);
     void StartTimer() override;
     void EndTimer() override;
@@ -367,7 +368,7 @@ public:
     [[nodiscard]] int32_t GetScore() const override;
     [[nodiscard]] std::shared_ptr<const THUAI8::Team> GetSelfInfo() const override;
     std::future<bool> InstallEquipment(int32_t playerID, THUAI8::EquipmentType equipmenttype) override;
-    std::future<bool> Recycle(int32_t playerID, int32_t targetID) override;
+    //std::future<bool> Recycle(int32_t playerID, int32_t targetID) override;
     std::future<bool> BuildCharacter(THUAI8::CharacterType CharacterType, int32_t birthIndex) override;
     void Print(std::string str) const override;
     void PrintSelfInfo() const override;

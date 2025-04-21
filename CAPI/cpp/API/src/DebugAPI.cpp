@@ -82,6 +82,12 @@ bool CharacterDebugAPI::HaveMessage()
         logger->warn("HaveMessage: failed at {}ms", Time::TimeSinceStart(startPoint));
     return result;
 }
+bool CharacterDebugAPI::HaveView(int32_t x, int32_t y, int32_t newX, int32_t newY, int32_t viewRange, std::vector<std::vector<THUAI8::PlaceType>>& map) const
+{
+    auto selfInfo = GetSelfInfo();
+    return logic.HaveView(selfInfo->x, selfInfo->y, newX, newX, selfInfo->viewRange, map);
+}
+
 
 std::pair<int32_t, std::string> CharacterDebugAPI::GetMessage()
 {
@@ -175,7 +181,7 @@ std::future<bool> CharacterDebugAPI::Produce(int64_t playerID, int64_t teamID)
                         return result; });
 }
 
-std::future<bool> CharacterDebugAPI::Rebuild(THUAI8::ConstructionType constructionType)
+/* std::future<bool> CharacterDebugAPI::Rebuild(THUAI8::ConstructionType constructionType)
 {
     logger->info("Rebuild: constructionType = {}, called at {}ms", constructionType, Time::TimeSinceStart(startPoint));
     return std::async(std::launch::async, [=]()
@@ -183,7 +189,7 @@ std::future<bool> CharacterDebugAPI::Rebuild(THUAI8::ConstructionType constructi
                         if (!result)
                             logger->warn("Rebuild: failed at {}ms", Time::TimeSinceStart(startPoint));
                         return result; });
-}
+}*/
 
 std::future<bool> CharacterDebugAPI::Construct(THUAI8::ConstructionType constructionType)
 {
@@ -254,15 +260,22 @@ std::optional<THUAI8::EconomyResourceState> CharacterDebugAPI::GetEnconomyResour
     return result;
 }
 
-/* std::optional<std::pair<int64_t, int32_t>> CharacterDebugAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
+ std::optional<std::pair<int32_t, int32_t>> CharacterDebugAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
 {
     logger->info("GetAdditionResourceState: cellX = {}, cellY = {}, called at {}ms", cellX, cellY, Time::TimeSinceStart(startPoint));
     auto result = logic.GetAdditionResourceState(cellX, cellY);
     if (!result)
         logger->warn("GetAdditionResourceState: failed at {}ms", Time::TimeSinceStart(startPoint));
     return result;
-}*/
-
+}
+std::optional<std::pair<int32_t, int32_t>> TeamDebugAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
+{
+    logger->info("GetAdditionResourceState: cellX = {}, cellY = {}, called at {}ms", cellX, cellY, Time::TimeSinceStart(startPoint));
+    auto result = logic.GetAdditionResourceState(cellX, cellY);
+    if (!result)
+        logger->warn("GetAdditionResourceState: failed at {}ms", Time::TimeSinceStart(startPoint));
+    return result;
+}
 /* std::optional<THUAI8::ConstructionState> CharacterDebugAPI::GetConstructionState(int32_t cellX, int32_t cellY) const
 {
     logger->info("GetConstructionState: cellX = {}, cellY = {}, called at {}ms", cellX, cellY, Time::TimeSinceStart(startPoint));
@@ -533,14 +546,6 @@ std::optional<THUAI8::EconomyResourceState> TeamDebugAPI::GetEnconomyResourceSta
     return result;
 }
 
-std::optional<std::pair<int32_t, int32_t>> CharacterDebugAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
-{
-    logger->info("GetAdditionResourceState: cellX = {}, cellY = {}, called at {}ms", cellX, cellY, Time::TimeSinceStart(startPoint));
-    auto result = logic.GetAdditionResourceState(cellX, cellY);
-    if (!result)
-        logger->warn("GetAdditionResourceState: failed at {}ms", Time::TimeSinceStart(startPoint));
-    return result;
-}
 
 /* std::optional<THUAI8::ConstructionState> TeamDebugAPI::GetConstructionState(int32_t cellX, int32_t cellY) const
 {

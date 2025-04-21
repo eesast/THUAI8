@@ -237,11 +237,11 @@ bool Logic::BuildCharacter(THUAI8::CharacterType CharacterType, int32_t birthInd
 }
 
 //等待完成
-bool Logic::Recycle(int32_t playerID, int32_t targetID)
+/* bool Logic::Recycle(int32_t playerID, int32_t targetID)
 {
     logger->debug("Called Recycle");
     return pComm->Recycle(playerID, targetID);
-}
+}*/
 
 bool Logic::Produce(int64_t playerID, int64_t teamID)
 {

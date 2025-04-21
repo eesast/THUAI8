@@ -118,13 +118,13 @@ private:
     bool Common_Attack(int64_t playerID, int64_t teamID, int64_t ATKplayerID, int64_t ATKteamID);
     bool Recover(int64_t recover);
     bool Produce(int64_t playerID, int64_t teamID);
-    bool Rebuild(THUAI8::ConstructionType constructionType);
+    //bool Rebuild(THUAI8::ConstructionType constructionType);
     bool Construct(THUAI8::ConstructionType constructionType);
     [[nodiscard]] bool HaveView(int32_t x, int32_t y, int32_t newX, int32_t newY, int32_t viewRange, std::vector<std::vector<THUAI8::PlaceType>>& map) const;
 
     // ITeamAPI
     bool InstallEquipment(int32_t playerID, THUAI8::EquipmentType equipmenttype);
-    bool Recycle(int32_t playerID,int32_t targetID);
+    //bool Recycle(int32_t playerID,int32_t targetID);
     bool BuildCharacter(THUAI8::CharacterType CharacterType, int32_t birthIndex);
 
     bool TryConnection();

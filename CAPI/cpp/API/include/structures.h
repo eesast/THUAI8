@@ -221,15 +221,15 @@ namespace THUAI8
         CharacterState characterActiveState;
 
         bool isBlind;
-        long blindTime;
+        int64_t blindTime;
         bool isStunned;
-        long stunnedTime;
+        int64_t stunnedTime;
         bool isInvisible;
-        long invisibleTime;
+        int64_t invisibleTime;
         bool isBurned;
-        long burnedTime;
+        int64_t burnedTime;
         double harmCut;
-        long harmCutTime;
+        int64_t harmCutTime;
 
         CharacterState characterPassiveState;
 
