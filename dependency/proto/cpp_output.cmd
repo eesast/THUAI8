@@ -91,6 +91,11 @@ IF EXIST "%USER_INPUT%" (
 :FOUND_CPP_PLUGIN
 
 @ECHO ON
+
+@ECHO.
+@ECHO Generating C++ files from proto files...
+@ECHO.
+
 "%PROTOC_PATH%" Message2Clients.proto --cpp_out=.
 @IF %ERRORLEVEL% NEQ 0 GOTO :ERROR
 "%PROTOC_PATH%" MessageType.proto --cpp_out=.
@@ -102,10 +107,20 @@ IF EXIST "%USER_INPUT%" (
 "%PROTOC_PATH%" Services.proto --cpp_out=.
 @IF %ERRORLEVEL% NEQ 0 GOTO :ERROR
 
+@ECHO.
+@ECHO Successfully generated C++ files.
+@ECHO.
+@ECHO Moving generated files to CAPI\cpp\proto directory...
+@ECHO.
+
 MOVE /Y .\*.h ..\..\CAPI\cpp\proto
 @IF %ERRORLEVEL% NEQ 0 GOTO :ERROR
 MOVE /Y .\*.cc ..\..\CAPI\cpp\proto
 @IF %ERRORLEVEL% NEQ 0 GOTO :ERROR
+
+@ECHO.
+@ECHO Successfully moved generated files to CAPI\cpp\proto directory.
+@ECHO.
 
 @ECHO OFF
 
