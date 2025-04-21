@@ -705,7 +705,7 @@ static_assert(ABSL_INTERNAL_INLINE_NAMESPACE_STR[0] != 'h' ||
 #if defined(_MSC_VER)
 #if defined(ABSL_BUILD_DLL)
 #define ABSL_DLL __declspec(dllexport)
-#elif 1
+#elif defined(ABSL_CONSUME_DLL)
 #define ABSL_DLL __declspec(dllimport)
 #else
 #define ABSL_DLL

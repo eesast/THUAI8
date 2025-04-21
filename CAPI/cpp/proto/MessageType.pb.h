@@ -164,6 +164,40 @@ inline bool ShapeType_Parse(absl::string_view name, ShapeType* value) {
   return ::google::protobuf::internal::ParseNamedEnum<ShapeType>(
       ShapeType_descriptor(), name, value);
 }
+enum PlayerType : int {
+  NULL_PLAYER_TYPE = 0,
+  CHARACTER = 1,
+  TEAM = 2,
+  PlayerType_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  PlayerType_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool PlayerType_IsValid(int value);
+extern const uint32_t PlayerType_internal_data_[];
+constexpr PlayerType PlayerType_MIN = static_cast<PlayerType>(0);
+constexpr PlayerType PlayerType_MAX = static_cast<PlayerType>(2);
+constexpr int PlayerType_ARRAYSIZE = 2 + 1;
+const ::google::protobuf::EnumDescriptor*
+PlayerType_descriptor();
+template <typename T>
+const std::string& PlayerType_Name(T value) {
+  static_assert(std::is_same<T, PlayerType>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to PlayerType_Name().");
+  return PlayerType_Name(static_cast<PlayerType>(value));
+}
+template <>
+inline const std::string& PlayerType_Name(PlayerType value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<PlayerType_descriptor,
+                                                 0, 2>(
+      static_cast<int>(value));
+}
+inline bool PlayerType_Parse(absl::string_view name, PlayerType* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<PlayerType>(
+      PlayerType_descriptor(), name, value);
+}
 enum CharacterType : int {
   NULL_CHARACTER_TYPE = 0,
   TangSeng = 1,
@@ -661,6 +695,12 @@ struct is_proto_enum<::protobuf::ShapeType> : std::true_type {};
 template <>
 inline const EnumDescriptor* GetEnumDescriptor<::protobuf::ShapeType>() {
   return ::protobuf::ShapeType_descriptor();
+}
+template <>
+struct is_proto_enum<::protobuf::PlayerType> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::protobuf::PlayerType>() {
+  return ::protobuf::PlayerType_descriptor();
 }
 template <>
 struct is_proto_enum<::protobuf::CharacterType> : std::true_type {};

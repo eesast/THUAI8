@@ -26,10 +26,6 @@
 // detect/prohibit anytime it is #included twice without a corresponding
 // #undef.
 
-#ifndef PROTOBUF_USE_DLLS
-#define PROTOBUF_USE_DLLS
-#endif // PROTOBUF_USE_DLLS
-
 #ifdef PROTOBUF_PORT_
 #error "port_def.inc included multiple times"
 #endif

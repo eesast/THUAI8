@@ -393,18 +393,18 @@ namespace Server
         public override Task<BoolRes> Cast(CastMsg request, ServerCallContext context)
         {
             GameServerLogging.logger.ConsoleLogDebug(
-                $"TRY Cast: Player {request.CharacterId} from Team {request.TeamId} casting Skill {request.SkillId}");
+                $"TRY Cast: Player {request.CharacterId} from Team {request.TeamId}");
             BoolRes boolRes = new();
             if (request.CharacterId >= spectatorMinPlayerID)
             {
                 boolRes.ActSuccess = false;
                 return Task.FromResult(boolRes);
             }
-            if (request.SkillId <= 0)
+            /*if (request.SkillId <= 0)
             {
                 boolRes.ActSuccess = false;
                 return Task.FromResult(boolRes);
-            }
+            }*/
             if (request.AttackRange <= 0)
             {
                 boolRes.ActSuccess = false;
