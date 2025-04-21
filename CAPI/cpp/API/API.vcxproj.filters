@@ -21,6 +21,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\proto\Message2Clients.pb.cc">
+      <Filter>源文件\proto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\proto\Message2Server.pb.cc">
+      <Filter>源文件\proto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\proto\MessageType.pb.cc">
+      <Filter>源文件\proto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\proto\Services.grpc.pb.cc">
+      <Filter>源文件\proto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\proto\Services.pb.cc">
+      <Filter>源文件\proto</Filter>
+    </ClCompile>
     <ClCompile Include="src\AI.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -39,23 +54,23 @@
     <ClCompile Include="src\main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\proto\Message2Clients.pb.cc">
-      <Filter>源文件\proto</Filter>
-    </ClCompile>
-    <ClCompile Include="..\proto\Message2Server.pb.cc">
-      <Filter>源文件\proto</Filter>
-    </ClCompile>
-    <ClCompile Include="..\proto\MessageType.pb.cc">
-      <Filter>源文件\proto</Filter>
-    </ClCompile>
-    <ClCompile Include="..\proto\Services.grpc.pb.cc">
-      <Filter>源文件\proto</Filter>
-    </ClCompile>
-    <ClCompile Include="..\proto\Services.pb.cc">
-      <Filter>源文件\proto</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\proto\Message2Clients.pb.h">
+      <Filter>头文件\proto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\proto\Message2Server.pb.h">
+      <Filter>头文件\proto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\proto\MessageType.pb.h">
+      <Filter>头文件\proto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\proto\Services.grpc.pb.h">
+      <Filter>头文件\proto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\proto\Services.pb.h">
+      <Filter>头文件\proto</Filter>
+    </ClInclude>
     <ClInclude Include="include\AI.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -82,21 +97,6 @@
     </ClInclude>
     <ClInclude Include="include\utils.hpp">
       <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="..\proto\Message2Clients.pb.h">
-      <Filter>头文件\proto</Filter>
-    </ClInclude>
-    <ClInclude Include="..\proto\Message2Server.pb.h">
-      <Filter>头文件\proto</Filter>
-    </ClInclude>
-    <ClInclude Include="..\proto\MessageType.pb.h">
-      <Filter>头文件\proto</Filter>
-    </ClInclude>
-    <ClInclude Include="..\proto\Services.grpc.pb.h">
-      <Filter>头文件\proto</Filter>
-    </ClInclude>
-    <ClInclude Include="..\proto\Services.pb.h">
-      <Filter>头文件\proto</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
