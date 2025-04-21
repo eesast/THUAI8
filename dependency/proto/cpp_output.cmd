@@ -1,3 +1,17 @@
+:: =============================================================================
+:: File         : dependency/proto/cpp_output.cmd
+:: Description  : Generate C++ files from proto files on Windows
+:: -----------------------------------------------------------------------------
+:: Copyright    : (C) 2025 EESAST
+:: License      : MIT License
+::               See LICENSE file in the project root for full license text.
+::               This file is part of EESAST/THUAI8 or later versions of
+::               THUAI or teamstyle.
+:: -----------------------------------------------------------------------------
+:: First Created: 2025-04-22      Author: Timothy Liu Xuefeng
+:: Last Modified: 2025-04-22      Author: Timothy Liu Xuefeng
+:: =============================================================================
+
 @ECHO OFF
 SETLOCAL
 
@@ -37,7 +51,7 @@ IF "%AUTO%" NEQ "1" (
 )
 
 :FIND_PROTOC
-ECHO Finding protoc.exe...
+ECHO Finding protoc.exe in PATH...
 FOR %%D IN ("%PATH:;=" "%") DO (
     IF EXIST "%%~D\protoc.exe" (
         SET "PROTOC_PATH=%%~D\protoc.exe"
@@ -55,7 +69,7 @@ IF EXIST "%USER_INPUT%" (
     SET "PROTOC_PATH=%USER_INPUT%"
     GOTO :FOUND_PROTOC
 ) ELSE (
-    ECHO Cannot find %USER_INPUT%, please retry.
+    ECHO %USER_INPUT% does not exist, please try again.
     GOTO :ASK_PROTOC
 )
 
@@ -66,7 +80,7 @@ IF "%AUTO%" NEQ "1" (
 )
 
 :FIND_CPP_PLUGIN
-ECHO Finding grpc_cpp_plugin.exe...
+ECHO Finding grpc_cpp_plugin.exe in PATH...
 FOR %%D IN ("%PATH:;=" "%") DO (
     IF EXIST "%%~D\grpc_cpp_plugin.exe" (
         SET "CPP_PLUGIN_PATH=%%~D\grpc_cpp_plugin.exe"
@@ -84,7 +98,7 @@ IF EXIST "%USER_INPUT%" (
     SET "CPP_PLUGIN_PATH=%USER_INPUT%"
     GOTO :FOUND_CPP_PLUGIN
 ) ELSE (
-    ECHO Cannot find %USER_INPUT%, please retry.
+    ECHO %USER_INPUT% does not exist, please try again.
     GOTO :ASK_CPP_PLUGIN
 )
 
@@ -141,3 +155,4 @@ ECHO.
 ECHO Done.
 ECHO.
 PAUSE
+EXIT /B 0
