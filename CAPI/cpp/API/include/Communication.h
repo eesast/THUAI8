@@ -33,7 +33,7 @@ public:
     bool Move(int64_t teamID, int64_t characterID, int32_t moveTimeInMilliseconds, double angle);
     bool Recover(int32_t playerID, int64_t recover, int32_t teamID);
     bool Produce(int64_t playerID, int64_t teamID);
-    //bool Rebuild(int32_t playerID, int32_t teamID, THUAI8::ConstructionType constructionType);
+    // bool Rebuild(int32_t playerID, int32_t teamID, THUAI8::ConstructionType constructionType);
     bool Construct(int32_t playerID, int32_t teamID, THUAI8::ConstructionType constructionType);
     bool Skill_Attack(int64_t teamID, int64_t playerID, double angle);
     bool Common_Attack(int64_t playerID, int64_t teamID, int64_t attacked_playerID, int64_t attacked_teamID);  // 角度？
@@ -41,7 +41,7 @@ public:
     // Team
     bool InstallEquipment(int32_t playerID, int32_t teamID, THUAI8::EquipmentType equipmentType);
     bool BuildCharacter(int32_t teamID, THUAI8::CharacterType CharacterType, int32_t birthIndex);
-    //bool Recycle(int32_t playerID, int32_t teamID);  // 回收？
+    // bool Recycle(int32_t playerID, int32_t teamID);  // 回收？
 
 private:
     std::unique_ptr<protobuf::AvailableService::Stub> THUAI8Stub;

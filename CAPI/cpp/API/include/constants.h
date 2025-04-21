@@ -228,7 +228,7 @@ namespace Constants
         SCCI int32_t cost = 10000;
         SCCI int32_t time = 30;
         SCCI double attack_boost = 1.2;        // 注意这是提升的倍数
-        SCCI int32_t speed_boost = 300;         // 注意这是直接叠加
+        SCCI int32_t speed_boost = 300;        // 注意这是直接叠加
         SCCI double attack_freq_boost = 1.25;  // 注意这是提升的倍数
     };
 }  // namespace Constants

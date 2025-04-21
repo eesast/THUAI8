@@ -14,7 +14,7 @@
 
 namespace THUAI8
 {
-    
+
     // 游戏状态
     enum class GameState : unsigned char
     {
@@ -79,7 +79,6 @@ namespace THUAI8
         ZhiZhujing = 11,
         Pawn = 12,
     };
-
 
     enum class EquipmentType : unsigned char
     {
@@ -498,7 +497,7 @@ namespace THUAI8
         {NewsType::TextMessage, "TextMessage"},
         {NewsType::BinaryMessage, "BinaryMessage"},
     };
-    
+
 }  // namespace THUAI8
 
 namespace fmt
@@ -542,6 +541,5 @@ namespace fmt
         }
     };
 }  // namespace fmt
-
 
 #endif

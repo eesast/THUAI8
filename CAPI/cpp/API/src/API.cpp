@@ -125,7 +125,7 @@ THUAI8::PlaceType CharacterDebugAPI::GetPlaceType(int32_t cellX, int32_t cellY) 
     return logic.GetPlaceType(cellX, cellY);
 }
 
-    THUAI8::PlaceType TeamAPI::GetPlaceType(int32_t cellX, int32_t cellY) const
+THUAI8::PlaceType TeamAPI::GetPlaceType(int32_t cellX, int32_t cellY) const
 {
     return logic.GetPlaceType(cellX, cellY);
 }
@@ -150,7 +150,7 @@ std::optional<THUAI8::EconomyResourceState> TeamAPI::GetEnconomyResourceState(in
     return logic.GetEnconomyResourceState(cellX, cellY);
 }
 
-std::optional<std::pair<int32_t, int32_t>>CharacterAPI:: GetAdditionResourceState(int32_t cellX, int32_t cellY) const
+std::optional<std::pair<int32_t, int32_t>> CharacterAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
 {
     return logic.GetAdditionResourceState(cellX, cellY);
 }

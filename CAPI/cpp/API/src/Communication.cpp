@@ -279,7 +279,7 @@ bool Communication::Skill_Attack(int64_t teamID, int64_t playerID, double angle)
     }
     protobuf::BoolRes reply;
     ClientContext context;
-    auto request = THUAI8Proto::THUAI82ProtobufCastMsg(playerID,teamID,angle);
+    auto request = THUAI8Proto::THUAI82ProtobufCastMsg(playerID, teamID, angle);
     auto status = THUAI8Stub->Cast(&context, request, &reply);
     if (status.ok())
         return reply.act_success();

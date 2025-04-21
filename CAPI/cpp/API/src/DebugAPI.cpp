@@ -35,7 +35,6 @@ CharacterDebugAPI::CharacterDebugAPI(ILogic& logic, bool file, bool print, bool 
     logger->flush_on(spdlog::level::warn);
 }
 
-
 void CharacterDebugAPI::StartTimer()
 {
     startPoint = std::chrono::system_clock::now();
@@ -87,7 +86,6 @@ bool CharacterDebugAPI::HaveView(int32_t x, int32_t y, int32_t newX, int32_t new
     auto selfInfo = GetSelfInfo();
     return logic.HaveView(selfInfo->x, selfInfo->y, newX, newX, selfInfo->viewRange, map);
 }
-
 
 std::pair<int32_t, std::string> CharacterDebugAPI::GetMessage()
 {
@@ -248,8 +246,8 @@ std::shared_ptr<const THUAI8::GameInfo> CharacterDebugAPI::GetGameInfo() const
         throw std::runtime_error("GetPlaceType failed");
     }
     return *result; // 解包 std::optional 并返回实际值
-}*/                 //稍后再改
-
+}*/
+// 稍后再改
 
 std::optional<THUAI8::EconomyResourceState> CharacterDebugAPI::GetEnconomyResourceState(int32_t cellX, int32_t cellY) const
 {
@@ -260,7 +258,7 @@ std::optional<THUAI8::EconomyResourceState> CharacterDebugAPI::GetEnconomyResour
     return result;
 }
 
- std::optional<std::pair<int32_t, int32_t>> CharacterDebugAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
+std::optional<std::pair<int32_t, int32_t>> CharacterDebugAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
 {
     logger->info("GetAdditionResourceState: cellX = {}, cellY = {}, called at {}ms", cellX, cellY, Time::TimeSinceStart(startPoint));
     auto result = logic.GetAdditionResourceState(cellX, cellY);
@@ -366,7 +364,6 @@ void CharacterDebugAPI::PrintCharacter() const
     }
 }
 
-
 void CharacterDebugAPI::PrintSelfInfo() const
 {
     auto self = logic.CharacterGetSelfInfo();
@@ -391,8 +388,6 @@ void CharacterDebugAPI::PrintSelfInfo() const
 
     logger->info("************************\n");
 }
-
-
 
 std::future<bool> CharacterDebugAPI::EndAllAction()
 {
@@ -527,15 +522,13 @@ THUAI8::PlaceType TeamDebugAPI::GetPlaceType(int32_t cellX, int32_t cellY) const
 {
     logger->info("GetPlaceType: cellX = {}, cellY = {}, called at {}ms", cellX, cellY, Time::TimeSinceStart(startPoint));
     THUAI8::PlaceType result = logic.GetPlaceType(cellX, cellY);  // 直接获取返回值
-    if (result == THUAI8::PlaceType::NullPlaceType)                     // 假设 Unknown 是一个表示失败的默认值
+    if (result == THUAI8::PlaceType::NullPlaceType)               // 假设 Unknown 是一个表示失败的默认值
     {
         logger->warn("GetPlaceType: failed at {}ms", Time::TimeSinceStart(startPoint));
         throw std::runtime_error("GetPlaceType failed");  // 如果失败，抛出异常
     }
     return result;  // 返回实际值
 }
-
-
 
 std::optional<THUAI8::EconomyResourceState> TeamDebugAPI::GetEnconomyResourceState(int32_t cellX, int32_t cellY) const
 {
@@ -545,7 +538,6 @@ std::optional<THUAI8::EconomyResourceState> TeamDebugAPI::GetEnconomyResourceSta
         logger->warn("GetEnconomyResourceState: failed at {}ms", Time::TimeSinceStart(startPoint));
     return result;
 }
-
 
 /* std::optional<THUAI8::ConstructionState> TeamDebugAPI::GetConstructionState(int32_t cellX, int32_t cellY) const
 {
@@ -593,7 +585,6 @@ std::shared_ptr<const THUAI8::Team> TeamDebugAPI::GetSelfInfo() const
     }
     return result;
 }
-
 
 std::future<bool> TeamDebugAPI::InstallEquipment(int32_t playerID, THUAI8::EquipmentType equipmenttype)
 {

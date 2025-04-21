@@ -576,7 +576,6 @@ namespace THUAI8Proto
         return creatCharacterMsg;
     }
 
-    
     inline protobuf::ConstructMsg THUAI82ProtobufConstructMsg(int64_t character_id, int64_t team_id, THUAI8::ConstructionType construction_type)
     {
         protobuf::ConstructMsg constructMsg;
@@ -599,7 +598,7 @@ namespace THUAI8Proto
     {
         protobuf::CastMsg castMsg;
         castMsg.set_character_id(character_id);
-        //castMsg.set_skill_id(skill_id);
+        // castMsg.set_skill_id(skill_id);
         castMsg.set_team_id(team_id);
         castMsg.set_angle(attack_angle);
         return castMsg;
