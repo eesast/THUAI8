@@ -14,6 +14,10 @@ namespace Preparation.Utility
         public const int KnockedBackTime = 50;
         public const int KnockedBackSpeed = 1500;           // 击退速度(额外速度，需加上基础移速）
 
+        public const long MaxShield = 150;
+        public const long MaxNiuShield = 100;
+        public const long MaxShoes = 1000;
+
         public const int TolerancesLength = 3;
         public const int AdjustLength = 3;
         //character cost
@@ -87,6 +91,9 @@ namespace Preparation.Utility
         public const long TieShanSkillATK = 20;
         public const long ZhiZhujingSkillATK = 10;
 
+        public const int TrapCost = 1000;
+        public const int TrapRange = 2000;
+
         public const int CharacterRadius = 400;
         public const int AResourceRadius = 400;
         public static XY GetCellCenterPos(int x, int y)  // 求格子的中心坐标
@@ -153,7 +160,6 @@ namespace Preparation.Utility
         public const int TrapConstructSpeed = 20;//100/5
         public const int CageConstructSpeed = 20;//100/5
         public const int TimerInterval = 1000;
-        public const int TrapRange = 1;
         public const int TrapDamage = 20;
         public const int TrapTime = 5000;
 
@@ -214,6 +220,7 @@ namespace Preparation.Utility
         public const int InitialMoney = 5000;
         public const int CharacterTotalNumMax = 6;
         public const double RecycleRate = 0.5;
+        public const int ThreeMinutes = 180000;
         public const int SevenMinutes = 420000;
     }
 }

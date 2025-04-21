@@ -222,7 +222,7 @@ namespace Server
                 {
                     TrapType = trap switch
                     {
-                        Trap _ => Protobuf.TrapType.Hole,
+                        HOLE _ => Protobuf.TrapType.Hole,
                         Cage _ => Protobuf.TrapType.Cage,
                     },
 
@@ -233,7 +233,7 @@ namespace Server
 
                     TeamId = trap switch
                     {
-                        Trap t => t.TeamID,
+                        HOLE t => t.TeamID,
                         Cage c => c.TeamID,
                     }
                 }

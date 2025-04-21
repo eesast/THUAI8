@@ -12,12 +12,15 @@ namespace debug_interface.Models
 {
     public enum MapCellType
     {
-        Obstacle,   // 障碍物
-        OpenLand,   // 空地
-        Grass,      // 草丛
-        Resource,   // 资源点
-        Building,   // 建筑
-        Trap        // 陷阱 
+        Null_space_type,    //`未定义`
+        Home, //`家`
+        Space, //`空地`
+        Barrier, //`障碍物`
+        Bush, //`树林`
+        Economic_Resource, //`经济资源`
+        Additional_Resource, //`附加资源`
+        Construction, //`建筑`
+        Trap, //`陷阱`
     }
 
     public partial class MapCell : ObservableObject
@@ -37,13 +40,6 @@ namespace debug_interface.Models
         [ObservableProperty]
         private string displayText = ""; // 用于显示血量等
 
-        [ObservableProperty]
-        private string toolTipText = ""; // 用于鼠标悬浮提示
 
-        // 可以选择性地添加血量信息，如果需要更复杂的绑定
-        // [ObservableProperty]
-        // private int currentHp;
-        // [ObservableProperty]
-        // private int maxHp;
     }
 }

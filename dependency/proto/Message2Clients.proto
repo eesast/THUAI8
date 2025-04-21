@@ -32,6 +32,8 @@ message MessageOfCharacter
     int64 invisible_time = 11;
     bool is_burned = 12;
     int64 burned_time = 13;
+
+    // 伤害减免
     double harm_cut = 14;
     int64 harm_cut_time = 15;
 

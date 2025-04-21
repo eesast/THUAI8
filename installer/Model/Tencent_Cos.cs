@@ -18,6 +18,20 @@ using COSXML.Model.Tag;
 
 namespace installer.Model
 {
+    // 添加上传进度报告类
+    public class UploadReport
+    {
+        public long Completed { get; set; } = 0;
+        public long Total { get; set; } = 0;
+        public bool BigFileTraceEnabled { get; set; } = false;
+        public event EventHandler<double>? ProgressChanged;
+
+        public void OnProgressChanged(double progress)
+        {
+            ProgressChanged?.Invoke(this, progress);
+        }
+    }
+
     public class Tencent_Cos
     {
         public string Appid { get; init; }      // 设置腾讯云账户的账户标识（APPID）
@@ -31,6 +45,7 @@ namespace installer.Model
         protected TransferManager manager;
 
         public DownloadReport Report;
+        public UploadReport UploadReport;
 
         public Tencent_Cos(string appid, string region, string bucketName, Logger? _log = null)
         {
@@ -38,39 +53,129 @@ namespace installer.Model
             Log = _log ?? LoggerProvider.FromConsole();
             Log.PartnerInfo = "[COS]";
             Report = new DownloadReport();
-            // 初始化CosXmlConfig（提供配置SDK接口）
-            config = new CosXmlConfig.Builder()
-                        .IsHttps(true)      // 设置默认 HTTPS 请求
-                        .SetAppid(Appid)    // 设置腾讯云账户的账户标识 APPID
-                        .SetRegion(Region)  // 设置一个默认的存储桶地域
-                        .SetDebugLog(true)  // 显示日志
-                        .Build();           // 创建 CosXmlConfig 对象
+            UploadReport = new UploadReport();
 
-            // 使用全局密钥
-            string secretId = MauiProgram.SecretID;
-            string secretKey = MauiProgram.SecretKey;
-
-            // 确保密钥值有效，如果没有则使用默认值
-            if (string.IsNullOrEmpty(secretId) || secretId == "***")
+            try
             {
-                secretId = "***"; // 默认值或占位符
-                Log.LogWarning("使用默认SecretID - 注意：这将导致API访问受限");
+                // 初始化CosXmlConfig（提供配置SDK接口）
+                config = new CosXmlConfig.Builder()
+                            .IsHttps(true)      // 设置默认 HTTPS 请求
+                            .SetAppid(Appid)    // 设置腾讯云账户的账户标识 APPID
+                            .SetRegion(Region)  // 设置一个默认的存储桶地域
+                            .SetDebugLog(true)  // 显示日志
+                            .Build();           // 创建 CosXmlConfig 对象
+
+                // 使用全局密钥
+                string secretId = MauiProgram.SecretID;
+                string secretKey = MauiProgram.SecretKey;
+
+                // 记录使用的密钥信息（安全起见只记录前几位和长度）
+                if (secretId != null)
+                    Log.LogInfo($"使用SecretID: {secretId.Substring(0, Math.Min(4, secretId.Length))}*** (长度:{secretId.Length})");
+                else
+                    Log.LogWarning("SecretID为null");
+
+                if (secretKey != null)
+                    Log.LogInfo($"使用SecretKey: {secretKey.Substring(0, Math.Min(4, secretKey.Length))}*** (长度:{secretKey.Length})");
+                else
+                    Log.LogWarning("SecretKey为null");
+
+                // 确保密钥值有效，如果没有则尝试重新加载
+                if (string.IsNullOrEmpty(secretId) || secretId == "***")
+                {
+                    Log.LogWarning("SecretID无效或未设置 - 尝试重新从资源加载");
+                    try
+                    {
+                        // 尝试重新加载嵌入资源中的密钥
+                        if (typeof(MauiProgram).GetMethod("LoadSecretFromEmbeddedResource",
+                            System.Reflection.BindingFlags.Static |
+                            System.Reflection.BindingFlags.NonPublic) is System.Reflection.MethodInfo method)
+                        {
+                            method.Invoke(null, null);
+                            secretId = MauiProgram.SecretID; // 重新获取密钥
+                            secretKey = MauiProgram.SecretKey;
+                            Log.LogInfo("已重新加载密钥资源");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.LogError($"重新加载密钥资源失败: {ex.Message}");
+                    }
+
+                    // 再次检查密钥是否有效
+                    if (string.IsNullOrEmpty(secretId) || secretId == "***")
+                    {
+                        Log.LogError("无法获取有效的SecretID，COS访问将失败");
+                        secretId = "placeholder"; // 使用占位符以避免空引用异常
+                    }
+                }
+
+                if (string.IsNullOrEmpty(secretKey) || secretKey == "***")
+                {
+                    // 再次检查密钥是否已在前面的步骤中被加载
+                    if (string.IsNullOrEmpty(secretKey) || secretKey == "***")
+                    {
+                        Log.LogError("无法获取有效的SecretKey，COS访问将失败");
+                        secretKey = "placeholder"; // 使用占位符以避免空引用异常
+                    }
+                }
+
+                try
+                {
+                    QCloudCredentialProvider cosCredentialProvider = new DefaultQCloudCredentialProvider(secretId, secretKey, 1000);
+                    cosXml = new CosXmlServer(config, cosCredentialProvider);
+                    transfer = new TransferConfig()
+                    {
+                        DivisionForDownload = 20 << 20,     // 下载分块阈值为20MB
+                        SliceSizeForDownload = 10 << 20,    // 下载分块大小为10MB
+                    };
+                    manager = new TransferManager(cosXml, transfer);
+
+                    Log.LogInfo($"COS客户端初始化完成: Bucket={BucketName}, Region={Region}, APPID={Appid}");
+
+                    // 验证密钥有效性
+                    if (secretId == "placeholder" || secretKey == "placeholder")
+                    {
+                        Log.LogWarning("使用了占位符密钥，COS访问将很可能失败");
+                    }
+                    else
+                    {
+                        Log.LogInfo("正在验证COS密钥有效性...");
+                        try
+                        {
+                            // 使用远程存储桶检查密钥是否有效，不影响构造函数完成
+                            Task.Run(() =>
+                            {
+                                try
+                                {
+                                    if (!ValidateCredentials())
+                                    {
+                                        Log.LogWarning("COS密钥验证失败，下载功能可能不可用");
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    Log.LogError($"验证COS密钥时发生异常: {ex.Message}");
+                                }
+                            });
+                        }
+                        catch (Exception ex)
+                        {
+                            Log.LogError($"启动密钥验证任务时出错: {ex.Message}");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.LogError($"初始化COS客户端失败: {ex.Message}");
+                    throw;
+                }
             }
-
-            if (string.IsNullOrEmpty(secretKey) || secretKey == "***")
+            catch (Exception ex)
             {
-                secretKey = "***"; // 默认值或占位符
-                Log.LogWarning("使用默认SecretKey - 注意：这将导致API访问受限");
+                Log.LogError($"Tencent_Cos构造函数出错: {ex.Message}");
+                throw;
             }
-
-            QCloudCredentialProvider cosCredentialProvider = new DefaultQCloudCredentialProvider(secretId, secretKey, 1000);
-            cosXml = new CosXmlServer(config, cosCredentialProvider);
-            transfer = new TransferConfig()
-            {
-                DivisionForDownload = 20 << 20,     // 下载分块阈值为20MB
-                SliceSizeForDownload = 10 << 20,    // 下载分块大小为10MB
-            };
-            manager = new TransferManager(cosXml, transfer);
         }
 
         public void UpdateSecret(string secretId, string secretKey, long durationSecond = 1000)
@@ -108,64 +213,102 @@ namespace installer.Model
                     ?? throw new Exception("本地文件夹路径获取失败");
                 string localFileName = Path.GetFileName(savePath);    // 指定本地保存的文件名
                 remotePath = remotePath?.Replace('\\', '/')?.TrimStart('.').TrimStart('/');
-                var head = cosXml.HeadObject(new HeadObjectRequest(bucket, remotePath ?? localFileName));
-                long c = 0;
-                if (head.size > (1 << 20))
+
+                Log.LogInfo(thID, $"检查文件是否存在: Bucket={bucket}, RemotePath={remotePath}");
+
+                try
                 {
-                    // 文件大小大于1MB则设置回调函数
-                    Report.Total = head.size;
-                    Report.Completed = 0;
-                    Report.BigFileTraceEnabled = true;
-                    var size = (head.size > 1 << 30) ?
-                        string.Format("{0:##.#}GB", ((double)head.size) / (1 << 30)) :
-                        string.Format("{0:##.#}MB", ((double)head.size) / (1 << 20));
-                    Log.LogWarning($"Big file({size}) detected! Please keep network steady!");
-                    COSXMLDownloadTask task = new COSXMLDownloadTask(bucket, remotePath ?? localFileName, localDir, localFileName);
-                    task.progressCallback = (completed, total) =>
+                    var head = cosXml.HeadObject(new HeadObjectRequest(bucket, remotePath ?? localFileName));
+                    Log.LogInfo(thID, $"文件存在，大小: {head.size} 字节");
+
+                    long c = 0;
+                    if (head.size > (1 << 20))
                     {
-                        if (completed > 1 << 30 && completed - c > 100 << 20)
+                        // 文件大小大于1MB则设置回调函数
+                        Report.Total = head.size;
+                        Report.Completed = 0;
+                        Report.BigFileTraceEnabled = true;
+                        var size = (head.size > 1 << 30) ?
+                            string.Format("{0:##.#}GB", ((double)head.size) / (1 << 30)) :
+                            string.Format("{0:##.#}MB", ((double)head.size) / (1 << 20));
+                        Log.LogWarning($"Big file({size}) detected! Please keep network steady!");
+                        COSXMLDownloadTask task = new COSXMLDownloadTask(bucket, remotePath ?? localFileName, localDir, localFileName);
+                        task.progressCallback = (completed, total) =>
                         {
-                            Log.LogDebug(string.Format("downloaded = {0:##.#}GB, progress = {1:##.##}%", ((double)completed) / (1 << 30), completed * 100.0 / total));
-                            c = completed;
-                        }
-                        if (completed < 1 << 30 && completed - c > 10 << 20)
+                            if (completed > 1 << 30 && completed - c > 100 << 20)
+                            {
+                                Log.LogDebug(string.Format("downloaded = {0:##.#}GB, progress = {1:##.##}%", ((double)completed) / (1 << 30), completed * 100.0 / total));
+                                c = completed;
+                            }
+                            if (completed < 1 << 30 && completed - c > 10 << 20)
+                            {
+                                Log.LogDebug(string.Format("downloaded = {0:##.#}MB, progress = {1:##.##}%", ((double)completed) / (1 << 20), completed * 100.0 / total));
+                                c = completed;
+                            }
+                            (Report.Completed, Report.Total) = (completed, total);
+                        };
+                        // 执行请求                
+                        var result = manager.DownloadAsync(task).Result;
+                        // 请求成功
+                        if (result is not null && result.httpCode != 200 && result.httpCode != 206)
                         {
-                            Log.LogDebug(string.Format("downloaded = {0:##.#}MB, progress = {1:##.##}%", ((double)completed) / (1 << 20), completed * 100.0 / total));
-                            c = completed;
+                            Log.LogError(thID, $"Download task: {{\"{remotePath}\"->\"{savePath}\"}} failed, HTTP Code: {result.httpCode}, Message: {result.httpMessage}");
+                            throw new Exception($"Download task: {{\"{remotePath}\"->\"{savePath}\"}} failed, message: {result.httpCode} {result.httpMessage}");
                         }
-                        (Report.Completed, Report.Total) = (completed, total);
-                    };
-                    // 执行请求                
-                    var result = manager.DownloadAsync(task).Result;
-                    // 请求成功
-                    if (result is not null && result.httpCode != 200 && result.httpCode != 206)
-                        throw new Exception($"Download task: {{\"{remotePath}\"->\"{savePath}\"}} failed, message: {result.httpCode} {result.httpMessage}");
-                    Log.LogDebug(thID, $"Download task: {{\"{remotePath}\"->\"{savePath}\"}} finished.");
+                        Log.LogDebug(thID, $"Download task: {{\"{remotePath}\"->\"{savePath}\"}} finished.");
+                    }
+                    else
+                    {
+                        if (Report.Completed > 0 && Report.Total > 0 && Report.Completed == Report.Total)
+                            Report.BigFileTraceEnabled = false;
+                        var request = new GetObjectRequest(bucket, remotePath ?? localFileName, localDir, localFileName);
+                        // 执行请求                
+                        var result = cosXml.GetObject(request);
+                        // 请求成功
+                        if (result.httpCode != 200 && result.httpCode != 206)
+                        {
+                            Log.LogError(thID, $"Download task: {{\"{remotePath}\"->\"{savePath}\"}} failed, HTTP Code: {result.httpCode}, Message: {result.httpMessage}");
+                            throw new Exception($"Download task: {{\"{remotePath}\"->\"{savePath}\"}} failed, message: {result.httpCode} {result.httpMessage}");
+                        }
+                        Log.LogDebug(thID, $"Download task: {{\"{remotePath}\"->\"{savePath}\"}} finished.");
+                    }
+
+                    if (Report.BigFileTraceEnabled)
+                        Report.Completed = Report.Total;
+
+                    return thID;
                 }
-                else
+                catch (COSXML.CosException.CosServerException serverEx)
                 {
-                    if (Report.Completed > 0 && Report.Total > 0 && Report.Completed == Report.Total)
-                        Report.BigFileTraceEnabled = false;
-                    var request = new GetObjectRequest(bucket, remotePath ?? localFileName, localDir, localFileName);
-                    // 执行请求                
-                    var result = cosXml.GetObject(request);
-                    // 请求成功
-                    if (result.httpCode != 200 && result.httpCode != 206)
-                        throw new Exception($"Download task: {{\"{remotePath}\"->\"{savePath}\"}} failed, message: {result.httpCode} {result.httpMessage}");
-                    Log.LogDebug(thID, $"Download task: {{\"{remotePath}\"->\"{savePath}\"}} finished.");
+                    // 处理COS服务器返回的错误
+                    Log.LogError(thID, $"COS服务器错误: 状态码={serverEx.statusCode}, 错误码={serverEx.errorCode}, 错误信息={serverEx.errorMessage}");
 
+                    if (serverEx.statusCode == 403)
+                    {
+                        Log.LogError(thID, "权限错误(403 Forbidden)：可能是SecretID/SecretKey无效，或没有访问权限");
+                    }
+                    else if (serverEx.statusCode == 404)
+                    {
+                        Log.LogError(thID, $"文件不存在(404 Not Found)：路径 \"{remotePath ?? localFileName}\" 在存储桶 \"{bucket}\" 中不存在");
+                    }
+
+                    Log.LogDebug(thID, $"Download task: {{\"{remotePath}\"->\"{savePath}\"}} ended with server error.");
+                    return -1;
                 }
-
-                if (Report.BigFileTraceEnabled)
-                    Report.Completed = Report.Total;
+                catch (COSXML.CosException.CosClientException clientEx)
+                {
+                    // 处理客户端错误
+                    Log.LogError(thID, $"COS客户端错误: {clientEx.Message}");
+                    Log.LogDebug(thID, $"Download task: {{\"{remotePath}\"->\"{savePath}\"}} ended with client error.");
+                    return -1;
+                }
             }
             catch (Exception ex)
             {
-                Log.LogError(thID, ex.Message);
+                Log.LogError(thID, $"下载错误: {ex.Message}");
                 Log.LogDebug(thID, $"Download task: {{\"{remotePath}\"->\"{savePath}\"}} ended unexpectedly.");
-                thID = -1;
+                return -1;
             }
-            return thID;
         }
 
         public int DownloadQueue(string basePath, IEnumerable<string> queue)
@@ -242,27 +385,79 @@ namespace installer.Model
             }
         }
 
-        public void UploadFile(string localPath, string targetPath)
+        public void UploadFile(string localPath, string targetPath, IProgress<double>? progress = null)
         {
             int thID = Log.StartNew();
             Log.LogInfo(thID, $"Upload task: {{\"{localPath}\"->\"{targetPath}\"}} started.");
-
             string bucket = $"{BucketName}-{Appid}";
-
-            COSXMLUploadTask uploadTask = new COSXMLUploadTask(bucket, targetPath);
-
             targetPath = targetPath.TrimStart('.').TrimStart('/');
-
-            uploadTask.SetSrcPath(localPath);
-
             try
             {
+                if (!File.Exists(localPath))
+                {
+                    Log.LogError($"File \"{localPath}\" doesn't exist!");
+                    return;
+                }
+                FileInfo fi = new FileInfo(localPath);
+                long c = 0;
+                //初始化TransferConfig
+                TransferConfig transferConfig = new TransferConfig();
+
+                COSXMLUploadTask uploadTask = new COSXMLUploadTask(bucket, targetPath);
+                uploadTask.SetSrcPath(localPath);
+
+                // 检查文件大小，大于1MB时设置进度回调
+                if (fi.Length > (1 << 20))
+                {
+                    var size = (fi.Length > 1 << 30) ?
+                        string.Format("{0:##.#}GB", ((double)fi.Length) / (1 << 30)) :
+                        string.Format("{0:##.#}MB", ((double)fi.Length) / (1 << 20));
+                    Log.LogWarning($"上传大文件({size})，请保持网络稳定!");
+
+                    UploadReport.Total = fi.Length;
+                    UploadReport.Completed = 0;
+                    UploadReport.BigFileTraceEnabled = true;
+
+                    uploadTask.progressCallback = (completed, total) =>
+                    {
+                        double progressValue = (double)completed / total;
+                        progress?.Report(progressValue);
+                        UploadReport.Completed = completed;
+                        UploadReport.Total = total;
+                        UploadReport.OnProgressChanged(progressValue);
+
+                        if (completed > 1 << 30 && completed - c > 100 << 20)
+                        {
+                            Log.LogDebug(string.Format("uploaded = {0:##.#}GB, progress = {1:##.##}%",
+                                ((double)completed) / (1 << 30),
+                                progressValue * 100.0));
+                            c = completed;
+                        }
+                        if (completed < 1 << 30 && completed - c > 10 << 20)
+                        {
+                            Log.LogDebug(string.Format("uploaded = {0:##.#}MB, progress = {1:##.##}%",
+                                ((double)completed) / (1 << 20),
+                                progressValue * 100.0));
+                            c = completed;
+                        }
+                    };
+                }
+
                 COSXMLUploadTask.UploadTaskResult r = manager.UploadAsync(uploadTask).Result;
                 if (r.httpCode != 200)
                     Log.LogError(thID, $"Upload task: {{\"{localPath}\"->\"{targetPath}\"}} failed, message: {r.httpMessage}");
                 string eTag = r.eTag;
                 //到这里应该是成功了，但是因为我没有试过，也不知道具体情况，可能还要根据result的内容判断
                 Log.LogInfo(thID, $"Upload task: {{\"{localPath}\"->\"{targetPath}\"}} finished.");
+
+                // 清理上传进度
+                if (UploadReport.BigFileTraceEnabled)
+                {
+                    UploadReport.Completed = UploadReport.Total;
+                    UploadReport.BigFileTraceEnabled = false;
+                    progress?.Report(1.0); // 确保进度到达100%
+                    UploadReport.OnProgressChanged(1.0);
+                }
             }
             catch (Exception ex)
             {
@@ -272,22 +467,40 @@ namespace installer.Model
 
         public bool DetectFile(string remotePath)
         {
+            int thID = Log.StartNew();
             string bucket = $"{BucketName}-{Appid}";
             remotePath = remotePath.TrimStart('.').TrimStart('/');
+            Log.LogInfo(thID, $"检查文件是否存在: Bucket={bucket}, RemotePath={remotePath}");
+
             //执行请求
             try
             {
                 DoesObjectExistRequest requestd = new DoesObjectExistRequest(bucket, remotePath);
-                return cosXml.DoesObjectExist(requestd);
+                bool exists = cosXml.DoesObjectExist(requestd);
+                Log.LogInfo(thID, exists ?
+                    $"文件存在: {remotePath}" :
+                    $"文件不存在: {remotePath}");
+                return exists;
             }
-            catch (CosClientException clientEx)
+            catch (COSXML.CosException.CosClientException clientEx)
             {
-                Log.LogError("CosClientException: " + clientEx);
+                Log.LogError(thID, $"COS客户端错误: {clientEx.Message}");
                 return false;
             }
-            catch (CosServerException serverEx)
+            catch (COSXML.CosException.CosServerException serverEx)
             {
-                Log.LogError("CosServerException: " + serverEx.GetInfo());
+                Log.LogError(thID, $"COS服务器错误: 状态码={serverEx.statusCode}, 错误码={serverEx.errorCode}, 错误信息={serverEx.errorMessage}");
+
+                if (serverEx.statusCode == 403)
+                {
+                    Log.LogError(thID, "权限错误(403 Forbidden)：可能是SecretID/SecretKey无效，或没有访问权限");
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(thID, $"检查文件时发生错误: {ex.Message}");
                 return false;
             }
         }
@@ -368,9 +581,9 @@ namespace installer.Model
             return Task.Run(() => ArchieveUnzip(zipPath, targetDir));
         }
 
-        public Task UploadFileAsync(string localPath, string targetPath)
+        public Task UploadFileAsync(string localPath, string targetPath, IProgress<double>? progress = null)
         {
-            return Task.Run(() => UploadFile(localPath, targetPath));
+            return Task.Run(() => UploadFile(localPath, targetPath, progress));
         }
 
         public Task DeleteFileAsync(string remotePath)
@@ -379,5 +592,55 @@ namespace installer.Model
         }
 
         #endregion
+
+        public bool ValidateCredentials()
+        {
+            int thID = Log.StartNew();
+            string bucket = $"{BucketName}-{Appid}";
+            Log.LogInfo(thID, "验证COS密钥有效性...");
+
+            try
+            {
+                // 尝试列出存储桶，这个操作需要有效的密钥
+                GetBucketRequest request = new GetBucketRequest(bucket);
+                // 设置最大返回数量为1，只需要验证连接成功即可
+                request.SetMaxKeys("1");
+                GetBucketResult result = cosXml.GetBucket(request);
+
+                if (result.httpCode == 200)
+                {
+                    Log.LogInfo(thID, "COS密钥验证成功，连接正常");
+                    return true;
+                }
+                else
+                {
+                    Log.LogError(thID, $"COS密钥验证失败，HTTP状态码: {result.httpCode}");
+                    return false;
+                }
+            }
+            catch (COSXML.CosException.CosServerException serverEx)
+            {
+                if (serverEx.statusCode == 403)
+                {
+                    Log.LogError(thID, "COS密钥验证失败: 权限不足或密钥无效 (403 Forbidden)");
+                    Log.LogDebug(thID, $"详细错误: {serverEx.GetInfo()}");
+                }
+                else
+                {
+                    Log.LogError(thID, $"COS服务器错误: {serverEx.GetInfo()}");
+                }
+                return false;
+            }
+            catch (COSXML.CosException.CosClientException clientEx)
+            {
+                Log.LogError(thID, $"COS客户端错误: {clientEx.Message}");
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(thID, $"验证COS密钥时发生异常: {ex.Message}");
+                return false;
+            }
+        }
     }
 }

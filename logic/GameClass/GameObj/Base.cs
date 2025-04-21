@@ -17,6 +17,10 @@ namespace GameClass.GameObj
         public ObjPool<Character, CharacterType> CharacterPool { get; }
         private List<XY> birthPointList = [];//根据兵营初始化
         public List<XY> BirthPointList => birthPointList;
+        private List<XY> cageList = [];
+        public List<XY> CageList => cageList;
+        private List<XY> holeList = [];
+        public List<XY> HoleList => holeList;
         public MoneyPool MoneyPool { get; } = new();
         public AtomicInt BarrackNum { get; } = new(0);
         public AtomicInt FarmNum { get; } = new(1);

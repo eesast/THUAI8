@@ -33,8 +33,9 @@
 
 
     <Grid ColumnDefinitions="3*,5.5*" RowDefinitions="*">
+
         <!--  左侧区域  -->
-        <Grid Background="AliceBlue" RowDefinitions="*,*">
+        <Grid Background="AliceBlue" RowDefinitions="5*,5*,2*">
 
             <!--  取经队区域  -->
             <Grid Grid.Row="0" RowDefinitions="Auto,1*,Auto">
@@ -71,53 +72,144 @@
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
 
+                        <!--  Views\MainWindow.axaml  -->
+                        <!--  替换 BuddhistsTeamCharacters 和 MonstersTeamCharacters 的 ItemTemplate 内容  -->
+
                         <ItemsControl.ItemTemplate>
                             <DataTemplate x:DataType="vm:CharacterViewModel">
                                 <Border
                                     MinWidth="130"
                                     Margin="3"
                                     Padding="5"
-                                    BorderBrush="Gray"
-                                    BorderThickness="1">
-                                    <StackPanel>
-                                        <!--  名字  -->
+                                    Background="White"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1"
+                                    CornerRadius="5">
+
+
+                                    <!--  *** 使用 Grid 实现紧凑布局 ***  -->
+                                    <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,*">
+                                        <!--  Row 0: 名字 (跨列居中)  -->
                                         <TextBlock
-                                            Margin="5,2"
+                                            Grid.Row="0"
+                                            Grid.ColumnSpan="2"
+                                            Margin="0,0,0,3"
                                             HorizontalAlignment="Center"
                                             FontSize="12"
                                             FontWeight="Bold"
                                             Text="{Binding Name}"
-                                            ToolTip.Tip="{Binding CharacterId, StringFormat='ID: {0}'}" />
-                                        <!--  血量  -->
-                                        <Border Margin="0,2" BorderThickness="1">
-                                            <!--  TODO: Max HP for ProgressBar should come from CharacterViewModel  -->
+                                            ToolTip.Tip="{Binding Guid, StringFormat='Guid: {0}'}" />
+
+                                        <!--  Row 1: HP 条 (跨列)  -->
+                                        <Border
+                                            Grid.Row="1"
+                                            Grid.ColumnSpan="2"
+                                            BorderThickness="1"
+                                            CornerRadius="2">
                                             <ProgressBar
-                                                Height="16"
+                                                Height="14"
                                                 MinWidth="100"
-                                                Margin="2"
-                                                FontSize="9"
-                                                Foreground="LightGreen"
-                                                Maximum="1000"
-                                                ProgressTextFormat="{}{0} / {3}"
+                                                Margin="1"
+                                                FontSize="8"
+                                                Foreground="{Binding TeamId, Converter={StaticResource TeamIdToColorConverter}}"
+                                                Maximum="{Binding MaxHp}"
+                                                ProgressTextFormat="{}{0}/{1}"
                                                 ShowProgressText="True"
                                                 Value="{Binding Hp}" />
-                                            <!--  Maximum 应该绑定到角色的最大HP  -->
                                         </Border>
-                                        <!--  状态显示 (主动/被动)  -->
+
+                                        <!--  Row 2: 主动状态  -->
+                                        <!--  在元素上添加 Margin 来模拟 Spacing  -->
                                         <TextBlock
-                                            Margin="5,2"
-                                            HorizontalAlignment="Center"
+                                            Grid.Row="2"
+                                            Grid.Column="0"
+                                            Margin="0,2,5,0"
+                                            VerticalAlignment="Center"
                                             FontSize="9"
-                                            Text="{Binding DisplayStates}"
-                                            TextWrapping="Wrap" />
-                                        <!--  装备显示  -->
+                                            FontWeight="SemiBold"
+                                            Text="主动状态:" />
                                         <TextBlock
-                                            Margin="5,2"
-                                            HorizontalAlignment="Center"
+                                            Grid.Row="2"
+                                            Grid.Column="1"
+                                            Margin="0,2,0,0"
+                                            VerticalAlignment="Center"
                                             FontSize="9"
-                                            Text="{Binding DisplayEquipments}"
+                                            Text="{Binding ActiveState}"
                                             TextWrapping="Wrap" />
-                                    </StackPanel>
+
+                                        <!--  Row 3: 效果/状态  -->
+                                        <TextBlock
+                                            Grid.Row="3"
+                                            Grid.Column="0"
+                                            Margin="0,2,5,0"
+                                            VerticalAlignment="Top"
+                                            FontSize="9"
+                                            FontWeight="SemiBold"
+                                            Text="被动/效果:" />
+                                        <StackPanel
+                                            Grid.Row="3"
+                                            Grid.Column="1"
+                                            Margin="0,2,0,0"
+                                            IsVisible="{Binding StatusEffects.Count}"
+                                            Spacing="1">
+                                            <ItemsControl ItemsSource="{Binding StatusEffects}">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock
+                                                            FontSize="8"
+                                                            Text="{Binding}"
+                                                            TextWrapping="Wrap" />
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </StackPanel>
+                                        <TextBlock
+                                            Grid.Row="3"
+                                            Grid.Column="1"
+                                            Margin="0,2,0,0"
+                                            VerticalAlignment="Top"
+                                            FontSize="8"
+                                            FontStyle="Italic"
+                                            IsVisible="{Binding !StatusEffects.Count}"
+                                            Text="无" />
+
+                                        <!--  Row 4: 装备  -->
+                                        <TextBlock
+                                            Grid.Row="4"
+                                            Grid.Column="0"
+                                            Margin="0,2,5,0"
+                                            VerticalAlignment="Top"
+                                            FontSize="9"
+                                            FontWeight="SemiBold"
+                                            Text="装备:" />
+                                        <StackPanel
+                                            Grid.Row="4"
+                                            Grid.Column="1"
+                                            Margin="0,2,0,0"
+                                            IsVisible="{Binding EquipmentInventory.Count}"
+                                            Spacing="1">
+                                            <ItemsControl ItemsSource="{Binding EquipmentInventory}">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate x:DataType="vm:EquipmentItem">
+                                                        <TextBlock
+                                                            FontSize="8"
+                                                            Text="{Binding}"
+                                                            TextWrapping="Wrap" />
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </StackPanel>
+                                        <TextBlock
+                                            Grid.Row="4"
+                                            Grid.Column="1"
+                                            Margin="0,2,0,0"
+                                            VerticalAlignment="Top"
+                                            FontSize="8"
+                                            FontStyle="Italic"
+                                            IsVisible="{Binding !EquipmentInventory.Count}"
+                                            Text="无" />
+
+                                    </Grid>
                                 </Border>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
@@ -166,53 +258,144 @@
                                 <!-- <UniformGrid Columns="3" /> -->
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
+
+                        <!--  Views\MainWindow.axaml  -->
+                        <!--  在 ItemsControl for BuddhistsTeamCharacters/MonstersTeamCharacters 内部  -->
                         <ItemsControl.ItemTemplate>
                             <DataTemplate x:DataType="vm:CharacterViewModel">
                                 <Border
                                     MinWidth="130"
                                     Margin="3"
                                     Padding="5"
-                                    BorderBrush="Gray"
-                                    BorderThickness="1">
-                                    <StackPanel>
-                                        <!--  名字  -->
+                                    Background="White"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1"
+                                    CornerRadius="5">
+
+
+                                    <!--  *** 使用 Grid 实现紧凑布局 ***  -->
+                                    <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,*">
+                                        <!--  Row 0: 名字 (跨列居中)  -->
                                         <TextBlock
-                                            Margin="5,2"
+                                            Grid.Row="0"
+                                            Grid.ColumnSpan="2"
+                                            Margin="0,0,0,3"
                                             HorizontalAlignment="Center"
                                             FontSize="12"
                                             FontWeight="Bold"
                                             Text="{Binding Name}"
-                                            ToolTip.Tip="{Binding CharacterId, StringFormat='ID: {0}'}" />
-                                        <!--  血量  -->
-                                        <Border Margin="0,2" BorderThickness="1">
-                                            <!--  TODO: Max HP for ProgressBar should come from CharacterViewModel  -->
+                                            ToolTip.Tip="{Binding Guid, StringFormat='Guid: {0}'}" />
+
+                                        <!--  Row 1: HP 条 (跨列)  -->
+                                        <Border
+                                            Grid.Row="1"
+                                            Grid.ColumnSpan="2"
+                                            BorderThickness="1"
+                                            CornerRadius="2">
                                             <ProgressBar
-                                                Height="16"
+                                                Height="14"
                                                 MinWidth="100"
-                                                Margin="2"
-                                                FontSize="9"
-                                                Foreground="LightCoral"
-                                                Maximum="1000"
-                                                ProgressTextFormat="{}{0} / {3}"
+                                                Margin="1"
+                                                FontSize="8"
+                                                Foreground="{Binding TeamId, Converter={StaticResource TeamIdToColorConverter}}"
+                                                Maximum="{Binding MaxHp}"
+                                                ProgressTextFormat="{}{0}/{1}"
                                                 ShowProgressText="True"
                                                 Value="{Binding Hp}" />
-                                            <!--  Maximum 应该绑定到角色的最大HP  -->
                                         </Border>
-                                        <!--  状态显示 (主动/被动)  -->
+
+                                        <!--  Row 2: 主动状态  -->
+                                        <!--  在元素上添加 Margin 来模拟 Spacing  -->
                                         <TextBlock
-                                            Margin="5,2"
-                                            HorizontalAlignment="Center"
+                                            Grid.Row="2"
+                                            Grid.Column="0"
+                                            Margin="0,2,5,0"
+                                            VerticalAlignment="Center"
                                             FontSize="9"
-                                            Text="{Binding DisplayStates}"
-                                            TextWrapping="Wrap" />
-                                        <!--  装备显示  -->
+                                            FontWeight="SemiBold"
+                                            Text="主动状态:" />
                                         <TextBlock
-                                            Margin="5,2"
-                                            HorizontalAlignment="Center"
+                                            Grid.Row="2"
+                                            Grid.Column="1"
+                                            Margin="0,2,0,0"
+                                            VerticalAlignment="Center"
                                             FontSize="9"
-                                            Text="{Binding DisplayEquipments}"
+                                            Text="{Binding ActiveState}"
                                             TextWrapping="Wrap" />
-                                    </StackPanel>
+
+                                        <!--  Row 3: 效果/状态  -->
+                                        <TextBlock
+                                            Grid.Row="3"
+                                            Grid.Column="0"
+                                            Margin="0,2,5,0"
+                                            VerticalAlignment="Top"
+                                            FontSize="9"
+                                            FontWeight="SemiBold"
+                                            Text="被动/效果:" />
+                                        <StackPanel
+                                            Grid.Row="3"
+                                            Grid.Column="1"
+                                            Margin="0,2,0,0"
+                                            IsVisible="{Binding StatusEffects.Count}"
+                                            Spacing="1">
+                                            <ItemsControl ItemsSource="{Binding StatusEffects}">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock
+                                                            FontSize="8"
+                                                            Text="{Binding}"
+                                                            TextWrapping="Wrap" />
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </StackPanel>
+                                        <TextBlock
+                                            Grid.Row="3"
+                                            Grid.Column="1"
+                                            Margin="0,2,0,0"
+                                            VerticalAlignment="Top"
+                                            FontSize="8"
+                                            FontStyle="Italic"
+                                            IsVisible="{Binding !StatusEffects.Count}"
+                                            Text="无" />
+
+                                        <!--  Row 4: 装备  -->
+                                        <TextBlock
+                                            Grid.Row="4"
+                                            Grid.Column="0"
+                                            Margin="0,2,5,0"
+                                            VerticalAlignment="Top"
+                                            FontSize="9"
+                                            FontWeight="SemiBold"
+                                            Text="装备:" />
+                                        <StackPanel
+                                            Grid.Row="4"
+                                            Grid.Column="1"
+                                            Margin="0,2,0,0"
+                                            IsVisible="{Binding EquipmentInventory.Count}"
+                                            Spacing="1">
+                                            <ItemsControl ItemsSource="{Binding EquipmentInventory}">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate x:DataType="vm:EquipmentItem">
+                                                        <TextBlock
+                                                            FontSize="8"
+                                                            Text="{Binding}"
+                                                            TextWrapping="Wrap" />
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </StackPanel>
+                                        <TextBlock
+                                            Grid.Row="4"
+                                            Grid.Column="1"
+                                            Margin="0,2,0,0"
+                                            VerticalAlignment="Top"
+                                            FontSize="8"
+                                            FontStyle="Italic"
+                                            IsVisible="{Binding !EquipmentInventory.Count}"
+                                            Text="无" />
+
+                                    </Grid>
                                 </Border>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
@@ -227,7 +410,66 @@
                     FontStyle="Italic"
                     Text="{Binding MonstersTeamBuildingInfo}"
                     TextWrapping="Wrap" />
+
+
             </Grid>
+
+            <Grid Grid.Row="2" RowDefinitions="Auto,Auto">
+                <!--  日志区域  -->
+                <Border
+                    Grid.Row="0"
+                    Margin="2"
+                    BorderBrush="Gray"
+                    BorderThickness="0,1,0,0">
+                    <!--  上边框分隔  -->
+                    <Grid RowDefinitions="Auto,*">
+                        <!--  Console 标题  -->
+                        <TextBlock
+                            Grid.Row="0"
+                            Margin="5,2"
+                            FontWeight="Bold"
+                            Text="事件日志" />
+
+                        <!--  日志显示区域  -->
+                        <ScrollViewer
+                            Grid.Row="0"
+                            Margin="2"
+                            VerticalAlignment="Top"
+                            VerticalScrollBarVisibility="Auto">
+                            <ItemsControl ItemsSource="{Binding LogConsoleVM.LogEntries}">
+                                <ItemsControl.ItemTemplate>
+                                    <!--  使用 DataTemplate 显示 LogEntry  -->
+                                    <DataTemplate x:DataType="vm:LogEntry">
+                                        <StackPanel Orientation="Horizontal" Spacing="5">
+                                            <TextBlock
+                                                FontSize="9"
+                                                Foreground="Gray"
+                                                Text="{Binding Timestamp, StringFormat='HH:mm:ss.fff'}" />
+                                            <TextBlock
+                                                FontSize="10"
+                                                Foreground="{Binding Color}"
+                                                Text="{Binding Message}"
+                                                TextWrapping="Wrap" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                                <!--  (可选) 让列表自动滚动到底部  -->
+                                <!--  需要一些额外的代码或行为来实现  -->
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </Grid>
+                </Border>
+                <!--  连接状态  -->
+                <TextBlock
+                    Grid.Row="1"
+                    Margin="5"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom"
+                    FontSize="10"
+                    Foreground="Gray"
+                    Text="{Binding ConnectionStatus}" />
+            </Grid>
+
         </Grid>
 
         <!--  右侧区域  -->
@@ -241,16 +483,20 @@
             <Canvas Panel.ZIndex="1">
                 <!--  确保 Canvas 在上层  -->
                 <Expander
-                    Canvas.Top="10"
-                    Canvas.Right="10"
+                    Canvas.Top="0"
+                    Canvas.Right="5"
                     MaxWidth="200"
-                    Padding="5"
-                    Background="#AAFFFFFF"
+                    Padding="2"
+                    Background="#80FFFFFF"
                     BorderBrush="Gray"
-                    BorderThickness="1"
+                    BorderThickness="0.5"
+                    CornerRadius="12"
                     ExpandDirection="Down">
                     <Expander.Header>
-                        <TextBlock FontWeight="Bold" Text="地图图例" />
+                        <TextBlock
+                            MaxHeight="100"
+                            FontWeight="Bold"
+                            Text="地图图例" />
                     </Expander.Header>
                     <ScrollViewer MaxHeight="400">
                         <!--  *** 使用 ItemsControl 绑定图例数据 ***  -->
@@ -266,7 +512,7 @@
                                             Margin="0,0,5,0"
                                             Background="{Binding Color}"
                                             BorderBrush="{Binding Stroke, FallbackValue={x:Null}}"
-                                            BorderThickness="{Binding StrokeThickness, FallbackValue=0}" />
+                                            BorderThickness="{Binding BorderThickness}" />
                                         <!--  描述文本  -->
                                         <TextBlock
                                             VerticalAlignment="Center"
@@ -324,8 +570,6 @@
                 <local:MapView />
             </Border>
 
-
-            <!--  ?或使用图标  -->
 
 
         </Grid>
