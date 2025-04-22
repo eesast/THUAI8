@@ -41,7 +41,7 @@ int THUAI8Main(int argc, char** argv, CreateAIFunc AIBuilder)
     bool file = false;
     bool print = false;
     bool warnOnly = false;
-    extern const std::array<THUAI8::CharacterType, 4> CharacterTypeDict;
+    const std::array<THUAI8::CharacterType, 4> CharacterTypeDict;
     // {
     //     file = true;
     //     print = true;
