@@ -26,7 +26,7 @@ namespace GameClass.GameObj
 
     public static class CharacterLogging
     {
-        public static readonly Logger logger = new("Ship");
+        public static readonly Logger logger = new("Character");
     }
 }
 

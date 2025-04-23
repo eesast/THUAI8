@@ -6,6 +6,7 @@ using Preparation.Utility;
 using Preparation.Utility.Value;
 using System.Threading;
 using System.Threading.Tasks.Dataflow;
+using Timothy.FrameRateTask;
 
 
 namespace Gaming
@@ -34,6 +35,36 @@ namespace Gaming
                 gameMap.Add(character);
                 character.ReSetPos(pos);
                 character.SetCharacterState(CharacterState.NULL_CHARACTER_STATE, CharacterState.NULL_CHARACTER_STATE);
+                new Thread
+                (
+                    () =>
+                    {
+                        Thread.Sleep(GameData.CheckInterval);
+                        new FrameRateTaskExecutor<int>
+                        (
+                            loopCondition: () => gameMap.Timer.IsGaming,
+                            loopToDo: () =>
+                            {
+                                CheckSkillTime(character);
+                                CheckBerkserk(character);
+                                CheckBlind(character);
+                                CheckBurned(character);
+                                CheckCage(character);
+                                CheckCrazyManTime(character);
+                                CheckHarmCut(character);
+                                CheckHole(character);
+                                CheckInvisibility(character);
+                                CheckPurified(character);
+                                CheckQuickStepTime(character);
+                                CheckShoes(character);
+                                CheckStunned(character);
+                                CheckWideViewTime(character);
+                            },
+                            timeInterval: GameData.CheckInterval,
+                            finallyReturn: () => 0
+                        ).Start();
+                    }
+                ).Start();
                 return true;
             }
 
