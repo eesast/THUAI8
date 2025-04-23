@@ -21,6 +21,7 @@ namespace installer.ViewModel
 {
     public class PlaybackViewModel : LaunchViewModel
     {
+        private bool _isDownloading = false;
         private readonly Microsoft.Maui.Storage.IFilePicker FilePicker;
 
         public PlaybackViewModel(Microsoft.Maui.Storage.IFilePicker filePicker, Downloader downloader) : base(downloader)
