@@ -80,6 +80,7 @@ int THUAI8Main(int argc, char** argv, CreateAIFunc AIBuilder)
 
         cmd.parse(argc, argv);
         tID = teamID.getValue();
+        side_flag = (tID == 1);
         pID = playerID.getValue();
         sIP = serverIP.getValue();
         sPort = serverPort.getValue();
@@ -112,7 +113,7 @@ int THUAI8Main(int argc, char** argv, CreateAIFunc AIBuilder)
         std::cout
             << welcomeString << std::endl;
 #endif
-        Logic logic(pID, tID, playerType, CharacterType);
+        Logic logic(pID, tID, playerType, CharacterType, side_flag);
         logic.Main(AIBuilder, sIP, sPort, file, print, warnOnly, side_flag);
     }
     catch (const std::exception& e)

@@ -135,6 +135,7 @@ namespace Server
             GameServerLogging.logger.ConsoleLogDebug("AddPlayer: Check Correct");
             lock (addPlayerLock)
             {
+                Console.WriteLine("ch id :" + request.CharacterId + "  te id:" + request.TeamId + " type :" + request.CharacterType + " side: " + request.SideFlag);
                 Game.PlayerInitInfo playerInitInfo = new(request.TeamId, request.CharacterId, Transformation.CharacterTypeFromProto(request.CharacterType), request.SideFlag);
                 long newPlayerID = game.AddCharacter(playerInitInfo);
                 if (newPlayerID == GameObj.invalidID)

@@ -14,11 +14,12 @@
 
 extern const bool asynchronous;
 
-Logic::Logic(int32_t pID, int32_t tID, THUAI8::PlayerType pType, THUAI8::CharacterType cType) :
+Logic::Logic(int32_t pID, int32_t tID, THUAI8::PlayerType pType, THUAI8::CharacterType cType, bool side_flag) :
     playerID(pID),
     teamID(tID),
     playerType(pType),
-    CharacterType(cType)
+    CharacterType(cType),
+    side_flag(side_flag)
 {
     currentState = &state[0];
     bufferState = &state[1];
