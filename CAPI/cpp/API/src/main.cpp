@@ -41,14 +41,9 @@ int THUAI8Main(int argc, char** argv, CreateAIFunc AIBuilder)
     bool file = false;
     bool print = false;
     bool warnOnly = false;
-    const std::array<THUAI8::CharacterType, 4> CharacterTypeDict;
-    // {
-    //     file = true;
-    //     print = true;
-    //     Logic logic(playerType, pID, trickerType, studentType);
-    //     logic.Main(AIBuilder, sIP, sPort, file, print, warnOnly);
-    //     return 0;
-    // }
+    bool side_flag = false;
+    extern const std::array<THUAI8::CharacterType, 6> BuddhistsCharacterTypeDict;
+    extern const std::array<THUAI8::CharacterType, 6> MonstersCharacterTypeDict;
 
     // 使用cmdline的正式版本
     try
@@ -108,14 +103,17 @@ int THUAI8Main(int argc, char** argv, CreateAIFunc AIBuilder)
         else
         {
             playerType = THUAI8::PlayerType::Character;
-            CharacterType = CharacterTypeDict[pID - 1];
+            if (!side_flag)
+                CharacterType = BuddhistsCharacterTypeDict[pID - 1];
+            else
+                CharacterType = MonstersCharacterTypeDict[pID - 1];
         }
 #ifdef _MSC_VER
         std::cout
             << welcomeString << std::endl;
 #endif
         Logic logic(pID, tID, playerType, CharacterType);
-        logic.Main(AIBuilder, sIP, sPort, file, print, warnOnly);
+        logic.Main(AIBuilder, sIP, sPort, file, print, warnOnly, side_flag);
     }
     catch (const std::exception& e)
     {

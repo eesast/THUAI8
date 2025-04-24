@@ -58,17 +58,17 @@ namespace installer
 
                 try
                 {
-                    // 首先尝试从嵌入式资源中读取密钥
+                    // 首先尝试从应用文件夹中读取密钥
                     try
                     {
-                        LoadSecretFromEmbeddedResource();
+                        LoadSecretFromLocalFile();
                     }
                     catch (Exception ex)
                     {
-                        DebugTool.Log($"从嵌入式资源加载密钥失败: {ex.Message}");
+                        DebugTool.Log($"从应用文件夹加载密钥失败: {ex.Message}");
                     }
 
-                    // 如果嵌入式资源中没有密钥，则尝试从外部文件读取
+                    // 如果本地文件中没有密钥，则尝试从外部文件读取
                     if (string.IsNullOrEmpty(SecretID) || SecretID == "***" || string.IsNullOrEmpty(SecretKey) || SecretKey == "***")
                     {
                         try
@@ -167,84 +167,79 @@ namespace installer
             }
         }
 
-        private static void LoadSecretFromEmbeddedResource()
+        private static void LoadSecretFromLocalFile()
         {
             try
             {
-                var assembly = Assembly.GetExecutingAssembly();
-                string resourceName = "installer.Resources.Raw.secured_key.csv";
+                // 从应用文件夹中读取密钥文件
+                string localKeyFile = Path.Combine(AppContext.BaseDirectory, "secured_key.csv");
+                DebugTool.Log($"尝试从本地文件读取密钥: {localKeyFile}");
 
-                // 列出所有嵌入资源以进行调试
-                var resources = assembly.GetManifestResourceNames();
-                DebugTool.Log($"可用资源: {string.Join(", ", resources)}");
-
-                using (Stream? stream = assembly.GetManifestResourceStream(resourceName))
+                if (File.Exists(localKeyFile))
                 {
-                    if (stream != null)
+                    var lines = File.ReadAllLines(localKeyFile);
+                    if (lines.Length >= 4)
                     {
-                        using (StreamReader reader = new StreamReader(stream))
+                        try
                         {
-                            string content = reader.ReadToEnd();
-                            var lines = content.Split('\n').Select(s => s.Trim().Trim('\r')).ToArray();
-
-                            if (lines.Length >= 4)
+                            lines = lines.Select(s => s.Trim().Trim('\r', '\n')).ToArray();
+                            using (Aes aes = Aes.Create())
                             {
                                 try
                                 {
-                                    using (Aes aes = Aes.Create())
+                                    aes.Key = Convert.FromBase64String(lines[0]);
+                                    aes.IV = Convert.FromBase64String(lines[1]);
+                                    var decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
+
+                                    try
                                     {
-                                        aes.Key = Convert.FromBase64String(lines[0]);
-                                        aes.IV = Convert.FromBase64String(lines[1]);
-                                        var decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
-
-                                        try
+                                        // 解密SecretID
+                                        using (MemoryStream memory = new MemoryStream(Convert.FromBase64String(lines[2])))
+                                        using (CryptoStream crypto = new CryptoStream(memory, decryptor, CryptoStreamMode.Read))
+                                        using (StreamReader reader = new StreamReader(crypto, Encoding.ASCII))
                                         {
-                                            // 解密SecretID
-                                            using (MemoryStream memory = new MemoryStream(Convert.FromBase64String(lines[2])))
-                                            using (CryptoStream crypto = new CryptoStream(memory, decryptor, CryptoStreamMode.Read))
-                                            using (StreamReader cryptoReader = new StreamReader(crypto))
-                                            {
-                                                SecretID = cryptoReader.ReadToEnd();
-                                            }
-
-                                            // 解密SecretKey
-                                            using (MemoryStream memory = new MemoryStream(Convert.FromBase64String(lines[3])))
-                                            using (CryptoStream crypto = new CryptoStream(memory, decryptor, CryptoStreamMode.Read))
-                                            using (StreamReader cryptoReader = new StreamReader(crypto))
-                                            {
-                                                SecretKey = cryptoReader.ReadToEnd();
-                                            }
-
-                                            DebugTool.Log("从嵌入式资源成功加载密钥");
+                                            SecretID = reader.ReadToEnd();
                                         }
-                                        catch (Exception ex)
+
+                                        // 解密SecretKey
+                                        using (MemoryStream memory = new MemoryStream(Convert.FromBase64String(lines[3])))
+                                        using (CryptoStream crypto = new CryptoStream(memory, decryptor, CryptoStreamMode.Read))
+                                        using (StreamReader reader = new StreamReader(crypto, Encoding.ASCII))
                                         {
-                                            DebugTool.LogException(ex, "解密嵌入式资源密钥内容");
-                                            // 不抛出异常，使程序可以继续运行
+                                            SecretKey = reader.ReadToEnd();
                                         }
+
+                                        DebugTool.Log("从本地文件成功加载密钥");
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        DebugTool.LogException(ex, "解密本地文件密钥内容");
                                     }
                                 }
                                 catch (Exception ex)
                                 {
-                                    DebugTool.LogException(ex, "初始化嵌入式资源AES解密器");
-                                    // 不抛出异常，使程序可以继续运行
+                                    DebugTool.LogException(ex, "初始化本地文件AES解密器");
                                 }
                             }
-                            else
-                            {
-                                DebugTool.Log($"嵌入式资源密钥文件格式不正确，行数: {lines.Length}");
-                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            DebugTool.LogException(ex, "处理本地密钥文件行");
                         }
                     }
                     else
                     {
-                        DebugTool.Log("未找到嵌入式资源密钥文件");
+                        DebugTool.Log($"本地密钥文件格式不正确，行数: {lines.Length}");
                     }
+                }
+                else
+                {
+                    DebugTool.Log("未找到本地密钥文件");
                 }
             }
             catch (Exception ex)
             {
-                DebugTool.LogException(ex, "读取嵌入式资源出错");
+                DebugTool.LogException(ex, "读取本地密钥文件出错");
                 // 不抛出异常，允许回退到其他加载方式
             }
         }

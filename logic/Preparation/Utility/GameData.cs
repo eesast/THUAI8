@@ -151,7 +151,7 @@ namespace Preparation.Utility
                     gameObjType != GameObjType.OUTOFBOUNDBLOCK;
         }
         public const int ConstructionHP = 1000;//建筑物的默认HP
-        public const int BarracksHP = 600;
+        public const int BarracksHP = 500;
         public const int SpringHP = 300;
         public const int FarmHP = 400;
         public const int BarracksConstructSpeed = 40;//用血量/建造时间表示速度600/15

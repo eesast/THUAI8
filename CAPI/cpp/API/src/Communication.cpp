@@ -299,11 +299,19 @@ bool Communication::TryConnection(int32_t playerID, int32_t teamID)
         return false;
 }
 
-void Communication::AddPlayer(int32_t playerID, int32_t teamID, THUAI8::CharacterType charactertype)
+void Communication::AddPlayer(int32_t playerID, int32_t teamID, THUAI8::CharacterType charactertype, bool side_flag)
 {
     auto tMessage = [=]()
     {
         protobuf::CharacterMsg playerMsg = THUAI8Proto::THUAI82ProtobufCharacterMsg(playerID, teamID, charactertype);
+        if (side_flag)
+        {
+            playerMsg.set_side_flag(true);
+        }
+        else
+        {
+            playerMsg.set_side_flag(false);
+        }
         grpc::ClientContext context;
         auto MessageReader = THUAI8Stub->AddCharacter(&context, playerMsg);
 
