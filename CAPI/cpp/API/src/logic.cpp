@@ -1004,7 +1004,7 @@ bool Logic::HaveView(int32_t x, int32_t y, int32_t newX, int32_t newY, int32_t v
 void Logic::Main(CreateAIFunc createAI, std::string IP, std::string port, bool file, bool print, bool warnOnly, bool side_flag)
 {
     // 建立日志组件
-    auto fileLogger = std::make_shared<spdlog::sinks::basic_file_sink_mt>(fmt::format("logs/logic-{}-log.txt", playerID), true);
+    auto fileLogger = std::make_shared<spdlog::sinks::basic_file_sink_mt>(fmt::format("logs/logic-{}-{}-log.txt", playerID, teamID), true);
     auto printLogger = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
     std::string pattern = "[logic] [%H:%M:%S.%e] [%l] %v";
     fileLogger->set_pattern(pattern);
@@ -1027,7 +1027,7 @@ void Logic::Main(CreateAIFunc createAI, std::string IP, std::string port, bool f
     logger->info("asynchronous: {}", asynchronous);
     logger->info("server: {}:{}", IP, port);
     if (playerType == THUAI8::PlayerType::Character)
-        logger->info("Ship ID: {}", playerID);
+        logger->info("Character ID: {}", playerID);
     logger->info("player team: {}", THUAI8::playerTeamDict[playerTeam]);
     logger->info("****************************");
 
