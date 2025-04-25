@@ -411,6 +411,14 @@ namespace Gaming
             if (!gameMap.Timer.IsGaming)
                 return false;
             Character? character = gameMap.FindCharacterInPlayerID(teamID, characterID);
+            if (character != null && character.IsRemoved == false && constructionType == ConstructionType.CAGE)
+            {
+                return actionManager.SetTrap(character, TrapType.CAGE);
+            }
+            if (character != null && character.IsRemoved == false && constructionType == ConstructionType.HOLE)
+            {
+                return actionManager.SetTrap(character, TrapType.HOLE);
+            }
             if (character != null && character.IsRemoved == false)
             {
                 return actionManager.Construct(character, constructionType);

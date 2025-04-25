@@ -49,7 +49,7 @@ namespace debug_interface.ViewModels
         private CancellationTokenSource? _cts;
 
         // *** 回放相关字段 ***
-        private FrameRateTaskExecutor<int>? _playbackExecutor; // TResult is int
+        private FrameRateTaskExecutor<int>? _playbackExecutor; 
         private MessageReader? _playbackReader;
         private long _playbackFrameDurationMs;
 
@@ -194,6 +194,7 @@ namespace debug_interface.ViewModels
                         myLogger?.LogInfo($"Playback GameState: {content.GameState}");
 
                     // 填充列表
+                    myLogger?.LogDebug($"GameState: {content.GameState}");
                     foreach (var obj in content.ObjMessage)
                     {
                         switch (obj.MessageOfObjCase)
@@ -254,7 +255,7 @@ namespace debug_interface.ViewModels
             return 0; // 返回结果
         }
 
-        // *** 核心连接与接收循环 (基本不变, 使用 _cts) ***
+        // *** 核心连接与接收循环***
         private async Task TryConnectAndReceiveLoopAsync()
         {
             if (isPlaybackMode || _isConnected || _isConnecting) return;
@@ -396,6 +397,9 @@ namespace debug_interface.ViewModels
                                     break;
                             }
                         }
+                        if (listOfCharacters.Count == 0 && listOfBarracks.Count == 0 && listOfTraps.Count == 0 && listOfSprings.Count == 0 && listOfFarms.Count == 0 && listOfEconomyResources.Count == 0 && listOfAdditionResources.Count == 0 && listOfAll.Count == 0)
+                        { myLogger?.LogWarning("服务器消息流中没有任何消息。"); }
+                        //输出对应没有的信息
                         if (content.AllMessage != null) { listOfAll.Add(content.AllMessage); }
                     } // lock 结束
                 }
