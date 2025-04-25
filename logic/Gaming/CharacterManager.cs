@@ -255,9 +255,12 @@ namespace Gaming
                 }
                 else
                 {
-                    if ((nowtime - character.TrapTime) % 1000 <= 25 || (nowtime - character.TrapTime) % 1000 >= 975)
+                    if (character.burned)
                     {
-                        BeAttacked(character, GameData.HongHaierSkillATK);
+                        if ((nowtime - character.BurnedTime) % 1000 <= 25 || (nowtime - character.BurnedTime) % 1000 >= 975)
+                        {
+                            BeAttacked(character, GameData.HongHaierSkillATK);
+                        }
                     }
                 }
             }
@@ -282,7 +285,7 @@ namespace Gaming
             public void CheckHarmCut(Character character)
             {
                 long nowtime = Environment.TickCount64;
-                if (nowtime - character.BurnedTime >= 15000)
+                if (nowtime - character.HarmCutTime >= 15000)
                 {
                     character.HarmCutTime = long.MaxValue;
                     character.HarmCut = 0;
@@ -364,7 +367,8 @@ namespace Gaming
             }
             public void CheckInvisibility(Character character)
             {
-                int nowtime = gameMap.Timer.NowTime();
+                //int nowtime = gameMap.Timer.NowTime();
+                long nowtime = Environment.TickCount64;
                 if (!character.visible)
                 {
                     if (nowtime - character.InvisibleTime >= GameData.InvisibleTime)
