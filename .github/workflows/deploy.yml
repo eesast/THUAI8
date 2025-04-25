@@ -1,7 +1,8 @@
 name: deploy
 on:
-  push:
-    branches: [dev, main, master]
+  pull_request:
+    types: [closed]
+    branches: [dev,main,master]
 jobs:
   build:
     runs-on: windows-latest
