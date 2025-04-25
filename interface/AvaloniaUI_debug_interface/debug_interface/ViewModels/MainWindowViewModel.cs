@@ -46,6 +46,8 @@ namespace debug_interface.ViewModels
 
         [ObservableProperty]
         private MapViewModel mapVM;
+        [ObservableProperty]
+        private LogConsoleViewModel logConsoleVM;
 
         // 团队角色集合
         public ObservableCollection<CharacterViewModel> BuddhistsTeamCharacters { get; } = new(); // 取经队 TeamID = 0
@@ -59,7 +61,7 @@ namespace debug_interface.ViewModels
         {
             MapVM = new MapViewModel();
             InitializeMapLegend(); // 初始化图例
-
+            LogConsoleVM = new LogConsoleViewModel();
 
             // 设计模式数据 (如果需要，可以手动添加几个用于预览)
             if (Avalonia.Controls.Design.IsDesignMode)
@@ -127,7 +129,6 @@ namespace debug_interface.ViewModels
                     ObservableCollection<CharacterViewModel>? targetList = null;
                     CharacterViewModel? existingCharacter = null;
 
-                    // *** 修正 Team ID 映射 ***
                     if (data.TeamId == 0) // Team 0 = 取经队 (Buddhists)
                     {
                         targetList = BuddhistsTeamCharacters;
@@ -171,6 +172,7 @@ namespace debug_interface.ViewModels
 
         private void UpdateCharacterViewModel(CharacterViewModel vm, MessageOfCharacter data)
         {
+
             vm.CharacterId = data.PlayerId; // 可以保留 PlayerId
             vm.TeamId = data.TeamId;
             vm.CharacterType = data.CharacterType;
@@ -179,7 +181,18 @@ namespace debug_interface.ViewModels
             vm.Hp = data.Hp;
             vm.PosX = data.X; // 存储原始 X
             vm.PosY = data.Y; // 存储原始 Y
-            vm.ActiveState = data.CharacterActiveState.ToString();
+
+            //if (data.X != vm.PosX || data.Y != vm.PosY) 
+            //{
+            string message = $"更新角色: Name='{vm.Name}', pos = ({vm.PosX}, {vm.PosY})";
+            LogConsoleVM.AddLog(message, "INFO");
+            //}
+
+
+            CharacterState previousActiveState = vm.ActiveState == "空闲/未知"
+                ? CharacterState.NullCharacterState
+                : Enum.TryParse<CharacterState>(vm.ActiveState, out var state) ? state : CharacterState.NullCharacterState;
+            //vm.ActiveState = data.CharacterActiveState.ToString();
 
 
             // 更新主动状态
@@ -191,6 +204,15 @@ namespace debug_interface.ViewModels
             {
                 vm.ActiveState = data.CharacterActiveState.ToString();
             }
+
+            if (data.CharacterActiveState == CharacterState.SkillCasting && previousActiveState != CharacterState.SkillCasting)
+            {
+                string logMessage = $"{vm.Name} (Guid: {vm.Guid}) 在 ({vm.PosX / 1000},{vm.PosY / 1000}) 释放了技能";
+                // Console.WriteLine($"[技能释放] {logMessage}"); // 可以保留或移除 Console 输出
+                //myLogger?.LogInfo($"[技能释放] {logMessage}"); // 记录到文件
+                LogConsoleVM.AddLog(logMessage, "SKILL"); // *** 添加到界面 Console ***
+            }
+
 
             vm.StatusEffects.Clear();
 
@@ -261,7 +283,7 @@ namespace debug_interface.ViewModels
                 CharacterType.ShaWujing => "沙悟净",
                 CharacterType.BaiLongma => "白龙马",
                 CharacterType.Monkid => "猴子猴孙", // 
-                CharacterType.JiuLing => "九头元圣", // 
+                CharacterType.JiuLing => "九灵元圣", // 
                 CharacterType.HongHaier => "红孩儿",
                 CharacterType.NiuMowang => "牛魔王",
                 CharacterType.TieShan => "铁扇公主", // 
@@ -532,7 +554,7 @@ namespace debug_interface.ViewModels
             // (可选) 添加通用建筑颜色 (如果 MapMessage 中只有 CONSTRUCTION)
             MapLegendItems.Add(new LegendItem(Brushes.Brown, "建筑点位 (未指定类型)"));
             // (可选) 添加未知区域颜色
-             MapLegendItems.Add(new LegendItem(Brushes.Gainsboro, "未知区域"));
+            MapLegendItems.Add(new LegendItem(Brushes.Gainsboro, "未知区域"));
         }
 
     }

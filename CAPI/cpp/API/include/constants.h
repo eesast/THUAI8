@@ -9,6 +9,7 @@
 #undef GetMessage
 #undef SendMessage
 #undef PeekMessage
+#include <cstdint>  // 可能会有问题
 namespace Constants
 {
     SCCI int32_t frameDuration = 50;  // 每帧毫秒数
@@ -226,9 +227,9 @@ namespace Constants
     {
         SCCI int32_t cost = 10000;
         SCCI int32_t time = 30;
-        SCCI int32_t attack_boost = 1.2;        // 注意这是提升的倍数
-        SCCI int32_t speed_boost = 300;         // 注意这是直接叠加
-        SCCI int32_t attack_freq_boost = 1.25;  // 注意这是提升的倍数
+        SCCI double attack_boost = 1.2;        // 注意这是提升的倍数
+        SCCI int32_t speed_boost = 300;        // 注意这是直接叠加
+        SCCI double attack_freq_boost = 1.25;  // 注意这是提升的倍数
     };
 }  // namespace Constants
 #endif

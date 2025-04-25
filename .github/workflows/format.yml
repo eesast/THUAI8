@@ -9,12 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - uses: DoozyX/clang-format-lint-action@v0.18
+    - uses: DoozyX/clang-format-lint-action@v0.20
       with:
         source: '.'
         extensions: 'c,h,C,H,cpp,hpp,cc,hh,c++,h++,cxx,hxx,i,ixx,ipp,i++'
         clangFormatVersion: 14
-        exclude: './players ./CAPI/cpp/grpc/include'
+        exclude: './players ./CAPI/cpp/grpc/include ./CAPI/cpp/proto ./CAPI/cpp/tclap/include/tclap ./dependency/proto ./CAPI/cpp/spdlog/include/spdlog'
         inplace: False
 
   dotnet-format-checking:

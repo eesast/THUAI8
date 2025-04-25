@@ -29,14 +29,13 @@
 #include <grpc/support/port_platform.h>
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
-    typedef uintptr_t gpr_thd_id;
+typedef uintptr_t gpr_thd_id;
 
-    /** Returns the identifier of the current thread. */
-    GPRAPI gpr_thd_id gpr_thd_currentid(void);
+/** Returns the identifier of the current thread. */
+GPRAPI gpr_thd_id gpr_thd_currentid(void);
 
 #ifdef __cplusplus
 }

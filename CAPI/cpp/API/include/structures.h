@@ -1,19 +1,20 @@
 #pragma once
 #ifndef STRUCTURES_H
 #define STRUCTURES_H
-
+#define FMT_ENABLE_ENUM_IMPLICIT
 #include <cstdint>
 #include <array>
 #include <map>
 #include <vector>
 #include <string>
-
+#include <fmt/format.h>
 #undef GetMessage
 #undef SendMessage
 #undef PeekMessage
 
 namespace THUAI8
 {
+
     // 游戏状态
     enum class GameState : unsigned char
     {
@@ -64,19 +65,19 @@ namespace THUAI8
     {
         NullCharacterType = 0,
 
-        Camp1Character1 = 1,
-        Camp1Character2 = 2,
-        Camp1Character3 = 3,
-        Camp1Character4 = 4,
-        Camp1Character5 = 5,
-        Camp1Character6 = 6,
+        TangSeng = 1,
+        SunWukong = 2,
+        ZhuBajie = 3,
+        ShaWujing = 4,
+        BaiLongma = 5,
+        Monkid = 6,
 
-        Camp2Character1 = 7,
-        Camp2Character2 = 8,
-        Camp2Character3 = 9,
-        Camp2Character4 = 10,
-        Camp2Character5 = 11,
-        Camp2Character6 = 12,
+        JiuLing = 7,
+        HongHaier = 8,
+        NiuMowang = 9,
+        TieShan = 10,
+        ZhiZhujing = 11,
+        Pawn = 12,
     };
 
     enum class EquipmentType : unsigned char
@@ -115,6 +116,7 @@ namespace THUAI8
         Healing = 11,
         Berserk = 12,
         Burned = 13,
+        Deceased = 14,
     };
 
     enum class CharacterBuffType : unsigned char
@@ -127,7 +129,7 @@ namespace THUAI8
         DefenseBuff = 4,
         SpeedBuff = 5,
         VisionBuff = 6,
-    }
+    };
 
     enum class EconomyResourceType : unsigned char
     {
@@ -142,17 +144,17 @@ namespace THUAI8
     {
         NullAdditionReourceType = 0,
 
-        SmallAdditionResource1 = 1,
-        MediumAdditionResource1 = 2,
-        LargeAdditionResource1 = 3,
+        LIFE_POOL1 = 1,
+        LIFE_POOL2 = 2,
+        LIFE_POOL3 = 3,
 
-        SmallAdditionResource2 = 4,
-        MediumAdditionResource2 = 5,
-        LargeAdditionResource2 = 6,
+        CRAZY_MAN1 = 4,
+        CRAZY_MAN2 = 5,
+        CRAZY_MAN3 = 6,
 
-        AdditionResource3 = 7,
+        QUICK_STEP = 7,
 
-        AdditionResource4 = 8,
+        WIDE_VIEW = 8,
     };
 
     enum class EconomyResourceState : unsigned char
@@ -219,15 +221,15 @@ namespace THUAI8
         CharacterState characterActiveState;
 
         bool isBlind;
-        long blindTime;
+        int64_t blindTime;
         bool isStunned;
-        long stunnedTime;
+        int64_t stunnedTime;
         bool isInvisible;
-        long invisibleTime;
+        int64_t invisibleTime;
         bool isBurned;
-        long burnedTime;
+        int64_t burnedTime;
         double harmCut;
-        long harmCutTime;
+        int64_t harmCutTime;
 
         CharacterState characterPassiveState;
 
@@ -309,7 +311,7 @@ namespace THUAI8
         int32_t id;
     };
 
-    struct ConstructionState
+    /* struct ConstructionState
     {
         int64_t teamID;
         int32_t hp;
@@ -320,7 +322,7 @@ namespace THUAI8
             constructionType(type)
         {
         }
-    };
+    };*/
 
     // struct BombedBullet
     // {
@@ -337,12 +339,12 @@ namespace THUAI8
     struct GameMap
     {
         // x,y,id,hp
-        std::map<cellxy_t, std::pair<int64_t, int32_t>> barracksState;
-        std::map<cellxy_t, std::pair<int64_t, int32_t>> springState;
-        std::map<cellxy_t, std::pair<int64_t, int32_t>> farmState;
-        std::map<cellxy_t, std::pair<int64_t, int32_t>> trapState;
+        std::map<cellxy_t, std::pair<int32_t, int32_t>> barracksState;
+        std::map<cellxy_t, std::pair<int32_t, int32_t>> springState;
+        std::map<cellxy_t, std::pair<int32_t, int32_t>> farmState;
+        std::map<cellxy_t, std::pair<int32_t, int32_t>> trapState;
         std::map<cellxy_t, int32_t> economyResource;
-        std::map<cellxy_t, int32_t> additionResource;
+        std::map<cellxy_t, std::pair<int32_t, int32_t>> additionResource;
     };
 
     struct GameInfo
@@ -368,18 +370,18 @@ namespace THUAI8
 
     inline std::map<CharacterType, std::string> characterTypeDict{
         {CharacterType::NullCharacterType, "NullCharacterType"},
-        {CharacterType::Camp1Character1, "Camp1Character1"},
-        {CharacterType::Camp1Character2, "Camp1Character2"},
-        {CharacterType::Camp1Character3, "Camp1Character3"},
-        {CharacterType::Camp1Character4, "Camp1Character4"},
-        {CharacterType::Camp1Character5, "Camp1Character5"},
-        {CharacterType::Camp1Character6, "Camp1Character6"},
-        {CharacterType::Camp2Character1, "Camp2Character1"},
-        {CharacterType::Camp2Character2, "Camp2Character2"},
-        {CharacterType::Camp2Character3, "Camp2Character3"},
-        {CharacterType::Camp2Character4, "Camp2Character4"},
-        {CharacterType::Camp2Character5, "Camp2Character5"},
-        {CharacterType::Camp2Character6, "Camp2Character6"},
+        {CharacterType::TangSeng, "TangSeng"},
+        {CharacterType::SunWukong, "SunWukong"},
+        {CharacterType::ZhuBajie, "ZhuBajie"},
+        {CharacterType::ShaWujing, "ShaWujing"},
+        {CharacterType::BaiLongma, "BaiLongma"},
+        {CharacterType::Monkid, "Monkid"},
+        {CharacterType::JiuLing, "JiuLing"},
+        {CharacterType::HongHaier, "HongHaier"},
+        {CharacterType::NiuMowang, "NiuMowang"},
+        {CharacterType::TieShan, "TieShan"},
+        {CharacterType::ZhiZhujing, "ZhiZhujing"},
+        {CharacterType::Pawn, "Pawn"},
     };
 
     inline std::map<CharacterState, std::string> characterStateDict{
@@ -397,6 +399,7 @@ namespace THUAI8
         {CharacterState::Healing, "Healing"},
         {CharacterState::Berserk, "Berserk"},
         {CharacterState::Burned, "Burned"},
+        {CharacterState::Deceased, "Deceased"},
     };
 
     inline std::map<PlayerTeam, std::string> playerTeamDict{
@@ -439,7 +442,7 @@ namespace THUAI8
     };
 
     inline std::map<EconomyResourceType, std::string> economyResourceTypeDict{
-        {EconomyResourceType::NullEconomyResourceState, "NullEconomyResourceState"},
+        {EconomyResourceType::NullEconomyResourceType, "NullEconomyResourceType"},
         {EconomyResourceType::SmallEconomyResource, "SmallEconomyResource"},
         {EconomyResourceType::MediumEconomyResource, "MediumEconomyResource"},
         {EconomyResourceType::LargeEconomyResource, "LargeEconomyResource"},
@@ -447,14 +450,14 @@ namespace THUAI8
 
     inline std::map<AdditionResourceType, std::string> additionResourceTypeDict{
         {AdditionResourceType::NullAdditionReourceType, "NullAdditionReourceType"},
-        {AdditionResourceType::SmallAdditionResource1, "SmallAdditionResource1"},
-        {AdditionResourceType::MediumAdditionResource1, "MediumAdditionResource1"},
-        {AdditionResourceType::LargeAdditionResource1, "LargeAdditionResource1"},
-        {AdditionResourceType::SmallAdditionResource2, "SmallAdditionResource2"},
-        {AdditionResourceType::MediumAdditionResource2, "MediumAdditionResource2"},
-        {AdditionResourceType::LargeAdditionResource2, "LargeAdditionResource2"},
-        {AdditionResourceType::AdditionResource3, "AdditionResource3"},
-        {AdditionResourceType::AdditionResource4, "AdditionResource4"},
+        {AdditionResourceType::LIFE_POOL1, "LIFE_POOL1"},
+        {AdditionResourceType::LIFE_POOL2, "MediumAdditionResource1"},
+        {AdditionResourceType::LIFE_POOL3, "LargeAdditionResource1"},
+        {AdditionResourceType::CRAZY_MAN1, "SmallAdditionResource2"},
+        {AdditionResourceType::CRAZY_MAN2, "MediumAdditionResource2"},
+        {AdditionResourceType::CRAZY_MAN3, "LargeAdditionResource2"},
+        {AdditionResourceType::QUICK_STEP, "AdditionResource3"},
+        {AdditionResourceType::WIDE_VIEW, "AdditionResource4"},
     };
 
     inline std::map<EconomyResourceState, std::string> economyResourceStateDict{
@@ -465,7 +468,7 @@ namespace THUAI8
     };
 
     inline std::map<AdditionResourceState, std::string> additionResourceStateDict{
-        {AdditionResourceState::NullAdditionReourceType, "NullAdditionReourceType"},
+        {AdditionResourceState::NullAdditionResourceState, "NullAdditionReourceType"},
         {AdditionResourceState::Beatable, "Beatable"},
         {AdditionResourceState::BeingBeaten, "BeingBeaten"},
         {AdditionResourceState::Beaten, "Beaten"},
@@ -496,6 +499,49 @@ namespace THUAI8
         {NewsType::TextMessage, "TextMessage"},
         {NewsType::BinaryMessage, "BinaryMessage"},
     };
+
 }  // namespace THUAI8
+
+namespace fmt
+{
+    template<>
+    struct formatter<THUAI8::CharacterType> : formatter<std::string>
+    {
+        auto format(THUAI8::CharacterType type, format_context& ctx) const
+        {
+            auto it = THUAI8::characterTypeDict.find(type);
+            formatter<std::string> stringFormatter;
+            return stringFormatter.format(
+                it != THUAI8::characterTypeDict.end() ? it->second : "UnknownCharacterType", ctx
+            );
+        }
+    };
+
+    template<>
+    struct formatter<THUAI8::ConstructionType> : formatter<std::string>
+    {
+        auto format(THUAI8::ConstructionType type, format_context& ctx) const
+        {
+            auto it = THUAI8::constructionDict.find(type);
+            formatter<std::string> stringFormatter;
+            return stringFormatter.format(
+                it != THUAI8::constructionDict.end() ? it->second : "UnknownConstructionType", ctx
+            );
+        }
+    };
+
+    template<>
+    struct formatter<THUAI8::EquipmentType> : formatter<std::string>
+    {
+        auto format(THUAI8::EquipmentType type, format_context& ctx) const
+        {
+            auto it = THUAI8::equipmentTypeDict.find(type);
+            formatter<std::string> stringFormatter;
+            return stringFormatter.format(
+                it != THUAI8::equipmentTypeDict.end() ? it->second : "UnknownEquipmentType", ctx
+            );
+        }
+    };
+}  // namespace fmt
 
 #endif

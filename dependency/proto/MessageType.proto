@@ -30,6 +30,13 @@ enum ShapeType //
     SQUARE = 2;
 }
 
+enum PlayerType
+{
+    NULL_PLAYER_TYPE = 0;
+    CHARACTER = 1;
+    TEAM = 2;
+}
+
 enum CharacterType // 
 {
     NULL_CHARACTER_TYPE = 0;

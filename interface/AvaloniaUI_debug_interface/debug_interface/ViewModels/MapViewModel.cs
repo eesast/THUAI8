@@ -126,22 +126,22 @@ namespace debug_interface.ViewModels
                 case PlaceType.Construction: // 通用建筑点位
                     cell.CellType = MapCellType.Construction;
                     cell.DisplayColor = new SolidColorBrush(Colors.Brown); // 初始显示为棕色，会被 UpdateBuildingCell 覆盖
-                    cell.DisplayText = "默认建筑"; // 清空文本，等待 UpdateBuildingCell 设置HP
+                    cell.DisplayText = "默"; // 清空文本，等待 UpdateBuildingCell 设置HP
                     break;
                 case PlaceType.EconomyResource:
                     cell.CellType = MapCellType.Economic_Resource;
                     cell.DisplayColor = new SolidColorBrush(Colors.Gold); // 经济资源固定金色
-                    cell.DisplayText = ""; // 清空文本，等待 UpdateResourceCell 设置量
+                    cell.DisplayText = "默"; // 清空文本，等待 UpdateResourceCell 设置量
                     break;
                 case PlaceType.AdditionResource:
                     cell.CellType = MapCellType.Additional_Resource;
                     cell.DisplayColor = new SolidColorBrush(Colors.Purple); // 加成资源初始紫色，会被 UpdateAdditionResourceCell 覆盖
-                    cell.DisplayText = ""; // 清空文本，等待 UpdateAdditionResourceCell 设置HP
+                    cell.DisplayText = "默"; // 清空文本，等待 UpdateAdditionResourceCell 设置HP
                     break;
                 case PlaceType.Trap:
                     cell.CellType = MapCellType.Trap;
                     cell.DisplayColor = new SolidColorBrush(Colors.LightGray); // 陷阱初始灰色，会被 UpdateTrapCell 覆盖
-                    cell.DisplayText = ""; // 陷阱通常无文本
+                    cell.DisplayText = "默"; // 陷阱通常无文本
                     break;
                 default: // 未知类型
                     cell.CellType = MapCellType.Space; // 视为 Space
@@ -213,7 +213,7 @@ namespace debug_interface.ViewModels
             {
                 var cell = MapCells[index];
                 cell.CellType = MapCellType.Economic_Resource;
-                // cell.DisplayText = process.ToString(); // 显示剩余量
+                cell.DisplayText = process.ToString(); // 显示剩余量
                 cell.DisplayColor = new SolidColorBrush(Colors.Gold); // 经济资源用金色
 
                 // 更新HP和Tooltip

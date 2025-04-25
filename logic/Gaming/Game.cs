@@ -235,10 +235,20 @@ namespace Gaming
                 if (team.sideFlag == 0)
                 {
                     ActivateCharacter(team.TeamID, CharacterType.TangSeng);
+                    ActivateCharacter(team.TeamID, CharacterType.SunWukong);
+                    ActivateCharacter(team.TeamID, CharacterType.ZhuBajie);
+                    ActivateCharacter(team.TeamID, CharacterType.ShaWujing);
+                    ActivateCharacter(team.TeamID, CharacterType.BaiLongma);
+                    ActivateCharacter(team.TeamID, CharacterType.Monkid);
                 }
                 else
                 {
                     ActivateCharacter(team.TeamID, CharacterType.JiuLing);
+                    ActivateCharacter(team.TeamID, CharacterType.HongHaier);
+                    ActivateCharacter(team.TeamID, CharacterType.NiuMowang);
+                    ActivateCharacter(team.TeamID, CharacterType.TieShan);
+                    ActivateCharacter(team.TeamID, CharacterType.ZhiZhujing);
+                    ActivateCharacter(team.TeamID, CharacterType.Pawn);
                 }
             }
             gameMap.Timer.Start(() => { }, () => EndGame(), milliSeconds);
@@ -411,6 +421,14 @@ namespace Gaming
             if (!gameMap.Timer.IsGaming)
                 return false;
             Character? character = gameMap.FindCharacterInPlayerID(teamID, characterID);
+            if (character != null && character.IsRemoved == false && constructionType == ConstructionType.CAGE)
+            {
+                return actionManager.SetTrap(character, TrapType.CAGE);
+            }
+            if (character != null && character.IsRemoved == false && constructionType == ConstructionType.HOLE)
+            {
+                return actionManager.SetTrap(character, TrapType.HOLE);
+            }
             if (character != null && character.IsRemoved == false)
             {
                 return actionManager.Construct(character, constructionType);
