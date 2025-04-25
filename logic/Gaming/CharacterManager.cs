@@ -368,7 +368,7 @@ namespace Gaming
             public void CheckInvisibility(Character character)
             {
                 //int nowtime = gameMap.Timer.NowTime();
-                int nowtime = Environment.TickCount64;
+                long nowtime = Environment.TickCount64;
                 if (!character.visible)
                 {
                     if (nowtime - character.InvisibleTime >= GameData.InvisibleTime)
