@@ -11,11 +11,11 @@
 
 #define PI 3.14159265358979323846
 
-CharacterDebugAPI::CharacterDebugAPI(ILogic& logic, bool file, bool print, bool warnOnly, int32_t CharacterID) :
+CharacterDebugAPI::CharacterDebugAPI(ILogic& logic, bool file, bool print, bool warnOnly, int32_t CharacterID, int32_t TeamID) :
     logic(logic),
     logger(nullptr)  // 显式初始化 logger 为 nullptr
 {
-    std::string fileName = "logs/api-" + std::to_string(CharacterID) + "-log.txt";
+    std::string fileName = "logs/api-" + std::to_string(CharacterID) + "-" + std::to_string(TeamID) + "log.txt";
     auto fileLogger = std::make_shared<spdlog::sinks::basic_file_sink_mt>(fileName, true);
     auto printLogger = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
     std::string pattern = "[api " + std::to_string(CharacterID) + "] [%H:%M:%S.%e] [%l] %v";
@@ -395,10 +395,10 @@ std::future<bool> CharacterDebugAPI::EndAllAction()
                       { return logic.EndAllAction(); });
 }
 
-TeamDebugAPI::TeamDebugAPI(ILogic& logic, bool file, bool print, bool warnOnly, int32_t playerID) :
+TeamDebugAPI::TeamDebugAPI(ILogic& logic, bool file, bool print, bool warnOnly, int32_t playerID, int32_t teamID) :
     logic(logic)
 {
-    std::string fileName = "logs/api-" + std::to_string(playerID) + "-log.txt";
+    std::string fileName = "logs/api-" + std::to_string(playerID) + "-" + std::to_string(teamID) + "-log.txt";
     auto fileLogger = std::make_shared<spdlog::sinks::basic_file_sink_mt>(fileName, true);
     auto printLogger = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
     std::string pattern = "[api" + std::to_string(playerID) + "] [%H:%M:%S.%e] [%l] %v";
