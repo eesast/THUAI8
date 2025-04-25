@@ -1,8 +1,6 @@
 name: deploy
 on:
-  pull_request:
-    types: [closed]
-    branches: [dev, main, master]
+  push
 jobs:
   build:
     runs-on: windows-latest
@@ -53,6 +51,16 @@ jobs:
       with:
         name: installer
         path: D:\a\publish\
+    - name: Check if secrets exist
+      run: |
+        if [ -n "$INSTALLER_COS_SECRET_ID" ] && [ -n "$INSTALLER_COS_SECRET_KEY" ]; then
+          echo "✅ Both secrets are set"
+        else
+          echo "❌ Secrets are missing"
+        fi
+      env:
+        INSTALLER_COS_SECRET_ID: ${{ secrets.INSTALLER_COS_SECRET_ID }}
+        INSTALLER_COS_SECRET_KEY: ${{ secrets.INSTALLER_COS_SECRET_KEY }}
     - name: Deploy to bucket
       run: dotnet run --project "./dependency/deploy/deploy.csproj" ${{ secrets.INSTALLER_COS_SECRET_ID }} ${{ secrets.INSTALLER_COS_SECRET_KEY }} "check"
     - name: Get installer package(No Key contained for safety)
