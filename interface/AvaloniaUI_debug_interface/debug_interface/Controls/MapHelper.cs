@@ -106,7 +106,7 @@ namespace debug_interface.Controls
             }
 
             // 添加网格线（如果需要）
-            //AddGridLines(grid);
+            AddGridLines(grid);
         }
 
         // *** 新增：根据背景色决定文本颜色的辅助方法 ***

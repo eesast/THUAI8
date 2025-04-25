@@ -182,6 +182,13 @@ namespace debug_interface.ViewModels
             vm.PosX = data.X; // 存储原始 X
             vm.PosY = data.Y; // 存储原始 Y
 
+            //if (data.X != vm.PosX || data.Y != vm.PosY) 
+            //{
+                string message = $"更新角色: Name='{vm.Name}', pos = ({vm.PosX}, {vm.PosY})";
+                LogConsoleVM.AddLog(message, "INFO"); 
+            //}
+                
+
             CharacterState previousActiveState = vm.ActiveState == "空闲/未知"
                 ? CharacterState.NullCharacterState
                 : Enum.TryParse<CharacterState>(vm.ActiveState, out var state) ? state : CharacterState.NullCharacterState;
