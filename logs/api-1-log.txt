@@ -1,0 +1,1100 @@
+[api 1] [22:53:16.239] [info] === AI.play() ===
+[api 1] [22:53:16.240] [info] StartTimer: Fri Apr 25 22:53:16 2025
+
+[api 1] [22:53:16.240] [info] ******Self Info******
+[api 1] [22:53:16.240] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:16.240] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:16.241] [info] ************************
+
+[api 1] [22:53:16.241] [info] Time elapsed: 1.5282ms
+[api 1] [22:53:16.242] [info] === AI.play() ===
+[api 1] [22:53:16.242] [info] StartTimer: Fri Apr 25 22:53:16 2025
+
+[api 1] [22:53:16.242] [info] ******Self Info******
+[api 1] [22:53:16.242] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:16.243] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:16.243] [info] ************************
+
+[api 1] [22:53:16.243] [info] Time elapsed: 1.2774ms
+[api 1] [22:53:16.268] [info] === AI.play() ===
+[api 1] [22:53:16.268] [info] StartTimer: Fri Apr 25 22:53:16 2025
+
+[api 1] [22:53:16.269] [info] ******Self Info******
+[api 1] [22:53:16.269] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:16.269] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:16.270] [info] ************************
+
+[api 1] [22:53:16.270] [info] Time elapsed: 1.5069ms
+[api 1] [22:53:16.317] [info] === AI.play() ===
+[api 1] [22:53:16.318] [info] StartTimer: Fri Apr 25 22:53:16 2025
+
+[api 1] [22:53:16.318] [info] ******Self Info******
+[api 1] [22:53:16.319] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:16.319] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:16.319] [info] ************************
+
+[api 1] [22:53:16.319] [info] Time elapsed: 1.9211ms
+[api 1] [22:53:16.347] [info] === AI.play() ===
+[api 1] [22:53:16.347] [info] StartTimer: Fri Apr 25 22:53:16 2025
+
+[api 1] [22:53:16.348] [info] ******Self Info******
+[api 1] [22:53:16.348] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:16.348] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:16.348] [info] ************************
+
+[api 1] [22:53:16.349] [info] Time elapsed: 1.191ms
+[api 1] [22:53:16.409] [info] === AI.play() ===
+[api 1] [22:53:16.409] [info] StartTimer: Fri Apr 25 22:53:16 2025
+
+[api 1] [22:53:16.409] [info] ******Self Info******
+[api 1] [22:53:16.409] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:16.410] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:16.410] [info] ************************
+
+[api 1] [22:53:16.410] [info] Time elapsed: 0.5928ms
+[api 1] [22:53:16.476] [info] === AI.play() ===
+[api 1] [22:53:16.476] [info] StartTimer: Fri Apr 25 22:53:16 2025
+
+[api 1] [22:53:16.476] [info] ******Self Info******
+[api 1] [22:53:16.476] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:16.477] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:16.477] [info] ************************
+
+[api 1] [22:53:16.477] [info] Time elapsed: 1.5516ms
+[api 1] [22:53:16.506] [info] === AI.play() ===
+[api 1] [22:53:16.507] [info] StartTimer: Fri Apr 25 22:53:16 2025
+
+[api 1] [22:53:16.507] [info] ******Self Info******
+[api 1] [22:53:16.508] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:16.508] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:16.509] [info] ************************
+
+[api 1] [22:53:16.509] [info] Time elapsed: 2.7638ms
+[api 1] [22:53:16.551] [info] === AI.play() ===
+[api 1] [22:53:16.551] [[api 1] [22:53:16.239] [info] === AI.play() ===
+[api 1] [22:53:16.239] [info] StartTimer: Fri Apr 25 22:53:16 2025
+
+[api 1] [22:53:16.239] [info] ******Self Info******
+[api 1] [22:53:16.239] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:16.240] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:16.240] [info] ************************
+
+[api 1] [22:53:16.240] [info] Time elapsed: 0.898ms
+[api 1] [22:53:16.240] [info] === AI.play() ===
+[api 1] [22:53:16.240] [info] StartTimer: Fri Apr 25 22:53:16 2025
+
+[api 1] [22:53:16.240] [info] ******Self Info******
+[api 1] [22:53:16.241] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:16.241] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:16.241] [info] ************************
+
+[api 1] [22:53:16.241] [info] Time elapsed: 1.2796ms
+[api 1] [22:53:16.268] [info] === AI.play() ===
+[api 1] [22:53:16.269] [info] StartTimer: Fri Apr 25 22:53:16 2025
+
+[api 1] [22:53:16.269] [info] ******Self Info******
+[api 1] [22:53:16.269] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:16.269] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:16.270] [info] ************************
+
+[api 1] [22:53:16.270] [info] Time elapsed: 1.3808ms
+[api 1] [22:53:16.317] [info] === AI.play() ===
+[api 1] [22:53:16.317] [info] StartTimer: Fri Apr 25 22:53:16 2025
+
+[api 1] [22:53:16.318] [info] ******Self Info******
+[api 1] [22:53:16.318] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:16.319] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:16.319] [info] ************************
+
+[api 1] [22:53:16.319] [info] Time elapsed: 1.9879ms
+[api 1] [22:53:16.347] [info] === AI.play() ===
+[api 1] [22:53:16.348] [info] StartTimer: Fri Apr 25 22:53:16 2025
+
+[api 1] [22:53:16.348] [info] ******Self Info******
+[api 1] [22:53:16.348] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:16.348] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:16.349] [info] ************************
+
+[api 1] [22:53:16.349] [info] Time elapsed: 1.3602ms
+[api 1] [22:53:16.409] [info] === AI.play() ===
+[api 1] [22:53:16.409] [info] StartTimer: Fri Apr 25 22:53:16 2025
+
+[api 1] [22:53:16.409] [info] ******Self Info******
+[api 1] [22:53:16.409] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:16.410] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:16.410] [info] ************************
+
+[api 1] [22:53:16.410] [info] Time elapsed: 0.5928ms
+[api 1] [22:53:16.475] [info] === AI.play() ===
+[api 1] [22:53:16.476] [info] StartTimer: Fri Apr 25 22:53:16 2025
+
+[api 1] [22:53:16.476] [info] ******Self Info******
+[api 1] [22:53:16.476] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:16.476] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:16.477] [info] ************************
+
+[api 1] [22:53:16.477] [info] Time elapsed: 1.8367ms
+[api 1] [22:53:16.506] [info] === AI.play() ===
+[api 1] [22:53:16.507] [info] StartTimer: Fri Apr 25 22:53:16 2025
+
+[api 1] [22:53:16.507] [info] ******Self Info******
+[api 1] [22:53:16.508] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:16.508] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:16.509] [info] ************************
+
+[api 1] [22:53:16.509] [info] Time elapsed: 3.0347ms
+[api 1] [22:53:16.552] [info] === AI.play() ===
+[api 1] [22:53:16.552] [info] StartTimer: Fri Apr 25 22:53:16 2025
+
+[api 1] [22:53:16.553] [info] ******Self Info******
+[api 1] [22:53:16.553] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:16.553] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:16.554] [info] ************************
+
+[api 1] [22:53:16.554] [info] Time elapsed: 2.155ms
+[api 1] [22:53:16.598] [info] === AI.play() ===
+[api 1] [22:53:16.598] [info] StartTimer: Fri Apr 25 22:53:16 2025
+
+[api 1] [22:53:16.598] [info] ******Self Info******
+[api 1] [22:53:16.598] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:16.598] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:16.598] [info] ************************
+
+[api 1] [22:53:16.598] [info] Time elapsed: 0.7178ms
+[api 1] [22:53:16.680] [info] === AI.play() ===
+[api 1] [22:53:16.680] [info] StartTimer: Fri Apr 25 22:53:16 2025
+
+[api 1] [22:53:16.681] [info] ******Self Info******
+[api 1] [22:53:16.681] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:16.681] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:16.681] [info] ************************
+
+[api 1] [22:53:16.682] [info] Time elapsed: 1.5638ms
+[api 1] [22:53:16.711] [info] === AI.play() ===
+[api 1] [22:53:16.711] [info] StartTimer: Fri Apr 25 22:53:16 2025
+
+[api 1] [22:53:16.712] [info] ******Self Info******
+[api 1] [22:53:16.713] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:16.714] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:16.714] [info] ************************
+
+[api 1] [22:53:16.715] [info] Time elapsed: 3.5832ms
+[api 1] [22:53:16.756] [info] === AI.play() ===
+[api 1] [22:53:16.756] [info] StartTimer: Fri Apr 25 22:53:16 2025
+
+[api 1] [22:53:16.756] [info] ******Self Info******
+[api 1] [22:53:16.756] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:16.756] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:16.757] [info] ************************
+
+[api 1] [22:53:16.757] [info] Time elapsed: 0.815ms
+[api 1] [22:53:16.803] [info] === AI.play() ===
+[api 1] [22:53:16.803] [info] StartTimer: Fri Apr 25 22:53:16 2025
+
+[api 1] [22:53:16.803] [info] ******Self Info******
+[api 1] [22:53:16.803] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:16.803] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:16.803] [info] ************************
+
+[api 1] [22:53:16.804] [info] Time elapsed: 0.9481ms
+[api 1] [22:53:16.866] [info] === AI.play() ===
+[api 1] [22:53:16.866] [info] StartTimer: Fri Apr 25 22:53:16 2025
+
+[api 1] [22:53:16.866] [info] ******Self Info******
+[api 1] [22:53:16.866] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:16.866] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:16.866] [info] ************************
+
+[api 1] [22:53:16.867] [info] Time elapsed: 0.6931ms
+[api 1] [22:53:16.911] [info] === AI.play() ===
+[api 1] [22:53:16.911] [info] StartTimer: Fri Apr 25 22:53:16 2025
+
+[api 1] [22:53:16.911] [info] ******Self Info******
+[api 1] [22:53:16.911] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:16.911] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:16.911] [info] ************************
+
+[api 1] [22:53:16.912] [info] Time elapsed: 0.8829ms
+[api 1] [22:53:16.959] [info] === AI.play() ===
+[api 1] [22:53:16.960] [info] StartTimer: Fri Apr 25 22:53:16 2025
+
+[api 1] [22:53:16.960] [info] ******Self Info******
+[api 1] [22:53:16.961] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:16.961] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:16.961] [info] ************************
+
+[api 1] [22:53:16.961] [info] Time elapsed: 1.6641ms
+[api 1] [22:53:17.004] [info] === AI.play() ===
+[api 1] [22:53:17.004] [info] StartTimer: Fri Apr 25 22:53:17 2025
+
+[api 1] [22:53:17.004] [info] ******Self Info******
+[api 1] [22:53:17.004] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:17.004] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:17.004] [info] ************************
+
+[api 1] [22:53:17.004] [info] Time elapsed: 0.5839ms
+[api 1] [22:53:17.072] [info] === AI.play() ===
+[api 1] [22:53:17.073] [info] StartTimer: Fri Apr 25 22:53:17 2025
+
+[api 1] [22:53:17.075] [info] ******Self Info******
+[api 1] [22:53:17.075] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:17.076] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:17.076] [info] ************************
+
+[api 1] [22:53:17.076] [info] Time elapsed: 4.2302ms
+[api 1] [22:53:17.114] [info] === AI.play() ===
+[api 1] [22:53:17.115] [info] StartTimer: Fri Apr 25 22:53:17 2025
+
+[api 1] [22:53:17.115] [info] ******Self Info******
+[api 1] [22:53:17.115] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:17.115] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:17.115] [info] ************************
+
+[api 1] [22:53:17.115] [info] Time elapsed: 1.0856ms
+[api 1] [22:53:17.163] [info] === AI.play() ===
+[api 1] [22:53:17.164] [info] StartTimer: Fri Apr 25 22:53:17 2025
+
+[api 1] [22:53:17.165] [info] ******Self Info******
+[api 1] [22:53:17.166] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:17.166] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:17.166] [info] ************************
+
+[api 1] [22:53:17.166] [info] Time elapsed: 3.0337ms
+[api 1] [22:53:17.211] [info] === AI.play() ===
+[api 1] [22:53:17.212] [info] StartTimer: Fri Apr 25 22:53:17 2025
+
+[api 1] [22:53:17.212] [info] ******Self Info******
+[api 1] [22:53:17.212] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:17.213] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:17.213] [info] ************************
+
+[api 1] [22:53:17.213] [info] Time elapsed: 2.0514ms
+[api 1] [22:53:17.256] [info] === AI.play() ===
+[api 1] [22:53:17.257] [info] StartTimer: Fri Apr 25 22:53:17 2025
+
+[api 1] [22:53:17.257] [info] ******Self Info******
+[api 1] [22:53:17.257] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:17.257] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:17.257] [info] ************************
+
+[api 1] [22:53:17.257] [info] Time elapsed: 0.8959ms
+[api 1] [22:53:17.315] [info] === AI.play() ===
+[api 1] [22:53:17.315] [info] StartTimer: Fri Apr 25 22:53:17 2025
+
+[api 1] [22:53:17.315] [info] ******Self Info******
+[api 1] [22:53:17.315] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:17.316] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:17.316] [info] ************************
+
+[api 1] [22:53:17.316] [info] Time elapsed: 0.616ms
+[api 1] [22:53:17.386] [info] === AI.play() ===
+[api 1] [22:53:17.387] [info] StartTimer: Fri Apr 25 22:53:17 2025
+
+[api 1] [22:53:17.388] [info] ******Self Info******
+[api 1] [22:53:17.388] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:17.388] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:17.388] [info] ************************
+
+[api 1] [22:53:17.389] [info] Time elapsed: 3.2241ms
+[api 1] [22:53:17.419] [info] === AI.play() ===
+[api 1] [22:53:17.419] [info] StartTimer: Fri Apr 25 22:53:17 2025
+
+[api 1] [22:53:17.419] [info] ******Self Info******
+[api 1] [22:53:17.420] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:17.420] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:17.420] [info] ************************
+
+[api 1] [22:53:17.421] [info] Time elapsed: 2.2234ms
+[api 1] [22:53:17.475] [info] === AI.play() ===
+[api 1] [22:53:17.475] [info] StartTimer: Fri Apr 25 22:53:17 2025
+
+[api 1] [22:53:17.475] [info] ******Self Info******
+[api 1] [22:53:17.476] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:17.476] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:17.476] [info] ************************
+
+[api 1] [22:53:17.476] [info] Time elapsed: 1.8138ms
+[api 1] [22:53:17.508] [info] === AI.play() ===
+[api 1] [22:53:17.508] [info] StartTimer: Fri Apr 25 22:53:17 2025
+
+[api 1] [22:53:17.509] [info] ******Self Info******
+[api 1] [22:53:17.509] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:17.510] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:17.510] [info] ************************
+
+[api 1] [22:53:17.510] [info] Time elapsed: 2.3674ms
+[api 1] [22:53:17.569] [info] === AI.play() ===
+[api 1] [22:53:17.569] [info] StartTimer: Fri Apr 25 22:53:17 2025
+
+[api 1] [22:53:17.569] [info] ******Self Info******
+[api 1] [22:53:17.569] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:17.570] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:17.570] [info] ************************
+
+[api 1] [22:53:17.570] [info] Time elapsed: 1.1046ms
+[api 1] [22:53:17.612] [info] === AI.play() ===
+[api 1] [22:53:17.612] [info] StartTimer: Fri Apr 25 22:53:17 2025
+
+[api 1] [22:53:17.612] [info] ******Self Info******
+[api 1] [22:53:17.613] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:17.613] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:17.613] [info] ************************
+
+[api 1] [22:53:17.613] [info] Time elapsed: 1.3921ms
+[api 1] [22:53:17.674] [info] === AI.play() ===
+[api 1] [22:53:17.674] [info] StartTimer: Fri Apr 25 22:53:17 2025
+
+[api 1] [22:53:17.674] [info] ******Self Info******
+[api 1] [22:53:17.674] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:17.675] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:17.675] [info] ************************
+
+[api 1] [22:53:17.675] [info] Time elapsed: 0.88ms
+[api 1] [22:53:17.721] [info] === AI.play() ===
+[api 1] [22:53:17.722] [info] StartTimer: Fri Apr 25 22:53:17 2025
+
+[api 1] [22:53:17.722] [info] ******Self Info******
+[api 1] [22:53:17.722] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:17.722] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:17.723] [info] ************************
+
+[api 1] [22:53:17.723] [info] Time elapsed: 1.3532ms
+[api 1] [22:53:17.770] [info] === AI.play() ===
+[api 1] [22:53:17.770] [info] StartTimer: Fri Apr 25 22:53:17 2025
+
+[api 1] [22:53:17.771] [info] ******Self Info******
+[api 1] [22:53:17.771] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:17.771] [info] activectivestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:17.771] [info] ************************
+
+[api 1] [22:53:17.771] [info] Time elapsed: 1.5861ms
+[api 1] [22:53:17.813] [info] === AI.play() ===
+[api 1] [22:53:17.814] [info] StartTimer: Fri Apr 25 22:53:17 2025
+
+[api 1] [22:53:17.814] [info] ******Self Info******
+[api 1] [22:53:17.814] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:17.814] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:17.814] [info] ************************
+
+[api 1] [22:53:17.814] [info] Time elapsed: 0.7284ms
+[api 1] [22:53:17.879] [info] === AI.play() ===
+[api 1] [22:53:17.880] [info] StartTimer: Fri Apr 25 22:53:17 2025
+
+[api 1] [22:53:17.880] [info] ******Self Info******
+[api 1] [22:53:17.880] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:17.881] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:17.881] [info] ************************
+
+[api 1] [22:53:17.881] [info] Time elapsed: 1.7494ms
+[api 1] [22:53:17.915] [info] === AI.play() ===
+[api 1] [22:53:17.915] [info] StartTimer: Fri Apr 25 22:53:17 2025
+
+[api 1] [22:53:17.916] [info] ******Self Info******
+[api 1] [22:53:17.916] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:17.916] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:17.917] [info] ************************
+
+[api 1] [22:53:17.918] [info] Time elapsed: 2.6116ms
+[api 1] [22:53:17.971] [info] === AI.play() ===
+[api 1] [22:53:17.971] [info] StartTimer: Fri Apr 25 22:53:17 2025
+
+[api 1] [22:53:17.972] [info] ******Self Info******
+[api 1] [22:53:17.972] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:17.972] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:17.972] [info] ************************
+
+[api 1] [22:53:17.972] [info] Time elapsed: 1.0661ms
+[api 1] [22:53:18.018] [info] === AI.play() ===
+[api 1] [22:53:18.018] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.018] [info] ******Self Info******
+[api 1] [22:53:18.018] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.019] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.019] [info] ************************
+
+[api 1] [22:53:18.019] [info] Time elapsed: 1.2404ms
+[api 1] [22:53:18.066] [info] === AI.play() ===
+[api 1] [22:53:18.066] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.067] [info] ******Self Info******
+[api 1] [22:53:18.067] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.067] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.067] [info] ************************
+
+[api 1] [22:53:18.067] [info] Time elapsed: 1.236ms
+[api 1] [22:53:18.112] [info] === AI.play() ===
+[api 1] [22:53:18.113] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.113] [info] ******Self Info******
+[api 1] [22:53:18.113] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.113] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.113] [info] ************************
+
+[api 1] [22:53:18.114] [info] Time elapsed: 1.0356ms
+[api 1] [22:53:18.177] [info] === AI.play() ===
+[api 1] [22:53:18.177] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.177] [info] ******Self Info******
+[api 1] [22:53:18.178] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.178] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view rastate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:17.771] [info] ************************
+
+[api 1] [22:53:17.771] [info] Time elapsed: 1.4362ms
+[api 1] [22:53:17.813] [info] === AI.play() ===
+[api 1] [22:53:17.814] [info] StartTimer: Fri Apr 25 22:53:17 2025
+
+[api 1] [22:53:17.814] [info] ******Self Info******
+[api 1] [22:53:17.814] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:17.814] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:17.814] [info] ************************
+
+[api 1] [22:53:17.814] [info] Time elapsed: 0.8335ms
+[api 1] [22:53:17.879] [info] === AI.play() ===
+[api 1] [22:53:17.879] [info] StartTimer: Fri Apr 25 22:53:17 2025
+
+[api 1] [22:53:17.880] [info] ******Self Info******
+[api 1] [22:53:17.880] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:17.880] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:17.881] [info] ************************
+
+[api 1] [22:53:17.881] [info] Time elapsed: 1.7347ms
+[api 1] [22:53:17.915] [info] === AI.play() ===
+[api 1] [22:53:17.915] [info] StartTimer: Fri Apr 25 22:53:17 2025
+
+[api 1] [22:53:17.916] [info] ******Self Info******
+[api 1] [22:53:17.916] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:17.916] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:17.918] [info] ************************
+
+[api 1] [22:53:17.918] [info] Time elapsed: 2.5073ms
+[api 1] [22:53:17.970] [info] === AI.play() ===
+[api 1] [22:53:17.971] [info] StartTimer: Fri Apr 25 22:53:17 2025
+
+[api 1] [22:53:17.971] [info] ******Self Info******
+[api 1] [22:53:17.972] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:17.972] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:17.972] [info] ************************
+
+[api 1] [22:53:17.972] [info] Time elapsed: 1.6641ms
+[api 1] [22:53:18.017] [info] === AI.play() ===
+[api 1] [22:53:18.018] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.018] [info] ******Self Info******
+[api 1] [22:53:18.018] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.019] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.019] [info] ************************
+
+[api 1] [22:53:18.019] [info] Time elapsed: 1.6206ms
+[api 1] [22:53:18.065] [info] === AI.play() ===
+[api 1] [22:53:18.066] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.067] [info] ******Self Info******
+[api 1] [22:53:18.067] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.067] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.067] [info] ************************
+
+[api 1] [22:53:18.067] [info] Time elapsed: 2.0164ms
+[api 1] [22:53:18.112] [info] === AI.play() ===
+[api 1] [22:53:18.113] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.113] [info] ******Self Info******
+[api 1] [22:53:18.113] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.113] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.113] [info] ************************
+
+[api 1] [22:53:18.113] [info] Time elapsed: 1.21ms
+[api 1] [22:53:18.177] [info] === AI.play() ===
+[api 1] [22:53:18.177] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.178] [info] ******Self Info******
+[api 1] [22:53:18.178] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.178] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.178] [info] ************************
+
+[api 1] [22:53:18.178] [info] Time elapsed: 1.2464ms
+[api 1] [22:53:18.210] [info] === AI.play() ===
+[api 1] [22:53:18.212] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.213] [info] ******Self Info******
+[api 1] [22:53:18.213] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.214] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.214] [info] ************************
+
+[api 1] [22:53:18.214] [info] Time elapsed: 3.9661ms
+[api 1] [22:53:18.271] [info] === AI.play() ===
+[api 1] [22:53:18.272] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.272] [info] ******Self Info******
+[api 1] [22:53:18.273] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.273] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.273] [info] ************************
+
+[api 1] [22:53:18.274] [info] Time elapsed: 2.4874ms
+[api 1] [22:53:18.314] [info] === AI.play() ===
+[api 1] [22:53:18.315] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.315] [info] ******Self Info******
+[api 1] [22:53:18.315] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.315] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.315] [info] ************************
+
+[api 1] [22:53:18.316] [info] Time elapsed: 1.353ms
+[api 1] [22:53:18.377] [info] === AI.play() ===
+[api 1] [22:53:18.377] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.378] [info] ******Self Info******
+[api 1] [22:53:18.378] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.379] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.379] [info] ************************
+
+[api 1] [22:53:18.380] [info] Time elapsed: 2.5528ms
+[api 1] [22:53:18.423] [info] === AI.play() ===
+[api 1] [22:53:18.424] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.424] [info] ******Self Info******
+[api 1] [22:53:18.424] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.425] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.425] [info] ************************
+
+[api 1] [22:53:18.425] [info] Time elapsed: 1.7518ms
+[api 1] [22:53:18.470] [info] === AI.play() ===
+[api 1] [22:53:18.470] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.470] [info] ******Self Info******
+[api 1] [22:53:18.471] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.471] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.471] [info] ************************
+
+[api 1] [22:53:18.471] [info] Time elapsed: 1.3415ms
+[api 1] [22:53:18.515] [info] === AI.play() ===
+[api 1] [22:53:18.515] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.516] [info] ******Self Info******
+[api 1] [22:53:18.516] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.516] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.516] [info] ************************
+
+[api 1] [22:53:18.516] [info] Time elapsed: 1.1561ms
+[api 1] [22:53:18.561] [info] === AI.play() ===
+[api 1] [22:53:18.562] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.562] [info] ******Self Info******
+[api 1] [22:53:18.562] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.562] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.562] [info] *******************nge=8000, facing direction=0
+[api 1] [22:53:18.178] [info] ************************
+
+[api 1] [22:53:18.178] [info] Time elapsed: 1.2472ms
+[api 1] [22:53:18.212] [info] === AI.play() ===
+[api 1] [22:53:18.213] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.213] [info] ******Self Info******
+[api 1] [22:53:18.214] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.214] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.214] [info] ************************
+
+[api 1] [22:53:18.214] [info] Time elapsed: 2.1957ms
+[api 1] [22:53:18.272] [info] === AI.play() ===
+[api 1] [22:53:18.273] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.273] [info] ******Self Info******
+[api 1] [22:53:18.273] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.274] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.274] [info] ************************
+
+[api 1] [22:53:18.274] [info] Time elapsed: 1.7424ms
+[api 1] [22:53:18.315] [info] === AI.play() ===
+[api 1] [22:53:18.315] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.315] [info] ******Self Info******
+[api 1] [22:53:18.315] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.316] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.316] [info] ************************
+
+[api 1] [22:53:18.316] [info] Time elapsed: 1.0258ms
+[api 1] [22:53:18.377] [info] === AI.play() ===
+[api 1] [22:53:18.378] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.378] [info] ******Self Info******
+[api 1] [22:53:18.378] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.379] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.379] [info] ************************
+
+[api 1] [22:53:18.380] [info] Time elapsed: 2.4004ms
+[api 1] [22:53:18.423] [info] === AI.play() ===
+[api 1] [22:53:18.424] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.424] [info] ******Self Info******
+[api 1] [22:53:18.424] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.425] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.425] [info] ************************
+
+[api 1] [22:53:18.425] [info] Time elapsed: 1.7167ms
+[api 1] [22:53:18.470] [info] === AI.play() ===
+[api 1] [22:53:18.471] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.471] [info] ******Self Info******
+[api 1] [22:53:18.471] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.471] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.471] [info] ************************
+
+[api 1] [22:53:18.471] [info] Time elapsed: 0.686ms
+[api 1] [22:53:18.515] [info] === AI.play() ===
+[api 1] [22:53:18.516] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.516] [info] ******Self Info******
+[api 1] [22:53:18.516] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.516] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.516] [info] ************************
+
+[api 1] [22:53:18.517] [info] Time elapsed: 1.1501ms
+[api 1] [22:53:18.561] [info] === AI.play() ===
+[api 1] [22:53:18.562] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.562] [info] ******Self Info******
+[api 1] [22:53:18.562] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.562] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.562] [info] ******************
+
+[api 1] [22:53:18.562] [info] Time elapsed: 0.9528ms
+[api 1] [22:53:18.626] [info] === AI.play() ===
+[api 1] [22:53:18.626] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.626] [info] ******Self Info******
+[api 1] [22:53:18.626] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.626] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.626] [info] ************************
+
+[api 1] [22:53:18.626] [info] Time elapsed: 0.5219ms
+[api 1] [22:53:18.671] [info] === AI.play() ===
+[api 1] [22:53:18.671] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.672] [info] ******Self Info******
+[api 1] [22:53:18.672] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.672] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.672] [info] ************************
+
+[api 1] [22:53:18.672] [info] Time elapsed: 0.9359ms
+[api 1] [22:53:18.722] [info] === AI.play() ===
+[api 1] [22:53:18.722] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.723] [info] ******Self Info******
+[api 1] [22:53:18.723] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.724] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.724] [info] ************************
+
+[api 1] [22:53:18.724] [info] Time elapsed: 2.2301ms
+[api 1] [22:53:18.770] [info] === AI.play() ===
+[api 1] [22:53:18.770] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.771] [info] ******Self Info******
+[api 1] [22:53:18.771] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.771] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.771] [info] ************************
+
+[api 1] [22:53:18.771] [info] Time elapsed: 1.1007ms
+[api 1] [22:53:18.816] [info] === AI.play() ===
+[api 1] [22:53:18.816] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.817] [info] ******Self Info******
+[api 1] [22:53:18.817] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.818] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.818] [info] ************************
+
+[api 1] [22:53:18.818] [info] Time elapsed: 2.0602ms
+[api 1] [22:53:18.858] [info] === AI.play() ===
+[api 1] [22:53:18.859] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.859] [info] ******Self Info******
+[api 1] [22:53:18.859] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.859] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.859] [info] ************************
+
+[api 1] [22:53:18.859] [info] Time elapsed: 0.9784ms
+[api 1] [22:53:18.930] [info] === AI.play() ===
+[api 1] [22:53:18.932] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.934] [info] ******Self Info******
+[api 1] [22:53:18.935] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.935] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.935] [info] ************************
+
+[api 1] [22:53:18.936] [info] Time elapsed: 5.347ms
+[api 1] [22:53:18.970] [info] === AI.play() ===
+[api 1] [22:53:18.970] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.971] [info] ******Self Info******
+[api 1] [22:53:18.971] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.971] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.971] [info] ************************
+
+[api 1] [22:53:18.971] [info] Time elapsed: 1.0425ms
+[api 1] [22***********
+
+[api 1] [22:53:18.562] [info] Time elapsed: 1.1457ms
+[api 1] [22:53:18.626] [info] === AI.play() ===
+[api 1] [22:53:18.626] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.626] [info] ******Self Info******
+[api 1] [22:53:18.626] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.626] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.626] [info] ************************
+
+[api 1] [22:53:18.626] [info] Time elapsed: 0.7818ms
+[api 1] [22:53:18.671] [info] === AI.play() ===
+[api 1] [22:53:18.671] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.672] [info] ******Self Info******
+[api 1] [22:53:18.672] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.672] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.672] [info] ************************
+
+[api 1] [22:53:18.672] [info] Time elapsed: 0.9366ms
+[api 1] [22:53:18.722] [info] === AI.play() ===
+[api 1] [22:53:18.723] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.723] [info] ******Self Info******
+[api 1] [22:53:18.723] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.724] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.724] [info] ************************
+
+[api 1] [22:53:18.724] [info] Time elapsed: 1.7685ms
+[api 1] [22:53:18.770] [info] === AI.play() ===
+[api 1] [22:53:18.771] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.771] [info] ******Self Info******
+[api 1] [22:53:18.771] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.771] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.771] [info] ************************
+
+[api 1] [22:53:18.771] [info] Time elapsed: 0.8712ms
+[api 1] [22:53:18.816] [info] === AI.play() ===
+[api 1] [22:53:18.816] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.817] [info] ******Self Info******
+[api 1] [22:53:18.817] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.818] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.818] [info] ************************
+
+[api 1] [22:53:18.818] [info] Time elapsed: 2.1858ms
+[api 1] [22:53:18.859] [info] === AI.play() ===
+[api 1] [22:53:18.859] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.859] [info] ******Self Info******
+[api 1] [22:53:18.859] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.859] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.859] [info] ************************
+
+[api 1] [22:53:18.859] [info] Time elapsed: 0.5864ms
+[api 1] [22:53:18.934] [info] === AI.play() ===
+[api 1] [22:53:18.935] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.935] [info] ******Self Info******
+[api 1] [22:53:18.935] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.936] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.936] [info] ************************
+
+[api 1] [22:53:18.936] [info] Time elapsed: 1.5533ms
+[api 1] [22:53:18.971] [info] === AI.play() ===
+[api 1] [22:53:18.971] [info] StartTimer: Fri Apr 25 22:53:18 2025
+
+[api 1] [22:53:18.971] [info] ******Self Info******
+[api 1] [22:53:18.971] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:18.972] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:18.972] [info] ************************
+
+[api 1] [22:53:18.972] [info] Time elapsed: 1.0902ms
+[api 1] [22:53:19.018] [info] === AI.play() ===
+[api 1] [22:53:19.018] [info] StartTimer: Fri Apr 25 22:53:19 2025
+
+[api 1] [22:53:19.018] [info] ******Self Info******
+[api 1] [22:53:19.018] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:19.018] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:19.018] [info] ************************
+
+[api 1] [22:53:19.019] [info] Time elapsed: 0.8042ms
+[api 1] [22:53:19.075] [info] === AI.play() ===
+[api 1] [22:53:19.075] [info] StartTimer: Fri Apr 25 22:53:19 2025
+
+[api 1] [22:53:19.076] [info] ******Self Info******
+[api 1] [22:53:19.076] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:19.076] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:19.076] [info] ************************
+
+[api 1] [22:53:19.076] [info] Time elapsed: 0.7141ms
+[api 1] [22:53:19.113] [info] === AI.play() ===
+[api 1] [22:53:19.113] [info] StartTimer: Fri Apr 25 22:53:19 2025
+
+[api 1] [22:53:19.113] [info] ******Self Info******
+[api 1] [22:53:19.114] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:19.114] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:19.114] [info] ************************
+
+[api 1] [22:53:19.114] [info] Time elapsed: 0.7773ms
+[api 1] [22:53:19.155] [info] === AI.play() ===
+[api 1] [22:53:19.155] [info] StartTimer: Fri Apr 25 22:53:19 2025
+
+[api 1] [22:53:19.155] [info] ******Self Info******
+[api 1] [22:53:19.156] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:19.156] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:19.156] [info] ************************
+
+[api 1] [22:53:19.156] [info] Time elapsed: 0.5301ms
+[api 1] [22:53:19.218] [info] === AI.play() ===
+[api 1] [22:53:19.218] [info] StartTimer: Fri Apr 25 22:53:19 2025
+
+[api 1] [22:53:19.218] [info] ******Self Info******
+[api 1] [22:53:19.218] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:19.218] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:19.219] [info] ************************
+
+[api 1] [22:53:19.219] [info] Time elapsed: 1.1142ms
+[api 1] [22:53:19.264] [info] === AI.play() ===
+[api 1] [22:53:19.264] [info] StartTimer: Fri Apr 25 22:53:19 2025
+
+[api 1] [22:53:19.265] [info] ******Self Info******
+[api 1] [22:53:19.265] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:19.265] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:19.265] [info] ************************
+
+[api 1] [22:53:19.265] [info] Time elapsed: 1.0257ms
+[api 1] [22:53:19.310] [info] === AI.play() ===
+[api 1] [22:53:19.310] [info] StartTimer: Fri Apr 25 22:53:19 2025
+
+[api 1] [22:53:19.310] [info] ******Self Info******
+[api 1] [22:53:19.311] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:19.311] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:19.311] [info] ************************
+
+[api 1] [22:53:19.311] [info] Time elapsed: 0.5661ms
+[api 1] [22:53:19.360] [info] === AI.play() ===
+[api 1] [22:53:19.360] [info] StartTimer: Fri Apr 25 22:53:19 2025
+
+[api 1] [22:53:19.360] [info] ******Self Info******
+[api 1] [22:53:19.360] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:19.360] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:19.360] [info] ************************
+
+[api 1] [22:53:19.360] [info] Time elapsed: 0.8529ms
+[api 1] [22:53:19.424] [info] === AI.play() ===
+[api 1] [22:53:19.424] [inf:53:19.017] [info] === AI.play() ===
+[api 1] [22:53:19.018] [info] StartTimer: Fri Apr 25 22:53:19 2025
+
+[api 1] [22:53:19.018] [info] ******Self Info******
+[api 1] [22:53:19.018] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:19.018] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:19.018] [info] ************************
+
+[api 1] [22:53:19.019] [info] Time elapsed: 1.1ms
+[api 1] [22:53:19.075] [info] === AI.play() ===
+[api 1] [22:53:19.075] [info] StartTimer: Fri Apr 25 22:53:19 2025
+
+[api 1] [22:53:19.076] [info] ******Self Info******
+[api 1] [22:53:19.076] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:19.076] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:19.076] [info] ************************
+
+[api 1] [22:53:19.076] [info] Time elapsed: 0.6798ms
+[api 1] [22:53:19.113] [info] === AI.play() ===
+[api 1] [22:53:19.113] [info] StartTimer: Fri Apr 25 22:53:19 2025
+
+[api 1] [22:53:19.113] [info] ******Self Info******
+[api 1] [22:53:19.113] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:19.114] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:19.114] [info] ************************
+
+[api 1] [22:53:19.114] [info] Time elapsed: 0.655ms
+[api 1] [22:53:19.155] [info] === AI.play() ===
+[api 1] [22:53:19.155] [info] StartTimer: Fri Apr 25 22:53:19 2025
+
+[api 1] [22:53:19.156] [info] ******Self Info******
+[api 1] [22:53:19.156] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:19.156] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:19.156] [info] ************************
+
+[api 1] [22:53:19.156] [info] Time elapsed: 0.4714ms
+[api 1] [22:53:19.218] [info] === AI.play() ===
+[api 1] [22:53:19.218] [info] StartTimer: Fri Apr 25 22:53:19 2025
+
+[api 1] [22:53:19.218] [info] ******Self Info******
+[api 1] [22:53:19.218] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:19.218] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:19.219] [info] ************************
+
+[api 1] [22:53:19.219] [info] Time elapsed: 1.0639ms
+[api 1] [22:53:19.264] [info] === AI.play() ===
+[api 1] [22:53:19.264] [info] StartTimer: Fri Apr 25 22:53:19 2025
+
+[api 1] [22:53:19.264] [info] ******Self Info******
+[api 1] [22:53:19.265] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:19.265] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:19.265] [info] ************************
+
+[api 1] [22:53:19.265] [info] Time elapsed: 0.9534ms
+[api 1] [22:53:19.310] [info] === AI.play() ===
+[api 1] [22:53:19.310] [info] StartTimer: Fri Apr 25 22:53:19 2025
+
+[api 1] [22:53:19.311] [info] ******Self Info******
+[api 1] [22:53:19.311] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:19.311] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:19.311] [info] ************************
+
+[api 1] [22:53:19.311] [info] Time elapsed: 0.6552ms
+[api 1] [22:53:19.360] [info] === AI.play() ===
+[api 1] [22:53:19.360] [info] StartTimer: Fri Apr 25 22:53:19 2025
+
+[api 1] [22:53:19.360] [info] ******Self Info******
+[api 1] [22:53:19.360] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:19.360] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:19.360] [info] ************************
+
+[api 1] [22:53:19.360] [info] Time elapsed: 0.8187ms
+[api 1] [22:53:19.424] [info] === AI.play() ===
+[api 1] [22:53:19.425] [info] StartTimer: Fri Apr 25 22:53:19 2025
+
+[api 1] [22:53:19.425] [info] ******Self Info******
+[api 1] [22:53:19.425] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:19.425] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:19.425] [info] ************************
+
+[api 1] [22:53:19.425] [info] Time elapsed: 1.1478ms
+[api 1] [22:53:19.470] [info] === AI.play() ===
+[api 1] [22:53:19.470] [info] StartTimer: Fri Apr 25 22:53:19 2025
+
+[api 1] [22:53:19.470] [info] ******Self Info******
+[api 1] [22:53:19.470] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:19.470] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:19.471] [info] ************************
+
+[api 1] [22:53:19.471] [info] Time elapsed: 0.8332ms
+[api 1] [22:53:19.514] [info] === AI.play() ===
+[api 1] [22:53:19.514] [info] StartTimer: Fri Apr 25 22:53:19 2025
+
+[api 1] [22:53:19.514] [info] ******Self Info******
+[api 1] [22:53:19.514] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:19.514] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:19.514] [info] ************************
+
+[api 1] [22:53:19.515] [info] Time elapsed: 0.7233ms
+[api 1] [22:53:19.564] [info] === AI.play() ===
+[api 1] [22:53:19.565] [info] StartTimer: Fri Apr 25 22:53:19 2025
+
+[api 1] [22:53:19.565] [info] ******Self Info******
+[api 1] [22:53:19.565] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:19.566] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:19.566] [info] ************************
+
+[api 1] [22:53:19.566] [info] Time elapsed: 1.6027ms
+[api 1] [22:53:19.626] [info] === AI.play() ===
+[api 1] [22:53:19.626] [info] StartTimer: Fri Apr 25 22:53:19 2025
+
+[api 1] [22:53:19.626] [info] ******Self Info******
+[api 1] [22:53:19.627] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:19.627] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:19.627] [info] ************************
+
+[api 1] [22:53:19.627] [info] Time elapsed: 0.7153ms
+[api 1] [22:53:19.671] [info] === AI.play() ===
+[api 1] [22:53:19.671] [info] StartTimer: Fri Apr 25 22:53:19 2025
+
+[api 1] [22:53:19.671] [info] ******Self Info******
+[api 1] [22:53:19.672] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:19.672] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:19.672] [info] ************************
+
+[api 1] [22:53:19.672] [info] Time elapsed: 1.0645ms
+[api 1] [22:53:19.718] [info] === AI.play() ===
+[api 1] [22:53:19.718] [info] StartTimer: Fri Apr 25 22:53:19 2025
+
+[api 1] [22:53:19.718] [info] ******Self Info******
+[api 1] [22:53:19.718] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:19.718] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:19.718] [info] ************************
+
+[api 1] [22:53:19.719] [info] Time elapsed: 1.0055ms
+[api 1] [22:53:19.765] [info] === AI.play() ===
+[api 1] [22:53:19.767] [info] StartTimer: Fri Apr 25 22:53:19 2025
+
+[api 1] [22:53:19.767] [info] ******Self Info******
+[api 1] [22:53:19.767] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:19.767] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:19.767] [info] ************************
+
+[api 1] [22:53:19.767] [info] Time elapsed: 2.3722ms
+[api 1] [22:53:19.814] [info] === AI.play() ===
+[api 1] [22:53:19.815] [info] StartTimer: Fri Apr 25 22:53:19 2025
+
+[api 1] [22:53:19.815] [info] ******Self Info******
+[api 1] [22:53:19.815] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:19.815] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:19.815] [info] ************************
+
+[api 1] [22:53:19.816] [info] Time elapsed: 1.2831ms
+[api 1] [22:53:19.875] [info] === AI.play() ===
+[api 1] [22:53:19.875] [info] StartTimer: Fri Apr 25 22:53:19 2025
+
+[api 1] [22:53:19.875] [info] ******Self Info******
+[api 1] [22:53:19.875] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:19.875] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:19.875] [info] ************************
+
+[api 1] [22:53:19.875] [info] Time elapsed: 0.8606ms
+[api 1] [22:53:19.922] [info] === AI.play() ===
+[api 1] [22:53:19.922] [info] StartTimer: Fri Apr 25 22:53:19 2025
+
+[api 1] [22:53:19.923] [info] ******Self Info******
+[api 1] [22:53:19.923] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:19.923] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:19.923] [info] ************************
+
+[api 1] [22:53:19.923] [info] Time elapsed: 0.8973ms
+[api 1] [22:53:19.967] [info] === AI.play() ===
+[api 1] [22:53:19.967] [info] StartTimer: Fri Apr 25 22:53:19 2025
+
+[api 1] [22:53:19.967] [info] ******Self Info******
+[api 1] [22:53:19.968] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:19.968] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:19.968] [info] ************************
+
+[api 1] [22:53:19.968] [info] Time elapsed: 0.8894ms
+[api 1] [22:53:20.034] [info] === AI.play() ===
+[api 1] [22:53:20.034] [info] StartTimer: Fri Apr 25 22:53:20 2025
+
+[api 1] [22:53:20.034] [info] ******Self Info******
+[api 1] [22:53:20.034] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:20.035] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:20.035] [info] ************************
+
+[api 1] [22:53:20.035] [info] Time elapsed: 1.3697ms
+[api 1] [22:53:20.064] [info] === AI.play() ===
+[api 1] [22:53:20.064] [info] StartTimer: Fri Apr 25 22:53:20 2025
+
+[api 1] [22:53:20.064] [info] ******Self Info******
+[api 1] [22:53:20.064] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:20.065] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:20.065] [info] ************************
+
+[api 1] [22:53:20.065] [info] Time elapsed: 0.9501ms
+[api 1] [22:53:20.123] [info] === AI.play() ===
+[api 1] [22:53:20.124] [info] StartTimer: Fri Apr 25 22:53:20 2025
+
+[api 1] [22:53:20.124] [info] ******Self Info******
+[api 1] [22:53:20.124] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:20.125] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:20.125] [info] ************************
+
+[api 1] [22:53:20.125] [info] Time elapsed: 1.8686ms
+[api 1] [22:53:20.171] [info] === AI.play() ===
+[api 1] [22:53:20.171] [info] StartTimer: Fri Apr 25 22:53:20 2025
+
+[api 1] [22:53:20.171] [info] ******Self Info******
+[api 1] [22:53:20.171] [info] type=JiuLing, characterID=1, GUID=2502, x=45500, y=4500
+[api 1] [22:53:20.172] [info] activestate=NullCharacterState, passivestate=Deceased, speed=2500, view range=8000, facing direction=0
+[api 1] [22:53:20.172] [info] ************************
+
+[api 1] [22:53:20.172] [info] Time elapsed: 1.1201ms
+[api 1] [22:53:20.216] [info] === AI.play() ===
+[api 1] [22:53:20.216] [info] StartTimer: Fri Apr 25 22:53:20 2025
+
+[api 1] [22:53:20.217] [info] ******Self Info******
+[api 1] [22:53:20.217] [info] type=JiuLing, characterID=1, G

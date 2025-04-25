@@ -298,7 +298,7 @@ void Logic::ProcessMessage()
                     case THUAI8::GameState::GameStart:
                         logger->info("Game Start!");
                         // 读取地图
-                        /* for (const auto& item : clientMsg.obj_message())
+                        for (const auto& item : clientMsg.obj_message())
                         {
                             if (Proto2THUAI8::messageOfObjDict[item.message_of_obj_case()] == THUAI8::MessageOfObj::MapMessage)
                             {
@@ -321,7 +321,7 @@ void Logic::ProcessMessage()
                                 break;
                             }
 
-                        }*/
+                        }
                         if (currentState->gameMap.empty())
                         {
                             logger->error("Map not loaded!");

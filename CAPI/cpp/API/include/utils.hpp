@@ -147,6 +147,7 @@ namespace Proto2THUAI8
         {protobuf::CharacterState::HEALING, THUAI8::CharacterState::Healing},
         {protobuf::CharacterState::BERSERK, THUAI8::CharacterState::Berserk},
         {protobuf::CharacterState::BURNED, THUAI8::CharacterState::Burned},
+        {protobuf::CharacterState::DECEASED, THUAI8::CharacterState::Deceased},
     };
 
     inline std::map<protobuf::EconomyResourceType, THUAI8::EconomyResourceType> economyResourceTypeDict{
@@ -451,6 +452,7 @@ namespace THUAI8Proto
         {THUAI8::CharacterState::Healing, protobuf::CharacterState::HEALING},
         {THUAI8::CharacterState::Berserk, protobuf::CharacterState::BERSERK},
         {THUAI8::CharacterState::Burned, protobuf::CharacterState::BURNED},
+        {THUAI8::CharacterState::Deceased, protobuf::CharacterState::DECEASED},
     };
 
     inline std::map<THUAI8::EconomyResourceType, protobuf::EconomyResourceType> economyResourceTypeDict{
