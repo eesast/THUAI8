@@ -51,13 +51,15 @@ jobs:
       with:
         name: installer
         path: D:\a\publish\
-    - name: Check if secret exists
+    - name: Check if secrets exist
       run: |
-        if [ -n "$INSTALLER_COS_SECRET_ID" ] && [ -n "$INSTALLER_COS_SECRET_KEY" ]; then
-          echo "✅ Both secrets are set"
-        else
-          echo "❌ Secrets are missing"
-        fi
+        if ([string]::IsNullOrEmpty("$env:INSTALLER_COS_SECRET_ID") -or [string]::IsNullOrEmpty("$env:INSTALLER_COS_SECRET_KEY")) {
+          Write-Output "❌ 密钥缺失"
+        } else {
+        Write-Output "✅ 两个密钥都已设置"
+        Write-Output "密钥ID长度: $($env:INSTALLER_COS_SECRET_ID.Length)"
+        Write-Output "密钥Key长度: $($env:INSTALLER_COS_SECRET_KEY.Length)"
+        }
       env:
         INSTALLER_COS_SECRET_ID: ${{ secrets.INSTALLER_COS_SECRET_ID }}
         INSTALLER_COS_SECRET_KEY: ${{ secrets.INSTALLER_COS_SECRET_KEY }}
