@@ -116,6 +116,7 @@ namespace THUAI8
         Healing = 11,
         Berserk = 12,
         Burned = 13,
+        Deceased = 14,
     };
 
     enum class CharacterBuffType : unsigned char
@@ -398,6 +399,7 @@ namespace THUAI8
         {CharacterState::Healing, "Healing"},
         {CharacterState::Berserk, "Berserk"},
         {CharacterState::Burned, "Burned"},
+        {CharacterState::Deceased, "Deceased"},
     };
 
     inline std::map<PlayerTeam, std::string> playerTeamDict{
