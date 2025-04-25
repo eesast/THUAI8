@@ -7,7 +7,8 @@ using System.IO.Compression;
 
 Logger Log = LoggerProvider.FromConsole();
 
-
+string secretId = Environment.GetEnvironmentVariable("INSTALLER_COS_SECRET_ID");
+string secretKey = Environment.GetEnvironmentVariable("INSTALLER_COS_SECRET_KEY");
 Tencent_Cos Cloud = new Tencent_Cos("1352014406", "ap-beijing", "thuai8", Log);
 Cloud.UpdateSecret(args[0], args[1]);
 
