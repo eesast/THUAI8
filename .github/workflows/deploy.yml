@@ -1,6 +1,7 @@
 name: deploy
 on:
-  push:
+  pull_request:
+    types: [closed]
     branches: [dev, main, master]
 jobs:
   build:
