@@ -1,44 +1,40 @@
 [2025/04/25 Friday]
 --port 8888 --CharacterNum 1 
 Server begins to run: 8888
-[22:53:12.473][GameServer] Null TOKEN Environment!
-[22:53:12.657][GameServer] Server begins to listen!
-[22:53:14.317][GameServer] TRY TryConnection: Player 0 from Team 0
-[22:53:14.317][GameServer] TryConnection: True
-[22:53:14.341][GameServer] TRY Add Player: Player 0 from Team 0
-[22:53:14.341][GameServer] AddPlayer: Check Correct
-[22:53:14.343][GameServer] Player 0 from Team 0 joins
-[22:53:14.344][GameServer] PlayerCountNow: 1
-[22:53:14.344][GameServer] PlayerTotalNum: 4
-[22:53:14.866][GameServer] TRY TryConnection: Player 0 from Team 1
-[22:53:14.866][GameServer] TryConnection: True
-[22:53:14.874][GameServer] TRY Add Player: Player 0 from Team 1
-[22:53:14.874][GameServer] AddPlayer: Check Correct
-[22:53:14.874][GameServer] Player 0 from Team 1 joins
-[22:53:14.874][GameServer] PlayerCountNow: 2
-[22:53:14.875][GameServer] PlayerNum: 4
-[22:53:15.533][GameServer] TRY TryConnection: Player 1 from Team 0
-[22:53:15.534][GameServer] TryConnection: True
-[22:53:15.538][GameServer] TRY Add Player: Player 1 from Team 0
-[22:53:15.539][GameServer] AddPlayer: Check Correct
-[22:53:15.543][GameServer] Player 1 from Team 0 joins
-[22:53:15.543][GameServer] PlayerCountNow: 3
-[22:53:15.543][GameServer] PlayerTotalNum: 4
-[22:53:16.130][GameServer] TRY TryConnection: Player 1 from Team 1
-[22:53:16.131][GameServer] TryConnection: True
-[22:53:16.143][GameServer] TRY Add Player: Player 1 from Team 1
-[22:53:16.143][GameServer] AddPlayer: Check Correct
-[22:53:16.144][GameServer] Player 1 from Team 1 joins
-[22:53:16.144][GameServer] PlayerCountNow: 4
-[22:53:16.145][GameServer] PlayerNum: 4
-[22:53:16.145][GameServer] Game Start
-[22:53:16.145][GameServer] Game starts!
-[22:53:16.146][GameServer] Successfully Created StartLockFile!
-[22:53:16.149][Game] Try to activate 0 TangSeng at birthpoint 0
-[22:53:16.152][Game] Successfully activated 0 TangSeng at (4500, 47500)
-[22:53:16.153][Game] Try to activate 1 JiuLing at birthpoint 0
-[22:53:16.153][Game] Successfully activated 1 JiuLing at (45500, 4500)
-[22:53:19.669][GameServer] The client 1 exited
-[22:53:20.512][GameServer] The client 1 exited
-[22:53:21.057][GameServer] The client 0 exited
-[22:53:22.180][GameServer] The client 0 exited
+[23:51:45.527][GameServer] Null TOKEN Environment!
+[23:51:45.596][GameServer] Server begins to listen!
+[23:51:49.489][GameServer] TRY TryConnection: Player 0 from Team 0
+[23:51:49.489][GameServer] TryConnection: True
+[23:51:49.529][GameServer] TRY Add Player: Player 0 from Team 0
+[23:51:49.529][GameServer] AddPlayer: Check Correct
+[23:51:49.530][GameServer] Player 0 from Team 0 joins
+[23:51:49.531][GameServer] PlayerCountNow: 1
+[23:51:49.532][GameServer] PlayerTotalNum: 4
+[23:51:49.715][GameServer] TRY TryConnection: Player 0 from Team 1
+[23:51:49.715][GameServer] TryConnection: True
+[23:51:49.723][GameServer] TRY Add Player: Player 0 from Team 1
+[23:51:49.723][GameServer] AddPlayer: Check Correct
+[23:51:49.723][GameServer] Player 0 from Team 1 joins
+[23:51:49.723][GameServer] PlayerCountNow: 2
+[23:51:49.723][GameServer] PlayerNum: 4
+[23:51:50.005][GameServer] TRY TryConnection: Player 1 from Team 0
+[23:51:50.005][GameServer] TryConnection: True
+[23:51:50.014][GameServer] TRY Add Player: Player 1 from Team 0
+[23:51:50.015][GameServer] AddPlayer: Check Correct
+[23:51:50.017][GameServer] Player 1 from Team 0 joins
+[23:51:50.017][GameServer] PlayerCountNow: 3
+[23:51:50.017][GameServer] PlayerTotalNum: 4
+[23:51:50.280][GameServer] TRY TryConnection: Player 1 from Team 1
+[23:51:50.280][GameServer] TryConnection: True
+[23:51:50.286][GameServer] TRY Add Player: Player 1 from Team 1
+[23:51:50.286][GameServer] AddPlayer: Check Correct
+[23:51:50.286][GameServer] Player 1 from Team 1 joins
+[23:51:50.286][GameServer] PlayerCountNow: 4
+[23:51:50.287][GameServer] PlayerNum: 4
+[23:51:50.287][GameServer] Game Start
+[23:51:50.287][GameServer] Game starts!
+[23:51:50.287][GameServer] Successfully Created StartLockFile!
+[23:51:50.291][Game] Try to activate 0 TangSeng at birthpoint 0
+[23:51:50.298][Game] Successfully activated 0 TangSeng at (2500, 47500)
+[23:51:50.299][Game] Try to activate 1 JiuLing at birthpoint 0
+[23:51:50.299][Game] Successfully activated 1 JiuLing at (45500, 4500)
