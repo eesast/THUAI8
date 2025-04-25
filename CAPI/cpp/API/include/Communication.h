@@ -27,7 +27,7 @@ public:
     ~Communication() = default;
     bool TryConnection(int32_t playerID, int32_t teamID);
     protobuf::MessageToClient GetMessage2Client();
-    void AddPlayer(int32_t playerID, int32_t teamID, THUAI8::CharacterType CharacterType);
+    void AddPlayer(int32_t playerID, int32_t teamID, THUAI8::CharacterType CharacterType, bool side_flag);
     bool EndAllAction(int32_t playerID, int32_t teamID);
     // Character
     bool Move(int64_t teamID, int64_t characterID, int32_t moveTimeInMilliseconds, double angle);

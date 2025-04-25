@@ -49,6 +49,7 @@ private:
     THUAI8::PlayerType playerType;
     int32_t playerID;
     int32_t teamID;
+    bool side_flag;
     THUAI8::PlayerTeam playerTeam;
     THUAI8::CharacterType CharacterType;
     std::unique_ptr<IGameTimer> timer;
@@ -144,13 +145,13 @@ private:
     void Wait() noexcept;
 
 public:
-    Logic(int32_t playerID, int32_t teamID, THUAI8::PlayerType playerType, THUAI8::CharacterType CharacterType);
+    Logic(int32_t playerID, int32_t teamID, THUAI8::PlayerType playerType, THUAI8::CharacterType CharacterType, bool side_flag);
 
     ~Logic()
     {
     }
 
-    void Main(CreateAIFunc createAI, std::string IP, std::string port, bool file, bool print, bool warnOnly);
+    void Main(CreateAIFunc createAI, std::string IP, std::string port, bool file, bool print, bool warnOnly, bool side_flag);
 };
 
 #endif
