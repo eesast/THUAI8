@@ -1,4 +1,16 @@
 [2025/04/26 Saturday]
+<<<<<<< HEAD
+--port 8888 --CharacterNum 2 
+Server begins to run: 8888
+[19:10:17.198][GameServer] Null TOKEN Environment!
+System.IO.IOException: Failed to bind port "0.0.0.0:8888"
+   at Grpc.Core.Server.CheckPortsBoundSuccessfully()
+   at Grpc.Core.Server.Start()
+   at Server.Program.Main(String[] args) in D:\桌面\THUAI8_final\THUAI8\logic\Server\Program.cs:line 67
+   at Grpc.Core.Server.CheckPortsBoundSuccessfully()
+   at Grpc.Core.Server.Start()
+   at Server.Program.Main(String[] args) in D:\桌面\THUAI8_final\THUAI8\logic\Server\Program.cs:line 67
+=======
 --port 8888 --CharacterNum 1 
 Server begins to run: 8888
 [17:59:56.606][GameServer] Null TOKEN Environment!
@@ -9,3 +21,4 @@ System.IO.IOException: Failed to bind port "0.0.0.0:8888"
    at Grpc.Core.Server.CheckPortsBoundSuccessfully()
    at Grpc.Core.Server.Start()
    at Server.Program.Main(String[] args) in D:\THUAI8\THUAI8\logic\Server\Program.cs:line 67
+>>>>>>> b4648481282dc28829354cc8d226e0d03ab78aa7
