@@ -17,21 +17,23 @@ class Setting:
     @staticmethod
     def BuddhistsCharacterTypes() -> List[THUAI8.CharacterType]:
         return [
-            THUAI8.CharacterType.Monk,
-            THUAI8.CharacterType.MonkyKing,
-            THUAI8.CharacterType.Pigsy,
+            THUAI8.CharacterType.TangSeng,
+            THUAI8.CharacterType.SunWukong,
+            THUAI8.CharacterType.ZhuBajie,
             THUAI8.CharacterType.ShaWujing,
-            THUAI8.CharacterType.Whitedragonhorse,
+            THUAI8.CharacterType.BaiLongma,
+            THUAI8.CharacterType.Monkid,
         ]
 
     @staticmethod
     def MonsterCharacterTypes() -> List[THUAI8.CharacterType]:
         return [
-            THUAI8.CharacterType.JiuTouYuanSheng,
+            THUAI8.CharacterType.JiuLing,
             THUAI8.CharacterType.HongHaier,
-            THUAI8.CharacterType.Gyuumao,
-            THUAI8.CharacterType.Princess_Iron_Fan,
-            THUAI8.CharacterType.Spider,
+            THUAI8.CharacterType.NiuMowang,
+            THUAI8.CharacterType.TieShan,
+            THUAI8.CharacterType.ZhiZhujing,
+            THUAI8.CharacterType.Pawn,
         ]
 
 

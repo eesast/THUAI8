@@ -104,11 +104,14 @@ def THUAI8Main(argv: List[str], AIBuilder: Callable) -> None:
     characterType = THUAI8.CharacterType.NullCharacterType
     if pID == 0:
         playerType = THUAI8.PlayerType.Team
-    else:
+    elif tID == 0:
         playerType = THUAI8.PlayerType.Character
-        characterType = Setting.CharacterTypes()[
+        characterType = Setting.BuddhistsCharacterTypes()[
             pID - 1
         ]  # 减去1 是因为字典从0计数，而我们的角色是从1计数
+    elif tID == 1:
+        playerType = THUAI8.PlayerType.Character
+        characterType = Setting.MonsterCharacterTypes()[pID - 1]
 
     if platform.system().lower() == "windows":
         PrintWelcomeString()
