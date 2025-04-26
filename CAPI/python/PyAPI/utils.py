@@ -98,24 +98,24 @@ class Proto2THUAI8:
 
     playerTypeDict: Final[dict] = {
         MessageType.NULL_PLAYER_TYPE: THUAI8.PlayerType.NullPlayerType,
-        MessageType.SCHARACTER: THUAI8.PlayerType.Character,
+        MessageType.CHARACTER: THUAI8.PlayerType.Character,
         MessageType.TEAM: THUAI8.PlayerType.Team,
     }
 
     characterTypeDict: Final[dict] = {
         MessageType.NULL_CHARACTER_TYPE: THUAI8.CharacterType.NullCharacterType,
-        MessageType.CAMP1_CHARACTER1: THUAI8.CharacterType.Camp1Character1,
-        MessageType.CAMP1_CHARACTER2: THUAI8.CharacterType.Camp1Character2,
-        MessageType.CAMP1_CHARACTER3: THUAI8.CharacterType.Camp1Character3,
-        MessageType.CAMP1_CHARACTER4: THUAI8.CharacterType.Camp1Character4,
-        MessageType.CAMP1_CHARACTER5: THUAI8.CharacterType.Camp1Character5,
-        MessageType.CAMP1_CHARACTER6: THUAI8.CharacterType.Camp1Character6,
-        MessageType.CAMP2_CHARACTER1: THUAI8.CharacterType.Camp2Character1,
-        MessageType.CAMP2_CHARACTER2: THUAI8.CharacterType.Camp2Character2,
-        MessageType.CAMP2_CHARACTER3: THUAI8.CharacterType.Camp2Character3,
-        MessageType.CAMP2_CHARACTER4: THUAI8.CharacterType.Camp2Character4,
-        MessageType.CAMP2_CHARACTER5: THUAI8.CharacterType.Camp2Character5,
-        MessageType.CAMP2_CHARACTER6: THUAI8.CharacterType.Camp2Character6,
+        MessageType.TangSeng: THUAI8.CharacterType.TangSeng,
+        MessageType.SunWukong: THUAI8.CharacterType.SunWukong,
+        MessageType.ZhuBajie: THUAI8.CharacterType.ZhuBajie,
+        MessageType.ShaWujing: THUAI8.CharacterType.ShaWujing,
+        MessageType.BaiLongma: THUAI8.CharacterType.BaiLongma,
+        MessageType.Monkid: THUAI8.CharacterType.Monkid,
+        MessageType.JiuLing: THUAI8.CharacterType.JiuLing,
+        MessageType.HongHaier: THUAI8.CharacterType.HongHaier,
+        MessageType.NiuMowang: THUAI8.CharacterType.NiuMowang,
+        MessageType.TieShan: THUAI8.CharacterType.TieShan,
+        MessageType.ZhiZhujing: THUAI8.CharacterType.ZhiZhujing,
+        MessageType.Pawn: THUAI8.CharacterType.Pawn,
     }
 
     characterStateDict: Final[dict] = {
@@ -133,27 +133,30 @@ class Proto2THUAI8:
         MessageType.HEALING: THUAI8.CharacterState.Healing,
         MessageType.BERSERK: THUAI8.CharacterState.Berserk,
         MessageType.BURNED: THUAI8.CharacterState.Burned,
+        MessageType.DECEASED: THUAI8.CharacterState.Deceased,
     }
 
     economyResourceTypeDict: Final[dict] = {
         MessageType.NULL_ECONOMY_RESOURCE_TYPE: THUAI8.EconomyResourceType.NullEconomyResourceType,
-        MessageType.ECONOMY_RESOURCE: THUAI8.EconomyResourceType.EconomyResource,
+        MessageType.SMALL_ECONOMY_RESOURCE: THUAI8.EconomyResourceType.SmallEconomyResource,
+        MessageType.MEDIUM_ECONOMY_RESOURCE: THUAI8.EconomyResourceType.MediumEconomyResource,
+        MessageType.LARGE_ECONOMY_RESOURCE: THUAI8.EconomyResourceType.LargeEconomyResource,
     }
 
     additionResourceTypeDict: Final[dict] = {
         MessageType.NULL_ADDITION_RESOURCE_TYPE: THUAI8.AdditionResourceType.NullAdditionResourceType,
-        MessageType.SMALL_ADDITION_RESOURCE1: THUAI8.AdditionResourceType.SmallAdditionResource1,
-        MessageType.MEDIUM_ADDITION_RESOURCE1: THUAI8.AdditionResourceType.MediumAdditionResource1,
-        MessageType.LARGE_ADDITION_RESOURCE1: THUAI8.AdditionResourceType.LargeAdditionResource1,
-        MessageType.SMALL_ADDITION_RESOURCE2: THUAI8.AdditionResourceType.SmallAdditionResource2,
-        MessageType.MEDIUM_ADDITION_RESOURCE2: THUAI8.AdditionResourceType.MediumAdditionResource2,
-        MessageType.LARGE_ADDITION_RESOURCE2: THUAI8.AdditionResourceType.LargeAdditionResource2,
-        MessageType.ADDITION_RESOURCE3: THUAI8.AdditionResourceType.AdditionResource3,
-        MessageType.ADDITION_RESOURCE4: THUAI8.AdditionResourceType.AdditionResource4,
+        MessageType.LIFE_POOL1: THUAI8.AdditionResourceType.LifePool1,
+        MessageType.LIFE_POOL2: THUAI8.AdditionResourceType.LifePool2,
+        MessageType.LIFE_POOL3: THUAI8.AdditionResourceType.LifePool3,
+        MessageType.CRAZY_MAN1: THUAI8.AdditionResourceType.CrazyMan1,
+        MessageType.CRAZY_MAN2: THUAI8.AdditionResourceType.CrazyMan2,
+        MessageType.CRAZY_MAN3: THUAI8.AdditionResourceType.CrazyMan3,
+        MessageType.QUICK_STEP: THUAI8.AdditionResourceType.QuickStep,
+        MessageType.WIDE_VIEW: THUAI8.AdditionResourceType.WideView,
     }
 
     economyResourceStateTypeDict: Final[dict] = {
-        MessageType.NULL_ECONOMY_RESOURCE_STATE: THUAI8.EconomyResourceState.NullEconomyResourceState,
+        MessageType.NULL_ECONOMY_RESOURCE_STSTE: THUAI8.EconomyResourceState.NullEconomyResourceState,
         MessageType.HARVESTABLE: THUAI8.EconomyResourceState.Harvestable,
         MessageType.BEING_HARVESTED: THUAI8.EconomyResourceState.BeingHarvested,
         MessageType.HARVESTED: THUAI8.EconomyResourceState.Harvested,
@@ -264,12 +267,16 @@ class Proto2THUAI8:
 
     @staticmethod
     def Protobuf2THUAI8GameInfo(
-        gameInfoMsg: Message2Clients.MessageOfGameInfo,
+        gameInfoMsg: Message2Clients.MessageOfAll,
     ) -> THUAI8.GameInfo:
         gameInfo = THUAI8.GameInfo()
-        gameInfo.gameState = Proto2THUAI8.gameStateDict[gameInfoMsg.game_state]
-        gameInfo.time = gameInfoMsg.time
-        gameInfo.placeType = Proto2THUAI8.placeTypeDict[gameInfoMsg.place_type]
+        gameInfo.gameSTime = gameInfoMsg.game_time
+        gameInfo.buddhistsTeamEconomy = gameInfoMsg.buddhists_team_economy
+        gameInfo.buddhistsTeamScore = gameInfoMsg.buddhists_team_score
+        gameInfo.buddhistsTeamHeroHp = gameInfoMsg.buddhists_hero_hp
+        gameInfo.monstersEconomy = gameInfoMsg.monsters_team_economy
+        gameInfo.monstersTeamScore = gameInfoMsg.monsters_team_score
+        gameInfo.monstersTeamHeroHp = gameInfoMsg.monsters_hero_hp
         return gameInfo
 
     @staticmethod
@@ -317,17 +324,17 @@ class Proto2THUAI8:
         additionResource.y = additionResourceMsg.y
         return additionResource
 
-    @staticmethod
-    def Protobuf2THUAI8ConstructionState(
-        constructionStateMsg: Message2Clients.MessageOfConstructionState,
-    ) -> THUAI8.ConstructionState:
-        constructionState = THUAI8.ConstructionState()
-        constructionState.teamID = constructionStateMsg.team_id
-        constructionState.hp = constructionStateMsg.hp
-        constructionState.constructionType = Proto2THUAI8.constructionTypeDict[
-            constructionStateMsg.construction_type
-        ]
-        return constructionState
+    # @staticmethod
+    # def Protobuf2THUAI8ConstructionState(
+    #     constructionStateMsg: Message2Clients.MessageOfConstructionState,
+    # ) -> THUAI8.ConstructionState:
+    #     constructionState = THUAI8.ConstructionState()
+    #     constructionState.teamID = constructionStateMsg.team_id
+    #     constructionState.hp = constructionStateMsg.hp
+    #     constructionState.constructionType = Proto2THUAI8.constructionTypeDict[
+    #         constructionStateMsg.construction_type
+    #     ]
+    #     return constructionState
 
 
 class THUAI82Proto:
@@ -357,25 +364,25 @@ class THUAI82Proto:
     }
 
     playerTeamDict: Final[dict] = {
-        THUAI8.PlayerTeam.NullTeam: MessageType.NULL_PLAYER_TEAM,
+        THUAI8.PlayerTeam.NullTeam: MessageType.NULL_TEAM,
         THUAI8.PlayerTeam.BuddhistsTeam: MessageType.BUDDHISTS_TEAM,
         THUAI8.PlayerTeam.MonstersTeam: MessageType.MONSTERS_TEAM,
     }
 
     characterTypeDict: Final[dict] = {
         THUAI8.CharacterType.NullCharacterType: MessageType.NULL_CHARACTER_TYPE,
-        THUAI8.CharacterType.Camp1Character1: MessageType.CAMP1_CHARACTER1,
-        THUAI8.CharacterType.Camp1Character2: MessageType.CAMP1_CHARACTER2,
-        THUAI8.CharacterType.Camp1Character3: MessageType.CAMP1_CHARACTER3,
-        THUAI8.CharacterType.Camp1Character4: MessageType.CAMP1_CHARACTER4,
-        THUAI8.CharacterType.Camp1Character5: MessageType.CAMP1_CHARACTER5,
-        THUAI8.CharacterType.Camp1Character6: MessageType.CAMP1_CHARACTER6,
-        THUAI8.CharacterType.Camp2Character1: MessageType.CAMP2_CHARACTER1,
-        THUAI8.CharacterType.Camp2Character2: MessageType.CAMP2_CHARACTER2,
-        THUAI8.CharacterType.Camp2Character3: MessageType.CAMP2_CHARACTER3,
-        THUAI8.CharacterType.Camp2Character4: MessageType.CAMP2_CHARACTER4,
-        THUAI8.CharacterType.Camp2Character5: MessageType.CAMP2_CHARACTER5,
-        THUAI8.CharacterType.Camp2Character6: MessageType.CAMP2_CHARACTER6,
+        THUAI8.CharacterType.TangSeng: MessageType.TangSeng,
+        THUAI8.CharacterType.SunWukong: MessageType.SunWukong,
+        THUAI8.CharacterType.ZhuBajie: MessageType.ZhuBajie,
+        THUAI8.CharacterType.ShaWujing: MessageType.ShaWujing,
+        THUAI8.CharacterType.BaiLongma: MessageType.BaiLongma,
+        THUAI8.CharacterType.Monkid: MessageType.Monkid,
+        THUAI8.CharacterType.JiuLing: MessageType.JiuLing,
+        THUAI8.CharacterType.HongHaier: MessageType.HongHaier,
+        THUAI8.CharacterType.NiuMowang: MessageType.NiuMowang,
+        THUAI8.CharacterType.TieShan: MessageType.TieShan,
+        THUAI8.CharacterType.ZhiZhujing: MessageType.ZhiZhujing,
+        THUAI8.CharacterType.Pawn: MessageType.Pawn,
     }
 
     equipmentTypeDict: Final[dict] = {
@@ -418,18 +425,18 @@ class THUAI82Proto:
 
     additionResourceTypeDict: Final[dict] = {
         THUAI8.AdditionResourceType.NullAdditionResourceType: MessageType.NULL_ADDITION_RESOURCE_TYPE,
-        THUAI8.AdditionResourceType.SmallAdditionResource1: MessageType.SMALL_ADDITION_RESOURCE1,
-        THUAI8.AdditionResourceType.MediumAdditionResource1: MessageType.MEDIUM_ADDITION_RESOURCE1,
-        THUAI8.AdditionResourceType.LargeAdditionResource1: MessageType.LARGE_ADDITION_RESOURCE1,
-        THUAI8.AdditionResourceType.SmallAdditionResource2: MessageType.SMALL_ADDITION_RESOURCE2,
-        THUAI8.AdditionResourceType.MediumAdditionResource2: MessageType.MEDIUM_ADDITION_RESOURCE2,
-        THUAI8.AdditionResourceType.LargeAdditionResource2: MessageType.LARGE_ADDITION_RESOURCE2,
-        THUAI8.AdditionResourceType.AdditionResource3: MessageType.ADDITION_RESOURCE3,
-        THUAI8.AdditionResourceType.AdditionResource4: MessageType.ADDITION_RESOURCE4,
+        THUAI8.AdditionResourceType.LifePool1: MessageType.LIFE_POOL1,
+        THUAI8.AdditionResourceType.LifePool2: MessageType.LIFE_POOL2,
+        THUAI8.AdditionResourceType.LifePool3: MessageType.LIFE_POOL3,
+        THUAI8.AdditionResourceType.CrazyMan1: MessageType.CRAZY_MAN1,
+        THUAI8.AdditionResourceType.CrazyMan2: MessageType.CRAZY_MAN2,
+        THUAI8.AdditionResourceType.CrazyMan3: MessageType.CRAZY_MAN3,
+        THUAI8.AdditionResourceType.QuickStep: MessageType.QUICK_STEP,
+        THUAI8.AdditionResourceType.WideView: MessageType.WIDE_VIEW,
     }
 
     economyResourceStateDict: Final[dict] = {
-        THUAI8.EconomyResourceState.NullEconomyResourceState: MessageType.NULL_ECONOMY_RESOURCE_STATE,
+        THUAI8.EconomyResourceState.NullEconomyResourceState: MessageType.NULL_ECONOMY_RESOURCE_STSTE,
         THUAI8.EconomyResourceState.Harvestable: MessageType.HARVESTABLE,
         THUAI8.EconomyResourceState.BeingHarvested: MessageType.BEING_HARVESTED,
         THUAI8.EconomyResourceState.Harvested: MessageType.HARVESTED,
@@ -461,25 +468,25 @@ class THUAI82Proto:
         THUAI8.NewsType.BinaryMessage: MessageType.BINARY,
     }
 
-    messageOfObjDict: Final[dict] = {
-        THUAI8.MessageOfObj.NullMessageOfObj: MessageType.NULL_MESSAGE_OF_OBJ,
-        THUAI8.MessageOfObj.CharacterMessage: MessageType.CHARACTER_MESSAGE,
-        THUAI8.MessageOfObj.BarracksMessage: MessageType.BARRACKS_MESSAGE,
-        THUAI8.MessageOfObj.SpringMessage: MessageType.SPRING_MESSAGE,
-        THUAI8.MessageOfObj.FarmMessage: MessageType.FARM_MESSAGE,
-        THUAI8.MessageOfObj.TrapMessage: MessageType.TRAP_MESSAGE,
-        THUAI8.MessageOfObj.EconomyResourceMessage: MessageType.ECONOMY_RESOURCE_MESSAGE,
-        THUAI8.MessageOfObj.AdditionResourceMessage: MessageType.ADDITION_RESOURCE_MESSAGE,
-        THUAI8.MessageOfObj.MapMessage: MessageType.MAP_MESSAGE,
-        THUAI8.MessageOfObj.TeamMessage: MessageType.TEAM_MESSAGE,
-        THUAI8.MessageOfObj.NewsMessage: MessageType.NEWS_MESSAGE,
-    }
+    # messageOfObjDict: Final[dict] = {
+    #     # THUAI8.MessageOfObj.NullMessageOfObj: MessageType.NULL_MESSAGE_OF_OBJ,
+    #     THUAI8.MessageOfObj.CharacterMessage: MessageType.character_message,
+    #     THUAI8.MessageOfObj.BarracksMessage: MessageType.barracks_message,
+    #     THUAI8.MessageOfObj.SpringMessage: MessageType.spring_message,
+    #     THUAI8.MessageOfObj.FarmMessage: MessageType.farm_message,
+    #     THUAI8.MessageOfObj.TrapMessage: MessageType.trap_message,
+    #     THUAI8.MessageOfObj.EconomyResourceMessage: MessageType.economy_resource_message,
+    #     THUAI8.MessageOfObj.AdditionResourceMessage: MessageType.addition_resource_message,
+    #     THUAI8.MessageOfObj.MapMessage: MessageType.map_message,
+    #     THUAI8.MessageOfObj.TeamMessage: MessageType.team_message,
+    #     THUAI8.MessageOfObj.NewsMessage: MessageType.news_message,
+    # }
 
     @staticmethod
     def THUAI82ProtobufMoveMsg(
         character: int, angle: float, time: int, team: int
-    ) -> MessageType.MoveMsg:
-        moveMsg = MessageType.MoveMsg()
+    ) -> Message2Server.MoveMsg:
+        moveMsg = Message2Server.MoveMsg()
         moveMsg.character_id = character
         moveMsg.angle = angle
         moveMsg.time_in_milliseconds = time
@@ -487,50 +494,58 @@ class THUAI82Proto:
         return moveMsg
 
     @staticmethod
-    def THUAI82ProtobufIDMsg(playerID: int, teamID: int) -> MessageType.IDMsg:
-        IDMsg = MessageType.IDMsg()
-        IDMsg.player_id = playerID
+    def THUAI82ProtobufIDMsg(playerID: int, teamID: int) -> Message2Server.IDMsg:
+        IDMsg = Message2Server.IDMsg()
+        IDMsg.character_id = playerID
         IDMsg.team_id = teamID
         return IDMsg
 
     @staticmethod
     def THUAI82ProtobufEquipMsg(
         character_id: int, team_id: int, equipment_type: THUAI8.EquipmentType
-    ) -> MessageType.EquipMsg:
-        equipMsg = MessageType.EquipMsg()
+    ) -> Message2Server.EquipMsg:
+        equipMsg = Message2Server.EquipMsg()
         equipMsg.character_id = character_id
         equipMsg.team_id = team_id
-        equipMsg.equipment_type = equipment_type
+        equipMsg.equipment_type = THUAI82Proto.equipmentTypeDict[equipment_type]
         return equipMsg
 
     @staticmethod
     def THUAI82ProtobufCreatCharacterMsg(
         team_id: int, character_type: THUAI8.CharacterType, birthpoint_index: int
-    ) -> MessageType.CreatCharacterMsg:
-        creatCharacterMsg = MessageType.CreatCharacterMsg()
+    ) -> Message2Server.CreatCharacterMsg:
+        creatCharacterMsg = Message2Server.CreatCharacterMsg()
         creatCharacterMsg.team_id = team_id
-        creatCharacterMsg.character_type = character_type
+        creatCharacterMsg.character_type = THUAI82Proto.characterTypeDict[
+            character_type
+        ]
         creatCharacterMsg.birthpoint_index = birthpoint_index
         return creatCharacterMsg
 
     @staticmethod
     def THUAI82ProtobufConstructMsg(
         character_id: int, team_id: int, construction_type: THUAI8.ConstructionType
-    ) -> MessageType.ConstructMsg:
-        constructMsg = MessageType.ConstructMsg()
+    ) -> Message2Server.ConstructMsg:
+        constructMsg = Message2Server.ConstructMsg()
         constructMsg.character_id = character_id
         constructMsg.team_id = team_id
-        constructMsg.construction_type = construction_type
+        constructMsg.construction_type = THUAI82Proto.constructionTypeDict[
+            construction_type
+        ]
         return constructMsg
 
     @staticmethod
     def THUAI82ProtobufCharacterMsg(
-        character_id: int, team_id: int, character_type: THUAI8.CharacterType
-    ) -> MessageType.CharacterMsg:
-        characterMsg = MessageType.CharacterMsg()
+        character_id: int,
+        team_id: int,
+        character_type: THUAI8.CharacterType,
+        side_flag: int,
+    ) -> Message2Server.CharacterMsg:
+        characterMsg = Message2Server.CharacterMsg()
         characterMsg.character_id = character_id
         characterMsg.team_id = team_id
-        characterMsg.character_type = character_type
+        characterMsg.character_type = THUAI82Proto.characterTypeDict[character_type]
+        characterMsg.side_flag = side_flag
         return characterMsg
 
     @staticmethod
@@ -542,8 +557,8 @@ class THUAI82Proto:
         x: int,
         y: int,
         angle: float,
-    ) -> MessageType.CastMsg:
-        castMsg = MessageType.CastMsg()
+    ) -> Message2Server.CastMsg:
+        castMsg = Message2Server.CastMsg()
         castMsg.character_id = character_id
         castMsg.skill_id = skill_id
         castMsg.team_id = team_id
@@ -556,8 +571,8 @@ class THUAI82Proto:
     @staticmethod
     def THUAI82ProtobufAttackMsg(
         character_id: int, team_id: int, attacked_character_id: int, attack_range: int
-    ) -> MessageType.AttackMsg:
-        attackMsg = MessageType.AttackMsg()
+    ) -> Message2Server.AttackMsg:
+        attackMsg = Message2Server.AttackMsg()
         attackMsg.character_id = character_id
         attackMsg.team_id = team_id
         attackMsg.attacked_character_id = attacked_character_id
