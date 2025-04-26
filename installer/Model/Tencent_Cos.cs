@@ -212,110 +212,85 @@ namespace installer.Model
                 string localDir = Path.GetDirectoryName(savePath)     // 本地文件夹
                     ?? throw new Exception("本地文件夹路径获取失败");
                 string localFileName = Path.GetFileName(savePath);    // 指定本地保存的文件名
-                remotePath = remotePath?.Replace('\\', '/')?.TrimStart('.').TrimStart('/');
-
-                Log.LogInfo(thID, $"检查文件是否存在: Bucket={bucket}, RemotePath={remotePath}");
-
-                try
+                remotePath = remotePath?.Replace('\\', '/')?.TrimStart('.', '/');
+                savePath = Path.GetFullPath(savePath);  // 获取完整路径
+                
+                // 确保目录存在
+                var directory = Path.GetDirectoryName(savePath);
+                if (!Directory.Exists(directory))
                 {
-                    var head = cosXml.HeadObject(new HeadObjectRequest(bucket, remotePath ?? localFileName));
-                    Log.LogInfo(thID, $"文件存在，大小: {head.size} 字节");
-
-                    long c = 0;
-                    if (head.size > (1 << 20))
+                    Directory.CreateDirectory(directory);
+                }
+                var head = cosXml.HeadObject(new HeadObjectRequest(bucket, remotePath ?? localFileName));
+                long c = 0;
+                if (head.size > (1 << 20))
+                {
+                    // 文件大小大于1MB则设置回调函数
+                    Report.Total = head.size;
+                    Report.Completed = 0;
+                    Report.BigFileTraceEnabled = true;
+                    var size = (head.size > 1 << 30) ?
+                        string.Format("{0:##.#}GB", ((double)head.size) / (1 << 30)) :
+                        string.Format("{0:##.#}MB", ((double)head.size) / (1 << 20));
+                    Log.LogWarning($"Big file({size}) detected! Please keep network steady!");
+                    COSXMLDownloadTask task = new COSXMLDownloadTask(bucket, remotePath ?? localFileName, localDir, localFileName);
+                    task.progressCallback = (completed, total) =>
                     {
-                        // 文件大小大于1MB则设置回调函数
-                        Report.Total = head.size;
-                        Report.Completed = 0;
-                        Report.BigFileTraceEnabled = true;
-                        var size = (head.size > 1 << 30) ?
-                            string.Format("{0:##.#}GB", ((double)head.size) / (1 << 30)) :
-                            string.Format("{0:##.#}MB", ((double)head.size) / (1 << 20));
-                        Log.LogWarning($"Big file({size}) detected! Please keep network steady!");
-                        COSXMLDownloadTask task = new COSXMLDownloadTask(bucket, remotePath ?? localFileName, localDir, localFileName);
-                        task.progressCallback = (completed, total) =>
+                        if (completed > 1 << 30 && completed - c > 100 << 20)
                         {
-                            if (completed > 1 << 30 && completed - c > 100 << 20)
-                            {
-                                Log.LogDebug(string.Format("downloaded = {0:##.#}GB, progress = {1:##.##}%", ((double)completed) / (1 << 30), completed * 100.0 / total));
-                                c = completed;
-                            }
-                            if (completed < 1 << 30 && completed - c > 10 << 20)
-                            {
-                                Log.LogDebug(string.Format("downloaded = {0:##.#}MB, progress = {1:##.##}%", ((double)completed) / (1 << 20), completed * 100.0 / total));
-                                c = completed;
-                            }
-                            (Report.Completed, Report.Total) = (completed, total);
-                        };
-                        // 执行请求                
-                        var result = manager.DownloadAsync(task).Result;
-                        // 请求成功
-                        if (result is not null && result.httpCode != 200 && result.httpCode != 206)
-                        {
-                            Log.LogError(thID, $"Download task: {{\"{remotePath}\"->\"{savePath}\"}} failed, HTTP Code: {result.httpCode}, Message: {result.httpMessage}");
-                            throw new Exception($"Download task: {{\"{remotePath}\"->\"{savePath}\"}} failed, message: {result.httpCode} {result.httpMessage}");
+                            Log.LogDebug(string.Format("downloaded = {0:##.#}GB, progress = {1:##.##}%", ((double)completed) / (1 << 30), completed * 100.0 / total));
+                            c = completed;
                         }
-                        Log.LogDebug(thID, $"Download task: {{\"{remotePath}\"->\"{savePath}\"}} finished.");
-                    }
-                    else
-                    {
-                        if (Report.Completed > 0 && Report.Total > 0 && Report.Completed == Report.Total)
-                            Report.BigFileTraceEnabled = false;
-                        var request = new GetObjectRequest(bucket, remotePath ?? localFileName, localDir, localFileName);
-                        // 执行请求                
-                        var result = cosXml.GetObject(request);
-                        // 请求成功
-                        if (result.httpCode != 200 && result.httpCode != 206)
+                        if (completed < 1 << 30 && completed - c > 10 << 20)
                         {
-                            Log.LogError(thID, $"Download task: {{\"{remotePath}\"->\"{savePath}\"}} failed, HTTP Code: {result.httpCode}, Message: {result.httpMessage}");
-                            throw new Exception($"Download task: {{\"{remotePath}\"->\"{savePath}\"}} failed, message: {result.httpCode} {result.httpMessage}");
+                            Log.LogDebug(string.Format("downloaded = {0:##.#}MB, progress = {1:##.##}%", ((double)completed) / (1 << 20), completed * 100.0 / total));
+                            c = completed;
                         }
-                        Log.LogDebug(thID, $"Download task: {{\"{remotePath}\"->\"{savePath}\"}} finished.");
-                    }
-
-                    if (Report.BigFileTraceEnabled)
-                        Report.Completed = Report.Total;
-
-                    return thID;
+                        (Report.Completed, Report.Total) = (completed, total);
+                    };
+                    // 执行请求                
+                    var result = manager.DownloadAsync(task).Result;
+                    // 请求成功
+                    if (result is not null && result.httpCode != 200 && result.httpCode != 206)
+                        throw new Exception($"Download task: {{\"{remotePath}\"->\"{savePath}\"}} failed, message: {result.httpCode} {result.httpMessage}");
+                    Log.LogDebug(thID, $"Download task: {{\"{remotePath}\"->\"{savePath}\"}} finished.");
                 }
-                catch (COSXML.CosException.CosServerException serverEx)
+                else
                 {
-                    // 处理COS服务器返回的错误
-                    Log.LogError(thID, $"COS服务器错误: 状态码={serverEx.statusCode}, 错误码={serverEx.errorCode}, 错误信息={serverEx.errorMessage}");
+                    if (Report.Completed > 0 && Report.Total > 0 && Report.Completed == Report.Total)
+                        Report.BigFileTraceEnabled = false;
+                    var request = new GetObjectRequest(bucket, remotePath ?? localFileName, localDir, localFileName);
+                    // 执行请求                
+                    var result = cosXml.GetObject(request);
+                    // 请求成功
+                    if (result.httpCode != 200 && result.httpCode != 206)
+                        throw new Exception($"Download task: {{\"{remotePath}\"->\"{savePath}\"}} failed, message: {result.httpCode} {result.httpMessage}");
+                    Log.LogDebug(thID, $"Download task: {{\"{remotePath}\"->\"{savePath}\"}} finished.");
 
-                    if (serverEx.statusCode == 403)
-                    {
-                        Log.LogError(thID, "权限错误(403 Forbidden)：可能是SecretID/SecretKey无效，或没有访问权限");
-                    }
-                    else if (serverEx.statusCode == 404)
-                    {
-                        Log.LogError(thID, $"文件不存在(404 Not Found)：路径 \"{remotePath ?? localFileName}\" 在存储桶 \"{bucket}\" 中不存在");
-                    }
+                }
 
-                    Log.LogDebug(thID, $"Download task: {{\"{remotePath}\"->\"{savePath}\"}} ended with server error.");
-                    return -1;
-                }
-                catch (COSXML.CosException.CosClientException clientEx)
-                {
-                    // 处理客户端错误
-                    Log.LogError(thID, $"COS客户端错误: {clientEx.Message}");
-                    Log.LogDebug(thID, $"Download task: {{\"{remotePath}\"->\"{savePath}\"}} ended with client error.");
-                    return -1;
-                }
+                if (Report.BigFileTraceEnabled)
+                    Report.Completed = Report.Total;
             }
             catch (Exception ex)
             {
-                Log.LogError(thID, $"下载错误: {ex.Message}");
+                Log.LogError(thID, ex.Message);
                 Log.LogDebug(thID, $"Download task: {{\"{remotePath}\"->\"{savePath}\"}} ended unexpectedly.");
-                return -1;
+                thID = -1;
             }
+            return thID;
         }
 
         public int DownloadQueue(string basePath, IEnumerable<string> queue)
         {
             int thID = Log.StartNew();
             Log.LogDebug(thID, "Batch download task started.");
-            var array = queue.ToArray();
+            var array = queue.Select(path => 
+            {
+                // 清理路径
+                var cleanPath = path.TrimStart('.', '/', '\\');
+                return cleanPath;
+            }).ToArray();
             var count = array.Length;
             if (count == 0)
                 return 0;
