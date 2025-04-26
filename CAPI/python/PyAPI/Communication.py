@@ -252,13 +252,17 @@ class Communication:
             return self.__message2Client
 
     def AddPlayer(
-        self, playerID: int, teamID: int, characterType: THUAI8.CharacterType
+        self,
+        playerID: int,
+        teamID: int,
+        characterType: THUAI8.CharacterType,
+        side_flag: bool,
     ) -> None:
         def tMessage():
             try:
                 if playerID == 0:
                     playerMsg = THUAI82Proto.THUAI82ProtobufCharacterMsg(
-                        playerID, teamID, characterType
+                        playerID, teamID, characterType, side_flag
                     )
                     for msg in self.__THUAI8Stub.AddCharacter(playerMsg):
                         with self.__cvMessage:
@@ -270,7 +274,7 @@ class Communication:
                                 self.__counterMove = 0
                 elif playerID >= 1 and playerID <= 8:
                     playerMsg = THUAI82Proto.THUAI82ProtobufCharacterMsg(
-                        playerID, teamID, characterType
+                        playerID, teamID, characterType, side_flag
                     )
                     for msg in self.__THUAI8Stub.AddCharacter(playerMsg):
                         with self.__cvMessage:

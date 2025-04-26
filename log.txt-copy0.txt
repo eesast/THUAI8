@@ -1,11 +1,43 @@
 [2025/04/26 Saturday]
 --port 8888 --CharacterNum 1 
 Server begins to run: 8888
-[17:59:56.606][GameServer] Null TOKEN Environment!
-System.IO.IOException: Failed to bind port "0.0.0.0:8888"
-   at Grpc.Core.Server.CheckPortsBoundSuccessfully()
-   at Grpc.Core.Server.Start()
-   at Server.Program.Main(String[] args) in D:\THUAI8\THUAI8\logic\Server\Program.cs:line 67
-   at Grpc.Core.Server.CheckPortsBoundSuccessfully()
-   at Grpc.Core.Server.Start()
-   at Server.Program.Main(String[] args) in D:\THUAI8\THUAI8\logic\Server\Program.cs:line 67
+[23:10:30.246][GameServer] Null TOKEN Environment!
+[23:10:30.304][GameServer] Server begins to listen!
+[23:10:36.342][GameServer] TRY TryConnection: Player 0 from Team 0
+[23:10:36.350][GameServer] TryConnection: True
+[23:10:36.359][GameServer] TRY Add Player: Player 0 from Team 0
+[23:10:36.361][GameServer] AddPlayer: Check Correct
+[23:10:36.362][GameServer] Player 0 from Team 0 joins
+[23:10:36.362][GameServer] PlayerCountNow: 1
+[23:10:36.363][GameServer] PlayerTotalNum: 4
+[23:10:36.695][GameServer] TRY TryConnection: Player 0 from Team 1
+[23:10:36.695][GameServer] TryConnection: True
+[23:10:36.700][GameServer] TRY Add Player: Player 0 from Team 1
+[23:10:36.704][GameServer] AddPlayer: Check Correct
+[23:10:36.708][GameServer] Player 0 from Team 1 joins
+[23:10:36.718][GameServer] PlayerCountNow: 2
+[23:10:36.718][GameServer] PlayerNum: 4
+[23:10:37.001][GameServer] TRY TryConnection: Player 1 from Team 0
+[23:10:37.003][GameServer] TryConnection: True
+[23:10:37.005][GameServer] TRY Add Player: Player 1 from Team 0
+[23:10:37.005][GameServer] AddPlayer: Check Correct
+[23:10:37.020][GameServer] Player 1 from Team 0 joins
+[23:10:37.020][GameServer] PlayerCountNow: 3
+[23:10:37.020][GameServer] PlayerTotalNum: 4
+[23:10:37.317][GameServer] TRY TryConnection: Player 1 from Team 1
+[23:10:37.317][GameServer] TryConnection: True
+[23:10:37.319][GameServer] TRY Add Player: Player 1 from Team 1
+[23:10:37.321][GameServer] AddPlayer: Check Correct
+[23:10:37.330][GameServer] Player 1 from Team 1 joins
+[23:10:37.332][GameServer] PlayerCountNow: 4
+[23:10:37.332][GameServer] PlayerNum: 4
+[23:10:37.332][GameServer] Game Start
+[23:10:37.333][GameServer] Game starts!
+[23:10:37.336][GameServer] Successfully Created StartLockFile!
+[23:10:37.340][Game] Try to activate 0 TangSeng at birthpoint 0
+[23:10:37.341][Game] Successfully activated 0 TangSeng at (2500, 47500)
+[23:10:37.342][Game] Try to activate 1 JiuLing at birthpoint 0
+[23:10:37.342][Game] Successfully activated 1 JiuLing at (47500, 4500)
+[23:20:37.372][GameServer] Server end!
+[23:20:37.391][GameServer] Team0: 1782468775
+[23:20:37.391][GameServer] Team1: 1782468775

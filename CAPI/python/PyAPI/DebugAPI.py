@@ -417,24 +417,16 @@ class CharacterDebugAPI(ICharacterAPI, IGameTimer):
             self.__logger.info("**************************\n")
 
     def PrintTeam(self) -> None:
-        for char in self.__logic.GetCharacters():
-            self.__logger.info("******Team Info******")
-            self.__logger.info(
-                f"type={char.characterType}, ID={char.characterID}, GUID={char.guid}, x={char.x}, y={char.y}"
-            )
-            self.__logger.info(
-                f"state={char.characterState}, speed={char.speed}, view={char.viewRange}, facing={char.facingDirection}"
-            )
-            self.__logger.info("**************************")
+        self.PrintSelfInfo()
 
     def PrintSelfInfo(self) -> None:
         character = self.__logic.GetSelfInfo()
         self.__logger.info("******Self Info******")
         self.__logger.info(
-            f"type={THUAI8.characterTypeDict[character.characterType]}, playerID={character.playerID}, GUID={character.guid}"
+            f"type={character.characterType}, playerID={character.playerID}, GUID={character.guid}"
         )
         self.__logger.info(
-            f"state={THUAI8.characterStateDict[character.characterState]}, x={character.x}, y={character.y}"
+            f"ActiveState={character.characterActiveState}, x={character.x}, y={character.y}"
         )
         self.__logger.info(
             f"speed={character.speed}, view range={character.viewRange}, facing direction={character.facingDirection}"
@@ -450,6 +442,11 @@ class CharacterDebugAPI(ICharacterAPI, IGameTimer):
             self.GetSelfInfo().viewRange,
         )
 
+    def __GetTime(self) -> float:
+        return (datetime.datetime.now() - self.__startPoint) / datetime.timedelta(
+            milliseconds=1
+        )
+
     def StartTimer(self) -> None:
         self.__startPoint = datetime.datetime.now()
         self.__logger.info("=== AI.play() ===")
@@ -459,7 +456,7 @@ class CharacterDebugAPI(ICharacterAPI, IGameTimer):
         self.__logger.info(f"Time elapsed: {self.__GetTime()}ms")
 
     def Play(self, ai: IAI) -> None:
-        ai.play(self)
+        ai.CharacterPlay(self)
 
 
 # class CharacterDebugAPI(ICharacterAPI, IGameTimer):
@@ -1089,10 +1086,7 @@ class TeamDebugAPI(ITeamAPI, IGameTimer):
         selfInfo = self.GetSelfInfo()
         self.__logger.info("******Self Info******")
         self.__logger.info(
-            f"type={selfInfo.characterType}, ID={selfInfo.characterID}, GUID={selfInfo.guid}"
-        )
-        self.__logger.info(
-            f"x={selfInfo.x}, y={selfInfo.y}, state={selfInfo.characterState}"
+            f"teamID:{selfInfo.teamID} playerID:{selfInfo.playerID} score:{selfInfo.score} energy:{selfInfo.energy}"
         )
         self.__logger.info("*********************")
 
@@ -1122,7 +1116,7 @@ class TeamDebugAPI(ITeamAPI, IGameTimer):
             self.__logger.info("**************************")
 
     def Play(self, ai: IAI) -> None:
-        ai.play(self)
+        ai.TeamPlay(self)
 
 
 # class TeamDebugAPI(CharacterDebugAPI):
