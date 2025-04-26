@@ -35,24 +35,27 @@ void AI::play(ICharacterAPI& api)
     if (this->playerID == 1)
     {
         // player1的操作
-        // api.PrintSelfInfo();
+        api.PrintSelfInfo();
     }
     else if (this->playerID == 2)
     {
         // player2的操作
-        // api.PrintSelfInfo();
+        api.PrintSelfInfo();
     }
     else if (this->playerID == 3)
     {
         // player3的操作
+        api.PrintSelfInfo();
     }
     else if (this->playerID == 4)
     {
         // player4的操作
+        api.PrintSelfInfo();
     }
     else if (this->playerID == 5)
     {
         // player5的操作
+        api.PrintSelfInfo();
     }
 }
 

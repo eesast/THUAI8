@@ -247,10 +247,10 @@ bool Logic::Produce(int64_t playerID, int64_t teamID)
     return pComm->Produce(playerID, teamID);
 }
 
-bool Logic::Move(int64_t teamID, int64_t characterID, int32_t moveTimeInMilliseconds, double angle)
+bool Logic::Move(int64_t moveTimeInMilliseconds, double angle)
 {
     logger->debug("Called Move");
-    return pComm->Move(teamID, characterID, moveTimeInMilliseconds, angle);
+    return pComm->Move(playerID, teamID, moveTimeInMilliseconds, angle);
 }
 
 /*bool Logic::Rebuild(THUAI8::ConstructionType constructionType)
