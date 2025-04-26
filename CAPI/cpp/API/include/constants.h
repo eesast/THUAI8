@@ -26,18 +26,18 @@ namespace Constants
     // 角色
     SCCI int32_t sizeofCharacter = 800;
     SCCI int32_t Speed = 2500;
-    struct Monk
+    struct TangSeng
     {
         SCCI int32_t maxHp = 1000;
     };
-    struct MonkeyKing
+    struct SunWukong
     {
         SCCI int32_t maxHp = 200;
         SCCI int32_t common_attack_power = 30;
         SCCI int32_t attackRange = 1;
         SCCI int32_t Cost = 5000;
     };
-    struct Pigsy
+    struct ZhuBajie
     {
         SCCI int32_t maxHp = 300;
         SCCI int32_t common_attack_power = 20;
@@ -51,14 +51,14 @@ namespace Constants
         SCCI int32_t attackRange = 5;
         SCCI int32_t Cost = 3000;
     };
-    struct Whitedragonhorse
+    struct BaiLongma
     {
         SCCI int32_t maxHp = 150;
         SCCI int32_t common_attack_power = 10;
         SCCI int32_t attackRange = 5;
         SCCI int32_t Cost = 4000;
     };
-    struct JiuTouYuanSheng
+    struct JiuLing
     {
         SCCI int32_t maxHp = 1000;
     };
@@ -70,7 +70,7 @@ namespace Constants
         SCCI int32_t Cost = 5000;
     };
 
-    struct Gyuumao
+    struct NiuMowang
     {
         SCCI int32_t maxHp = 300;
         SCCI int32_t common_attack_power = 20;
@@ -78,7 +78,7 @@ namespace Constants
         SCCI int32_t Cost = 4000;
     };
 
-    struct Princess_Iron_Fan
+    struct TieShan
     {
         SCCI int32_t maxHp = 150;
         SCCI int32_t common_attack_power = 10;
@@ -86,7 +86,7 @@ namespace Constants
         SCCI int32_t Cost = 3000;
     };
 
-    struct Spider
+    struct ZhiZhuJing
     {
         SCCI int32_t maxHp = 150;
         SCCI int32_t common_attack_power = 10;

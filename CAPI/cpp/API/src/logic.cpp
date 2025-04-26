@@ -320,7 +320,6 @@ void Logic::ProcessMessage()
                                 logger->info("Map loaded!");
                                 break;
                             }
-
                         }
                         if (currentState->gameMap.empty())
                         {

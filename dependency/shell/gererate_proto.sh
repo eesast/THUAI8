@@ -1,6 +1,8 @@
+#!/usr/bin/env bash
+
 python -m pip install -r requirements.txt
 
-mkdir proto
+mkdir -p proto
 
 python -m grpc_tools.protoc -I../../dependency/proto/ --python_out=./proto --pyi_out=./proto MessageType.proto
 python -m grpc_tools.protoc -I../../dependency/proto/ --python_out=./proto --pyi_out=./proto Message2Clients.proto

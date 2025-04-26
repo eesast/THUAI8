@@ -34,7 +34,7 @@ namespace Gaming
                 }
                 gameMap.Add(character);
                 character.ReSetPos(pos);
-                character.SetCharacterState(CharacterState.NULL_CHARACTER_STATE, CharacterState.NULL_CHARACTER_STATE);
+                character.SetCharacterState(CharacterState.NULL_CHARACTER_STATE, CharacterState.IDLE);
                 new Thread
                 (
                     () =>
@@ -218,9 +218,12 @@ namespace Gaming
                 }
                 else
                 {
-                    if ((nowtime - character.TrapTime) % 1000 <= 25 || (nowtime - character.TrapTime) % 1000 >= 975)
+                    if (character.trapped)
                     {
-                        BeAttacked(character, GameData.TrapDamage);
+                        if ((nowtime - character.TrapTime) % 1000 <= 25 || (nowtime - character.TrapTime) % 1000 >= 975)
+                        {
+                            BeAttacked(character, GameData.TrapDamage);
+                        }
                     }
                 }
             }
