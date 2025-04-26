@@ -1,485 +1,1550 @@
-[api0] [23:51:50.330] [info] === AI.play() ===
-[api0] [23:51:50.331] [info] StartTimer: Fri Apr 25 23:51:50 2025
-
-[api0] [23:51:50.331] [info] Time elapsed: 0.1726ms
-[api0] [23:51:50.352] [info] === AI.play() ===
-[api0] [23:51:50.352] [info] StartTimer: Fri Apr 25 23:51:50 2025
-
-[api0] [23:51:50.352] [info] Time elapsed: 0.0681ms
-[api0] [23:51:50.415] [info] === AI.play() ===
-[api0] [23:51:50.415] [info] StartTimer: Fri Apr 25 23:51:50 2025
-
-[api0] [23:51:50.415] [info] Time elapsed: 0.1689ms
-[api0] [23:51:50.461] [info] === AI.play() ===
-[api0] [23:51:50.461] [info] StartTimer: Fri Apr 25 23:51:50 2025
-
-[api0] [23:51:50.461] [info] Time elapsed: 0.1279ms
-[api0] [23:51:50.508] [info] === AI.play() ===
-[api0] [23:51:50.508] [info] StartTimer: Fri Apr 25 23:51:50 2025
-
-[api0] [23:51:50.508] [info] Time elapsed: 0.1414ms
-[api0] [23:51:50.571] [info] === AI.play() ===
-[api0] [23:51:50.571] [info] StartTimer: Fri Apr 25 23:51:50 2025
-
-[api0] [23:51:50.571] [info] Time elapsed: 0.1591ms
-[api0] [23:51:50.618] [info] === AI.play() ===
-[api0] [23:51:50.618] [info] StartTimer: Fri Apr 25 23:51:50 2025
-
-[api0] [23:51:50.618] [info] Time elapsed: 0.1477ms
-[api0] [23:51:50.663] [info] === AI.play() ===
-[api0] [23:51:50.663] [info] StartTimer: Fri Apr 25 23:51:50 2025
-
-[api0] [23:51:50.664] [info] Time elapsed: 0.1562ms
-[api0] [23:51:50.709] [info] === AI.play() ===
-[api0] [23:51:50.709] [info] StartTimer: Fri Apr 25 23:51:50 2025
-
-[api0] [23:51:50.709] [info] Time elapsed: 0.1468ms
-[api0] [23:51:50.756] [info] === AI.play() ===
-[api0] [23:51:50.756] [info] StartTimer: Fri Apr 25 23:51:50 2025
-
-[api0] [23:51:50.756] [info] Time elapsed: 0.1956ms
-[api0] [23:51:50.820] [info] === AI.play() ===
-[api0] [23:51:50.820] [info] StartTimer: Fri Apr 25 23:51:50 2025
-
-[api0] [23:51:50.820] [info] Time elapsed: 0.0609ms
-[api0] [23:51:50.867] [info] === AI.play() ===
-[api0] [23:51:50.867] [info] StartTimer: Fri Apr 25 23:51:50 2025
-
-[api0] [23:51:50.867] [info] Time elapsed: 0.1872ms
-[api0] [23:51:50.913] [info] === AI.play() ===
-[api0] [23:51:50.913] [info] StartTimer: Fri Apr 25 23:51:50 2025
-
-[api0] [23:51:50.913] [info] Time elapsed: 0.1139ms
-[api0] [23:51:50.960] [info] === AI.play() ===
-[api0] [23:51:50.960] [info] StartTimer: Fri Apr 25 23:51:50 2025
-
-[api0] [23:51:50.960] [info] Time elapsed: 0.162ms
-[api0] [23:51:51.006] [info] === AI.play() ===
-[api0] [23:51:51.006] [info] StartTimer: Fri Apr 25 23:51:51 2025
-
-[api0] [23:51:51.006] [info] Time elapsed: 0.1038ms
-[api0] [23:51:51.070] [info] === AI.play() ===
-[api0] [23:51:51.070] [info] StartTimer: Fri Apr 25 23:51:51 2025
-
-[api0] [23:51:51.070] [info] Time elapsed: 0.146ms
-[api0] [23:51:51.116] [info] === AI.play() ===
-[api0] [23:51:51.117] [info] StartTimer: Fri Apr 25 23:51:51 2025
-
-[api0] [23:51:51.117] [info] Time elapsed: 0.4306ms
-[api0] [23:51:51.162] [info] === AI.play() ===
-[api0] [23:51:51.162] [info] StartTimer: Fri Apr 25 23:51:51 2025
-
-[api0] [23:51:51.162] [info] Time elapsed: 0.0883ms
-[api0] [23:51:51.209] [info] === AI.play() ===
-[api0] [23:51:51.210] [info] StartTimer: Fri Apr 25 23:51:51 2025
-
-[api0] [23:51:51.210] [info] Time elapsed: 0.2134ms
-[api0] [23:51:51.256] [info] === AI.play() ===
-[api0] [23:51:51.256] [info] StartTimer: Fri Apr 25 23:51:51 2025
-
-[api0] [23:51:51.256] [info] Time elapsed: 0.1645ms
-[api0] [23:51:51.320] [info] === AI.play() ===
-[api0] [23:51:51.320] [info] StartTimer: Fri Apr 25 23:51:51 2025
-
-[api0] [23:51:51.320] [info] Time elapsed: 0.3531ms
-[api0] [23:51:51.366] [info] === AI.play() ===
-[api0] [23:51:51.366] [info] StartTimer: Fri Apr 25 23:51:51 2025
-
-[api0] [23:51:51.366] [info] Time elapsed: 0.1622ms
-[api0] [23:51:51.414] [info] === AI.play() ===
-[api0] [23:51:51.414] [info] StartTimer: Fri Apr 25 23:51:51 2025
-
-[api0] [23:51:51.414] [info] Time elapsed: 0.1101ms
-[api0] [23:51:51.460] [info] === AI.play() ===
-[api0] [23:51:51.460] [info] StartTimer: Fri Apr 25 23:51:51 2025
-
-[api0] [23:51:51.460] [info] Time elapsed: 0.133ms
-[api0] [23:51:51.505] [info] === AI.play() [api0] [23:51:51.370] [info] === AI.play() ===
-[api0] [23:51:51.370] [info] StartTimer: Fri Apr 25 23:51:51 2025
-
-[api0] [23:51:51.370] [info] Time elapsed: 0.1402ms
-[api0] [23:51:51.370] [info] === AI.play() ===
-[api0] [23:51:51.370] [info] StartTimer: Fri Apr 25 23:51:51 2025
-
-[api0] [23:51:51.370] [info] Time elapsed: 0.0729ms
-[api0] [23:51:51.414] [info] === AI.play() ===
-[api0] [23:51:51.414] [info] StartTimer: Fri Apr 25 23:51:51 2025
-
-[api0] [23:51:51.414] [info] Time elapsed: 0.1332ms
-[api0] [23:51:51.460] [info] === AI.play() ===
-[api0] [23:51:51.460] [info] StartTimer: Fri Apr 25 23:51:51 2025
-
-[api0] [23:51:51.460] [info] Time elapsed: 0.1142ms
-[api0] [23:51:51.505] [info] === AI.play() ===
-[api0] [23:51:51.505] [info] StartTimer: Fri Apr 25 23:51:51 2025
-
-[api0] [23:51:51.506] [info] Time elapsed: 0.3725ms
-[api0] [23:51:51.568] [info] === AI.play() ===
-[api0] [23:51:51.568] [info] StartTimer: Fri Apr 25 23:51:51 2025
-
-[api0] [23:51:51.568] [info] Time elapsed: 0.1384ms
-[api0] [23:51:51.616] [info] === AI.play() ===
-[api0] [23:51:51.616] [info] StartTimer: Fri Apr 25 23:51:51 2025
-
-[api0] [23:51:51.617] [info] Time elapsed: 0.4171ms
-[api0] [23:51:51.660] [info] === AI.play() ===
-[api0] [23:51:51.660] [info] StartTimer: Fri Apr 25 23:51:51 2025
-
-[api0] [23:51:51.660] [info] Time elapsed: 0.1907ms
-[api0] [23:51:51.706] [info] === AI.play() ===
-[api0] [23:51:51.706] [info] StartTimer: Fri Apr 25 23:51:51 2025
-
-[api0] [23:51:51.706] [info] Time elapsed: 0.1543ms
-[api0] [23:51:51.752] [info] === AI.play() ===
-[api0] [23:51:51.753] [info] StartTimer: Fri Apr 25 23:51:51 2025
-
-[api0] [23:51:51.753] [info] Time elapsed: 0.1458ms
-[api0] [23:51:51.815] [info] === AI.play() ===
-[api0] [23:51:51.815] [info] StartTimer: Fri Apr 25 23:51:51 2025
-
-[api0] [23:51:51.815] [info] Time elapsed: 0.1727ms
-[api0] [23:51:51.861] [info] === AI.play() ===
-[api0] [23:51:51.861] [info] StartTimer: Fri Apr 25 23:51:51 2025
-
-[api0] [23:51:51.861] [info] Time elapsed: 0.0966ms
-[api0] [23:51:51.908] [info] === AI.play() ===
-[api0] [23:51:51.908] [info] StartTimer: Fri Apr 25 23:51:51 2025
-
-[api0] [23:51:51.908] [info] Time elapsed: 0.1171ms
-[api0] [23:51:51.954] [info] === AI.play() ===
-[api0] [23:51:51.954] [info] StartTimer: Fri Apr 25 23:51:51 2025
-
-[api0] [23:51:51.954] [info] Time elapsed: 0.1274ms
-[api0] [23:51:52.002] [info] === AI.play() ===
-[api0] [23:51:52.002] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.002] [info] Time elapsed: 0.115ms
-[api0] [23:51:52.065] [info] === AI.play() ===
-[api0] [23:51:52.065] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.065] [info] Time elapsed: 0.1424ms
-[api0] [23:51:52.112] [info] === AI.play() ===
-[api0] [23:51:52.112] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.113] [info] Time elapsed: 0.1142ms
-[api0] [23:51:52.159] [info] === AI.play() ===
-[api0] [23:51:52.159] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.159] [info] Time elapsed: 0.1744ms
-[api0] [23:51:52.203] [info] === AI.play() ===
-[api0] [23:51:52.203] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.204] [info] Time elapsed: 0.2689ms
-[api0] [23:51:52.252] [info] === AI.play() ===
-[api0] [23:51:52.252] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.252] [info] Time elapsed: 0.6684ms
-[api0] [23:51:52.314] [info] === AI.play() ===
-[api0] [23:51:52.314] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.314] [info] Time elapsed: 0.3887ms
-[api0] [23:51:52.361] [info] === AI.play() ===
-[api0] [23:51:52.361] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.361] [info] Time elapsed: 0.1835ms
-[api0] [23:51:52.410] [info] === AI.play() ===
-[api0] [23:51:52.410] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.410] [info] Time elapsed: 0.4991ms
-[api0] [23:51:52.455] [info] === AI.play() ===
-[api0] [23:51:52.455] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.455] [info] Time elapsed: 0.1757ms
-[api0] [23:51:52.504] [info] === AI.play(===
-[api0] [23:51:51.506] [info] StartTimer: Fri Apr 25 23:51:51 2025
-
-[api0] [23:51:51.506] [info] Time elapsed: 0.4001ms
-[api0] [23:51:51.568] [info] === AI.play() ===
-[api0] [23:51:51.568] [info] StartTimer: Fri Apr 25 23:51:51 2025
-
-[api0] [23:51:51.568] [info] Time elapsed: 0.1433ms
-[api0] [23:51:51.616] [info] === AI.play() ===
-[api0] [23:51:51.616] [info] StartTimer: Fri Apr 25 23:51:51 2025
-
-[api0] [23:51:51.616] [info] Time elapsed: 0.2939ms
-[api0] [23:51:51.660] [info] === AI.play() ===
-[api0] [23:51:51.660] [info] StartTimer: Fri Apr 25 23:51:51 2025
-
-[api0] [23:51:51.660] [info] Time elapsed: 0.1244ms
-[api0] [23:51:51.706] [info] === AI.play() ===
-[api0] [23:51:51.706] [info] StartTimer: Fri Apr 25 23:51:51 2025
-
-[api0] [23:51:51.706] [info] Time elapsed: 0.148ms
-[api0] [23:51:51.752] [info] === AI.play() ===
-[api0] [23:51:51.753] [info] StartTimer: Fri Apr 25 23:51:51 2025
-
-[api0] [23:51:51.753] [info] Time elapsed: 0.1247ms
-[api0] [23:51:51.814] [info] === AI.play() ===
-[api0] [23:51:51.815] [info] StartTimer: Fri Apr 25 23:51:51 2025
-
-[api0] [23:51:51.815] [info] Time elapsed: 0.0977ms
-[api0] [23:51:51.861] [info] === AI.play() ===
-[api0] [23:51:51.861] [info] StartTimer: Fri Apr 25 23:51:51 2025
-
-[api0] [23:51:51.861] [info] Time elapsed: 0.1196ms
-[api0] [23:51:51.908] [info] === AI.play() ===
-[api0] [23:51:51.908] [info] StartTimer: Fri Apr 25 23:51:51 2025
-
-[api0] [23:51:51.908] [info] Time elapsed: 0.0948ms
-[api0] [23:51:51.954] [info] === AI.play() ===
-[api0] [23:51:51.954] [info] StartTimer: Fri Apr 25 23:51:51 2025
-
-[api0] [23:51:51.954] [info] Time elapsed: 0.1272ms
-[api0] [23:51:52.002] [info] === AI.play() ===
-[api0] [23:51:52.002] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.002] [info] Time elapsed: 0.1301ms
-[api0] [23:51:52.065] [info] === AI.play() ===
-[api0] [23:51:52.065] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.065] [info] Time elapsed: 0.1524ms
-[api0] [23:51:52.112] [info] === AI.play() ===
-[api0] [23:51:52.112] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.113] [info] Time elapsed: 0.1635ms
-[api0] [23:51:52.159] [info] === AI.play() ===
-[api0] [23:51:52.159] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.159] [info] Time elapsed: 0.13ms
-[api0] [23:51:52.203] [info] === AI.play() ===
-[api0] [23:51:52.203] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.203] [info] Time elapsed: 0.2316ms
-[api0] [23:51:52.252] [info] === AI.play() ===
-[api0] [23:51:52.252] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.252] [info] Time elapsed: 0.5274ms
-[api0] [23:51:52.314] [info] === AI.play() ===
-[api0] [23:51:52.314] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.314] [info] Time elapsed: 0.4133ms
-[api0] [23:51:52.361] [info] === AI.play() ===
-[api0] [23:51:52.361] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.361] [info] Time elapsed: 0.187ms
-[api0] [23:51:52.410] [info] === AI.play() ===
-[api0] [23:51:52.410] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.411] [info] Time elapsed: 0.6415ms
-[api0] [23:51:52.455] [info] === AI.play() ===
-[api0] [23:51:52.455] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.455] [info] Time elapsed: 0.4339ms
-[api0] [23:51:52.503] [info] === AI.play() ===
-[api0] [23:51:52.503] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.504] [info] Time elapsed: 0.7963ms
-[api0] [23:51:52.564] [info] === AI.play() ===
-[api0] [23:51:52.565] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.565] [info] Time elapsed: 0.2006ms
-[api0] [23:51:52.611] [info] === AI.play() ===
-[api0] [23:51:52.612] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.612] [info] Time elapsed: 0.4843ms
-[api0] [23:51:52.660] [info] === AI.play() ===
-[api0] [23:51:52.660] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.661] [info] Time elapsed: 1.1456ms
-[api0] [23:51:52.705] [info] === AI.play() ===
-[api0] [23:51:52.706] [info] StartTimer) ===
-[api0] [23:51:52.504] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.504] [info] Time elapsed: 0.7833ms
-[api0] [23:51:52.564] [info] === AI.play() ===
-[api0] [23:51:52.565] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.565] [info] Time elapsed: 0.1499ms
-[api0] [23:51:52.611] [info] === AI.play() ===
-[api0] [23:51:52.611] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.612] [info] Time elapsed: 0.3705ms
-[api0] [23:51:52.661] [info] === AI.play() ===
-[api0] [23:51:52.661] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.661] [info] Time elapsed: 0.5391ms
-[api0] [23:51:52.706] [info] === AI.play() ===
-[api0] [23:51:52.706] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.706] [info] Time elapsed: 0.57ms
-[api0] [23:51:52.765] [info] === AI.play() ===
-[api0] [23:51:52.765] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.765] [info] Time elapsed: 0.2118ms
-[api0] [23:51:52.814] [info] === AI.play() ===
-[api0] [23:51:52.814] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.814] [info] Time elapsed: 0.5367ms
-[api0] [23:51:52.859] [info] === AI.play() ===
-[api0] [23:51:52.859] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.859] [info] Time elapsed: 0.2151ms
-[api0] [23:51:52.906] [info] === AI.play() ===
-[api0] [23:51:52.906] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.906] [info] Time elapsed: 0.2183ms
-[api0] [23:51:52.953] [info] === AI.play() ===
-[api0] [23:51:52.954] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.954] [info] Time elapsed: 0.317ms
-[api0] [23:51:52.999] [info] === AI.play() ===
-[api0] [23:51:52.999] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:53.000] [info] Time elapsed: 0.7235ms
-[api0] [23:51:53.063] [info] === AI.play() ===
-[api0] [23:51:53.063] [info] StartTimer: Fri Apr 25 23:51:53 2025
-
-[api0] [23:51:53.064] [info] Time elapsed: 0.6845ms
-[api0] [23:51:53.110] [info] === AI.play() ===
-[api0] [23:51:53.110] [info] StartTimer: Fri Apr 25 23:51:53 2025
-
-[api0] [23:51:53.110] [info] Time elapsed: 0.4636ms
-[api0] [23:51:53.157] [info] === AI.play() ===
-[api0] [23:51:53.157] [info] StartTimer: Fri Apr 25 23:51:53 2025
-
-[api0] [23:51:53.158] [info] Time elapsed: 0.5818ms
-[api0] [23:51:53.202] [info] === AI.play() ===
-[api0] [23:51:53.203] [info] StartTimer: Fri Apr 25 23:51:53 2025
-
-[api0] [23:51:53.203] [info] Time elapsed: 0.1624ms
-[api0] [23:51:53.249] [info] === AI.play() ===
-[api0] [23:51:53.250] [info] StartTimer: Fri Apr 25 23:51:53 2025
-
-[api0] [23:51:53.250] [info] Time elapsed: 0.4827ms
-[api0] [23:51:53.314] [info] === AI.play() ===
-[api0] [23:51:53.314] [info] StartTimer: Fri Apr 25 23:51:53 2025
-
-[api0] [23:51:53.315] [info] Time elapsed: 0.5524ms
-[api0] [23:51:53.360] [info] === AI.play() ===
-[api0] [23:51:53.361] [info] StartTimer: Fri Apr 25 23:51:53 2025
-
-[api0] [23:51:53.361] [info] Time elapsed: 0.8808ms
-[api0] [23:51:53.405] [info] === AI.play() ===
-[api0] [23:51:53.405] [info] StartTimer: Fri Apr 25 23:51:53 2025
-
-[api0] [23:51:53.405] [info] Time elapsed: 0.2232ms
-[api0] [23:51:53.465] [info] === AI.play() ===
-[api0] [23:51:53.466] [info] StartTimer: Fri Apr 25 23:51:53 2025
-
-[api0] [23:51:53.466] [info] Time elapsed: 0.3873ms
-[api0] [23:51:53.503] [info] === AI.play() ===
-[api0] [23:51:53.503] [info] StartTimer: Fri Apr 25 23:51:53 2025
-
-[api0] [23:51:53.503] [info] Time elapsed: 0.5251ms
-[api0] [23:51:53.562] [info] === AI.play() ===
-[api0] [23:51:53.563] [info] StartTimer: Fri Apr 25 23:51:53 2025
-
-[api0] [23:51:53.563] [info] Time elapsed: 0.6326ms
-[api0] [23:51:53.608] [info] === AI.play() ===
-[api0] [23:51:53.608] [info] StartTimer: Fri Apr 25 23:51:53 2025
-
-[api0] [23:51:53.608] [info] Time elapsed: 0.1781ms
-[api0] [23:51:53.655] [info] === AI.play() ===
-[api0] [23:51:53.655] [info] StartTimer: Fri Apr 25 23:51:53 2025
-
-[api0] [23:51:53.655] [info] Time elapsed: 0.2256ms
-[api0] [23:51:53.704] [info] === AI.play() ===
-[api0] [23:51:53.704] [info] StartTi: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.706] [info] Time elapsed: 0.9971ms
-[api0] [23:51:52.765] [info] === AI.play() ===
-[api0] [23:51:52.765] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.765] [info] Time elapsed: 0.166ms
-[api0] [23:51:52.814] [info] === AI.play() ===
-[api0] [23:51:52.814] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.814] [info] Time elapsed: 0.4445ms
-[api0] [23:51:52.859] [info] === AI.play() ===
-[api0] [23:51:52.859] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.859] [info] Time elapsed: 0.2706ms
-[api0] [23:51:52.906] [info] === AI.play() ===
-[api0] [23:51:52.906] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.906] [info] Time elapsed: 0.2083ms
-[api0] [23:51:52.954] [info] === AI.play() ===
-[api0] [23:51:52.954] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.955] [info] Time elapsed: 0.3388ms
-[api0] [23:51:52.999] [info] === AI.play() ===
-[api0] [23:51:52.999] [info] StartTimer: Fri Apr 25 23:51:52 2025
-
-[api0] [23:51:52.999] [info] Time elapsed: 0.3925ms
-[api0] [23:51:53.063] [info] === AI.play() ===
-[api0] [23:51:53.063] [info] StartTimer: Fri Apr 25 23:51:53 2025
-
-[api0] [23:51:53.064] [info] Time elapsed: 0.6892ms
-[api0] [23:51:53.109] [info] === AI.play() ===
-[api0] [23:51:53.110] [info] StartTimer: Fri Apr 25 23:51:53 2025
-
-[api0] [23:51:53.110] [info] Time elapsed: 0.3974ms
-[api0] [23:51:53.157] [info] === AI.play() ===
-[api0] [23:51:53.157] [info] StartTimer: Fri Apr 25 23:51:53 2025
-
-[api0] [23:51:53.158] [info] Time elapsed: 0.7682ms
-[api0] [23:51:53.203] [info] === AI.play() ===
-[api0] [23:51:53.203] [info] StartTimer: Fri Apr 25 23:51:53 2025
-
-[api0] [23:51:53.203] [info] Time elapsed: 0.1633ms
-[api0] [23:51:53.249] [info] === AI.play() ===
-[api0] [23:51:53.249] [info] StartTimer: Fri Apr 25 23:51:53 2025
-
-[api0] [23:51:53.250] [info] Time elapsed: 0.2336ms
-[api0] [23:51:53.313] [info] === AI.play() ===
-[api0] [23:51:53.314] [info] StartTimer: Fri Apr 25 23:51:53 2025
-
-[api0] [23:51:53.314] [info] Time elapsed: 0.9434ms
-[api0] [23:51:53.361] [info] === AI.play() ===
-[api0] [23:51:53.361] [info] StartTimer: Fri Apr 25 23:51:53 2025
-
-[api0] [23:51:53.361] [info] Time elapsed: 0.9002ms
-[api0] [23:51:53.405] [info] === AI.play() ===
-[api0] [23:51:53.405] [info] StartTimer: Fri Apr 25 23:51:53 2025
-
-[api0] [23:51:53.405] [info] Time elapsed: 0.1457ms
-[api0] [23:51:53.465] [info] === AI.play() ===
-[api0] [23:51:53.466] [info] StartTimer: Fri Apr 25 23:51:53 2025
-
-[api0] [23:51:53.466] [info] Time elapsed: 0.3399ms
-[api0] [23:51:53.502] [info] === AI.play() ===
-[api0] [23:51:53.503] [info] StartTimer: Fri Apr 25 23:51:53 2025
-
-[api0] [23:51:53.503] [info] Time elapsed: 0.9593ms
-[api0] [23:51:53.562] [info] === AI.play() ===
-[api0] [23:51:53.563] [info] StartTimer: Fri Apr 25 23:51:53 2025
-
-[api0] [23:51:53.563] [info] Time elapsed: 0.9508ms
-[api0] [23:51:53.608] [info] === AI.play() ===
-[api0] [23:51:53.608] [info] StartTimer: Fri Apr 25 23:51:53 2025
-
-[api0] [23:51:53.608] [info] Time elapsed: 0.1951ms
-[api0] [23:51:53.655] [info] === AI.play() ===
-[api0] [23:51:53.655] [info] StartTimer: Fri Apr 25 23:51:53 2025
-
-[api0] [23:51:53.656] [info] Time elapsed: 0.2915ms
-[api0] [23:51:53.704] [info] === AI.play() ===
-[api0] [23:51:53.704] [info] StartTimer: Fri Apr 25 23:51:53 2025
-
-[api0] [23:51:53.704] [info] Time elapsed: 0.7576ms
-[api0] [23:51:53.750] [info] === AI.play() ===
-[api0] [23:51:53.750] [info] StartTimer: Fri Apr 25 23:51:53 2025
-
-[api0] [23:51:53.750] [info] Time elapsed: 0.5593ms
-[api0] [23:51:53.812] [info] === AI.play() ===
-[api0] [23:51:53.812] [info] StartTimer: Fri Apr 25 23:51:53 2025
-
-[api0] [23:51:53.812] [info] Time elapsed: 0.1871ms
-[api0] [23:51:53.858] [info] === AI.play() ===
-[api0] [23:51:53.858] [info] StartTimer: Fri Apr 25 23:51:53 2025
-
-[api0] [23:51:53.858] [info] Time elapsed: 0.2207ms
-[api0] [23:51:53.904] [info] === AI.play() ===
-[api0] [23:51:53.905] [info] StartTimer: Fri Apr 25 23:51:53 2025
-
-[api0] [23:5
+[api0] [00:20:48.605] [info] === AI.play() ===
+[api0] [00:20:48.605] [info] StartTimer: Sat Apr 26 00:20:48 2025
+
+[api0] [00:20:48.606] [info] Time elapsed: 0.2524ms
+[api0] [00:20:48.638] [info] === AI.play() ===
+[api0] [00:20:48.638] [info] StartTimer: Sat Apr 26 00:20:48 2025
+
+[api0] [00:20:48.638] [info] Time elapsed: 0.1455ms
+[api0] [00:20:48.684] [info] === AI.play() ===
+[api0] [00:20:48.684] [info] StartTimer: Sat Apr 26 00:20:48 2025
+
+[api0] [00:20:48.684] [info] Time elapsed: 0.1294ms
+[api0] [00:20:48.748] [info] === AI.play() ===
+[api0] [00:20:48.748] [info] StartTimer: Sat Apr 26 00:20:48 2025
+
+[api0] [00:20:48.748] [info] Time elapsed: 0.1975ms
+[api0] [00:20:48.778] [info] === AI.play() ===
+[api0] [00:20:48.778] [info] StartTimer: Sat Apr 26 00:20:48 2025
+
+[api0] [00:20:48.778] [info] Time elapsed: 0.1391ms
+[api0] [00:20:48.842] [info] === AI.play() ===
+[api0] [00:20:48.842] [info] StartTimer: Sat Apr 26 00:20:48 2025
+
+[api0] [00:20:48.842] [info] Time elapsed: 0.1662ms
+[api0] [00:20:48.889] [info] === AI.play() ===
+[api0] [00:20:48.889] [info] StartTimer: Sat Apr 26 00:20:48 2025
+
+[api0] [00:20:48.889] [info] Time elapsed: 0.1977ms
+[api0] [00:20:48.934] [info] === AI.play() ===
+[api0] [00:20:48.934] [info] StartTimer: Sat Apr 26 00:20:48 2025
+
+[api0] [00:20:48.935] [info] Time elapsed: 0.1351ms
+[api0] [00:20:48.981] [info] === AI.play() ===
+[api0] [00:20:48.981] [info] StartTimer: Sat Apr 26 00:20:48 2025
+
+[api0] [00:20:48.981] [info] Time elapsed: 0.1559ms
+[api0] [00:20:49.041] [info] === AI.play() ===
+[api0] [00:20:49.041] [info] StartTimer: Sat Apr 26 00:20:49 2025
+
+[api0] [00:20:49.041] [info] Time elapsed: 0.1417ms
+[api0] [00:20:49.104] [info] === AI.play() ===
+[api0] [00:20:49.104] [info] StartTimer: Sat Apr 26 00:20:49 2025
+
+[api0] [00:20:49.104] [info] Time elapsed: 0.2473ms
+[api0] [00:20:49.151] [info] === AI.play() ===
+[api0] [00:20:49.151] [info] StartTimer: Sat Apr 26 00:20:49 2025
+
+[api0] [00:20:49.152] [info] Time elapsed: 0.2309ms
+[api0] [00:20:49.199] [info] === AI.play() ===
+[api0] [00:20:49.199] [info] StartTimer: Sat Apr 26 00:20:49 2025
+
+[api0] [00:20:49.199] [info] Time elapsed: 0.1865ms
+[api0] [00:20:49.246] [info] === AI.play() ===
+[api0] [00:20:49.247] [info] StartTimer: Sat Apr 26 00:20:49 2025
+
+[api0] [00:20:49.247] [info] Time elapsed: 0.212ms
+[api0] [00:20:49.292] [info] === AI.play() ===
+[api0] [00:20:49.292] [info] StartTimer: Sat Apr 26 00:20:49 2025
+
+[api0] [00:20:49.292] [info] Time elapsed: 0.1514ms
+[api0] [00:20:49.353] [info] === AI.play() ===
+[api0] [00:20:49.353] [info] StartTimer: Sat Apr 26 00:20:49 2025
+
+[api0] [00:20:49.353] [info] Time elapsed: 0.1132ms
+[api0] [00:20:49.401] [info] === AI.play() ===
+[api0] [00:20:49.401] [info] StartTimer: Sat Apr 26 00:20:49 2025
+
+[api0] [00:20:49.401] [info] Time elapsed: 0.1237ms
+[api0] [00:20:49.446] [info] === AI.play() ===
+[api0] [00:20:49.446] [info] StartTimer: Sat Apr 26 00:20:49 2025
+
+[api0] [00:20:49.446] [info] Time elapsed: 0.1325ms
+[api0] [00:20:49.493] [info] === AI.play() ===
+[api0] [00:20:49.493] [info] StartTimer: Sat Apr 26 00:20:49 2025
+
+[api0] [00:20:49.493] [info] Time elapsed: 0.1648ms
+[api0] [00:20:49.540] [info] === AI.play() ===
+[api0] [00:20:49.540] [info] StartTimer: Sat Apr 26 00:20:49 2025
+
+[api0] [00:20:49.540] [info] Time elapsed: 0.104ms
+[api0] [00:20:49.603] [info] === AI.play() ===
+[api0] [00:20:49.603] [info] StartTimer: Sat Apr 26 00:20:49 2025
+
+[api0] [00:20:49.603] [info] Time elapsed: 0.1945ms
+[api0] [00:20:49.649] [info] === AI.play() ===
+[api0] [00:20:49.649] [info] StartTimer: Sat Apr 26 00:20:49 2025
+
+[api0] [00:20:49.649] [info] Time elapsed: 0.1425ms
+[api0] [00:20:49.695] [info] === AI.play() ===
+[api0] [00:20:49.695] [info] StartTimer: Sat Apr 26 00:20:49 2025
+
+[api0] [00:20:49.695] [info] Time elapsed: 0.1172ms
+[api0] [00:20:49.742] [info] === AI.play() ===
+[api0] [00:20:49.742] [info] StartTimer: Sat Apr 26 00:20:49 2025
+
+[api0] [00:20:49.742] [info] Time elapsed: 0.1429ms
+[api0] [00:20:49.789] [info] === AI.play()[api0] [00:20:48.606] [info] === AI.play() ===
+[api0] [00:20:48.606] [info] StartTimer: Sat Apr 26 00:20:48 2025
+
+[api0] [00:20:48.606] [info] Time elapsed: 0.2818ms
+[api0] [00:20:48.638] [info] === AI.play() ===
+[api0] [00:20:48.638] [info] StartTimer: Sat Apr 26 00:20:48 2025
+
+[api0] [00:20:48.638] [info] Time elapsed: 0.1002ms
+[api0] [00:20:48.684] [info] === AI.play() ===
+[api0] [00:20:48.684] [info] StartTimer: Sat Apr 26 00:20:48 2025
+
+[api0] [00:20:48.684] [info] Time elapsed: 0.1454ms
+[api0] [00:20:48.748] [info] === AI.play() ===
+[api0] [00:20:48.748] [info] StartTimer: Sat Apr 26 00:20:48 2025
+
+[api0] [00:20:48.748] [info] Time elapsed: 0.1738ms
+[api0] [00:20:48.778] [info] === AI.play() ===
+[api0] [00:20:48.778] [info] StartTimer: Sat Apr 26 00:20:48 2025
+
+[api0] [00:20:48.778] [info] Time elapsed: 0.1696ms
+[api0] [00:20:48.842] [info] === AI.play() ===
+[api0] [00:20:48.842] [info] StartTimer: Sat Apr 26 00:20:48 2025
+
+[api0] [00:20:48.842] [info] Time elapsed: 0.2073ms
+[api0] [00:20:48.889] [info] === AI.play() ===
+[api0] [00:20:48.889] [info] StartTimer: Sat Apr 26 00:20:48 2025
+
+[api0] [00:20:48.889] [info] Time elapsed: 0.2721ms
+[api0] [00:20:48.934] [info] === AI.play() ===
+[api0] [00:20:48.934] [info] StartTimer: Sat Apr 26 00:20:48 2025
+
+[api0] [00:20:48.935] [info] Time elapsed: 0.1732ms
+[api0] [00:20:48.981] [info] === AI.play() ===
+[api0] [00:20:48.981] [info] StartTimer: Sat Apr 26 00:20:48 2025
+
+[api0] [00:20:48.981] [info] Time elapsed: 0.1694ms
+[api0] [00:20:49.041] [info] === AI.play() ===
+[api0] [00:20:49.041] [info] StartTimer: Sat Apr 26 00:20:49 2025
+
+[api0] [00:20:49.041] [info] Time elapsed: 0.1231ms
+[api0] [00:20:49.104] [info] === AI.play() ===
+[api0] [00:20:49.104] [info] StartTimer: Sat Apr 26 00:20:49 2025
+
+[api0] [00:20:49.104] [info] Time elapsed: 0.1503ms
+[api0] [00:20:49.151] [info] === AI.play() ===
+[api0] [00:20:49.152] [info] StartTimer: Sat Apr 26 00:20:49 2025
+
+[api0] [00:20:49.152] [info] Time elapsed: 0.1163ms
+[api0] [00:20:49.199] [info] === AI.play() ===
+[api0] [00:20:49.199] [info] StartTimer: Sat Apr 26 00:20:49 2025
+
+[api0] [00:20:49.200] [info] Time elapsed: 0.2276ms
+[api0] [00:20:49.246] [info] === AI.play() ===
+[api0] [00:20:49.247] [info] StartTimer: Sat Apr 26 00:20:49 2025
+
+[api0] [00:20:49.247] [info] Time elapsed: 0.2252ms
+[api0] [00:20:49.292] [info] === AI.play() ===
+[api0] [00:20:49.292] [info] StartTimer: Sat Apr 26 00:20:49 2025
+
+[api0] [00:20:49.292] [info] Time elapsed: 0.1646ms
+[api0] [00:20:49.353] [info] === AI.play() ===
+[api0] [00:20:49.353] [info] StartTimer: Sat Apr 26 00:20:49 2025
+
+[api0] [00:20:49.353] [info] Time elapsed: 0.1398ms
+[api0] [00:20:49.401] [info] === AI.play() ===
+[api0] [00:20:49.401] [info] StartTimer: Sat Apr 26 00:20:49 2025
+
+[api0] [00:20:49.401] [info] Time elapsed: 0.1882ms
+[api0] [00:20:49.446] [info] === AI.play() ===
+[api0] [00:20:49.446] [info] StartTimer: Sat Apr 26 00:20:49 2025
+
+[api0] [00:20:49.446] [info] Time elapsed: 0.1079ms
+[api0] [00:20:49.493] [info] === AI.play() ===
+[api0] [00:20:49.493] [info] StartTimer: Sat Apr 26 00:20:49 2025
+
+[api0] [00:20:49.493] [info] Time elapsed: 0.241ms
+[api0] [00:20:49.540] [info] === AI.play() ===
+[api0] [00:20:49.540] [info] StartTimer: Sat Apr 26 00:20:49 2025
+
+[api0] [00:20:49.540] [info] Time elapsed: 0.066ms
+[api0] [00:20:49.603] [info] === AI.play() ===
+[api0] [00:20:49.603] [info] StartTimer: Sat Apr 26 00:20:49 2025
+
+[api0] [00:20:49.603] [info] Time elapsed: 0.1008ms
+[api0] [00:20:49.649] [info] === AI.play() ===
+[api0] [00:20:49.649] [info] StartTimer: Sat Apr 26 00:20:49 2025
+
+[api0] [00:20:49.649] [info] Time elapsed: 0.1674ms
+[api0] [00:20:49.695] [info] === AI.play() ===
+[api0] [00:20:49.695] [info] StartTimer: Sat Apr 26 00:20:49 2025
+
+[api0] [00:20:49.695] [info] Time elapsed: 0.1279ms
+[api0] [00:20:49.742] [info] === AI.play() ===
+[api0] [00:20:49.742] [info] StartTimer: Sat Apr 26 00:20:49 2025
+
+[api0] [00:20:49.742] [info] Time elapsed: 0.1204ms
+[api0] [00:20:49.789] [info] === AI.play() ===
+[api0] [00:20:49.789] [info] StartTimer: Sat Apr 26 00:20:49 2025
+
+[api0] [00:20:49.790] [info] Time elapsed: 0.1464ms
+[api0] [00:20:49.852] [info] === AI.play() ===
+[api0] [00:20:49.852] [info] StartTimer: Sat Apr 26 00:20:49 2025
+
+[api0] [00:20:49.852] [info] Time elapsed: 0.1736ms
+[api0] [00:20:49.897] [info] === AI.play() ===
+[api0] [00:20:49.898] [info] StartTimer: Sat Apr 26 00:20:49 2025
+
+[api0] [00:20:49.898] [info] Time elapsed: 0.2179ms
+[api0] [00:20:49.944] [info] === AI.play() ===
+[api0] [00:20:49.944] [info] StartTimer: Sat Apr 26 00:20:49 2025
+
+[api0] [00:20:49.944] [info] Time elapsed: 0.1475ms
+[api0] [00:20:49.990] [info] === AI.play() ===
+[api0] [00:20:49.990] [info] StartTimer: Sat Apr 26 00:20:49 2025
+
+[api0] [00:20:49.990] [info] Time elapsed: 0.159ms
+[api0] [00:20:50.037] [info] === AI.play() ===
+[api0] [00:20:50.037] [info] StartTimer: Sat Apr 26 00:20:50 2025
+
+[api0] [00:20:50.037] [info] Time elapsed: 0.154ms
+[api0] [00:20:50.100] [info] === AI.play() ===
+[api0] [00:20:50.100] [info] StartTimer: Sat Apr 26 00:20:50 2025
+
+[api0] [00:20:50.100] [info] Time elapsed: 0.1536ms
+[api0] [00:20:50.147] [info] === AI.play() ===
+[api0] [00:20:50.147] [info] StartTimer: Sat Apr 26 00:20:50 2025
+
+[api0] [00:20:50.147] [info] Time elapsed: 0.1793ms
+[api0] [00:20:50.195] [info] === AI.play() ===
+[api0] [00:20:50.195] [info] StartTimer: Sat Apr 26 00:20:50 2025
+
+[api0] [00:20:50.195] [info] Time elapsed: 0.1845ms
+[api0] [00:20:50.240] [info] === AI.play() ===
+[api0] [00:20:50.240] [info] StartTimer: Sat Apr 26 00:20:50 2025
+
+[api0] [00:20:50.240] [info] Time elapsed: 0.1352ms
+[api0] [00:20:50.302] [info] === AI.play() ===
+[api0] [00:20:50.302] [info] StartTimer: Sat Apr 26 00:20:50 2025
+
+[api0] [00:20:50.302] [info] Time elapsed: 0.1958ms
+[api0] [00:20:50.349] [info] === AI.play() ===
+[api0] [00:20:50.349] [info] StartTimer: Sat Apr 26 00:20:50 2025
+
+[api0] [00:20:50.349] [info] Time elapsed: 0.1185ms
+[api0] [00:20:50.395] [info] === AI.play() ===
+[api0] [00:20:50.395] [info] StartTimer: Sat Apr 26 00:20:50 2025
+
+[api0] [00:20:50.395] [info] Time elapsed: 0.1331ms
+[api0] [00:20:50.441] [info] === AI.play() ===
+[api0] [00:20:50.441] [info] StartTimer: Sat Apr 26 00:20:50 2025
+
+[api0] [00:20:50.441] [info] Time elapsed: 0.137ms
+[api0] [00:20:50.487] [info] === AI.play() ===
+[api0] [00:20:50.487] [info] StartTimer: Sat Apr 26 00:20:50 2025
+
+[api0] [00:20:50.487] [info] Time elapsed: 0.188ms
+[api0] [00:20:50.534] [info] === AI.play() ===
+[api0] [00:20:50.534] [info] StartTimer: Sat Apr 26 00:20:50 2025
+
+[api0] [00:20:50.534] [info] Time elapsed: 0.2251ms
+[api0] [00:20:50.596] [info] === AI.play() ===
+[api0] [00:20:50.596] [info] StartTimer: Sat Apr 26 00:20:50 2025
+
+[api0] [00:20:50.596] [info] Time elapsed: 0.1654ms
+[api0] [00:20:50.643] [info] === AI.play() ===
+[api0] [00:20:50.643] [info] StartTimer: Sat Apr 26 00:20:50 2025
+
+[api0] [00:20:50.643] [info] Time elapsed: 0.1628ms
+[api0] [00:20:50.690] [info] === AI.play() ===
+[api0] [00:20:50.690] [info] StartTimer: Sat Apr 26 00:20:50 2025
+
+[api0] [00:20:50.691] [info] Time elapsed: 0.1574ms
+[api0] [00:20:50.736] [info] === AI.play() ===
+[api0] [00:20:50.736] [info] StartTimer: Sat Apr 26 00:20:50 2025
+
+[api0] [00:20:50.736] [info] Time elapsed: 0.164ms
+[api0] [00:20:50.782] [info] === AI.play() ===
+[api0] [00:20:50.782] [info] StartTimer: Sat Apr 26 00:20:50 2025
+
+[api0] [00:20:50.782] [info] Time elapsed: 0.1836ms
+[api0] [00:20:50.846] [info] === AI.play() ===
+[api0] [00:20:50.847] [info] StartTimer: Sat Apr 26 00:20:50 2025
+
+[api0] [00:20:50.847] [info] Time elapsed: 0.2163ms
+[api0] [00:20:50.893] [info] === AI.play() ===
+[api0] [00:20:50.893] [info] StartTimer: Sat Apr 26 00:20:50 2025
+
+[api0] [00:20:50.893] [info] Time elapsed: 0.1372ms
+[api0] [00:20:50.939] [info] === AI.play() ===
+[api0] [00:20:50.939] [info] StartTimer: Sat Apr 26 00:20:50 2025
+
+[api0] [00:20:50.939] [info] Time elapsed: 0.3633ms
+[api0] [00:20:50.984] [info] === AI.play() ===
+[api0] [00:20:50.984] [info] StartTimer: Sat Apr 26 00:20:50 2025
+
+[api0] [00:20:50.985] [info] Time elapsed: 0.2186ms
+[api0] [00:20:51.032] [info] === AI.play() ===
+[api0] [00:20:51.032] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.032] [info] Time elapsed: 0.1279ms
+[api0] [00:20:51.093] [info] === AI.play() ===
+[api0] [00:20:51.093] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.093] [info] Time elapsed: 0.1831ms
+[api0] [00:20:51.141] [info] === AI.play() ===
+[api0] [00:20:51.141] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.141] [info] Time elapsed: 0.1885ms
+[api0] [00:20:51.189] [info] === AI.play() ===
+[api0] [00:20:51.189] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.189] [info] Time elapsed: 0.478ms
+[api0] [00:20:51.233] [info] === AI.play() ===
+[api0] [00:20:51.234] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.234] [info] Time elapsed: 0.1612ms
+[api0] [00:20:51.279] [info] === AI.play() ===
+[api0] [00:20:51.279] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.280] [info] Time elapsed: 0.2464ms
+[api0] [00:20:51.341] [info] === AI.play() ===
+[api0] [00:20:51.341] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.341] [info] Time elapsed: 0.1459ms
+[api0] [00:20:51.387] [info] === AI.play() ===
+[api0] [00:20:51.387] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.387] [info] Time elapsed: 0.1584ms
+[api0] [00:20:51.433] [info] === AI.play() ===
+[api0] [00:20:51.434] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.434] [info] Time elapsed: 0.3437ms
+[api0] [00:20:51.495] [info] === AI.play() ===
+[api0] [00:20:51.496] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.496] [info] Time elapsed: 0.5846ms
+[api0] [00:20:51.544] [info] === AI.play() ===
+[api0] [00:20:51.544] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.544] [info] Time elapsed: 0.5808ms
+[api0] [00:20:51.588] [info] === AI.play() ===
+[api0] [00:20:51.588] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.588] [info] Time elapsed: 0.1449ms
+[api0] [00:20:51.651] [info] === AI.play() ===
+[api0] [00:20:51.651] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.651] [info] Time elapsed: 0.0995ms
+[api0] [00:20:51.698] [info] === AI.play() ===
+[api0] [00:20:51.698] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.698] [info] Time elapsed: 0.4884ms
+[api0] [00:20:51.744] [info] === AI.play() ===
+[api0] [00:20:51.744] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.744] [info] Time elapsed: 0.1646ms
+[api0] [00:20:51.790] [info] === AI.play() ===
+[api0] [00:20:51.791] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.791] [info] Time elapsed: 0.5897ms
+[api0] [00:20:51.852] [info] === AI.play() ===
+[api0] [00:20:51.852] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.852] [info] Time elapsed: 0.1255ms
+[api0] [00:20:51.899] [info] === AI.play() ===
+[api0] [00:20:51.899] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.899] [info] Time elapsed: 0.276ms
+[api0] [00:20:51.946] [info] === AI.play() ===
+[api0] [00:20:51.946] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.946] [info] Time elapsed: 0.1795ms
+[api0] [00:20:52.008] [info] === AI.play() ===
+[api0] [00:20:52.008] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.008] [info] Time elapsed: 0.2013ms
+[api0] [00:20:52.039] [info] === AI.play() ===
+[api0] [00:20:52.039] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.039] [info] Time elapsed: 0.2367ms
+[api0] [00:20:52.100] [info] === AI.play() ===
+[api0] [00:20:52.100] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.101] [info] Time elapsed: 0.1516ms
+[api0] [00:20:52.149] [info] === AI.play() ===
+[api0] [00:20:52.149] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.149] [info] Time elapsed: 0.2591ms
+[api0] [00:20:52.195] [info] === AI.play() ===
+[api0] [00:20:52.195] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20: Sat Apr 26 00:20:50 2025
+
+[api0] [00:20:50.985] [info] Time elapsed: 0.3144ms
+[api0] [00:20:51.031] [info] === AI.play() ===
+[api0] [00:20:51.031] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.032] [info] Time elapsed: 0.2276ms
+[api0] [00:20:51.093] [info] === AI.play() ===
+[api0] [00:20:51.093] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.093] [info] Time elapsed: 0.1051ms
+[api0] [00:20:51.141] [info] === AI.play() ===
+[api0] [00:20:51.141] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.141] [info] Time elapsed: 0.308ms
+[api0] [00:20:51.189] [info] === AI.play() ===
+[api0] [00:20:51.189] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.189] [info] Time elapsed: 0.4884ms
+[api0] [00:20:51.233] [info] === AI.play() ===
+[api0] [00:20:51.234] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.234] [info] Time elapsed: 0.2035ms
+[api0] [00:20:51.280] [info] === AI.play() ===
+[api0] [00:20:51.280] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.280] [info] Time elapsed: 0.1316ms
+[api0] [00:20:51.341] [info] === AI.play() ===
+[api0] [00:20:51.341] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.341] [info] Time elapsed: 0.2083ms
+[api0] [00:20:51.387] [info] === AI.play() ===
+[api0] [00:20:51.387] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.387] [info] Time elapsed: 0.1717ms
+[api0] [00:20:51.433] [info] === AI.play() ===
+[api0] [00:20:51.433] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.433] [info] Time elapsed: 0.1562ms
+[api0] [00:20:51.496] [info] === AI.play() ===
+[api0] [00:20:51.496] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.496] [info] Time elapsed: 0.2224ms
+[api0] [00:20:51.544] [info] === AI.play() ===
+[api0] [00:20:51.544] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.544] [info] Time elapsed: 0.8142ms
+[api0] [00:20:51.588] [info] === AI.play() ===
+[api0] [00:20:51.588] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.588] [info] Time elapsed: 0.1401ms
+[api0] [00:20:51.651] [info] === AI.play() ===
+[api0] [00:20:51.651] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.651] [info] Time elapsed: 0.4033ms
+[api0] [00:20:51.698] [info] === AI.play() ===
+[api0] [00:20:51.698] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.698] [info] Time elapsed: 0.5517ms
+[api0] [00:20:51.744] [info] === AI.play() ===
+[api0] [00:20:51.744] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.744] [info] Time elapsed: 0.194ms
+[api0] [00:20:51.791] [info] === AI.play() ===
+[api0] [00:20:51.791] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.791] [info] Time elapsed: 0.2549ms
+[api0] [00:20:51.852] [info] === AI.play() ===
+[api0] [00:20:51.852] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.852] [info] Time elapsed: 0.1292ms
+[api0] [00:20:51.899] [info] === AI.play() ===
+[api0] [00:20:51.899] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.899] [info] Time elapsed: 0.2968ms
+[api0] [00:20:51.946] [info] === AI.play() ===
+[api0] [00:20:51.946] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.946] [info] Time elapsed: 0.1271ms
+[api0] [00:20:51.993] [info] === AI.play() ===
+[api0] [00:20:51.993] [info] StartTimer: Sat Apr 26 00:20:51 2025
+
+[api0] [00:20:51.993] [info] Time elapsed: 0.1867ms
+[api0] [00:20:52.039] [info] === AI.play() ===
+[api0] [00:20:52.039] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.039] [info] Time elapsed: 0.2092ms
+[api0] [00:20:52.100] [info] === AI.play() ===
+[api0] [00:20:52.100] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.100] [info] Time elapsed: 0.1484ms
+[api0] [00:20:52.150] [info] === AI.play() ===
+[api0] [00:20:52.150] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.150] [info] Time elapsed: 0.2188ms
+[api0] [00:20:52.195] [info] === AI.play() ===
+[api0] [00:20:52.195] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.195] [info] Time elapsed: 0.147ms
+[api0] [00:20:52.243] [info] === AI.play() ===
+[api0] [00:20:52.243] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.243] [info] Time elapsed: 0.1836ms
+[api0] [00:20:52.289] [info] === AI.play() ===
+[api0] [00:20:52.289] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.290] [info] Time elapsed: 0.1041ms
+[api0] [00:20:52.351] [info] === AI.play() ===
+[api0] [00:20:52.351] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.352] [info] Time elapsed: 0.1418ms
+[api0] [00:20:52.400] [info] === AI.play() ===
+[api0] [00:20:52.400] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.400] [info] Time elapsed: 0.208ms
+[api0] [00:20:52.446] [info] === AI.play() ===
+[api0] [00:20:52.446] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.446] [info] Time elapsed: 0.3544ms
+[api0] [00:20:52.492] [info] === AI.play() ===
+[api0] [00:20:52.492] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.492] [info] Time elapsed: 0.3618ms
+[api0] [00:20:52.540] [info] === AI.play() ===
+[api0] [00:20:52.540] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.540] [info] Time elapsed: 0.3303ms
+[api0] [00:20:52.602] [info] === AI.play() ===
+[api0] [00:20:52.602] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.602] [info] Time elapsed: 0.1964ms
+[api0] [00:20:52.648] [info] === AI.play() ===
+[api0] [00:20:52.648] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.648] [info] Time elapsed: 0.237ms
+[api0] [00:20:52.695] [info] === AI.play() ===
+[api0] [00:20:52.695] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.695] [info] Time elapsed: 0.2337ms
+[api0] [00:20:52.741] [info] === AI.play() ===
+[api0] [00:20:52.741] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.741] [info] Time elapsed: 0.1429ms
+[api0] [00:20:52.788] [info] === AI.play() ===
+[api0] [00:20:52.788] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.788] [info] Time elapsed: 0.159ms
+[api0] [00:20:52.849] [info] === AI.play() ===
+[api0] [00:20:52.849] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.849] [info] Time elapsed: 0.3361ms
+[api0] [00:20:52.896] [info] === AI.play() ===
+[api0] [00:20:52.896] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.896] [info] Time elapsed: 0.2212ms
+[api0] [00:20:52.941] [info] === AI.play() ===
+[api0] [00:20:52.941] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.941] [info] Time elapsed: 0.1548ms
+[api0] [00:20:52.988] [info] === AI.play() ===
+[api0] [00:20:52.988] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.988] [info] Time elapsed: 0.1786ms
+[api0] [00:20:53.035] [info] === AI.play() ===
+[api0] [00:20:53.035] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.035] [info] Time elapsed: 0.3604ms
+[api0] [00:20:53.097] [info] === AI.play() ===
+[api0] [00:20:53.098] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.098] [info] Time elapsed: 0.3785ms
+[api0] [00:20:53.144] [info] === AI.play() ===
+[api0] [00:20:53.145] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.145] [info] Time elapsed: 0.2698ms
+[api0] [00:20:53.192] [info] === AI.play() ===
+[api0] [00:20:53.192] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.192] [info] Time elapsed: 0.1526ms
+[api0] [00:20:53.239] [info] === AI.play() ===
+[api0] [00:20:53.239] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.240] [info] Time elapsed: 0.1773ms
+[api0] [00:20:53.286] [info] === AI.play() ===
+[api0] [00:20:53.286] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.286] [info] Time elapsed: 0.3879ms
+[api0] [00:20:53.348] [info] === AI.play() ===
+[api0] [00:20:53.348] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.348] [info] Time elapsed: 0.1412ms
+[api0] [00:20:53.394] [info] === AI.play() ===
+[api0] [00:20:53.394] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.394] [info] Time elapsed: 0.1211ms
+[api:52.195] [info] Time elapsed: 0.1219ms
+[api0] [00:20:52.243] [info] === AI.play() ===
+[api0] [00:20:52.243] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.243] [info] Time elapsed: 0.1934ms
+[api0] [00:20:52.289] [info] === AI.play() ===
+[api0] [00:20:52.289] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.289] [info] Time elapsed: 0.1094ms
+[api0] [00:20:52.351] [info] === AI.play() ===
+[api0] [00:20:52.351] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.352] [info] Time elapsed: 0.2527ms
+[api0] [00:20:52.400] [info] === AI.play() ===
+[api0] [00:20:52.400] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.400] [info] Time elapsed: 0.1428ms
+[api0] [00:20:52.446] [info] === AI.play() ===
+[api0] [00:20:52.446] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.446] [info] Time elapsed: 0.1698ms
+[api0] [00:20:52.492] [info] === AI.play() ===
+[api0] [00:20:52.492] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.492] [info] Time elapsed: 0.224ms
+[api0] [00:20:52.540] [info] === AI.play() ===
+[api0] [00:20:52.540] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.540] [info] Time elapsed: 0.1908ms
+[api0] [00:20:52.602] [info] === AI.play() ===
+[api0] [00:20:52.602] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.602] [info] Time elapsed: 0.2378ms
+[api0] [00:20:52.648] [info] === AI.play() ===
+[api0] [00:20:52.648] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.648] [info] Time elapsed: 0.1313ms
+[api0] [00:20:52.695] [info] === AI.play() ===
+[api0] [00:20:52.695] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.695] [info] Time elapsed: 0.1556ms
+[api0] [00:20:52.741] [info] === AI.play() ===
+[api0] [00:20:52.741] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.741] [info] Time elapsed: 0.121ms
+[api0] [00:20:52.788] [info] === AI.play() ===
+[api0] [00:20:52.788] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.788] [info] Time elapsed: 0.1548ms
+[api0] [00:20:52.849] [info] === AI.play() ===
+[api0] [00:20:52.849] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.849] [info] Time elapsed: 0.1435ms
+[api0] [00:20:52.896] [info] === AI.play() ===
+[api0] [00:20:52.896] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.896] [info] Time elapsed: 0.1372ms
+[api0] [00:20:52.941] [info] === AI.play() ===
+[api0] [00:20:52.941] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.941] [info] Time elapsed: 0.174ms
+[api0] [00:20:52.988] [info] === AI.play() ===
+[api0] [00:20:52.988] [info] StartTimer: Sat Apr 26 00:20:52 2025
+
+[api0] [00:20:52.988] [info] Time elapsed: 0.19ms
+[api0] [00:20:53.035] [info] === AI.play() ===
+[api0] [00:20:53.035] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.035] [info] Time elapsed: 0.1291ms
+[api0] [00:20:53.097] [info] === AI.play() ===
+[api0] [00:20:53.098] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.098] [info] Time elapsed: 0.3126ms
+[api0] [00:20:53.144] [info] === AI.play() ===
+[api0] [00:20:53.144] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.144] [info] Time elapsed: 0.1695ms
+[api0] [00:20:53.191] [info] === AI.play() ===
+[api0] [00:20:53.192] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.192] [info] Time elapsed: 0.3208ms
+[api0] [00:20:53.239] [info] === AI.play() ===
+[api0] [00:20:53.239] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.240] [info] Time elapsed: 0.1387ms
+[api0] [00:20:53.286] [info] === AI.play() ===
+[api0] [00:20:53.286] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.286] [info] Time elapsed: 0.1747ms
+[api0] [00:20:53.348] [info] === AI.play() ===
+[api0] [00:20:53.348] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.348] [info] Time elapsed: 0.1287ms
+[api0] [00:20:53.394] [info] === AI.play() ===
+[api0] [00:20:53.394] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.394] [info] Time elapsed: 0.1406ms
+[api00] [00:20:53.440] [info] === AI.play() ===
+[api0] [00:20:53.440] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.440] [info] Time elapsed: 0.2403ms
+[api0] [00:20:53.486] [info] === AI.play() ===
+[api0] [00:20:53.486] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.486] [info] Time elapsed: 0.1732ms
+[api0] [00:20:53.532] [info] === AI.play() ===
+[api0] [00:20:53.532] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.532] [info] Time elapsed: 0.1741ms
+[api0] [00:20:53.594] [info] === AI.play() ===
+[api0] [00:20:53.594] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.594] [info] Time elapsed: 0.1488ms
+[api0] [00:20:53.642] [info] === AI.play() ===
+[api0] [00:20:53.642] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.642] [info] Time elapsed: 0.1376ms
+[api0] [00:20:53.689] [info] === AI.play() ===
+[api0] [00:20:53.689] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.689] [info] Time elapsed: 0.2659ms
+[api0] [00:20:53.735] [info] === AI.play() ===
+[api0] [00:20:53.735] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.735] [info] Time elapsed: 0.1446ms
+[api0] [00:20:53.782] [info] === AI.play() ===
+[api0] [00:20:53.782] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.782] [info] Time elapsed: 0.1618ms
+[api0] [00:20:53.845] [info] === AI.play() ===
+[api0] [00:20:53.845] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.845] [info] Time elapsed: 0.1865ms
+[api0] [00:20:53.892] [info] === AI.play() ===
+[api0] [00:20:53.892] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.892] [info] Time elapsed: 0.1301ms
+[api0] [00:20:53.939] [info] === AI.play() ===
+[api0] [00:20:53.940] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.940] [info] Time elapsed: 0.2786ms
+[api0] [00:20:53.986] [info] === AI.play() ===
+[api0] [00:20:53.986] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.986] [info] Time elapsed: 0.1553ms
+[api0] [00:20:54.032] [info] === AI.play() ===
+[api0] [00:20:54.032] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.032] [info] Time elapsed: 0.1775ms
+[api0] [00:20:54.095] [info] === AI.play() ===
+[api0] [00:20:54.096] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.096] [info] Time elapsed: 0.1483ms
+[api0] [00:20:54.143] [info] === AI.play() ===
+[api0] [00:20:54.143] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.143] [info] Time elapsed: 0.1738ms
+[api0] [00:20:54.190] [info] === AI.play() ===
+[api0] [00:20:54.190] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.190] [info] Time elapsed: 0.091ms
+[api0] [00:20:54.236] [info] === AI.play() ===
+[api0] [00:20:54.236] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.236] [info] Time elapsed: 0.2265ms
+[api0] [00:20:54.297] [info] === AI.play() ===
+[api0] [00:20:54.297] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.297] [info] Time elapsed: 0.1446ms
+[api0] [00:20:54.343] [info] === AI.play() ===
+[api0] [00:20:54.343] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.343] [info] Time elapsed: 0.1579ms
+[api0] [00:20:54.388] [info] === AI.play() ===
+[api0] [00:20:54.388] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.389] [info] Time elapsed: 0.217ms
+[api0] [00:20:54.435] [info] === AI.play() ===
+[api0] [00:20:54.435] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.436] [info] Time elapsed: 0.4158ms
+[api0] [00:20:54.483] [info] === AI.play() ===
+[api0] [00:20:54.483] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.483] [info] Time elapsed: 0.2152ms
+[api0] [00:20:54.530] [info] === AI.play() ===
+[api0] [00:20:54.530] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.530] [info] Time elapsed: 0.1999ms
+[api0] [00:20:54.591] [info] === AI.play() ===
+[api0] [00:20:54.591] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.591] [info] Time elapsed: 0.5322ms
+[api0] [00:20:54.637] [info] === AI.play() ===] [00:20:53.440] [info] === AI.play() ===
+[api0] [00:20:53.440] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.440] [info] Time elapsed: 0.206ms
+[api0] [00:20:53.486] [info] === AI.play() ===
+[api0] [00:20:53.486] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.486] [info] Time elapsed: 0.1938ms
+[api0] [00:20:53.532] [info] === AI.play() ===
+[api0] [00:20:53.532] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.532] [info] Time elapsed: 0.1883ms
+[api0] [00:20:53.594] [info] === AI.play() ===
+[api0] [00:20:53.594] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.594] [info] Time elapsed: 0.1349ms
+[api0] [00:20:53.642] [info] === AI.play() ===
+[api0] [00:20:53.642] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.642] [info] Time elapsed: 0.1998ms
+[api0] [00:20:53.689] [info] === AI.play() ===
+[api0] [00:20:53.689] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.689] [info] Time elapsed: 0.1316ms
+[api0] [00:20:53.735] [info] === AI.play() ===
+[api0] [00:20:53.735] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.735] [info] Time elapsed: 0.1239ms
+[api0] [00:20:53.782] [info] === AI.play() ===
+[api0] [00:20:53.782] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.782] [info] Time elapsed: 0.1611ms
+[api0] [00:20:53.845] [info] === AI.play() ===
+[api0] [00:20:53.845] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.845] [info] Time elapsed: 0.1723ms
+[api0] [00:20:53.892] [info] === AI.play() ===
+[api0] [00:20:53.892] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.892] [info] Time elapsed: 0.1349ms
+[api0] [00:20:53.939] [info] === AI.play() ===
+[api0] [00:20:53.939] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.940] [info] Time elapsed: 0.1469ms
+[api0] [00:20:53.986] [info] === AI.play() ===
+[api0] [00:20:53.986] [info] StartTimer: Sat Apr 26 00:20:53 2025
+
+[api0] [00:20:53.986] [info] Time elapsed: 0.1584ms
+[api0] [00:20:54.032] [info] === AI.play() ===
+[api0] [00:20:54.032] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.032] [info] Time elapsed: 0.1464ms
+[api0] [00:20:54.095] [info] === AI.play() ===
+[api0] [00:20:54.095] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.096] [info] Time elapsed: 0.1727ms
+[api0] [00:20:54.143] [info] === AI.play() ===
+[api0] [00:20:54.143] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.143] [info] Time elapsed: 0.2121ms
+[api0] [00:20:54.190] [info] === AI.play() ===
+[api0] [00:20:54.190] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.190] [info] Time elapsed: 0.1144ms
+[api0] [00:20:54.236] [info] === AI.play() ===
+[api0] [00:20:54.236] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.236] [info] Time elapsed: 0.2023ms
+[api0] [00:20:54.296] [info] === AI.play() ===
+[api0] [00:20:54.297] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.297] [info] Time elapsed: 0.4774ms
+[api0] [00:20:54.343] [info] === AI.play() ===
+[api0] [00:20:54.343] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.343] [info] Time elapsed: 0.1904ms
+[api0] [00:20:54.388] [info] === AI.play() ===
+[api0] [00:20:54.388] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.388] [info] Time elapsed: 0.1806ms
+[api0] [00:20:54.435] [info] === AI.play() ===
+[api0] [00:20:54.435] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.436] [info] Time elapsed: 0.521ms
+[api0] [00:20:54.483] [info] === AI.play() ===
+[api0] [00:20:54.483] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.483] [info] Time elapsed: 0.2636ms
+[api0] [00:20:54.530] [info] === AI.play() ===
+[api0] [00:20:54.530] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.530] [info] Time elapsed: 0.213ms
+[api0] [00:20:54.591] [info] === AI.play() ===
+[api0] [00:20:54.591] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.591] [info] Time elapsed: 0.1164ms
+[api0] [00:20:54.637] [info] === AI.play() ===
+
+[api0] [00:20:54.637] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.638] [info] Time elapsed: 0.2285ms
+[api0] [00:20:54.685] [info] === AI.play() ===
+[api0] [00:20:54.685] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.685] [info] Time elapsed: 0.168ms
+[api0] [00:20:54.733] [info] === AI.play() ===
+[api0] [00:20:54.733] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.733] [info] Time elapsed: 0.2681ms
+[api0] [00:20:54.780] [info] === AI.play() ===
+[api0] [00:20:54.780] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.780] [info] Time elapsed: 0.1764ms
+[api0] [00:20:54.840] [info] === AI.play() ===
+[api0] [00:20:54.840] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.841] [info] Time elapsed: 0.2174ms
+[api0] [00:20:54.887] [info] === AI.play() ===
+[api0] [00:20:54.887] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.887] [info] Time elapsed: 0.1922ms
+[api0] [00:20:54.933] [info] === AI.play() ===
+[api0] [00:20:54.933] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.933] [info] Time elapsed: 0.1547ms
+[api0] [00:20:54.996] [info] === AI.play() ===
+[api0] [00:20:54.996] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.997] [info] Time elapsed: 0.4931ms
+[api0] [00:20:55.042] [info] === AI.play() ===
+[api0] [00:20:55.042] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.043] [info] Time elapsed: 0.1326ms
+[api0] [00:20:55.106] [info] === AI.play() ===
+[api0] [00:20:55.107] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.107] [info] Time elapsed: 0.2866ms
+[api0] [00:20:55.140] [info] === AI.play() ===
+[api0] [00:20:55.140] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.140] [info] Time elapsed: 0.2552ms
+[api0] [00:20:55.182] [info] === AI.play() ===
+[api0] [00:20:55.182] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.182] [info] Time elapsed: 0.103ms
+[api0] [00:20:55.245] [info] === AI.play() ===
+[api0] [00:20:55.246] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.246] [info] Time elapsed: 0.3415ms
+[api0] [00:20:55.306] [info] === AI.play() ===
+[api0] [00:20:55.306] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.306] [info] Time elapsed: 0.1611ms
+[api0] [00:20:55.353] [info] === AI.play() ===
+[api0] [00:20:55.353] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.353] [info] Time elapsed: 0.1581ms
+[api0] [00:20:55.399] [info] === AI.play() ===
+[api0] [00:20:55.399] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.400] [info] Time elapsed: 0.2685ms
+[api0] [00:20:55.445] [info] === AI.play() ===
+[api0] [00:20:55.446] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.446] [info] Time elapsed: 0.1588ms
+[api0] [00:20:55.491] [info] === AI.play() ===
+[api0] [00:20:55.491] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.491] [info] Time elapsed: 0.1702ms
+[api0] [00:20:55.538] [info] === AI.play() ===
+[api0] [00:20:55.538] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.538] [info] Time elapsed: 0.3775ms
+[api0] [00:20:55.601] [info] === AI.play() ===
+[api0] [00:20:55.601] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.601] [info] Time elapsed: 0.7503ms
+[api0] [00:20:55.644] [info] === AI.play() ===
+[api0] [00:20:55.644] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.644] [info] Time elapsed: 0.1496ms
+[api0] [00:20:55.691] [info] === AI.play() ===
+[api0] [00:20:55.692] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.692] [info] Time elapsed: 0.6033ms
+[api0] [00:20:55.737] [info] === AI.play() ===
+[api0] [00:20:55.738] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.738] [info] Time elapsed: 0.7227ms
+[api0] [00:20:55.783] [info] === AI.play() ===
+[api0] [00:20:55.783] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.783] [info] Time elapsed: 0.1371ms
+[api0] [00:20:55.845] [info] === AI.play() ===
+[api0] [00:20:55.845] [info] StartTimer:[api0] [00:20:54.637] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.638] [info] Time elapsed: 0.2175ms
+[api0] [00:20:54.685] [info] === AI.play() ===
+[api0] [00:20:54.685] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.685] [info] Time elapsed: 0.1589ms
+[api0] [00:20:54.732] [info] === AI.play() ===
+[api0] [00:20:54.733] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.733] [info] Time elapsed: 0.2179ms
+[api0] [00:20:54.780] [info] === AI.play() ===
+[api0] [00:20:54.780] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.780] [info] Time elapsed: 0.0805ms
+[api0] [00:20:54.840] [info] === AI.play() ===
+[api0] [00:20:54.841] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.841] [info] Time elapsed: 0.1473ms
+[api0] [00:20:54.887] [info] === AI.play() ===
+[api0] [00:20:54.887] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.887] [info] Time elapsed: 0.1086ms
+[api0] [00:20:54.932] [info] === AI.play() ===
+[api0] [00:20:54.932] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.932] [info] Time elapsed: 0.1659ms
+[api0] [00:20:54.997] [info] === AI.play() ===
+[api0] [00:20:54.997] [info] StartTimer: Sat Apr 26 00:20:54 2025
+
+[api0] [00:20:54.997] [info] Time elapsed: 0.2806ms
+[api0] [00:20:55.042] [info] === AI.play() ===
+[api0] [00:20:55.042] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.043] [info] Time elapsed: 0.1613ms
+[api0] [00:20:55.106] [info] === AI.play() ===
+[api0] [00:20:55.107] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.107] [info] Time elapsed: 0.2938ms
+[api0] [00:20:55.140] [info] === AI.play() ===
+[api0] [00:20:55.140] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.140] [info] Time elapsed: 0.4605ms
+[api0] [00:20:55.182] [info] === AI.play() ===
+[api0] [00:20:55.182] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.182] [info] Time elapsed: 0.1152ms
+[api0] [00:20:55.245] [info] === AI.play() ===
+[api0] [00:20:55.245] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.246] [info] Time elapsed: 0.2759ms
+[api0] [00:20:55.306] [info] === AI.play() ===
+[api0] [00:20:55.306] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.306] [info] Time elapsed: 0.1582ms
+[api0] [00:20:55.353] [info] === AI.play() ===
+[api0] [00:20:55.353] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.353] [info] Time elapsed: 0.1272ms
+[api0] [00:20:55.399] [info] === AI.play() ===
+[api0] [00:20:55.399] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.400] [info] Time elapsed: 0.3073ms
+[api0] [00:20:55.445] [info] === AI.play() ===
+[api0] [00:20:55.445] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.445] [info] Time elapsed: 0.2248ms
+[api0] [00:20:55.491] [info] === AI.play() ===
+[api0] [00:20:55.491] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.491] [info] Time elapsed: 0.1245ms
+[api0] [00:20:55.538] [info] === AI.play() ===
+[api0] [00:20:55.539] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.539] [info] Time elapsed: 0.6133ms
+[api0] [00:20:55.601] [info] === AI.play() ===
+[api0] [00:20:55.602] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.602] [info] Time elapsed: 0.7375ms
+[api0] [00:20:55.644] [info] === AI.play() ===
+[api0] [00:20:55.644] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.644] [info] Time elapsed: 0.3234ms
+[api0] [00:20:55.691] [info] === AI.play() ===
+[api0] [00:20:55.691] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.692] [info] Time elapsed: 0.5578ms
+[api0] [00:20:55.737] [info] === AI.play() ===
+[api0] [00:20:55.738] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.738] [info] Time elapsed: 0.9231ms
+[api0] [00:20:55.783] [info] === AI.play() ===
+[api0] [00:20:55.783] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.783] [info] Time elapsed: 0.1982ms
+[api0] [00:20:55.845] [info] === AI.play() ===
+[api0] [00:20:55.845] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.846] [info] Time elapsed: 0.5288ms
+[api0] [00:20:55.890] [info] === AI.play() ===
+[api0] [00:20:55.890] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.890] [info] Time elapsed: 0.1494ms
+[api0] [00:20:55.937] [info] === AI.play() ===
+[api0] [00:20:55.937] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.937] [info] Time elapsed: 0.1524ms
+[api0] [00:20:55.984] [info] === AI.play() ===
+[api0] [00:20:55.984] [info] StartTimer: Sat Apr 26 00:20:55 2025
+
+[api0] [00:20:55.985] [info] Time elapsed: 0.1749ms
+[api0] [00:20:56.032] [info] === AI.play() ===
+[api0] [00:20:56.032] [info] StartTimer: Sat Apr 26 00:20:56 2025
+
+[api0] [00:20:56.032] [info] Time elapsed: 0.1636ms
+[api0] [00:20:56.094] [info] === AI.play() ===
+[api0] [00:20:56.094] [info] StartTimer: Sat Apr 26 00:20:56 2025
+
+[api0] [00:20:56.094] [info] Time elapsed: 0.2566ms
+[api0] [00:20:56.140] [info] === AI.play() ===
+[api0] [00:20:56.140] [info] StartTimer: Sat Apr 26 00:20:56 2025
+
+[api0] [00:20:56.140] [info] Time elapsed: 0.1483ms
+[api0] [00:20:56.188] [info] === AI.play() ===
+[api0] [00:20:56.188] [info] StartTimer: Sat Apr 26 00:20:56 2025
+
+[api0] [00:20:56.188] [info] Time elapsed: 0.2201ms
+[api0] [00:20:56.234] [info] === AI.play() ===
+[api0] [00:20:56.235] [info] StartTimer: Sat Apr 26 00:20:56 2025
+
+[api0] [00:20:56.235] [info] Time elapsed: 0.2665ms
+[api0] [00:20:56.301] [info] === AI.play() ===
+[api0] [00:20:56.301] [info] StartTimer: Sat Apr 26 00:20:56 2025
+
+[api0] [00:20:56.301] [info] Time elapsed: 0.3734ms
+[api0] [00:20:56.346] [info] === AI.play() ===
+[api0] [00:20:56.346] [info] StartTimer: Sat Apr 26 00:20:56 2025
+
+[api0] [00:20:56.347] [info] Time elapsed: 0.7718ms
+[api0] [00:20:56.391] [info] === AI.play() ===
+[api0] [00:20:56.391] [info] StartTimer: Sat Apr 26 00:20:56 2025
+
+[api0] [00:20:56.391] [info] Time elapsed: 0.1659ms
+[api0] [00:20:56.438] [info] === AI.play() ===
+[api0] [00:20:56.438] [info] StartTimer: Sat Apr 26 00:20:56 2025
+
+[api0] [00:20:56.438] [info] Time elapsed: 0.252ms
+[api0] [00:20:56.486] [info] === AI.play() ===
+[api0] [00:20:56.486] [info] StartTimer: Sat Apr 26 00:20:56 2025
+
+[api0] [00:20:56.486] [info] Time elapsed: 0.3976ms
+[api0] [00:20:56.546] [info] === AI.play() ===
+[api0] [00:20:56.546] [info] StartTimer: Sat Apr 26 00:20:56 2025
+
+[api0] [00:20:56.546] [info] Time elapsed: 0.2516ms
+[api0] [00:20:56.591] [info] === AI.play() ===
+[api0] [00:20:56.591] [info] StartTimer: Sat Apr 26 00:20:56 2025
+
+[api0] [00:20:56.591] [info] Time elapsed: 0.138ms
+[api0] [00:20:56.638] [info] === AI.play() ===
+[api0] [00:20:56.638] [info] StartTimer: Sat Apr 26 00:20:56 2025
+
+[api0] [00:20:56.639] [info] Time elapsed: 0.149ms
+[api0] [00:20:56.685] [info] === AI.play() ===
+[api0] [00:20:56.685] [info] StartTimer: Sat Apr 26 00:20:56 2025
+
+[api0] [00:20:56.685] [info] Time elapsed: 0.1114ms
+[api0] [00:20:56.731] [info] === AI.play() ===
+[api0] [00:20:56.732] [info] StartTimer: Sat Apr 26 00:20:56 2025
+
+[api0] [00:20:56.732] [info] Time elapsed: 0.2911ms
+[api0] [00:20:56.794] [info] === AI.play() ===
+[api0] [00:20:56.794] [info] StartTimer: Sat Apr 26 00:20:56 2025
+
+[api0] [00:20:56.794] [info] Time elapsed: 0.1746ms
+[api0] [00:20:56.841] [info] === AI.play() ===
+[api0] [00:20:56.841] [info] StartTimer: Sat Apr 26 00:20:56 2025
+
+[api0] [00:20:56.842] [info] Time elapsed: 0.4223ms
+[api0] [00:20:56.888] [info] === AI.play() ===
+[api0] [00:20:56.888] [info] StartTimer: Sat Apr 26 00:20:56 2025
+
+[api0] [00:20:56.888] [info] Time elapsed: 0.2478ms
+[api0] [00:20:56.936] [info] === AI.play() ===
+[api0] [00:20:56.936] [info] StartTimer: Sat Apr 26 00:20:56 2025
+
+[api0] [00:20:56.936] [info] Time elapsed: 0.2035ms
+[api0] [00:20:56.982] [info] === AI.play() ===
+[api0] [00:20:56.982] [info] StartTimer: Sat Apr 26 00:20:56 2025
+
+[api0] [00:20:56.982] [info] Time elapsed: 0.2183ms
+[api0] [00:20:57.032] [info] === AI.play() ===
+[api0] [00:20:57.032] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.033] [info] Time elapsed: 0.5136ms
+[api0] [00:20:57.089] [info] === AI.play() ===
+[api0] [00:20:57.089] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.090] [info] Time elapsed: 0.1574ms
+[api0] [00:20:57.155] [info] === AI.play() ===
+[api0] [00:20:57.155] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.156] [info] Time elapsed: 0.6762ms
+[api0] [00:20:57.183] [info] === AI.play() ===
+[api0] [00:20:57.183] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.183] [info] Time elapsed: 0.0854ms
+[api0] [00:20:57.247] [info] === AI.play() ===
+[api0] [00:20:57.247] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.247] [info] Time elapsed: 0.4207ms
+[api0] [00:20:57.278] [info] === AI.play() ===
+[api0] [00:20:57.278] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.279] [info] Time elapsed: 0.5229ms
+[api0] [00:20:57.340] [info] === AI.play() ===
+[api0] [00:20:57.340] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.340] [info] Time elapsed: 0.1461ms
+[api0] [00:20:57.406] [info] === AI.play() ===
+[api0] [00:20:57.406] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.406] [info] Time elapsed: 0.4006ms
+[api0] [00:20:57.436] [info] === AI.play() ===
+[api0] [00:20:57.436] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.437] [info] Time elapsed: 0.8444ms
+[api0] [00:20:57.481] [info] === AI.play() ===
+[api0] [00:20:57.481] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.481] [info] Time elapsed: 0.1717ms
+[api0] [00:20:57.547] [info] === AI.play() ===
+[api0] [00:20:57.547] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.547] [info] Time elapsed: 0.8275ms
+[api0] [00:20:57.590] [info] === AI.play() ===
+[api0] [00:20:57.590] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.590] [info] Time elapsed: 0.2792ms
+[api0] [00:20:57.652] [info] === AI.play() ===
+[api0] [00:20:57.652] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.652] [info] Time elapsed: 0.3985ms
+[api0] [00:20:57.698] [info] === AI.play() ===
+[api0] [00:20:57.698] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.698] [info] Time elapsed: 0.1775ms
+[api0] [00:20:57.745] [info] === AI.play() ===
+[api0] [00:20:57.745] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.745] [info] Time elapsed: 0.1207ms
+[api0] [00:20:57.793] [info] === AI.play() ===
+[api0] [00:20:57.793] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.793] [info] Time elapsed: 0.3365ms
+[api0] [00:20:57.839] [info] === AI.play() ===
+[api0] [00:20:57.839] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.839] [info] Time elapsed: 0.1686ms
+[api0] [00:20:57.901] [info] === AI.play() ===
+[api0] [00:20:57.901] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.901] [info] Time elapsed: 0.209ms
+[api0] [00:20:57.948] [info] === AI.play() ===
+[api0] [00:20:57.948] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.948] [info] Time elapsed: 0.653ms
+[api0] [00:20:57.995] [info] === AI.play() ===
+[api0] [00:20:57.995] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.996] [info] Time elapsed: 0.4538ms
+[api0] [00:20:58.060] [info] === AI.play() ===
+[api0] [00:20:58.060] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.061] [info] Time elapsed: 0.4129ms
+[api0] [00:20:58.087] [info] === AI.play() ===
+[api0] [00:20:58.087] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.087] [info] Time elapsed: 0.2449ms
+[api0] [00:20:58.152] [info] === AI.play() ===
+[api0] [00:20:58.152] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.153] [info] Time elapsed: 0.4466ms
+[api0] [00:20:58.197] [info] === AI.play() ===
+[api0] [00:20:58.197] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.197] [info] Time elapsed: 0.358ms
+[api0] [00:20:58.241] [info] === AI.play() ===
+[api0] [00:20:58.241] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.241] [info] Time elapsed: 0.1566ms
+[api0:57.033] [info] Time elapsed: 1.5846ms
+[api0] [00:20:57.089] [info] === AI.play() ===
+[api0] [00:20:57.090] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.090] [info] Time elapsed: 0.2062ms
+[api0] [00:20:57.154] [info] === AI.play() ===
+[api0] [00:20:57.154] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.155] [info] Time elapsed: 0.9779ms
+[api0] [00:20:57.183] [info] === AI.play() ===
+[api0] [00:20:57.183] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.183] [info] Time elapsed: 0.1579ms
+[api0] [00:20:57.247] [info] === AI.play() ===
+[api0] [00:20:57.247] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.247] [info] Time elapsed: 0.3359ms
+[api0] [00:20:57.278] [info] === AI.play() ===
+[api0] [00:20:57.278] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.279] [info] Time elapsed: 0.5601ms
+[api0] [00:20:57.340] [info] === AI.play() ===
+[api0] [00:20:57.340] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.340] [info] Time elapsed: 0.1541ms
+[api0] [00:20:57.406] [info] === AI.play() ===
+[api0] [00:20:57.406] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.406] [info] Time elapsed: 0.4097ms
+[api0] [00:20:57.436] [info] === AI.play() ===
+[api0] [00:20:57.436] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.436] [info] Time elapsed: 0.7118ms
+[api0] [00:20:57.481] [info] === AI.play() ===
+[api0] [00:20:57.481] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.481] [info] Time elapsed: 0.1952ms
+[api0] [00:20:57.545] [info] === AI.play() ===
+[api0] [00:20:57.545] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.546] [info] Time elapsed: 1.2341ms
+[api0] [00:20:57.590] [info] === AI.play() ===
+[api0] [00:20:57.590] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.590] [info] Time elapsed: 0.1076ms
+[api0] [00:20:57.652] [info] === AI.play() ===
+[api0] [00:20:57.652] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.652] [info] Time elapsed: 0.2734ms
+[api0] [00:20:57.698] [info] === AI.play() ===
+[api0] [00:20:57.698] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.699] [info] Time elapsed: 0.295ms
+[api0] [00:20:57.745] [info] === AI.play() ===
+[api0] [00:20:57.745] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.745] [info] Time elapsed: 0.116ms
+[api0] [00:20:57.793] [info] === AI.play() ===
+[api0] [00:20:57.793] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.793] [info] Time elapsed: 0.3408ms
+[api0] [00:20:57.839] [info] === AI.play() ===
+[api0] [00:20:57.839] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.839] [info] Time elapsed: 0.1396ms
+[api0] [00:20:57.901] [info] === AI.play() ===
+[api0] [00:20:57.901] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.901] [info] Time elapsed: 0.2121ms
+[api0] [00:20:57.948] [info] === AI.play() ===
+[api0] [00:20:57.948] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.948] [info] Time elapsed: 0.1395ms
+[api0] [00:20:57.995] [info] === AI.play() ===
+[api0] [00:20:57.995] [info] StartTimer: Sat Apr 26 00:20:57 2025
+
+[api0] [00:20:57.996] [info] Time elapsed: 0.3029ms
+[api0] [00:20:58.060] [info] === AI.play() ===
+[api0] [00:20:58.061] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.061] [info] Time elapsed: 0.2544ms
+[api0] [00:20:58.087] [info] === AI.play() ===
+[api0] [00:20:58.087] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.087] [info] Time elapsed: 0.1897ms
+[api0] [00:20:58.153] [info] === AI.play() ===
+[api0] [00:20:58.153] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.153] [info] Time elapsed: 0.5215ms
+[api0] [00:20:58.196] [info] === AI.play() ===
+[api0] [00:20:58.196] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.197] [info] Time elapsed: 0.6231ms
+[api0] [00:20:58.241] [info] === AI.play() ===
+[api0] [00:20:58.241] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.241] [info] Time elapsed: 0.1724ms
+[api0] [00:20:58.287] [info] === AI.play() ===
+[api0] [00:20:58.287] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.287] [info] Time elapsed: 0.1992ms
+[api0] [00:20:58.349] [info] === AI.play() ===
+[api0] [00:20:58.349] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.349] [info] Time elapsed: 0.0998ms
+[api0] [00:20:58.394] [info] === AI.play() ===
+[api0] [00:20:58.395] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.395] [info] Time elapsed: 0.2365ms
+[api0] [00:20:58.441] [info] === AI.play() ===
+[api0] [00:20:58.441] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.442] [info] Time elapsed: 0.4309ms
+[api0] [00:20:58.487] [info] === AI.play() ===
+[api0] [00:20:58.487] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.487] [info] Time elapsed: 0.1009ms
+[api0] [00:20:58.533] [info] === AI.play() ===
+[api0] [00:20:58.533] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.533] [info] Time elapsed: 0.2209ms
+[api0] [00:20:58.598] [info] === AI.play() ===
+[api0] [00:20:58.598] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.598] [info] Time elapsed: 0.1288ms
+[api0] [00:20:58.644] [info] === AI.play() ===
+[api0] [00:20:58.644] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.644] [info] Time elapsed: 0.1345ms
+[api0] [00:20:58.691] [info] === AI.play() ===
+[api0] [00:20:58.692] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.692] [info] Time elapsed: 0.2216ms
+[api0] [00:20:58.737] [info] === AI.play() ===
+[api0] [00:20:58.737] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.737] [info] Time elapsed: 0.2048ms
+[api0] [00:20:58.782] [info] === AI.play() ===
+[api0] [00:20:58.783] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.783] [info] Time elapsed: 0.1699ms
+[api0] [00:20:58.845] [info] === AI.play() ===
+[api0] [00:20:58.845] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.845] [info] Time elapsed: 0.1821ms
+[api0] [00:20:58.892] [info] === AI.play() ===
+[api0] [00:20:58.892] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.892] [info] Time elapsed: 0.1246ms
+[api0] [00:20:58.939] [info] === AI.play() ===
+[api0] [00:20:58.939] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.939] [info] Time elapsed: 0.1847ms
+[api0] [00:20:58.986] [info] === AI.play() ===
+[api0] [00:20:58.986] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.986] [info] Time elapsed: 0.29ms
+[api0] [00:20:59.032] [info] === AI.play() ===
+[api0] [00:20:59.032] [info] StartTimer: Sat Apr 26 00:20:59 2025
+
+[api0] [00:20:59.032] [info] Time elapsed: 0.158ms
+[api0] [00:20:59.098] [info] === AI.play() ===
+[api0] [00:20:59.099] [info] StartTimer: Sat Apr 26 00:20:59 2025
+
+[api0] [00:20:59.099] [info] Time elapsed: 0.2304ms
+[api0] [00:20:59.143] [info] === AI.play() ===
+[api0] [00:20:59.143] [info] StartTimer: Sat Apr 26 00:20:59 2025
+
+[api0] [00:20:59.143] [info] Time elapsed: 0.159ms
+[api0] [00:20:59.191] [info] === AI.play() ===
+[api0] [00:20:59.191] [info] StartTimer: Sat Apr 26 00:20:59 2025
+
+[api0] [00:20:59.191] [info] Time elapsed: 0.1853ms
+[api0] [00:20:59.235] [info] === AI.play() ===
+[api0] [00:20:59.235] [info] StartTimer: Sat Apr 26 00:20:59 2025
+
+[api0] [00:20:59.236] [info] Time elapsed: 0.2091ms
+[api0] [00:20:59.281] [info] === AI.play() ===
+[api0] [00:20:59.282] [info] StartTimer: Sat Apr 26 00:20:59 2025
+
+[api0] [00:20:59.282] [info] Time elapsed: 0.1469ms
+[api0] [00:20:59.343] [info] === AI.play() ===
+[api0] [00:20:59.343] [info] StartTimer: Sat Apr 26 00:20:59 2025
+
+[api0] [00:20:59.343] [info] Time elapsed: 0.2136ms
+[api0] [00:20:59.392] [info] === AI.play() ===
+[api0] [00:20:59.392] [info] StartTimer: Sat Apr 26 00:20:59 2025
+
+[api0] [00:20:59.392] [info] Time elapsed: 0.3813ms
+[api0] [00:20:59.436] [info] === AI.play() ===
+[api0] [00:20:59.437] [info] StartTimer: Sat Apr 26 00:20:59 2025
+
+[api0] [00:20:59.437] [info] Time elapsed: 0.1769ms
+[api0] [00:20:59.484] [info] === AI.play() ===] [00:20:58.287] [info] === AI.play() ===
+[api0] [00:20:58.287] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.287] [info] Time elapsed: 0.1737ms
+[api0] [00:20:58.349] [info] === AI.play() ===
+[api0] [00:20:58.349] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.349] [info] Time elapsed: 0.1252ms
+[api0] [00:20:58.395] [info] === AI.play() ===
+[api0] [00:20:58.395] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.395] [info] Time elapsed: 0.1646ms
+[api0] [00:20:58.441] [info] === AI.play() ===
+[api0] [00:20:58.442] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.442] [info] Time elapsed: 0.2741ms
+[api0] [00:20:58.487] [info] === AI.play() ===
+[api0] [00:20:58.487] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.487] [info] Time elapsed: 0.1149ms
+[api0] [00:20:58.533] [info] === AI.play() ===
+[api0] [00:20:58.533] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.533] [info] Time elapsed: 0.2167ms
+[api0] [00:20:58.597] [info] === AI.play() ===
+[api0] [00:20:58.598] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.598] [info] Time elapsed: 0.1704ms
+[api0] [00:20:58.644] [info] === AI.play() ===
+[api0] [00:20:58.644] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.644] [info] Time elapsed: 0.1225ms
+[api0] [00:20:58.691] [info] === AI.play() ===
+[api0] [00:20:58.692] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.692] [info] Time elapsed: 0.2322ms
+[api0] [00:20:58.737] [info] === AI.play() ===
+[api0] [00:20:58.737] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.737] [info] Time elapsed: 0.1478ms
+[api0] [00:20:58.782] [info] === AI.play() ===
+[api0] [00:20:58.783] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.783] [info] Time elapsed: 0.1553ms
+[api0] [00:20:58.845] [info] === AI.play() ===
+[api0] [00:20:58.845] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.845] [info] Time elapsed: 0.168ms
+[api0] [00:20:58.892] [info] === AI.play() ===
+[api0] [00:20:58.892] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.892] [info] Time elapsed: 0.1412ms
+[api0] [00:20:58.939] [info] === AI.play() ===
+[api0] [00:20:58.939] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.939] [info] Time elapsed: 0.2447ms
+[api0] [00:20:58.986] [info] === AI.play() ===
+[api0] [00:20:58.986] [info] StartTimer: Sat Apr 26 00:20:58 2025
+
+[api0] [00:20:58.986] [info] Time elapsed: 0.3367ms
+[api0] [00:20:59.032] [info] === AI.play() ===
+[api0] [00:20:59.032] [info] StartTimer: Sat Apr 26 00:20:59 2025
+
+[api0] [00:20:59.032] [info] Time elapsed: 0.2359ms
+[api0] [00:20:59.098] [info] === AI.play() ===
+[api0] [00:20:59.099] [info] StartTimer: Sat Apr 26 00:20:59 2025
+
+[api0] [00:20:59.099] [info] Time elapsed: 0.2154ms
+[api0] [00:20:59.143] [info] === AI.play() ===
+[api0] [00:20:59.143] [info] StartTimer: Sat Apr 26 00:20:59 2025
+
+[api0] [00:20:59.143] [info] Time elapsed: 0.1337ms
+[api0] [00:20:59.191] [info] === AI.play() ===
+[api0] [00:20:59.191] [info] StartTimer: Sat Apr 26 00:20:59 2025
+
+[api0] [00:20:59.191] [info] Time elapsed: 0.2657ms
+[api0] [00:20:59.235] [info] === AI.play() ===
+[api0] [00:20:59.235] [info] StartTimer: Sat Apr 26 00:20:59 2025
+
+[api0] [00:20:59.235] [info] Time elapsed: 0.2018ms
+[api0] [00:20:59.281] [info] === AI.play() ===
+[api0] [00:20:59.282] [info] StartTimer: Sat Apr 26 00:20:59 2025
+
+[api0] [00:20:59.282] [info] Time elapsed: 0.1132ms
+[api0] [00:20:59.343] [info] === AI.play() ===
+[api0] [00:20:59.343] [info] StartTimer: Sat Apr 26 00:20:59 2025
+
+[api0] [00:20:59.343] [info] Time elapsed: 0.0895ms
+[api0] [00:20:59.392] [info] === AI.play() ===
+[api0] [00:20:59.392] [info] StartTimer: Sat Apr 26 00:20:59 2025
+
+[api0] [00:20:59.392] [info] Time elapsed: 0.2483ms
+[api0] [00:20:59.437] [info] === AI.play() ===
+[api0] [00:20:59.437] [info] StartTimer: Sat Apr 26 00:20:59 2025
+
+[api0] [00:20:59.437] [info] Time elapsed: 0.139ms
+[api0] [00:20:59.484] [info] === AI.play() ===

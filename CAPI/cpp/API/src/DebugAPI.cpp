@@ -381,7 +381,7 @@ void CharacterDebugAPI::PrintSelfInfo() const
     std::string characterPassiveState = THUAI8::characterStateDict.at(self->characterPassiveState);
 
     // 打印基本信息
-    logger->info("type={}, characterID={}, GUID={}, x={}, y={}", characterType, self->playerID, self->guid, self->x, self->y);
+    logger->info("type={}, characterID={}, teamID={}, GUID={}, x={}, y={}", characterType, self->playerID, self->teamID, self->guid, self->x, self->y);
 
     // 打印状态信息
     logger->info("activestate={}, passivestate={}, speed={}, view range={}, facing direction={}", characterActiveState, characterPassiveState, self->speed, self->viewRange, self->facingDirection);

@@ -1,54 +1,11 @@
-[2025/04/24 Thursday]
---port 8888 --CharacterNum 1 
+[2025/04/26 Saturday]
+--port 8888 --CharacterNum 2 
 Server begins to run: 8888
-[22:55:07.632][GameServer] Null TOKEN Environment!
-[22:55:07.858][GameServer] Server begins to listen!
-[22:55:07.891][GameServer] TRY TryConnection: Player 0 from Team 1
-[22:55:07.892][GameServer] TryConnection: True
-[22:55:07.904][GameServer] TRY Add Player: Player 0 from Team 1
-[22:55:07.905][GameServer] AddPlayer: Check Correct
-[22:55:07.906][GameServer] Player 0 from Team 1 joins
-[22:55:07.907][GameServer] PlayerCountNow: 1
-[22:55:07.908][GameServer] PlayerNum: 4
-[22:55:08.047][GameServer] TRY TryConnection: Player 1 from Team 1
-[22:55:08.047][GameServer] TryConnection: True
-[22:55:08.050][GameServer] TRY Add Player: Player 1 from Team 1
-[22:55:08.051][GameServer] AddPlayer: Check Correct
-[22:55:08.053][GameServer] Player 1 from Team 1 joins
-[22:55:08.053][GameServer] PlayerCountNow: 2
-[22:55:08.053][GameServer] PlayerNum: 4
-[22:55:08.078][GameServer] TRY TryConnection: Player 0 from Team 0
-[22:55:08.078][GameServer] TryConnection: True
-[22:55:08.081][GameServer] TRY Add Player: Player 0 from Team 0
-[22:55:08.081][GameServer] AddPlayer: Check Correct
-[22:55:08.081][GameServer] Player 0 from Team 0 joins
-[22:55:08.081][GameServer] PlayerCountNow: 3
-[22:55:08.081][GameServer] PlayerTotalNum: 4
-[22:55:08.220][GameServer] TRY TryConnection: Player 1 from Team 0
-[22:55:08.220][GameServer] TryConnection: True
-[22:55:08.223][GameServer] TRY Add Player: Player 1 from Team 0
-[22:55:08.223][GameServer] AddPlayer: Check Correct
-[22:55:08.224][GameServer] Player 1 from Team 0 joins
-[22:55:08.224][GameServer] PlayerCountNow: 4
-[22:55:08.224][GameServer] PlayerTotalNum: 4
-[22:55:08.224][GameServer] Game Start
-[22:55:08.224][GameServer] Game starts!
-[22:55:08.226][GameServer] Successfully Created StartLockFile!
-[22:55:08.228][Game] Try to activate 0 TangSeng at birthpoint 0
-[22:55:08.231][Game] Successfully activated 0 TangSeng at (4500, 45500)
-[22:55:08.232][Game] Try to activate 1 JiuLing at birthpoint 0
-[22:55:08.233][Game] Successfully activated 1 JiuLing at (45500, 4500)
-[22:56:01.156][GameServer] TRY Add Spectator: Player 2026
-[22:56:01.157][GameServer] A new spectator comes to watch this game
-[22:56:01.159][GameServer] TRY Add Spectator: Player 2026
-[22:56:01.160][GameServer] Duplicated Spectator ID 2026
-[22:56:01.161][GameServer] TRY Add Spectator: Player 2026
-[22:56:01.161][GameServer] Duplicated Spectator ID 2026
-[22:56:01.484][GameServer] TRY Add Spectator: Player 2026
-[22:56:01.484][GameServer] Duplicated Spectator ID 2026
-[22:56:01.485][GameServer] TRY Add Spectator: Player 2026
-[22:56:01.486][GameServer] Duplicated Spectator ID 2026
-[23:05:08.257][GameServer] END Add Spectator
-[23:05:08.260][GameServer] Server end!
-[23:05:08.280][GameServer] Team0: 1782068773
-[23:05:08.280][GameServer] Team1: 1782468772
+[19:10:17.198][GameServer] Null TOKEN Environment!
+System.IO.IOException: Failed to bind port "0.0.0.0:8888"
+   at Grpc.Core.Server.CheckPortsBoundSuccessfully()
+   at Grpc.Core.Server.Start()
+   at Server.Program.Main(String[] args) in D:\桌面\THUAI8_final\THUAI8\logic\Server\Program.cs:line 67
+   at Grpc.Core.Server.CheckPortsBoundSuccessfully()
+   at Grpc.Core.Server.Start()
+   at Server.Program.Main(String[] args) in D:\桌面\THUAI8_final\THUAI8\logic\Server\Program.cs:line 67

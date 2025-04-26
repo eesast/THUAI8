@@ -40,6 +40,7 @@ void AI::play(ICharacterAPI& api)
     else if (this->playerID == 2)
     {
         // player2的操作
+        //api.PrintSelfInfo();
     }
     else if (this->playerID == 3)
     {
