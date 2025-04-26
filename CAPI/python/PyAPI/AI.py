@@ -48,9 +48,11 @@ class AI(IAI):
         # 公共操作
         if self.__playerID == 1:
             # player1的操作
+            api.Move(2500, 1000, 0)
             return
         elif self.__playerID == 2:
             # player2的操作
+            api.Move(2500, 1000, 0)
             return
         elif self.__playerID == 3:
             # player3的操作
