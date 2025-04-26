@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e3e95a05e4c9774397eeeb7bdee8ccb, type: 3}
-  m_Name: attack
+  m_Script: {fileID: 11500000, guid: a6b194f808b1af6499c93410e504af42, type: 3}
+  m_Name: Shaseng_Atlas
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 61d43bc47d383cf47946813bf9c0fc26, type: 2}
-  animationName: attack
+  atlasFile: {fileID: 4900000, guid: 91621a20a54844e43ac30bf52d1e0e1c, type: 3}
+  materials:
+  - {fileID: 2100000, guid: d6dbcc9ddea21af48ad8dcba4867318a, type: 2}

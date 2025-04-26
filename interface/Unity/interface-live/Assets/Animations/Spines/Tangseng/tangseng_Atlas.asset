@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e3e95a05e4c9774397eeeb7bdee8ccb, type: 3}
-  m_Name: run
+  m_Script: {fileID: 11500000, guid: a6b194f808b1af6499c93410e504af42, type: 3}
+  m_Name: tangseng_Atlas
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 61d43bc47d383cf47946813bf9c0fc26, type: 2}
-  animationName: run
+  atlasFile: {fileID: 4900000, guid: 9a4dfe27a81b4324cbd9a6647d19e558, type: 3}
+  materials:
+  - {fileID: 2100000, guid: a2e6b721359de2a4ca7c6e24ebc04ed7, type: 2}

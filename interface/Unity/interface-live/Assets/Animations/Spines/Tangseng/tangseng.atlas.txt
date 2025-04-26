@@ -1,0 +1,34 @@
+
+tangseng.png
+size: 131,28
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+backleg
+  rotate: false
+  xy: 121, 17
+  size: 8, 9
+  orig: 8, 9
+  offset: 0, 0
+  index: -1
+foreleg
+  rotate: false
+  xy: 121, 17
+  size: 8, 9
+  orig: 8, 9
+  offset: 0, 0
+  index: -1
+body
+  rotate: true
+  xy: 2, 2
+  size: 24, 56
+  orig: 24, 56
+  offset: 0, 0
+  index: -1
+weapon
+  rotate: true
+  xy: 60, 5
+  size: 21, 59
+  orig: 21, 59
+  offset: 0, 0
+  index: -1
