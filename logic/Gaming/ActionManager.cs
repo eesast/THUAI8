@@ -84,7 +84,7 @@ namespace Gaming
                         moveEngine.MoveObj(characterToMove, GameData.KnockedBackTime, moveDirection, characterToMove.StateNum, GameData.KnockedBackSpeed);
                         Thread.Sleep(GameData.KnockedBackTime);
                         characterToMove.SetCharacterState(characterToMove.CharacterState1, tempState);
-                        //characterToMove.ResetCharacterState(stateNum);
+                        characterToMove.ResetCharacterState(stateNum);
                     }
                 )
                 { IsBackground = true }.Start();
