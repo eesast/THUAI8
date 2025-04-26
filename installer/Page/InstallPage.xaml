@@ -91,7 +91,8 @@
                         <Entry Grid.Column="0"
                                Placeholder="请选择下载路径..."
                                Text="{Binding DownloadPath}"
-                               FontSize="16"/>
+                               FontSize="16"
+                               TextColor="Black"/>
                         
                         <Button Grid.Column="1"
                                 Text="浏览"
