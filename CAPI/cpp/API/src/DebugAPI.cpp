@@ -15,10 +15,10 @@ CharacterDebugAPI::CharacterDebugAPI(ILogic& logic, bool file, bool print, bool 
     logic(logic),
     logger(nullptr)  // 显式初始化 logger 为 nullptr
 {
-    std::string fileName = "logs/api-" + std::to_string(CharacterID) + "-" + std::to_string(TeamID) + "log.txt";
+    std::string fileName = "logs/api-" + std::to_string(TeamID) + "-" + std::to_string(CharacterID) + "log.txt";
     auto fileLogger = std::make_shared<spdlog::sinks::basic_file_sink_mt>(fileName, true);
     auto printLogger = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
-    std::string pattern = "[api " + std::to_string(CharacterID) + "] [%H:%M:%S.%e] [%l] %v";
+    std::string pattern = "[api " + std::to_string(TeamID) + std::to_string(CharacterID) + "] [%H:%M:%S.%e] [%l] %v";
     fileLogger->set_pattern(pattern);
     printLogger->set_pattern(pattern);
     if (file)
