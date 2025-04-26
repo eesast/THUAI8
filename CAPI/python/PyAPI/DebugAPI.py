@@ -383,7 +383,7 @@ class CharacterDebugAPI(ICharacterAPI, IGameTimer):
                 f"state={char.characterState}, speed={char.speed}, view={char.viewRange}, facing={char.facingDirection}"
             )
             self.__logger.info(
-                f"CharacterActiveState={char.characterActiveState}, CharacterPassiveState={char.characterPassiveState}"
+                f"CharacterActiveState={char.characterActiveState}, CharacterPassiveState={char.characterPassiveState} CharacterPassiveState={char.characterPassiveState}"
             )
             self.__logger.info(f"IsBlind={char.isBlind}, BlindTime={char.blindTime}")
             self.__logger.info(f"IsStunned={char.isStunned}, StunTime={char.stunTime}")
@@ -426,7 +426,7 @@ class CharacterDebugAPI(ICharacterAPI, IGameTimer):
             f"type={character.characterType}, playerID={character.playerID}, GUID={character.guid}"
         )
         self.__logger.info(
-            f"ActiveState={character.characterActiveState}, x={character.x}, y={character.y}"
+            f"ActiveState={character.characterActiveState}, PassiveState={character.characterPassiveState} x={character.x}, y={character.y}"
         )
         self.__logger.info(
             f"speed={character.speed}, view range={character.viewRange}, facing direction={character.facingDirection}"
