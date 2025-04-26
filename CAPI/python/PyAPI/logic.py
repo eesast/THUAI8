@@ -26,11 +26,13 @@ class Logic(ILogic):
         teamID: int,
         playerType: THUAI8.PlayerType,
         characterType: THUAI8.CharacterType,
+        side_flag: int,
     ) -> None:
         self.__playerID: int = playerID
         self.__teamID: int = teamID
         self.__playerType: THUAI8.PlayerType = playerType
         self.__characterType: THUAI8.CharacterType = characterType
+        self.__side_flag: int = side_flag
 
         self.__comm: Communication
 
@@ -286,7 +288,9 @@ class Logic(ILogic):
     def __ProcessMessage(self) -> None:
         def messageThread():
             self.__logger.info("Message thread started")
-            self.__comm.AddPlayer(self.__playerID, self.__teamID, self.__characterType)
+            self.__comm.AddPlayer(
+                self.__playerID, self.__teamID, self.__characterType, self.__side_flag
+            )
             self.__logger.info("Player added")
 
             while self.__gameState != THUAI8.GameState.GameEnd:
@@ -411,7 +415,7 @@ class Logic(ILogic):
             if item.WhichOneof("message_of_obj") == "character_message":
                 if item.character_message.team_id != self.__teamID:
                     if AssistFunction.HaveView(
-                        self.__bufferState.self.view_range,
+                        self.__bufferState.self.viewRange,
                         self.__bufferState.self.x,
                         self.__bufferState.self.y,
                         item.character_message.x,
@@ -628,11 +632,11 @@ class Logic(ILogic):
                 for character in self.__bufferState.characters:
                     if (
                         AssistFunction.HaveView(
+                            character.viewRange,
                             character.x,
                             character.y,
                             targetX,
                             targetY,
-                            character.viewRange,
                             self.__bufferState.gameMap,
                         )
                         and character.visionBuffTime > 0
@@ -642,7 +646,7 @@ class Logic(ILogic):
 
             if item.WhichOneof("message_of_obj") == "character_message":
                 if item.character_message.team_id != self.__teamID:
-                    if AssistFunction.HaveOverView(
+                    if HaveOverView(
                         item.character_message.x,
                         item.character_message.y,
                     ):
@@ -863,6 +867,7 @@ class Logic(ILogic):
         file: bool,
         screen: bool,
         warnOnly: bool,
+        side_flag: int,
     ) -> None:
         # 建立日志组件
         self.__logger.setLevel(logging.DEBUG)

@@ -48,7 +48,8 @@ class AI(IAI):
         # 公共操作
         if self.__playerID == 1:
             # player1的操作
-            api.Move(2500, 1000, 0)
+            api.PrintSelfInfo()
+            api.Move(100, 100, 0)
             return
         elif self.__playerID == 2:
             # player2的操作
@@ -64,4 +65,5 @@ class AI(IAI):
 
     def TeamPlay(self, api: ITeamAPI) -> None:
         # player0的操作
+        api.PrintSelfInfo()
         return
