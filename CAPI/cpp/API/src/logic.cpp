@@ -373,6 +373,12 @@ void Logic::LoadBufferSelf(const protobuf::MessageToClient& message)
                 bufferState->characters.push_back(bufferState->characterSelf);
                 logger->debug("Load Self Character!");
             }
+            else if (Proto2THUAI8::messageOfObjDict[item.message_of_obj_case()] == THUAI8::MessageOfObj::CharacterMessage && item.character_message().player_id() != playerID && item.character_message().team_id() == teamID)
+            {
+                bufferState->characterSelf = Proto2THUAI8::Protobuf2THUAI8Character(item.character_message());
+                bufferState->characters.push_back(bufferState->characterSelf);
+                logger->debug("Load Self Character!");
+            }
         }
     }
     else if (playerType == THUAI8::PlayerType::Team)
@@ -1022,7 +1028,6 @@ void Logic::Main(CreateAIFunc createAI, std::string IP, std::string port, bool f
 
     logger->flush_on(spdlog::level::warn);
     // 打印当前的调试信息
-    logger->info("TeamID={}", teamID);
     logger->info("*********Basic Info*********");
     logger->info("asynchronous: {}", asynchronous);
     logger->info("server: {}:{}", IP, port);
@@ -1040,6 +1045,7 @@ void Logic::Main(CreateAIFunc createAI, std::string IP, std::string port, bool f
         if (!file && !print)
             timer = std::make_unique<CharacterAPI>(*this);
         else
+
             timer = std::make_unique<CharacterDebugAPI>(*this, file, print, warnOnly, playerID, teamID);
     }
     else
