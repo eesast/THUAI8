@@ -1039,14 +1039,14 @@ void Logic::Main(CreateAIFunc createAI, std::string IP, std::string port, bool f
         if (!file && !print)
             timer = std::make_unique<CharacterAPI>(*this);
         else
-            timer = std::make_unique<CharacterDebugAPI>(*this, file, print, warnOnly, playerID);
+            timer = std::make_unique<CharacterDebugAPI>(*this, file, print, warnOnly, playerID, teamID);
     }
     else
     {
         if (!file && !print)
             timer = std::make_unique<TeamAPI>(*this);
         else
-            timer = std::make_unique<TeamDebugAPI>(*this, file, print, warnOnly, playerID);
+            timer = std::make_unique<TeamDebugAPI>(*this, file, print, warnOnly, playerID, teamID);
     }
 
     // 构造AI线程
