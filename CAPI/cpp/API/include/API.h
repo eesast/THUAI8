@@ -286,7 +286,7 @@ private:
 class CharacterDebugAPI : public ICharacterAPI, public IGameTimer
 {
 public:
-    CharacterDebugAPI(ILogic& logic, bool file, bool print, bool warnOnly, int32_t CharacterID);
+    CharacterDebugAPI(ILogic& logic, bool file, bool print, bool warnOnly, int32_t CharacterID, int32_t TeamID);
     void StartTimer() override;
     void EndTimer() override;
     void Play(IAI& ai) override;
@@ -340,7 +340,7 @@ private:
 class TeamDebugAPI : public ITeamAPI, public IGameTimer
 {
 public:
-    TeamDebugAPI(ILogic& logic, bool file, bool print, bool warnOnly, int32_t TeamID);
+    TeamDebugAPI(ILogic& logic, bool file, bool print, bool warnOnly, int32_t PlayerID, int32_t TeamID);
     void StartTimer() override;
     void EndTimer() override;
     void Play(IAI& ai) override;

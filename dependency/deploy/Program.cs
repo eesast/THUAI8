@@ -7,19 +7,23 @@ using System.IO.Compression;
 
 Logger Log = LoggerProvider.FromConsole();
 
-
+string secretId = Environment.GetEnvironmentVariable("INSTALLER_COS_SECRET_ID");
+string secretKey = Environment.GetEnvironmentVariable("INSTALLER_COS_SECRET_KEY");
 Tencent_Cos Cloud = new Tencent_Cos("1352014406", "ap-beijing", "thuai8", Log);
-Cloud.UpdateSecret(args[0], args[1]);
+Cloud.UpdateSecret(secretId, secretKey);
 
 Downloader d = new Downloader();
-d.Cloud.UpdateSecret(args[0], args[1]);
+d.Cloud.UpdateSecret(secretId, secretKey);
 d.Data.Config.InstallPath = @"D:\a\mirror\";
 
+
+string operation = args.Length > 0 ? args[0] : "check";
+
 d.Log.Partner.Add(Log);
-// 每次更新需要更新默认值
+
 d.CurrentVersion = new TVersion();
 
-switch (args[2])
+switch (operation)
 {
     case "check":
 

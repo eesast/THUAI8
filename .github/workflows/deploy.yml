@@ -1,5 +1,7 @@
 name: deploy
-on: [push]
+on:
+  push:
+    branches: [dev, main, master]
 jobs:
   build:
     runs-on: windows-latest
@@ -50,9 +52,18 @@ jobs:
       with:
         name: installer
         path: D:\a\publish\
+      env:
+        INSTALLER_COS_SECRET_ID: ${{ secrets.INSTALLER_COS_SECRET_ID }}
+        INSTALLER_COS_SECRET_KEY: ${{ secrets.INSTALLER_COS_SECRET_KEY }}
     - name: Deploy to bucket
-      run: dotnet run --project "./dependency/deploy/deploy.csproj" ${{ secrets.INSTALLER_COS_SECRET_ID }} ${{ secrets.INSTALLER_COS_SECRET_KEY }} "check"
+      run: dotnet run --project "./dependency/deploy/deploy.csproj" "check"
+      env:
+        INSTALLER_COS_SECRET_ID: ${{ secrets.INSTALLER_COS_SECRET_ID }}
+        INSTALLER_COS_SECRET_KEY: ${{ secrets.INSTALLER_COS_SECRET_KEY }}
     - name: Get installer package(No Key contained for safety)
       run: |
         dotnet publish "./installer/installer.csproj" -o "D:\a\publish" -f net8.0-windows10.0.19041.0 -c Release -p:RuntimeIdentifierOverride=win10-x64 -p:WindowsPackageType=None -p:WindowsAppSDKSelfContained=true
-        dotnet run --project "./dependency/deploy/deploy.csproj" ${{ secrets.INSTALLER_COS_SECRET_ID }} ${{ secrets.INSTALLER_COS_SECRET_KEY }} "upload"    
+        dotnet run --project "./dependency/deploy/deploy.csproj" "upload"
+      env:
+        INSTALLER_COS_SECRET_ID: ${{ secrets.INSTALLER_COS_SECRET_ID }}
+        INSTALLER_COS_SECRET_KEY: ${{ secrets.INSTALLER_COS_SECRET_KEY }}    
