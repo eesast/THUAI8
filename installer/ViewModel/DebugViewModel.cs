@@ -329,7 +329,7 @@ namespace installer.ViewModel
 
             var client = Process.Start(new ProcessStartInfo()
             {
-                FileName = Downloader.Data.Config.DevClientPath ?? Path.Combine(Downloader.Data.Config.InstallPath, "logic", "Client", "Client.exe"),
+                FileName = Downloader.Data.Config.DevClientPath ?? Path.Combine(Downloader.Data.Config.InstallPath, "logic", "Client", "debug_interface.exe"),
                 Arguments = arguments,
                 WorkingDirectory = Downloader.Data.Config.InstallPath,
                 RedirectStandardError = true,
