@@ -214,7 +214,7 @@ namespace installer.Model
                 string localFileName = Path.GetFileName(savePath);    // 指定本地保存的文件名
                 remotePath = remotePath?.Replace('\\', '/')?.TrimStart('.', '/');
                 savePath = Path.GetFullPath(savePath);  // 获取完整路径
-                
+
                 // 确保目录存在
                 var directory = Path.GetDirectoryName(savePath);
                 if (!Directory.Exists(directory))
@@ -285,7 +285,7 @@ namespace installer.Model
         {
             int thID = Log.StartNew();
             Log.LogDebug(thID, "Batch download task started.");
-            var array = queue.Select(path => 
+            var array = queue.Select(path =>
             {
                 // 清理路径
                 var cleanPath = path.TrimStart('.', '/', '\\');

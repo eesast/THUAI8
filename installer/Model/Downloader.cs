@@ -530,7 +530,7 @@ namespace installer.Model
                 Cloud.Log.LogInfo("正在更新……");
                 var filesToDownload = Data.MD5Update
                     .Where(item => item.state != System.Data.DataRowState.Added)
-                    .Select(item => 
+                    .Select(item =>
                     {
                         var cleanPath = item.name.TrimStart('.', '/', '\\');
                         Data.Log.LogInfo($"准备下载文件: 远程路径={cleanPath}, 本地路径={Path.Combine(Data.Config.InstallPath, cleanPath)}");
