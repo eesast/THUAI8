@@ -218,9 +218,12 @@ namespace Gaming
                 }
                 else
                 {
-                    if ((nowtime - character.TrapTime) % 1000 <= 25 || (nowtime - character.TrapTime) % 1000 >= 975)
+                    if (character.trapped)
                     {
-                        BeAttacked(character, GameData.TrapDamage);
+                        if ((nowtime - character.TrapTime) % 1000 <= 25 || (nowtime - character.TrapTime) % 1000 >= 975)
+                        {
+                            BeAttacked(character, GameData.TrapDamage);
+                        }
                     }
                 }
             }
