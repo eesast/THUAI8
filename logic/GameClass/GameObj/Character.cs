@@ -208,14 +208,14 @@ public class Character : Movable, ICharacter
             {
                 CharacterLogging.logger.ConsoleLogDebug(
                     LoggingFunctional.CharacterLogInfo(this)
-                    + " ResetShipState failed");
+                    + $" ResetCharacterState failed, input state {state}, StateNum {stateNum}");
                 return false;
             }
             characterState1 = value;
             ++stateNum;
             CharacterLogging.logger.ConsoleLogDebug(
                 LoggingFunctional.CharacterLogInfo(this)
-                + $" ResetShipState succeeded {stateNum}");
+                + $" ResetCharacterState succeeded {stateNum}");
             return true;
         }
     }

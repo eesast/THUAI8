@@ -34,7 +34,7 @@ namespace Gaming
                 }
                 gameMap.Add(character);
                 character.ReSetPos(pos);
-                character.SetCharacterState(CharacterState.NULL_CHARACTER_STATE, CharacterState.NULL_CHARACTER_STATE);
+                character.SetCharacterState(CharacterState.NULL_CHARACTER_STATE, CharacterState.IDLE);
                 new Thread
                 (
                     () =>
