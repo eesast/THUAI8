@@ -237,7 +237,7 @@ namespace installer.ViewModel
                 try
                 {
                     var id = Convert.ToInt32(SpectatorID);
-                    if (id < 2024)
+                    if (id < 2025)
                     {
                         throw new Exception();
                     }
@@ -282,7 +282,7 @@ namespace installer.ViewModel
             server = Process.Start(new ProcessStartInfo()
             {
                 FileName = Downloader.Data.Config.DevServerPath ?? Path.Combine(Downloader.Data.Config.InstallPath, "logic", "Server", "Server.exe"),
-                Arguments = $"--ip 0.0.0.0 --port {Port} --teamCount {TeamCount} --shipNum {CharacterCount}",
+                Arguments = $"--ip 0.0.0.0 --port {Port} --teamCount {TeamCount} --CharacterNum {CharacterCount}",
                 WorkingDirectory = Downloader.Data.Config.InstallPath,
                 RedirectStandardError = true,
             });
