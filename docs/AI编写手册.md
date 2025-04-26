@@ -11,13 +11,8 @@
   - [Python AI编写](#python-ai编写)
   - [C++ AI编写](#c-ai编写)
 
-- [API接口详解](#api接口详解)
-  - [接口体系结构](#接口体系结构)
-  - [基本信息获取](#基本信息获取)
-  - [角色控制](#角色控制)
-  - [资源与建筑](#资源与建筑)
-  - [战斗与技能](#战斗与技能)
-  - [完整接口列表](#完整接口列表)
+- [API接口](#api接口)
+
 
 - [调试技巧](#调试技巧)
   - [本地调试](#本地调试)
@@ -36,19 +31,19 @@
 西游真经劫游戏要求你编写7个角色(包括home)的AI代码，分别控制己方阵营的角色（取经团队或妖怪阵营）。通过资源采集、建筑建造、角色技能和团队配合，争取获得更高的得分并击败对手。
 
 ## 下载和准备
+1.在云盘下载installer压缩包并解压
+2.运行installer.exe(可能有警告，请点击"更多信息"-"仍然运行")
+- 首次打开下载器后，会在 `C:\Users\用户名\Documents\` 路径下生成 `THUAI8` 文件夹，用于存储下载器的配置信息和缓存，请勿随意修改该文件夹内容。
+- 选择下载路径时，请确保选择一个空文件夹。
+- 首次下载完成后，`下载` 按钮会自动变为 `移动` 按钮，此时可以选择新的空文件夹路径进行移动操作。
+- 界面提供两个进度条：上方进度条显示已下载的文件数量，下方进度条显示当前文件的下载进度。
+- 如果下载出现问题，且 `是否已下载选手包` 复选框显示为勾选状态，请关闭下载器，删除已下载的文件，并将 `C:\Users\用户名\Documents\THUAI8\config.json` 中的 `"Installed": true` 改为 `"Installed": false`。
+3.更新
+更新前需要先进行检查更新操作。
 
-1. 首先，你需要下载THUAI8游戏包。游戏包包含以下内容：
+- **下载后不要对其他非空文件路径进行更新操作，这将会删除多余的文件**
 
-   待定
-   
-2. 准备开发环境：
-
-   - Python：确保安装了Python 3.8或更高版本
-   - C++：建议使用Visual Studio 2019或更高版本（Windows）或GCC 9.0以上（Linux/MacOS）
-3. 环境配置：
-
-   - Python：执行 `CAPI/python/generate_proto.cmd`（Windows）或 `CAPI/python/generate_proto.sh`（Linux/MacOS）生成必要的通信文件
-   - C++：使用Visual Studio打开 `CAPI/cpp/CAPI.sln`项目
+第一次下载完成后，请检查更新，第一次下载的安装包通常版本较旧。
 
 ## 游戏机制简介
 
@@ -68,426 +63,21 @@ THUAI8西游真经劫是一个双方对抗的策略游戏，基本规则如下�
 
 详细规则请参考 `docs/THUAI8游戏规则.md`文档。
 
-## AI编写基础
+## AI编写
 
 THUAI8提供了Python和C++两种语言的SDK，你可以选择其中一种进行AI编写。
 
 ### Python AI编写
+    选手需要确保电脑已经安装了 `python` 和 `pip`，然后执行 `%InstallPath%\CAPI\python\generate_proto.cmd`（Windows） 或 `%InstallPath%\CAPI\python\generate_proto.sh`（Mac/Linux），等待 protos 文件夹生成完毕，在 `%InstallPath%\CAPI\python\PyAPI\AI.py` 中开发。
 
-Python AI的入口文件为 `CAPI/python/AI.py`，你需要修改以下两个主要方法：
-
-1. `TeamPlay`方法：控制主角（【唐僧】或【九灵元圣】，PlayerID为0）
-2. `CharacterPlay`方法：控制普通角色（其他角色，PlayerID为1-5）
-
-基本结构如下：
-
-```python
-def TeamPlay(self, api: ITeamAPI) -> None:
-    # 控制主角的代码
-    pass
-
-def CharacterPlay(self, api: ICharacterAPI) -> None:
-    # 根据PlayerID控制不同角色
-    player_id = self.__playerID
-    if player_id == 1:
-        # 控制第一个普通角色
-        pass
-    elif player_id == 2:
-        # 控制第二个普通角色
-        pass
-    # ...以此类推
-```
 
 ### C++ AI编写
+    选手需要在 `%InstallPath%\CAPI\cpp\CAPI.sln` 中开发，且一般只需要修改 `%InstallPath%\CAPI\cpp\API\src\AI.cpp`，然后生成项目。
 
-C++ AI的入口文件为 `CAPI/cpp/API/src/AI.cpp`，同样包含两个主要方法（通过函数重载实现）：
+## API接口
+   见"docs/THUAI8_API接口文档.md"
 
-1. `play`方法（接收ITeamAPI参数）：控制主角
-2. `play`方法（接收ICharacterAPI参数）：控制普通角色
 
-基本结构如下：
-
-```cpp
-void AI::play(ITeamAPI& api)
-{
-    // 控制主角的代码
-}
-
-void AI::play(ICharacterAPI& api)
-{
-    // 根据PlayerID控制不同角色
-    int playerID = this->playerID;
-    if (playerID == 1)
-    {
-        // 控制第一个普通角色
-    }
-    else if (playerID == 2)
-    {
-        // 控制第二个普通角色
-    }
-    // ...以此类推
-}
-```
-
-## API接口详解
-
-### 接口体系结构
-
-#### 基础接口架构
-- `IAPI` - 基础API接口，提供通用功能
-- `ILogic` - 游戏逻辑接口，处理底层游戏机制
-- `IAI` - AI接口，AI类需要实现的接口
-- `IGameTimer` - 游戏计时器接口，控制游戏时序
-
-#### 角色控制接口
-- `ICharacterAPI` - 普通角色控制接口（玩家ID: 1-5）
-- `ITeamAPI` - 主角/团队控制接口（玩家ID: 0）
-
-#### 实现类
-- `CharacterAPI` - 普通角色API实现
-- `TeamAPI` - 主角/团队API实现
-- `CharacterDebugAPI`/`TeamDebugAPI` - 调试版API实现
-
-### 基本信息获取
-
-获取游戏基本信息的API：
-
-```python
-# 获取自身信息
-self_info = api.GetSelfInfo()
-
-# 获取己方角色信息
-characters = api.GetCharacters()
-
-# 获取敌方角色信息
-enemies = api.GetEnemyCharacters()
-
-# 获取地图信息
-map_info = api.GetFullMap()
-
-# 获取当前帧数
-frame_count = api.GetFrameCount()
-
-# 获取当前经济值
-energy = api.GetEnergy()
-
-# 获取当前得分
-score = api.GetScore()
-
-# 检查某个位置是否在视野内
-has_view = api.HaveView(target_x, target_y)
-
-# 获取某个格子的类型
-place_type = api.GetPlaceType(cell_x, cell_y)
-
-# 获取经济资源状态
-resource_state = api.GetEconomyResourceState(cell_x, cell_y)
-
-# 获取加成资源状态
-addition_state = api.GetAdditionResourceState(cell_x, cell_y)
-
-# 获取建筑状态
-construction_state = api.GetConstructionState(cell_x, cell_y)
-```
-
-对应的C++ API：
-
-```cpp
-// 获取自身信息
-auto selfInfo = api.GetSelfInfo();  // 返回指向角色信息的智能指针
-
-// 获取己方角色信息
-auto characters = api.GetCharacters();  // 返回角色指针的vector
-
-// 获取敌方角色信息
-auto enemies = api.GetEnemyCharacters();  // 返回敌方角色指针的vector
-
-// 获取地图信息
-auto mapInfo = api.GetFullMap();  // 返回二维格子类型数组
-
-// 获取当前帧数
-int frameCount = api.GetFrameCount();
-
-// 获取当前经济值和得分
-int energy = api.GetEnergy();
-int score = api.GetScore();
-
-// 检查是否在视野范围内
-bool inView = api.HaveView(targetX, targetY);  // 传入格子坐标
-
-// 获取格子类型
-auto placeType = api.GetPlaceType(cellX, cellY);
-
-// 获取资源状态(返回std::optional)
-auto economyResource = api.GetEconomyResourceState(cellX, cellY);
-auto additionResource = api.GetAdditionResourceState(cellX, cellY);
-
-// 获取建筑状态
-auto construction = api.GetConstructionState(cellX, cellY);
-```
-
-### 角色控制
-
-控制角色移动和操作的API：
-
-```python
-# 向指定方向移动
-# speed: 移动速度，单位为像素/秒，范围在0-5000之间
-# time_in_milliseconds: 移动时间，单位为毫秒
-# angle_in_radian: 移动角度，单位为弧度，0表示向下，π/2表示向右，π表示向上，3π/2表示向左
-api.Move(speed, time_in_milliseconds, angle_in_radian)
-
-# 向四个基本方向移动
-api.MoveRight(speed, time_in_milliseconds)  # 向右移动
-api.MoveLeft(speed, time_in_milliseconds)   # 向左移动
-api.MoveUp(speed, time_in_milliseconds)     # 向上移动
-api.MoveDown(speed, time_in_milliseconds)   # 向下移动
-
-# 等待下一帧
-api.Wait()
-
-# 结束所有动作
-api.EndAllAction()
-
-# 坐标转换辅助函数
-grid_pos = api.CellToGrid(cell_pos)  # 格子坐标转为像素坐标
-cell_pos = api.GridToCell(grid_pos)  # 像素坐标转为格子坐标
-```
-
-对应的C++ API：
-
-```cpp
-// 向指定方向移动
-// speed: 移动速度(像素/秒, 0-5000)
-// timeInMilliseconds: 持续时间(毫秒)
-// angleInRadian: 移动角度(弧度), 0表示向下，π/2向右，π向上，3π/2向左
-api.Move(speed, timeInMilliseconds, angleInRadian);
-
-// 向四个基本方向移动
-api.MoveRight(speed, timeInMilliseconds);  // 向右移动(π/2方向)
-api.MoveLeft(speed, timeInMilliseconds);   // 向左移动(3π/2方向)
-api.MoveUp(speed, timeInMilliseconds);     // 向上移动(π方向)
-api.MoveDown(speed, timeInMilliseconds);   // 向下移动(0方向)
-
-// 等待下一帧
-api.Wait();
-
-// 结束所有动作
-api.EndAllAction();
-
-// 坐标转换函数
-int gridPos = IAPI::CellToGrid(cellPos);  // 格子坐标转像素坐标(中心点)
-int cellPos = IAPI::GridToCell(gridPos);  // 像素坐标转格子坐标
-```
-
-### 资源与建筑
-
-资源采集和建筑相关API：
-
-```python
-# 开采资源
-api.Harvest()
-
-# 建造建筑
-api.Construct(construction_type)
-
-# 修复建筑
-api.Rebuild(construction_type)
-
-# 团队控制中的额外API（仅在TeamPlay中可用）
-# 召唤角色
-api.BuildCharacter(character_type, birth_index)
-
-# 安装装备
-api.InstallEquipment(player_id, equipment_type)
-
-# 回收角色
-api.Recycle(player_id)
-```
-
-对应的C++ API：
-
-```cpp
-// 采集资源 - 角色站在资源点上时调用
-api.Harvest();
-
-// 建造建筑 - 在当前位置建造指定类型的建筑
-// constructionType: 建筑类型枚举
-api.Construct(constructionType);
-
-// 修复建筑 - 站在建筑旁边时修复
-// constructionType: 需要修复的建筑类型
-api.Rebuild(constructionType);
-
-// 团队控制API(仅在TeamPlay中可用)
-// 召唤角色 - 创建新角色
-// characterType: 角色类型枚举
-// birthIndex: 出生点索引
-api.BuildCharacter(characterType, birthIndex);
-
-// 为角色安装装备
-// playerID: 目标角色ID
-// equipmentType: 装备类型枚举
-api.InstallEquipment(playerID, equipmentType);
-
-// 回收角色 - 回收角色并获得部分经济返还
-// playerID: 要回收的角色ID
-api.Recycle(playerID);
-```
-
-### 战斗与技能
-
-战斗和技能相关API：
-
-```python
-# 普通攻击
-api.Common_Attack(attacked_player_id)
-
-# 使用技能
-api.Skill_Attack(attacked_player_id)
-
-# 恢复
-api.Recover(recoverType)
-```
-
-对应的C++ API：
-
-```cpp
-// 普通攻击 - 对指定ID的玩家进行普通攻击
-// attackedPlayerID: 目标玩家ID
-api.Common_Attack(attackedPlayerID);
-
-// 技能攻击 - 对指定ID的玩家使用技能攻击
-// attackedPlayerID: 目标玩家ID
-api.Skill_Attack(attackedPlayerID);
-
-// 恢复生命值 - 使用恢复物品恢复生命
-// recoverType: 恢复类型枚举(小、中、大型恢复)
-api.Recover(recoverType);
-```
-
-### 完整接口列表
-
-#### 通用IAPI接口
-```python
-# 消息通信
-SendTextMessage(toPlayerID, message) -> Future[bool]  # 发送文本消息
-SendBinaryMessage(toPlayerID, message) -> Future[bool]  # 发送二进制消息
-HaveMessage() -> bool  # 检查是否有消息
-GetMessage() -> Tuple[int, str]  # 获取消息(发送者ID, 消息内容)
-
-# 游戏状态
-GetFrameCount() -> int  # 获取当前帧数
-Wait() -> bool  # 等待下一帧
-EndAllAction() -> Future[bool]  # 终止所有动作
-
-# 地图与信息获取
-GetCharacters() -> List[Character]  # 获取己方角色列表
-GetEnemyCharacters() -> List[Character]  # 获取敌方角色列表
-GetFullMap() -> List[List[PlaceType]]  # 获取地图信息
-GetGameInfo() -> GameInfo  # 获取游戏信息
-GetPlaceType(cellX, cellY) -> PlaceType  # 获取指定位置类型
-GetEconomyResourceState(cellX, cellY) -> Optional[EconomyResourceState]  # 获取经济资源状态
-GetAdditionResourceState(cellX, cellY) -> Optional[AdditionResourceState]  # 获取加成资源状态
-GetConstructionState(cellX, cellY) -> Optional[ConstructionState]  # 获取建筑状态
-GetPlayerGUIDs() -> List[int]  # 获取玩家GUID列表
-GetEnergy() -> int  # 获取当前经济值
-GetScore() -> int  # 获取当前得分
-
-# 调试
-Print(string) -> None  # 打印调试信息
-PrintCharacter() -> None  # 打印角色信息
-PrintTeam() -> None  # 打印团队信息
-PrintSelfInfo() -> None  # 打印自身信息
-
-# 坐标转换
-CellToGrid(cell) -> int  # 格子坐标转为像素坐标(中心点)
-GridToCell(grid) -> int  # 像素坐标转为格子坐标
-```
-
-#### ICharacterAPI接口(普通角色)
-```python
-# 继承IAPI的所有方法，另外提供：
-
-# 角色信息
-GetSelfInfo() -> Character  # 获取自身角色信息
-
-# 移动控制
-Move(speed, timeInMilliseconds, angleInRadian) -> Future[bool]  # 向指定方向移动
-MoveRight(speed, timeInMilliseconds) -> Future[bool]  # 向右移动
-MoveUp(speed, timeInMilliseconds) -> Future[bool]  # 向上移动
-MoveLeft(speed, timeInMilliseconds) -> Future[bool]  # 向左移动
-MoveDown(speed, timeInMilliseconds) -> Future[bool]  # 向下移动
-
-# 攻击与技能
-Skill_Attack(attackedPlayerID) -> Future[bool]  # 技能攻击
-Common_Attack(attackedPlayerID) -> Future[bool]  # 普通攻击
-Recover(recoverType) -> Future[bool]  # 恢复生命值
-
-# 资源与建筑
-Harvest() -> Future[bool]  # 采集资源
-Rebuild(constructionType) -> Future[bool]  # 修复建筑
-Construct(constructionType) -> Future[bool]  # 建造建筑
-
-# 视野检查
-HaveView(targetX, targetY) -> bool  # 检查目标位置是否在视野内
-```
-
-#### ITeamAPI接口(主角)
-```python
-# 继承IAPI的所有方法，另外提供：
-
-# 队伍信息
-GetSelfInfo() -> Team  # 获取团队信息
-
-# 装备与角色管理
-InstallEquipment(playerID, equipmentType) -> Future[bool]  # 为角色安装装备
-Recycle(playerID) -> Future[bool]  # 回收角色
-BuildCharacter(characterType, birthIndex) -> Future[bool]  # 创建角色
-```
-
-#### C++接口
-```cpp
-// ICharacterAPI(普通角色)接口
-std::future<bool> Move(int32_t speed, int64_t timeInMilliseconds, double angleInRadian);  // 向指定方向移动
-std::future<bool> MoveRight(int32_t speed, int64_t timeInMilliseconds);  // 向右移动
-std::future<bool> MoveUp(int32_t speed, int64_t timeInMilliseconds);  // 向上移动
-std::future<bool> MoveLeft(int32_t speed, int64_t timeInMilliseconds);  // 向左移动
-std::future<bool> MoveDown(int32_t speed, int64_t timeInMilliseconds);  // 向下移动
-std::future<bool> Skill_Attack(int64_t attackedPlayerID);  // 技能攻击
-std::future<bool> Common_Attack(int64_t attackedPlayerID);  // 普通攻击
-std::future<bool> Recover(int64_t recoverType);  // 恢复生命值
-std::future<bool> Harvest();  // 采集资源
-std::future<bool> Rebuild(THUAI8::ConstructionType constructionType);  // 修复建筑
-std::future<bool> Construct(THUAI8::ConstructionType constructionType);  // 建造建筑
-std::shared_ptr<const THUAI8::Character> GetSelfInfo() const;  // 获取自身信息
-bool HaveView(int32_t targetX, int32_t targetY) const;  // 检查视野
-
-// ITeamAPI(主角)接口
-std::shared_ptr<const THUAI8::Team> GetSelfInfo() const;  // 获取团队信息
-std::future<bool> InstallEquipment(int32_t playerID, THUAI8::EquipmentType equipmentType);  // 为角色安装装备
-std::future<bool> Recycle(int32_t playerID);  // 回收角色
-std::future<bool> BuildCharacter(THUAI8::CharacterType characterType, int32_t birthIndex);  // 创建角色
-
-// 继承自IAPI的通用接口(两种角色均可使用)
-std::future<bool> SendTextMessage(int32_t toPlayerID, std::string message);  // 发送文本消息
-std::future<bool> SendBinaryMessage(int32_t toPlayerID, std::string message);  // 发送二进制消息
-bool HaveMessage();  // 检查是否有消息
-std::pair<int32_t, std::string> GetMessage();  // 获取消息(发送者ID, 内容)
-int32_t GetFrameCount() const;  // 获取当前帧数
-bool Wait();  // 等待下一帧
-std::future<bool> EndAllAction();  // 终止所有动作
-std::vector<std::shared_ptr<const THUAI8::Character>> GetCharacters() const;  // 获取己方角色
-std::vector<std::shared_ptr<const THUAI8::Character>> GetEnemyCharacters() const;  // 获取敌方角色
-std::vector<std::vector<THUAI8::PlaceType>> GetFullMap() const;  // 获取地图信息
-THUAI8::PlaceType GetPlaceType(int32_t cellX, int32_t cellY) const;  // 获取格子类型
-std::optional<THUAI8::EconomyResourceState> GetEconomyResourceState(int32_t cellX, int32_t cellY) const;  // 获取经济资源
-std::optional<THUAI8::AdditionResourceState> GetAdditionResourceState(int32_t cellX, int32_t cellY) const;  // 获取加成资源
-std::optional<THUAI8::ConstructionState> GetConstructionState(int32_t cellX, int32_t cellY) const;  // 获取建筑状态
-int32_t GetEnergy() const;  // 获取经济值
-int32_t GetScore() const;  // 获取得分
-void Print(std::string str) const;  // 打印调试信息
-```
 
 ## 调试技巧
 
@@ -497,7 +87,7 @@ void Print(std::string str) const;  // 打印调试信息
 
 1. 编译安装启动器：
 
-   - 编译 `installer`项目或使用预编译版本
+   - 编译 `installer`项目（打开时可能有警告，请忽视）
    - 下载完整游戏包
 2. 启动本地调试：
 
