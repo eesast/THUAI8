@@ -4,20 +4,21 @@
 #include "API.h"
 #include "utils.hpp"
 #include "structures.h"
-
+#include <memory>
 #undef GetMessage
 #undef SendMessage
 #undef PeekMessage
 
 #define PI 3.14159265358979323846
 
-CharacterDebugAPI::CharacterDebugAPI(ILogic& logic, bool file, bool print, bool warnOnly, int32_t CharacterID) :
-    logic(logic)
+CharacterDebugAPI::CharacterDebugAPI(ILogic& logic, bool file, bool print, bool warnOnly, int32_t CharacterID, int32_t TeamID) :
+    logic(logic),
+    logger(nullptr)  // 显式初始化 logger 为 nullptr
 {
-    std::string fileName = "logs/api-" + std::to_string(playerID) + "-log.txt";
+    std::string fileName = "logs/api-" + std::to_string(CharacterID) + "-" + std::to_string(TeamID) + "log.txt";
     auto fileLogger = std::make_shared<spdlog::sinks::basic_file_sink_mt>(fileName, true);
     auto printLogger = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
-    std::string pattern = "[api " + std::to_string(playerID) + "] [%H:%M:%S.%e] [%l] %v";
+    std::string pattern = "[api " + std::to_string(CharacterID) + "] [%H:%M:%S.%e] [%l] %v";
     fileLogger->set_pattern(pattern);
     printLogger->set_pattern(pattern);
     if (file)
@@ -47,7 +48,7 @@ void CharacterDebugAPI::EndTimer()
     logger->info("Time elapsed: {}ms", Time::TimeSinceStart(startPoint));
 }
 
-int32_t ChracterDebugAPI::GetFrameCount() const
+int32_t CharacterDebugAPI::GetFrameCount() const
 {
     return logic.GetCounter();
 }
@@ -80,6 +81,11 @@ bool CharacterDebugAPI::HaveMessage()
         logger->warn("HaveMessage: failed at {}ms", Time::TimeSinceStart(startPoint));
     return result;
 }
+bool CharacterDebugAPI::HaveView(int32_t x, int32_t y, int32_t newX, int32_t newY, int32_t viewRange, std::vector<std::vector<THUAI8::PlaceType>>& map) const
+{
+    auto selfInfo = GetSelfInfo();
+    return logic.HaveView(selfInfo->x, selfInfo->y, newX, newX, selfInfo->viewRange, map);
+}
 
 std::pair<int32_t, std::string> CharacterDebugAPI::GetMessage()
 {
@@ -99,54 +105,59 @@ bool CharacterDebugAPI::Wait()
         return logic.WaitThread();
 }
 
-std::futrue<bool> CharacterDebugAPI::Move(int64_t timeInMilliseconds, double angleInRadian)
+// 修改后的实现需要匹配接口参数 (int32_t speed, int64_t timeInMilliseconds, ...)
+std::future<bool> CharacterDebugAPI::Move(int64_t teamID, int64_t characterID, int32_t moveTimeInMilliseconds, double angle)
 {
-    logger->info("Move: time = {}ms, angle = {}rad, called at {}ms", timeInMilliseconds, angleInRadian, Time::TimeSinceStart(startPoint));
+    logger->info("Move: teamID={}, characterID={}, moveTimeInMilliseconds={}ms, angle={}rad, called@{}ms", teamID, characterID, moveTimeInMilliseconds, angle, Time::TimeSinceStart(startPoint));
     return std::async(std::launch::async, [=]()
-                      { auto result = logic.Move(timeInMilliseconds, angleInRadian);
-                        if (!result)
-                            logger->warn("Move: failed at {}ms", Time::TimeSinceStart(startPoint));
-                        return result; });
+                      { 
+        auto result = logic.Move(teamID, characterID, moveTimeInMilliseconds, angle); 
+        if (!result)
+            logger->warn("Move failed@{}ms", Time::TimeSinceStart(startPoint));
+        return result; });
 }
 
-std::future<bool> CharacterDebugAPI::MoveDown(int64_t timeInMilliseconds)
+// 下方所有方向移动需要添加speed参数并调整调用
+/* std::future<bool> CharacterDebugAPI::MoveDown(int32_t speed, int64_t timeInMilliseconds)
 {
-    return Move(timeInMilliseconds, 0);
+    return Move(speed, timeInMilliseconds, PI * 1.5);  // 参数顺序：speed, time, angle
 }
 
-std::future<bool> CharacterDebugAPI::MoveRight(int64_t timeInMilliseconds)
+std::future<bool> CharacterDebugAPI::MoveRight(int32_t speed, int64_t timeInMilliseconds)
 {
-    return Move(timeInMilliseconds, PI * 0.5);
+    return Move(speed, timeInMilliseconds, 0);  // 补充speed参数
 }
 
-std::future<bool> CharacterDebugAPI::MoveUp(int64_t timeInMilliseconds)
+std::future<bool> CharacterDebugAPI::MoveUp(int32_t speed, int64_t timeInMilliseconds)
 {
-    return Move(timeInMilliseconds, PI);
+    return Move(speed, timeInMilliseconds, PI / 2);  // 调整角度定义
 }
 
-std::future<bool> CharacterDebugAPI::MoveLeft(int64_t timeInMilliseconds)
+std::future<bool> CharacterDebugAPI::MoveLeft(int32_t speed, int64_t timeInMilliseconds)
 {
-    return Move(timeInMilliseconds, PI * 1.5);
-}
+    return Move(speed, timeInMilliseconds, PI);
+}*/
 
-std::future<bool> CharacterDebugAPI::Skill_Attack(double angleInRadian)
+std::future<bool> CharacterDebugAPI::Skill_Attack(int64_t TeamID, int64_t PlayerID, double angle)
 {
-    logger->info("Skill_Attack: angle = {}rad, called at {}ms", angleInRadian, Time::TimeSinceStart(startPoint));
+    logger->info("Skill_Attack: player={}, called@{}ms", PlayerID, Time::TimeSinceStart(startPoint));
     return std::async(std::launch::async, [=]()
-                      { auto result = logic.SkillAttack(angleInRadian);
-                        if (!result)
-                            logger->warn("Skill_Attack: failed at {}ms", Time::TimeSinceStart(startPoint));
-                        return result; });
+                      {
+        auto result = logic.Skill_Attack(TeamID,PlayerID,angle); // 改为传递玩家ID
+        if (!result)
+            logger->warn("Skill_Attack failed@{}ms", Time::TimeSinceStart(startPoint));
+        return result; });
 }
 
-std::future<bool> CharacterDebugAPI::Common_Attack(double angleInRadian)
+std::future<bool> CharacterDebugAPI::Common_Attack(int64_t teamID, int64_t PlayerID, int64_t attackedTeamID, int64_t attackedPlayerID)
 {
-    logger->info("Common_Attack: angle = {}rad, called at {}ms", angleInRadian, Time::TimeSinceStart(startPoint));
+    logger->info("Common_Attack: target={}, called@{}ms", attackedPlayerID, Time::TimeSinceStart(startPoint));
     return std::async(std::launch::async, [=]()
-                      { auto result = logic.CommonAttack(angleInRadian);
-                        if (!result)
-                            logger->warn("Common_Attack: failed at {}ms", Time::TimeSinceStart(startPoint));
-                        return result; });
+                      {
+        auto result = logic.Common_Attack(teamID,PlayerID,attackedTeamID,attackedPlayerID); // 改为传递玩家ID
+        if (!result)
+            logger->warn("Common_Attack failed@{}ms", Time::TimeSinceStart(startPoint));
+        return result; });
 }
 
 std::future<bool> CharacterDebugAPI::Recover(int64_t recover)
@@ -158,17 +169,17 @@ std::future<bool> CharacterDebugAPI::Recover(int64_t recover)
                             logger->warn("Recover: failed at {}ms", Time::TimeSinceStart(startPoint));
                         return result; });
 }
-std::future<bool> CharacterDebugAPI::Harvest()
+std::future<bool> CharacterDebugAPI::Produce(int64_t playerID, int64_t teamID)
 {
     logger->info("Harvest: called at {}ms", Time::TimeSinceStart(startPoint));
     return std::async(std::launch::async, [=]()
-                      { auto result = logic.Harvest();
+                      { auto result = logic.Produce(playerID, teamID);
                         if (!result)
                             logger->warn("Harvest: failed at {}ms", Time::TimeSinceStart(startPoint));
                         return result; });
 }
 
-std::future<bool> CharacterDebugAPI::Rebuild(THUAI8::ConstructionType constructionType)
+/* std::future<bool> CharacterDebugAPI::Rebuild(THUAI8::ConstructionType constructionType)
 {
     logger->info("Rebuild: constructionType = {}, called at {}ms", constructionType, Time::TimeSinceStart(startPoint));
     return std::async(std::launch::async, [=]()
@@ -176,7 +187,7 @@ std::future<bool> CharacterDebugAPI::Rebuild(THUAI8::ConstructionType constructi
                         if (!result)
                             logger->warn("Rebuild: failed at {}ms", Time::TimeSinceStart(startPoint));
                         return result; });
-}
+}*/
 
 std::future<bool> CharacterDebugAPI::Construct(THUAI8::ConstructionType constructionType)
 {
@@ -224,14 +235,19 @@ std::shared_ptr<const THUAI8::GameInfo> CharacterDebugAPI::GetGameInfo() const
     return result;
 }
 
-std::optional<THUAI8::PlaceType> CharacterDebugAPI::GetPlaceType(int32_t cellX, int32_t cellY) const
+/* THUAI8::PlaceType CharacterDebugAPI::GetPlaceType(int32_t cellX, int32_t cellY) const
 {
     logger->info("GetPlaceType: cellX = {}, cellY = {}, called at {}ms", cellX, cellY, Time::TimeSinceStart(startPoint));
     auto result = logic.GetPlaceType(cellX, cellY);
-    if (!result)
+    if (!result.has_value())
+    {
         logger->warn("GetPlaceType: failed at {}ms", Time::TimeSinceStart(startPoint));
-    return result;
-}
+        // 如果失败，返回一个默认值或抛出异常
+        throw std::runtime_error("GetPlaceType failed");
+    }
+    return *result; // 解包 std::optional 并返回实际值
+}*/
+// 稍后再改
 
 std::optional<THUAI8::EconomyResourceState> CharacterDebugAPI::GetEnconomyResourceState(int32_t cellX, int32_t cellY) const
 {
@@ -242,7 +258,7 @@ std::optional<THUAI8::EconomyResourceState> CharacterDebugAPI::GetEnconomyResour
     return result;
 }
 
-std::optional<THUAI8::AdditionResourceState> CharacterDebugAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
+std::optional<std::pair<int32_t, int32_t>> CharacterDebugAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
 {
     logger->info("GetAdditionResourceState: cellX = {}, cellY = {}, called at {}ms", cellX, cellY, Time::TimeSinceStart(startPoint));
     auto result = logic.GetAdditionResourceState(cellX, cellY);
@@ -250,15 +266,22 @@ std::optional<THUAI8::AdditionResourceState> CharacterDebugAPI::GetAdditionResou
         logger->warn("GetAdditionResourceState: failed at {}ms", Time::TimeSinceStart(startPoint));
     return result;
 }
-
-std::optional<THUAI8::ConstructionState> CharacterDebugAPI::GetConstructionState(int32_t cellX, int32_t cellY) const
+std::optional<std::pair<int32_t, int32_t>> TeamDebugAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
+{
+    logger->info("GetAdditionResourceState: cellX = {}, cellY = {}, called at {}ms", cellX, cellY, Time::TimeSinceStart(startPoint));
+    auto result = logic.GetAdditionResourceState(cellX, cellY);
+    if (!result)
+        logger->warn("GetAdditionResourceState: failed at {}ms", Time::TimeSinceStart(startPoint));
+    return result;
+}
+/* std::optional<THUAI8::ConstructionState> CharacterDebugAPI::GetConstructionState(int32_t cellX, int32_t cellY) const
 {
     logger->info("GetConstructionState: cellX = {}, cellY = {}, called at {}ms", cellX, cellY, Time::TimeSinceStart(startPoint));
     auto result = logic.GetConstructionState(cellX, cellY);
     if (!result)
         logger->warn("GetConstructionState: failed at {}ms", Time::TimeSinceStart(startPoint));
     return result;
-}
+}*/
 
 std::vector<int64_t> CharacterDebugAPI::GetPlayerGUIDs() const
 {
@@ -290,7 +313,7 @@ int32_t CharacterDebugAPI::GetScore() const
 std::shared_ptr<const THUAI8::Character> CharacterDebugAPI::GetSelfInfo() const
 {
     logger->info("GetSelfInfo: called at {}ms", Time::TimeSinceStart(startPoint));
-    auto result = logic.GetSelfInfo();
+    auto result = logic.CharacterGetSelfInfo();
     if (result == nullptr)
         logger->warn("GetSelfInfo: failed at {}ms", Time::TimeSinceStart(startPoint));
     return result;
@@ -305,29 +328,64 @@ std::shared_ptr<const THUAI8::Character> CharacterDebugAPI::GetSelfInfo() const
     return result;
 }*/
 
-std::CharacterDebugAPI::Print(std::string str) const
+void CharacterDebugAPI::Print(std::string str) const
 {
     logger->info(str);
 }
 
 // facing direction存疑
-std::CharacterDebugAPI::PrintCharacter() const
+void CharacterDebugAPI::PrintCharacter() const
 {
     for (const auto& Character : logic.GetCharacters())
     {
         logger->info("******Character Info******");
-        logger->info("type={}, characterID={}, GUID={}, x={}, y={}", THUAI8::characterTypeDict[Character->characterType], Character->characterID, Character->guid, Character->x, Character->y);
-        logger->info("state={},speed={}, view range={},facing direction={}", THUAI8::characterStateDict[Character->characterState], Character->speed, Character->viewRange, Character->facingDirection);
+
+        // 确保字典返回值是 std::string
+        std::string characterType = THUAI8::characterTypeDict.at(Character->characterType);
+
+        // 确保成员存在并类型正确
+        int characterID = Character->playerID;
+        int guid = Character->guid;
+        int x = Character->x;
+        int y = Character->y;
+
+        logger->info("type={}, characterID={}, GUID={}, x={}, y={}", characterType, characterID, guid, x, y);
+
+        // 确保字典返回值是 std::string
+        std::string characterActiveState = THUAI8::characterStateDict.at(Character->characterActiveState);
+        std::string characterPassiveState = THUAI8::characterStateDict.at(Character->characterPassiveState);
+        // 确保成员存在并类型正确
+        int speed = Character->speed;
+        int viewRange = Character->viewRange;
+        double facingDirection = Character->facingDirection;
+
+        logger->info("Activestate={}, PassiveState={}, speed={}, view range={}, facing direction={}", characterActiveState, characterPassiveState, speed, viewRange, facingDirection);
         logger->info("************************\n");
     }
 }
 
-std::CharacterDebugAPI::PrintSelfInfo() const
+void CharacterDebugAPI::PrintSelfInfo() const
 {
     auto self = logic.CharacterGetSelfInfo();
+    if (!self)  // 检查 self 是否为空指针
+    {
+        logger->warn("PrintSelfInfo: self is null");
+        return;
+    }
+
     logger->info("******Self Info******");
-    logger->info("type={}, characterID={}, GUID={}, x={}, y={}", THUAI8::characterTypeDict[self->characterType], self->characterID, self->guid, self->x, self->y);
-    logger->info("state={},speed={}, view range={},facing direction={}", THUAI8::characterStateDict[self->characterState], self->speed, self->viewRange, self->facingDirection);
+
+    // 确保字典返回值是 std::string
+    std::string characterType = THUAI8::characterTypeDict.at(self->characterType);
+    std::string characterActiveState = THUAI8::characterStateDict.at(self->characterActiveState);
+    std::string characterPassiveState = THUAI8::characterStateDict.at(self->characterPassiveState);
+
+    // 打印基本信息
+    logger->info("type={}, characterID={}, GUID={}, x={}, y={}", characterType, self->playerID, self->guid, self->x, self->y);
+
+    // 打印状态信息
+    logger->info("activestate={}, passivestate={}, speed={}, view range={}, facing direction={}", characterActiveState, characterPassiveState, self->speed, self->viewRange, self->facingDirection);
+
     logger->info("************************\n");
 }
 
@@ -337,10 +395,10 @@ std::future<bool> CharacterDebugAPI::EndAllAction()
                       { return logic.EndAllAction(); });
 }
 
-TeamDebugAPI::TeamDebugAPI(ILogic& logic, bool file, bool print, bool warnOnly, int32_t playerID) :
+TeamDebugAPI::TeamDebugAPI(ILogic& logic, bool file, bool print, bool warnOnly, int32_t playerID, int32_t teamID) :
     logic(logic)
 {
-    std::string fileName = "logs/api-" + std::to_string(playerID) + "-log.txt";
+    std::string fileName = "logs/api-" + std::to_string(playerID) + "-" + std::to_string(teamID) + "-log.txt";
     auto fileLogger = std::make_shared<spdlog::sinks::basic_file_sink_mt>(fileName, true);
     auto printLogger = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
     std::string pattern = "[api" + std::to_string(playerID) + "] [%H:%M:%S.%e] [%l] %v";
@@ -460,13 +518,16 @@ std::shared_ptr<const THUAI8::GameInfo> TeamDebugAPI::GetGameInfo() const
     return result;
 }
 
-std::optional<THUAI8::PlaceType> TeamDebugAPI::GetPlaceType(int32_t cellX, int32_t cellY) const
+THUAI8::PlaceType TeamDebugAPI::GetPlaceType(int32_t cellX, int32_t cellY) const
 {
     logger->info("GetPlaceType: cellX = {}, cellY = {}, called at {}ms", cellX, cellY, Time::TimeSinceStart(startPoint));
-    auto result = logic.GetPlaceType(cellX, cellY);
-    if (!result)
+    THUAI8::PlaceType result = logic.GetPlaceType(cellX, cellY);  // 直接获取返回值
+    if (result == THUAI8::PlaceType::NullPlaceType)               // 假设 Unknown 是一个表示失败的默认值
+    {
         logger->warn("GetPlaceType: failed at {}ms", Time::TimeSinceStart(startPoint));
-    return result;
+        throw std::runtime_error("GetPlaceType failed");  // 如果失败，抛出异常
+    }
+    return result;  // 返回实际值
 }
 
 std::optional<THUAI8::EconomyResourceState> TeamDebugAPI::GetEnconomyResourceState(int32_t cellX, int32_t cellY) const
@@ -478,23 +539,14 @@ std::optional<THUAI8::EconomyResourceState> TeamDebugAPI::GetEnconomyResourceSta
     return result;
 }
 
-std::optional<THUAI8::AdditionResourceState> TeamDebugAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
-{
-    logger->info("GetAdditionResourceState: cellX = {}, cellY = {}, called at {}ms", cellX, cellY, Time::TimeSinceStart(startPoint));
-    auto result = logic.GetAdditionResourceState(cellX, cellY);
-    if (!result)
-        logger->warn("GetAdditionResourceState: failed at {}ms", Time::TimeSinceStart(startPoint));
-    return result;
-}
-
-std::optional<THUAI8::ConstructionState> TeamDebugAPI::GetConstructionState(int32_t cellX, int32_t cellY) const
+/* std::optional<THUAI8::ConstructionState> TeamDebugAPI::GetConstructionState(int32_t cellX, int32_t cellY) const
 {
     logger->info("GetConstructionState: cellX = {}, cellY = {}, called at {}ms", cellX, cellY, Time::TimeSinceStart(startPoint));
     auto result = logic.GetConstructionState(cellX, cellY);
     if (!result)
         logger->warn("GetConstructionState: failed at {}ms", Time::TimeSinceStart(startPoint));
     return result;
-}
+}*/
 
 std::vector<int64_t> TeamDebugAPI::GetPlayerGUIDs() const
 {
@@ -523,12 +575,14 @@ int32_t TeamDebugAPI::GetScore() const
     return result;
 }
 
-std::shared_ptr<const THUAI8::Character> TeamDebugAPI::GetSelfInfo() const
+std::shared_ptr<const THUAI8::Team> TeamDebugAPI::GetSelfInfo() const
 {
     logger->info("GetSelfInfo: called at {}ms", Time::TimeSinceStart(startPoint));
-    auto result = logic.GetSelfInfo();
+    auto result = logic.TeamGetSelfInfo();  // 调用正确的逻辑函数
     if (result == nullptr)
+    {
         logger->warn("GetSelfInfo: failed at {}ms", Time::TimeSinceStart(startPoint));
+    }
     return result;
 }
 

@@ -8,9 +8,13 @@ void Visit(DirectoryInfo root)
 {
     foreach (var file in root.EnumerateFiles())
     {
-        if (file.Name.EndsWith("csproj"))
+        if (file.Name == "debug_interface.csproj")
         {
-            ChangeFile(file.FullName);
+            ChangeFileA(file.FullName);
+        }
+        else if (file.Name == "installer.csproj")
+        {
+            ChangeFileM(file.FullName);
         }
     }
     foreach (var dir in root.EnumerateDirectories())
@@ -19,7 +23,7 @@ void Visit(DirectoryInfo root)
     }
 }
 
-void ChangeFile(string path)
+void ChangeFileA(string path)
 {
     var document = new XmlDocument();
     document.Load(path);
@@ -47,5 +51,21 @@ void ChangeFile(string path)
         projectNode.AppendChild(propertyGroup);
     }
     
+    document.Save(path);
+}
+
+void ChangeFileM(string path)
+{
+    var document = new XmlDocument();
+    document.Load(path);
+    var es = document.GetElementsByTagName("TargetFrameworks");
+    if (es.Count == 2)
+    {
+        var i0 = es[0];
+        var i1 = es[1];
+        var text = i1.InnerText;
+        i0.InnerText = text.Split(';')[1];
+        i0.ParentNode.RemoveChild(i1);
+    }
     document.Save(path);
 }

@@ -30,7 +30,7 @@ extern "C" {
 # ifndef OPENSSL_SYS_WIN64A
 #  define OPENSSL_SYS_WIN64A 1
 # endif
-# define OPENSSL_CONFIGURED_API 30400
+# define OPENSSL_CONFIGURED_API 30500
 # ifndef OPENSSL_RAND_SEED_OS
 #  define OPENSSL_RAND_SEED_OS
 # endif
@@ -79,6 +79,9 @@ extern "C" {
 # ifndef OPENSSL_NO_EXTERNAL_TESTS
 #  define OPENSSL_NO_EXTERNAL_TESTS
 # endif
+# ifndef OPENSSL_NO_FIPS_JITTER
+#  define OPENSSL_NO_FIPS_JITTER
+# endif
 # ifndef OPENSSL_NO_FIPS_POST
 #  define OPENSSL_NO_FIPS_POST
 # endif
@@ -93,6 +96,9 @@ extern "C" {
 # endif
 # ifndef OPENSSL_NO_H3DEMO
 #  define OPENSSL_NO_H3DEMO
+# endif
+# ifndef OPENSSL_NO_HQINTEROP
+#  define OPENSSL_NO_HQINTEROP
 # endif
 # ifndef OPENSSL_NO_JITTER
 #  define OPENSSL_NO_JITTER
@@ -124,6 +130,9 @@ extern "C" {
 # ifndef OPENSSL_NO_SSL3_METHOD
 #  define OPENSSL_NO_SSL3_METHOD
 # endif
+# ifndef OPENSSL_NO_SSLKEYLOG
+#  define OPENSSL_NO_SSLKEYLOG
+# endif
 # ifndef OPENSSL_NO_TESTS
 #  define OPENSSL_NO_TESTS
 # endif
@@ -138,6 +147,9 @@ extern "C" {
 # endif
 # ifndef OPENSSL_NO_UNIT_TEST
 #  define OPENSSL_NO_UNIT_TEST
+# endif
+# ifndef OPENSSL_NO_UPLINK
+#  define OPENSSL_NO_UPLINK
 # endif
 # ifndef OPENSSL_NO_WEAK_SSL_CIPHERS
 #  define OPENSSL_NO_WEAK_SSL_CIPHERS

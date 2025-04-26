@@ -2319,8 +2319,8 @@ class CastMsg final : public ::google::protobuf::Message
   enum : int {
     kCastedCharacterIdFieldNumber = 3,
     kCharacterIdFieldNumber = 1,
-    kSkillIdFieldNumber = 2,
-    kTeamIdFieldNumber = 4,
+    kTeamIdFieldNumber = 2,
+    kCastedTeamIdFieldNumber = 4,
     kAttackRangeFieldNumber = 5,
     kXFieldNumber = 6,
     kAngleFieldNumber = 8,
@@ -2354,17 +2354,7 @@ class CastMsg final : public ::google::protobuf::Message
   void _internal_set_character_id(::int64_t value);
 
   public:
-  // int64 skill_id = 2;
-  void clear_skill_id() ;
-  ::int64_t skill_id() const;
-  void set_skill_id(::int64_t value);
-
-  private:
-  ::int64_t _internal_skill_id() const;
-  void _internal_set_skill_id(::int64_t value);
-
-  public:
-  // int64 team_id = 4;
+  // int64 team_id = 2;
   void clear_team_id() ;
   ::int64_t team_id() const;
   void set_team_id(::int64_t value);
@@ -2372,6 +2362,16 @@ class CastMsg final : public ::google::protobuf::Message
   private:
   ::int64_t _internal_team_id() const;
   void _internal_set_team_id(::int64_t value);
+
+  public:
+  // int64 casted_team_id = 4;
+  void clear_casted_team_id() ;
+  ::int64_t casted_team_id() const;
+  void set_casted_team_id(::int64_t value);
+
+  private:
+  ::int64_t _internal_casted_team_id() const;
+  void _internal_set_casted_team_id(::int64_t value);
 
   public:
   // int32 attack_range = 5;
@@ -2445,8 +2445,8 @@ class CastMsg final : public ::google::protobuf::Message
     ::google::protobuf::RepeatedField<::int64_t> casted_character_id_;
     ::google::protobuf::internal::CachedSize _casted_character_id_cached_byte_size_;
     ::int64_t character_id_;
-    ::int64_t skill_id_;
     ::int64_t team_id_;
+    ::int64_t casted_team_id_;
     ::int32_t attack_range_;
     ::int32_t x_;
     double angle_;
@@ -3336,26 +3336,26 @@ inline void CastMsg::_internal_set_character_id(::int64_t value) {
   _impl_.character_id_ = value;
 }
 
-// int64 skill_id = 2;
-inline void CastMsg::clear_skill_id() {
+// int64 team_id = 2;
+inline void CastMsg::clear_team_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.skill_id_ = ::int64_t{0};
+  _impl_.team_id_ = ::int64_t{0};
 }
-inline ::int64_t CastMsg::skill_id() const {
-  // @@protoc_insertion_point(field_get:protobuf.CastMsg.skill_id)
-  return _internal_skill_id();
+inline ::int64_t CastMsg::team_id() const {
+  // @@protoc_insertion_point(field_get:protobuf.CastMsg.team_id)
+  return _internal_team_id();
 }
-inline void CastMsg::set_skill_id(::int64_t value) {
-  _internal_set_skill_id(value);
-  // @@protoc_insertion_point(field_set:protobuf.CastMsg.skill_id)
+inline void CastMsg::set_team_id(::int64_t value) {
+  _internal_set_team_id(value);
+  // @@protoc_insertion_point(field_set:protobuf.CastMsg.team_id)
 }
-inline ::int64_t CastMsg::_internal_skill_id() const {
+inline ::int64_t CastMsg::_internal_team_id() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.skill_id_;
+  return _impl_.team_id_;
 }
-inline void CastMsg::_internal_set_skill_id(::int64_t value) {
+inline void CastMsg::_internal_set_team_id(::int64_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.skill_id_ = value;
+  _impl_.team_id_ = value;
 }
 
 // repeated int64 casted_character_id = 3;
@@ -3403,26 +3403,26 @@ inline ::google::protobuf::RepeatedField<::int64_t>* CastMsg::_internal_mutable_
   return &_impl_.casted_character_id_;
 }
 
-// int64 team_id = 4;
-inline void CastMsg::clear_team_id() {
+// int64 casted_team_id = 4;
+inline void CastMsg::clear_casted_team_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.team_id_ = ::int64_t{0};
+  _impl_.casted_team_id_ = ::int64_t{0};
 }
-inline ::int64_t CastMsg::team_id() const {
-  // @@protoc_insertion_point(field_get:protobuf.CastMsg.team_id)
-  return _internal_team_id();
+inline ::int64_t CastMsg::casted_team_id() const {
+  // @@protoc_insertion_point(field_get:protobuf.CastMsg.casted_team_id)
+  return _internal_casted_team_id();
 }
-inline void CastMsg::set_team_id(::int64_t value) {
-  _internal_set_team_id(value);
-  // @@protoc_insertion_point(field_set:protobuf.CastMsg.team_id)
+inline void CastMsg::set_casted_team_id(::int64_t value) {
+  _internal_set_casted_team_id(value);
+  // @@protoc_insertion_point(field_set:protobuf.CastMsg.casted_team_id)
 }
-inline ::int64_t CastMsg::_internal_team_id() const {
+inline ::int64_t CastMsg::_internal_casted_team_id() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.team_id_;
+  return _impl_.casted_team_id_;
 }
-inline void CastMsg::_internal_set_team_id(::int64_t value) {
+inline void CastMsg::_internal_set_casted_team_id(::int64_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.team_id_ = value;
+  _impl_.casted_team_id_ = value;
 }
 
 // int32 attack_range = 5;

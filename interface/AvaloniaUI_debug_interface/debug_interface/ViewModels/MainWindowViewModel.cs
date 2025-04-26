@@ -182,6 +182,13 @@ namespace debug_interface.ViewModels
             vm.PosX = data.X; // 存储原始 X
             vm.PosY = data.Y; // 存储原始 Y
 
+            //if (data.X != vm.PosX || data.Y != vm.PosY) 
+            //{
+            string message = $"更新角色: Name='{vm.Name}', pos = ({vm.PosX}, {vm.PosY})";
+            LogConsoleVM.AddLog(message, "INFO");
+            //}
+
+
             CharacterState previousActiveState = vm.ActiveState == "空闲/未知"
                 ? CharacterState.NullCharacterState
                 : Enum.TryParse<CharacterState>(vm.ActiveState, out var state) ? state : CharacterState.NullCharacterState;
@@ -276,7 +283,7 @@ namespace debug_interface.ViewModels
                 CharacterType.ShaWujing => "沙悟净",
                 CharacterType.BaiLongma => "白龙马",
                 CharacterType.Monkid => "猴子猴孙", // 
-                CharacterType.JiuLing => "九头元圣", // 
+                CharacterType.JiuLing => "九灵元圣", // 
                 CharacterType.HongHaier => "红孩儿",
                 CharacterType.NiuMowang => "牛魔王",
                 CharacterType.TieShan => "铁扇公主", // 
@@ -547,7 +554,7 @@ namespace debug_interface.ViewModels
             // (可选) 添加通用建筑颜色 (如果 MapMessage 中只有 CONSTRUCTION)
             MapLegendItems.Add(new LegendItem(Brushes.Brown, "建筑点位 (未指定类型)"));
             // (可选) 添加未知区域颜色
-             MapLegendItems.Add(new LegendItem(Brushes.Gainsboro, "未知区域"));
+            MapLegendItems.Add(new LegendItem(Brushes.Gainsboro, "未知区域"));
         }
 
     }

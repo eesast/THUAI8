@@ -9,6 +9,7 @@
 #undef GetMessage
 #undef SendMessage
 #undef PeekMessage
+#include <cstdint>  // 可能会有问题
 namespace Constants
 {
     SCCI int32_t frameDuration = 50;  // 每帧毫秒数
@@ -25,18 +26,18 @@ namespace Constants
     // 角色
     SCCI int32_t sizeofCharacter = 800;
     SCCI int32_t Speed = 2500;
-    struct Monk
+    struct TangSeng
     {
         SCCI int32_t maxHp = 1000;
     };
-    struct MonkeyKing
+    struct SunWukong
     {
         SCCI int32_t maxHp = 200;
         SCCI int32_t common_attack_power = 30;
         SCCI int32_t attackRange = 1;
         SCCI int32_t Cost = 5000;
     };
-    struct Pigsy
+    struct ZhuBajie
     {
         SCCI int32_t maxHp = 300;
         SCCI int32_t common_attack_power = 20;
@@ -50,14 +51,14 @@ namespace Constants
         SCCI int32_t attackRange = 5;
         SCCI int32_t Cost = 3000;
     };
-    struct Whitedragonhorse
+    struct BaiLongma
     {
         SCCI int32_t maxHp = 150;
         SCCI int32_t common_attack_power = 10;
         SCCI int32_t attackRange = 5;
         SCCI int32_t Cost = 4000;
     };
-    struct JiuTouYuanSheng
+    struct JiuLing
     {
         SCCI int32_t maxHp = 1000;
     };
@@ -69,7 +70,7 @@ namespace Constants
         SCCI int32_t Cost = 5000;
     };
 
-    struct Gyuumao
+    struct NiuMowang
     {
         SCCI int32_t maxHp = 300;
         SCCI int32_t common_attack_power = 20;
@@ -77,7 +78,7 @@ namespace Constants
         SCCI int32_t Cost = 4000;
     };
 
-    struct Princess_Iron_Fan
+    struct TieShan
     {
         SCCI int32_t maxHp = 150;
         SCCI int32_t common_attack_power = 10;
@@ -85,7 +86,7 @@ namespace Constants
         SCCI int32_t Cost = 3000;
     };
 
-    struct Spider
+    struct ZhiZhuJing
     {
         SCCI int32_t maxHp = 150;
         SCCI int32_t common_attack_power = 10;
@@ -226,9 +227,9 @@ namespace Constants
     {
         SCCI int32_t cost = 10000;
         SCCI int32_t time = 30;
-        SCCI int32_t attack_boost = 1.2;        // 注意这是提升的倍数
-        SCCI int32_t speed_boost = 300;         // 注意这是直接叠加
-        SCCI int32_t attack_freq_boost = 1.25;  // 注意这是提升的倍数
+        SCCI double attack_boost = 1.2;        // 注意这是提升的倍数
+        SCCI int32_t speed_boost = 300;        // 注意这是直接叠加
+        SCCI double attack_freq_boost = 1.25;  // 注意这是提升的倍数
     };
 }  // namespace Constants
 #endif

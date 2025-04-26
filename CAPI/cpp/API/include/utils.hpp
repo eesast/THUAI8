@@ -1,11 +1,12 @@
 #pragma once
 #ifndef UTILS_HPP
 #define UTILS_HPP
-
+#endif
 #include <cstdint>
 #include <cmath>
 #include <map>
 #include <vector>
+#include <utility>
 #include "Message2Clients.pb.h"
 #include "Message2Server.pb.h"
 #include "MessageType.pb.h"
@@ -78,6 +79,18 @@ namespace Proto2THUAI8
         {protobuf::GameState::GAME_RUNNING, THUAI8::GameState::GameRunning},
         {protobuf::GameState::GAME_END, THUAI8::GameState::GameEnd},
     };
+    inline std::map<protobuf::MessageOfObj::MessageOfObjCase, THUAI8::MessageOfObj> messageOfObjDict{
+        {protobuf::MessageOfObj::MessageOfObjCase::kCharacterMessage, THUAI8::MessageOfObj::CharacterMessage},
+        {protobuf::MessageOfObj::MessageOfObjCase::kTeamMessage, THUAI8::MessageOfObj::TeamMessage},
+        {protobuf::MessageOfObj::MessageOfObjCase::kBarracksMessage, THUAI8::MessageOfObj::BarracksMessage},
+        {protobuf::MessageOfObj::MessageOfObjCase::kTrapMessage, THUAI8::MessageOfObj::TrapMessage},
+        {protobuf::MessageOfObj::MessageOfObjCase::kEconomyResourceMessage, THUAI8::MessageOfObj::EconomyResourceMessage},
+        {protobuf::MessageOfObj::MessageOfObjCase::kAdditionResourceMessage, THUAI8::MessageOfObj::AdditionResourceMessage},
+        {protobuf::MessageOfObj::MessageOfObjCase::kSpringMessage, THUAI8::MessageOfObj::SpringMessage},
+        {protobuf::MessageOfObj::MessageOfObjCase::kFarmMessage, THUAI8::MessageOfObj::FarmMessage},
+        {protobuf::MessageOfObj::MessageOfObjCase::kMapMessage, THUAI8::MessageOfObj::MapMessage},
+        {protobuf::MessageOfObj::MessageOfObjCase::kNewsMessage, THUAI8::MessageOfObj::NewsMessage},
+    };
 
     inline std::map<protobuf::PlaceType, THUAI8::PlaceType> placeTypeDict{
         {protobuf::PlaceType::NULL_PLACE_TYPE, THUAI8::PlaceType::NullPlaceType},
@@ -99,24 +112,24 @@ namespace Proto2THUAI8
 
     inline std::map<protobuf::PlayerType, THUAI8::PlayerType> playerTypeDict{
         {protobuf::PlayerType::NULL_PLAYER_TYPE, THUAI8::PlayerType::NullPlayerType},
-        {protobuf::PlayerType::Buddhists, THUAI8::PlayerType::Buddhists},
-        {protobuf::PlayerType::Monsters, THUAI8::PlayerType::Monsters},
+        {protobuf::PlayerType::CHARACTER, THUAI8::PlayerType::Character},
+        {protobuf::PlayerType::TEAM, THUAI8::PlayerType::Team},
     };
 
     inline std::map<protobuf::CharacterType, THUAI8::CharacterType> characterTypeDict{
         {protobuf::CharacterType::NULL_CHARACTER_TYPE, THUAI8::CharacterType::NullCharacterType},
-        {protobuf::CharacterType::CAMP1_CHARACTER1, THUAI8::CharacterType::Camp1Character1},
-        {protobuf::CharacterType::CAMP1_CHARACTER2, THUAI8::CharacterType::Camp1Character2},
-        {protobuf::CharacterType::CAMP1_CHARACTER3, THUAI8::CharacterType::Camp1Character3},
-        {protobuf::CharacterType::CAMP1_CHARACTER4, THUAI8::CharacterType::Camp1Character4},
-        {protobuf::CharacterType::CAMP1_CHARACTER5, THUAI8::CharacterType::Camp1Character5},
-        {protobuf::CharacterType::CAMP1_CHARACTER6, THUAI8::CharacterType::Camp1Character6},
-        {protobuf::CharacterType::CAMP2_CHARACTER1, THUAI8::CharacterType::Camp2Character1},
-        {protobuf::CharacterType::CAMP2_CHARACTER2, THUAI8::CharacterType::Camp2Character2},
-        {protobuf::CharacterType::CAMP2_CHARACTER3, THUAI8::CharacterType::Camp2Character3},
-        {protobuf::CharacterType::CAMP2_CHARACTER4, THUAI8::CharacterType::Camp2Character4},
-        {protobuf::CharacterType::CAMP2_CHARACTER5, THUAI8::CharacterType::Camp2Character5},
-        {protobuf::CharacterType::CAMP2_CHARACTER6, THUAI8::CharacterType::Camp2Character6},
+        {protobuf::CharacterType::TangSeng, THUAI8::CharacterType::TangSeng},
+        {protobuf::CharacterType::SunWukong, THUAI8::CharacterType::SunWukong},
+        {protobuf::CharacterType::ZhuBajie, THUAI8::CharacterType::ZhuBajie},
+        {protobuf::CharacterType::ShaWujing, THUAI8::CharacterType::ShaWujing},
+        {protobuf::CharacterType::BaiLongma, THUAI8::CharacterType::BaiLongma},
+        {protobuf::CharacterType::Monkid, THUAI8::CharacterType::Monkid},
+        {protobuf::CharacterType::JiuLing, THUAI8::CharacterType::JiuLing},
+        {protobuf::CharacterType::HongHaier, THUAI8::CharacterType::HongHaier},
+        {protobuf::CharacterType::NiuMowang, THUAI8::CharacterType::NiuMowang},
+        {protobuf::CharacterType::TieShan, THUAI8::CharacterType::TieShan},
+        {protobuf::CharacterType::ZhiZhujing, THUAI8::CharacterType::ZhiZhujing},
+        {protobuf::CharacterType::Pawn, THUAI8::CharacterType::Pawn},
     };
 
     inline std::map<protobuf::CharacterState, THUAI8::CharacterState> characterStateDict{
@@ -134,27 +147,30 @@ namespace Proto2THUAI8
         {protobuf::CharacterState::HEALING, THUAI8::CharacterState::Healing},
         {protobuf::CharacterState::BERSERK, THUAI8::CharacterState::Berserk},
         {protobuf::CharacterState::BURNED, THUAI8::CharacterState::Burned},
+        {protobuf::CharacterState::DECEASED, THUAI8::CharacterState::Deceased},
     };
 
     inline std::map<protobuf::EconomyResourceType, THUAI8::EconomyResourceType> economyResourceTypeDict{
         {protobuf::EconomyResourceType::NULL_ECONOMY_RESOURCE_TYPE, THUAI8::EconomyResourceType::NullEconomyResourceType},
-        {protobuf::EconomyResourceType::ECONOMY_RESOURCE_TYPE, THUAI8::EconomyResourceType::EconomyResource},
+        {protobuf::EconomyResourceType::SMALL_ECONOMY_RESOURCE, THUAI8::EconomyResourceType::SmallEconomyResource},
+        {protobuf::EconomyResourceType::MEDIUM_ECONOMY_RESOURCE, THUAI8::EconomyResourceType::MediumEconomyResource},
+        {protobuf::EconomyResourceType::LARGE_ECONOMY_RESOURCE, THUAI8::EconomyResourceType::LargeEconomyResource},
     };
 
     inline std::map<protobuf::AdditionResourceType, THUAI8::AdditionResourceType> additionResourceTypeDict{
-        {protobuf::AdditionResourceType::NULL_ADDITION_RESOURCE_TYPE, THUAI8::AdditionResourceType::NullAdditionResourceType},
-        {protobuf::AdditionResourceType::SMALL_ADDITION_RESOURCE1, THUAI8::AdditionResourceType::SmallAdditionResource1},
-        {protobuf::AdditionResourceType::MEDIUM_ADDITION_RESOURCE1, THUAI8::AdditionResourceType::MediumAdditionResource1},
-        {protobuf::AdditionResourceType::LARGE_ADDITION_RESOURCE1, THUAI8::AdditionResourceType::LargeAdditionResource1},
-        {protobuf::AdditionResourceType::SMALL_ADDITION_RESOURCE2, THUAI8::AdditionResourceType::SmallAdditionResource2},
-        {protobuf::AdditionResourceType::MEDIUM_ADDITION_RESOURCE2, THUAI8::AdditionResourceType::MediumAdditionResource2},
-        {protobuf::AdditionResourceType::LARGE_ADDITION_RESOURCE2, THUAI8::AdditionResourceType::LargeAdditionResource2},
-        {protobuf::AdditionResourceType::ADDITION_RESOURCE3, THUAI8::AdditionResourceType::AdditionResource3},
-        {protobuf::AdditionResourceType::ADDITION_RESOURCE4, THUAI8::AdditionResourceType::AdditionResource4},
+        {protobuf::AdditionResourceType::NULL_ADDITION_RESOURCE_TYPE, THUAI8::AdditionResourceType::NullAdditionReourceType},
+        {protobuf::AdditionResourceType::LIFE_POOL1, THUAI8::AdditionResourceType::LIFE_POOL1},
+        {protobuf::AdditionResourceType::LIFE_POOL2, THUAI8::AdditionResourceType::LIFE_POOL2},
+        {protobuf::AdditionResourceType::LIFE_POOL3, THUAI8::AdditionResourceType::LIFE_POOL3},
+        {protobuf::AdditionResourceType::CRAZY_MAN1, THUAI8::AdditionResourceType::CRAZY_MAN1},
+        {protobuf::AdditionResourceType::CRAZY_MAN2, THUAI8::AdditionResourceType::CRAZY_MAN2},
+        {protobuf::AdditionResourceType::CRAZY_MAN3, THUAI8::AdditionResourceType::CRAZY_MAN3},
+        {protobuf::AdditionResourceType::QUICK_STEP, THUAI8::AdditionResourceType::QUICK_STEP},
+        {protobuf::AdditionResourceType::WIDE_VIEW, THUAI8::AdditionResourceType::WIDE_VIEW},
     };
 
     inline std::map<protobuf::EconomyResourceState, THUAI8::EconomyResourceState> economyResourceStateDict{
-        {protobuf::EconomyResourceState::NULL_ECONOMY_RESOURCE_STATE, THUAI8::EconomyResourceState::NullEconomyResourceState},
+        {protobuf::EconomyResourceState::NULL_ECONOMY_RESOURCE_STSTE, THUAI8::EconomyResourceState::NullEconomyResourceState},
         {protobuf::EconomyResourceState::HARVESTABLE, THUAI8::EconomyResourceState::Harvestable},
         {protobuf::EconomyResourceState::BEING_HARVESTED, THUAI8::EconomyResourceState::BeingHarvested},
         {protobuf::EconomyResourceState::HARVESTED, THUAI8::EconomyResourceState::Harvested},
@@ -194,14 +210,14 @@ namespace Proto2THUAI8
         {protobuf::TrapType::CAGE, THUAI8::TrapType::Cage},
     };
 
-    inline std::map<protobuf::NewsType, THUAI8::NewsType> newsTypeDict{
-        {protobuf::NewsType::NULL_NEWS_TYPE, THUAI8::NewsType::NullNewsType},
-        {protobuf::NewsType::TEXT, THUAI8::NewsType::Text},
-        {protobuf::NewsType::BINARY, THUAI8::NewsType::Binary},
+    inline std::map<protobuf::MessageOfNews::NewsCase, THUAI8::NewsType> newsTypeDict{
+        {protobuf::MessageOfNews::NewsCase::NEWS_NOT_SET, THUAI8::NewsType::NullNewsType},
+        {protobuf::MessageOfNews::NewsCase::kTextMessage, THUAI8::NewsType::TextMessage},
+        {protobuf::MessageOfNews::NewsCase::kBinaryMessage, THUAI8::NewsType::BinaryMessage},
     };
 
     inline std::map<protobuf::PlayerTeam, THUAI8::PlayerTeam> playerTeam{
-        {protobuf::PlayerTeam::NULL_PLAYER_TEAM, THUAI8::PlayerTeam::NullPlayerTeam},
+        {protobuf::PlayerTeam::NULL_TEAM, THUAI8::PlayerTeam::NullTeam},
         {protobuf::PlayerTeam::BUDDHISTS_TEAM, THUAI8::PlayerTeam::BuddhistsTeam},
         {protobuf::PlayerTeam::MONSTERS_TEAM, THUAI8::PlayerTeam::MonstersTeam},
     };
@@ -210,105 +226,120 @@ namespace Proto2THUAI8
     inline std::shared_ptr<THUAI8::Character> Protobuf2THUAI8Character(const protobuf::MessageOfCharacter& CharacterMsg)
     {
         auto character = std::make_shared<THUAI8::Character>();
-        character->guid = CharacterMsg.character().guid();
-        character->teamID = CharacterMsg.character().teamid();
-        character->playerID = CharacterMsg.character().playerid();
-        character->characterType = characterTypeDict.at(CharacterMsg.character().charactertype());
-        character->characterActiveState = characterStateDict.at(CharacterMsg.character().characteractivestate());
-        character->isBlind = CharacterMsg.character().isblind();
-        character->blindTime = CharacterMsg.character().blindtime();
-        character->isStunned = CharacterMsg.character().isstunned();
-        character->stunnedTime = CharacterMsg.character().stunnedtime();
-        character->isInvisible = CharacterMsg.character().isinvisible();
-        character->invisibleTime = CharacterMsg.character().invisibletime();
-        character->isBurned = CharacterMsg.character().isburned();
-        character->burnedTime = CharacterMsg.character().burnedtime();
-        character->harmCut = CharacterMsg.character().harmcut();
-        character->harmCutTime = CharacterMsg.character().harmcuttime();
-        character->characterPassiveState = characterStateDict.at(CharacterMsg.character().characterpassivestate());
-        character->x = CharacterMsg.character().x();
-        character->y = CharacterMsg.character().y();
-        character->facingDirection = CharacterMsg.character().facingdirection();
-        character->speed = CharacterMsg.character().speed();
-        character->viewRange = CharacterMsg.character().viewrange();
-        character->commonAttack = CharacterMsg.character().commonattack();
-        character->commonAttackCD = CharacterMsg.character().commonattackcd();
-        character->commonAttackRange = CharacterMsg.character().commonattackrange();
-        character->skillAttackCD = CharacterMsg.character().skillattackcd();
-        character->economyDepletion = CharacterMsg.character().economydepletion();
-        character->killScore = CharacterMsg.character().killscore();
-        character->hp = CharacterMsg.character().hp();
-        character->shieldEquipment = CharacterMsg.character().shieldequipment();
-        character->shoesEquipment = CharacterMsg.character().shoesequipment();
-        character->shoesTime = CharacterMsg.character().shoestime();
-        character->isPurified = CharacterMsg.character().ispurified();
-        character->purifiedTime = CharacterMsg.character().purifiedtime();
-        character->isBerserk = CharacterMsg.character().isberserk();
-        character->berserkTime = CharacterMsg.character().berserktime();
-        character->attackBuffNum = CharacterMsg.character().attackbuffnum();
-        character->attackBuffTime = CharacterMsg.character().attackbufftime();
-        character->speedBuffTime = CharacterMsg.character().speedbufftime();
-        character->visionBuffTime = CharacterMsg.character().visionbufftime();
+        // 直接访问MessageOfCharacter的字段
+        character->guid = CharacterMsg.guid();
+        character->teamID = CharacterMsg.team_id();
+        character->playerID = CharacterMsg.player_id();
+        character->characterType = characterTypeDict.at(CharacterMsg.character_type());
+        character->characterActiveState = characterStateDict.at(CharacterMsg.character_active_state());
+
+        character->isBlind = CharacterMsg.is_blind();
+        character->blindTime = CharacterMsg.blind_time();
+        character->isStunned = CharacterMsg.is_stunned();
+        character->stunnedTime = CharacterMsg.stunned_time();
+        character->isInvisible = CharacterMsg.is_invisible();
+        character->invisibleTime = CharacterMsg.invisible_time();
+        character->isBurned = CharacterMsg.is_burned();
+        character->burnedTime = CharacterMsg.burned_time();
+
+        character->harmCut = CharacterMsg.harm_cut();
+        character->harmCutTime = CharacterMsg.harm_cut_time();
+        character->characterPassiveState = characterStateDict.at(CharacterMsg.character_passive_state());
+
+        character->x = CharacterMsg.x();
+        character->y = CharacterMsg.y();
+        character->facingDirection = CharacterMsg.facing_direction();
+        character->speed = CharacterMsg.speed();
+        character->viewRange = CharacterMsg.view_range();
+
+        character->commonAttack = CharacterMsg.common_attack();
+        character->commonAttackCD = CharacterMsg.common_attack_cd();
+        character->commonAttackRange = CharacterMsg.common_attack_range();
+        character->skillAttackCD = CharacterMsg.skill_attack_cd();
+
+        character->economyDepletion = CharacterMsg.economy_depletion();
+        character->killScore = CharacterMsg.kill_score();
+        character->hp = CharacterMsg.hp();
+
+        character->shieldEquipment = CharacterMsg.shield_equipment();
+        character->shoesEquipment = CharacterMsg.shoes_equipment();
+        character->shoesTime = CharacterMsg.shoes_time();
+
+        character->isPurified = CharacterMsg.is_purified();
+        character->purifiedTime = CharacterMsg.purified_time();
+        character->isBerserk = CharacterMsg.is_berserk();
+        character->berserkTime = CharacterMsg.berserk_time();
+
+        character->attackBuffNum = CharacterMsg.attack_buff_num();
+        character->attackBuffTime = CharacterMsg.attack_buff_time();
+        character->speedBuffTime = CharacterMsg.speed_buff_time();
+        character->visionBuffTime = CharacterMsg.vision_buff_time();
+
+        return character;
     }
 
     inline std::shared_ptr<THUAI8::Team> Protobuf2THUAI8Team(const protobuf::MessageOfTeam& TeamMsg)
     {
         auto team = std::make_shared<THUAI8::Team>();
-        team->teamID = TeamMsg.team().teamid();
-        team->playerID = TeamMsg.team().playerid();
-        team->score = TeamMsg.team().score();
-        team->energy = TeamMsg.team().energy();
+        team->teamID = TeamMsg.team_id();
+        team->playerID = TeamMsg.player_id();
+        team->score = TeamMsg.score();
+        team->energy = TeamMsg.energy();
         return team;
     }
 
-    inline std::shared_ptr<THUAI8::GameInfo> Protobuf2THUAI8GameInfo(const protobuf::MessageOfGameInfo& GameInfoMsg)
+    inline std::shared_ptr<THUAI8::GameInfo> Protobuf2THUAI8GameInfo(const protobuf::MessageOfAll& GameInfoMsg)
     {
         auto gameInfo = std::make_shared<THUAI8::GameInfo>();
-        gameInfo->gameState = gameStateDict.at(GameInfoMsg.gameinfo().gamestate());
-        gameInfo->time = GameInfoMsg.gameinfo().time();
-        gameInfo->placeType = placeTypeDict.at(GameInfoMsg.gameinfo().placetype());
+        gameInfo->gameTime = GameInfoMsg.game_time();
+        gameInfo->buddhistsTeamScore = GameInfoMsg.buddhists_team_score();
+        gameInfo->buddhistsTeamEconomy = GameInfoMsg.buddhists_team_economy();
+        gameInfo->buddhistsHeroHP = GameInfoMsg.buddhists_hero_hp();
+        gameInfo->monstersTeamScore = GameInfoMsg.monsters_team_score();
+        gameInfo->monstersTeamEconomy = GameInfoMsg.monsters_team_economy();
+        gameInfo->monstersHeroHP = GameInfoMsg.monsters_hero_hp();
         return gameInfo;
     }
 
     inline std::shared_ptr<THUAI8::Trap> Protobuf2THUAI8Trap(const protobuf::MessageOfTrap& TrapMsg)
     {
         auto trap = std::make_shared<THUAI8::Trap>();
-        trap->trapType = trapTypeDict.at(TrapMsg.trap().traptype());
-        trap->x = TrapMsg.trap().x();
-        trap->y = TrapMsg.trap().y();
-        trap->teamID = TrapMsg.trap().teamid();
-        trap->id = TrapMsg.trap().id();
+        trap->trapType = trapTypeDict.at(TrapMsg.trap_type());
+        trap->x = TrapMsg.x();
+        trap->y = TrapMsg.y();
+        trap->teamID = TrapMsg.team_id();
+        trap->id = TrapMsg.id();
         return trap;
     }
 
     inline std::shared_ptr<THUAI8::EconomyResource> Protobuf2THUAI8EconomyResource(const protobuf::MessageOfEconomyResource& EconomyResourceMsg)
     {
         auto economyResource = std::make_shared<THUAI8::EconomyResource>();
-        economyResource->economyResourceType = economyResourceTypeDict.at(EconomyResourceMsg.economyresource().economyresourcetype());
-        economyResource->economyResourceState = economyResourceStateDict.at(EconomyResourceMsg.economyresource().economyresourcestate());
-        economyResource->x = EconomyResourceMsg.economyresource().x();
-        economyResource->y = EconomyResourceMsg.economyresource().y();
+        economyResource->economyResourceType = economyResourceTypeDict.at(EconomyResourceMsg.economy_resource_type());
+        economyResource->economyResourceState = economyResourceStateDict.at(EconomyResourceMsg.economy_resource_state());
+        economyResource->x = EconomyResourceMsg.x();
+        economyResource->y = EconomyResourceMsg.y();
         return economyResource;
     }
 
     inline std::shared_ptr<THUAI8::AdditionResource> Protobuf2THUAI8AdditionResource(const protobuf::MessageOfAdditionResource& AdditionResourceMsg)
     {
         auto additionResource = std::make_shared<THUAI8::AdditionResource>();
-        additionResource->additionResourceType = additionResourceTypeDict.at(AdditionResourceMsg.additionresource().additionresourcetype());
-        additionResource->additionResourceState = additionResourceStateDict.at(AdditionResourceMsg.additionresource().additionresourcestate());
-        additionResource->x = AdditionResourceMsg.additionresource().x();
-        additionResource->y = AdditionResourceMsg.additionresource().y();
+        additionResource->additionResourceType = additionResourceTypeDict.at(AdditionResourceMsg.addition_resource_type());
+        additionResource->additionResourceState = additionResourceStateDict.at(AdditionResourceMsg.addition_resource_state());
+        additionResource->x = AdditionResourceMsg.x();
+        additionResource->y = AdditionResourceMsg.y();
         return additionResource;
     }
 
-    inline std::shared_ptr<THUAI8::ConstructionState> Protobuf2THUAI8ConstructionState(const protobuf::MessageOfConstructionState& ConstructionStateMsg)
+    /* inline std::shared_ptr<THUAI8::ConstructionState> Protobuf2THUAI8ConstructionState(const protobuf::MessageOfConstructionState& ConstructionStateMsg)
     {
         auto constructionState = std::make_shared<THUAI8::ConstructionState>();
         constructionState->teamID = ConstructionStateMsg.constructionstate().teamid();
         constructionState->hp = ConstructionStateMsg.constructionstate().hp();
         constructionState->constructionType = constructionTypeDict.at(ConstructionStateMsg.constructionstate().constructiontype());
         return constructionState;
-    }
+    }*/
 
     // ?
     // inline std::shared_ptr<THUAI8::GameMap> Protobuf2THUAI8GameMap(const protobuf::MessageOfGameMap& GameMapMsg)
@@ -371,25 +402,25 @@ namespace THUAI8Proto
     };
 
     inline std::map<THUAI8::PlayerTeam, protobuf::PlayerTeam> playerTeamDict{
-        {THUAI8::PlayerTeam::NullTeam, protobuf::PlayerTeam::NULL_PLAYER_TEAM},
+        {THUAI8::PlayerTeam::NullTeam, protobuf::PlayerTeam::NULL_TEAM},
         {THUAI8::PlayerTeam::BuddhistsTeam, protobuf::PlayerTeam::BUDDHISTS_TEAM},
         {THUAI8::PlayerTeam::MonstersTeam, protobuf::PlayerTeam::MONSTERS_TEAM},
     };
 
     inline std::map<THUAI8::CharacterType, protobuf::CharacterType> characterTypeDict{
         {THUAI8::CharacterType::NullCharacterType, protobuf::CharacterType::NULL_CHARACTER_TYPE},
-        {THUAI8::CharacterType::Camp1Character1, protobuf::CharacterType::CAMP1_CHARACTER1},
-        {THUAI8::CharacterType::Camp1Character2, protobuf::CharacterType::CAMP1_CHARACTER2},
-        {THUAI8::CharacterType::Camp1Character3, protobuf::CharacterType::CAMP1_CHARACTER3},
-        {THUAI8::CharacterType::Camp1Character4, protobuf::CharacterType::CAMP1_CHARACTER4},
-        {THUAI8::CharacterType::Camp1Character5, protobuf::CharacterType::CAMP1_CHARACTER5},
-        {THUAI8::CharacterType::Camp1Character6, protobuf::CharacterType::CAMP1_CHARACTER6},
-        {THUAI8::CharacterType::Camp2Character1, protobuf::CharacterType::CAMP2_CHARACTER1},
-        {THUAI8::CharacterType::Camp2Character2, protobuf::CharacterType::CAMP2_CHARACTER2},
-        {THUAI8::CharacterType::Camp2Character3, protobuf::CharacterType::CAMP2_CHARACTER3},
-        {THUAI8::CharacterType::Camp2Character4, protobuf::CharacterType::CAMP2_CHARACTER4},
-        {THUAI8::CharacterType::Camp2Character5, protobuf::CharacterType::CAMP2_CHARACTER5},
-        {THUAI8::CharacterType::Camp2Character6, protobuf::CharacterType::CAMP2_CHARACTER6},
+        {THUAI8::CharacterType::TangSeng, protobuf::CharacterType::TangSeng},
+        {THUAI8::CharacterType::SunWukong, protobuf::CharacterType::SunWukong},
+        {THUAI8::CharacterType::ZhuBajie, protobuf::CharacterType::ZhuBajie},
+        {THUAI8::CharacterType::ShaWujing, protobuf::CharacterType::ShaWujing},
+        {THUAI8::CharacterType::BaiLongma, protobuf::CharacterType::BaiLongma},
+        {THUAI8::CharacterType::Monkid, protobuf::CharacterType::Monkid},
+        {THUAI8::CharacterType::JiuLing, protobuf::CharacterType::JiuLing},
+        {THUAI8::CharacterType::HongHaier, protobuf::CharacterType::HongHaier},
+        {THUAI8::CharacterType::NiuMowang, protobuf::CharacterType::NiuMowang},
+        {THUAI8::CharacterType::TieShan, protobuf::CharacterType::TieShan},
+        {THUAI8::CharacterType::ZhiZhujing, protobuf::CharacterType::ZhiZhujing},
+        {THUAI8::CharacterType::Pawn, protobuf::CharacterType::Pawn},
     };
 
     inline std::map<THUAI8::EquipmentType, protobuf::EquipmentType> equipmentTypeDict{
@@ -406,7 +437,7 @@ namespace THUAI8Proto
         {THUAI8::EquipmentType::BerserkPotion, protobuf::EquipmentType::BERSERK_POTION},
     };
 
-    inline std::mao<THUAI8::CharacterState, protobuf::CharacterState> characterStateDict{
+    inline std::map<THUAI8::CharacterState, protobuf::CharacterState> characterStateDict{
         {THUAI8::CharacterState::NullCharacterState, protobuf::CharacterState::NULL_CHARACTER_STATE},
         {THUAI8::CharacterState::Idle, protobuf::CharacterState::IDLE},
         {THUAI8::CharacterState::Harvesting, protobuf::CharacterState::HARVESTING},
@@ -421,6 +452,7 @@ namespace THUAI8Proto
         {THUAI8::CharacterState::Healing, protobuf::CharacterState::HEALING},
         {THUAI8::CharacterState::Berserk, protobuf::CharacterState::BERSERK},
         {THUAI8::CharacterState::Burned, protobuf::CharacterState::BURNED},
+        {THUAI8::CharacterState::Deceased, protobuf::CharacterState::DECEASED},
     };
 
     inline std::map<THUAI8::EconomyResourceType, protobuf::EconomyResourceType> economyResourceTypeDict{
@@ -431,19 +463,19 @@ namespace THUAI8Proto
     };
 
     inline std::map<THUAI8::AdditionResourceType, protobuf::AdditionResourceType> additionResourceTypeDict{
-        {THUAI8::AdditionResourceType::NullAdditionResourceType, protobuf::AdditionResourceType::NULL_ADDITION_RESOURCE_TYPE},
-        {THUAI8::AdditionResourceType::SmallAdditionResource1, protobuf::AdditionResourceType::SMALL_ADDITION_RESOURCE1},
-        {THUAI8::AdditionResourceType::MediumAdditionResource1, protobuf::AdditionResourceType::MEDIUM_ADDITION_RESOURCE1},
-        {THUAI8::AdditionResourceType::LargeAdditionResource1, protobuf::AdditionResourceType::LARGE_ADDITION_RESOURCE1},
-        {THUAI8::AdditionResourceType::SmallAdditionResource2, protobuf::AdditionResourceType::SMALL_ADDITION_RESOURCE2},
-        {THUAI8::AdditionResourceType::MediumAdditionResource2, protobuf::AdditionResourceType::MEDIUM_ADDITION_RESOURCE2},
-        {THUAI8::AdditionResourceType::LargeAdditionResource2, protobuf::AdditionResourceType::LARGE_ADDITION_RESOURCE2},
-        {THUAI8::AdditionResourceType::AdditionResource3, protobuf::AdditionResourceType::ADDITION_RESOURCE3},
-        {THUAI8::AdditionResourceType::AdditionResource4, protobuf::AdditionResourceType::ADDITION_RESOURCE4},
+        {THUAI8::AdditionResourceType::NullAdditionReourceType, protobuf::AdditionResourceType::NULL_ADDITION_RESOURCE_TYPE},
+        {THUAI8::AdditionResourceType::LIFE_POOL1, protobuf::AdditionResourceType::LIFE_POOL1},
+        {THUAI8::AdditionResourceType::LIFE_POOL2, protobuf::AdditionResourceType::LIFE_POOL2},
+        {THUAI8::AdditionResourceType::LIFE_POOL3, protobuf::AdditionResourceType::LIFE_POOL3},
+        {THUAI8::AdditionResourceType::CRAZY_MAN1, protobuf::AdditionResourceType::CRAZY_MAN1},
+        {THUAI8::AdditionResourceType::CRAZY_MAN2, protobuf::AdditionResourceType::CRAZY_MAN2},
+        {THUAI8::AdditionResourceType::CRAZY_MAN3, protobuf::AdditionResourceType::CRAZY_MAN3},
+        {THUAI8::AdditionResourceType::QUICK_STEP, protobuf::AdditionResourceType::QUICK_STEP},
+        {THUAI8::AdditionResourceType::WIDE_VIEW, protobuf::AdditionResourceType::WIDE_VIEW},
     };
 
     inline std::map<THUAI8::EconomyResourceState, protobuf::EconomyResourceState> economyResourceStateDict{
-        {THUAI8::EconomyResourceState::NullEconomyResourceState, protobuf::EconomyResourceState::NULL_ECONOMY_RESOURCE_STATE},
+        {THUAI8::EconomyResourceState::NullEconomyResourceState, protobuf::EconomyResourceState::NULL_ECONOMY_RESOURCE_STSTE},
         {THUAI8::EconomyResourceState::Harvestable, protobuf::EconomyResourceState::HARVESTABLE},
         {THUAI8::EconomyResourceState::BeingHarvested, protobuf::EconomyResourceState::BEING_HARVESTED},
         {THUAI8::EconomyResourceState::Harvested, protobuf::EconomyResourceState::HARVESTED},
@@ -471,25 +503,24 @@ namespace THUAI8Proto
 
     inline std::map<THUAI8::NewsType, protobuf::NewsType> newsTypeDict{
         {THUAI8::NewsType::NullNewsType, protobuf::NewsType::NULL_NEWS_TYPE},
-        {THUAI8::NewsType::Text, protobuf::NewsType::TEXT},
-        {THUAI8::NewsType::Binary, protobuf::NewsType::BINARY},
+        {THUAI8::NewsType::TextMessage, protobuf::NewsType::TEXT},
+        {THUAI8::NewsType::BinaryMessage, protobuf::NewsType::BINARY},
     };
 
-    inline std::map<THUAI8::MessageOfObj, protobuf::MessageOfObj> messageOfObjDict{
-        {THUAI8::MessageOfObj::NullMessageOfObj, protobuf::MessageOfObj::NULL_MESSAGE_OF_OBJ},
-        {THUAI8::MessageOfObj::CharacterMessage, protobuf::MessageOfObj::CHARACTER_MESSAGE},
-        {THUAI8::MessageOfObj::BarracksMessage, protobuf::MessageOfObj::BARRACKS_MESSAGE},
-        {THUAI8::MessageOfObj::SpringMessage, protobuf::MessageOfObj::SPRING_MESSAGE},
-        {THUAI8::MessageOfObj::FarmMessage, protobuf::MessageOfObj::FARM_MESSAGE},
-        {THUAI8::MessageOfObj::TrapMessage, protobuf::MessageOfObj::TRAP_MESSAGE},
-        {THUAI8::MessageOfObj::EconomyResourceMessage, protobuf::MessageOfObj::ECONOMY_RESOURCE_MESSAGE},
-        {THUAI8::MessageOfObj::AdditionResourceMessage, protobuf::MessageOfObj::ADDITION_RESOURCE_MESSAGE},
-        {THUAI8::MessageOfObj::MapMessage, protobuf::MessageOfObj::MAP_MESSAGE},
-        {THUAI8::MessageOfObj::TeamMessage, protobuf::MessageOfObj::TEAM_MESSAGE},
-        {THUAI8::MessageOfObj::NewsMessage, protobuf::MessageOfObj::NEWS_MESSAGE},
+    inline std::map<THUAI8::MessageOfObj, protobuf::MessageOfObj::MessageOfObjCase> messageOfObjDict{
+        {THUAI8::MessageOfObj::CharacterMessage, protobuf::MessageOfObj::MessageOfObjCase::kCharacterMessage},
+        {THUAI8::MessageOfObj::BarracksMessage, protobuf::MessageOfObj::MessageOfObjCase::kBarracksMessage},
+        {THUAI8::MessageOfObj::SpringMessage, protobuf::MessageOfObj::MessageOfObjCase::kSpringMessage},
+        {THUAI8::MessageOfObj::FarmMessage, protobuf::MessageOfObj::MessageOfObjCase::kFarmMessage},
+        {THUAI8::MessageOfObj::TrapMessage, protobuf::MessageOfObj::MessageOfObjCase::kTrapMessage},
+        {THUAI8::MessageOfObj::EconomyResourceMessage, protobuf::MessageOfObj::MessageOfObjCase::kEconomyResourceMessage},
+        {THUAI8::MessageOfObj::AdditionResourceMessage, protobuf::MessageOfObj::MessageOfObjCase::kAdditionResourceMessage},
+        {THUAI8::MessageOfObj::MapMessage, protobuf::MessageOfObj::MessageOfObjCase::kMapMessage},
+        {THUAI8::MessageOfObj::TeamMessage, protobuf::MessageOfObj::MessageOfObjCase::kNewsMessage},
+        {THUAI8::MessageOfObj::NewsMessage, protobuf::MessageOfObj::MessageOfObjCase::kTeamMessage},
     };
 
-    inline protobuf::MoveMsg THUAI8MoveMsg2ProtobufMoveMsg(int64_t character, double angle, int64_t time, int64_t team)
+    inline protobuf::MoveMsg THUAI82ProtobufMoveMsg(int64_t team, int64_t character, int64_t time, double angle)
     {
         protobuf::MoveMsg moveMsg;
         moveMsg.set_character_id(character);
@@ -502,9 +533,31 @@ namespace THUAI8Proto
     inline protobuf::IDMsg THUAI82ProtobufIDMsg(int32_t playerID, int32_t teamID)
     {
         protobuf::IDMsg IDMsg;
-        IDMsg.set_player_id(playerID);
+        IDMsg.set_character_id(playerID);
         IDMsg.set_team_id(teamID);
         return IDMsg;
+    }
+
+    inline protobuf::SendMsg THUAI82ProtobufSendMsg(int32_t playerID, int32_t toPlayerID, int32_t teamID, std::string msg, bool binary)
+    {
+        protobuf::SendMsg sendMsg;
+        if (binary)
+            sendMsg.set_binary_message(std::move(msg));
+        else
+            sendMsg.set_text_message(std::move(msg));
+        sendMsg.set_to_character_id(toPlayerID);
+        sendMsg.set_character_id(playerID);
+        sendMsg.set_team_id(teamID);
+        return sendMsg;
+    }
+
+    inline protobuf::RecoverMsg THUAI82ProtobufRecoverMsg(int32_t playerID, int64_t recover, int32_t teamID)
+    {
+        protobuf::RecoverMsg RecoverMsg;
+        RecoverMsg.set_character_id(playerID);
+        RecoverMsg.set_recovered_hp(recover);
+        RecoverMsg.set_team_id(teamID);
+        return RecoverMsg;
     }
 
     inline protobuf::EquipMsg THUAI82ProtobufEquipMsg(int64_t character_id, int64_t team_id, THUAI8::EquipmentType equipment_type)
@@ -512,7 +565,7 @@ namespace THUAI8Proto
         protobuf::EquipMsg equipMsg;
         equipMsg.set_character_id(character_id);
         equipMsg.set_team_id(team_id);
-        equipMsg.set_equipment_type(equipment_type);
+        equipMsg.set_equipment_type(protobuf::EquipmentType(equipment_type));
         return equipMsg;
     }
 
@@ -520,7 +573,7 @@ namespace THUAI8Proto
     {
         protobuf::CreatCharacterMsg creatCharacterMsg;
         creatCharacterMsg.set_team_id(team_id);
-        creatCharacterMsg.set_character_type(character_type);
+        creatCharacterMsg.set_character_type(protobuf::CharacterType(character_type));
         creatCharacterMsg.set_birthpoint_index(birthpoint_index);
         return creatCharacterMsg;
     }
@@ -530,7 +583,7 @@ namespace THUAI8Proto
         protobuf::ConstructMsg constructMsg;
         constructMsg.set_character_id(character_id);
         constructMsg.set_team_id(team_id);
-        constructMsg.set_construction_type(construction_type);
+        constructMsg.set_construction_type(protobuf::ConstructionType(construction_type));
         return constructMsg;
     }
 
@@ -539,30 +592,25 @@ namespace THUAI8Proto
         protobuf::CharacterMsg characterMsg;
         characterMsg.set_character_id(character_id);
         characterMsg.set_team_id(team_id);
-        characterMsg.set_character_type(character_type);
+        characterMsg.set_character_type(protobuf::CharacterType(character_type));
         return characterMsg;
     }
 
-    inline protobuf::CastMsg THUAI82ProtobufCastMsg(int64_t character_id, int64_t skill_id, int64_t team_id, int32_t attack_range, int32_t x, int32_t y, double angle)
+    inline protobuf::CastMsg THUAI82ProtobufCastMsg(int64_t character_id, int64_t team_id, double attack_angle)
     {
         protobuf::CastMsg castMsg;
         castMsg.set_character_id(character_id);
-        castMsg.set_skill_id(skill_id);
+        // castMsg.set_skill_id(skill_id);
         castMsg.set_team_id(team_id);
-        castMsg.set_attack_range(attack_range);
-        castMsg.set_x(x);
-        castMsg.set_y(y);
-        castMsg.set_angle(angle);
+        castMsg.set_angle(attack_angle);
         return castMsg;
     }
 
-    inline protobuf::AttackMsg THUAI82ProtobufAttackMsg(int64_t character_id, int64_t team_id, int64_t attacked_character_id, int32_t attack_range)
+    inline protobuf::AttackMsg THUAI82ProtobufAttackMsg(int64_t character_id, int64_t team_id)
     {
         protobuf::AttackMsg attackMsg;
         attackMsg.set_character_id(character_id);
         attackMsg.set_team_id(team_id);
-        attackMsg.set_attacked_character_id(attacked_character_id);
-        attackMsg.set_attack_range(attack_range);
         return attackMsg;
     }
 }  // namespace THUAI8Proto
@@ -576,4 +624,3 @@ namespace Time
         return time_span.count();
     }
 }  // namespace Time
-#endif
