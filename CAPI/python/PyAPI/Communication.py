@@ -257,10 +257,10 @@ class Communication:
         def tMessage():
             try:
                 if playerID == 0:
-                    playerMsg = THUAI82Proto.THUAI82ProtobufPlayerMsg(
+                    playerMsg = THUAI82Proto.THUAI82ProtobufCharacterMsg(
                         playerID, teamID, characterType
                     )
-                    for msg in self.__THUAI8Stub.AddPlayer(playerMsg):
+                    for msg in self.__THUAI8Stub.AddCharacter(playerMsg):
                         with self.__cvMessage:
                             self.__haveNewMessage = True
                             self.__message2Client = msg
@@ -269,10 +269,10 @@ class Communication:
                                 self.__counter = 0
                                 self.__counterMove = 0
                 elif playerID >= 1 and playerID <= 8:
-                    playerMsg = THUAI82Proto.THUAI82ProtobufPlayerMsg(
+                    playerMsg = THUAI82Proto.THUAI82ProtobufCharacterMsg(
                         playerID, teamID, characterType
                     )
-                    for msg in self.__THUAI8Stub.AddPlayer(playerMsg):
+                    for msg in self.__THUAI8Stub.AddCharacter(playerMsg):
                         with self.__cvMessage:
                             self.__haveNewMessage = True
                             self.__message2Client = msg

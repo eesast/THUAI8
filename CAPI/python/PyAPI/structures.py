@@ -47,19 +47,18 @@ class PlayerType(Enum):
 
 class CharacterType(Enum):
     NullCharacterType = 0
-    Camp1Character1 = 1
-    Camp1Character2 = 2
-    Camp1Character3 = 3
-    Camp1Character4 = 4
-    Camp1Character5 = 5
-    Camp1Character6 = 6
-
-    Camp2Character1 = 7
-    Camp2Character2 = 8
-    Camp2Character3 = 9
-    Camp2Character4 = 10
-    Camp2Character5 = 11
-    Camp2Character6 = 12
+    TangSeng = 1
+    SunWukong = 2
+    ZhuBajie = 3
+    ShaWujing = 4
+    BaiLongma = 5
+    Monkid = 6
+    JiuLing = 7
+    HongHaier = 8
+    NiuMowang = 9
+    TieShan = 10
+    ZhiZhujing = 11
+    Pawn = 12
 
 
 class EquipmentType(Enum):
@@ -96,6 +95,7 @@ class CharacterState(Enum):
     Healing = 11
     Berserk = 12
     Burned = 13
+    Deceased = 14
 
 
 class CharacterBuffType(Enum):
@@ -118,19 +118,19 @@ class EconomyResourceType(Enum):
 
 
 class AdditionResourceType(Enum):
-    NullAdditionReourceType = 0
+    NullAdditionResourceType = 0
 
-    SmallAdditionResource1 = 1
-    MediumAdditionResource1 = 2
-    LargeAdditionResource1 = 3
+    LifePool1 = 1
+    LifePool2 = 2
+    LifePool3 = 3
 
-    SmallAdditionResource2 = 4
-    MediumAdditionResource2 = 5
-    LargeAdditionResource2 = 6
+    CrazyMan1 = 4
+    CrazyMan2 = 5
+    CrazyMan3 = 6
 
-    AdditionResource3 = 7
+    QuickStep = 7
 
-    AdditionResource4 = 8
+    WideView = 8
 
 
 class EconomyResourceState(Enum):
@@ -295,6 +295,15 @@ class Team:
         self.teamID: int = 0
         self.score: int = 0
         self.energy: int = 0
+
+
+class Home:
+    def __init__(self):
+        self.x: int = 0
+        self.y: int = 0
+        self.hp: int = 0
+        self.teamID: int = 0
+        self.guid: int = 0
 
 
 class Trap:

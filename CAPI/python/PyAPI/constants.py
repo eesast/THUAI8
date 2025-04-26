@@ -13,18 +13,18 @@ class Constants:
     speed = 2500
 
 
-class Monk:
+class TangSeng:
     maxHp = 1000
 
 
-class MonkyKing:
+class SunWukong:
     maxHp = 200
     commonAttackPower = 30
     attackRange = 1
     cost = 5000
 
 
-class Pigsy:
+class ZhuBajie:
     maxHp = 300
     commonAttackPower = 20
     attackRange = 2
@@ -38,14 +38,14 @@ class ShaWujing:
     cost = 3000
 
 
-class Whitedragonhorse:
+class BaiLongma:
     maxHp = 150
     commonAttackPower = 10
     attackRange = 5
     cost = 4000
 
 
-class JiuTouYuanSheng:
+class JiuLing:
     maxHp = 1000
 
 
@@ -56,21 +56,21 @@ class HongHaier:
     cost = 5000
 
 
-class Gyuumao:
+class NiuMowang:
     maxHp = 300
     commonAttackPower = 20
     attackRange = 2
     cost = 4000
 
 
-class Princess_Iron_Fan:
+class TieShan:
     maxHp = 150
     commonAttackPower = 10
     attackRange = 5
     cost = 3000
 
 
-class Spider:
+class ZhiZhujing:
     maxHp = 150
     commonAttackPower = 10
     attackRange = 5
