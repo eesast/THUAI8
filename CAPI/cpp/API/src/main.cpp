@@ -41,13 +41,13 @@ static constexpr std::string_view welcomeString = R"welcome(
 int THUAI8Main(int argc, char** argv, CreateAIFunc AIBuilder)
 {
     int pID = 0;
-    int tID = 0;
+    int tID ;
     std::string sIP = "172.22.32.1";
     std::string sPort = "8888";
     bool file = false;
     bool print = false;
     bool warnOnly = false;
-    bool side_flag = false;
+    int side_flag = 0;
     extern const std::array<THUAI8::CharacterType, 6> BuddhistsCharacterTypeDict;
     extern const std::array<THUAI8::CharacterType, 6> MonstersCharacterTypeDict;
 
@@ -80,6 +80,11 @@ int THUAI8Main(int argc, char** argv, CreateAIFunc AIBuilder)
         TCLAP::SwitchArg output("o", "output", OutputDesc);
         cmd.add(output);
 
+        std::vector<int> valid_side_flag{0, 1};  // 0代表取经队伍 1代表妖怪队伍
+        TCLAP::ValuesConstraint<int> sideFlagConstraint(valid_side_flag);
+        TCLAP::ValueArg<int> sideFlag("s", "side_flag", "Side flag 0,1 valid only", true, -1, &sideFlagConstraint);
+        cmd.add(sideFlag);
+
         TCLAP::SwitchArg warning("w", "warning", "Set this flag to only print warning on the screen.\n"
                                                  "This flag will be ignored if the output flag is not set\n");
         cmd.add(warning);
@@ -90,7 +95,7 @@ int THUAI8Main(int argc, char** argv, CreateAIFunc AIBuilder)
         pID = playerID.getValue();
         sIP = serverIP.getValue();
         sPort = serverPort.getValue();
-
+        side_flag = sideFlag.getValue();
         file = debug.getValue();
         print = output.getValue();
         if (print)
@@ -111,9 +116,9 @@ int THUAI8Main(int argc, char** argv, CreateAIFunc AIBuilder)
         {
             playerType = THUAI8::PlayerType::Character;
             if (!side_flag)
-                CharacterType = BuddhistsCharacterTypeDict[pID - 1];
+                CharacterType = BuddhistsCharacterTypeDict[pID-1];
             else
-                CharacterType = MonstersCharacterTypeDict[pID - 1];
+                CharacterType = MonstersCharacterTypeDict[pID-1];
         }
 #ifdef _MSC_VER
         std::cout
