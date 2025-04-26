@@ -5,7 +5,7 @@
 #include <memory>
 #include "AI.h"
 #include "constants.h"
-    // 注意不要使用conio.h，Windows.h等非标准库
+// 注意不要使用conio.h，Windows.h等非标准库
 // 为假则play()期间确保游戏状态不更新，为真则只保证游戏状态在调用相关方法时不更新，大致一帧更新一次
 extern const bool asynchronous = false;
 
@@ -25,7 +25,7 @@ extern const std::array<THUAI8::CharacterType, 6> MonstersCharacterTypeDict = {
     THUAI8::CharacterType::NiuMowang,
     THUAI8::CharacterType::TieShan,
     THUAI8::CharacterType::ZhiZhujing,
-    THUAI8::CharacterType::Pawn
+    THUAI8::CharacterType::Pawn,
 };
 
 // 可以在AI.cpp内部声明变量与函数
