@@ -25,7 +25,7 @@ extern const std::array<THUAI8::CharacterType, 6> MonstersCharacterTypeDict = {
     THUAI8::CharacterType::NiuMowang,
     THUAI8::CharacterType::TieShan,
     THUAI8::CharacterType::ZhiZhujing,
-    THUAI8::CharacterType::Pawn
+    THUAI8::CharacterType::Pawn,
 };
 
 // 可以在AI.cpp内部声明变量与函数

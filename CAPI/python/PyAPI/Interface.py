@@ -208,7 +208,7 @@ class IAPI(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def GetCharacter(self) -> List[THUAI8.Character]:
+    def GetCharacters(self) -> List[THUAI8.Character]:
         """获取本角色信息
 
         :return: 本角色信息, 详见 `THUAI8.Character` 定义

@@ -220,9 +220,7 @@ std::future<bool> CharacterAPI::Move(int64_t teamID, int64_t characterID, int32_
 {
     // 参数顺序需要与接口声明一致：speed, time, angle
     return std::async(std::launch::async, [=]()
-                      {
-                          return logic.Move(teamID, characterID, moveTimeInMilliseconds, angle);  // 传递三个参数
-                      });
+                      { return logic.Move(teamID, characterID, moveTimeInMilliseconds, angle); });  // 传递三个参数
 }
 
 // 下方各方向移动需要补充speed参数
