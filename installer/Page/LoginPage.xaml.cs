@@ -1,0 +1,28 @@
+using installer.ViewModel;
+using installer.Model;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace installer.Page;
+
+public partial class LoginPage : ContentPage
+{
+    public LoginPage()
+    {
+        InitializeComponent();
+        if (Application.Current?.Handler?.MauiContext != null)
+        {
+            var services = Application.Current.Handler.MauiContext.Services;
+            var downloader = services.GetService<Downloader>();
+            if (downloader != null)
+            {
+                this.BindingContext = new LoginViewModel(downloader);
+            }
+            else
+            {
+                // 由于BaseViewModel是抽象类，我们使用一个空的ViewModel
+                this.BindingContext = null;
+                DisplayAlert("错误", "无法初始化登录服务", "确定");
+            }
+        }
+    }
+}

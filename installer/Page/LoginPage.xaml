@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="installer.Page.LoginPage"
+             Title="Login"
+             BackgroundColor="#f5f5f5">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="CardStyle" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="Margin" Value="0,10" />
+                <Setter Property="Padding" Value="20" />
+                <Setter Property="HasShadow" Value="True" />
+                <Setter Property="BorderColor" Value="Transparent" />
+            </Style>
+            
+            <Style x:Key="PrimaryButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#3498db" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="Padding" Value="10" />
+                <Setter Property="MinimumHeightRequest" Value="45" />
+            </Style>
+            
+            <Style x:Key="OutlineButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="TextColor" Value="#3498db" />
+                <Setter Property="BorderColor" Value="#3498db" />
+                <Setter Property="BorderWidth" Value="1" />
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="Padding" Value="10" />
+                <Setter Property="MinimumHeightRequest" Value="45" />
+            </Style>
+            
+            <Style x:Key="HeaderLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Margin" Value="0,0,0,10" />
+                <Setter Property="TextColor" Value="#2c3e50" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ScrollView Padding="20">
+        <VerticalStackLayout Spacing="15" MaximumWidthRequest="800" HorizontalOptions="Center">
+            
+            <!-- 顶部标题 -->
+            <Label Text="THUAI8 账号登录" 
+                   Style="{StaticResource HeaderLabel}" 
+                   FontSize="24" 
+                   HorizontalOptions="Center"
+                   Margin="0,10,0,20"/>
+            
+            <!-- 登录说明区域 -->
+            <Frame Style="{StaticResource CardStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="登录说明" Style="{StaticResource HeaderLabel}"/>
+                    
+                    <Label Text="登录功能尚在开发中，敬请期待！目前您可以使用其他功能，无需登录。"
+                           TextColor="#34495e"
+                           LineBreakMode="WordWrap"
+                           FontSize="16"/>
+                </VerticalStackLayout>
+            </Frame>
+            
+            <!-- 登录表单区域 - 暂时禁用 -->
+            <Frame Style="{StaticResource CardStyle}" IsEnabled="False" Opacity="0.7">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="账号信息" Style="{StaticResource HeaderLabel}"/>
+                    
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="用户名" TextColor="#34495e"/>
+                        <Entry Placeholder="输入用户名"
+                               Text="{Binding Username}"
+                               FontSize="16"
+                               IsEnabled="False"/>
+                    </VerticalStackLayout>
+                    
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="密码" TextColor="#34495e"/>
+                        <Entry Placeholder="输入密码"
+                               Text="{Binding Password}"
+                               IsPassword="True"
+                               FontSize="16"
+                               IsEnabled="False"/>
+                    </VerticalStackLayout>
+                    
+                    <HorizontalStackLayout Spacing="10" Margin="0,10,0,0">
+                        <CheckBox IsChecked="{Binding Remember}"
+                                  IsEnabled="False"
+                                  Color="#3498db"/>
+                        <Label Text="记住我"
+                               VerticalOptions="Center"
+                               TextColor="#34495e"/>
+                    </HorizontalStackLayout>
+                    
+                    <Button Text="登录"
+                            Style="{StaticResource PrimaryButton}"
+                            Command="{Binding LoginBtnClickedCommand}"
+                            IsEnabled="False"/>
+                    
+                    <Button Text="注册账号"
+                            Style="{StaticResource OutlineButton}"
+                            IsEnabled="False"/>
+                </VerticalStackLayout>
+            </Frame>
+            
+            <!-- 底部信息 -->
+            <Label Text="THUAI8 © 2025 EESAST"
+                  HorizontalOptions="Center"
+                  TextColor="#7f8c8d"
+                  Margin="0,20,0,10"
+                  FontSize="12"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

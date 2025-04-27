@@ -1,0 +1,29 @@
+<!--  App.axaml  -->
+<Application
+    x:Class="debug_interface.App"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="using:debug_interface.Converters"
+    xmlns:local="using:debug_interface"
+    xmlns:views="using:debug_interface.Views"
+    RequestedThemeVariant="Light">
+    <!--  "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options.  -->
+
+    <Application.DataTemplates>
+        <local:ViewLocator />
+    </Application.DataTemplates>
+
+    <Application.Styles>
+        <FluentTheme />
+    </Application.Styles>
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!--  如果有其他资源字典，放在这里  -->
+            </ResourceDictionary.MergedDictionaries>
+            <!--  *** 添加转换器资源 ***  -->
+            <converters:TeamIdToColorConverter x:Key="TeamIdToColorConverter" />
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

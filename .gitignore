@@ -1,0 +1,5 @@
+# .vs, .vscode must be ignored
+.vs/
+.vscode/
+.idea/
+logs/

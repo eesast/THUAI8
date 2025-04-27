@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="installer.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:page="clr-namespace:installer.Page"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.NavBarIsVisible="True"
+    Shell.TabBarIsVisible="True"
+    Shell.NavBarHasShadow="True"
+    Title="THUAI8 安装器">
+
+    <TabBar>
+        <ShellContent
+            Title="安装"
+            Icon="install_icon.png"
+            ContentTemplate="{DataTemplate page:InstallPage}"
+            Route="InstallPage" />
+
+        <ShellContent
+            Title="调试"
+            Icon="debug_icon.png"
+            ContentTemplate="{DataTemplate page:DebugPage}"
+            Route="DebugPage" />
+
+        <ShellContent
+            Title="回放"
+            Icon="playback_icon.png"
+            ContentTemplate="{DataTemplate page:PlaybackPage}"
+            Route="PlaybackPage" />
+
+        <ShellContent
+            Title="登录"
+            Icon="login_icon.png"
+            ContentTemplate="{DataTemplate page:LoginPage}"
+            Route="LoginPage" />
+
+        <ShellContent
+            Title="帮助"
+            Icon="help_icon.png"
+            ContentTemplate="{DataTemplate page:HelpPage}"
+            Route="HelpPage" />
+    </TabBar>
+
+    <Shell.FlyoutFooter>
+        <StackLayout Padding="20">
+            <Label Text="THUAI8 © 2025 EESAST" 
+                   HorizontalOptions="Center"
+                   FontSize="12" />
+        </StackLayout>
+    </Shell.FlyoutFooter>
+
+    <!-- 注册开发者页面的路由，但不在TabBar中显示 -->
+    <ShellContent
+        Title="开发者模式"
+        ContentTemplate="{DataTemplate page:DeveloperPage}"
+        Route="DeveloperPage" />
+</Shell>

@@ -1,0 +1,69 @@
+name: deploy
+on:
+  push:
+    branches: [main]
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+    - name: Setup dotnet-script
+      run: dotnet tool install --global dotnet-script
+    - name: Pre-Process
+      run: dotnet script .github/preProcess/AvaloniaEnvConfig.csx
+    - name: Install Workloads
+      run: dotnet workload install maui-windows
+    - name: Create Folders need
+      run: |
+        mkdir D:\a\installer
+        mkdir D:\a\publish
+    - name: Copy THUAI8
+      run: Copy-Item -recurse D:\a\THUAI8\THUAI8\ D:\a\mirror\
+    - name: Remove directories not needed
+      run: |
+        Remove-Item -recurse -force D:\a\mirror\.git
+        Remove-Item -recurse D:\a\mirror\.github
+        Remove-Item -recurse D:\a\mirror\installer
+        Remove-Item -recurse D:\a\mirror\interface
+        Remove-Item -recurse D:\a\mirror\logic
+    - name: Build Server
+      run: |
+        mkdir D:\a\mirror\logic
+        dotnet build "./logic/Server/Server.csproj" -o "D:\a\mirror\logic\Server" -p:WindowsAppSDKSelfContained=true -c Release
+    - name: Build installer
+      run: dotnet publish "./installer/installer.csproj" -o "D:\a\publish" -f net8.0-windows10.0.19041.0 -c Release -p:RuntimeIdentifierOverride=win10-x64 -p:WindowsPackageType=None -p:WindowsAppSDKSelfContained=true
+    - name: Build debug_interface
+      run: dotnet publish interface/AvaloniaUI_debug_interface/debug_interface/debug_interface.csproj -r win-x64 -c Release -o "D:\a\mirror\logic\Client"
+    - name: Create tar.gz archive
+      run: |
+        cd D:\a
+        tar -czf THUAI8.tar.gz -C mirror .
+    - name: package tar.gz
+      uses: actions/upload-artifact@v4
+      with:
+        name: THUAI8.tar.gz
+        path: D:\a\THUAI8.tar.gz
+    - name: package installer
+      uses: actions/upload-artifact@v4
+      with:
+        name: installer
+        path: D:\a\publish\
+      env:
+        INSTALLER_COS_SECRET_ID: ${{ secrets.INSTALLER_COS_SECRET_ID }}
+        INSTALLER_COS_SECRET_KEY: ${{ secrets.INSTALLER_COS_SECRET_KEY }}
+    - name: Deploy to bucket
+      run: dotnet run --project "./dependency/deploy/deploy.csproj" "check"
+      env:
+        INSTALLER_COS_SECRET_ID: ${{ secrets.INSTALLER_COS_SECRET_ID }}
+        INSTALLER_COS_SECRET_KEY: ${{ secrets.INSTALLER_COS_SECRET_KEY }}
+    - name: Get installer package(No Key contained for safety)
+      run: |
+        dotnet publish "./installer/installer.csproj" -o "D:\a\publish" -f net8.0-windows10.0.19041.0 -c Release -p:RuntimeIdentifierOverride=win10-x64 -p:WindowsPackageType=None -p:WindowsAppSDKSelfContained=true
+        dotnet run --project "./dependency/deploy/deploy.csproj" "upload"
+      env:
+        INSTALLER_COS_SECRET_ID: ${{ secrets.INSTALLER_COS_SECRET_ID }}
+        INSTALLER_COS_SECRET_KEY: ${{ secrets.INSTALLER_COS_SECRET_KEY }}

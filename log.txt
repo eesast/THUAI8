@@ -1,0 +1,1973 @@
+[2025/04/27 Sunday]
+--port 8888 --CharacterNum 1 
+Server begins to run: 8888
+[12:45:12.720][GameServer] Null TOKEN Environment!
+[12:45:12.820][GameServer] Server begins to listen!
+[12:45:19.357][GameServer] TRY TryConnection: Player 0 from Team 0
+[12:45:19.360][GameServer] TryConnection: True
+[12:45:19.377][GameServer] TRY Add Player: Player 0 from Team 0
+[12:45:19.377][GameServer] AddPlayer: Check Correct
+[12:45:19.379][GameServer] Player 0 from Team 0 joins
+[12:45:19.381][GameServer] PlayerCountNow: 1
+[12:45:19.381][GameServer] PlayerTotalNum: 4
+[12:45:20.156][GameServer] TRY TryConnection: Player 0 from Team 1
+[12:45:20.156][GameServer] TryConnection: True
+[12:45:20.161][GameServer] TRY Add Player: Player 0 from Team 1
+[12:45:20.162][GameServer] AddPlayer: Check Correct
+[12:45:20.163][GameServer] Player 0 from Team 1 joins
+[12:45:20.164][GameServer] PlayerCountNow: 2
+[12:45:20.164][GameServer] PlayerNum: 4
+[12:45:21.254][GameServer] TRY TryConnection: Player 1 from Team 0
+[12:45:21.254][GameServer] TryConnection: True
+[12:45:21.266][GameServer] TRY Add Player: Player 1 from Team 0
+[12:45:21.267][GameServer] AddPlayer: Check Correct
+[12:45:21.270][GameServer] Player 1 from Team 0 joins
+[12:45:21.272][GameServer] PlayerCountNow: 3
+[12:45:21.272][GameServer] PlayerTotalNum: 4
+[12:45:22.223][GameServer] TRY TryConnection: Player 1 from Team 1
+[12:45:22.223][GameServer] TryConnection: True
+[12:45:22.229][GameServer] TRY Add Player: Player 1 from Team 1
+[12:45:22.230][GameServer] AddPlayer: Check Correct
+[12:45:22.234][GameServer] Player 1 from Team 1 joins
+[12:45:22.236][GameServer] PlayerCountNow: 4
+[12:45:22.236][GameServer] PlayerNum: 4
+[12:45:22.237][GameServer] Game Start
+[12:45:22.237][GameServer] Game starts!
+[12:45:22.239][GameServer] Successfully Created StartLockFile!
+[12:45:22.245][Game] Try to activate 0 TangSeng at birthpoint 0
+[12:45:22.296][Game] Successfully activated 0 TangSeng at (4500, 47500)
+[12:45:22.296][Game] Try to activate 0 SunWukong at birthpoint 0
+[12:45:22.297][Game] Fail to activate 0 SunWukong, no character available
+[12:45:22.297][Game] Try to activate 0 ZhuBajie at birthpoint 0
+[12:45:22.297][Game] Fail to activate 0 ZhuBajie, no character available
+[12:45:22.298][Game] Try to activate 0 ShaWujing at birthpoint 0
+[12:45:22.298][Game] Fail to activate 0 ShaWujing, no character available
+[12:45:22.298][Game] Try to activate 0 BaiLongma at birthpoint 0
+[12:45:22.298][Game] Fail to activate 0 BaiLongma, no character available
+[12:45:22.299][Game] Try to activate 0 Monkid at birthpoint 0
+[12:45:22.299][Game] Fail to activate 0 Monkid, no character available
+[12:45:22.300][Game] Try to activate 1 JiuLing at birthpoint 0
+[12:45:22.301][Game] Successfully activated 1 JiuLing at (45500, 4500)
+[12:45:22.301][Game] Try to activate 1 HongHaier at birthpoint 0
+[12:45:22.301][Game] Fail to activate 1 HongHaier, no character available
+[12:45:22.301][Game] Try to activate 1 NiuMowang at birthpoint 0
+[12:45:22.302][Game] Fail to activate 1 NiuMowang, no character available
+[12:45:22.302][Game] Try to activate 1 TieShan at birthpoint 0
+[12:45:22.302][Game] Fail to activate 1 TieShan, no character available
+[12:45:22.303][Game] Try to activate 1 ZhiZhujing at birthpoint 0
+[12:45:22.303][Game] Fail to activate 1 ZhiZhujing, no character available
+[12:45:22.303][Game] Try to activate 1 Pawn at birthpoint 0
+[12:45:22.304][Game] Fail to activate 1 Pawn, no character available
+[12:45:22.347][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:22.347][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:22.347][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:22.348][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:22.350][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:22.350][Game] Try to move <Character 1 1> 10000 0
+[12:45:22.352][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:22.352][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:22.352][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:22.351][Game] Try to move <Character 0 1> 10000 0
+[12:45:22.351][Game] Try to move <Character 0 1> 1000 0
+[12:45:22.353][GameServer] END Move: True
+[12:45:22.351][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:22.350][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:22.352][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:22.351][Game] Try to move <Character 1 1> 1000 0
+[12:45:22.352][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:22.353][GameServer] END Move: True
+[12:45:22.353][ActionManager] Character is not commandable
+[12:45:22.353][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:22.353][ActionManager] Character is not commandable
+[12:45:22.353][Character] <Character 0 1> StartThread succeeded
+[12:45:22.353][Character] <Character 1 1> StartThread succeeded
+[12:45:22.375][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:22.375][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:22.389][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:22.389][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:22.492][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:22.492][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:22.492][GameServer] END Move: False
+[12:45:22.492][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:22.492][GameServer] END Move: False
+[12:45:22.492][ActionManager] Character is not commandable
+[12:45:22.492][ActionManager] Character is not commandable
+[12:45:22.493][ActionManager] Character is not commandable
+[12:45:22.493][ActionManager] Character is not commandable
+[12:45:22.556][ActionManager] Character is not commandable
+[12:45:22.493][GameEngine] <Character> position (45500, 4500), start moving in direction 0, with speed 2500
+[12:45:22.493][GameEngine] <Character> position (4500, 47500), start moving in direction 4.71238898038469, with speed 2500
+[12:45:22.556][GameServer] END Move: False
+[12:45:22.493][GameServer] END Produce
+[12:45:22.556][GameServer] END Move: False
+[12:45:22.493][GameServer] END Produce
+[12:45:22.494][GameServer] END Construct
+[12:45:22.494][GameServer] END Construct
+[12:45:22.500][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:22.500][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:22.502][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:22.502][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:22.504][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:22.504][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:22.506][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:22.506][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:22.506][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:22.556][GameServer] END Move: False
+[12:45:22.506][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:22.520][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:22.522][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:22.523][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:22.524][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:22.526][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:22.556][GameServer] END Move: False
+[12:45:22.527][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:22.528][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:22.557][GameServer] END Construct
+[12:45:22.556][GameServer] END Move: False
+[12:45:22.558][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:22.558][GameServer] END Construct
+[12:45:22.557][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:22.557][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:22.557][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:22.559][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:22.557][Game] Try to move <Character 0 1> 10000 0
+[12:45:22.557][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:22.557][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:22.557][Game] Try to move <Character 0 1> 1000 0
+[12:45:22.560][ActionManager] Character is not commandable
+[12:45:22.557][Game] Try to move <Character 1 1> 1000 0
+[12:45:22.561][ActionManager] Character is not commandable
+[12:45:22.561][GameServer] END Move: False
+[12:45:22.557][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:22.557][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:22.562][ActionManager] Character is not commandable
+[12:45:22.557][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:22.557][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:22.563][ActionManager] Character is not commandable
+[12:45:22.557][GameServer] END Produce
+[12:45:22.557][Game] Try to move <Character 1 1> 10000 0
+[12:45:22.564][ActionManager] Character is not commandable
+[12:45:22.564][GameServer] END Move: False
+[12:45:22.557][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:22.565][GameServer] END Construct
+[12:45:22.565][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:22.557][GameServer] END Construct
+[12:45:22.557][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:22.557][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:22.566][GameServer] END Produce
+[12:45:22.558][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:22.558][Game] Try to move <Character 1 1> 1000 0
+[12:45:22.567][ActionManager] Character is not commandable
+[12:45:22.567][GameServer] END Move: False
+[12:45:22.559][ActionManager] Character is not commandable
+[12:45:22.567][GameServer] END Move: False
+[12:45:22.560][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:22.557][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:22.560][GameServer] END Move: False
+[12:45:22.557][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:22.568][ActionManager] Character is not commandable
+[12:45:22.557][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:22.569][ActionManager] Character is not commandable
+[12:45:22.569][GameServer] END Move: False
+[12:45:22.562][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:22.562][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:22.562][GameServer] END Move: False
+[12:45:22.562][ActionManager] Character is not commandable
+[12:45:22.570][GameServer] END Move: False
+[12:45:22.563][GameServer] END Move: False
+[12:45:22.563][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:22.557][Game] Try to move <Character 0 1> 10000 0
+[12:45:22.557][Game] Try to move <Character 0 1> 1000 0
+[12:45:22.565][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:22.571][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:22.572][ActionManager] Character is not commandable
+[12:45:22.566][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:22.556][ActionManager] Character is not commandable
+[12:45:22.566][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:22.573][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:22.557][Game] Try to move <Character 1 1> 10000 0
+[12:45:22.567][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:22.574][Game] Try to move <Character 1 1> 1000 0
+[12:45:22.574][ActionManager] Character is not commandable
+[12:45:22.567][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:22.559][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:22.568][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:22.576][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:22.576][ActionManager] Character is not commandable
+[12:45:22.577][GameServer] END Move: False
+[12:45:22.557][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:22.569][GameServer] END Move: False
+[12:45:22.562][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:22.577][Game] Try to move <Character 0 1> 10000 0
+[12:45:22.578][ActionManager] Character is not commandable
+[12:45:22.578][GameServer] END Move: False
+[12:45:22.578][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:22.579][GameServer] END Produce
+[12:45:22.571][ActionManager] Character is not commandable
+[12:45:22.571][ActionManager] Character is not commandable
+[12:45:22.579][GameServer] END Move: False
+[12:45:22.566][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:22.572][GameServer] END Move: False
+[12:45:22.572][ActionManager] Character is not commandable
+[12:45:22.572][GameServer] END Move: False
+[12:45:22.567][ActionManager] Character is not commandable
+[12:45:22.573][ActionManager] Character is not commandable
+[12:45:22.573][ActionManager] Character is not commandable
+[12:45:22.559][ActionManager] Character is not commandable
+[12:45:22.581][GameServer] END Move: False
+[12:45:22.574][GameServer] END Move: False
+[12:45:22.575][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:22.575][ActionManager] Character is not commandable
+[12:45:22.568][ActionManager] Character is not commandable
+[12:45:22.568][GameServer] END Produce
+[12:45:22.577][ActionManager] Character is not commandable
+[12:45:22.583][GameServer] END Move: False
+[12:45:22.578][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:22.584][GameServer] END Produce
+[12:45:22.557][GameServer] END Produce
+[12:45:22.570][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:22.585][ActionManager] Character is not commandable
+[12:45:22.585][GameServer] END Move: False
+[12:45:22.580][Game] Try to move <Character 1 1> 10000 0
+[12:45:22.580][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:22.580][GameServer] END Move: False
+[12:45:22.581][GameServer] END Move: False
+[12:45:22.581][GameServer] END Move: False
+[12:45:22.581][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:22.587][GameServer] END Construct
+[12:45:22.582][ActionManager] Character is not commandable
+[12:45:22.588][GameServer] END Move: False
+[12:45:22.582][GameServer] END Move: False
+[12:45:22.569][ActionManager] Character is not commandable
+[12:45:22.569][Game] Try to move <Character 0 1> 1000 0
+[12:45:22.589][ActionManager] Character is not commandable
+[12:45:22.565][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:22.585][ActionManager] Character is not commandable
+[12:45:22.586][GameServer] END Construct
+[12:45:22.590][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:22.582][GameServer] END Move: False
+[12:45:22.589][GameServer] END Move: False
+[12:45:22.579][GameServer] END Move: False
+[12:45:22.589][GameServer] END Move: False
+[12:45:22.590][ActionManager] Character is not commandable
+[12:45:22.590][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:22.590][GameServer] END Move: False
+[12:45:22.581][GameServer] END Move: False
+[12:45:22.590][Game] Try to move <Character 0 1> 1000 0
+[12:45:22.592][GameServer] END Move: False
+[12:45:22.592][Game] Try to move <Character 0 1> 10000 0
+[12:45:22.593][ActionManager] Character is not commandable
+[12:45:22.593][ActionManager] Character is not commandable
+[12:45:22.593][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:22.594][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:22.594][GameServer] END Move: False
+[12:45:22.595][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:22.595][Game] Try to move <Character 1 1> 1000 0
+[12:45:22.595][ActionManager] Character is not commandable
+[12:45:22.595][GameServer] END Move: False
+[12:45:22.594][GameServer] END Move: False
+[12:45:22.595][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:22.594][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:22.595][ActionManager] Character is not commandable
+[12:45:22.595][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:22.596][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:22.596][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:22.596][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:22.598][ActionManager] Character is not commandable
+[12:45:22.598][GameServer] END Move: False
+[12:45:22.597][Game] Try to move <Character 1 1> 10000 0
+[12:45:22.597][GameServer] END Move: False
+[12:45:22.597][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:22.597][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:22.599][ActionManager] Character is not commandable
+[12:45:22.598][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:22.598][ActionManager] Character is not commandable
+[12:45:22.600][GameServer] END Move: False
+[12:45:22.599][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:22.600][ActionManager] Character is not commandable
+[12:45:22.599][GameServer] END Move: False
+[12:45:22.600][ActionManager] Character is not commandable
+[12:45:22.598][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:22.601][GameServer] END Move: False
+[12:45:22.601][GameServer] END Move: False
+[12:45:22.601][ActionManager] Character is not commandable
+[12:45:22.602][GameServer] END Move: False
+[12:45:22.609][GameEngine] Debug info: Object moving time exceed for once
+[12:45:22.609][GameEngine] Debug info: Object moving time exceed for once
+[12:45:22.610][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:22.610][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:22.610][GameServer] END Produce
+[12:45:22.611][GameServer] END Produce
+[12:45:22.611][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:22.612][GameServer] END Construct
+[12:45:22.612][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:22.612][GameServer] END Construct
+[12:45:22.641][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:22.641][Game] Try to move <Character 1 1> 10000 0
+[12:45:22.641][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:22.642][Game] Try to move <Character 0 1> 10000 0
+[12:45:22.642][ActionManager] Character is not commandable
+[12:45:22.642][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:22.642][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:22.642][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:22.642][GameServer] END Move: False
+[12:45:22.643][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:22.643][Game] Try to move <Character 1 1> 1000 0
+[12:45:22.644][ActionManager] Character is not commandable
+[12:45:22.644][GameServer] END Move: False
+[12:45:22.642][ActionManager] Character is not commandable
+[12:45:22.644][GameServer] END Move: False
+[12:45:22.644][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:22.645][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:22.643][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:22.644][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:22.646][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:22.644][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:22.645][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:22.643][Game] Try to move <Character 0 1> 1000 0
+[12:45:22.645][ActionManager] Character is not commandable
+[12:45:22.646][ActionManager] Character is not commandable
+[12:45:22.647][GameServer] END Move: False
+[12:45:22.646][ActionManager] Character is not commandable
+[12:45:22.648][GameServer] END Move: False
+[12:45:22.646][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:22.647][ActionManager] Character is not commandable
+[12:45:22.649][GameServer] END Move: False
+[12:45:22.644][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:22.649][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:22.649][ActionManager] Character is not commandable
+[12:45:22.647][GameServer] END Move: False
+[12:45:22.646][ActionManager] Character is not commandable
+[12:45:22.650][GameServer] END Move: False
+[12:45:22.650][GameServer] END Move: False
+[12:45:22.649][ActionManager] Character is not commandable
+[12:45:22.655][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:22.655][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:22.655][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:23.668][GameServer] END Move: False
+[12:45:22.656][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:22.683][GameEngine] Debug info: Object moving time exceed for once
+[12:45:22.683][GameEngine] Debug info: Object moving time exceed for once
+[12:45:22.688][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:23.668][GameServer] END Produce
+[12:45:22.688][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:22.689][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:22.690][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:22.690][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:22.690][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:22.691][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:22.691][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:22.691][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:22.692][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:22.701][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:22.702][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:22.703][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:22.704][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:22.733][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:22.734][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:22.734][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:22.734][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:23.668][Game] Try to move <Character 0 1> 10000 0
+[12:45:22.734][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:22.735][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:22.735][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:22.735][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:22.736][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:22.785][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:23.567][Character] <Character 0 1> ResetCharacterState succeeded 3
+[12:45:23.669][Game] Try to move <Character 0 1> 1000 0
+[12:45:23.669][GameServer] END Produce
+[12:45:23.668][Game] Try to move <Character 1 1> 10000 0
+[12:45:23.670][Character] <Character 0 1> StartThread succeeded
+[12:45:23.668][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:23.668][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:23.668][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:23.668][Game] Try to move <Character 1 1> 1000 0
+[12:45:23.668][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:23.668][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:23.668][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:23.668][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:23.819][ActionManager] Character is not commandable
+[12:45:23.668][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:23.669][GameServer] END Produce
+[12:45:23.669][GameServer] END Construct
+[12:45:23.669][Game] Try to move <Character 1 1> 10000 0
+[12:45:23.668][GameServer] END Construct
+[12:45:23.669][Game] Try to move <Character 0 1> 10000 0
+[12:45:23.819][ActionManager] Character is not commandable
+[12:45:23.669][Game] Try to move <Character 1 1> 1000 0
+[12:45:23.669][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:23.819][ActionManager] Character is not commandable
+[12:45:23.669][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:23.669][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:23.819][ActionManager] Character is not commandable
+[12:45:23.669][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:23.669][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:23.669][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:23.669][GameServer] END Produce
+[12:45:23.669][GameServer] END Construct
+[12:45:23.669][GameServer] END Construct
+[12:45:23.669][GameEngine] Debug info: Object moving time exceed for once
+[12:45:23.669][GameServer] END Move: True
+[12:45:23.668][Game] Try to move <Character 0 1> 1000 0
+[12:45:23.819][GameServer] END Move: False
+[12:45:23.819][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:23.819][ActionManager] Character is not commandable
+[12:45:23.819][ActionManager] Character is not commandable
+[12:45:23.819][GameEngine] <Character> position (4500, 47275), start moving in direction 0, with speed 2500
+[12:45:23.819][GameServer] END Construct
+[12:45:23.819][ActionManager] Character is not commandable
+[12:45:23.996][GameServer] END Produce
+[12:45:23.819][GameServer] END Produce
+[12:45:23.819][GameServer] END Move: False
+[12:45:23.996][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:23.819][ActionManager] Character is not commandable
+[12:45:23.819][ActionManager] Character is not commandable
+[12:45:23.819][GameServer] END Move: False
+[12:45:23.819][ActionManager] Character is not commandable
+[12:45:23.819][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:23.819][GameServer] END Move: False
+[12:45:23.819][ActionManager] Character is not commandable
+[12:45:23.819][ActionManager] Character is not commandable
+[12:45:23.819][ActionManager] Character is not commandable
+[12:45:23.819][ActionManager] Character is not commandable
+[12:45:23.819][ActionManager] Character is not commandable
+[12:45:23.819][ActionManager] Character is not commandable
+[12:45:23.819][ActionManager] Character is not commandable
+[12:45:23.996][GameServer] END Move: False
+[12:45:23.820][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:23.820][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:23.820][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:23.820][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:23.820][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:23.820][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:23.997][GameServer] END Move: False
+[12:45:23.820][ActionManager] Character is not commandable
+[12:45:23.820][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:23.820][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:23.819][ActionManager] Character is not commandable
+[12:45:23.820][GameEngine] Debug info: Object moving time exceed for once
+[12:45:23.997][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:23.996][GameServer] END Move: False
+[12:45:23.996][GameServer] END Move: False
+[12:45:23.996][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:23.996][GameServer] END Move: False
+[12:45:23.996][GameServer] END Move: False
+[12:45:23.996][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:23.996][GameServer] END Move: False
+[12:45:23.996][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:23.996][GameServer] END Construct
+[12:45:23.996][GameServer] END Move: False
+[12:45:23.996][GameServer] END Move: False
+[12:45:23.996][GameServer] END Move: False
+[12:45:23.996][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:23.996][GameServer] END Move: False
+[12:45:23.997][GameServer] END Move: False
+[12:45:23.997][GameServer] END Move: False
+[12:45:23.997][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:23.997][Game] Try to move <Character 0 1> 1000 0
+[12:45:23.997][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:23.997][Game] Try to move <Character 0 1> 10000 0
+[12:45:23.997][Game] Try to move <Character 1 1> 10000 0
+[12:45:23.997][Game] Try to move <Character 1 1> 1000 0
+[12:45:23.997][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:23.997][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:23.997][GameServer] END Move: False
+[12:45:23.997][GameServer] END Move: False
+[12:45:23.997][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:23.997][GameEngine] Debug info: Object moving time exceed for once
+[12:45:23.997][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:24.146][ActionManager] Character is not commandable
+[12:45:23.999][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:23.999][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:24.147][GameServer] END Construct
+[12:45:24.050][GameEngine] Debug info: Object moving time exceed for once
+[12:45:24.147][Game] Try to move <Character 0 1> 1000 0
+[12:45:24.146][ActionManager] Character is not commandable
+[12:45:24.146][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:24.146][GameServer] END Produce
+[12:45:24.146][GameServer] END Construct
+[12:45:24.146][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:24.317][ActionManager] Character is not commandable
+[12:45:24.146][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:24.317][GameServer] END Move: False
+[12:45:24.147][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:24.147][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:24.147][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:24.317][Game] Try to move <Character 1 1> 1000 0
+[12:45:24.147][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:24.147][ActionManager] Character is not commandable
+[12:45:24.147][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:24.147][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:24.147][Game] Try to move <Character 1 1> 10000 0
+[12:45:24.318][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:24.147][ActionManager] Character is not commandable
+[12:45:24.147][ActionManager] Character is not commandable
+[12:45:24.147][ActionManager] Character is not commandable
+[12:45:24.147][ActionManager] Character is not commandable
+[12:45:24.147][ActionManager] Character is not commandable
+[12:45:24.318][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:24.147][ActionManager] Character is not commandable
+[12:45:24.147][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:24.147][GameServer] END Produce
+[12:45:24.147][GameServer] END Move: False
+[12:45:24.147][Game] Try to move <Character 0 1> 10000 0
+[12:45:24.147][GameEngine] Debug info: Object moving time exceed for once
+[12:45:24.318][GameServer] END Produce
+[12:45:24.148][GameEngine] Debug info: Object moving time exceed for once
+[12:45:24.151][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:24.152][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:24.154][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:24.155][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:24.156][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:24.318][ActionManager] Character is not commandable
+[12:45:24.319][GameServer] END Move: False
+[12:45:24.317][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:24.317][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:24.318][ActionManager] Character is not commandable
+[12:45:24.318][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:24.318][GameServer] END Produce
+[12:45:24.318][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:24.318][GameServer] END Move: False
+[12:45:24.318][GameServer] END Construct
+[12:45:24.318][ActionManager] Character is not commandable
+[12:45:24.318][ActionManager] Character is not commandable
+[12:45:24.318][ActionManager] Character is not commandable
+[12:45:24.318][GameServer] END Move: False
+[12:45:24.491][ActionManager] Character is not commandable
+[12:45:24.318][GameServer] END Move: False
+[12:45:24.318][GameServer] END Move: False
+[12:45:24.318][GameServer] END Move: False
+[12:45:24.318][GameServer] END Move: False
+[12:45:24.318][GameServer] END Move: False
+[12:45:24.318][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:24.317][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:24.317][GameServer] END Move: False
+[12:45:24.318][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:24.318][Game] Try to move <Character 1 1> 10000 0
+[12:45:24.318][Game] Try to move <Character 1 1> 1000 0
+[12:45:24.318][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:24.318][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:24.319][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:24.319][GameEngine] Debug info: Object moving time exceed for once
+[12:45:24.319][GameServer] END Produce
+[12:45:24.319][GameEngine] Debug info: Object moving time exceed for once
+[12:45:24.319][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:24.333][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:24.333][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:24.333][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:24.491][GameServer] END Move: False
+[12:45:24.333][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:24.492][Game] Try to move <Character 0 1> 1000 0
+[12:45:24.491][ActionManager] Character is not commandable
+[12:45:24.491][ActionManager] Character is not commandable
+[12:45:24.491][GameServer] END Move: False
+[12:45:24.491][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:24.491][GameServer] END Move: False
+[12:45:24.491][GameServer] END Move: False
+[12:45:24.491][ActionManager] Character is not commandable
+[12:45:24.491][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:24.491][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:24.491][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:24.491][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:24.491][ActionManager] Character is not commandable
+[12:45:24.671][ActionManager] Character is not commandable
+[12:45:24.491][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:24.491][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:24.491][Game] Try to move <Character 0 1> 10000 0
+[12:45:24.491][ActionManager] Character is not commandable
+[12:45:24.491][ActionManager] Character is not commandable
+[12:45:24.672][GameServer] END Move: False
+[12:45:24.491][ActionManager] Character is not commandable
+[12:45:24.491][ActionManager] Character is not commandable
+[12:45:24.491][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:24.492][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:24.672][GameServer] END Move: False
+[12:45:24.492][GameServer] END Construct
+[12:45:24.492][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:24.492][GameEngine] Debug info: Object moving time exceed for once
+[12:45:24.492][GameEngine] Debug info: Object moving time exceed for once
+[12:45:24.492][GameServer] END Produce
+[12:45:24.491][GameServer] END Move: False
+[12:45:24.492][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:24.495][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:24.672][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:24.495][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:24.543][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:24.543][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:24.672][GameEngine] Debug info: Object moving time exceed for once
+[12:45:24.671][GameServer] END Move: False
+[12:45:24.671][GameServer] END Move: False
+[12:45:24.671][GameServer] END Construct
+[12:45:24.671][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:24.671][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:24.671][GameServer] END Move: False
+[12:45:24.672][GameServer] END Construct
+[12:45:24.672][Game] Try to move <Character 1 1> 1000 0
+[12:45:24.672][Game] Try to move <Character 1 1> 10000 0
+[12:45:24.672][Game] Try to move <Character 0 1> 10000 0
+[12:45:24.672][GameServer] END Move: False
+[12:45:24.672][Game] Try to move <Character 0 1> 1000 0
+[12:45:24.672][ActionManager] Character is not commandable
+[12:45:24.672][ActionManager] Character is not commandable
+[12:45:24.672][GameServer] END Move: False
+[12:45:24.672][GameServer] END Move: False
+[12:45:24.672][GameServer] END Move: False
+[12:45:24.672][ActionManager] Character is not commandable
+[12:45:24.672][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:24.672][ActionManager] Character is not commandable
+[12:45:24.672][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:24.672][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:24.672][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:24.672][ActionManager] Character is not commandable
+[12:45:24.672][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:24.672][ActionManager] Character is not commandable
+[12:45:24.672][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:24.672][GameServer] END Produce
+[12:45:24.672][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:24.673][GameEngine] Debug info: Object moving time exceed for once
+[12:45:24.683][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:24.683][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:24.683][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:24.842][Game] Try to move <Character 1 1> 10000 0
+[12:45:24.842][GameEngine] Debug info: Object moving time exceed for once
+[12:45:24.841][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:24.841][ActionManager] Character is not commandable
+[12:45:24.841][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:24.841][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:25.010][ActionManager] Character is not commandable
+[12:45:24.841][ActionManager] Character is not commandable
+[12:45:25.011][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:25.011][ActionManager] Character is not commandable
+[12:45:24.841][ActionManager] Character is not commandable
+[12:45:24.841][GameServer] END Move: False
+[12:45:24.841][ActionManager] Character is not commandable
+[12:45:24.842][GameServer] END Move: False
+[12:45:24.842][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:24.842][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:24.842][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:25.011][GameServer] END Move: False
+[12:45:24.842][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:24.842][GameServer] END Move: False
+[12:45:24.842][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:25.010][GameEngine] Debug info: Object moving time exceed for once
+[12:45:24.842][GameServer] END Move: False
+[12:45:24.842][Game] Try to move <Character 0 1> 1000 0
+[12:45:24.842][GameServer] END Produce
+[12:45:24.842][GameServer] END Move: False
+[12:45:24.842][ActionManager] Character is not commandable
+[12:45:25.012][ActionManager] Character is not commandable
+[12:45:24.842][Game] Try to move <Character 0 1> 10000 0
+[12:45:24.842][ActionManager] Character is not commandable
+[12:45:24.842][GameServer] END Move: False
+[12:45:24.842][ActionManager] Character is not commandable
+[12:45:24.842][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:24.841][GameServer] END Construct
+[12:45:24.842][GameServer] END Construct
+[12:45:24.842][Game] Try to move <Character 1 1> 1000 0
+[12:45:24.841][GameEngine] Debug info: Object moving time exceed for once
+[12:45:24.844][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:25.012][GameEngine] Debug info: Object moving time exceed for once
+[12:45:25.010][GameServer] END Move: False
+[12:45:25.011][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:25.011][GameServer] END Move: False
+[12:45:25.011][GameServer] END Move: False
+[12:45:25.010][ActionManager] Character is not commandable
+[12:45:25.011][GameServer] END Move: False
+[12:45:25.011][GameServer] END Move: False
+[12:45:25.011][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:25.011][GameServer] END Produce
+[12:45:25.011][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:25.011][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:25.012][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:25.012][ActionManager] Character is not commandable
+[12:45:25.012][GameServer] END Move: False
+[12:45:25.012][GameServer] END Move: False
+[12:45:25.012][GameServer] END Move: False
+[12:45:25.012][ActionManager] Character is not commandable
+[12:45:25.012][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:25.012][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:25.210][ActionManager] Character is not commandable
+[12:45:25.012][GameServer] END Move: False
+[12:45:25.012][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:25.012][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:25.012][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:25.012][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:25.012][ActionManager] Character is not commandable
+[12:45:25.012][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:25.012][GameServer] END Produce
+[12:45:25.012][GameEngine] Debug info: Object moving time exceed for once
+[12:45:25.012][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:25.022][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:25.022][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:25.211][GameServer] END Move: False
+[12:45:25.210][GameServer] END Move: False
+[12:45:25.210][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:25.210][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:25.210][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:25.210][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:25.210][ActionManager] Character is not commandable
+[12:45:25.210][GameServer] END Construct
+[12:45:25.210][ActionManager] Character is not commandable
+[12:45:25.210][ActionManager] Character is not commandable
+[12:45:25.210][GameServer] END Move: False
+[12:45:25.210][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:25.210][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:25.211][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:25.211][GameServer] END Move: False
+[12:45:25.211][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:25.211][GameServer] END Construct
+[12:45:25.211][Game] Try to move <Character 1 1> 10000 0
+[12:45:25.211][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:25.221][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:25.211][ActionManager] Character is not commandable
+[12:45:25.211][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:25.210][GameEngine] Debug info: Object moving time exceed for once
+[12:45:25.211][GameServer] END Move: False
+[12:45:25.211][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:25.211][Game] Try to move <Character 0 1> 1000 0
+[12:45:25.211][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:25.355][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:25.211][Game] Try to move <Character 0 1> 10000 0
+[12:45:25.211][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:25.211][GameEngine] Debug info: Object moving time exceed for once
+[12:45:25.211][Game] Try to move <Character 1 1> 1000 0
+[12:45:25.356][ActionManager] Character is not commandable
+[12:45:25.355][GameServer] END Produce
+[12:45:25.355][GameServer] END Construct
+[12:45:25.355][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:25.355][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:25.356][GameServer] END Move: False
+[12:45:25.356][GameServer] END Move: False
+[12:45:25.356][GameServer] END Move: False
+[12:45:25.356][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:25.356][Game] Try to move <Character 0 1> 1000 0
+[12:45:25.356][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:25.356][GameServer] END Produce
+[12:45:25.356][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:25.356][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:25.356][Game] Try to move <Character 0 1> 10000 0
+[12:45:25.356][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:25.356][ActionManager] Character is not commandable
+[12:45:25.356][ActionManager] Character is not commandable
+[12:45:25.356][Game] Try to move <Character 1 1> 10000 0
+[12:45:25.356][GameServer] END Move: False
+[12:45:25.356][ActionManager] Character is not commandable
+[12:45:25.356][ActionManager] Character is not commandable
+[12:45:25.356][ActionManager] Character is not commandable
+[12:45:25.355][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:25.356][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:25.356][ActionManager] Character is not commandable
+[12:45:25.356][GameEngine] Debug info: Object moving time exceed for once
+[12:45:25.356][ActionManager] Character is not commandable
+[12:45:25.356][GameServer] END Construct
+[12:45:25.356][ActionManager] Character is not commandable
+[12:45:25.356][GameEngine] Debug info: Object moving time exceed for once
+[12:45:25.514][GameServer] END Move: False
+[12:45:25.514][Game] Try to move <Character 1 1> 1000 0
+[12:45:25.514][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:25.514][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:25.514][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:25.514][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:25.514][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:25.514][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:25.514][ActionManager] Character is not commandable
+[12:45:25.514][ActionManager] Character is not commandable
+[12:45:25.515][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:25.515][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:25.518][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:25.515][GameServer] END Produce
+[12:45:25.515][GameServer] END Move: False
+[12:45:25.515][GameServer] END Move: False
+[12:45:25.515][ActionManager] Character is not commandable
+[12:45:25.515][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:25.515][GameServer] END Move: False
+[12:45:25.660][ActionManager] Character is not commandable
+[12:45:25.515][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:25.515][GameServer] END Move: False
+[12:45:25.515][GameServer] END Move: False
+[12:45:25.515][ActionManager] Character is not commandable
+[12:45:25.515][GameServer] END Construct
+[12:45:25.515][GameServer] END Move: False
+[12:45:25.515][GameServer] END Move: False
+[12:45:25.515][GameServer] END Move: False
+[12:45:25.515][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:25.515][GameEngine] Debug info: Object moving time exceed for once
+[12:45:25.515][GameEngine] Debug info: Object moving time exceed for once
+[12:45:25.515][ActionManager] Character is not commandable
+[12:45:25.518][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:25.518][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:25.518][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:25.661][GameEngine] Debug info: Object moving time exceed for once
+[12:45:25.660][ActionManager] Character is not commandable
+[12:45:25.660][GameServer] END Produce
+[12:45:25.660][GameServer] END Construct
+[12:45:25.660][ActionManager] Character is not commandable
+[12:45:25.661][GameServer] END Move: False
+[12:45:25.661][Game] Try to move <Character 0 1> 10000 0
+[12:45:25.661][GameServer] END Move: False
+[12:45:25.661][ActionManager] Character is not commandable
+[12:45:25.661][ActionManager] Character is not commandable
+[12:45:25.661][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:25.661][GameServer] END Move: False
+[12:45:25.661][GameServer] END Move: False
+[12:45:25.661][Game] Try to move <Character 0 1> 1000 0
+[12:45:25.661][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:25.661][GameServer] END Move: False
+[12:45:25.661][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:25.661][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:25.661][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:25.661][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:25.661][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:25.661][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:25.661][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:25.661][GameServer] END Move: False
+[12:45:25.661][Game] Try to move <Character 1 1> 1000 0
+[12:45:25.661][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:25.661][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:25.661][GameEngine] Debug info: Object moving time exceed for once
+[12:45:25.660][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:25.670][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:25.661][Game] Try to move <Character 1 1> 10000 0
+[12:45:25.830][GameServer] END Move: False
+[12:45:25.830][GameServer] END Move: False
+[12:45:25.831][GameEngine] Debug info: Object moving time exceed for once
+[12:45:25.831][ActionManager] Character is not commandable
+[12:45:25.831][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:25.831][GameServer] END Move: False
+[12:45:25.831][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:25.831][GameServer] END Move: False
+[12:45:25.831][ActionManager] Character is not commandable
+[12:45:25.831][ActionManager] Character is not commandable
+[12:45:25.831][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:25.831][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:25.831][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:25.831][GameServer] END Construct
+[12:45:25.831][GameServer] END Produce
+[12:45:25.831][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:25.831][Game] Try to move <Character 0 1> 10000 0
+[12:45:25.831][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:25.831][GameServer] END Produce
+[12:45:25.831][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:25.831][GameServer] END Construct
+[12:45:25.831][ActionManager] Character is not commandable
+[12:45:25.976][ActionManager] Character is not commandable
+[12:45:25.832][ActionManager] Character is not commandable
+[12:45:25.832][ActionManager] Character is not commandable
+[12:45:25.832][ActionManager] Character is not commandable
+[12:45:25.832][ActionManager] Character is not commandable
+[12:45:25.832][ActionManager] Character is not commandable
+[12:45:25.832][Game] Try to move <Character 1 1> 10000 0
+[12:45:25.832][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:25.832][GameEngine] Debug info: Object moving time exceed for once
+[12:45:25.834][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:25.976][GameServer] END Move: False
+[12:45:25.834][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:25.834][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:25.834][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:25.976][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:25.976][GameEngine] Debug info: Object moving time exceed for once
+[12:45:25.975][Game] Try to move <Character 1 1> 1000 0
+[12:45:26.160][ActionManager] Character is not commandable
+[12:45:25.975][GameServer] END Move: False
+[12:45:25.976][GameServer] END Move: False
+[12:45:25.976][GameEngine] Debug info: Object moving time exceed for once
+[12:45:25.976][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:25.976][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:26.160][ActionManager] Character is not commandable
+[12:45:25.976][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:25.976][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:25.976][ActionManager] Character is not commandable
+[12:45:25.976][ActionManager] Character is not commandable
+[12:45:25.976][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:25.976][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:26.160][ActionManager] Character is not commandable
+[12:45:26.161][Game] Try to move <Character 0 1> 1000 0
+[12:45:25.976][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:25.976][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:25.975][GameServer] END Move: False
+[12:45:25.976][GameServer] END Move: False
+[12:45:25.976][GameServer] END Move: False
+[12:45:25.976][GameServer] END Move: False
+[12:45:25.976][GameServer] END Move: False
+[12:45:26.161][ActionManager] Character is not commandable
+[12:45:25.976][GameServer] END Move: False
+[12:45:25.976][ActionManager] Character is not commandable
+[12:45:26.161][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:25.976][GameServer] END Produce
+[12:45:25.975][Game] Try to move <Character 0 1> 1000 0
+[12:45:25.976][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:25.976][GameServer] END Construct
+[12:45:26.161][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:25.976][Game] Try to move <Character 1 1> 10000 0
+[12:45:25.976][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:25.980][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:25.980][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:25.980][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:25.976][GameServer] END Move: False
+[12:45:26.161][ActionManager] Character is not commandable
+[12:45:26.161][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:26.160][GameEngine] Debug info: Object moving time exceed for once
+[12:45:26.160][ActionManager] Character is not commandable
+[12:45:26.160][GameServer] END Move: False
+[12:45:26.160][ActionManager] Character is not commandable
+[12:45:26.160][GameServer] END Move: False
+[12:45:26.330][GameServer] END Move: False
+[12:45:26.161][GameServer] END Move: False
+[12:45:26.160][ActionManager] Character is not commandable
+[12:45:26.161][Game] Try to move <Character 0 1> 10000 0
+[12:45:26.161][GameServer] END Move: False
+[12:45:26.160][GameServer] END Move: False
+[12:45:26.160][GameEngine] Debug info: Object moving time exceed for once
+[12:45:26.161][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:26.161][GameServer] END Produce
+[12:45:26.161][GameServer] END Move: False
+[12:45:26.161][GameServer] END Move: False
+[12:45:26.161][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:26.161][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:26.161][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:26.165][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:26.161][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:26.161][ActionManager] Character is not commandable
+[12:45:26.161][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:26.161][GameServer] END Produce
+[12:45:26.161][GameServer] END Construct
+[12:45:26.161][Game] Try to move <Character 1 1> 1000 0
+[12:45:26.330][GameServer] END Move: False
+[12:45:26.161][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:26.161][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:26.161][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:26.161][ActionManager] Character is not commandable
+[12:45:26.331][ActionManager] Character is not commandable
+[12:45:26.330][GameEngine] Debug info: Object moving time exceed for once
+[12:45:26.330][ActionManager] Character is not commandable
+[12:45:26.330][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:26.330][GameServer] END Move: False
+[12:45:26.330][ActionManager] Character is not commandable
+[12:45:26.330][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:26.330][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:26.330][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:26.330][ActionManager] Character is not commandable
+[12:45:26.330][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:26.330][ActionManager] Character is not commandable
+[12:45:26.331][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:26.331][GameServer] END Construct
+[12:45:26.331][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:26.331][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:26.331][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:26.331][Game] Try to move <Character 1 1> 10000 0
+[12:45:26.331][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:26.331][GameServer] END Produce
+[12:45:26.331][GameServer] END Move: False
+[12:45:26.331][GameEngine] Debug info: Object moving time exceed for once
+[12:45:26.331][ActionManager] Character is not commandable
+[12:45:26.467][GameServer] END Move: False
+[12:45:26.331][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:26.331][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:26.331][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:26.331][GameServer] END Construct
+[12:45:26.331][Game] Try to move <Character 1 1> 1000 0
+[12:45:26.331][GameServer] END Move: False
+[12:45:26.330][GameServer] END Move: False
+[12:45:26.339][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:26.468][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:26.467][Game] Try to move <Character 0 1> 10000 0
+[12:45:26.467][GameServer] END Move: False
+[12:45:26.467][GameEngine] Debug info: Object moving time exceed for once
+[12:45:26.467][Game] Try to move <Character 0 1> 1000 0
+[12:45:26.639][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:26.467][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:26.467][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:26.468][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:26.468][GameServer] END Move: False
+[12:45:26.467][GameServer] END Move: False
+[12:45:26.468][GameServer] END Produce
+[12:45:26.468][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:26.468][ActionManager] Character is not commandable
+[12:45:26.468][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:26.468][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:26.468][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:26.468][ActionManager] Character is not commandable
+[12:45:26.640][GameEngine] Debug info: Object moving time exceed for once
+[12:45:26.468][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:26.468][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:26.468][GameServer] END Move: False
+[12:45:26.468][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:26.467][GameServer] END Move: False
+[12:45:26.468][GameServer] END Produce
+[12:45:26.468][GameServer] END Construct
+[12:45:26.468][ActionManager] Character is not commandable
+[12:45:26.468][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:26.468][ActionManager] Character is not commandable
+[12:45:26.640][ActionManager] Character is not commandable
+[12:45:26.468][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:26.468][GameServer] END Construct
+[12:45:26.468][GameEngine] Debug info: Object moving time exceed for once
+[12:45:26.468][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:26.641][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:26.641][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:26.640][ActionManager] Character is not commandable
+[12:45:26.641][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:26.640][ActionManager] Character is not commandable
+[12:45:26.640][ActionManager] Character is not commandable
+[12:45:26.640][ActionManager] Character is not commandable
+[12:45:26.640][ActionManager] Character is not commandable
+[12:45:26.640][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:26.640][ActionManager] Character is not commandable
+[12:45:26.640][GameServer] END Move: False
+[12:45:26.640][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:26.640][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:26.640][Game] Try to move <Character 0 1> 10000 0
+[12:45:26.640][Game] Try to move <Character 0 1> 1000 0
+[12:45:26.640][GameServer] END Move: False
+[12:45:26.640][ActionManager] Character is not commandable
+[12:45:26.640][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:26.640][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:26.640][GameEngine] Debug info: Object moving time exceed for once
+[12:45:26.646][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:26.640][Game] Try to move <Character 1 1> 10000 0
+[12:45:26.641][GameServer] END Move: False
+[12:45:26.641][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:26.641][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:26.641][GameServer] END Move: False
+[12:45:26.640][ActionManager] Character is not commandable
+[12:45:26.641][Game] Try to move <Character 1 1> 1000 0
+[12:45:26.641][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:26.641][GameEngine] Debug info: Object moving time exceed for once
+[12:45:26.646][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:26.640][GameServer] END Move: False
+[12:45:26.646][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:26.791][GameServer] END Construct
+[12:45:26.791][ActionManager] Character is not commandable
+[12:45:26.791][GameServer] END Move: False
+[12:45:26.791][GameServer] END Construct
+[12:45:26.791][GameServer] END Move: False
+[12:45:26.791][GameServer] END Move: False
+[12:45:26.791][GameServer] END Move: False
+[12:45:26.791][GameServer] END Move: False
+[12:45:26.791][GameServer] END Move: False
+[12:45:26.791][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:26.791][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:26.791][GameServer] END Produce
+[12:45:26.791][ActionManager] Character is not commandable
+[12:45:26.791][ActionManager] Character is not commandable
+[12:45:26.791][GameServer] END Move: False
+[12:45:26.791][ActionManager] Character is not commandable
+[12:45:26.792][ActionManager] Character is not commandable
+[12:45:26.792][Game] Try to move <Character 1 1> 10000 0
+[12:45:26.792][ActionManager] Character is not commandable
+[12:45:26.945][GameServer] END Move: False
+[12:45:26.792][Game] Try to move <Character 0 1> 10000 0
+[12:45:26.792][GameServer] END Produce
+[12:45:26.792][GameServer] END Move: False
+[12:45:26.792][ActionManager] Character is not commandable
+[12:45:26.792][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:26.792][Game] Try to move <Character 0 1> 1000 0
+[12:45:26.792][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:26.792][GameEngine] Debug info: Object moving time exceed for once
+[12:45:26.792][Game] Try to move <Character 1 1> 1000 0
+[12:45:26.792][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:26.792][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:26.792][GameEngine] Debug info: Object moving time exceed for once
+[12:45:26.800][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:26.800][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:26.946][ActionManager] Character is not commandable
+[12:45:26.945][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:26.945][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:26.945][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:26.945][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:26.945][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:26.945][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:26.946][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:26.946][ActionManager] Character is not commandable
+[12:45:26.946][ActionManager] Character is not commandable
+[12:45:26.946][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:26.946][GameServer] END Move: False
+[12:45:26.946][GameServer] END Move: False
+[12:45:26.946][GameServer] END Move: False
+[12:45:27.137][GameServer] END Move: False
+[12:45:26.946][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:26.946][GameServer] END Move: False
+[12:45:27.139][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:26.946][GameServer] END Move: False
+[12:45:26.946][ActionManager] Character is not commandable
+[12:45:26.946][GameServer] END Move: False
+[12:45:27.139][GameServer] END Construct
+[12:45:26.946][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:26.946][ActionManager] Character is not commandable
+[12:45:26.946][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:26.947][ActionManager] Character is not commandable
+[12:45:26.947][ActionManager] Character is not commandable
+[12:45:26.947][GameServer] END Produce
+[12:45:26.947][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:26.947][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:26.947][GameEngine] Debug info: Object moving time exceed for once
+[12:45:27.139][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:26.947][GameEngine] Debug info: Object moving time exceed for once
+[12:45:26.948][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:27.139][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:26.949][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:26.955][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:26.955][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:26.955][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:27.138][Game] Try to move <Character 0 1> 10000 0
+[12:45:27.140][ActionManager] Character is not commandable
+[12:45:27.138][GameServer] END Construct
+[12:45:27.138][Game] Try to move <Character 1 1> 1000 0
+[12:45:27.138][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:27.138][GameServer] END Move: False
+[12:45:27.138][GameServer] END Move: False
+[12:45:27.138][Game] Try to move <Character 1 1> 10000 0
+[12:45:27.138][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:27.139][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:27.139][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:27.137][GameServer] END Produce
+[12:45:27.139][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:27.139][GameServer] END Move: False
+[12:45:27.139][ActionManager] Character is not commandable
+[12:45:27.374][GameServer] END Move: False
+[12:45:27.138][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:27.139][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:27.139][GameServer] END Move: False
+[12:45:27.139][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:27.139][ActionManager] Character is not commandable
+[12:45:27.139][GameServer] END Move: False
+[12:45:27.139][GameServer] END Move: False
+[12:45:27.139][ActionManager] Character is not commandable
+[12:45:27.139][ActionManager] Character is not commandable
+[12:45:27.139][GameServer] END Produce
+[12:45:27.139][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:27.139][GameEngine] Debug info: Object moving time exceed for once
+[12:45:27.139][Game] Try to move <Character 0 1> 1000 0
+[12:45:27.374][ActionManager] Character is not commandable
+[12:45:27.140][GameServer] END Produce
+[12:45:27.140][Game] Try to move <Character 0 1> 1000 0
+[12:45:27.140][GameEngine] Debug info: Object moving time exceed for once
+[12:45:27.140][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:27.140][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:27.138][GameServer] END Construct
+[12:45:27.375][GameServer] END Move: False
+[12:45:27.375][ActionManager] Character is not commandable
+[12:45:27.375][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:27.375][ActionManager] Character is not commandable
+[12:45:27.375][Game] Try to move <Character 1 1> 10000 0
+[12:45:27.375][Game] Try to move <Character 1 1> 1000 0
+[12:45:27.375][GameServer] END Move: False
+[12:45:27.375][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:27.375][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:27.375][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:27.375][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:27.375][GameServer] END Construct
+[12:45:27.375][ActionManager] Character is not commandable
+[12:45:27.375][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:27.375][Game] Try to move <Character 0 1> 10000 0
+[12:45:27.553][GameServer] END Move: False
+[12:45:27.375][GameServer] END Move: False
+[12:45:27.375][GameServer] END Move: False
+[12:45:27.375][GameServer] END Move: False
+[12:45:27.375][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:27.375][ActionManager] Character is not commandable
+[12:45:27.375][ActionManager] Character is not commandable
+[12:45:27.375][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:27.374][ActionManager] Character is not commandable
+[12:45:27.376][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:27.376][ActionManager] Character is not commandable
+[12:45:27.376][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:27.376][ActionManager] Character is not commandable
+[12:45:27.376][ActionManager] Character is not commandable
+[12:45:27.376][GameEngine] Debug info: Object moving time exceed for once
+[12:45:27.376][GameEngine] Debug info: Object moving time exceed for once
+[12:45:27.379][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:27.386][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:27.386][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:27.387][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:27.387][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:27.554][ActionManager] Character is not commandable
+[12:45:27.553][ActionManager] Character is not commandable
+[12:45:27.553][GameServer] END Move: False
+[12:45:27.553][ActionManager] Character is not commandable
+[12:45:27.553][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:27.740][GameServer] END Move: False
+[12:45:27.553][ActionManager] Character is not commandable
+[12:45:27.553][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:27.553][GameServer] END Produce
+[12:45:27.553][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:27.553][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:27.554][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:27.554][GameServer] END Move: False
+[12:45:27.554][GameServer] END Construct
+[12:45:27.554][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:27.554][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:27.554][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:27.554][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:27.554][GameServer] END Move: False
+[12:45:27.554][GameServer] END Move: False
+[12:45:27.554][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:27.554][GameServer] END Move: False
+[12:45:27.740][GameServer] END Produce
+[12:45:27.554][GameServer] END Move: False
+[12:45:27.554][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:27.554][GameServer] END Produce
+[12:45:27.554][GameServer] END Move: False
+[12:45:27.554][GameServer] END Move: False
+[12:45:27.741][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:27.554][Game] Try to move <Character 1 1> 1000 0
+[12:45:27.554][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:27.554][GameEngine] Debug info: Object moving time exceed for once
+[12:45:27.554][GameEngine] Debug info: Object moving time exceed for once
+[12:45:27.554][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:27.740][GameServer] END Move: False
+[12:45:27.554][Game] Try to move <Character 1 1> 10000 0
+[12:45:27.554][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:27.741][ActionManager] Character is not commandable
+[12:45:27.740][ActionManager] Character is not commandable
+[12:45:27.740][GameServer] END Move: False
+[12:45:27.740][ActionManager] Character is not commandable
+[12:45:27.740][ActionManager] Character is not commandable
+[12:45:27.740][GameServer] END Construct
+[12:45:27.740][Game] Try to move <Character 0 1> 1000 0
+[12:45:27.740][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:27.741][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:27.741][ActionManager] Character is not commandable
+[12:45:27.741][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:27.741][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:27.741][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:27.741][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:27.741][ActionManager] Character is not commandable
+[12:45:27.909][GameServer] END Move: False
+[12:45:27.741][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:27.741][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:27.747][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:27.741][ActionManager] Character is not commandable
+[12:45:27.910][Game] Try to move <Character 1 1> 10000 0
+[12:45:27.740][GameServer] END Move: False
+[12:45:27.741][Game] Try to move <Character 0 1> 10000 0
+[12:45:27.741][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:27.741][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:27.741][ActionManager] Character is not commandable
+[12:45:27.741][ActionManager] Character is not commandable
+[12:45:27.741][ActionManager] Character is not commandable
+[12:45:27.741][ActionManager] Character is not commandable
+[12:45:27.911][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:27.741][GameEngine] Debug info: Object moving time exceed for once
+[12:45:27.750][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:27.746][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:27.748][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:27.742][GameEngine] Debug info: Object moving time exceed for once
+[12:45:27.750][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:27.911][GameServer] END Move: False
+[12:45:27.910][GameServer] END Move: False
+[12:45:27.910][GameServer] END Move: False
+[12:45:27.910][ActionManager] Character is not commandable
+[12:45:27.910][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:27.910][ActionManager] Character is not commandable
+[12:45:27.910][GameServer] END Move: False
+[12:45:27.910][Game] Try to move <Character 0 1> 10000 0
+[12:45:27.910][ActionManager] Character is not commandable
+[12:45:27.910][GameServer] END Produce
+[12:45:27.910][GameServer] END Construct
+[12:45:27.910][GameServer] END Move: False
+[12:45:27.909][GameServer] END Move: False
+[12:45:27.911][GameServer] END Construct
+[12:45:27.911][GameServer] END Move: False
+[12:45:27.911][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:27.911][ActionManager] Character is not commandable
+[12:45:27.911][ActionManager] Character is not commandable
+[12:45:27.911][Game] Try to move <Character 1 1> 1000 0
+[12:45:27.911][GameServer] END Move: False
+[12:45:27.911][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:27.911][GameServer] END Move: False
+[12:45:27.911][GameServer] END Move: False
+[12:45:27.911][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:27.911][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:27.911][Game] Try to move <Character 0 1> 1000 0
+[12:45:27.911][GameServer] END Construct
+[12:45:27.911][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:27.911][GameEngine] Debug info: Object moving time exceed for once
+[12:45:27.911][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:27.911][GameEngine] Debug info: Object moving time exceed for once
+[12:45:27.917][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:27.917][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:27.917][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:27.917][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:28.065][GameServer] END Move: False
+[12:45:28.065][ActionManager] Character is not commandable
+[12:45:28.065][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:28.065][GameServer] END Move: False
+[12:45:28.065][ActionManager] Character is not commandable
+[12:45:28.065][GameServer] END Move: False
+[12:45:28.065][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:28.065][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:28.065][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:28.065][ActionManager] Character is not commandable
+[12:45:28.065][GameServer] END Move: False
+[12:45:28.065][GameServer] END Move: False
+[12:45:28.065][ActionManager] Character is not commandable
+[12:45:28.065][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:28.065][ActionManager] Character is not commandable
+[12:45:28.065][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:28.065][ActionManager] Character is not commandable
+[12:45:28.065][ActionManager] Character is not commandable
+[12:45:28.065][Game] Try to move <Character 1 1> 1000 0
+[12:45:28.065][ActionManager] Character is not commandable
+[12:45:28.066][ActionManager] Character is not commandable
+[12:45:28.066][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:28.066][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:28.066][GameServer] END Produce
+[12:45:28.066][GameEngine] Debug info: Object moving time exceed for once
+[12:45:28.066][GameEngine] Debug info: Object moving time exceed for once
+[12:45:28.066][GameServer] END Construct
+[12:45:28.068][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:28.219][GameServer] END Move: False
+[12:45:28.065][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:28.068][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:28.069][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:28.077][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:28.220][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:28.219][GameServer] END Move: False
+[12:45:28.219][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:28.219][GameServer] END Produce
+[12:45:28.219][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:28.219][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:28.219][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:28.219][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:28.219][GameServer] END Move: False
+[12:45:28.220][GameServer] END Move: False
+[12:45:28.220][Game] Try to move <Character 0 1> 1000 0
+[12:45:28.220][GameServer] END Move: False
+[12:45:28.226][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:28.220][GameServer] END Move: False
+[12:45:28.220][GameServer] END Move: False
+[12:45:28.220][ActionManager] Character is not commandable
+[12:45:28.220][GameServer] END Move: False
+[12:45:28.220][GameServer] END Move: False
+[12:45:28.220][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:28.220][ActionManager] Character is not commandable
+[12:45:28.370][ActionManager] Character is not commandable
+[12:45:28.220][ActionManager] Character is not commandable
+[12:45:28.220][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:28.220][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:28.220][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:28.219][Game] Try to move <Character 0 1> 10000 0
+[12:45:28.220][GameEngine] Debug info: Object moving time exceed for once
+[12:45:28.220][GameEngine] Debug info: Object moving time exceed for once
+[12:45:28.220][Game] Try to move <Character 1 1> 10000 0
+[12:45:28.220][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:28.220][GameServer] END Produce
+[12:45:28.220][GameServer] END Construct
+[12:45:28.226][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:28.226][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:28.220][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:28.371][GameServer] END Move: False
+[12:45:28.370][Game] Try to move <Character 0 1> 10000 0
+[12:45:28.370][Game] Try to move <Character 1 1> 10000 0
+[12:45:28.370][ActionManager] Character is not commandable
+[12:45:28.370][GameServer] END Produce
+[12:45:28.370][ActionManager] Character is not commandable
+[12:45:28.370][ActionManager] Character is not commandable
+[12:45:28.371][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:28.371][GameServer] END Construct
+[12:45:28.371][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:28.371][GameServer] END Move: False
+[12:45:28.526][ActionManager] Character is not commandable
+[12:45:28.371][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:28.371][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:28.371][Game] Try to move <Character 1 1> 1000 0
+[12:45:28.371][GameServer] END Move: False
+[12:45:28.371][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:28.526][Game] Try to move <Character 0 1> 1000 0
+[12:45:28.371][GameServer] END Move: False
+[12:45:28.371][GameServer] END Construct
+[12:45:28.371][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:28.371][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:28.371][ActionManager] Character is not commandable
+[12:45:28.371][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:28.372][ActionManager] Character is not commandable
+[12:45:28.372][ActionManager] Character is not commandable
+[12:45:28.372][GameEngine] Debug info: Object moving time exceed for once
+[12:45:28.372][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:28.372][GameServer] END Produce
+[12:45:28.526][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:28.372][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:28.372][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:28.372][ActionManager] Character is not commandable
+[12:45:28.372][GameEngine] Debug info: Object moving time exceed for once
+[12:45:28.527][GameServer] END Construct
+[12:45:28.375][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:28.375][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:28.527][GameServer] END Move: False
+[12:45:28.526][GameServer] END Move: False
+[12:45:28.527][GameEngine] Debug info: Object moving time exceed for once
+[12:45:28.526][GameServer] END Move: False
+[12:45:28.526][Game] Try to move <Character 1 1> 10000 0
+[12:45:28.526][GameServer] END Move: False
+[12:45:28.686][ActionManager] Character is not commandable
+[12:45:28.686][GameServer] END Move: False
+[12:45:28.526][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:28.526][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:28.526][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:28.526][ActionManager] Character is not commandable
+[12:45:28.526][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:28.526][ActionManager] Character is not commandable
+[12:45:28.526][ActionManager] Character is not commandable
+[12:45:28.526][ActionManager] Character is not commandable
+[12:45:28.526][GameServer] END Move: False
+[12:45:28.527][GameServer] END Produce
+[12:45:28.527][GameServer] END Move: False
+[12:45:28.527][GameServer] END Move: False
+[12:45:28.526][ActionManager] Character is not commandable
+[12:45:28.527][ActionManager] Character is not commandable
+[12:45:28.527][ActionManager] Character is not commandable
+[12:45:28.527][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:28.686][Game] Try to move <Character 1 1> 1000 0
+[12:45:28.527][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:28.527][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:28.527][Game] Try to move <Character 0 1> 10000 0
+[12:45:28.527][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:28.527][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:28.686][GameServer] END Move: False
+[12:45:28.527][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:28.527][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:28.527][GameEngine] Debug info: Object moving time exceed for once
+[12:45:28.526][GameServer] END Move: False
+[12:45:28.529][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:28.529][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:28.687][ActionManager] Character is not commandable
+[12:45:28.686][GameEngine] Debug info: Object moving time exceed for once
+[12:45:28.687][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:28.687][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:28.686][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:28.866][GameServer] END Move: False
+[12:45:28.686][ActionManager] Character is not commandable
+[12:45:28.686][ActionManager] Character is not commandable
+[12:45:28.686][Game] Try to move <Character 0 1> 1000 0
+[12:45:28.686][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:28.866][Game] Try to move <Character 0 1> 1000 0
+[12:45:28.686][GameServer] END Move: False
+[12:45:28.686][GameServer] END Move: False
+[12:45:28.866][ActionManager] Character is not commandable
+[12:45:28.686][GameServer] END Move: False
+[12:45:28.866][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:28.686][GameServer] END Move: False
+[12:45:28.686][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:28.686][GameServer] END Move: False
+[12:45:28.867][ActionManager] Character is not commandable
+[12:45:28.687][GameServer] END Move: False
+[12:45:28.687][ActionManager] Character is not commandable
+[12:45:28.687][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:28.687][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:28.687][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:28.687][ActionManager] Character is not commandable
+[12:45:28.687][ActionManager] Character is not commandable
+[12:45:28.867][GameServer] END Produce
+[12:45:28.687][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:28.867][GameServer] END Move: False
+[12:45:28.687][GameServer] END Produce
+[12:45:28.687][Game] Try to move <Character 0 1> 10000 0
+[12:45:28.687][GameServer] END Construct
+[12:45:28.687][GameEngine] Debug info: Object moving time exceed for once
+[12:45:28.687][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:28.687][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:28.687][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:28.688][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:28.867][ActionManager] Character is not commandable
+[12:45:28.867][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:28.866][GameServer] END Move: False
+[12:45:28.866][GameServer] END Move: False
+[12:45:28.866][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:28.866][ActionManager] Character is not commandable
+[12:45:28.866][GameServer] END Move: False
+[12:45:28.869][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:29.032][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:28.867][GameServer] END Move: False
+[12:45:28.867][GameServer] END Move: False
+[12:45:28.867][ActionManager] Character is not commandable
+[12:45:28.867][ActionManager] Character is not commandable
+[12:45:28.867][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:28.867][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:28.867][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:29.033][GameServer] END Move: False
+[12:45:28.867][ActionManager] Character is not commandable
+[12:45:29.032][GameServer] END Move: False
+[12:45:28.867][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:28.867][GameServer] END Move: False
+[12:45:29.033][GameServer] END Move: False
+[12:45:28.867][ActionManager] Character is not commandable
+[12:45:28.867][Game] Try to move <Character 1 1> 1000 0
+[12:45:28.867][GameServer] END Construct
+[12:45:28.867][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:28.867][GameServer] END Move: False
+[12:45:29.033][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:28.867][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:28.866][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:28.867][Game] Try to move <Character 1 1> 10000 0
+[12:45:28.867][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:28.867][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:28.867][GameEngine] Debug info: Object moving time exceed for once
+[12:45:29.033][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:28.867][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:28.867][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:28.866][GameEngine] Debug info: Object moving time exceed for once
+[12:45:29.034][GameServer] END Produce
+[12:45:29.033][Game] Try to move <Character 0 1> 1000 0
+[12:45:29.033][GameServer] END Move: False
+[12:45:29.033][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:29.033][GameServer] END Produce
+[12:45:29.032][ActionManager] Character is not commandable
+[12:45:29.033][Game] Try to move <Character 1 1> 1000 0
+[12:45:29.033][Game] Try to move <Character 1 1> 10000 0
+[12:45:29.033][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:29.033][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:29.033][GameServer] END Construct
+[12:45:29.033][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:29.033][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:29.033][GameServer] END Move: False
+[12:45:29.033][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:29.033][ActionManager] Character is not commandable
+[12:45:29.033][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:29.033][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:29.033][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:29.033][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:29.034][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:29.034][ActionManager] Character is not commandable
+[12:45:29.034][ActionManager] Character is not commandable
+[12:45:29.034][ActionManager] Character is not commandable
+[12:45:29.034][Game] Try to move <Character 0 1> 10000 0
+[12:45:29.203][ActionManager] Character is not commandable
+[12:45:29.034][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:29.033][ActionManager] Character is not commandable
+[12:45:29.034][GameServer] END Construct
+[12:45:29.034][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:29.034][GameEngine] Debug info: Object moving time exceed for once
+[12:45:29.034][GameEngine] Debug info: Object moving time exceed for once
+[12:45:29.204][ActionManager] Character is not commandable
+[12:45:29.204][GameServer] END Move: False
+[12:45:29.203][GameServer] END Move: False
+[12:45:29.203][ActionManager] Character is not commandable
+[12:45:29.203][ActionManager] Character is not commandable
+[12:45:29.203][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:29.203][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:29.203][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:29.203][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:29.203][GameServer] END Produce
+[12:45:29.203][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:29.203][Game] Try to move <Character 1 1> 10000 0
+[12:45:29.203][GameServer] END Move: False
+[12:45:29.204][GameServer] END Produce
+[12:45:29.204][Game] Try to move <Character 1 1> 1000 0
+[12:45:29.204][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:29.204][ActionManager] Character is not commandable
+[12:45:29.204][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:29.367][GameServer] END Move: False
+[12:45:29.204][ActionManager] Character is not commandable
+[12:45:29.204][GameServer] END Move: False
+[12:45:29.204][GameServer] END Move: False
+[12:45:29.204][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:29.204][GameServer] END Move: False
+[12:45:29.204][GameServer] END Move: False
+[12:45:29.204][ActionManager] Character is not commandable
+[12:45:29.204][GameServer] END Move: False
+[12:45:29.204][ActionManager] Character is not commandable
+[12:45:29.203][GameServer] END Construct
+[12:45:29.204][GameEngine] Debug info: Object moving time exceed for once
+[12:45:29.204][GameEngine] Debug info: Object moving time exceed for once
+[12:45:29.204][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:29.367][ActionManager] Character is not commandable
+[12:45:29.211][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:29.211][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:29.211][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:29.211][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:29.368][GameServer] END Move: False
+[12:45:29.367][ActionManager] Character is not commandable
+[12:45:29.367][ActionManager] Character is not commandable
+[12:45:29.367][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:29.367][GameServer] END Construct
+[12:45:29.367][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:29.367][ActionManager] Character is not commandable
+[12:45:29.367][ActionManager] Character is not commandable
+[12:45:29.367][ActionManager] Character is not commandable
+[12:45:29.367][GameServer] END Produce
+[12:45:29.367][GameServer] END Move: False
+[12:45:29.367][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:29.367][GameServer] END Move: False
+[12:45:29.367][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:29.367][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:29.367][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:29.368][GameServer] END Move: False
+[12:45:29.368][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:29.368][GameServer] END Move: False
+[12:45:29.368][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:29.368][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:29.368][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:29.368][Game] Try to move <Character 0 1> 1000 0
+[12:45:29.367][GameServer] END Move: False
+[12:45:29.562][GameServer] END Move: False
+[12:45:29.368][Game] Try to move <Character 0 1> 10000 0
+[12:45:29.368][GameEngine] Debug info: Object moving time exceed for once
+[12:45:29.368][GameEngine] Debug info: Object moving time exceed for once
+[12:45:29.368][GameServer] END Produce
+[12:45:29.368][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:29.368][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:29.372][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:29.563][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:29.562][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:29.562][GameServer] END Construct
+[12:45:29.563][ActionManager] Character is not commandable
+[12:45:29.563][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:29.563][GameServer] END Move: False
+[12:45:29.563][GameServer] END Move: False
+[12:45:29.563][GameServer] END Move: False
+[12:45:29.563][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:29.563][Game] Try to move <Character 0 1> 10000 0
+[12:45:29.737][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:29.563][ActionManager] Character is not commandable
+[12:45:29.563][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:29.563][Game] Try to move <Character 0 1> 1000 0
+[12:45:29.738][ActionManager] Character is not commandable
+[12:45:29.563][GameServer] END Construct
+[12:45:29.563][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:29.563][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:29.563][Game] Try to move <Character 1 1> 10000 0
+[12:45:29.563][Game] Try to move <Character 1 1> 1000 0
+[12:45:29.563][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:29.563][ActionManager] Character is not commandable
+[12:45:29.563][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:29.563][ActionManager] Character is not commandable
+[12:45:29.562][GameServer] END Move: False
+[12:45:29.563][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:29.563][ActionManager] Character is not commandable
+[12:45:29.563][ActionManager] Character is not commandable
+[12:45:29.563][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:29.563][GameEngine] Debug info: Object moving time exceed for once
+[12:45:29.563][GameEngine] Debug info: Object moving time exceed for once
+[12:45:29.564][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:29.566][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:29.566][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:29.738][ActionManager] Character is not commandable
+[12:45:29.737][GameServer] END Produce
+[12:45:29.737][ActionManager] Character is not commandable
+[12:45:29.737][ActionManager] Character is not commandable
+[12:45:29.737][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:29.737][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:29.738][GameServer] END Move: False
+[12:45:29.737][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:29.738][GameServer] END Construct
+[12:45:29.738][GameServer] END Move: False
+[12:45:29.889][GameServer] END Move: False
+[12:45:29.737][GameServer] END Move: False
+[12:45:29.890][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:29.738][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:29.738][Game] Try to move <Character 0 1> 10000 0
+[12:45:29.738][ActionManager] Character is not commandable
+[12:45:29.738][ActionManager] Character is not commandable
+[12:45:29.738][ActionManager] Character is not commandable
+[12:45:29.738][GameServer] END Move: False
+[12:45:29.738][GameServer] END Move: False
+[12:45:29.738][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:29.738][GameServer] END Produce
+[12:45:29.738][GameServer] END Move: False
+[12:45:29.738][ActionManager] Character is not commandable
+[12:45:29.738][GameServer] END Move: False
+[12:45:29.738][GameServer] END Construct
+[12:45:29.738][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:29.738][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:29.738][Game] Try to move <Character 1 1> 10000 0
+[12:45:29.738][Game] Try to move <Character 1 1> 1000 0
+[12:45:29.738][GameEngine] Debug info: Object moving time exceed for once
+[12:45:29.738][GameEngine] Debug info: Object moving time exceed for once
+[12:45:29.740][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:29.740][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:29.740][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:29.740][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:29.890][GameServer] END Produce
+[12:45:29.892][GameEngine] Debug info: Object moving time exceed for once
+[12:45:29.890][Game] Try to move <Character 0 1> 1000 0
+[12:45:29.890][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:29.890][ActionManager] Character is not commandable
+[12:45:29.890][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:29.890][GameServer] END Move: False
+[12:45:29.890][GameServer] END Move: False
+[12:45:29.890][ActionManager] Character is not commandable
+[12:45:29.890][ActionManager] Character is not commandable
+[12:45:29.891][GameServer] END Move: False
+[12:45:29.891][GameServer] END Move: False
+[12:45:29.891][GameServer] END Move: False
+[12:45:29.891][ActionManager] Character is not commandable
+[12:45:29.891][GameServer] END Move: False
+[12:45:29.891][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:29.891][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:29.891][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:29.891][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:29.891][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:29.891][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:29.891][ActionManager] Character is not commandable
+[12:45:29.891][ActionManager] Character is not commandable
+[12:45:29.891][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:29.891][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:29.891][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:29.891][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:29.891][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:29.891][GameServer] END Produce
+[12:45:29.891][GameEngine] Debug info: Object moving time exceed for once
+[12:45:29.899][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:30.049][ActionManager] Character is not commandable
+[12:45:30.049][ActionManager] Character is not commandable
+[12:45:30.049][GameServer] END Move: False
+[12:45:30.049][GameServer] END Construct
+[12:45:30.049][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:30.049][GameServer] END Move: False
+[12:45:30.049][GameServer] END Move: False
+[12:45:30.049][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:30.186][GameServer] END Move: False
+[12:45:30.049][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:30.049][GameEngine] Debug info: Object moving time exceed for once
+[12:45:30.049][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:30.049][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:30.049][GameServer] END Move: False
+[12:45:30.049][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:30.049][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:30.049][Game] Try to move <Character 1 1> 10000 0
+[12:45:30.049][ActionManager] Character is not commandable
+[12:45:30.049][ActionManager] Character is not commandable
+[12:45:30.049][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:30.187][GameEngine] Debug info: Object moving time exceed for once
+[12:45:30.049][Game] Try to move <Character 1 1> 1000 0
+[12:45:30.049][GameServer] END Move: False
+[12:45:30.049][GameServer] END Move: False
+[12:45:30.049][Game] Try to move <Character 0 1> 10000 0
+[12:45:30.049][GameServer] END Construct
+[12:45:30.049][ActionManager] Character is not commandable
+[12:45:30.049][ActionManager] Character is not commandable
+[12:45:30.049][ActionManager] Character is not commandable
+[12:45:30.186][GameServer] END Move: False
+[12:45:30.049][GameServer] END Produce
+[12:45:30.049][GameEngine] Debug info: Object moving time exceed for once
+[12:45:30.049][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:30.056][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:30.187][GameServer] END Move: False
+[12:45:30.056][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:30.056][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:30.056][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:30.187][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:30.188][GameEngine] Debug info: Object moving time exceed for once
+[12:45:30.186][GameServer] END Construct
+[12:45:30.186][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:30.187][Game] Try to move <Character 1 1> 10000 0
+[12:45:30.187][Game] Try to move <Character 1 1> 1000 0
+[12:45:30.187][Game] Try to move <Character 0 1> 1000 0
+[12:45:30.187][ActionManager] Character is not commandable
+[12:45:30.187][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:30.187][ActionManager] Character is not commandable
+[12:45:30.345][ActionManager] Character is not commandable
+[12:45:30.187][GameServer] END Move: False
+[12:45:30.345][GameServer] END Move: False
+[12:45:30.187][GameServer] END Move: False
+[12:45:30.187][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:30.187][ActionManager] Character is not commandable
+[12:45:30.187][GameEngine] Debug info: Object moving time exceed for once
+[12:45:30.187][ActionManager] Character is not commandable
+[12:45:30.187][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:30.187][ActionManager] Character is not commandable
+[12:45:30.187][GameServer] END Move: False
+[12:45:30.187][GameServer] END Move: False
+[12:45:30.187][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:30.187][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:30.187][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:30.187][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:30.187][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:30.187][GameServer] END Produce
+[12:45:30.186][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:30.188][Game] Try to move <Character 0 1> 10000 0
+[12:45:30.188][GameServer] END Construct
+[12:45:30.188][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:30.201][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:30.345][GameEngine] Debug info: Object moving time exceed for once
+[12:45:30.345][ActionManager] Character is not commandable
+[12:45:30.346][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:30.345][ActionManager] Character is not commandable
+[12:45:30.345][ActionManager] Character is not commandable
+[12:45:30.345][GameServer] END Move: False
+[12:45:30.345][ActionManager] Character is not commandable
+[12:45:30.345][GameServer] END Move: False
+[12:45:30.345][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:30.345][GameServer] END Move: False
+[12:45:30.345][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:30.520][GameServer] END Move: False
+[12:45:30.345][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:30.345][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:30.346][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:30.346][GameServer] END Move: False
+[12:45:30.346][GameServer] END Move: False
+[12:45:30.346][GameEngine] Debug info: Object moving time exceed for once
+[12:45:30.346][Game] Try to move <Character 0 1> 1000 0
+[12:45:30.350][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:30.346][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:30.346][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:30.346][ActionManager] Character is not commandable
+[12:45:30.346][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:30.346][ActionManager] Character is not commandable
+[12:45:30.346][ActionManager] Character is not commandable
+[12:45:30.346][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:30.346][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:30.346][GameServer] END Produce
+[12:45:30.346][Game] Try to move <Character 1 1> 10000 0
+[12:45:30.346][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:30.345][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:30.347][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:30.347][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:30.348][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:30.521][Game] Try to move <Character 0 1> 1000 0
+[12:45:30.348][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:30.349][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:30.350][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:30.346][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:30.522][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:30.351][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:30.351][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:30.352][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:30.352][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:30.522][ActionManager] Character is not commandable
+[12:45:30.521][GameServer] END Move: False
+[12:45:30.521][GameServer] END Move: False
+[12:45:30.521][GameServer] END Move: False
+[12:45:30.521][ActionManager] Character is not commandable
+[12:45:30.520][GameServer] END Construct
+[12:45:30.521][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:30.521][ActionManager] Character is not commandable
+[12:45:30.521][ActionManager] Character is not commandable
+[12:45:30.521][ActionManager] Character is not commandable
+[12:45:30.521][GameServer] END Produce
+[12:45:30.521][ActionManager] Character is not commandable
+[12:45:30.521][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:30.524][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:30.730][GameServer] END Move: False
+[12:45:30.521][ActionManager] Character is not commandable
+[12:45:30.521][GameServer] END Move: False
+[12:45:30.521][GameServer] END Move: False
+[12:45:30.521][GameServer] END Produce
+[12:45:30.521][Game] Try to move <Character 1 1> 1000 0
+[12:45:30.521][GameEngine] Debug info: Object moving time exceed for once
+[12:45:30.522][ActionManager] Character is not commandable
+[12:45:30.526][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:30.522][Game] Try to move <Character 0 1> 10000 0
+[12:45:30.522][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:30.522][ActionManager] Character is not commandable
+[12:45:30.522][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:30.521][GameEngine] Debug info: Object moving time exceed for once
+[12:45:30.522][GameServer] END Construct
+[12:45:30.522][GameServer] END Produce
+[12:45:30.522][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:30.522][ActionManager] Character is not commandable
+[12:45:30.522][Game] Try to move <Character 1 1> 1000 0
+[12:45:30.522][Game] Try to move <Character 1 1> 10000 0
+[12:45:30.522][GameServer] END Construct
+[12:45:30.522][Game] Try to move <Character 0 1> 10000 0
+[12:45:30.524][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:30.521][GameServer] END Move: False
+[12:45:30.525][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:30.526][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:30.526][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:30.522][GameServer] END Construct
+[12:45:30.526][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:30.730][GameServer] END Move: False
+[12:45:30.731][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:30.730][GameServer] END Move: False
+[12:45:30.730][GameServer] END Move: False
+[12:45:30.730][GameServer] END Move: False
+[12:45:30.730][GameServer] END Move: False
+[12:45:30.909][ActionManager] Character is not commandable
+[12:45:30.730][ActionManager] Character is not commandable
+[12:45:30.730][GameServer] END Move: False
+[12:45:30.730][Game] Try to move <Character 0 1> 1000 0
+[12:45:30.730][ActionManager] Character is not commandable
+[12:45:30.730][GameServer] END Move: False
+[12:45:30.730][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:30.730][ActionManager] Character is not commandable
+[12:45:30.730][ActionManager] Character is not commandable
+[12:45:30.730][GameServer] END Move: False
+[12:45:30.730][ActionManager] Character is not commandable
+[12:45:30.909][GameServer] END Move: False
+[12:45:30.730][GameEngine] Debug info: Object moving time exceed for once
+[12:45:30.731][ActionManager] Character is not commandable
+[12:45:30.731][GameServer] END Move: False
+[12:45:30.731][ActionManager] Character is not commandable
+[12:45:30.731][ActionManager] Character is not commandable
+[12:45:30.731][ActionManager] Character is not commandable
+[12:45:30.731][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:30.731][GameEngine] Debug info: Object moving time exceed for once
+[12:45:30.909][GameServer] END Move: False
+[12:45:30.731][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:30.737][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:30.731][GameServer] END Produce
+[12:45:30.730][ActionManager] Character is not commandable
+[12:45:30.734][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:30.735][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:30.735][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:30.737][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:30.740][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:30.910][ActionManager] Character is not commandable
+[12:45:30.737][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:30.737][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:30.911][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:30.911][Game] Try to move <Character 1 1> 1000 1.5707963267948966
+[12:45:30.737][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:30.731][Game] Try to move <Character 0 1> 1000 4.71238898038469
+[12:45:30.737][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:30.738][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:30.738][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:30.740][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:30.741][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:30.911][ActionManager] Character is not commandable
+[12:45:30.910][ActionManager] Character is not commandable
+[12:45:30.910][GameServer] END Move: False
+[12:45:30.910][ActionManager] Character is not commandable
+[12:45:30.910][GameServer] END Move: False
+[12:45:30.910][GameServer] END Move: False
+[12:45:31.104][GameServer] END Move: False
+[12:45:30.910][GameServer] END Move: False
+[12:45:30.910][GameServer] END Move: False
+[12:45:30.910][GameServer] END Move: False
+[12:45:30.910][GameServer] END Move: False
+[12:45:30.910][GameServer] END Move: False
+[12:45:31.104][GameServer] END Move: False
+[12:45:30.910][ActionManager] Character is not commandable
+[12:45:30.910][Game] Try to move <Character 1 1> 1000 3.141592653589793
+[12:45:30.910][GameEngine] Debug info: Object moving time exceed for once
+[12:45:30.910][GameServer] END Move: False
+[12:45:30.910][GameServer] END Construct
+[12:45:30.910][Game] Try to move <Character 1 1> 10000 0
+[12:45:30.914][GameServer] TRY Construct: Player 1 from Team 1
+[12:45:30.910][Game] Try to move <Character 1 1> 1000 0
+[12:45:30.910][Game] Try to move <Character 1 1> 1000 4.71238898038469
+[12:45:31.104][GameServer] END Move: False
+[12:45:30.911][GameServer] END Move: False
+[12:45:30.915][GameServer] TRY Construct: Player 1 from Team 0
+[12:45:30.911][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:30.911][GameServer] END Construct
+[12:45:30.916][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:30.916][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:31.105][ActionManager] Character is not commandable
+[12:45:30.911][GameServer] END Produce
+[12:45:30.911][Game] Try to move <Character 0 1> 10000 0
+[12:45:30.911][Game] Try to move <Character 0 1> 1000 0
+[12:45:30.911][Game] Try to move <Character 0 1> 1000 1.5707963267948966
+[12:45:30.911][Game] Try to move <Character 0 1> 1000 3.141592653589793
+[12:45:30.914][GameServer] TRY Produce: Player 1 from Team 1
+[12:45:30.914][GameServer] TRY Produce: Player 1 from Team 0
+[12:45:30.910][GameEngine] Debug info: Object moving time exceed for once
+[12:45:30.911][ActionManager] Character is not commandable
+[12:45:31.105][Game] Try to move <Character 1 1> 1000 0
+[12:45:30.916][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 10000
+[12:45:30.916][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 10000
+[12:45:30.916][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 1000
+[12:45:30.911][ActionManager] Character is not commandable
+[12:45:30.916][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:30.917][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:30.917][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1000
+[12:45:31.105][ActionManager] Character is not commandable
+[12:45:31.104][ActionManager] Character is not commandable
+[12:45:31.104][ActionManager] Character is not commandable
+[12:45:31.105][GameServer] END Construct
+[12:45:31.105][ActionManager] Character is not commandable
+[12:45:31.291][GameServer] END Move: False
+[12:45:31.105][GameServer] END Construct
