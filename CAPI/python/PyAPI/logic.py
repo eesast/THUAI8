@@ -105,23 +105,7 @@ class Logic(ILogic):
 
     def Move(self, time: int, angle: float) -> bool:
         self.__logger.debug("Called Move")
-        return self.__comm.Move(time, angle, self.__playerID, self.__teamID)
-
-    def MoveDown(self, speed: int, time: int) -> bool:
-        self.__logger.debug("Called MoveDown")
-        return self.__comm.MoveDown(speed, time, self.__playerID, self.__teamID)
-
-    def MoveUp(self, speed: int, time: int) -> bool:
-        self.__logger.debug("Called MoveUp")
-        return self.__comm.MoveUp(speed, time, self.__playerID, self.__teamID)
-
-    def MoveLeft(self, speed: int, time: int) -> bool:
-        self.__logger.debug("Called MoveLeft")
-        return self.__comm.MoveLeft(speed, time, self.__playerID, self.__teamID)
-
-    def MoveRight(self, speed: int, time: int) -> bool:
-        self.__logger.debug("Called MoveRight")
-        return self.__comm.MoveRight(speed, time, self.__playerID, self.__teamID)
+        return self.__comm.Move(self.__teamID, self.__playerID, time, angle)
 
     def Produce(self) -> bool:
         self.__logger.debug("Called Produce")
@@ -232,9 +216,9 @@ class Logic(ILogic):
         self.__logger.debug("Called CommonAttack")
         return self.__comm.Attack(playerID, teamID, ATKplayerID, ATKteamID)
 
-    def Skill_Attack(self, playerID: int, teamID: int, angle: float) -> bool:
-        self.__logger.debug("Called CommonAttack")
-        return self.__comm.SkillAttack(playerID, teamID, angle)
+    def Skill_Attack(self, angle: float) -> bool:
+        self.__logger.debug("Called SkillAttack")
+        return self.__comm.Skill_Attack(self.__playerID, self.__teamID, angle)
 
     def Recover(self, recover: int) -> bool:
         self.__logger.debug("Called Recover")
@@ -763,12 +747,9 @@ class Logic(ILogic):
 
             elif item.WhichOneof("message_of_obj") == "trap_message":
                 trap_message = item.trap_message
-                if (
-                    trap_message.team_id == self.__teamID
-                    or AssistFunction.HaveOverTrapView(
-                        trap_message.x,
-                        trap_message.y,
-                    )
+                if trap_message.team_id == self.__teamID or HaveOverTrapView(
+                    trap_message.x,
+                    trap_message.y,
                 ):
                     pos = (
                         AssistFunction.GridToCell(trap_message.x),
