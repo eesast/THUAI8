@@ -46,6 +46,9 @@ class AI(IAI):
 
     def CharacterPlay(self, api: ICharacterAPI) -> None:
         # 公共操作
+        api.PrintSelfInfo()
+        api.PrintSelfInfo()
+        api.PrintSelfInfo()
         if self.__playerID == 1:
             # player1的操作
             api.PrintSelfInfo()
