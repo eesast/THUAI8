@@ -31,7 +31,9 @@ class Communication:
         self.__limit = 50
         self.__moveLimit = 10
 
-    def Move(self, time: int, angle: float, playerID: int, teamID: int) -> bool:
+    def Move(
+        self, teamID: int, playerID: int, timeInMiliseconds: int, angle: float
+    ) -> bool:
         try:
             with self.__mtxLimit:
                 if (
@@ -42,7 +44,9 @@ class Communication:
                 self.__counter += 1
                 self.__counterMove += 1
             moveResult: Message2Clients.MoveRes = self.__THUAI8Stub.Move(
-                THUAI82Proto.THUAI82ProtobufMoveMsg(playerID, teamID, time, angle)
+                THUAI82Proto.THUAI82ProtobufMoveMsg(
+                    teamID, playerID, timeInMiliseconds, angle
+                )
             )
         except grpc.RpcError:
             return False
@@ -71,15 +75,17 @@ class Communication:
         else:
             return sendResult.act_success
 
-    def Common_Attack(self, toID: int, playerID: int, teamID: int) -> bool:
+    def Common_Attack(
+        self, playerID: int, teamID: int, attackedPlayerID: int, attackedTeamID: int
+    ) -> bool:
         try:
             with self.__mtxLimit:
                 if self.__counter >= self.__limit:
                     return False
                 self.__counter += 1
-            commonAttackResult: Message2Clients.BoolRes = (
-                self.__THUAI8Stub.Common_Attack(
-                    THUAI82Proto.THUAI82ProtobufCommonAttackMsg(playerID, toID, teamID)
+            commonAttackResult: Message2Clients.BoolRes = self.__THUAI8Stub.Attack(
+                THUAI82Proto.THUAI82ProtobufAttackMsg(
+                    playerID, teamID, attackedPlayerID, attackedTeamID
                 )
             )
         except grpc.RpcError:
@@ -87,14 +93,17 @@ class Communication:
         else:
             return commonAttackResult.act_success()
 
-    def Skill_Attack(self, toID: int, playerID: int, teamID: int) -> bool:
+    def Skill_Attack(self, playerID: int, teamID: int, angle: float) -> bool:
+        self.__skillrange = 1000  # 技能范围待修改,技能位置待定
         try:
             with self.__mtxLimit:
                 if self.__counter >= self.__limit:
                     return False
                 self.__counter += 1
-            skillAttackResult: Message2Clients.BoolRes = self.__THUAI8Stub.Skill_Attack(
-                THUAI82Proto.THUAI82ProtobufSkillAttackMsg(playerID, toID, teamID)
+            skillAttackResult: Message2Clients.BoolRes = self.__THUAI8Stub.Cast(
+                THUAI82Proto.THUAI82ProtobufCastMsg(
+                    playerID, 0, teamID, self.__skillrange, 0, 0, angle
+                )
             )
         except grpc.RpcError:
             return False
@@ -173,12 +182,8 @@ class Communication:
                 if self.__counter >= self.__limit:
                     return False
                 self.__counter += 1
-            installEquipmentResult: Message2Clients.BoolRes = (
-                self.__THUAI8Stub.InstallEquipment(
-                    THUAI82Proto.THUAI82ProtobufInstallEquipmentMsg(
-                        playerID, teamID, equipmentType
-                    )
-                )
+            installEquipmentResult: Message2Clients.BoolRes = self.__THUAI8Stub.Equip(
+                THUAI82Proto.THUAI82ProtobufEquipMsg(playerID, teamID, equipmentType)
             )
         except grpc.RpcError:
             return False
@@ -225,8 +230,8 @@ class Communication:
                 if self.__counter >= self.__limit:
                     return False
                 self.__counter += 1
-            buildResult: Message2Clients.BoolRes = self.__THUAI8Stub.BuildCharacter(
-                THUAI82Proto.THUAI82ProtobufBuildCharacterMsg(
+            buildResult: Message2Clients.BoolRes = self.__THUAI8Stub.CreatCharacter(
+                THUAI82Proto.THUAI82ProtobufCreatCharacterMsg(
                     teamID, characterType, birthIndex
                 )
             )
