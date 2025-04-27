@@ -15,10 +15,10 @@ CharacterDebugAPI::CharacterDebugAPI(ILogic& logic, bool file, bool print, bool 
     logic(logic),
     logger(nullptr)  // 显式初始化 logger 为 nullptr
 {
-    std::string fileName = "logs/api-" + std::to_string(CharacterID) + "-" + std::to_string(TeamID) + "log.txt";
+    std::string fileName = "logs/api-" + std::to_string(TeamID) + "-" + std::to_string(CharacterID) + "log.txt";
     auto fileLogger = std::make_shared<spdlog::sinks::basic_file_sink_mt>(fileName, true);
     auto printLogger = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
-    std::string pattern = "[api " + std::to_string(CharacterID) + "] [%H:%M:%S.%e] [%l] %v";
+    std::string pattern = "[api " + std::to_string(TeamID) + std::to_string(CharacterID) + "] [%H:%M:%S.%e] [%l] %v";
     fileLogger->set_pattern(pattern);
     printLogger->set_pattern(pattern);
     if (file)
@@ -106,37 +106,36 @@ bool CharacterDebugAPI::Wait()
 }
 
 // 修改后的实现需要匹配接口参数 (int32_t speed, int64_t timeInMilliseconds, ...)
-std::future<bool> CharacterDebugAPI::Move(int64_t teamID, int64_t characterID, int32_t moveTimeInMilliseconds, double angle)
+std::future<bool> CharacterDebugAPI::Move(int64_t timeInMilliseconds, double angleInRadian)
 {
-    logger->info("Move: teamID={}, characterID={}, moveTimeInMilliseconds={}ms, angle={}rad, called@{}ms", teamID, characterID, moveTimeInMilliseconds, angle, Time::TimeSinceStart(startPoint));
+    logger->info("Move: timeInMilliseconds = {}, angleInRadian = {}, called at {}ms", timeInMilliseconds, angleInRadian, Time::TimeSinceStart(startPoint));
     return std::async(std::launch::async, [=]()
-                      { 
-        auto result = logic.Move(teamID, characterID, moveTimeInMilliseconds, angle); 
-        if (!result)
-            logger->warn("Move failed@{}ms", Time::TimeSinceStart(startPoint));
-        return result; });
+                      { auto result = logic.Move(timeInMilliseconds, angleInRadian);
+                        if (!result)
+                            logger->warn("Move: failed at {}ms", Time::TimeSinceStart(startPoint));
+                        return result; });
 }
 
 // 下方所有方向移动需要添加speed参数并调整调用
-/* std::future<bool> CharacterDebugAPI::MoveDown(int32_t speed, int64_t timeInMilliseconds)
+std::future<bool> CharacterDebugAPI::MoveDown(int32_t speed, int64_t timeInMilliseconds)
 {
-    return Move(speed, timeInMilliseconds, PI * 1.5);  // 参数顺序：speed, time, angle
+    return Move(timeInMilliseconds, PI * 1.5);  // 参数顺序：speed, time, angle
 }
 
 std::future<bool> CharacterDebugAPI::MoveRight(int32_t speed, int64_t timeInMilliseconds)
 {
-    return Move(speed, timeInMilliseconds, 0);  // 补充speed参数
+    return Move(timeInMilliseconds, 0);  // 补充speed参数
 }
 
 std::future<bool> CharacterDebugAPI::MoveUp(int32_t speed, int64_t timeInMilliseconds)
 {
-    return Move(speed, timeInMilliseconds, PI / 2);  // 调整角度定义
+    return Move(timeInMilliseconds, PI / 2);  // 调整角度定义
 }
 
 std::future<bool> CharacterDebugAPI::MoveLeft(int32_t speed, int64_t timeInMilliseconds)
 {
-    return Move(speed, timeInMilliseconds, PI);
-}*/
+    return Move(timeInMilliseconds, PI);
+}
 
 std::future<bool> CharacterDebugAPI::Skill_Attack(int64_t TeamID, int64_t PlayerID, double angle)
 {
@@ -381,7 +380,7 @@ void CharacterDebugAPI::PrintSelfInfo() const
     std::string characterPassiveState = THUAI8::characterStateDict.at(self->characterPassiveState);
 
     // 打印基本信息
-    logger->info("type={}, characterID={}, GUID={}, x={}, y={}", characterType, self->playerID, self->guid, self->x, self->y);
+    logger->info("type={}, characterID={}, teamID={}, GUID={}, x={}, y={}", characterType, self->playerID, self->teamID, self->guid, self->x, self->y);
 
     // 打印状态信息
     logger->info("activestate={}, passivestate={}, speed={}, view range={}, facing direction={}", characterActiveState, characterPassiveState, self->speed, self->viewRange, self->facingDirection);

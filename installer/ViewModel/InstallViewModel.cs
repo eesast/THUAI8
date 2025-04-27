@@ -314,6 +314,8 @@ namespace installer.ViewModel
             {
                 BrowseEnabled = true;
                 CheckEnabled = true;
+                DebugAlert = "Nothing to update.";
+                UpdateEnabled = false;
             });
         }
         #endregion

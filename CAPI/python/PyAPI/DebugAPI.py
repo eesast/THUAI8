@@ -55,137 +55,143 @@ class CharacterDebugAPI(ICharacterAPI, IGameTimer):
             screenHandler.setFormatter(formatter)
             self.__logger.addHandler(screenHandler)
 
-    def Move(
-        self, speed: int, timeInMilliseconds: int, angleInRadian: float
-    ) -> Future[bool]:
+    def Move(self, time: int, angle: float) -> Future[bool]:
         self.__logger.info(
-            f"Move: speed={speed}, time={timeInMilliseconds}ms, angle={angleInRadian}rad, called at {self.__GetTime()}ms"
+            f"Move: time={time}ms, angle={angle}, called at {self.__GetTime()}ms"
         )
-        return self.__pool.submit(self.__logMove)
 
-    def __logMove(self, speed: int, time: int, angle: float) -> bool:
-        result = self.__logic.Move(speed, time, angle)
-        if not result:
-            self.__logger.warning(f"Move failed at {self.__GetTime()}ms")
-        return result
+        def logMove() -> bool:
+            result = self.__logic.Move(time, 0)
+            if not result:
+                self.__logger.warning(f"Move failed at {self.__GetTime()}ms")
+            return result
 
-    def MoveDown(self, time: int, speed: int) -> Future[bool]:
+        return self.__pool.submit(logMove)
+
+    def MoveDown(self, time: int) -> Future[bool]:
+        self.__logger.info(f"MoveDown: time={time}ms, called at {self.__GetTime()}ms")
+
+        def logMoveDown() -> bool:
+            result = self.__logic.Move(time, 0)
+            if not result:
+                self.__logger.warning(f"MoveDown failed at {self.__GetTime()}ms")
+            return result
+
+        return self.__pool.submit(logMoveDown)
+
+    def MoveRight(self, timeInMilliseconds) -> Future[bool]:
         self.__logger.info(
-            f"MoveDown: time={time}ms, speed={speed}, called at {self.__GetTime()}ms"
+            f"MoveRight: time={timeInMilliseconds}ms, called at {self.__GetTime()}ms"
         )
-        return self.__pool.submit(self.__logMoveDown, time, speed, 0)
 
-    def __logMoveDown(self, time: int, speed: int) -> bool:
-        result = self.__logic.Move(time, speed, 0)
-        if not result:
-            self.__logger.warning(f"MoveDown failed at {self.__GetTime()}ms")
-        return result
+        def logMoveRight() -> bool:
+            result = self.__logic.Move(timeInMilliseconds, PI * 0.5)
+            if not result:
+                self.__logger.warning(f"MoveRight failed at {self.__GetTime()}ms")
+            return result
 
-    def MoveRight(self, time: int, speed: int) -> Future[bool]:
+        return self.__pool.submit(logMoveRight)
+
+    def MoveUp(self, timeInMilliseconds) -> Future[bool]:
         self.__logger.info(
-            f"MoveRight: time={time}ms, speed={speed}, called at {self.__GetTime()}ms"
+            f"MoveUp: time={timeInMilliseconds}ms, called at {self.__GetTime()}ms"
         )
-        return self.__pool.submit(self.__logMoveRight, time, speed, PI * 0.5)
 
-    def __logMoveRight(self, time: int, speed: int) -> bool:
-        result = self.__logic.Move(time, speed, PI * 0.5)
-        if not result:
-            self.__logger.warning(f"MoveRight failed at {self.__GetTime()}ms")
-        return result
+        def logMoveUp() -> bool:
+            result = self.__logic.Move(timeInMilliseconds, PI)
+            if not result:
+                self.__logger.warning(f"MoveUp failed at {self.__GetTime()}ms")
+            return result
 
-    def MoveUp(self, time: int, speed: int) -> Future[bool]:
-        self.__logger.info(
-            f"MoveUp: time={time}ms, speed={speed}, called at {self.__GetTime()}ms"
-        )
-        return self.__pool.submit(self.__logMoveUp, time, speed, PI)
+        return self.__pool.submit(logMoveUp)
 
-    def __logMoveUp(self, time: int, speed: int) -> bool:
-        result = self.__logic.Move(time, speed, PI)
-        if not result:
-            self.__logger.warning(f"MoveUp failed at {self.__GetTime()}ms")
-        return result
+    def MoveLeft(self, time: int) -> Future[bool]:
+        self.__logger.info(f"MoveLeft: time={time}ms, called at {self.__GetTime()}ms")
 
-    def MoveLeft(self, time: int, speed: int) -> Future[bool]:
-        self.__logger.info(
-            f"MoveLeft: time={time}ms, speed={speed}, called at {self.__GetTime()}ms"
-        )
-        return self.__pool.submit(self.__logMoveLeft, time, speed, PI * 1.5)
+        def logMoveLeft() -> bool:
+            result = self.__logic.Move(time, PI * 1.5)
+            if not result:
+                self.__logger.warning(f"MoveLeft failed at {self.__GetTime()}ms")
+            return result
 
-    def __logMoveLeft(self, time: int, speed: int) -> bool:
-        result = self.__logic.Move(time, speed, PI * 1.5)
-        if not result:
-            self.__logger.warning(f"MoveLeft failed at {self.__GetTime()}ms")
-        return result
+        return self.__pool.submit(logMoveLeft)
 
     def Skill_Attack(self, angle: float) -> Future[bool]:
         self.__logger.info(
             f"Skill_Attack: angle={angle}rad, called at {self.__GetTime()}ms"
         )
-        return self.__pool.submit(self.__logSkillAttack, angle)
 
-    def __logSkillAttack(self, angle: float) -> bool:
-        result = self.__logic.SkillAttack(angle)
-        if not result:
-            self.__logger.warning(f"Skill_Attack failed at {self.__GetTime()}ms")
-        return result
+        def logSkillAttack() -> bool:
+            result = self.__logic.Skill_Attack(angle)
+            if not result:
+                self.__logger.warning(f"Skill_Attack failed at {self.__GetTime()}ms")
+            return result
+        return self.__pool.submit(logSkillAttack)
 
-    def Common_Attack(self, attackedPlayerID: int, attackedTeamID: int) -> Future[bool]:
+    def Common_Attack(
+        self, playerID: int, teamID: int, attackedPlayerID: int, attackedTeamID: int
+    ) -> Future[bool]:
         self.__logger.info(
-            f"Common_Attack: attackedPlayerID={attackedPlayerID}, attackedTeamID={attackedTeamID}, called at {self.__GetTime()}ms"
-        )
-        return self.__pool.submit(
-            self.__logCommonAttack, attackedPlayerID, attackedTeamID
+            f"Common_Attack: playerID={playerID}, teamID={teamID}, attackedPlayerID={attackedPlayerID}, attackedTeamID={attackedTeamID}, called at {self.__GetTime()}ms"
         )
 
-    def __logCommonAttack(self, attackedPlayerID: int, attackedTeamID: int) -> bool:
-        result = self.__logic.CommonAttack(attackedPlayerID, attackedTeamID)
-        if not result:
-            self.__logger.warning(f"Common_Attack failed at {self.__GetTime()}ms")
-        return result
+        def logCommonAttack() -> bool:
+            result = self.__logic.Common_Attack(
+                playerID, teamID, attackedPlayerID, attackedTeamID
+            )
+            if not result:
+                self.__logger.warning(f"Common_Attack failed at {self.__GetTime()}ms")
+            return result
+
+        return self.__pool.submit(logCommonAttack)
 
     def Recover(self, recover: int) -> Future[bool]:
         self.__logger.info(f"Recover: {recover}, called at {self.__GetTime()}ms")
-        return self.__pool.submit(self.__logRecover, recover)
 
-    def __logRecover(self, recover: int) -> bool:
-        result = self.__logic.Recover(recover)
-        if not result:
-            self.__logger.warning(f"Recover failed at {self.__GetTime()}ms")
-        return result
+        def logRecover() -> bool:
+            result = self.__logic.Recover(recover)
+            if not result:
+                self.__logger.warning(f"Recover failed at {self.__GetTime()}ms")
+            return result
 
-    def Produce(self):
-        self.__logger.info(f"Harvest: called at {self.__GetTime()}ms")
-        return self.__pool.submit(self.__logProduce)
+        return self.__pool.submit(logRecover)
 
-    def __logProduce(self) -> bool:
-        result = self.__logic.Produce()
-        if not result:
-            self.__logger.warning(f"Harvest failed at {self.__GetTime()}ms")
-        return result
+    def Produce(self) -> Future[bool]:
+        self.__logger.info(f"Produce: called at {self.__GetTime()}ms")
 
-    def Construct(self, constructionType):
+        def logProduce() -> bool:
+            result = self.__logic.Produce()
+            if not result:
+                self.__logger.warning(f"Produce failed at {self.__GetTime()}ms")
+            return result
+
+        return self.__pool.submit(logProduce)
+
+    def Construct(self, constructionType) -> Future[bool]:
         self.__logger.info(
             f"Construct: {constructionType}, called at {self.__GetTime()}ms"
         )
-        return self.__pool.submit(self.__logConstruct, constructionType)
 
-    def __logConstruct(self, constructionType) -> bool:
-        result = self.__logic.Construct(constructionType)
-        if not result:
-            self.__logger.warning(f"Construct failed at {self.__GetTime()}ms")
-        return result
+        def logConstruct() -> bool:
+            result = self.__logic.Construct(constructionType)
+            if not result:
+                self.__logger.warning(f"Construct failed at {self.__GetTime()}ms")
+            return result
 
-    def Rebuild(self, constructionType):
+        return self.__pool.submit(logConstruct)
+
+    def Rebuild(self, constructionType) -> Future[bool]:
         self.__logger.info(
             f"Rebuild: {constructionType}, called at {self.__GetTime()}ms"
         )
-        return self.__pool.submit(self.__logRebuild, constructionType)
 
-    def __logRebuild(self, constructionType) -> bool:
-        result = self.__logic.Rebuild(constructionType)
-        if not result:
-            self.__logger.warning(f"Rebuild failed at {self.__GetTime()}ms")
-        return result
+        def logRebuild() -> bool:
+            result = self.__logic.Rebuild(constructionType)
+            if not result:
+                self.__logger.warning(f"Rebuild failed at {self.__GetTime()}ms")
+            return result
+
+        return self.__pool.submit(logRebuild)
 
     def Wait(self) -> bool:
         self.__logger.info(f"Wait: called at {self.__GetTime()}ms")
@@ -196,35 +202,38 @@ class CharacterDebugAPI(ICharacterAPI, IGameTimer):
 
     def EndAllAction(self) -> Future[bool]:
         self.__logger.info(f"EndAllAction: called at {self.__GetTime()}ms")
-        return self.__pool.submit(self.__logEnd)
 
-    def __logEnd(self) -> bool:
-        result = self.__logic.EndAllAction()
-        if not result:
-            self.__logger.warning(f"EndAllAction failed at {self.__GetTime()}ms")
-        return result
+        def logEnd() -> bool:
+            result = self.__logic.EndAllAction()
+            if not result:
+                self.__logger.warning(f"EndAllAction failed at {self.__GetTime()}ms")
+            return result
+
+        return self.__pool.submit(logEnd)
 
     def SendMessage(self, toID: int, message: Union[str, bytes]) -> Future[bool]:
         self.__logger.info(
             f"SendMessage: toID = {toID}, message = {message}, called at {self.__GetTime()}ms"
         )
-        return self.__pool.submit(self.__logSend, toID, message)
 
-    def __logSend(self, toID: int, message: Union[str, bytes]) -> bool:
-        result = self.__logic.Send(toID, message)
-        if not result:
-            self.__logger.warning(f"SendMessage failed at {self.__GetTime()}ms")
-        return result
+        def logSend() -> bool:
+            result = self.__logic.SendMessage(toID, message)
+            if not result:
+                self.__logger.warning(f"SendMessage failed at {self.__GetTime()}ms")
+            return result
+
+        return self.__pool.submit(logSend)
 
     def HaveMessage(self) -> bool:
         self.__logger.info(f"HaveMessage: called at {self.__GetTime()}ms")
-        return self.__pool.submit(self.__logHaveMessage)
 
-    def __logHaveMessage(self) -> bool:
-        result = self.__logic.HaveMessage()
-        if not result:
-            self.__logger.warning(f"HaveMessage failed at {self.__GetTime()}ms")
-        return result
+        def logHaveMessage() -> bool:
+            result = self.__logic.HaveMessage()
+            if not result:
+                self.__logger.warning(f"HaveMessage failed at {self.__GetTime()}ms")
+            return result
+
+        return self.__pool.submit(logHaveMessage)
 
     def GetMessage(self) -> Tuple[int, Union[str, bytes]]:
         self.__logger.info(f"GetMessage: called at {self.__GetTime()}ms")
@@ -234,141 +243,155 @@ class CharacterDebugAPI(ICharacterAPI, IGameTimer):
         return result
 
     def GetFrameCount(self) -> int:
-        return self.__logic.GetFrameCount()
+        return self.__logic.GetCounter()
 
     def GetCharacters(self) -> List[THUAI8.Character]:
         self.__logger.info(f"GetCharacters: called at {self.__GetTime()}ms")
-        return self.__pool.submit(self.__logGetCharacters)
 
-    def __logGetCharacters(self) -> List[THUAI8.Character]:
-        result = self.__logic.GetCharacters()
-        if not result:
-            self.__logger.warning(f"GetCharacters failed at {self.__GetTime()}ms")
-        return result
+        def logGetCharacters() -> List[THUAI8.Character]:
+            result = self.__logic.GetCharacters()
+            if not result:
+                self.__logger.warning(f"GetCharacters failed at {self.__GetTime()}ms")
+            return result
+
+        return self.__pool.submit(logGetCharacters)
 
     def GetEnemyCharacters(self) -> List[THUAI8.Character]:
         self.__logger.info(f"GetEnemyCharacters: called at {self.__GetTime()}ms")
-        return self.__pool.submit(self.__logGetEnemyCharacters)
 
-    def __logGetEnemyCharacters(self) -> List[THUAI8.Character]:
-        result = self.__logic.GetEnemyCharacters()
-        if not result:
-            self.__logger.warning(f"GetEnemyCharacters failed at {self.__GetTime()}ms")
-        return result
+        def logGetEnemyCharacters() -> List[THUAI8.Character]:
+            result = self.__logic.GetEnemyCharacters()
+            if not result:
+                self.__logger.warning(
+                    f"GetEnemyCharacters failed at {self.__GetTime()}ms"
+                )
+            return result
+
+        return self.__pool.submit(logGetEnemyCharacters)
 
     def GetFullMap(self) -> List[List[THUAI8.PlaceType]]:
         self.__logger.info(f"GetFullMap: called at {self.__GetTime()}ms")
-        return self.__pool.submit(self.__logGetFullMap)
 
-    def __logGetFullMap(self) -> List[List[THUAI8.PlaceType]]:
-        result = self.__logic.GetFullMap()
-        if not result:
-            self.__logger.warning(f"GetFullMap failed at {self.__GetTime()}ms")
-        return result
+        def logGetFullMap() -> List[List[THUAI8.PlaceType]]:
+            result = self.__logic.GetFullMap()
+            if not result:
+                self.__logger.warning(f"GetFullMap failed at {self.__GetTime()}ms")
+            return result
+
+        return self.__pool.submit(logGetFullMap)
 
     def GetGameInfo(self) -> THUAI8.GameInfo:
         self.__logger.info(f"GetGameInfo: called at {self.__GetTime()}ms")
-        return self.__pool.submit(self.__logGetGameInfo)
 
-    def __logGetGameInfo(self) -> THUAI8.GameInfo:
-        result = self.__logic.GetGameInfo()
-        if not result:
-            self.__logger.warning(f"GetGameInfo failed at {self.__GetTime()}ms")
-        return result
+        def logGetGameInfo() -> THUAI8.GameInfo:
+            result = self.__logic.GetGameInfo()
+            if not result:
+                self.__logger.warning(f"GetGameInfo failed at {self.__GetTime()}ms")
+            return result
+
+        return self.__pool.submit(logGetGameInfo)
 
     def GetPlaceType(self, cellX: int, cellY: int) -> THUAI8.PlaceType:
         self.__logger.info(
             f"GetPlaceType: cellX={cellX}, cellY={cellY}, called at {self.__GetTime()}ms"
         )
-        return self.__pool.submit(self.__logGetPlaceType, cellX, cellY)
 
-    def __logGetPlaceType(self, cellX: int, cellY: int) -> THUAI8.PlaceType:
-        result = self.__logic.GetPlaceType(cellX, cellY)
-        if not result:
-            self.__logger.warning(f"GetPlaceType failed at {self.__GetTime()}ms")
-        return result
+        def logGetPlaceType() -> THUAI8.PlaceType:
+            result = self.__logic.GetPlaceType(cellX, cellY)
+            if not result:
+                self.__logger.warning(f"GetPlaceType failed at {self.__GetTime()}ms")
+            return result
+
+        return self.__pool.submit(logGetPlaceType)
 
     def GetEconomyResourceState(self, cellX: int, cellY: int) -> int:
         self.__logger.info(
             f"GetEconomyResourceState: cellX={cellX}, cellY={cellY}, called at {self.__GetTime()}ms"
         )
-        return self.__pool.submit(self.__logGetEconomyResourceState, cellX, cellY)
 
-    def __logGetEconomyResourceState(self, cellX: int, cellY: int) -> int:
-        result = self.__logic.GetEconomyResourceState(cellX, cellY)
-        if not result:
-            self.__logger.warning(
-                f"GetEconomyResourceState failed at {self.__GetTime()}ms"
-            )
-        return result
+        def logGetEconomyResourceState() -> int:
+            result = self.__logic.GetEconomyResourceState(cellX, cellY)
+            if not result:
+                self.__logger.warning(
+                    f"GetEconomyResourceState failed at {self.__GetTime()}ms"
+                )
+            return result
+
+        return self.__pool.submit(logGetEconomyResourceState)
 
     def GetAdditionResourceState(self, cellX: int, cellY: int) -> int:
         self.__logger.info(
             f"GetAdditionResourceState: cellX={cellX}, cellY={cellY}, called at {self.__GetTime()}ms"
         )
-        return self.__pool.submit(self.__logGetAdditionResourceState, cellX, cellY)
 
-    def __logGetAdditionResourceState(self, cellX: int, cellY: int) -> int:
-        result = self.__logic.GetAdditionResourceState(cellX, cellY)
-        if not result:
-            self.__logger.warning(
-                f"GetAdditionResourceState failed at {self.__GetTime()}ms"
-            )
-        return result
+        def logGetAdditionResourceState() -> int:
+            result = self.__logic.GetAdditionResourceState(cellX, cellY)
+            if not result:
+                self.__logger.warning(
+                    f"GetAdditionResourceState failed at {self.__GetTime()}ms"
+                )
+            return result
 
-    def GetConstructionState(self, cellX, cellY) -> int:
+        return self.__pool.submit(logGetAdditionResourceState)
+
+    def GetConstructionState(self, cellX: int, cellY: int) -> THUAI8.ConstructionState:
         self.__logger.info(
             f"GetConstructionState: cellX={cellX}, cellY={cellY}, called at {self.__GetTime()}ms"
         )
-        return self.__pool.submit(self.__logGetConstructionState, cellX, cellY)
 
-    def __logGetConstructionState(self, cellX, cellY) -> int:
-        result = self.__logic.GetConstructionState(cellX, cellY)
-        if not result:
-            self.__logger.warning(
-                f"GetConstructionState failed at {self.__GetTime()}ms"
-            )
-        return result
+        def logGetConstructionState() -> THUAI8.ConstructionState:
+            result = self.__logic.GetConstructionState(cellX, cellY)
+            if not result:
+                self.__logger.warning(
+                    f"GetConstructionState failed at {self.__GetTime()}ms"
+                )
+            return result
 
-    def GetPlayerGUIDs(self):
+        return self.__pool.submit(logGetConstructionState)
+
+    def GetPlayerGUIDs(self) -> List[int]:
         self.__logger.info(f"GetPlayerGUIDs: called at {self.__GetTime()}ms")
-        return self.__pool.submit(self.__logGetPlayerGUIDs)
 
-    def __logGetPlayerGUIDs(self):
-        result = self.__logic.GetPlayerGUIDs()
-        if not result:
-            self.__logger.warning(f"GetPlayerGUIDs failed at {self.__GetTime()}ms")
-        return result
+        def logGetPlayerGUIDs() -> List[int]:
+            result = self.__logic.GetPlayerGUIDs()
+            if not result:
+                self.__logger.warning(f"GetPlayerGUIDs failed at {self.__GetTime()}ms")
+            return result
+
+        return self.__pool.submit(logGetPlayerGUIDs)
 
     def GetEnergy(self) -> int:
         self.__logger.info(f"GetEnergy: called at {self.__GetTime()}ms")
-        return self.__pool.submit(self.__logGetEnergy)
 
-    def __logGetEnergy(self) -> int:
-        result = self.__logic.GetEnergy()
-        if result == -1:
-            self.__logger.warning(f"GetEnergy failed at {self.__GetTime()}ms")
-        return result
+        def logGetEnergy() -> int:
+            result = self.__logic.GetEnergy()
+            if result == -1:
+                self.__logger.warning(f"GetEnergy failed at {self.__GetTime()}ms")
+            return result
+
+        return self.__pool.submit(logGetEnergy)
 
     def GetScore(self) -> int:
         self.__logger.info(f"GetScore: called at {self.__GetTime()}ms")
-        return self.__pool.submit(self.__logGetScore)
 
-    def __logGetScore(self) -> int:
-        result = self.__logic.GetScore()
-        if result == -1:
-            self.__logger.warning(f"GetScore failed at {self.__GetTime()}ms")
-        return result
+        def logGetScore() -> int:
+            result = self.__logic.GetScore()
+            if result == -1:
+                self.__logger.warning(f"GetScore failed at {self.__GetTime()}ms")
+            return result
+
+        return self.__pool.submit(logGetScore)
 
     def GetSelfInfo(self) -> THUAI8.Character:
         self.__logger.info(f"GetSelfInfo: called at {self.__GetTime()}ms")
-        return self.__pool.submit(self.__logGetSelfInfo)
 
-    def __logGetSelfInfo(self) -> THUAI8.Character:
-        result = self.__logic.GetSelfInfo()
-        if not result:
-            self.__logger.warning(f"GetSelfInfo failed at {self.__GetTime()}ms")
-        return result
+        def logGetSelfInfo() -> THUAI8.Character:
+            result = self.__logic.GetSelfInfo()
+            if not result:
+                self.__logger.warning(f"GetSelfInfo failed at {self.__GetTime()}ms")
+            return result
+
+        return self.__pool.submit(logGetSelfInfo)
 
     def Print(self, string: str) -> None:
         self.__logger.info(string)
@@ -377,20 +400,22 @@ class CharacterDebugAPI(ICharacterAPI, IGameTimer):
         for char in self.__logic.GetCharacters():
             self.__logger.info("******Character Info******")
             self.__logger.info(
-                f"type={char.characterType}, ID={char.characterID}, GUID={char.guid}, x={char.x}, y={char.y}"
+                f"type={char.characterType}, ID={char.playerID}, GUID={char.guid}, x={char.x}, y={char.y}"
             )
             self.__logger.info(
-                f"state={char.characterState}, speed={char.speed}, view={char.viewRange}, facing={char.facingDirection}"
+                f"ActiveState={char.characterActiveState}, PassiveState={char.characterPassiveState} speed={char.speed}, view={char.viewRange}, facing={char.facingDirection}"
             )
             self.__logger.info(
-                f"CharacterActiveState={char.characterActiveState}, CharacterPassiveState={char.characterPassiveState}"
+                f"CharacterActiveState={char.characterActiveState}, CharacterPassiveState={char.characterPassiveState} CharacterPassiveState={char.characterPassiveState}"
             )
             self.__logger.info(f"IsBlind={char.isBlind}, BlindTime={char.blindTime}")
-            self.__logger.info(f"IsStunned={char.isStunned}, StunTime={char.stunTime}")
+            self.__logger.info(
+                f"IsStunned={char.isStunned}, StunTime={char.stunnedTime}"
+            )
             self.__logger.info(
                 f"IsInvisible={char.isInvisible}, InvisibleTime={char.invisibleTime}"
             )
-            self.__logger.info(f"IsBurned={char.isBurned}, BurnTime={char.burnTime}")
+            self.__logger.info(f"IsBurned={char.isBurned}, BurnTime={char.burnedTime}")
             self.__logger.info(
                 f"HarmCut={char.harmCut}, HarmCutTime={char.harmCutTime}"
             )
@@ -398,7 +423,7 @@ class CharacterDebugAPI(ICharacterAPI, IGameTimer):
                 f"CommonAttack={char.commonAttack}, CommonAttackCD={char.commonAttackCD}"
             )
             self.__logger.info(f"SkillAttackCD={char.skillAttackCD}")
-            self.__logger.info(f"HP={char.HP}")
+            self.__logger.info(f"HP={char.hp}")
             self.__logger.info(f"ShieldEquipment={char.shieldEquipment}")
             self.__logger.info(
                 f"ShoesEquipment={char.shoesEquipment}, ShoesTime={char.shoesTime}"
@@ -417,24 +442,16 @@ class CharacterDebugAPI(ICharacterAPI, IGameTimer):
             self.__logger.info("**************************\n")
 
     def PrintTeam(self) -> None:
-        for char in self.__logic.GetCharacters():
-            self.__logger.info("******Team Info******")
-            self.__logger.info(
-                f"type={char.characterType}, ID={char.characterID}, GUID={char.guid}, x={char.x}, y={char.y}"
-            )
-            self.__logger.info(
-                f"state={char.characterState}, speed={char.speed}, view={char.viewRange}, facing={char.facingDirection}"
-            )
-            self.__logger.info("**************************")
+        self.PrintSelfInfo()
 
     def PrintSelfInfo(self) -> None:
         character = self.__logic.GetSelfInfo()
         self.__logger.info("******Self Info******")
         self.__logger.info(
-            f"type={THUAI8.characterTypeDict[character.characterType]}, playerID={character.playerID}, GUID={character.guid}"
+            f"type={character.characterType}, playerID={character.playerID}, GUID={character.guid}"
         )
         self.__logger.info(
-            f"state={THUAI8.characterStateDict[character.characterState]}, x={character.x}, y={character.y}"
+            f"ActiveState={character.characterActiveState}, PassiveState={character.characterPassiveState} x={character.x}, y={character.y}"
         )
         self.__logger.info(
             f"speed={character.speed}, view range={character.viewRange}, facing direction={character.facingDirection}"
@@ -450,6 +467,11 @@ class CharacterDebugAPI(ICharacterAPI, IGameTimer):
             self.GetSelfInfo().viewRange,
         )
 
+    def __GetTime(self) -> float:
+        return (datetime.datetime.now() - self.__startPoint) / datetime.timedelta(
+            milliseconds=1
+        )
+
     def StartTimer(self) -> None:
         self.__startPoint = datetime.datetime.now()
         self.__logger.info("=== AI.play() ===")
@@ -459,7 +481,7 @@ class CharacterDebugAPI(ICharacterAPI, IGameTimer):
         self.__logger.info(f"Time elapsed: {self.__GetTime()}ms")
 
     def Play(self, ai: IAI) -> None:
-        ai.play(self)
+        ai.CharacterPlay(self)
 
 
 # class CharacterDebugAPI(ICharacterAPI, IGameTimer):
@@ -810,6 +832,7 @@ class TeamDebugAPI(ITeamAPI, IGameTimer):
         self.__startPoint = datetime.datetime.now()
         self.__logger = logging.getLogger("api " + str(playerID))
         self.__logger.setLevel(logging.DEBUG)
+        self.__team = teamID
         formatter = logging.Formatter(
             "[%(name)s] [%(asctime)s.%(msecs)03d] [%(levelname)s] %(message)s",
             "%H:%M:%S",
@@ -854,17 +877,20 @@ class TeamDebugAPI(ITeamAPI, IGameTimer):
     def EndTimer(self) -> None:
         self.__logger.info(f"Time elapsed: {self.__GetTime()}ms")
 
-    def SendMessage(self, toID: int, message: Union[str, bytes]) -> Future[bool]:
+    def SendMessage(
+        self, toID: int, message: Union[str, bytes], isBinary: bool = False
+    ) -> Future[bool]:
         self.__logger.info(
-            f"SendMessage: toID={toID}, message={message}, called at {self.__GetTime()}ms"
+            f"SendMessage: toID={toID}, message={message}, isBinary={isBinary}, called at {self.__GetTime()}ms"
         )
-        return self.__pool.submit(self.__logSend, toID, message, False)
 
-    def __logSend(self, toID: int, message: Union[str, bytes], isBinary: bool) -> bool:
-        result = self.__logic.Send(toID, message, isBinary)
-        if not result:
-            self.__logger.warning(f"Send failed at {self.__GetTime()}ms")
-        return result
+        def logSend() -> bool:
+            result = self.__logic.SendMessage(toID, message, isBinary)
+            if not result:
+                self.__logger.warning(f"Send failed at {self.__GetTime()}ms")
+            return result
+
+        return self.__pool.submit(logSend)
 
     def HaveMessage(self) -> bool:
         self.logger.info(f"HaveMessage: called at {self.__GetTime()}ms")
@@ -889,159 +915,175 @@ class TeamDebugAPI(ITeamAPI, IGameTimer):
 
     def EndAllAction(self) -> Future[bool]:
         self.__logger.info(f"EndAllAction: called at {self.__GetTime()}ms")
-        return self.__pool.submit(self.__logEnd)
 
-    def __logEnd(self) -> bool:
-        result = self.__logic.EndAllAction()
-        if not result:
-            self.__logger.warning(f"EndAllAction failed at {self.__GetTime()}ms")
-        return result
+        def logEnd() -> bool:
+            result = self.__logic.EndAllAction()
+            if not result:
+                self.__logger.warning(f"EndAllAction failed at {self.__GetTime()}ms")
+            return result
+
+        return self.__pool.submit(logEnd)
 
     def GetCharacters(self) -> List[THUAI8.Character]:
         self.__logger.info(f"GetCharacters: called at {self.__GetTime()}ms")
-        return self.__pool.submit(self.__logGetCharacters)
 
-    def __logGetCharacters(self) -> List[THUAI8.Character]:
-        result = self.__logic.GetCharacters()
-        if not result:
-            self.__logger.warning(f"GetCharacters failed at {self.__GetTime()}ms")
-        return result
+        def logGetCharacters() -> List[THUAI8.Character]:
+            result = self.__logic.GetCharacters()
+            if not result:
+                self.__logger.warning(f"GetCharacters failed at {self.__GetTime()}ms")
+            return result
+
+        return self.__pool.submit(logGetCharacters)
 
     def GetEnemyCharacters(self) -> List[THUAI8.Character]:
         self.__logger.info(f"GetEnemyCharacters: called at {self.__GetTime()}ms")
-        return self.__pool.submit(self.__logGetEnemyCharacters)
 
-    def __logGetEnemyCharacters(self) -> List[THUAI8.Character]:
-        result = self.__logic.GetEnemyCharacters()
-        if not result:
-            self.__logger.warning(f"GetEnemyCharacters failed at {self.__GetTime()}ms")
-        return result
+        def logGetEnemyCharacters() -> List[THUAI8.Character]:
+            result = self.__logic.GetEnemyCharacters()
+            if not result:
+                self.__logger.warning(
+                    f"GetEnemyCharacters failed at {self.__GetTime()}ms"
+                )
+            return result
+
+        return self.__pool.submit(logGetEnemyCharacters)
 
     def GetFullMap(self) -> List[List[THUAI8.PlaceType]]:
         self.__logger.info(f"GetFullMap: called at {self.__GetTime()}ms")
-        return self.__pool.submit(self.__logGetFullMap)
 
-    def __logGetFullMap(self) -> List[List[THUAI8.PlaceType]]:
-        result = self.__logic.GetFullMap()
-        if not result:
-            self.__logger.warning(f"GetFullMap failed at {self.__GetTime()}ms")
-        return result
+        def logGetFullMap() -> List[List[THUAI8.PlaceType]]:
+            result = self.__logic.GetFullMap()
+            if not result:
+                self.__logger.warning(f"GetFullMap failed at {self.__GetTime()}ms")
+            return result
+
+        return self.__pool.submit(logGetFullMap)
 
     def GetGameInfo(self) -> THUAI8.GameInfo:
         self.__logger.info(f"GetGameInfo: called at {self.__GetTime()}ms")
-        return self.__pool.submit(self.__logGetGameInfo)
 
-    def __logGetGameInfo(self) -> THUAI8.GameInfo:
-        result = self.__logic.GetGameInfo()
-        if not result:
-            self.__logger.warning(f"GetGameInfo failed at {self.__GetTime()}ms")
-        return result
+        def logGetGameInfo() -> THUAI8.GameInfo:
+            result = self.__logic.GetGameInfo()
+            if not result:
+                self.__logger.warning(f"GetGameInfo failed at {self.__GetTime()}ms")
+            return result
+
+        return self.__pool.submit(logGetGameInfo)
 
     def GetPlaceType(self, cellX: int, cellY: int) -> THUAI8.PlaceType:
         self.__logger.info(
             f"GetPlaceType: cellX={cellX}, cellY={cellY}, called at {self.__GetTime()}ms"
         )
-        return self.__lpool.submit(self.__logGetPlaceType, cellX, cellY)
 
-    def __logGetPlaceType(self, cellX: int, cellY: int) -> THUAI8.PlaceType:
-        result = self.__logic.GetPlaceType(cellX, cellY)
-        if not result:
-            self.__logger.warning(f"GetPlaceType failed at {self.__GetTime()}ms")
-        return result
+        def logGetPlaceType() -> THUAI8.PlaceType:
+            result = self.__logic.GetPlaceType(cellX, cellY)
+            if not result:
+                self.__logger.warning(f"GetPlaceType failed at {self.__GetTime()}ms")
+            return result
+
+        return self.__pool.submit(logGetPlaceType)
 
     def GetEconomyResourceState(self, cellX: int, cellY: int) -> int:
         self.__logger.info(
             f"GetEconomyResourceState: cellX={cellX}, cellY={cellY}, called at {self.__GetTime()}ms"
         )
-        return self.__pool.submit(self.__logGetEconomyResourceState, cellX, cellY)
 
-    def __logGetEconomyResourceState(self, cellX: int, cellY: int) -> int:
-        result = self.__logic.GetEconomyResourceState(cellX, cellY)
-        if not result:
-            self.__logger.warning(
-                f"GetEconomyResourceState failed at {self.__GetTime()}ms"
-            )
-        return result
+        def logGetEconomyResourceState() -> int:
+            result = self.__logic.GetEconomyResourceState(cellX, cellY)
+            if not result:
+                self.__logger.warning(
+                    f"GetEconomyResourceState failed at {self.__GetTime()}ms"
+                )
+            return result
+
+        return self.__pool.submit(logGetEconomyResourceState)
 
     def GetAdditionResourceState(self, cellX: int, cellY: int) -> int:
         self.__logger.info(
             f"GetAdditionResourceState: cellX={cellX}, cellY={cellY}, called at {self.__GetTime()}ms"
         )
-        return self.__pool.submit(self.__logGetAdditionResourceState, cellX, cellY)
 
-    def __logGetAdditionResourceState(self, cellX: int, cellY: int) -> int:
-        result = self.__logic.GetAdditionResourceState(cellX, cellY)
-        if not result:
-            self.__logger.warning(
-                f"GetAdditionResourceState failed at {self.__GetTime()}ms"
-            )
-        return result
+        def logGetAdditionResourceState() -> int:
+            result = self.__logic.GetAdditionResourceState(cellX, cellY)
+            if not result:
+                self.__logger.warning(
+                    f"GetAdditionResourceState failed at {self.__GetTime()}ms"
+                )
+            return result
+
+        return self.__pool.submit(logGetAdditionResourceState)
 
     def GetConstructionState(self, cellX: int, cellY: int) -> int:
         self.__logger.info(
             f"GetConstructionState: cellX={cellX}, cellY={cellY}, called at {self.__GetTime()}ms"
         )
-        return self.__pool.submit(self.__logGetConstructionState, cellX, cellY)
 
-    def __logGetConstructionState(self, cellX: int, cellY: int) -> int:
-        result = self.__logic.GetConstructionState(cellX, cellY)
-        if not result:
-            self.__logger.warning(
-                f"GetConstructionState failed at {self.__GetTime()}ms"
-            )
-        return result
+        def logGetConstructionState() -> int:
+            result = self.__logic.GetConstructionState(cellX, cellY)
+            if not result:
+                self.__logger.warning(
+                    f"GetConstructionState failed at {self.__GetTime()}ms"
+                )
+            return result
 
-    def Recycle(self, cellX: int, cellY: int) -> Future[bool]:
+        return self.__pool.submit(logGetConstructionState)
+
+    def Recycle(self, playerID: int) -> Future[bool]:
         self.__logger.info(
-            f"Recycle: cellX={cellX}, cellY={cellY}, called at {self.__GetTime()}ms"
+            f"Recycle: playerID{playerID}, called at {self.__GetTime()}ms"
         )
-        return self.__pool.submit(self.__logRecycle, cellX, cellY)
 
-    def __logRecycle(self, cellX: int, cellY: int) -> bool:
-        result = self.__logic.Recycle(cellX, cellY)
-        if not result:
-            self.__logger.warning(f"Recycle failed at {self.__GetTime()}ms")
-        return result
+        def logRecycle() -> bool:
+            result = self.__logic.Recycle(playerID)
+            if not result:
+                self.__logger.warning(f"Recycle failed at {self.__GetTime()}ms")
+            return result
+
+        return self.__pool.submit(logRecycle)
 
     def GetFrameCount(self) -> int:
         self.__logger.info(f"GetFrameCount: called at {self.__GetTime()}ms")
-        return self.__pool.submit(self.__logGetFrameCount)
 
-    def __logGetFrameCount(self) -> int:
-        result = self.__logic.GetCounter()
-        if result == -1:
-            self.__logger.warning(f"GetFrameCount failed at {self.__GetTime()}ms")
-        return result
+        def logGetFrameCount() -> int:
+            result = self.__logic.GetCounter()
+            if result == -1:
+                self.__logger.warning(f"GetFrameCount failed at {self.__GetTime()}ms")
+            return result
+
+        return self.__pool.submit(logGetFrameCount)
 
     def GetPlayerGUIDs(self) -> List[int]:
         self.__logger.info(f"GetPlayerGUIDs: called at {self.__GetTime()}ms")
-        return self.__pool.submit(self.__logGetPlayerGUIDs)
 
-    def __logGetPlayerGUIDs(self) -> List[int]:
-        result = self.__logic.GetPlayerGUIDs()
-        if not result:
-            self.__logger.warning(f"GetPlayerGUIDs failed at {self.__GetTime()}ms")
-        return result
+        def logGetPlayerGUIDs() -> List[int]:
+            result = self.__logic.GetPlayerGUIDs()
+            if not result:
+                self.__logger.warning(f"GetPlayerGUIDs failed at {self.__GetTime()}ms")
+            return result
+
+        return self.__pool.submit(logGetPlayerGUIDs)
 
     def GetEnergy(self) -> int:
         self.__logger.info(f"GetEnergy: called at {self.__GetTime()}ms")
-        return self.__pool.submit(self.__logGetEnergy)
 
-    def __logGetEnergy(self) -> int:
-        result = self.__logic.GetEnergy()
-        if result == -1:
-            self.__logger.warning(f"GetEnergy failed at {self.__GetTime()}ms")
-        return result
+        def logGetEnergy() -> int:
+            result = self.__logic.GetEnergy()
+            if result == -1:
+                self.__logger.warning(f"GetEnergy failed at {self.__GetTime()}ms")
+            return result
+
+        return self.__pool.submit(logGetEnergy)
 
     def GetScore(self) -> int:
         self.__logger.info(f"GetScore: called at {self.__GetTime()}ms")
-        return self.__pool.submit(self.__logGetScore)
 
-    def __logGetScore(self) -> int:
-        result = self.__logic.GetScore()
-        if result == -1:
-            self.__logger.warning(f"GetScore failed at {self.__GetTime()}ms")
-        return result
+        def logGetScore() -> int:
+            result = self.__logic.GetScore()
+            if result == -1:
+                self.__logger.warning(f"GetScore failed at {self.__GetTime()}ms")
+            return result
+
+        return self.__pool.submit(logGetScore)
 
     def GetSelfInfo(self) -> THUAI8.Home:
         self.__logger.info(f"GetSelfInfo: called at {self.__GetTime()}ms")
@@ -1053,46 +1095,58 @@ class TeamDebugAPI(ITeamAPI, IGameTimer):
     #         self.__logger.warning(f"GetSelfInfo failed at {self.__GetTime()}ms")
     #     return result
 
+    # def InstallEquipment(
+    #     self, playerID: int, equipmentType: THUAI8.EquipmentType
+    # ) -> Future[bool]:
+    #     self.__logger.info(
+    #         f"InstallEquipment: playerID={playerID}, team={self.__team}, type={equipmentType}, called at {self.__GetTime()}ms"
+    #     )
+    #     return self.__pool.submit(self.__logInstall, playerID, equipmentType)
+
+    # def __logInstall(self, playerID: int, equipmentType: THUAI8.EquipmentType) -> bool:
+    #     result = self.__logic.InstallEquipment(playerID, equipmentType)
+    #     if not result:
+    #         self.__logger.warning(f"InstallEquipment failed at {self.__GetTime()}ms")
+    #     return result
+
     def InstallEquipment(
         self, playerID: int, equipmentType: THUAI8.EquipmentType
     ) -> Future[bool]:
         self.__logger.info(
-            f"InstallEquipment: playerID={playerID}, type={equipmentType}, called at {self.__GetTime()}ms"
+            f"InstallEquipment: playerID={playerID}, team={self.__team}, type={equipmentType}, called at {self.__GetTime()}ms"
         )
-        return self.__pool.submit(self.__logInstall, playerID, equipmentType)
 
-    def __logInstall(self, playerID: int, equipmentType: THUAI8.EquipmentType) -> bool:
-        result = self.__logic.InstallEquipment(playerID, equipmentType)
-        if not result:
-            self.__logger.warning(f"InstallEquipment failed at {self.__GetTime()}ms")
-        return result
+        def logInstall() -> bool:
+            result = self.__logic.InstallEquipment(playerID, equipmentType)
+            if not result:
+                self.__logger.warning(
+                    f"InstallEquipment failed at {self.__GetTime()}ms"
+                )
+            return result
+
+        return self.__pool.submit(logInstall)
 
     def BuildCharacter(
-        self, playerID: int, characterType: THUAI8.CharacterType, x: int, y: int
+        self, teamID: int, characterType: THUAI8.CharacterType, birthIndex: int
     ) -> Future[bool]:
         self.__logger.info(
-            f"BuildCharacter: playerID={playerID}, type={characterType}, x={x}, y={y}, called at {self.__GetTime()}ms"
+            f"BuildCharacter: teamID={teamID}, type={characterType}, birthIndex={birthIndex}, called at {self.__GetTime()}ms"
         )
-        return self.__pool.submit(
-            self.__logBuildCharacter, playerID, characterType, x, y
-        )
+        # 待修改，buildcharacter的index
 
-    def __logBuildCharacter(
-        self, playerID: int, characterType: THUAI8.CharacterType, x: int, y: int
-    ) -> bool:
-        result = self.__logic.BuildCharacter(playerID, characterType, x, y)
-        if not result:
-            self.__logger.warning(f"BuildCharacter failed at {self.__GetTime()}ms")
-        return result
+        def logBuildCharacter() -> bool:
+            result = self.__logic.BuildCharacter(characterType, birthIndex)
+            if not result:
+                self.__logger.warning(f"BuildCharacter failed at {self.__GetTime()}ms")
+            return result
+
+        return self.__pool.submit(logBuildCharacter)
 
     def PrintSelfInfo(self) -> None:
         selfInfo = self.GetSelfInfo()
         self.__logger.info("******Self Info******")
         self.__logger.info(
-            f"type={selfInfo.characterType}, ID={selfInfo.characterID}, GUID={selfInfo.guid}"
-        )
-        self.__logger.info(
-            f"x={selfInfo.x}, y={selfInfo.y}, state={selfInfo.characterState}"
+            f"teamID:{selfInfo.teamID} playerID:{selfInfo.playerID} score:{selfInfo.score} energy:{selfInfo.energy}"
         )
         self.__logger.info("*********************")
 
@@ -1122,7 +1176,7 @@ class TeamDebugAPI(ITeamAPI, IGameTimer):
             self.__logger.info("**************************")
 
     def Play(self, ai: IAI) -> None:
-        ai.play(self)
+        ai.TeamPlay(self)
 
 
 # class TeamDebugAPI(CharacterDebugAPI):

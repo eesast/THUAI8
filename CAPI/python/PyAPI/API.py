@@ -47,7 +47,7 @@ class CharacterAPI(ICharacterAPI, IGameTimer):
         return self.__logic.GetMessage()
 
     def GetFrameCount(self) -> int:
-        return self.__logic.GetCounter()
+        return self.__logic.GetFrameCount()
 
     def Wait(self) -> bool:
         return self.__logic.WaitThread()
@@ -200,7 +200,7 @@ class TeamAPI(ITeamAPI, IGameTimer):
         return self.__logic.GetMessage()
 
     def GetFrameCount(self) -> int:
-        return self.__logic.GetCounter()
+        return self.__logic.GetFrameCount()
 
     def Wait(self) -> bool:
         return self.__logic.WaitThread()

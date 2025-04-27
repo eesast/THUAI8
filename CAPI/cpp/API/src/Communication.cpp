@@ -19,7 +19,7 @@ Communication::Communication(std::string sIP, std::string sPort)
     THUAI8Stub = protobuf::AvailableService::NewStub(channel);
 }
 
-bool Communication::Move(int64_t teamID, int64_t characterID, int32_t moveTimeInMilliseconds, double angle)
+bool Communication::Move(int32_t characterID, int32_t teamID, int64_t moveTimeInMilliseconds, double angle)
 {
     {
         std::lock_guard<std::mutex> lock(mtxLimit);
@@ -327,7 +327,7 @@ void Communication::AddPlayer(int32_t playerID, int32_t teamID, THUAI8::Characte
                 haveNewMessage = true;
                 {
                     std::lock_guard<std::mutex> lock(mtxLimit);
-                    counter++;
+                    counter = 0;
                     counterMove = 0;
                 }
             }

@@ -30,7 +30,7 @@ public:
     void AddPlayer(int32_t playerID, int32_t teamID, THUAI8::CharacterType CharacterType, bool side_flag);
     bool EndAllAction(int32_t playerID, int32_t teamID);
     // Character
-    bool Move(int64_t teamID, int64_t characterID, int32_t moveTimeInMilliseconds, double angle);
+    bool Move(int32_t playerID, int32_t teamID, int64_t moveTimeInMilliseconds, double angle);
     bool Recover(int32_t playerID, int64_t recover, int32_t teamID);
     bool Produce(int64_t playerID, int64_t teamID);
     // bool Rebuild(int32_t playerID, int32_t teamID, THUAI8::ConstructionType constructionType);

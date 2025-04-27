@@ -87,24 +87,24 @@ class ILogic(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def Move(self, speed: int, time: int, angle: float) -> bool:
+    def Move(self, time: int, angle: float) -> bool:
         pass
 
-    @abstractmethod
-    def MoveRight(self, speed: int, time: int) -> bool:
-        pass
+    # @abstractmethod
+    # def MoveRight(self, time: int) -> bool:
+    #     pass
 
-    @abstractmethod
-    def MoveUp(self, speed: int, time: int) -> bool:
-        pass
+    # @abstractmethod
+    # def MoveUp(self, time: int) -> bool:
+    #     pass
 
-    @abstractmethod
-    def MoveLeft(self, speed: int, time: int) -> bool:
-        pass
+    # @abstractmethod
+    # def MoveLeft(self, time: int) -> bool:
+    #     pass
 
-    @abstractmethod
-    def MoveDown(self, speed: int, time: int) -> bool:
-        pass
+    # @abstractmethod
+    # def MoveDown(self, time: int) -> bool:
+    #     pass
 
     @abstractmethod
     def Skill_Attack(self, playerID: int, teamID: int, angle: float) -> bool:
@@ -342,12 +342,9 @@ class IAPI(metaclass=ABCMeta):
 
 class ICharacterAPI(IAPI, metaclass=ABCMeta):
     @abstractmethod
-    def Move(
-        self, speed: int, timeInMilliseconds: int, angleInRadian: float
-    ) -> Future[bool]:
+    def Move(self, timeInMilliseconds: int, angleInRadian: float) -> Future[bool]:
         """发出移动指令
 
-        :param speed: 期望移动的速度
         :param timeInMilliseconds: 期望移动的毫秒数
         :param angleInRadian: 期望移动的弧度数, 向下为x轴正方向, 向右为y轴正方向
         :return: 移动是否成功, 通过 `.result()` 方法等待获取 `bool`
@@ -355,40 +352,36 @@ class ICharacterAPI(IAPI, metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def MoveRight(self, speed: int, timeInMilliseconds: int) -> Future[bool]:
+    def MoveRight(self, timeInMilliseconds: int) -> Future[bool]:
         """发出向右移动指令
 
-        :param speed: 期望移动的速度
         :param timeInMilliseconds: 期望移动的毫秒数
         :return: 移动是否成功, 通过 `.result()` 方法等待获取 `bool`
         """
         pass
 
     @abstractmethod
-    def MoveUp(self, speed: int, timeInMilliseconds: int) -> Future[bool]:
+    def MoveUp(self, timeInMilliseconds: int) -> Future[bool]:
         """发出向上移动指令
 
-        :param speed: 期望移动的速度
         :param timeInMilliseconds: 期望移动的毫秒数
         :return: 移动是否成功, 通过 `.result()` 方法等待获取 `bool`
         """
         pass
 
     @abstractmethod
-    def MoveLeft(self, speed: int, timeInMilliseconds: int) -> Future[bool]:
+    def MoveLeft(self, timeInMilliseconds: int) -> Future[bool]:
         """发出向左移动指令
 
-        :param speed: 期望移动的速度
         :param timeInMilliseconds: 期望移动的毫秒数
         :return: 移动是否成功, 通过 `.result()` 方法等待获取 `bool`
         """
         pass
 
     @abstractmethod
-    def MoveDown(self, speed: int, timeInMilliseconds: int) -> Future[bool]:
+    def MoveDown(self, timeInMilliseconds: int) -> Future[bool]:
         """发出向下移动指令
 
-        :param speed: 期望移动的速度
         :param timeInMilliseconds: 期望移动的毫秒数
         :return: 移动是否成功, 通过 `.result()` 方法等待获取 `bool`
         """

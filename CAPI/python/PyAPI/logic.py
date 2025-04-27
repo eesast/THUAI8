@@ -26,11 +26,13 @@ class Logic(ILogic):
         teamID: int,
         playerType: THUAI8.PlayerType,
         characterType: THUAI8.CharacterType,
+        side_flag: int,
     ) -> None:
         self.__playerID: int = playerID
         self.__teamID: int = teamID
         self.__playerType: THUAI8.PlayerType = playerType
         self.__characterType: THUAI8.CharacterType = characterType
+        self.__side_flag: int = side_flag
 
         self.__comm: Communication
 
@@ -103,23 +105,7 @@ class Logic(ILogic):
 
     def Move(self, time: int, angle: float) -> bool:
         self.__logger.debug("Called Move")
-        return self.__comm.Move(time, angle, self.__playerID, self.__teamID)
-
-    def MoveDown(self, speed: int, time: int) -> bool:
-        self.__logger.debug("Called MoveDown")
-        return self.__comm.MoveDown(speed, time, self.__playerID, self.__teamID)
-
-    def MoveUp(self, speed: int, time: int) -> bool:
-        self.__logger.debug("Called MoveUp")
-        return self.__comm.MoveUp(speed, time, self.__playerID, self.__teamID)
-
-    def MoveLeft(self, speed: int, time: int) -> bool:
-        self.__logger.debug("Called MoveLeft")
-        return self.__comm.MoveLeft(speed, time, self.__playerID, self.__teamID)
-
-    def MoveRight(self, speed: int, time: int) -> bool:
-        self.__logger.debug("Called MoveRight")
-        return self.__comm.MoveRight(speed, time, self.__playerID, self.__teamID)
+        return self.__comm.Move(self.__teamID, self.__playerID, time, angle)
 
     def Produce(self) -> bool:
         self.__logger.debug("Called Produce")
@@ -230,9 +216,9 @@ class Logic(ILogic):
         self.__logger.debug("Called CommonAttack")
         return self.__comm.Attack(playerID, teamID, ATKplayerID, ATKteamID)
 
-    def Skill_Attack(self, playerID: int, teamID: int, angle: float) -> bool:
-        self.__logger.debug("Called CommonAttack")
-        return self.__comm.SkillAttack(playerID, teamID, angle)
+    def Skill_Attack(self, angle: float) -> bool:
+        self.__logger.debug("Called SkillAttack")
+        return self.__comm.Skill_Attack(self.__playerID, self.__teamID, angle)
 
     def Recover(self, recover: int) -> bool:
         self.__logger.debug("Called Recover")
@@ -286,7 +272,9 @@ class Logic(ILogic):
     def __ProcessMessage(self) -> None:
         def messageThread():
             self.__logger.info("Message thread started")
-            self.__comm.AddPlayer(self.__playerID, self.__teamID, self.__characterType)
+            self.__comm.AddPlayer(
+                self.__playerID, self.__teamID, self.__characterType, self.__side_flag
+            )
             self.__logger.info("Player added")
 
             while self.__gameState != THUAI8.GameState.GameEnd:
@@ -411,7 +399,7 @@ class Logic(ILogic):
             if item.WhichOneof("message_of_obj") == "character_message":
                 if item.character_message.team_id != self.__teamID:
                     if AssistFunction.HaveView(
-                        self.__bufferState.self.view_range,
+                        self.__bufferState.self.viewRange,
                         self.__bufferState.self.x,
                         self.__bufferState.self.y,
                         item.character_message.x,
@@ -628,11 +616,11 @@ class Logic(ILogic):
                 for character in self.__bufferState.characters:
                     if (
                         AssistFunction.HaveView(
+                            character.viewRange,
                             character.x,
                             character.y,
                             targetX,
                             targetY,
-                            character.viewRange,
                             self.__bufferState.gameMap,
                         )
                         and character.visionBuffTime > 0
@@ -642,7 +630,7 @@ class Logic(ILogic):
 
             if item.WhichOneof("message_of_obj") == "character_message":
                 if item.character_message.team_id != self.__teamID:
-                    if AssistFunction.HaveOverView(
+                    if HaveOverView(
                         item.character_message.x,
                         item.character_message.y,
                     ):
@@ -759,12 +747,9 @@ class Logic(ILogic):
 
             elif item.WhichOneof("message_of_obj") == "trap_message":
                 trap_message = item.trap_message
-                if (
-                    trap_message.team_id == self.__teamID
-                    or AssistFunction.HaveOverTrapView(
-                        trap_message.x,
-                        trap_message.y,
-                    )
+                if trap_message.team_id == self.__teamID or HaveOverTrapView(
+                    trap_message.x,
+                    trap_message.y,
                 ):
                     pos = (
                         AssistFunction.GridToCell(trap_message.x),
@@ -863,6 +848,7 @@ class Logic(ILogic):
         file: bool,
         screen: bool,
         warnOnly: bool,
+        side_flag: int,
     ) -> None:
         # 建立日志组件
         self.__logger.setLevel(logging.DEBUG)
