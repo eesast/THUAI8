@@ -15,8 +15,7 @@
 		<NoWarn>$(NoWarn);8305</NoWarn>
 		<RestorePackagesWithLockFile>false</RestorePackagesWithLockFile>
 		<DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
-		<UseProjectReference>true</UseProjectReference>
-		<MSBuildWarningsAsMessages>$(MSBuildWarningsAsMessages);MSB3277</MSBuildWarningsAsMessages>
+		<UseProjectReference>true</UseProjectReference>		<MSBuildWarningsAsMessages>$(MSBuildWarningsAsMessages);MSB3277</MSBuildWarningsAsMessages>
 
 		<!-- 基本配置 -->
 		<RuntimeIdentifiers Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">win-x64</RuntimeIdentifiers>

@@ -124,7 +124,7 @@ class CharacterDebugAPI(ICharacterAPI, IGameTimer):
         return self.__pool.submit(self.__logSkillAttack, angle)
 
     def __logSkillAttack(self, angle: float) -> bool:
-        result = self.__logic.SkillAttack(angle)
+        result = self.__logic.Skill_Attack(angle)
         if not result:
             self.__logger.warning(f"Skill_Attack failed at {self.__GetTime()}ms")
         return result
