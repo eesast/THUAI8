@@ -484,7 +484,7 @@ class THUAI82Proto:
 
     @staticmethod
     def THUAI82ProtobufMoveMsg(
-        character: int, angle: float, time: int, team: int
+        team: int, character: int, time: int, angle: float
     ) -> Message2Server.MoveMsg:
         moveMsg = Message2Server.MoveMsg()
         moveMsg.character_id = character
@@ -578,3 +578,13 @@ class THUAI82Proto:
         attackMsg.attacked_character_id = attacked_character_id
         attackMsg.attack_range = attack_range
         return attackMsg
+
+    @staticmethod
+    def THUAI82ProtobufRecoverMsg(
+        character_id: int, team_id: int, recover: int
+    ) -> Message2Server.RecoverMsg:
+        recoverMsg = Message2Server.RecoverMsg()
+        recoverMsg.character_id = character_id
+        recoverMsg.team_id = team_id
+        recoverMsg.recover = recover
+        return recoverMsg
