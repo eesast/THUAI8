@@ -126,7 +126,6 @@ class CharacterDebugAPI(ICharacterAPI, IGameTimer):
             if not result:
                 self.__logger.warning(f"Skill_Attack failed at {self.__GetTime()}ms")
             return result
-
         return self.__pool.submit(logSkillAttack)
 
     def Common_Attack(
