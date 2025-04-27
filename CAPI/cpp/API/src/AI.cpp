@@ -30,8 +30,17 @@ extern const std::array<THUAI8::CharacterType, 6> MonstersCharacterTypeDict = {
 
 // 可以在AI.cpp内部声明变量与函数
 
+std::shared_ptr<const THUAI8::Character> selfinfo;
+std::vector<std::vector<THUAI8::PlaceType>> mapinfo;
+
+
+
+
 void AI::play(ICharacterAPI& api)
 {
+    selfinfo = api.GetSelfInfo();
+    mapinfo = api.GetFullMap();
+
     if (this->playerID == 1)
     {
         // player1的操作
