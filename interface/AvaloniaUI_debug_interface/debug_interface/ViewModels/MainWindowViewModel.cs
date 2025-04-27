@@ -112,7 +112,6 @@ namespace debug_interface.ViewModels
             // ... 可以添加更多设计时数据
         }
 
-        // ViewModels\MainWindowViewModel.cs - UpdateCharacters 方法内
         public void UpdateCharacters()
         {
             var currentFrameGuids = new HashSet<long>(); // 存储本帧出现的所有角色 Guid
