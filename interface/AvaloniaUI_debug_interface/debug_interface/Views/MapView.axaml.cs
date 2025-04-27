@@ -489,7 +489,7 @@ namespace debug_interface.Views
 
             // *** Ç¿ÖÆ¿É¼û (ÓÃÓÚµ÷ÊÔ) ***
             bool shouldBeVisible = character.Guid > 0 &&
-                                   // !character.PassiveStates.Contains("ÒÑËÀÍö") && // ÔÝÊ±ºöÂÔËÀÍö×´Ì¬
+                                   !character.StatusEffects.Contains("ÒÑËÀÍö") && // ÔÝÊ±ºöÂÔËÀÍö×´Ì¬?
                                    character.PosX >= 0 && character.PosX <= 50000 &&
                                    character.PosY >= 0 && character.PosY <= 50000;
             element.IsVisible = shouldBeVisible;
