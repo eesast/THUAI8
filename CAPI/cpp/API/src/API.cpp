@@ -218,12 +218,12 @@ int32_t TeamAPI::GetEnergy() const
 // 修改后的实现需要严格匹配接口参数列表
 std::future<bool> CharacterAPI::Move(int64_t moveTimeInMilliseconds, double angle)
 {
-    // 参数顺序需要与接口声明一致：speed, time, angle
+    // 参数顺序需要与接口声明一致：time, angle
     return std::async(std::launch::async, [=]()
-                      { return logic.Move(moveTimeInMilliseconds, angle); });  // 传递三个参数
+                      { return logic.Move(moveTimeInMilliseconds, angle); });  // 传递两个参数
 }
 
-// 下方各方向移动需要补充speed参数
+
 std::future<bool> CharacterAPI::MoveDown(int64_t timeInMilliseconds)
 {
     // 向下移动角度应为3π/2 (270度) 或根据坐标系定义确认
