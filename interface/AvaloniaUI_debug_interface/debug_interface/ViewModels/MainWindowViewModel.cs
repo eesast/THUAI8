@@ -181,9 +181,9 @@ namespace debug_interface.ViewModels
             vm.PosX = data.X; // 存储原始 X
             vm.PosY = data.Y; // 存储原始 Y
 
-            //if (data.X != vm.PosX || data.Y != vm.PosY) 
+            //if (data.X != vm.PosX || data.Y != vm.PosY)
             //{
-            string message = $"更新角色: Name='{vm.Name}', pos = ({vm.PosX}, {vm.PosY})";
+            string message = $"角色: Name='{vm.Name}'移动中, pos = ({vm.PosX}, {vm.PosY})";
             LogConsoleVM.AddLog(message, "INFO");
             //}
 
