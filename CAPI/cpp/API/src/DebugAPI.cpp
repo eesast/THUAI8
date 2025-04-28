@@ -137,23 +137,23 @@ std::future<bool> CharacterDebugAPI::MoveLeft(int64_t timeInMilliseconds)
     return Move(timeInMilliseconds, PI);
 }
 
-std::future<bool> CharacterDebugAPI::Skill_Attack(int64_t TeamID, int64_t PlayerID, double angle)
+std::future<bool> CharacterDebugAPI::Skill_Attack(double angle)
 {
-    logger->info("Skill_Attack: player={}, called@{}ms", PlayerID, Time::TimeSinceStart(startPoint));
+    logger->info("Skill_Attack: player={}, teamID={}, called@{}ms", this->GetSelfInfo()->playerID, this->GetSelfInfo()->teamID, Time::TimeSinceStart(startPoint));
     return std::async(std::launch::async, [=]()
                       {
-        auto result = logic.Skill_Attack(TeamID,PlayerID,angle); // 改为传递玩家ID
+        auto result = logic.Skill_Attack(this->GetSelfInfo()->playerID,this->GetSelfInfo()->teamID,angle); // 改为传递玩家ID
         if (!result)
             logger->warn("Skill_Attack failed@{}ms", Time::TimeSinceStart(startPoint));
         return result; });
 }
 
-std::future<bool> CharacterDebugAPI::Common_Attack(int64_t teamID, int64_t PlayerID, int64_t attackedTeamID, int64_t attackedPlayerID)
+std::future<bool> CharacterDebugAPI::Common_Attack(int64_t attackedPlayerID)
 {
-    logger->info("Common_Attack: target={}, called@{}ms", attackedPlayerID, Time::TimeSinceStart(startPoint));
+    logger->info("characterID={}, teamID={}, Common_Attack: target={}, called@{}ms", this->GetSelfInfo()->playerID, this->GetSelfInfo()->teamID, attackedPlayerID, Time::TimeSinceStart(startPoint));
     return std::async(std::launch::async, [=]()
                       {
-        auto result = logic.Common_Attack(teamID,PlayerID,attackedTeamID,attackedPlayerID); // 改为传递玩家ID
+        auto result = logic.Common_Attack(this->GetSelfInfo()->teamID,this->GetSelfInfo()->playerID,1-this->GetSelfInfo()->teamID, attackedPlayerID); // 改为传递玩家ID
         if (!result)
             logger->warn("Common_Attack failed@{}ms", Time::TimeSinceStart(startPoint));
         return result; });
