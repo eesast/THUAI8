@@ -26,13 +26,13 @@
     [[nodiscard]] virtual int32_t GetScore() const = 0;
 
     //控制角色进行移动
-    virtual std::future<bool> Move(int32_t speed, int64_t timeInMilliseconds, double angleInRadian) = 0;
+    virtual std::future<bool> Move(int64_t timeInMilliseconds, double angleInRadian) = 0;
     //向特定方向移动
-    virtual std::future<bool> MoveRight(int32_t speed, int64_t timeInMilliseconds) = 0;
-    virtual std::future<bool> MoveUp(int32_t speed, int64_t timeInMilliseconds) = 0;
-    virtual std::future<bool> MoveLeft(int32_t speed, int64_t timeInMilliseconds) = 0;
-    virtual std::future<bool> MoveDown(int32_t speed, int64_t timeInMilliseconds) = 0;
-    virtual std::future<bool> Skill_Attack(int64_t attackedPlayerID) = 0;
+    virtual std::future<bool> MoveRight(int64_t timeInMilliseconds) = 0;
+    virtual std::future<bool> MoveUp(int64_t timeInMilliseconds) = 0;
+    virtual std::future<bool> MoveLeft(int64_t timeInMilliseconds) = 0;
+    virtual std::future<bool> MoveDown(int64_t timeInMilliseconds) = 0;
+    virtual std::future<bool> Skill_Attack(double angleInRadian) = 0;
     virtual std::future<bool> Common_Attack(int64_t attackedPlayerID) = 0;
     virtual std::future<bool> Recover(int64_t recover) = 0;
     virtual std::future<bool> Harvest() = 0;
