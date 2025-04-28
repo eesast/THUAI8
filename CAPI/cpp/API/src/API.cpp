@@ -224,25 +224,25 @@ std::future<bool> CharacterAPI::Move(int64_t moveTimeInMilliseconds, double angl
 }
 
 // 下方各方向移动需要补充speed参数
-std::future<bool> CharacterAPI::MoveDown(int32_t speed, int64_t timeInMilliseconds)
+std::future<bool> CharacterAPI::MoveDown(int64_t timeInMilliseconds)
 {
     // 向下移动角度应为3π/2 (270度) 或根据坐标系定义确认
     return Move(timeInMilliseconds, PI * 1.5);
 }
 
-std::future<bool> CharacterAPI::MoveRight(int32_t speed, int64_t timeInMilliseconds)
+std::future<bool> CharacterAPI::MoveRight(int64_t timeInMilliseconds)
 {
     // 向右移动通常是0弧度（东方向）或 π/2（北方向），需确认坐标系定义
     return Move(timeInMilliseconds, 0);
 }
 
-std::future<bool> CharacterAPI::MoveUp(int32_t speed, int64_t timeInMilliseconds)
+std::future<bool> CharacterAPI::MoveUp(int64_t timeInMilliseconds)
 {
     // 向上移动通常是π/2（北方向）或 π（西方向），需确认坐标系定义
     return Move(timeInMilliseconds, PI / 2);
 }
 
-std::future<bool> CharacterAPI::MoveLeft(int32_t speed, int64_t timeInMilliseconds)
+std::future<bool> CharacterAPI::MoveLeft(int64_t timeInMilliseconds)
 {
     // 向左移动通常是π弧度（西方向）或 3π/2（南方向）
     return Move(timeInMilliseconds, PI);

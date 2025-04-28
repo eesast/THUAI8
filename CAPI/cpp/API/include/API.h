@@ -129,10 +129,10 @@ class ICharacterAPI : public IAPI
 public:
     virtual std::future<bool> Move(int64_t moveTimeInMilliseconds, double angle) = 0;
     // 向特定方向移动
-    virtual std::future<bool> MoveRight(int32_t speed, int64_t timeInMilliseconds) = 0;
-    virtual std::future<bool> MoveUp(int32_t speed, int64_t timeInMilliseconds) = 0;
-    virtual std::future<bool> MoveLeft(int32_t speed, int64_t timeInMilliseconds) = 0;
-    virtual std::future<bool> MoveDown(int32_t speed, int64_t timeInMilliseconds) = 0;
+    virtual std::future<bool> MoveRight(int64_t timeInMilliseconds) = 0;
+    virtual std::future<bool> MoveUp(int64_t timeInMilliseconds) = 0;
+    virtual std::future<bool> MoveLeft(int64_t timeInMilliseconds) = 0;
+    virtual std::future<bool> MoveDown(int64_t timeInMilliseconds) = 0;
     virtual std::future<bool> Skill_Attack(int64_t TeamID, int64_t PlayerID, double angle) = 0;
     virtual std::future<bool> Common_Attack(int64_t teamID, int64_t PlayerID, int64_t attackedTeamID, int64_t attackedPlayerID) = 0;
     virtual std::future<bool> Recover(int64_t recover) = 0;
@@ -186,10 +186,10 @@ public:
     std::future<bool> EndAllAction() override;
 
     std::future<bool> Move(int64_t moveTimeInMilliseconds, double angle) override;
-    std::future<bool> MoveRight(int32_t speed, int64_t timeInMilliseconds) override;
-    std::future<bool> MoveUp(int32_t speed, int64_t timeInMilliseconds) override;
-    std::future<bool> MoveLeft(int32_t speed, int64_t timeInMilliseconds) override;
-    std::future<bool> MoveDown(int32_t speed, int64_t timeInMilliseconds) override;
+    std::future<bool> MoveRight(int64_t timeInMilliseconds) override;
+    std::future<bool> MoveUp(int64_t timeInMilliseconds) override;
+    std::future<bool> MoveLeft(int64_t timeInMilliseconds) override;
+    std::future<bool> MoveDown(int64_t timeInMilliseconds) override;
     std::future<bool> Skill_Attack(int64_t TeamID, int64_t PlayerID, double angle) override;
     std::future<bool> Common_Attack(int64_t teamID, int64_t PlayerID, int64_t attackedTeamID, int64_t attackedPlayerID) override;
     std::future<bool> Recover(int64_t recover) override;
@@ -299,10 +299,10 @@ public:
     std::future<bool> EndAllAction() override;
 
     std::future<bool> Move(int64_t moveTimeInMilliseconds, double angle) override;
-    std::future<bool> MoveRight(int32_t speed, int64_t timeInMilliseconds) override;
-    std::future<bool> MoveUp(int32_t speed, int64_t timeInMilliseconds) override;
-    std::future<bool> MoveLeft(int32_t speed, int64_t timeInMilliseconds) override;
-    std::future<bool> MoveDown(int32_t speed, int64_t timeInMilliseconds) override;
+    std::future<bool> MoveRight(int64_t timeInMilliseconds) override;
+    std::future<bool> MoveUp(int64_t timeInMilliseconds) override;
+    std::future<bool> MoveLeft(int64_t timeInMilliseconds) override;
+    std::future<bool> MoveDown(int64_t timeInMilliseconds) override;
     std::future<bool> Skill_Attack(int64_t TeamID, int64_t PlayerID, double angle) override;
     std::future<bool> Common_Attack(int64_t teamID, int64_t PlayerID, int64_t attackedTeamID, int64_t attackedPlayerID) override;
     std::future<bool> Recover(int64_t recover) override;
