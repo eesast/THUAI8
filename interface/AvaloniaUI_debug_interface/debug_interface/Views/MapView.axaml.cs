@@ -385,20 +385,20 @@ namespace debug_interface.Views
 
             var ellipse = new Ellipse
             {
-                Width = 12,
-                Height = 12,
+                Width = 16,
+                Height = 16,
                 Fill = new SolidColorBrush(Colors.White),
                 Stroke = new SolidColorBrush(teamColor),
-                StrokeThickness = 2,
+                StrokeThickness = 1,
             };
             grid.Children.Add(ellipse);
 
             // 可以添加一个小的 TextBlock 显示编号或类型首字母
             var textBlock = new TextBlock
             {
-                //Text = character.CharacterId.ToString(), // 或者用名字首字母
+                //Text = character.CharacterId.ToString(), 
                 Text = GetCharacterInitial(character.Name),
-                FontSize = 7,
+                FontSize = 10,
                 Foreground = new SolidColorBrush(teamColor),
                 FontWeight = FontWeight.Bold,
                 HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
@@ -417,21 +417,23 @@ namespace debug_interface.Views
         //获取角色名称首字母或标识符
         private string GetCharacterInitial(string name)
         {
-            if (string.IsNullOrEmpty(name) || name.EndsWith("?")) return "?";
-            if (name == "唐僧") return "T";
-            if (name == "孙悟空") return "S";
-            if (name == "猪八戒") return "Z";
-            if (name == "沙悟净") return "W";
-            if (name == "白龙马") return "B";
-            if (name == "猴子猴孙") return "h";
-            if (name == "九头元圣") return "J";
-            if (name == "红孩儿") return "H";
-            if (name == "牛魔王") return "N";
-            if (name == "铁扇公主") return "F";
-            if (name == "蜘蛛精") return "P";
-            if (name == "无名小妖") return "y";
-            return name.Length > 0 ? name.Substring(0, 1) : "?";
+            if (string.IsNullOrEmpty(name) || name.Trim().EndsWith("?")) return "?";
+            var trimmedName = name.Trim();
+            if (trimmedName == "唐僧") return "T";
+            if (trimmedName == "孙悟空") return "S";
+            if (trimmedName == "猪八戒") return "Z";
+            if (trimmedName == "沙悟净") return "W";
+            if (trimmedName == "白龙马") return "B";
+            if (trimmedName == "猴子猴孙") return "h";
+            if (trimmedName == "九灵元圣") return "J";
+            if (trimmedName == "红孩儿") return "H";
+            if (trimmedName == "牛魔王") return "N";
+            if (trimmedName == "铁扇公主") return "F";
+            if (trimmedName == "蜘蛛精") return "P";
+            if (trimmedName == "无名小妖") return "y";
+            return trimmedName.Substring(0, 1);
         }
+
 
 
         // 角色属性变化时的处理
@@ -480,12 +482,6 @@ namespace debug_interface.Views
                 }
             }
 
-            // *** 3. 确定可见性 (再次确认 HP>0 检查是否注释掉) ***
-            // bool shouldBeVisible = character.Hp > 0 && // 如果需要恢复检查，取消此行注释
-            //                        character.Guid > 0 &&
-            //                        !character.PassiveStates.Contains("已死亡") &&
-            //                        character.PosX >= 0 && character.PosX <= 50000 &&
-            //                        character.PosY >= 0 && character.PosY <= 50000;
 
             // *** 强制可见 (用于调试) ***
             bool shouldBeVisible = character.Guid > 0 &&
