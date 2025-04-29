@@ -33,8 +33,6 @@ jobs:
         Remove-Item -recurse D:\a\mirror\resource
         Remove-Item -recurse D:\a\mirror\run_python_clients.cmd
         Remove-Item -recurse D:\a\mirror\_config.yml
-        Remove-Item -recurse D:\a\mirror\log.txt
-        Remove-Item -recurse D:\a\mirror\log.txt-copy0.txt
         Remove-Item -recurse D:\a\mirror\114514
         Remove-Item -recurse D:\a\mirror\LICENSE
         Remove-Item -recurse D:\a\mirror\.clang-format
