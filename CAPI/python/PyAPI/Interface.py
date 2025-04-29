@@ -388,28 +388,19 @@ class ICharacterAPI(IAPI, metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def Skill_Attack(
-        self, playerID: int, teamID: int, angleInRadian: float
-    ) -> Future[bool]:
+    def Skill_Attack(self, angleInRadian: float) -> Future[bool]:
         """发出技能攻击指令
 
-        :param playerID: 发出技能的角色编号
-        :param teamID: 发出技能的角色所在队伍编号
         :param angleInRadian: （仅用于火眼金睛）期望攻击的弧度值, 向下为x轴正方向, 向右为y轴正方向
         :return: 技能攻击是否成功, 通过 `.result()` 方法等待获取 `bool`
         """
         pass
 
     @abstractmethod
-    def Common_Attack(
-        self, playerID: int, teamID: int, ATKplayerID: int, ATKteamID: int
-    ) -> Future[bool]:
+    def Common_Attack(self, ATKplayerID: int) -> Future[bool]:
         """发出普通攻击指令
 
-        :param playerID: 发出技能的角色编号
-        :param teamID: 发出技能的角色所在队伍编号
         :param ATKplayerID: 被攻击的角色编号
-        :param ATKteamID: 被攻击的角色所在队伍编号
         :return: 普通攻击是否成功, 通过 `.result()` 方法等待获取 `bool`
         """
         pass
