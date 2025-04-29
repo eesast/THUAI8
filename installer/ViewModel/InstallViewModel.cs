@@ -310,12 +310,48 @@ namespace installer.ViewModel
             DownloadEnabled = false;
             UpdateEnabled = false;
 
-            Downloader.UpdateAsync().ContinueWith(_ =>
+            Downloader.UpdateAsync().ContinueWith(task =>
             {
+                int result = task.Result;
                 BrowseEnabled = true;
-                CheckEnabled = true;
-                DebugAlert = "Nothing to update.";
-                UpdateEnabled = false;
+                
+                if (result < 0)
+                {
+                    DebugAlert = "Update failed, please retry";
+                    CheckEnabled = true;
+                    UpdateEnabled = true;
+                }
+                else if ((result & 16) == 16)
+                {
+                    DebugAlert = "New installer downloaded, please exit and extract update";
+                    CheckEnabled = true;
+                    UpdateEnabled = false;
+                }
+                else if ((result & 8) == 8)
+                {
+                    DebugAlert = "Update completed";
+                    CheckEnabled = true;
+                    UpdateEnabled = false;
+                    
+                    Downloader.CheckUpdateAsync().ContinueWith(checkResult => {
+                        UpdateEnabled = checkResult.Result;
+                    });
+                }
+                else if (result > 0)
+                {
+                    DebugAlert = "Partial update completed, please check temp files";
+                    CheckEnabled = true;
+                    
+                    Downloader.CheckUpdateAsync().ContinueWith(checkResult => {
+                        UpdateEnabled = checkResult.Result;
+                    });
+                }
+                else
+                {
+                    DebugAlert = "Already up to date";
+                    CheckEnabled = true;
+                    UpdateEnabled = false;
+                }
             });
         }
         #endregion
