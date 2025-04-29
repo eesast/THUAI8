@@ -397,7 +397,8 @@ namespace debug_interface.Views
             var textBlock = new TextBlock
             {
                 //Text = character.CharacterId.ToString(), 
-                Text = GetCharacterInitial(character.Name),
+                //Text = GetCharacterInitial(character.Name),
+                Text = character.Name.Substring(0, 1),
                 FontSize = 10,
                 Foreground = new SolidColorBrush(teamColor),
                 FontWeight = FontWeight.Bold,
