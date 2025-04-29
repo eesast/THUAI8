@@ -94,7 +94,7 @@ class Communication:
             return commonAttackResult.act_success()
 
     def Skill_Attack(self, playerID: int, teamID: int, angle: float) -> bool:
-        self.__skillrange = 1000  # 技能范围待修改,技能位置待定
+        self.__skillrange = 0  # 技能范围待修改,技能位置待定
         try:
             with self.__mtxLimit:
                 if self.__counter >= self.__limit:

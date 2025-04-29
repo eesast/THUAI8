@@ -8,12 +8,13 @@
     xmlns:models="using:debug_interface.Models"
     xmlns:vm="using:debug_interface.ViewModels"
     mc:Ignorable="d">
+    <Viewbox Stretch="Uniform">
+        <Grid Width="1000" Height="1000">
+            <!--  使用空的Grid，将在代码中填充  -->
+            <Grid Name="MapGrid" Background="Transparent" />
 
-    <Grid>
-        <!--  使用空的Grid，将在代码中填充  -->
-        <Grid Name="MapGrid" Background="Transparent" />
-
-        <!--  Character Positions Canvas  -->
-        <Canvas Name="CharacterCanvas" Background="Transparent" />
-    </Grid>
+            <!--  Character Positions Canvas  -->
+            <Canvas Name="CharacterCanvas" Background="Transparent" />
+        </Grid>
+    </Viewbox>
 </UserControl>

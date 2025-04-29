@@ -606,11 +606,13 @@ namespace THUAI8Proto
         return castMsg;
     }
 
-    inline protobuf::AttackMsg THUAI82ProtobufAttackMsg(int64_t character_id, int64_t team_id)
+    inline protobuf::AttackMsg THUAI82ProtobufAttackMsg(int64_t character_id, int64_t team_id, int64_t attacked_character_id, int64_t attacked_team_id)
     {
         protobuf::AttackMsg attackMsg;
         attackMsg.set_character_id(character_id);
         attackMsg.set_team_id(team_id);
+        attackMsg.set_attacked_character_id(attacked_character_id);
+        attackMsg.set_attacked_character_id(attacked_team_id);
         return attackMsg;
     }
 }  // namespace THUAI8Proto
