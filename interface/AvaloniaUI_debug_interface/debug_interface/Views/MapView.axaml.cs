@@ -396,8 +396,9 @@ namespace debug_interface.Views
             // 可以添加一个小的 TextBlock 显示编号或类型首字母
             var textBlock = new TextBlock
             {
-                //Text = character.CharacterId.ToString(), 
+
                 //Text = GetCharacterInitial(character.Name),
+                //Text = character.CharacterId.ToString(), 
                 Text = character.Name.Substring(0, 1),
                 FontSize = 11,
                 Foreground = new SolidColorBrush(teamColor),
