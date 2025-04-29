@@ -385,11 +385,11 @@ namespace debug_interface.Views
 
             var ellipse = new Ellipse
             {
-                Width = 12,
-                Height = 12,
+                Width = 16,
+                Height = 16,
                 Fill = new SolidColorBrush(Colors.White),
                 Stroke = new SolidColorBrush(teamColor),
-                StrokeThickness = 2,
+                StrokeThickness = 1,
             };
             grid.Children.Add(ellipse);
 
@@ -398,7 +398,7 @@ namespace debug_interface.Views
             {
                 //Text = character.CharacterId.ToString(), 
                 Text = GetCharacterInitial(character.Name),
-                FontSize = 7,
+                FontSize = 10,
                 Foreground = new SolidColorBrush(teamColor),
                 FontWeight = FontWeight.Bold,
                 HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
@@ -425,7 +425,7 @@ namespace debug_interface.Views
             if (trimmedName == "沙悟净") return "W";
             if (trimmedName == "白龙马") return "B";
             if (trimmedName == "猴子猴孙") return "h";
-            if (trimmedName == "九头元圣") return "J";
+            if (trimmedName == "九灵元圣") return "J";
             if (trimmedName == "红孩儿") return "H";
             if (trimmedName == "牛魔王") return "N";
             if (trimmedName == "铁扇公主") return "F";
@@ -482,12 +482,6 @@ namespace debug_interface.Views
                 }
             }
 
-            // *** 3. 确定可见性 (再次确认 HP>0 检查是否注释掉) ***
-            // bool shouldBeVisible = character.Hp > 0 && // 如果需要恢复检查，取消此行注释
-            //                        character.Guid > 0 &&
-            //                        !character.PassiveStates.Contains("已死亡") &&
-            //                        character.PosX >= 0 && character.PosX <= 50000 &&
-            //                        character.PosY >= 0 && character.PosY <= 50000;
 
             // *** 强制可见 (用于调试) ***
             bool shouldBeVisible = character.Guid > 0 &&

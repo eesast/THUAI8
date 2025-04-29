@@ -214,8 +214,14 @@ namespace debug_interface.ViewModels
                 var cell = MapCells[index];
                 cell.CellType = MapCellType.Economic_Resource;
                 cell.DisplayText = process.ToString(); // 显示剩余量
-                cell.DisplayColor = new SolidColorBrush(Colors.Gold); // 经济资源用金色
-
+                //cell.DisplayColor = new SolidColorBrush(Colors.Gold); // 经济资源用金色
+                cell.DisplayColor = resourceType switch
+                {
+                    "经济资源(小)" => new SolidColorBrush(Colors.Yellow),
+                    "经济资源(中)" => new SolidColorBrush(Colors.Gold),
+                    "经济资源(大)" => new SolidColorBrush(Colors.Orange),
+                    _ => new SolidColorBrush(Colors.Gold)
+                };
                 // 更新HP和Tooltip
                 int maxResource = 10000; // 根据规则，经济资源上限1w
                 cell.DisplayText = $"{process}/{maxResource}";
