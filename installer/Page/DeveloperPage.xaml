@@ -5,11 +5,10 @@
              Title="开发者模式">
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="20">
-            <Frame BorderColor="Gray" Padding="15" CornerRadius="5">
+            <Frame Padding="15" CornerRadius="5">
                 <VerticalStackLayout Spacing="10">
                     <Label Text="腾讯云密钥配置" FontSize="20" FontAttributes="Bold" />
-                    <Label Text="此配置仅供开发人员使用。普通用户无需设置此项，直接使用程序内置的密钥即可。" 
-                           TextColor="Gray" />
+                    <Label Text="此配置仅供开发人员使用。普通用户无需设置此项，直接使用程序内置的密钥即可。" />
                     
                     <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto" ColumnSpacing="10" RowSpacing="15">
                         <Label Text="腾讯云SecretID:" Grid.Row="0" Grid.Column="0" VerticalOptions="Center" />
@@ -25,18 +24,17 @@
                     <Button x:Name="GenerateKeyButton" Text="生成加密密钥" Clicked="OnGenerateKeyClicked" 
                             HorizontalOptions="Start" Margin="0,10,0,0" />
                     
-                    <Label x:Name="StatusLabel" TextColor="Gray" />
+                    <Label x:Name="StatusLabel" />
                 </VerticalStackLayout>
             </Frame>
             
-            <Frame BorderColor="Gray" Padding="15" CornerRadius="5" IsVisible="{Binding ResourceKeyGenerated}">
+            <Frame Padding="15" CornerRadius="5" IsVisible="{Binding ResourceKeyGenerated}">
                 <VerticalStackLayout Spacing="10">
                     <Label Text="嵌入式资源密钥" FontSize="18" FontAttributes="Bold" />
-                    <Label Text="请将以下文件添加为项目的嵌入式资源。添加后，所有用户都可以使用此密钥，无需额外配置。" 
-                           TextColor="Gray" />
+                    <Label Text="请将以下文件添加为项目的嵌入式资源。添加后，所有用户都可以使用此密钥，无需额外配置。" />
                     
                     <Label Text="加密密钥文件路径:" />
-                    <Label x:Name="KeyFilePathLabel" TextColor="Blue" />
+                    <Label x:Name="KeyFilePathLabel" />
                     
                     <Button x:Name="OpenFolderButton" Text="打开文件位置" Clicked="OnOpenFolderClicked" 
                             HorizontalOptions="Start" />
@@ -46,82 +44,19 @@
                 </VerticalStackLayout>
             </Frame>
             
-            <!-- 源代码目录选择部分 -->
-            <Frame BorderColor="Gray" Padding="15" CornerRadius="5">
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="源代码目录" FontSize="20" FontAttributes="Bold" />
-                    <Label Text="选择包含THUAI8源代码的根目录，用于生成各类文件" TextColor="Gray" />
-                    
-                    <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto" ColumnSpacing="10">
-                        <Label Text="目录:" Grid.Row="0" Grid.Column="0" VerticalOptions="Center" />
-                        <Label x:Name="BaseDirLabel" Grid.Row="0" Grid.Column="1" TextColor="Blue" VerticalOptions="Center" />
-                        <Button Text="选择目录" Clicked="OnSelectBaseDirClicked" Grid.Row="0" Grid.Column="2" />
-                    </Grid>
-                </VerticalStackLayout>
-            </Frame>
-            
-            <!-- 文件生成和上传部分 -->
-            <Frame BorderColor="Gray" Padding="15" CornerRadius="5">
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="文件生成与上传" FontSize="20" FontAttributes="Bold" />
-                    <Label Text="在此处生成安装程序所需的各类文件并上传到云端" TextColor="Gray" />
-                    
-                    <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto" ColumnSpacing="10" RowSpacing="15">
-                        <Label Text="版本号:" Grid.Row="0" Grid.Column="0" VerticalOptions="Center" />
-                        <Entry x:Name="VersionEntry" Grid.Row="0" Grid.Column="1" Placeholder="例如: 1.0.0" />
-                    </Grid>
-                    
-                    <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="10" RowSpacing="10">
-                        <Button Text="生成选手模板文件" Clicked="OnGenerateTemplatesClicked" 
-                                Grid.Row="0" Grid.Column="0" Margin="0,5,0,0" />
-                        
-                        <Button Text="生成Proto库文件" Clicked="OnGenerateProtoClicked" 
-                                Grid.Row="0" Grid.Column="1" Margin="0,5,0,0" />
-                        
-                        <Button Text="生成主安装包" Clicked="OnGenerateMainPackageClicked" 
-                                Grid.Row="1" Grid.Column="0" Margin="0,5,0,0" />
-                        
-                        <Button Text="生成Hash文件" Clicked="OnGenerateHashClicked" 
-                                Grid.Row="1" Grid.Column="1" Margin="0,5,0,0" />
-                        
-                        <Button Text="上传所有文件" Clicked="OnUploadAllClicked" 
-                                Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
-                                BackgroundColor="#4CAF50" TextColor="White" Margin="0,10,0,0" />
-                    </Grid>
-                    
-                    <!-- 上传进度显示 -->
-                    <VerticalStackLayout Spacing="5" Margin="0,10,0,5" IsVisible="False">
-                        <Label x:Name="UploadProgressLabel" Text="上传进度: 0%" HorizontalOptions="Center" />
-                        <ProgressBar x:Name="UploadProgressBar" Progress="0" HorizontalOptions="Fill" />
-                    </VerticalStackLayout>
-                    
-                    <Label Text="操作日志:" Margin="0,10,0,0" />
-                    <Frame BorderColor="LightGray" Padding="10" CornerRadius="5" HeightRequest="200">
-                        <ScrollView>
-                            <Label x:Name="OperationLogLabel" FontSize="14" TextColor="Black" />
-                        </ScrollView>
-                    </Frame>
-                </VerticalStackLayout>
-            </Frame>
-            
-            <Frame BorderColor="Gray" Padding="15" CornerRadius="5">
+            <Frame Padding="15" CornerRadius="5">
                 <VerticalStackLayout Spacing="10">
                     <Label Text="使用说明" FontSize="18" FontAttributes="Bold" />
                     <Label Text="1. 输入腾讯云SecretID、SecretKey和用于加密的密码" />
                     <Label Text="2. 点击'生成加密密钥'按钮生成密钥文件" />
                     <Label Text="3. 将生成的密钥文件添加为项目的嵌入式资源" />
-                    <Label Text="4. 选择包含THUAI8源代码的根目录" />
-                    <Label Text="5. 输入版本号并生成必要的文件" />
-                    <Label Text="6. 点击'上传所有文件'按钮将文件上传到云端" />
-                    <Label Text="注意：密码仅用于加密本地文件，不会被保存或上传" TextColor="Red" />
+                    <Label Text="注意：密码仅用于加密本地文件，不会被保存或上传" />
                 </VerticalStackLayout>
             </Frame>
             
             <Button x:Name="ExitButton" 
                     Text="退出开发者模式" 
                     Clicked="OnExitButtonClicked"
-                    BackgroundColor="#FFD2D2"
-                    TextColor="Black"
                     Margin="0,20,0,0"
                     HorizontalOptions="Center" />
         </VerticalStackLayout>
