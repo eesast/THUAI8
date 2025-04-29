@@ -314,7 +314,7 @@ namespace installer.ViewModel
             {
                 int result = task.Result;
                 BrowseEnabled = true;
-                
+
                 if (result < 0)
                 {
                     DebugAlert = "Update failed, please retry";
@@ -332,8 +332,9 @@ namespace installer.ViewModel
                     DebugAlert = "Update completed";
                     CheckEnabled = true;
                     UpdateEnabled = false;
-                    
-                    Downloader.CheckUpdateAsync().ContinueWith(checkResult => {
+
+                    Downloader.CheckUpdateAsync().ContinueWith(checkResult =>
+                    {
                         UpdateEnabled = checkResult.Result;
                     });
                 }
@@ -341,8 +342,9 @@ namespace installer.ViewModel
                 {
                     DebugAlert = "Partial update completed, please check temp files";
                     CheckEnabled = true;
-                    
-                    Downloader.CheckUpdateAsync().ContinueWith(checkResult => {
+
+                    Downloader.CheckUpdateAsync().ContinueWith(checkResult =>
+                    {
                         UpdateEnabled = checkResult.Result;
                     });
                 }

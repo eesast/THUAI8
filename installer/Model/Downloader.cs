@@ -312,11 +312,11 @@ namespace installer.Model
             Status = UpdateStatus.hash_computing;
             Data.ScanDir(false);
             Status = UpdateStatus.success;
-            
+
             bool filesNeedUpdate = Data.MD5Update.Count != 0;
-            
+
             bool versionNeedUpdate = !ignoreVersionCheck && (CurrentVersion < Data.FileHashData.TVersion);
-            
+
             bool needUpdate;
             if (fileContentPriority)
             {
@@ -330,7 +330,7 @@ namespace installer.Model
             {
                 needUpdate = filesNeedUpdate || versionNeedUpdate;
             }
-            
+
             if (needUpdate)
             {
                 if (filesNeedUpdate)
@@ -339,7 +339,7 @@ namespace installer.Model
                     Data.Log.LogInfo("检测到版本不匹配，需要更新。");
                 else if (versionNeedUpdate && fileContentPriority && !filesNeedUpdate)
                     Data.Log.LogInfo("检测到版本不匹配，但文件无变化，可以忽略更新。");
-                    
+
                 if (writeMD5)
                 {
                     Data.SaveMD5Data();
@@ -556,7 +556,7 @@ namespace installer.Model
                 // 更新成功后返回值Flags增加0x8
                 Status = UpdateStatus.downloading;
                 Cloud.Log.LogInfo("正在更新……");
-                Cloud.DownloadQueueAsync(Data.Config.InstallPath, 
+                Cloud.DownloadQueueAsync(Data.Config.InstallPath,
                     from item in Data.MD5Update where item.state != System.Data.DataRowState.Added select item.name).Wait();
                 Cloud.Log.LogWarning("正在删除冗余文件……");
                 foreach (var item in Data.MD5Update.Where((s) => s.state == System.Data.DataRowState.Added))
