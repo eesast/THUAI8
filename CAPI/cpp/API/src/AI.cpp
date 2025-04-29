@@ -35,7 +35,7 @@ void AI::play(ICharacterAPI& api)
     if (this->playerID == 1)
     {
         // player1的操作
-        api.PrintSelfInfo();
+        api.Move(1000, 0);  // 向右移动1秒
     }
     else if (this->playerID == 2)
     {

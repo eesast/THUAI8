@@ -3,13 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:installer.ViewModel"
              x:Class="installer.Page.InstallPage"
-             Title="Installer"
-             BackgroundColor="#f5f5f5">
+             Title="Installer">
 
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="CardStyle" TargetType="Frame">
-                <Setter Property="BackgroundColor" Value="White" />
                 <Setter Property="CornerRadius" Value="10" />
                 <Setter Property="Margin" Value="0,10" />
                 <Setter Property="Padding" Value="20" />
@@ -18,8 +16,6 @@
             </Style>
             
             <Style x:Key="PrimaryButton" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="#3498db" />
-                <Setter Property="TextColor" Value="White" />
                 <Setter Property="CornerRadius" Value="5" />
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="Margin" Value="5" />
@@ -28,8 +24,6 @@
             </Style>
             
             <Style x:Key="SecondaryButton" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="#95a5a6" />
-                <Setter Property="TextColor" Value="White" />
                 <Setter Property="CornerRadius" Value="5" />
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="Margin" Value="5" />
@@ -38,8 +32,6 @@
             </Style>
             
             <Style x:Key="DangerButton" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="#e74c3c" />
-                <Setter Property="TextColor" Value="White" />
                 <Setter Property="CornerRadius" Value="5" />
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="Margin" Value="5" />
@@ -48,8 +40,6 @@
             </Style>
             
             <Style x:Key="SuccessButton" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="#2ecc71" />
-                <Setter Property="TextColor" Value="White" />
                 <Setter Property="CornerRadius" Value="5" />
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="Margin" Value="5" />
@@ -61,13 +51,11 @@
                 <Setter Property="FontSize" Value="20" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="Margin" Value="0,0,0,10" />
-                <Setter Property="TextColor" Value="#2c3e50" />
             </Style>
             
             <Style x:Key="SubHeaderLabel" TargetType="Label">
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="Margin" Value="0,5" />
-                <Setter Property="TextColor" Value="#34495e" />
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -91,8 +79,7 @@
                         <Entry Grid.Column="0"
                                Placeholder="请选择下载路径..."
                                Text="{Binding DownloadPath}"
-                               FontSize="16"
-                               TextColor="Black"/>
+                               FontSize="16"/>
                         
                         <Button Grid.Column="1"
                                 Text="浏览"
@@ -119,7 +106,6 @@
                                HorizontalOptions="End"
                                FontSize="14"/>
                         <ProgressBar Progress="{Binding NumPro}"
-                                     ProgressColor="#3498db"
                                      HeightRequest="10"/>
                     </VerticalStackLayout>
                     
@@ -128,7 +114,6 @@
                                HorizontalOptions="End"
                                FontSize="14"/>
                         <ProgressBar Progress="{Binding FilePro}"
-                                     ProgressColor="#2ecc71"
                                      HeightRequest="10"/>
                     </VerticalStackLayout>
                 </VerticalStackLayout>
@@ -156,8 +141,7 @@
                     
                     <HorizontalStackLayout Spacing="10">
                         <CheckBox IsChecked="{Binding Installed}"
-                                IsEnabled="False"
-                                Color="#3498db"/>
+                                IsEnabled="False"/>
                         <Label Text="已下载选手包"
                             VerticalOptions="Center"
                             Style="{StaticResource SubHeaderLabel}"/>
@@ -174,10 +158,10 @@
                 <VerticalStackLayout Spacing="10">
                     <Label Text="操作日志" Style="{StaticResource HeaderLabel}"/>
                     
-                    <Frame BackgroundColor="#f9f9f9"
-                           BorderColor="#e0e0e0"
-                           CornerRadius="5"
+                    <Frame CornerRadius="5"
                            Padding="10"
+                           BorderColor="{AppThemeBinding Light='#e0e0e0', Dark='#505050'}"
+                           BackgroundColor="{AppThemeBinding Light='#f9f9f9', Dark='#303030'}"
                            HasShadow="False">
                         <CollectionView ItemsSource="{Binding LogCollection}"
                                       ItemsUpdatingScrollMode="KeepLastItemInView"
@@ -198,7 +182,6 @@
             <!-- 底部信息 -->
             <Label Text="THUAI8 © 2025 EESAST"
                  HorizontalOptions="Center"
-                 TextColor="#7f8c8d"
                  Margin="0,20,0,10"
                  FontSize="12"/>
         </VerticalStackLayout>

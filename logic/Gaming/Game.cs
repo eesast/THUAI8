@@ -235,20 +235,10 @@ namespace Gaming
                 if (team.sideFlag == 0)
                 {
                     ActivateCharacter(team.TeamID, CharacterType.TangSeng);
-                    ActivateCharacter(team.TeamID, CharacterType.SunWukong);
-                    ActivateCharacter(team.TeamID, CharacterType.ZhuBajie);
-                    ActivateCharacter(team.TeamID, CharacterType.ShaWujing);
-                    ActivateCharacter(team.TeamID, CharacterType.BaiLongma);
-                    ActivateCharacter(team.TeamID, CharacterType.Monkid);
                 }
                 else
                 {
                     ActivateCharacter(team.TeamID, CharacterType.JiuLing);
-                    ActivateCharacter(team.TeamID, CharacterType.HongHaier);
-                    ActivateCharacter(team.TeamID, CharacterType.NiuMowang);
-                    ActivateCharacter(team.TeamID, CharacterType.TieShan);
-                    ActivateCharacter(team.TeamID, CharacterType.ZhiZhujing);
-                    ActivateCharacter(team.TeamID, CharacterType.Pawn);
                 }
             }
             gameMap.Timer.Start(() => { }, () => EndGame(), milliSeconds);

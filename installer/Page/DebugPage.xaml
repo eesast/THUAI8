@@ -184,16 +184,12 @@
                         <Button
                             Grid.Column="2"
                             Text="Add"
-                            BackgroundColor="DimGray"
                             BorderWidth="2"
-                            TextColor="{Binding ConstTextColor}"
                             Command="{Binding AddBtnClickedCommand}"/>
                         <Button
                             Grid.Column="3"
                             Text="Delete"
-                            BackgroundColor="DimGray"
                             BorderWidth="2"
-                            TextColor="{Binding ConstTextColor}"
                             Command="{Binding DelBtnClickedCommand}"/>
                     </Grid>
 
@@ -228,21 +224,16 @@
                         BorderWidth="2"
                         Command="{Binding SaveBtnClickedCommand}"
                         IsEnabled="{Binding SaveEnabled}"
-                        BackgroundColor="{Binding ConstBackgroundColor}"
-                        FontSize="{Binding ConstFontSize}"
-                        TextColor="{Binding ConstTextColor}"/>
+                        FontSize="{Binding ConstFontSize}"/>
                     <Button
                         WidthRequest="400"
                         Text="启动"
                         BorderWidth="2"
                         Command="{Binding ClientStartBtnClickedCommand}"
                         IsEnabled="{Binding StartEnabled}"
-                        BackgroundColor="{Binding ConstBackgroundColor}"
-                        FontSize="{Binding ConstFontSize}"
-                        TextColor="{Binding ConstTextColor}"/>
+                        FontSize="{Binding ConstFontSize}"/>
 
                 </VerticalStackLayout>
-
 
                 <VerticalStackLayout
                     IsVisible="{Binding ServerVisible}">
@@ -300,18 +291,14 @@
                         BorderWidth="2"
                         Command="{Binding SaveBtnClickedCommand}"
                         IsEnabled="{Binding SaveEnabled}"
-                        BackgroundColor="{Binding ConstBackgroundColor}"
-                        FontSize="{Binding ConstFontSize}"
-                        TextColor="{Binding ConstTextColor}"/>
+                        FontSize="{Binding ConstFontSize}"/>
                     <Button
                         WidthRequest="400"
                         Text="{Binding ServerStartBtnText}"
                         BorderWidth="2"
                         Command="{Binding ServerStartBtnClickedCommand}"
                         IsEnabled="{Binding StartEnabled}"
-                        BackgroundColor="{Binding ConstBackgroundColor}"
-                        FontSize="{Binding ConstFontSize}"
-                        TextColor="{Binding ConstTextColor}"/>
+                        FontSize="{Binding ConstFontSize}"/>
 
                 </VerticalStackLayout>
 
