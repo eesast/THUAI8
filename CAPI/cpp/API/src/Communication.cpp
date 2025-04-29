@@ -205,7 +205,7 @@ bool Communication::Common_Attack(int64_t playerID, int64_t teamID, int64_t atta
     }
     protobuf::BoolRes commonAttackResult;
     ClientContext context;
-    auto request = THUAI8Proto::THUAI82ProtobufAttackMsg(playerID, teamID);
+    auto request = THUAI8Proto::THUAI82ProtobufAttackMsg(playerID, teamID, attacked_playerID, attacked_teamID);
     auto status = THUAI8Stub->Attack(&context, request, &commonAttackResult);
     if (status.ok())
         return commonAttackResult.act_success();
@@ -269,7 +269,7 @@ bool Communication::BuildCharacter(int32_t teamID, THUAI8::CharacterType charact
 // 技能必中，angle改toplayerID
 
 // 待修改，不知道要不要toteamID
-bool Communication::Skill_Attack(int64_t teamID, int64_t playerID, double angle)
+bool Communication::Skill_Attack(int64_t playerID, int64_t teamID, double angle)
 {
     {
         std::lock_guard<std::mutex> lock(mtxLimit);

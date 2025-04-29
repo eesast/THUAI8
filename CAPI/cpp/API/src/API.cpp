@@ -247,16 +247,16 @@ std::future<bool> CharacterAPI::MoveLeft(int64_t timeInMilliseconds)
     // 向左移动通常是π弧度（西方向）或 3π/2（南方向）
     return Move(timeInMilliseconds, PI);
 }
-std::future<bool> CharacterAPI::Common_Attack(int64_t teamID, int64_t PlayerID, int64_t attackedTeamID, int64_t attackedPlayerID)
+std::future<bool> CharacterAPI::Common_Attack(int64_t attackedPlayerID)
 {
     return std::async(std::launch::async, [=]()
-                      { return logic.Common_Attack(teamID, PlayerID, attackedTeamID, attackedPlayerID); });
+                      { return logic.Common_Attack(this->GetSelfInfo()->teamID, this->GetSelfInfo()->playerID, 1 - this->GetSelfInfo()->teamID, attackedPlayerID); });
 }
 
-std::future<bool> CharacterAPI::Skill_Attack(int64_t TeamID, int64_t PlayerID, double angle)
+std::future<bool> CharacterAPI::Skill_Attack(double angle)
 {
     return std::async(std::launch::async, [=]()
-                      { return logic.Skill_Attack(TeamID, PlayerID, angle); });
+                      { return logic.Skill_Attack(this->GetSelfInfo()->playerID, this->GetSelfInfo()->teamID, angle); });
 }
 
 std::future<bool> CharacterAPI::Recover(int64_t recover)
