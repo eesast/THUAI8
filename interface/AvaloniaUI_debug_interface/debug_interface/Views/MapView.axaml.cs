@@ -399,7 +399,7 @@ namespace debug_interface.Views
                 //Text = character.CharacterId.ToString(), 
                 //Text = GetCharacterInitial(character.Name),
                 Text = character.Name.Substring(0, 1),
-                FontSize = 10,
+                FontSize = 11,
                 Foreground = new SolidColorBrush(teamColor),
                 FontWeight = FontWeight.Bold,
                 HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
