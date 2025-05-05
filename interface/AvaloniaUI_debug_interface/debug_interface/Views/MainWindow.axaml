@@ -88,7 +88,7 @@
 
 
                                     <!--  *** 使用 Grid 实现紧凑布局 ***  -->
-                                    <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,*">
+                                    <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,*,Auto">
                                         <!--  Row 0: 名字 (跨列居中)  -->
                                         <TextBlock
                                             Grid.Row="0"
@@ -208,6 +208,17 @@
                                             FontStyle="Italic"
                                             IsVisible="{Binding !EquipmentInventory.Count}"
                                             Text="无" />
+
+                                        <!--  5: 坐标  -->
+                                        <TextBlock
+                                            Grid.Row="5"
+                                            Grid.ColumnSpan="2"
+                                            Margin="0,2,0,0"
+                                            HorizontalAlignment="Left"
+                                            FontSize="8"
+                                            Foreground="Gray"
+                                            IsVisible="{Binding ShowCoordinates}"
+                                            Text="{Binding Coordinates}" />
 
                                     </Grid>
                                 </Border>
@@ -274,7 +285,7 @@
 
 
                                     <!--  *** 使用 Grid 实现紧凑布局 ***  -->
-                                    <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,*">
+                                    <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,*,Auto">
                                         <!--  Row 0: 名字 (跨列居中)  -->
                                         <TextBlock
                                             Grid.Row="0"
@@ -394,6 +405,16 @@
                                             FontStyle="Italic"
                                             IsVisible="{Binding !EquipmentInventory.Count}"
                                             Text="无" />
+
+                                        <TextBlock
+                                            Grid.Row="5"
+                                            Grid.ColumnSpan="2"
+                                            Margin="0,2,0,0"
+                                            HorizontalAlignment="Left"
+                                            FontSize="8"
+                                            Foreground="Gray"
+                                            IsVisible="{Binding ShowCoordinates}"
+                                            Text="{Binding Coordinates}" />
 
                                     </Grid>
                                 </Border>
