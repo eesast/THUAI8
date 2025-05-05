@@ -38,7 +38,7 @@
         <Grid Background="AliceBlue" RowDefinitions="5*,5*,2*">
 
             <!--  取经队区域  -->
-            <Grid Grid.Row="0" RowDefinitions="Auto,1*,Auto">
+            <Grid Grid.Row="0" RowDefinitions="Auto,*,Auto">
 
                 <!--  取经队伍标题行  -->
                 <StackPanel
@@ -66,7 +66,7 @@
                     <ItemsControl ItemsSource="{Binding BuddhistsTeamCharacters}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <!--  使用 WrapPanel 或 StackPanel 可能比 UniformGrid 好，因为角色卡片大小不一  -->
+
                                 <WrapPanel ItemWidth="140" Orientation="Horizontal" />
                                 <!-- <UniformGrid Columns="3" /> -->
                             </ItemsPanelTemplate>
@@ -414,7 +414,7 @@
 
             </Grid>
 
-            <Grid Grid.Row="2" RowDefinitions="Auto,Auto">
+            <Grid Grid.Row="2" RowDefinitions="4*,*">
                 <!--  日志区域  -->
                 <Border
                     Grid.Row="0"
@@ -432,7 +432,7 @@
 
                         <!--  日志显示区域  -->
                         <ScrollViewer
-                            Grid.Row="0"
+                            Grid.Row="1"
                             Margin="2"
                             VerticalAlignment="Top"
                             VerticalScrollBarVisibility="Auto">
@@ -563,8 +563,9 @@
             <Border
                 Grid.Row="1"
                 Margin="5"
+                Background="Transparent"
                 BorderBrush="Gray"
-                BorderThickness="1"
+                BorderThickness="0"
                 ClipToBounds="True">
                 <!--  MapView 保持不变  -->
                 <local:MapView />

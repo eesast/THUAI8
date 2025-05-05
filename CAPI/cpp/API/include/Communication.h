@@ -27,21 +27,21 @@ public:
     ~Communication() = default;
     bool TryConnection(int32_t playerID, int32_t teamID);
     protobuf::MessageToClient GetMessage2Client();
-    void AddPlayer(int32_t playerID, int32_t teamID, THUAI8::CharacterType CharacterType);
+    void AddPlayer(int32_t playerID, int32_t teamID, THUAI8::CharacterType CharacterType, bool side_flag);
     bool EndAllAction(int32_t playerID, int32_t teamID);
     // Character
-    bool Move(int32_t speed, int32_t playerID, int32_t teamID, int64_t time, double angle);
+    bool Move(int32_t playerID, int32_t teamID, int64_t moveTimeInMilliseconds, double angle);
     bool Recover(int32_t playerID, int64_t recover, int32_t teamID);
-    bool Produce(int32_t playerID, int32_t teamID);
-    bool Rebuild(int32_t playerID, int32_t teamID, THUAI8::ConstructionType constructionType);
+    bool Produce(int64_t playerID, int64_t teamID);
+    // bool Rebuild(int32_t playerID, int32_t teamID, THUAI8::ConstructionType constructionType);
     bool Construct(int32_t playerID, int32_t teamID, THUAI8::ConstructionType constructionType);
-    bool Skill_Attack(int32_t playerID, int32_t teamID, double angle);
-    bool Common_Attack(int32_t playerID, int32_t teamID, double angle);  // 角度？
+    bool Skill_Attack(int64_t playerID, int64_t teamID, double angle);
+    bool Common_Attack(int64_t playerID, int64_t teamID, int64_t attacked_playerID, int64_t attacked_teamID);  // 角度？
     bool Send(int32_t playerID, int32_t toPlayerID, int32_t teamID, std::string message, bool binary);
     // Team
     bool InstallEquipment(int32_t playerID, int32_t teamID, THUAI8::EquipmentType equipmentType);
     bool BuildCharacter(int32_t teamID, THUAI8::CharacterType CharacterType, int32_t birthIndex);
-    bool Recycle(int32_t playerID, int32_t teamID);  // 回收？
+    // bool Recycle(int32_t playerID, int32_t teamID);  // 回收？
 
 private:
     std::unique_ptr<protobuf::AvailableService::Stub> THUAI8Stub;

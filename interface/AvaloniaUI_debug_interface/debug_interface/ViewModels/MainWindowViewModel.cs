@@ -112,7 +112,6 @@ namespace debug_interface.ViewModels
             // ... 可以添加更多设计时数据
         }
 
-        // ViewModels\MainWindowViewModel.cs - UpdateCharacters 方法内
         public void UpdateCharacters()
         {
             var currentFrameGuids = new HashSet<long>(); // 存储本帧出现的所有角色 Guid
@@ -181,6 +180,13 @@ namespace debug_interface.ViewModels
             vm.Hp = data.Hp;
             vm.PosX = data.X; // 存储原始 X
             vm.PosY = data.Y; // 存储原始 Y
+
+            //if (data.X != vm.PosX || data.Y != vm.PosY)
+            //{
+            string message = $"角色: Name='{vm.Name}'移动中, pos = ({vm.PosX}, {vm.PosY})";
+            LogConsoleVM.AddLog(message, "INFO");
+            //}
+
 
             CharacterState previousActiveState = vm.ActiveState == "空闲/未知"
                 ? CharacterState.NullCharacterState
@@ -276,7 +282,7 @@ namespace debug_interface.ViewModels
                 CharacterType.ShaWujing => "沙悟净",
                 CharacterType.BaiLongma => "白龙马",
                 CharacterType.Monkid => "猴子猴孙", // 
-                CharacterType.JiuLing => "九头元圣", // 
+                CharacterType.JiuLing => "九灵元圣", // 
                 CharacterType.HongHaier => "红孩儿",
                 CharacterType.NiuMowang => "牛魔王",
                 CharacterType.TieShan => "铁扇公主", // 
@@ -524,11 +530,15 @@ namespace debug_interface.ViewModels
             MapLegendItems.Add(new LegendItem(Brushes.White, "空地", Brushes.LightGray, new Thickness(1)));
             MapLegendItems.Add(new LegendItem(Brushes.LightGreen, "草丛"));
             MapLegendItems.Add(new LegendItem(Brushes.DarkGray, "障碍物"));
-            MapLegendItems.Add(new LegendItem(Brushes.Gold, "经济资源")); // 与 UpdateResourceCell 一致
-            MapLegendItems.Add(new LegendItem(Brushes.LightPink, "加成 (生命泉)")); // 与 UpdateAdditionResourceCell 一致
-            MapLegendItems.Add(new LegendItem(Brushes.OrangeRed, "加成 (狂战士)")); // 与 UpdateAdditionResourceCell 一致
-            MapLegendItems.Add(new LegendItem(Brushes.LightSkyBlue, "加成 (疾步灵)")); // 与 UpdateAdditionResourceCell 一致
-            MapLegendItems.Add(new LegendItem(Brushes.MediumPurple, "加成 (视野灵)")); // 与 UpdateAdditionResourceCell 一致
+
+            MapLegendItems.Add(new LegendItem(Brushes.Orange, "大经济")); // 与 UpdateResourceCell 一致
+            MapLegendItems.Add(new LegendItem(Brushes.Gold, "中经济")); // 与 UpdateResourceCell 一致
+            MapLegendItems.Add(new LegendItem(Brushes.Yellow, "小经济")); // 与 UpdateResourceCell 一致
+
+            MapLegendItems.Add(new LegendItem(Brushes.LightPink, "生命泉")); // 与 UpdateAdditionResourceCell 一致
+            MapLegendItems.Add(new LegendItem(Brushes.OrangeRed, "狂战士")); // 与 UpdateAdditionResourceCell 一致
+            MapLegendItems.Add(new LegendItem(Brushes.LightSkyBlue, "疾步灵")); // 与 UpdateAdditionResourceCell 一致
+            MapLegendItems.Add(new LegendItem(Brushes.MediumPurple, "视野灵")); // 与 UpdateAdditionResourceCell 一致
 
             // 农场是建筑，颜色根据队伍区分
             // Team 0 = 取经队 = DarkRed
@@ -547,7 +557,7 @@ namespace debug_interface.ViewModels
             // (可选) 添加通用建筑颜色 (如果 MapMessage 中只有 CONSTRUCTION)
             MapLegendItems.Add(new LegendItem(Brushes.Brown, "建筑点位 (未指定类型)"));
             // (可选) 添加未知区域颜色
-             MapLegendItems.Add(new LegendItem(Brushes.Gainsboro, "未知区域"));
+            MapLegendItems.Add(new LegendItem(Brushes.Gainsboro, "未知区域"));
         }
 
     }

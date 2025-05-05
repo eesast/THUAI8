@@ -10,6 +10,7 @@ using System.IO.Compression;
 using System.Formats.Tar;
 using installer.Data;
 using installer.Services;
+using System.Data;
 
 namespace installer.Model
 {
@@ -31,7 +32,7 @@ namespace installer.Model
         public string ProgramName = "THUAI8";               // 要运行或下载的程序名称
         public string StartName = "maintest.exe";           // 启动的程序名
         public Local_Data Data;                             // 本地文件管理器
-        public Tencent_Cos Cloud;                           // 这里是否需要新建一个cos桶？
+        public Tencent_Cos Cloud;                           // THUAI8 Cos桶
         public TVersion CurrentVersion { get => Data.CurrentVersion; set => Data.CurrentVersion = value; }
 
         public HttpClient Client = new HttpClient();
@@ -146,19 +147,6 @@ namespace installer.Model
         }
 
         /// <summary>
-        /// 判断文件是否为用户文件（不应被删除）
-        /// </summary>
-        private bool IsUserFile(string filePath)
-        {
-            // 实现判断用户文件的逻辑，比如通过文件名后缀、路径等
-            // 以下是示例
-            return filePath.Contains("AI.cpp") ||
-                   filePath.Contains("AI.py") ||
-                   filePath.EndsWith("user.config") ||
-                   Path.GetFileName(filePath) == "源代码链接.txt";
-        }
-
-        /// <summary>
         /// 已有安装目录时移动安装目录到其他位置
         /// </summary>
         /// <param name="newPath">新的THUAI8根目录</param>
@@ -177,574 +165,134 @@ namespace installer.Model
                     Directory.Delete(Path.Combine(newPath, "Logs"), true);
                 }
                 Directory.CreateDirectory(Path.Combine(newPath, "Logs"));
-                try
+                foreach (var f1 in Directory.EnumerateFiles(Path.Combine(installPath, "Logs")))
                 {
-                    // 确保目标日志目录存在
-                    string newLogsDir = Path.Combine(newPath, "Logs");
-                    if (!Directory.Exists(newLogsDir))
-                    {
-                        Directory.CreateDirectory(newLogsDir);
-                    }
-
-                    if (Directory.Exists(Path.Combine(installPath, "Logs")))
-                    {
-                        foreach (var f1 in Directory.EnumerateFiles(Path.Combine(installPath, "Logs")))
-                        {
-                            var m = FileService.ConvertAbsToRel(installPath, f1);
-                            var n = Path.Combine(newPath, m);
-
-                            // 确保目标目录存在
-                            Directory.CreateDirectory(Path.GetDirectoryName(n));
-
-                            File.Move(f1, n);
-                        }
-                    }
-
-                    // 更新日志文件路径
-                    if (Cloud.Log is FileLogger)
-                    {
-                        string cosLogPath = Path.Combine(newPath, "Logs", "TencentCos.log");
-                        ((FileLogger)Cloud.Log).Path = cosLogPath;
-                        Directory.CreateDirectory(Path.GetDirectoryName(cosLogPath));
-                    }
-
-                    if (Web.Log is FileLogger)
-                    {
-                        string webLogPath = Path.Combine(newPath, "Logs", "EESAST.log");
-                        ((FileLogger)Web.Log).Path = webLogPath;
-                        Directory.CreateDirectory(Path.GetDirectoryName(webLogPath));
-                    }
-
-                    if (Data.Log is FileLogger)
-                    {
-                        string dataLogPath = Path.Combine(newPath, "Logs", "Local_Data.log");
-                        ((FileLogger)Data.Log).Path = dataLogPath;
-                        Directory.CreateDirectory(Path.GetDirectoryName(dataLogPath));
-                    }
-
-                    if (Log is FileLogger)
-                    {
-                        string installerLogPath = Path.Combine(newPath, "Logs", "Installer.log");
-                        ((FileLogger)Log).Path = installerLogPath;
-                        Directory.CreateDirectory(Path.GetDirectoryName(installerLogPath));
-                    }
+                    var m = FileService.ConvertAbsToRel(installPath, f1);
+                    var n = Path.Combine(newPath, m);
+                    File.Move(f1, n);
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"移动日志文件时出错: {ex.Message}");
-                }
-
+                if (Cloud.Log is FileLogger) ((FileLogger)Cloud.Log).Path = Path.Combine(newPath, "Logs", "TencentCos.log");
+                if (Web.Log is FileLogger) ((FileLogger)Web.Log).Path = Path.Combine(newPath, "Logs", "EESAST.log");
+                if (Data.Log is FileLogger) ((FileLogger)Data.Log).Path = Path.Combine(newPath, "Logs", "Local_Data.log");
+                if (Log is FileLogger) ((FileLogger)Log).Path = Path.Combine(newPath, "Logs", "Installer.log");
                 Data.ResetInstallPath(newPath);
             }
             Update();
         }
 
         /// <summary>
-        /// 全新安装THUAI8
+        /// 全新安装
         /// </summary>
         public void Install(string? path = null)
         {
-            if (path != null)
+            Data.Installed = false;
+            Data.Config.InstallPath = path ?? Data.Config.InstallPath;
+            UpdateMD5();
+            if (Status == UpdateStatus.error)
             {
-                Data.Config.InstallPath = path;
+                Cloud.Log.LogError($"校验文件下载失败，退出安装。");
+                return;
             }
 
-            // 清理旧文件（如果存在）
-            Cloud.Log.LogWarning($"全新安装开始，所有位于{Data.Config.InstallPath}的文件都将被删除。");
-
-            // 仅在目录存在时执行删除操作
-            if (Directory.Exists(Data.Config.InstallPath))
-            {
-                try
-                {
-                    // 使用递归删除非用户文件
-                    Action<DirectoryInfo> deleteTask = null;
-                    deleteTask = (dir) =>
+            Log.CountDict[LogLevel.Error] = 0;
+            Action<DirectoryInfo> action = (dir) => { };
+            var deleteTask = (DirectoryInfo dir) =>
             {
                 foreach (var file in dir.EnumerateFiles())
                 {
-                    // 只删除非用户文件，保留用户文件
-                    if (!IsUserFile(file.FullName))
+                    if (!Local_Data.IsUserFile(file.FullName))
                         file.Delete();
                 }
                 foreach (var sub in dir.EnumerateDirectories())
                 {
-                    deleteTask(sub);
+                    action(sub);
                 }
             };
-
-                    deleteTask(new DirectoryInfo(Data.Config.InstallPath));
-                }
-                catch (Exception ex)
-                {
-                    Cloud.Log.LogError($"删除旧文件时出错: {ex.Message}");
-                }
-            }
+            action = deleteTask;
+            Data.Log.LogWarning($"全新安装开始，所有位于{Data.Config.InstallPath}的文件都将被删除。");
+            if (Directory.Exists(Data.Config.InstallPath))
+                deleteTask(new DirectoryInfo(Data.Config.InstallPath));
             else
-            {
                 Directory.CreateDirectory(Data.Config.InstallPath);
-            }
-
-            // 创建日志目录
-            string logsDir = Path.Combine(Data.Config.InstallPath, "Logs");
-            if (!Directory.Exists(logsDir))
+            if (Directory.Exists(Path.Combine(Data.Config.InstallPath, "Logs")))
             {
-                try
-                {
-                    Directory.CreateDirectory(logsDir);
-                    Cloud.Log.LogInfo($"创建日志目录: {logsDir}");
-                }
-                catch (Exception ex)
-                {
-                    Cloud.Log.LogError($"创建日志目录时出错: {ex.Message}");
-                }
+                Directory.Delete(Path.Combine(Data.Config.InstallPath, "Logs"), true);
             }
-
-            try
-            {
-                // 更新日志文件路径
-                if (Cloud.Log is FileLogger)
-                {
-                    string cosLogPath = Path.Combine(logsDir, "TencentCos.log");
-                    ((FileLogger)Cloud.Log).Path = cosLogPath;
-                    // 确保日志文件所在目录存在
-                    Directory.CreateDirectory(Path.GetDirectoryName(cosLogPath));
-                }
-
-                if (Data.Log is FileLogger)
-                {
-                    string dataLogPath = Path.Combine(logsDir, "Local_Data.log");
-                    ((FileLogger)Data.Log).Path = dataLogPath;
-                    // 确保日志文件所在目录存在
-                    Directory.CreateDirectory(Path.GetDirectoryName(dataLogPath));
-                }
-
-                if (Log is FileLogger)
-                {
-                    string installerLogPath = Path.Combine(logsDir, "Installer.log");
-                    ((FileLogger)Log).Path = installerLogPath;
-                    // 确保日志文件所在目录存在
-                    Directory.CreateDirectory(Path.GetDirectoryName(installerLogPath));
-                }
-            }
-            catch (Exception ex)
-            {
-                // 使用控制台记录错误，因为日志可能无法工作
-                Console.WriteLine($"设置日志路径时出错: {ex.Message}");
-            }
-
-            // 创建所需的目录结构
-            string[] directories = new string[]
-            {
-                Path.Combine(Data.Config.InstallPath, "CAPI"),
-                Path.Combine(Data.Config.InstallPath, "CAPI", "cpp"),
-                Path.Combine(Data.Config.InstallPath, "CAPI", "cpp", "API"),
-                Path.Combine(Data.Config.InstallPath, "CAPI", "cpp", "API", "include"),
-                Path.Combine(Data.Config.InstallPath, "CAPI", "cpp", "API", "src"),
-                Path.Combine(Data.Config.InstallPath, "CAPI", "cpp", "lib"),
-                Path.Combine(Data.Config.InstallPath, "CAPI", "cpp", "proto"),
-                Path.Combine(Data.Config.InstallPath, "CAPI", "python"),
-                Path.Combine(Data.Config.InstallPath, "CAPI", "python", "PyAPI"),
-                Path.Combine(Data.Config.InstallPath, "dependency"),
-                Path.Combine(Data.Config.InstallPath, "dependency", "proto"),
-                Path.Combine(Data.Config.InstallPath, "dependency", "shell"),
-                Path.Combine(Data.Config.InstallPath, "interface"),
-                Path.Combine(Data.Config.InstallPath, "launcher"),
-                Path.Combine(Data.Config.InstallPath, "logic"),
-                Path.Combine(Data.Config.InstallPath, "logic", "Server"),
-                Path.Combine(Data.Config.InstallPath, "logic", "Client"),
-                Path.Combine(Data.Config.InstallPath, "playback")
-            };
-
-            foreach (string dir in directories)
-            {
-                if (!Directory.Exists(dir))
-                {
-                    Directory.CreateDirectory(dir);
-                    Cloud.Log.LogInfo($"创建目录: {dir}");
-                }
-            }
-
+            Directory.CreateDirectory(Path.Combine(Data.Config.InstallPath, "Logs"));
+            if (Cloud.Log is FileLogger) ((FileLogger)Cloud.Log).Path = Path.Combine(Data.Config.InstallPath, "Logs", "TencentCos.log");
+            if (Web.Log is FileLogger) ((FileLogger)Web.Log).Path = Path.Combine(Data.Config.InstallPath, "Logs", "EESAST.log");
+            if (Data.Log is FileLogger) ((FileLogger)Data.Log).Path = Path.Combine(Data.Config.InstallPath, "Logs", "Local_Data.log");
+            if (Log is FileLogger) ((FileLogger)Log).Path = Path.Combine(Data.Config.InstallPath, "Logs", "Installer.log");
             Data.ResetInstallPath(Data.Config.InstallPath);
 
-            // 下载和解压主安装包
-            bool mainPackageDownloaded = false;
-            string mainPackagePath = Path.Combine(Data.Config.InstallPath, "THUAI8.tar.gz");
+            string zp = Path.Combine(Data.Config.InstallPath, "THUAI8.tar.gz");
+            Status = UpdateStatus.downloading;
+            (CloudReport.ComCount, CloudReport.Count) = (0, 1);
+            Cloud.Log.LogInfo($"正在下载installer安装包……");
+            Cloud.DownloadFileAsync(zp, "THUAI8.tar.gz").Wait();
+            CloudReport.ComCount = 1;
+            Status = UpdateStatus.unarchieving;
+            Cloud.Log.LogInfo($"installer安装包下载完毕，正在解压……");
+            Cloud.ArchieveUnzip(zp, Data.Config.InstallPath);
+            Cloud.Log.LogInfo($"installer解压完成");
+            File.Delete(zp);
 
-            Cloud.Log.LogInfo("正在下载THUAI8安装包...");
-            try
-            {
-                var result = Cloud.DownloadFileAsync(mainPackagePath, "THUAI8.tar.gz").Result;
-                if (result >= 0 && File.Exists(mainPackagePath))
-                {
-                    Cloud.Log.LogInfo("THUAI8安装包下载完成，开始解压...");
-                    Cloud.ArchieveUnzip(mainPackagePath, Data.Config.InstallPath);
-                    Cloud.Log.LogInfo("THUAI8安装包解压完成");
-                    mainPackageDownloaded = true;
-
-                    // 删除压缩包以节省空间
-                    File.Delete(mainPackagePath);
-                }
-                else
-                {
-                    Cloud.Log.LogError("THUAI8安装包下载失败");
-                }
-            }
-            catch (Exception ex)
-            {
-                Cloud.Log.LogError($"下载或解压THUAI8安装包时出错: {ex.Message}");
-            }
-
-            // 设置当前版本
             CurrentVersion = Data.FileHashData.TVersion;
+            Cloud.Log.LogInfo("正在下载选手代码……");
+            Status = UpdateStatus.downloading;
+            CloudReport.Count += 2;
+            var tocpp = Cloud.DownloadFileAsync(Path.Combine(Data.Config.InstallPath, "CAPI", "cpp", "API", "src", "AI.cpp"),
+                $"./Templates/t.{CurrentVersion.TemplateVersion}.cpp").ContinueWith(_ => CloudReport.ComCount++);
+            var topy = Cloud.DownloadFileAsync(Path.Combine(Data.Config.InstallPath, "CAPI", "python", "PyAPI", "AI.py"),
+                $"./Templates/t.{CurrentVersion.TemplateVersion}.py").ContinueWith(_ => CloudReport.ComCount++);
+            Task.WaitAll(tocpp, topy);
 
-            // 下载选手代码
-            Cloud.Log.LogInfo("正在下载选手代码...");
-            bool cppCodeDownloaded = false;
-            bool pythonCodeDownloaded = false;
+            Cloud.Report.Count += 1;
+            zp = Path.Combine(Data.Config.InstallPath, "protoCpp.tar.gz");
+            Cloud.Log.LogInfo("正在下载proto cpp库……");
+            Cloud.DownloadFileAsync(zp, "Setup/proto/protoCpp.tar.gz").Wait();
+            CloudReport.ComCount += 1;
+            Status = UpdateStatus.unarchieving;
+            Cloud.Log.LogInfo($"proto cpp库下载完毕，正在解压……");
+            var protoCppLibPath = Path.Combine(Data.Config.InstallPath, "CAPI", "cpp", "lib");
+            if (!Directory.Exists(protoCppLibPath))
+                Directory.CreateDirectory(protoCppLibPath);
+            Cloud.ArchieveUnzip(zp, protoCppLibPath);
+            Cloud.Log.LogInfo($"proto cpp库解压完成");
+            File.Delete(zp);
 
-            string cppCodePath = Path.Combine(Data.Config.InstallPath, "CAPI", "cpp", "API", "src", "AI.cpp");
-            string pythonCodePath = Path.Combine(Data.Config.InstallPath, "CAPI", "python", "PyAPI", "AI.py");
-
-            try
-            {
-                var cppResult = Cloud.DownloadFileAsync(cppCodePath, $"./Templates/t.{CurrentVersion.TemplateVersion}.cpp").Result;
-                if (cppResult >= 0 && File.Exists(cppCodePath))
-                {
-                    Cloud.Log.LogInfo("C++选手代码下载成功");
-                    cppCodeDownloaded = true;
-                }
-                else
-                {
-                    Cloud.Log.LogWarning("C++选手代码下载失败");
-                }
-            }
-            catch (Exception ex)
-            {
-                Cloud.Log.LogError($"下载C++选手代码时出错: {ex.Message}");
-            }
-
-            try
-            {
-                var pyResult = Cloud.DownloadFileAsync(pythonCodePath, $"./Templates/t.{CurrentVersion.TemplateVersion}.py").Result;
-                if (pyResult >= 0 && File.Exists(pythonCodePath))
-                {
-                    Cloud.Log.LogInfo("Python选手代码下载成功");
-                    pythonCodeDownloaded = true;
-                }
-                else
-                {
-                    Cloud.Log.LogWarning("Python选手代码下载失败");
-                }
-            }
-            catch (Exception ex)
-            {
-                Cloud.Log.LogError($"下载Python选手代码时出错: {ex.Message}");
-            }
-
-            // 下载和解压proto库
-            bool protoLibDownloaded = false;
-            string protoLibArchivePath = Path.Combine(Data.Config.InstallPath, "protoCpp.tar.gz");
-            string protoLibDestPath = Path.Combine(Data.Config.InstallPath, "CAPI", "cpp", "lib");
-
-            Cloud.Log.LogInfo("正在下载proto cpp库...");
-            try
-            {
-                var result = Cloud.DownloadFileAsync(protoLibArchivePath, "Setup/proto/protoCpp.tar.gz").Result;
-                if (result >= 0 && File.Exists(protoLibArchivePath))
-                {
-                    Cloud.Log.LogInfo("proto cpp库下载完成，开始解压...");
-
-                    // 确保目标目录存在
-                    if (!Directory.Exists(protoLibDestPath))
-                    {
-                        Directory.CreateDirectory(protoLibDestPath);
-                    }
-
-                    Cloud.ArchieveUnzip(protoLibArchivePath, protoLibDestPath);
-                    Cloud.Log.LogInfo("proto cpp库解压完成");
-                    protoLibDownloaded = true;
-
-                    // 删除压缩包以节省空间
-                    File.Delete(protoLibArchivePath);
-                }
-                else
-                {
-                    Cloud.Log.LogError("proto cpp库下载失败");
-                }
-            }
-            catch (Exception ex)
-            {
-                Cloud.Log.LogError($"下载或解压proto cpp库时出错: {ex.Message}");
-            }
-
-            // 下载服务器和客户端可执行文件
-            string serverExePath = Path.Combine(Data.Config.InstallPath, "logic", "Server", "Server.exe");
-            string clientExePath = Path.Combine(Data.Config.InstallPath, "logic", "Client", "Client.exe");
-
-            bool serverDownloaded = false;
-            bool clientDownloaded = false;
-
-            // 尝试从多个可能的路径下载服务器可执行文件
-            string[] possibleServerPaths = new string[] {
-                "Server/Server.exe",
-                "server/Server.exe",
-                "logic/Server/Server.exe",
-                "GameServer/GameServer.exe",
-                "Server.exe"
-            };
-
-            // 尝试下载服务器
-            foreach (var cloudPath in possibleServerPaths)
-            {
-                Cloud.Log.LogInfo($"尝试从 {cloudPath} 下载服务器可执行文件...");
-
-                try
-                {
-                    var result = Cloud.DownloadFileAsync(serverExePath, cloudPath).Result;
-                    if (result >= 0 && File.Exists(serverExePath))
-                    {
-                        Cloud.Log.LogInfo($"服务器可执行文件成功从 {cloudPath} 下载");
-                        serverDownloaded = true;
-                        break;
-                    }
-                    Cloud.Log.LogWarning($"从 {cloudPath} 下载失败");
-                }
-                catch (Exception ex)
-                {
-                    Cloud.Log.LogError($"从 {cloudPath} 下载服务器时出错: {ex.Message}");
-                }
-            }
-
-            // 尝试从多个可能的路径下载客户端可执行文件
-            string[] possibleClientPaths = new string[] {
-                "Client/Client.exe",
-                "client/Client.exe",
-                "logic/Client/Client.exe",
-                "GameClient/GameClient.exe",
-                "Client.exe"
-            };
-
-            // 尝试下载客户端
-            foreach (var cloudPath in possibleClientPaths)
-            {
-                Cloud.Log.LogInfo($"尝试从 {cloudPath} 下载客户端可执行文件...");
-
-                try
-                {
-                    var result = Cloud.DownloadFileAsync(clientExePath, cloudPath).Result;
-                    if (result >= 0 && File.Exists(clientExePath))
-                    {
-                        Cloud.Log.LogInfo($"客户端可执行文件成功从 {cloudPath} 下载");
-                        clientDownloaded = true;
-                        break;
-                    }
-                    Cloud.Log.LogWarning($"从 {cloudPath} 下载失败");
-                }
-                catch (Exception ex)
-                {
-                    Cloud.Log.LogError($"从 {cloudPath} 下载客户端时出错: {ex.Message}");
-                }
-            }
-
-            // 创建链接到GitHub源代码的提示文件
-            try
-            {
-                string sourceLinkPath = Path.Combine(Data.Config.InstallPath, "源代码链接.txt");
-                string sourceContent = "THUAI8源代码：https://github.com/eesast/THUAI8\r\n\r\n" +
-                    "在GitHub上查看源代码，可以自行编译服务器和客户端可执行文件。\r\n\r\n" +
-                    "服务器：https://github.com/eesast/THUAI8/tree/main/logic/Server\r\n" +
-                    "客户端：https://github.com/eesast/THUAI8/tree/main/logic/Client\r\n\r\n" +
-                    "如果自动下载的可执行文件无法运行，请按照GitHub上的说明自行编译。";
-
-                File.WriteAllText(sourceLinkPath, sourceContent);
-                Cloud.Log.LogInfo($"已创建源代码链接文件: {sourceLinkPath}");
-            }
-            catch (Exception ex)
-            {
-                Cloud.Log.LogError($"创建源代码链接文件失败: {ex.Message}");
-            }
-
-            // 为Python选手创建generate_proto脚本
-            try
-            {
-                string pythonGenProtoWindows = Path.Combine(Data.Config.InstallPath, "CAPI", "python", "generate_proto.cmd");
-                string pythonGenProtoUnix = Path.Combine(Data.Config.InstallPath, "CAPI", "python", "generate_proto.sh");
-
-                string windowsContent =
-                    "python -m pip install -r requirements.txt\r\n" +
-                    "python -m grpc_tools.protoc -I../../dependency/proto --python_out=. --grpc_python_out=. ../../dependency/proto/Services.proto ../../dependency/proto/Message2Server.proto ../../dependency/proto/Message2Clients.proto ../../dependency/proto/MessageType.proto\r\n";
-
-                string unixContent =
-                    "#!/bin/bash\n" +
-                    "python3 -m pip install -r requirements.txt\n" +
-                    "python3 -m grpc_tools.protoc -I../../dependency/proto --python_out=. --grpc_python_out=. ../../dependency/proto/Services.proto ../../dependency/proto/Message2Server.proto ../../dependency/proto/Message2Clients.proto ../../dependency/proto/MessageType.proto\n";
-
-                File.WriteAllText(pythonGenProtoWindows, windowsContent);
-                File.WriteAllText(pythonGenProtoUnix, unixContent);
-
-                Cloud.Log.LogInfo("已创建Python proto生成脚本");
-            }
-            catch (Exception ex)
-            {
-                Cloud.Log.LogError($"创建Python proto生成脚本失败: {ex.Message}");
-            }
-
-            // 创建Python要求文件
-            try
-            {
-                string pythonRequirements = Path.Combine(Data.Config.InstallPath, "CAPI", "python", "requirements.txt");
-                string requirementsContent =
-                    "grpcio==1.53.0\n" +
-                    "grpcio-tools==1.53.0\n" +
-                    "protobuf==4.22.3\n";
-
-                File.WriteAllText(pythonRequirements, requirementsContent);
-                Cloud.Log.LogInfo("已创建Python requirements文件");
-            }
-            catch (Exception ex)
-            {
-                Cloud.Log.LogError($"创建Python requirements文件失败: {ex.Message}");
-            }
-
-            // 创建批处理文件来辅助编译服务器和客户端
-            try
-            {
-                string buildServerBatchPath = Path.Combine(Data.Config.InstallPath, "编译服务器.bat");
-                string buildClientBatchPath = Path.Combine(Data.Config.InstallPath, "编译客户端.bat");
-
-                // 服务器编译批处理内容
-                string buildServerContent =
-                    "@echo off\r\n" +
-                    "echo 正在编译THUAI8服务器...\r\n" +
-                    $"cd /d \"{Data.Config.InstallPath}\"\r\n" +
-                    "if not exist logic\\Server mkdir logic\\Server\r\n" +
-                    "cd logic\\Server\r\n" +
-                    "if exist build rmdir /s /q build\r\n" +
-                    "mkdir build\r\n" +
-                    "cd build\r\n" +
-                    "cmake ..\r\n" +
-                    "cmake --build . --config Release\r\n" +
-                    "echo 服务器编译完成，请检查build/Release目录下是否有Server.exe\r\n" +
-                    "if exist Release\\Server.exe (\r\n" +
-                    "    copy /Y Release\\Server.exe ..\\\r\n" +
-                    "    echo 服务器可执行文件已复制到logic\\Server目录\r\n" +
-                    ") else (\r\n" +
-                    "    echo 服务器编译似乎失败，请查看错误信息\r\n" +
-                    ")\r\n" +
-                    "pause\r\n";
-
-                // 客户端编译批处理内容
-                string buildClientContent =
-                    "@echo off\r\n" +
-                    "echo 正在编译THUAI8客户端...\r\n" +
-                    $"cd /d \"{Data.Config.InstallPath}\"\r\n" +
-                    "if not exist logic\\Client mkdir logic\\Client\r\n" +
-                    "cd logic\\Client\r\n" +
-                    "if exist build rmdir /s /q build\r\n" +
-                    "mkdir build\r\n" +
-                    "cd build\r\n" +
-                    "cmake ..\r\n" +
-                    "cmake --build . --config Release\r\n" +
-                    "echo 客户端编译完成，请检查build/Release目录下是否有Client.exe\r\n" +
-                    "if exist Release\\Client.exe (\r\n" +
-                    "    copy /Y Release\\Client.exe ..\\\r\n" +
-                    "    echo 客户端可执行文件已复制到logic\\Client目录\r\n" +
-                    ") else (\r\n" +
-                    "    echo 客户端编译似乎失败，请查看错误信息\r\n" +
-                    ")\r\n" +
-                    "pause\r\n";
-
-                File.WriteAllText(buildServerBatchPath, buildServerContent);
-                File.WriteAllText(buildClientBatchPath, buildClientContent);
-
-                Cloud.Log.LogInfo($"已创建编译服务器和客户端的批处理文件");
-            }
-            catch (Exception ex)
-            {
-                Cloud.Log.LogError($"创建编译批处理文件失败: {ex.Message}");
-            }
-
-            // 尝试直接从installer应用目录复制可执行文件
-            try
-            {
-                string appServerExe = Path.Combine(AppContext.BaseDirectory, "Server.exe");
-                string appClientExe = Path.Combine(AppContext.BaseDirectory, "Client.exe");
-
-                if (File.Exists(appServerExe) && !serverDownloaded)
-                {
-                    File.Copy(appServerExe, serverExePath, true);
-                    Cloud.Log.LogInfo($"已从应用目录复制服务器可执行文件");
-                    serverDownloaded = true;
-                }
-
-                if (File.Exists(appClientExe) && !clientDownloaded)
-                {
-                    File.Copy(appClientExe, clientExePath, true);
-                    Cloud.Log.LogInfo($"已从应用目录复制客户端可执行文件");
-                    clientDownloaded = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                Cloud.Log.LogError($"从应用目录复制可执行文件失败: {ex.Message}");
-            }
-
-            // 校验安装结果
-            if (cppCodeDownloaded && pythonCodeDownloaded)
+            if (CloudReport.ComCount == CloudReport.Count)
             {
                 Cloud.Log.LogInfo("选手代码下载成功！");
             }
             else
             {
-                Cloud.Log.LogError("选手代码下载不完整，选手可自行下载，网址：https://github.com/eesast/THUAI8/tree/main/CAPI/cpp/API/src/AI.cpp，https://github.com/eesast/THUAI8/tree/main/CAPI/python/PyAPI/AI.py");
+                Cloud.Log.LogError("选手代码下载失败，选手可自行下载，网址：https://github.com/eesast/THUAI8/tree/main/CAPI/cpp/API/src/AI.cpp，https://github.com/eesast/THUAI8/tree/main/CAPI/python/PyAPI/AI.py");
             }
 
-            if (!serverDownloaded)
+            Status = UpdateStatus.hash_computing;
+            Data.Log.LogInfo($"正在校验……");
+            Data.MD5Update.Clear();
+            Data.ScanDir();
+            if (Data.MD5Update.Count != 0)
             {
-                Cloud.Log.LogWarning("无法下载服务器可执行文件，请使用编译服务器批处理文件或从GitHub下载");
+                Status = UpdateStatus.error;
+                Data.Log.LogInfo($"校验失败，试图进行升级以修复……");
+                Update();
             }
-
-            if (!clientDownloaded)
+            else
             {
-                Cloud.Log.LogWarning("无法下载客户端可执行文件，请使用编译客户端批处理文件或从GitHub下载");
-            }
-
-            // 检查安装结果
-            try
-            {
-                Data.MD5Update.Clear();
-                Data.ScanDir();
-
-                if (Data.MD5Update.Count != 0)
+                Status = UpdateStatus.success;
+                Cloud.Log.LogInfo($"安装成功！开始您的THUAI8探索之旅吧！");
+                Data.Installed = true;
+                if (DeviceInfo.Platform == DevicePlatform.WinUI)
                 {
-                    Cloud.Log.LogWarning($"校验有{Data.MD5Update.Count}个文件不匹配，将尝试补全...");
-                    Update();
-                }
-                else
-                {
-                    Cloud.Log.LogInfo($"安装成功！开始您的THUAI8探索之旅吧！");
-                    Data.Installed = true;
-
-                    // 打开安装目录
-                    try
+                    Process.Start(new ProcessStartInfo()
                     {
-                        Process.Start(new ProcessStartInfo()
-                        {
-                            Arguments = Data.Config.InstallPath,
-                            FileName = "explorer.exe",
-                            UseShellExecute = true
-                        });
-                    }
-                    catch (Exception ex)
-                    {
-                        Cloud.Log.LogError($"打开安装目录失败: {ex.Message}");
-                    }
+                        Arguments = Data.Config.InstallPath,
+                        FileName = "explorer.exe"
+                    });
                 }
-            }
-            catch (Exception ex)
-            {
-                Cloud.Log.LogError($"校验安装结果时出错: {ex.Message}");
             }
         }
 
@@ -752,8 +300,11 @@ namespace installer.Model
         /// 检测是否需要进行更新
         /// 返回真时则表明需要更新
         /// </summary>
+        /// <param name="writeMD5">是否保存MD5数据</param>
+        /// <param name="ignoreVersionCheck">是否忽略版本号检查，仅检查文件变化</param>
+        /// <param name="fileContentPriority">当设为true时，文件内容检查结果优先于版本号检查（当版本号显示需要更新但文件无变化时，以文件检查结果为准）</param>
         /// <returns></returns>
-        public bool CheckUpdate(bool writeMD5 = true)
+        public bool CheckUpdate(bool writeMD5 = true, bool ignoreVersionCheck = false, bool fileContentPriority = true)
         {
             UpdateMD5();
             Data.MD5Update.Clear();
@@ -761,14 +312,39 @@ namespace installer.Model
             Status = UpdateStatus.hash_computing;
             Data.ScanDir(false);
             Status = UpdateStatus.success;
-            if (Data.MD5Update.Count != 0 || CurrentVersion < Data.FileHashData.TVersion)
+
+            bool filesNeedUpdate = Data.MD5Update.Count != 0;
+
+            bool versionNeedUpdate = !ignoreVersionCheck && (CurrentVersion < Data.FileHashData.TVersion);
+
+            bool needUpdate;
+            if (fileContentPriority)
             {
-                Data.Log.LogInfo("代码库需要更新，请点击更新按钮以更新。");
+                needUpdate = filesNeedUpdate;
+            }
+            else if (ignoreVersionCheck)
+            {
+                needUpdate = filesNeedUpdate;
+            }
+            else
+            {
+                needUpdate = filesNeedUpdate || versionNeedUpdate;
+            }
+
+            if (needUpdate)
+            {
+                if (filesNeedUpdate)
+                    Data.Log.LogInfo("检测到文件变化，需要更新。");
+                if (versionNeedUpdate && !fileContentPriority)
+                    Data.Log.LogInfo("检测到版本不匹配，需要更新。");
+                else if (versionNeedUpdate && fileContentPriority && !filesNeedUpdate)
+                    Data.Log.LogInfo("检测到版本不匹配，但文件无变化，可以忽略更新。");
+
                 if (writeMD5)
                 {
                     Data.SaveMD5Data();
                 }
-                return true;
+                return needUpdate;
             }
             else if (!Data.LangEnabled[LanguageOption.cpp].Item1 || !Data.LangEnabled[LanguageOption.python].Item1)
             {
@@ -804,9 +380,11 @@ namespace installer.Model
         /// </summary>
         public int Update()
         {
+            Data.Log.LogInfo("Update() 方法开始执行");
             int result = 0;
-            if (CheckUpdate(false))
+            if (CheckUpdate(false, false, true))
             {
+                Data.Log.LogInfo("CheckUpdate 返回 true，开始更新流程");
                 // 如果缺少选手代码，应当立刻下载最新的选手代码
                 if (!Data.LangEnabled[LanguageOption.cpp].Item1)
                 {
@@ -995,7 +573,8 @@ namespace installer.Model
                     CurrentVersion = Data.FileHashData.TVersion;
                     Status = UpdateStatus.hash_computing;
                     Data.Log.LogInfo("正在校验……");
-                    if (!CheckUpdate())
+                    Data.Log.LogInfo($"比较版本: CurrentVersion={CurrentVersion}, FileHashData.TVersion={Data.FileHashData.TVersion}");
+                    if (!CheckUpdate(true, false, true))
                     {
                         Data.Log.LogInfo("更新成功！");
                         Status = UpdateStatus.success;
@@ -1010,17 +589,10 @@ namespace installer.Model
             }
             else
             {
-                Cloud.Log.LogInfo("已经是最新版本啦！");
-                Data.Installed = true;
-                Status = UpdateStatus.success;
-                Data.SaveMD5Data();
-                return 0;
+                Data.Log.LogInfo("CheckUpdate 返回 false，无需更新");
             }
-            Cloud.Log.LogError("更新出问题了 -_-b");
-            Status = UpdateStatus.error;
-            Data.FileHashData.TVersion = CurrentVersion;
             Data.SaveMD5Data();
-            return -1;
+            return result;
         }
 
         /// <summary>
@@ -1096,9 +668,9 @@ namespace installer.Model
             return Task.Run(() => ResetInstallPath(newPath));
         }
 
-        public Task<bool> CheckUpdateAsync()
+        public Task<bool> CheckUpdateAsync(bool ignoreVersionCheck = false, bool fileContentPriority = true)
         {
-            return Task.Run(() => CheckUpdate());
+            return Task.Run(() => CheckUpdate(true, ignoreVersionCheck, fileContentPriority));
         }
 
         public Task<int> UpdateAsync()

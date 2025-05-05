@@ -84,7 +84,7 @@ namespace Gaming
                         moveEngine.MoveObj(characterToMove, GameData.KnockedBackTime, moveDirection, characterToMove.StateNum, GameData.KnockedBackSpeed);
                         Thread.Sleep(GameData.KnockedBackTime);
                         characterToMove.SetCharacterState(characterToMove.CharacterState1, tempState);
-                        //characterToMove.ResetCharacterState(stateNum);
+                        characterToMove.ResetCharacterState(stateNum);
                     }
                 )
                 { IsBackground = true }.Start();
@@ -250,8 +250,7 @@ namespace Gaming
                                                                 {
                                                                     characterManager.InHole(hole, character);
                                                                 }
-                                                                gameMap.Remove(hole
-                                                                    );//实时捕捉，用后即毁
+                                                                gameMap.Remove(hole);//实时捕捉，用后即毁
                                                                 return true;
                                                             },
                                                             timeInterval: GameData.CheckInterval,

@@ -287,8 +287,8 @@ inline constexpr CastMsg::Impl_::Impl_(
         casted_character_id_{},
         _casted_character_id_cached_byte_size_{0},
         character_id_{::int64_t{0}},
-        skill_id_{::int64_t{0}},
         team_id_{::int64_t{0}},
+        casted_team_id_{::int64_t{0}},
         attack_range_{0},
         x_{0},
         angle_{0},
@@ -436,9 +436,9 @@ const ::uint32_t
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::protobuf::CastMsg, _impl_.character_id_),
-        PROTOBUF_FIELD_OFFSET(::protobuf::CastMsg, _impl_.skill_id_),
-        PROTOBUF_FIELD_OFFSET(::protobuf::CastMsg, _impl_.casted_character_id_),
         PROTOBUF_FIELD_OFFSET(::protobuf::CastMsg, _impl_.team_id_),
+        PROTOBUF_FIELD_OFFSET(::protobuf::CastMsg, _impl_.casted_character_id_),
+        PROTOBUF_FIELD_OFFSET(::protobuf::CastMsg, _impl_.casted_team_id_),
         PROTOBUF_FIELD_OFFSET(::protobuf::CastMsg, _impl_.attack_range_),
         PROTOBUF_FIELD_OFFSET(::protobuf::CastMsg, _impl_.x_),
         PROTOBUF_FIELD_OFFSET(::protobuf::CastMsg, _impl_.y_),
@@ -543,22 +543,22 @@ const char descriptor_table_protodef_Message2Server_2eproto[] ABSL_ATTRIBUTE_SEC
     "\t\n\007message\"~\n\tAttackMsg\022\024\n\014character_id\030"
     "\001 \001(\003\022\017\n\007team_id\030\002 \001(\003\022\024\n\014attack_range\030\003"
     " \001(\005\022\035\n\025attacked_character_id\030\004 \001(\003\022\025\n\ra"
-    "ttacked_team\030\005 \001(\003\"\277\001\n\007CastMsg\022\024\n\014charac"
-    "ter_id\030\001 \001(\003\022\020\n\010skill_id\030\002 \001(\003\022\033\n\023casted"
-    "_character_id\030\003 \003(\003\022\017\n\007team_id\030\004 \001(\003\022\024\n\014"
-    "attack_range\030\005 \001(\005\022\016\n\001x\030\006 \001(\005H\000\210\001\001\022\016\n\001y\030"
-    "\007 \001(\005H\001\210\001\001\022\022\n\005angle\030\010 \001(\001H\002\210\001\001B\004\n\002_xB\004\n\002"
-    "_yB\010\n\006_angle\"l\n\014ConstructMsg\022\024\n\014characte"
-    "r_id\030\001 \001(\003\0225\n\021construction_type\030\002 \001(\0162\032."
-    "protobuf.ConstructionType\022\017\n\007team_id\030\003 \001"
-    "(\003\"b\n\010EquipMsg\022\024\n\014character_id\030\001 \001(\003\022/\n\016"
-    "equipment_type\030\002 \001(\0162\027.protobuf.Equipmen"
-    "tType\022\017\n\007team_id\030\003 \001(\003\"I\n\nRecoverMsg\022\024\n\014"
-    "character_id\030\001 \001(\003\022\024\n\014recovered_hp\030\002 \001(\003"
-    "\022\017\n\007team_id\030\003 \001(\003\"o\n\021CreatCharacterMsg\022/"
-    "\n\016character_type\030\001 \001(\0162\027.protobuf.Charac"
-    "terType\022\017\n\007team_id\030\002 \001(\003\022\030\n\020birthpoint_i"
-    "ndex\030\003 \001(\005b\006proto3"
+    "ttacked_team\030\005 \001(\003\"\305\001\n\007CastMsg\022\024\n\014charac"
+    "ter_id\030\001 \001(\003\022\017\n\007team_id\030\002 \001(\003\022\033\n\023casted_"
+    "character_id\030\003 \003(\003\022\026\n\016casted_team_id\030\004 \001"
+    "(\003\022\024\n\014attack_range\030\005 \001(\005\022\016\n\001x\030\006 \001(\005H\000\210\001\001"
+    "\022\016\n\001y\030\007 \001(\005H\001\210\001\001\022\022\n\005angle\030\010 \001(\001H\002\210\001\001B\004\n\002"
+    "_xB\004\n\002_yB\010\n\006_angle\"l\n\014ConstructMsg\022\024\n\014ch"
+    "aracter_id\030\001 \001(\003\0225\n\021construction_type\030\002 "
+    "\001(\0162\032.protobuf.ConstructionType\022\017\n\007team_"
+    "id\030\003 \001(\003\"b\n\010EquipMsg\022\024\n\014character_id\030\001 \001"
+    "(\003\022/\n\016equipment_type\030\002 \001(\0162\027.protobuf.Eq"
+    "uipmentType\022\017\n\007team_id\030\003 \001(\003\"I\n\nRecoverM"
+    "sg\022\024\n\014character_id\030\001 \001(\003\022\024\n\014recovered_hp"
+    "\030\002 \001(\003\022\017\n\007team_id\030\003 \001(\003\"o\n\021CreatCharacte"
+    "rMsg\022/\n\016character_type\030\001 \001(\0162\027.protobuf."
+    "CharacterType\022\017\n\007team_id\030\002 \001(\003\022\030\n\020birthp"
+    "oint_index\030\003 \001(\005b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_Message2Server_2eproto_deps[1] =
     {
@@ -568,7 +568,7 @@ static ::absl::once_flag descriptor_table_Message2Server_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_Message2Server_2eproto = {
     false,
     false,
-    1218,
+    1224,
     descriptor_table_protodef_Message2Server_2eproto,
     "Message2Server.proto",
     &descriptor_table_Message2Server_2eproto_once,
@@ -2454,15 +2454,15 @@ const ::_pbi::TcParseTable<3, 8, 0, 0, 2> CastMsg::_table_ = {
     // int64 character_id = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(CastMsg, _impl_.character_id_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(CastMsg, _impl_.character_id_)}},
-    // int64 skill_id = 2;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(CastMsg, _impl_.skill_id_), 63>(),
-     {16, 63, 0, PROTOBUF_FIELD_OFFSET(CastMsg, _impl_.skill_id_)}},
+    // int64 team_id = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(CastMsg, _impl_.team_id_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(CastMsg, _impl_.team_id_)}},
     // repeated int64 casted_character_id = 3;
     {::_pbi::TcParser::FastV64P1,
      {26, 63, 0, PROTOBUF_FIELD_OFFSET(CastMsg, _impl_.casted_character_id_)}},
-    // int64 team_id = 4;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(CastMsg, _impl_.team_id_), 63>(),
-     {32, 63, 0, PROTOBUF_FIELD_OFFSET(CastMsg, _impl_.team_id_)}},
+    // int64 casted_team_id = 4;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(CastMsg, _impl_.casted_team_id_), 63>(),
+     {32, 63, 0, PROTOBUF_FIELD_OFFSET(CastMsg, _impl_.casted_team_id_)}},
     // int32 attack_range = 5;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(CastMsg, _impl_.attack_range_), 63>(),
      {40, 63, 0, PROTOBUF_FIELD_OFFSET(CastMsg, _impl_.attack_range_)}},
@@ -2478,14 +2478,14 @@ const ::_pbi::TcParseTable<3, 8, 0, 0, 2> CastMsg::_table_ = {
     // int64 character_id = 1;
     {PROTOBUF_FIELD_OFFSET(CastMsg, _impl_.character_id_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kInt64)},
-    // int64 skill_id = 2;
-    {PROTOBUF_FIELD_OFFSET(CastMsg, _impl_.skill_id_), -1, 0,
+    // int64 team_id = 2;
+    {PROTOBUF_FIELD_OFFSET(CastMsg, _impl_.team_id_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kInt64)},
     // repeated int64 casted_character_id = 3;
     {PROTOBUF_FIELD_OFFSET(CastMsg, _impl_.casted_character_id_), -1, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kPackedInt64)},
-    // int64 team_id = 4;
-    {PROTOBUF_FIELD_OFFSET(CastMsg, _impl_.team_id_), -1, 0,
+    // int64 casted_team_id = 4;
+    {PROTOBUF_FIELD_OFFSET(CastMsg, _impl_.casted_team_id_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kInt64)},
     // int32 attack_range = 5;
     {PROTOBUF_FIELD_OFFSET(CastMsg, _impl_.attack_range_), -1, 0,
@@ -2548,11 +2548,11 @@ PROTOBUF_NOINLINE void CastMsg::Clear() {
                     stream, this_._internal_character_id(), target);
           }
 
-          // int64 skill_id = 2;
-          if (this_._internal_skill_id() != 0) {
+          // int64 team_id = 2;
+          if (this_._internal_team_id() != 0) {
             target = ::google::protobuf::internal::WireFormatLite::
                 WriteInt64ToArrayWithField<2>(
-                    stream, this_._internal_skill_id(), target);
+                    stream, this_._internal_team_id(), target);
           }
 
           // repeated int64 casted_character_id = 3;
@@ -2564,11 +2564,11 @@ PROTOBUF_NOINLINE void CastMsg::Clear() {
             }
           }
 
-          // int64 team_id = 4;
-          if (this_._internal_team_id() != 0) {
+          // int64 casted_team_id = 4;
+          if (this_._internal_casted_team_id() != 0) {
             target = ::google::protobuf::internal::WireFormatLite::
                 WriteInt64ToArrayWithField<4>(
-                    stream, this_._internal_team_id(), target);
+                    stream, this_._internal_casted_team_id(), target);
           }
 
           // int32 attack_range = 5;
@@ -2639,15 +2639,15 @@ PROTOBUF_NOINLINE void CastMsg::Clear() {
               total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
                   this_._internal_character_id());
             }
-            // int64 skill_id = 2;
-            if (this_._internal_skill_id() != 0) {
-              total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
-                  this_._internal_skill_id());
-            }
-            // int64 team_id = 4;
+            // int64 team_id = 2;
             if (this_._internal_team_id() != 0) {
               total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
                   this_._internal_team_id());
+            }
+            // int64 casted_team_id = 4;
+            if (this_._internal_casted_team_id() != 0) {
+              total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
+                  this_._internal_casted_team_id());
             }
             // int32 attack_range = 5;
             if (this_._internal_attack_range() != 0) {
@@ -2688,11 +2688,11 @@ void CastMsg::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google:
   if (from._internal_character_id() != 0) {
     _this->_impl_.character_id_ = from._impl_.character_id_;
   }
-  if (from._internal_skill_id() != 0) {
-    _this->_impl_.skill_id_ = from._impl_.skill_id_;
-  }
   if (from._internal_team_id() != 0) {
     _this->_impl_.team_id_ = from._impl_.team_id_;
+  }
+  if (from._internal_casted_team_id() != 0) {
+    _this->_impl_.casted_team_id_ = from._impl_.casted_team_id_;
   }
   if (from._internal_attack_range() != 0) {
     _this->_impl_.attack_range_ = from._impl_.attack_range_;

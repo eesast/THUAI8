@@ -9,6 +9,8 @@ namespace installer.ViewModel
 {
     public class HelpViewModel : BaseViewModel
     {
+        private bool _isDownloading = false;
+        private string installationPlatform = "";
 
         public List<HelpMessage> InstallerHelp { get; }
         public List<HelpMessage> LauncherHelp { get; }
@@ -24,7 +26,7 @@ namespace installer.ViewModel
                 new HelpMessage
                 {
                     Title = "选择安装路径",
-                    Content = "> 下载功能需要选择空文件夹路径。"
+                    Content = "> 下载功能选择原路径，下载后可选择空文件夹路径移动（config.json不会移动）。"
                 },
                 new HelpMessage
                 {
@@ -47,7 +49,7 @@ namespace installer.ViewModel
                 new HelpMessage
                 {
                     Title = "CPP可执行文件构建",
-                    Content = "> 目前的推荐方法是在VS中打开位于CAPI/cpp下的CAPI.sln，然后生成项目。"
+                    Content = "> 目前的推荐方法是在VS中打开位于CAPI/cpp下的API.sln，在其中的源代码部分编辑AI.cpp文件，然后生成项目。"
                 },
                 new HelpMessage
                 {

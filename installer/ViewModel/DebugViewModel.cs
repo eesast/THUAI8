@@ -89,7 +89,7 @@ namespace installer.ViewModel
         }
 
         private int teamCount = 2;
-        private int characterCount = 4;
+        private int characterCount = 6;
         public int TeamCount
         {
             get => teamCount;
@@ -119,7 +119,7 @@ namespace installer.ViewModel
                 OnPropertyChanged();
             }
         }
-        private string spectatorID = "2024";
+        private string spectatorID = "2026";
         public string SpectatorID
         {
             get => spectatorID;
@@ -215,9 +215,9 @@ namespace installer.ViewModel
                 if (Players[i].PlayerMode == "API")
                 {
                     if (CppSelect)
-                        LaunchCppAPI(Players[i].TeamID, Players[i].PlayerID);
+                        LaunchCppAPI(Players[i].TeamID, Players[i].PlayerID, Players[i].SideFlag);
                     else if (PySelect)
-                        LaunchPyAPI(Players[i].TeamID, Players[i].PlayerID);
+                        LaunchPyAPI(Players[i].TeamID, Players[i].PlayerID, Players[i].SideFlag);
                 }
             }
             for (int i = 0; i < Players.Count(); i++)
@@ -237,7 +237,7 @@ namespace installer.ViewModel
                 try
                 {
                     var id = Convert.ToInt32(SpectatorID);
-                    if (id < 2024)
+                    if (id < 2025)
                     {
                         throw new Exception();
                     }
@@ -282,7 +282,7 @@ namespace installer.ViewModel
             server = Process.Start(new ProcessStartInfo()
             {
                 FileName = Downloader.Data.Config.DevServerPath ?? Path.Combine(Downloader.Data.Config.InstallPath, "logic", "Server", "Server.exe"),
-                Arguments = $"--ip 0.0.0.0 --port {Port} --teamCount {TeamCount} --shipNum {CharacterCount}",
+                Arguments = $"--ip 0.0.0.0 --port {Port} --teamCount {TeamCount} --CharacterNum {CharacterCount}",
                 WorkingDirectory = Downloader.Data.Config.InstallPath,
                 RedirectStandardError = true,
             });
@@ -329,7 +329,7 @@ namespace installer.ViewModel
 
             var client = Process.Start(new ProcessStartInfo()
             {
-                FileName = Downloader.Data.Config.DevClientPath ?? Path.Combine(Downloader.Data.Config.InstallPath, "logic", "Client", "Client.exe"),
+                FileName = Downloader.Data.Config.DevClientPath ?? Path.Combine(Downloader.Data.Config.InstallPath, "logic", "Client", "debug_interface.exe"),
                 Arguments = arguments,
                 WorkingDirectory = Downloader.Data.Config.InstallPath,
                 RedirectStandardError = true,
@@ -339,12 +339,12 @@ namespace installer.ViewModel
                 Log.LogError("未能启动Client!");
                 return false;
             }
-            while (!File.Exists(Path.Combine(Downloader.Data.LogPath, $"lock.{team}.{player}.log")))
-            {
-                Thread.Sleep(500);
-            }
-            Thread.Sleep(500);
-            File.Delete(Path.Combine(Downloader.Data.LogPath, $"lock.{team}.{player}.log"));
+            // while (!File.Exists(Path.Combine(Downloader.Data.LogPath, $"lock.{team}.{player}.log")))
+            // {
+            //     Thread.Sleep(500);
+            // }
+            // Thread.Sleep(500);
+            // File.Delete(Path.Combine(Downloader.Data.LogPath, $"lock.{team}.{player}.log"));
             Downloader.Data.Config.Commands.PlaybackFile = p;
             Log.LogInfo($"Client({team}: {player})成功启动。");
             client.EnableRaisingEvents = true;
@@ -361,7 +361,7 @@ namespace installer.ViewModel
 
         protected bool ExplorerLaunched_CppAPI = false;
         protected bool ExplorerLaunched_PyAPI = false;
-        public bool LaunchCppAPI(int team, int player)
+        public bool LaunchCppAPI(int team, int player, int sideFlag)
         {
             var exe = Downloader.Data.Config.DevCppPath ?? Path.Combine(Downloader.Data.Config.InstallPath, "CAPI", "cpp", "x64", "Debug", "API.exe");
             var logDir = Path.Combine(Downloader.Data.LogPath, $"Team{team}");
@@ -372,7 +372,7 @@ namespace installer.ViewModel
                 var cpp = Process.Start(new ProcessStartInfo()
                 {
                     FileName = Downloader.Data.Config.DevCppPath ?? exe,
-                    Arguments = $"-I {IP} -P {Port} -t {team} -p {player} -o -d",
+                    Arguments = $"-I {IP} -P {Port} -t {team} -p {player} -s {sideFlag} -o -d",
                     WorkingDirectory = logDir,
                     RedirectStandardError = true,
                 });
@@ -408,7 +408,7 @@ namespace installer.ViewModel
             }
         }
 
-        public bool LaunchPyAPI(int team, int player)
+        public bool LaunchPyAPI(int team, int player, int sideFlag)
         {
             var p = Path.Combine(Downloader.Data.Config.InstallPath, "CAPI", "python");
             var logDir = Path.Combine(Downloader.Data.LogPath, $"Team{team}");
@@ -420,7 +420,7 @@ namespace installer.ViewModel
                 {
                     FileName = "python.exe",
                     Arguments = (Downloader.Data.Config.DevPyPath ?? Path.Combine(Downloader.Data.Config.InstallPath, "CAPI", "python", "PyAPI", "main.py"))
-                        + $" -I {IP} -P {Port} -t {team} -p {player} -o -d",
+                        + $" -I {IP} -P {Port} -t {team} -p {player} -s {sideFlag} -o -d",
                     WorkingDirectory = logDir,
                     RedirectStandardError = true,
                 });

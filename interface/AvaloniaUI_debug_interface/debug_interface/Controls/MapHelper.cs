@@ -69,12 +69,13 @@ namespace debug_interface.Controls
                         // 创建文本块 (TextBlock)
                         var textBlock = new TextBlock
                         {
-                            FontSize = 8, // 或者你测试后确定的最佳字号
+                            FontSize = 12, // 或者你测试后确定的最佳字号
                             // Foreground = Brushes.Black, // 可以设置默认色，或绑定颜色
                             Foreground = GetTextColorBasedOnBackground(cell.DisplayColor), // *** 尝试动态文本颜色 ***
                             TextAlignment = TextAlignment.Center,
                             VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
                             HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
+                            FontWeight = FontWeight.Bold, // 设置为粗体
                             [Grid.RowProperty] = i,
                             [Grid.ColumnProperty] = j,
                             IsHitTestVisible = false, // 文本块本身通常不需要交互
@@ -88,15 +89,6 @@ namespace debug_interface.Controls
                             Mode = BindingMode.OneWay // 文本通常也是单向绑定
                         };
 
-                        // *** (可选) 绑定文本颜色到背景色，通过转换器决定用深色还是浅色 ***
-                        // 需要创建一个 IValueConverter (e.g., BackgroundToForegroundConverter)
-                        // textBlock[!TextBlock.ForegroundProperty] = new Binding(nameof(MapCell.DisplayColor))
-                        // {
-                        //     Source = cell,
-                        //     Mode = BindingMode.OneWay,
-                        //     Converter = (IValueConverter)Application.Current.FindResource("BackgroundToForegroundConverter") // 假设转换器已在 App.axaml 定义
-                        // };
-
 
                         // 添加到 Grid
                         grid.Children.Add(rectangle);
@@ -106,7 +98,7 @@ namespace debug_interface.Controls
             }
 
             // 添加网格线（如果需要）
-            //AddGridLines(grid);
+            AddGridLines(grid);
         }
 
         // *** 新增：根据背景色决定文本颜色的辅助方法 ***
