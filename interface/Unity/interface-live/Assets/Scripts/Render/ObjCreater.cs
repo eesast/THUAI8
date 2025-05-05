@@ -18,17 +18,25 @@ public class ObjCreater : SingletonMono<ObjCreater>
     public GameObject CreateObj(PlaceType placeType, Vector2 Pos, Quaternion? quaternion = null)
     {
         int enumValue = Convert.ToInt32(placeType);
-        if (enumValue >= 2 && placeList[enumValue - 2].p.Count > 0)
+        try
         {
-            Quaternion rotation = quaternion ?? Quaternion.identity;
+            if (enumValue >= 2 && placeList[enumValue - 2].p.Count > 0)
+            {
+                Quaternion rotation = quaternion ?? Quaternion.identity;
 
-            // Override rotation for space tiles
-            if (placeType == PlaceType.Space)
-                rotation = Quaternion.Euler(0, 0, 90 * Tool.GetRandom(0, 4));
+                // Override rotation for space tiles
+                if (placeType == PlaceType.Space)
+                    rotation = Quaternion.Euler(0, 0, 90 * Tool.GetRandom(0, 4));
 
-            return Instantiate(Tool.RandomSelect(placeList[enumValue - 2].p), Pos, rotation, mapRoot);
+                return Instantiate(Tool.RandomSelect(placeList[enumValue - 2].p), Pos, rotation, mapRoot);
+            }
         }
-        return null;
+        catch (Exception e)
+        {
+            print(placeType);
+        }
+            return null;
+        
     }
 
     public GameObject CreateObj(CharacterType characterType, Vector2 Pos, Quaternion? quaternion = null)

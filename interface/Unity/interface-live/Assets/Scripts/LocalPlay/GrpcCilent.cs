@@ -11,7 +11,7 @@ class GrpcClient
 {
     public static AvailableService.AvailableServiceClient client;
 
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    //[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     public static void InitCilent()
     {
         int characterId = 0, teamId = 0;
@@ -30,16 +30,6 @@ class GrpcClient
             var currentGameInfo = call.ResponseStream.Current;
             if (currentGameInfo.GameState == GameState.GameStart) break;
         }
-    }
-
-    public static void SendMessage()
-    {
-        BoolRes call = client.Attack(new AttackMsg()
-        {
-            CharacterId = 0,
-            TargetId = 1,
-            AttackType = AttackType.NormalAttack
-        });
     }
 
 

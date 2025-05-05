@@ -4,7 +4,6 @@ using UnityEngine;
 using TMPro;
 using Unity.Collections;
 
-[RequireComponent(typeof(Animator))]
 public class CharacterBase : MonoBehaviour
 {
     public long ID;
@@ -33,7 +32,7 @@ public class CharacterBase : MonoBehaviour
 
     void Start()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
 
         hpBar = transform.Find("HpBar").Find("HpBarFillWrapper");
         hpText = transform.Find("HpBar").Find("HpBarText").GetComponent<TextMeshPro>();
