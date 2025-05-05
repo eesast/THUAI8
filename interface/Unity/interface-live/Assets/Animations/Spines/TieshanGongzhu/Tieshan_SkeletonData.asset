@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1b3b4b945939a54ea0b23d3396115fb, type: 3}
-  m_Name: Bajie_SkeletonData
+  m_Name: Tieshan_SkeletonData
   m_EditorClassIdentifier: 
   atlasAssets:
-  - {fileID: 11400000, guid: 9c95bbc3d2da19045b6c0608435d4023, type: 2}
+  - {fileID: 11400000, guid: 5af3b8331c5b9864cae3f87d4b7b5817, type: 2}
   scale: 0.01
-  skeletonJSON: {fileID: 4900000, guid: d24f5c8340d891349b6ca9639a0b826e, type: 3}
+  skeletonJSON: {fileID: 4900000, guid: 697d573da08be3b43ac13fb41b8c28e6, type: 3}
   isUpgradingBlendModeMaterials: 0
   blendModeMaterials:
     requiresBlendModeMaterials: 0
@@ -28,4 +28,4 @@ MonoBehaviour:
   toAnimation: []
   duration: []
   defaultMix: 0.2
-  controller: {fileID: 9100000, guid: 8443e9cbf25c9d24e8dba7650978a1a1, type: 2}
+  controller: {fileID: 9100000, guid: d3ab1adcd812d554f9c681c10bef78c0, type: 2}
