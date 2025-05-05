@@ -396,9 +396,11 @@ namespace debug_interface.Views
             // 可以添加一个小的 TextBlock 显示编号或类型首字母
             var textBlock = new TextBlock
             {
+
+                //Text = GetCharacterInitial(character.Name),
                 //Text = character.CharacterId.ToString(), 
-                Text = GetCharacterInitial(character.Name),
-                FontSize = 10,
+                Text = character.Name.Substring(0, 1),
+                FontSize = 11,
                 Foreground = new SolidColorBrush(teamColor),
                 FontWeight = FontWeight.Bold,
                 HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
