@@ -216,9 +216,9 @@ class Logic(ILogic):
         self.__logger.debug("Called CommonAttack")
         return self.__comm.Attack(playerID, teamID, ATKplayerID, ATKteamID)
 
-    def Skill_Attack(self, angle: float) -> bool:
+    def Skill_Attack(self, playerID: int, teamID: int, angle: float) -> bool:
         self.__logger.debug("Called SkillAttack")
-        return self.__comm.Skill_Attack(self.__playerID, self.__teamID, angle)
+        return self.__comm.Skill_Attack(playerID, teamID, angle)
 
     def Recover(self, recover: int) -> bool:
         self.__logger.debug("Called Recover")

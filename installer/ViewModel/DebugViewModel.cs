@@ -89,7 +89,7 @@ namespace installer.ViewModel
         }
 
         private int teamCount = 2;
-        private int characterCount = 4;
+        private int characterCount = 6;
         public int TeamCount
         {
             get => teamCount;

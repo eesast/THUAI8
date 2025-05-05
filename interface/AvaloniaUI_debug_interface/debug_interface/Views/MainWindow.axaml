@@ -563,8 +563,9 @@
             <Border
                 Grid.Row="1"
                 Margin="5"
+                Background="Transparent"
                 BorderBrush="Gray"
-                BorderThickness="1"
+                BorderThickness="0"
                 ClipToBounds="True">
                 <!--  MapView 保持不变  -->
                 <local:MapView />

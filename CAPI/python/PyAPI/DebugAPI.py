@@ -24,6 +24,8 @@ class CharacterDebugAPI(ICharacterAPI, IGameTimer):
         self.__startPoint = datetime.datetime.now()
         self.__logger = logging.getLogger("api " + str(playerID))
         self.__logger.setLevel(logging.DEBUG)
+        self.__playerID = playerID
+        self.__teamID = teamID
         formatter = logging.Formatter(
             "[%(name)s] [%(asctime)s.%(msecs)03d] [%(levelname)s] %(message)s",
             "%H:%M:%S",
@@ -79,26 +81,22 @@ class CharacterDebugAPI(ICharacterAPI, IGameTimer):
 
         return self.__pool.submit(logMoveDown)
 
-    def MoveRight(self, timeInMilliseconds) -> Future[bool]:
-        self.__logger.info(
-            f"MoveRight: time={timeInMilliseconds}ms, called at {self.__GetTime()}ms"
-        )
+    def MoveRight(self, time: int) -> Future[bool]:
+        self.__logger.info(f"MoveRight: time={time}ms, called at {self.__GetTime()}ms")
 
         def logMoveRight() -> bool:
-            result = self.__logic.Move(timeInMilliseconds, PI * 0.5)
+            result = self.__logic.Move(time, PI * 0.5)
             if not result:
                 self.__logger.warning(f"MoveRight failed at {self.__GetTime()}ms")
             return result
 
         return self.__pool.submit(logMoveRight)
 
-    def MoveUp(self, timeInMilliseconds) -> Future[bool]:
-        self.__logger.info(
-            f"MoveUp: time={timeInMilliseconds}ms, called at {self.__GetTime()}ms"
-        )
+    def MoveUp(self, time: int) -> Future[bool]:
+        self.__logger.info(f"MoveUp: time={time}ms, called at {self.__GetTime()}ms")
 
         def logMoveUp() -> bool:
-            result = self.__logic.Move(timeInMilliseconds, PI)
+            result = self.__logic.Move(time, PI)
             if not result:
                 self.__logger.warning(f"MoveUp failed at {self.__GetTime()}ms")
             return result
@@ -122,22 +120,21 @@ class CharacterDebugAPI(ICharacterAPI, IGameTimer):
         )
 
         def logSkillAttack() -> bool:
-            result = self.__logic.Skill_Attack(angle)
+            result = self.__logic.Skill_Attack(self.__playerID, self.__teamID, angle)
             if not result:
                 self.__logger.warning(f"Skill_Attack failed at {self.__GetTime()}ms")
             return result
+
         return self.__pool.submit(logSkillAttack)
 
-    def Common_Attack(
-        self, playerID: int, teamID: int, attackedPlayerID: int, attackedTeamID: int
-    ) -> Future[bool]:
+    def Common_Attack(self, attackedPlayerID: int) -> Future[bool]:
         self.__logger.info(
-            f"Common_Attack: playerID={playerID}, teamID={teamID}, attackedPlayerID={attackedPlayerID}, attackedTeamID={attackedTeamID}, called at {self.__GetTime()}ms"
+            f"Common_Attack: attackedPlayerID={attackedPlayerID}, attackedTeamID={1 - self.__teamID}, called at {self.__GetTime()}ms"
         )
 
         def logCommonAttack() -> bool:
             result = self.__logic.Common_Attack(
-                playerID, teamID, attackedPlayerID, attackedTeamID
+                self.__playerID, self.__teamID, attackedPlayerID, 1 - self.__teamID
             )
             if not result:
                 self.__logger.warning(f"Common_Attack failed at {self.__GetTime()}ms")

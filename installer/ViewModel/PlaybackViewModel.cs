@@ -155,7 +155,7 @@ namespace installer.ViewModel
                 LogMessage("启动回放客户端");
 
                 // 构建启动参数
-                var clientPath = Path.Combine(Downloader.Data.Config.InstallPath, "logic", "Client", "Client.exe");
+                var clientPath = Path.Combine(Downloader.Data.Config.InstallPath, "logic", "Client", "debug_interface.exe");
 
                 // 检查客户端是否存在
                 if (!File.Exists(clientPath))

@@ -300,8 +300,11 @@ namespace installer.Model
         /// 检测是否需要进行更新
         /// 返回真时则表明需要更新
         /// </summary>
+        /// <param name="writeMD5">是否保存MD5数据</param>
+        /// <param name="ignoreVersionCheck">是否忽略版本号检查，仅检查文件变化</param>
+        /// <param name="fileContentPriority">当设为true时，文件内容检查结果优先于版本号检查（当版本号显示需要更新但文件无变化时，以文件检查结果为准）</param>
         /// <returns></returns>
-        public bool CheckUpdate(bool writeMD5 = true)
+        public bool CheckUpdate(bool writeMD5 = true, bool ignoreVersionCheck = false, bool fileContentPriority = true)
         {
             UpdateMD5();
             Data.MD5Update.Clear();
@@ -309,14 +312,39 @@ namespace installer.Model
             Status = UpdateStatus.hash_computing;
             Data.ScanDir(false);
             Status = UpdateStatus.success;
-            if (Data.MD5Update.Count != 0 || CurrentVersion < Data.FileHashData.TVersion)
+
+            bool filesNeedUpdate = Data.MD5Update.Count != 0;
+
+            bool versionNeedUpdate = !ignoreVersionCheck && (CurrentVersion < Data.FileHashData.TVersion);
+
+            bool needUpdate;
+            if (fileContentPriority)
             {
-                Data.Log.LogInfo("代码库需要更新，请点击更新按钮以更新。");
+                needUpdate = filesNeedUpdate;
+            }
+            else if (ignoreVersionCheck)
+            {
+                needUpdate = filesNeedUpdate;
+            }
+            else
+            {
+                needUpdate = filesNeedUpdate || versionNeedUpdate;
+            }
+
+            if (needUpdate)
+            {
+                if (filesNeedUpdate)
+                    Data.Log.LogInfo("检测到文件变化，需要更新。");
+                if (versionNeedUpdate && !fileContentPriority)
+                    Data.Log.LogInfo("检测到版本不匹配，需要更新。");
+                else if (versionNeedUpdate && fileContentPriority && !filesNeedUpdate)
+                    Data.Log.LogInfo("检测到版本不匹配，但文件无变化，可以忽略更新。");
+
                 if (writeMD5)
                 {
                     Data.SaveMD5Data();
                 }
-                return true;
+                return needUpdate;
             }
             else if (!Data.LangEnabled[LanguageOption.cpp].Item1 || !Data.LangEnabled[LanguageOption.python].Item1)
             {
@@ -354,7 +382,7 @@ namespace installer.Model
         {
             Data.Log.LogInfo("Update() 方法开始执行");
             int result = 0;
-            if (CheckUpdate(false))
+            if (CheckUpdate(false, false, true))
             {
                 Data.Log.LogInfo("CheckUpdate 返回 true，开始更新流程");
                 // 如果缺少选手代码，应当立刻下载最新的选手代码
@@ -528,16 +556,8 @@ namespace installer.Model
                 // 更新成功后返回值Flags增加0x8
                 Status = UpdateStatus.downloading;
                 Cloud.Log.LogInfo("正在更新……");
-                var filesToDownload = Data.MD5Update
-                    .Where(item => item.state != System.Data.DataRowState.Added)
-                    .Select(item =>
-                    {
-                        var cleanPath = item.name.TrimStart('.', '/', '\\');
-                        Data.Log.LogInfo($"准备下载文件: 远程路径={cleanPath}, 本地路径={Path.Combine(Data.Config.InstallPath, cleanPath)}");
-                        return cleanPath;
-                    });
-
-                Cloud.DownloadQueueAsync(Data.Config.InstallPath, filesToDownload).Wait();
+                Cloud.DownloadQueueAsync(Data.Config.InstallPath,
+                    from item in Data.MD5Update where item.state != System.Data.DataRowState.Added select item.name).Wait();
                 Cloud.Log.LogWarning("正在删除冗余文件……");
                 foreach (var item in Data.MD5Update.Where((s) => s.state == System.Data.DataRowState.Added))
                 {
@@ -554,7 +574,7 @@ namespace installer.Model
                     Status = UpdateStatus.hash_computing;
                     Data.Log.LogInfo("正在校验……");
                     Data.Log.LogInfo($"比较版本: CurrentVersion={CurrentVersion}, FileHashData.TVersion={Data.FileHashData.TVersion}");
-                    if (!CheckUpdate())
+                    if (!CheckUpdate(true, false, true))
                     {
                         Data.Log.LogInfo("更新成功！");
                         Status = UpdateStatus.success;
@@ -648,9 +668,9 @@ namespace installer.Model
             return Task.Run(() => ResetInstallPath(newPath));
         }
 
-        public Task<bool> CheckUpdateAsync()
+        public Task<bool> CheckUpdateAsync(bool ignoreVersionCheck = false, bool fileContentPriority = true)
         {
-            return Task.Run(() => CheckUpdate());
+            return Task.Run(() => CheckUpdate(true, ignoreVersionCheck, fileContentPriority));
         }
 
         public Task<int> UpdateAsync()
