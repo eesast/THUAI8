@@ -33,6 +33,22 @@ namespace debug_interface.ViewModels
         [ObservableProperty]
         private int posY;
 
+        /// <summary>
+        /// 供 XAML 绑定的坐标字符串，例 "(5,10)"
+        /// </summary>
+        public string Coordinates => $"({PosX},{PosY})";
+
+        public bool ShowCoordinates => Hp > 0;
+
+        // 当 PosX 或 PosY 改变时，需要触发 Coordinates 的 PropertyChanged
+        partial void OnPosXChanged(int value) => OnPropertyChanged(nameof(Coordinates));
+        partial void OnPosYChanged(int value) => OnPropertyChanged(nameof(Coordinates));
+
+        // 当 Hp 改变时，需要触发 ShowCoordinates 的 PropertyChanged
+        partial void OnHpChanged(int value) => OnPropertyChanged(nameof(ShowCoordinates));
+
+
+
         [ObservableProperty]
         private string activeState = "";
 
