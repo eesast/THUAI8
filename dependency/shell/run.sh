@@ -117,11 +117,11 @@ if [ "$TERMINAL" = "SERVER" ]; then
     fi
 
 elif [ "$TERMINAL" = "CLIENT" ]; then
-    echo "Client Mode! Team Label data - $TEAM_LABELS"
+    echo "Client Mode! Team Label data - $TEAM_LABEL"
 
     k=$TEAM_SEQ_ID
     pushd /usr/local/code
-        for i in {0..4}
+        for i in {0..6}
         do
             if [ $i -eq 0 ]; then
                 code_name=Team
