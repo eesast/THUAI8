@@ -422,14 +422,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   placeList:
   - p:
+    - {fileID: 3945847580353653912, guid: 8063591a10dffcc4fa27427a838823e3, type: 3}
+  - p:
     - {fileID: 7806615254882735502, guid: 7421393a0cf4f1243a5562e215de5674, type: 3}
     - {fileID: 7806615254882735502, guid: e959e9dca9e27bf41b1cafd212ed2c4e, type: 3}
     - {fileID: 7806615254882735502, guid: be4fd1ff80e4f5b4cab780773678e068, type: 3}
     - {fileID: 7806615254882735502, guid: a5cf9bcdbcc2061459310cf0a1577bba, type: 3}
   - p:
     - {fileID: 1980822827373522086, guid: eddccf38c91ca6440b0bb1df48bd1e5c, type: 3}
+    - {fileID: 1980822827373522086, guid: ca5506cc885d9f14b861f59d941a199b, type: 3}
   - p:
     - {fileID: 9120459159163841875, guid: be67aff829a4d7448b6a2aa1ff770763, type: 3}
+    - {fileID: 9120459159163841875, guid: 6efda6c2ec8a9eb4c916b930f8ac8c29, type: 3}
+    - {fileID: 9120459159163841875, guid: 73653b24790c6f54ba02d3403aced556, type: 3}
+  - p:
+    - {fileID: 9129798851093191794, guid: 0c8e2656ace88b64496b7f56a1a6b3a9, type: 3}
+  - p:
+    - {fileID: 7806615254882735502, guid: 54456bbf0be2ed340952a5d5093a7e27, type: 3}
+  - p:
+    - {fileID: 7806615254882735502, guid: fab2921dc72be3f448b9aecc8e949153, type: 3}
+  - p:
+    - {fileID: 7806615254882735502, guid: 7421393a0cf4f1243a5562e215de5674, type: 3}
   characterList:
   - {fileID: 4640104279501151647, guid: 9873b9e99ac345b45bd08074689ac0b1, type: 3}
   - {fileID: 369265814251635733, guid: 118dc5ffac29bae489b9435855a76e1f, type: 3}
@@ -444,16 +457,24 @@ MonoBehaviour:
   - {fileID: 1797631350199268873, guid: bdea73ebb2ae053479bfa7fc604e5963, type: 3}
   - {fileID: 8163467714999466970, guid: 4333710e32ef1854f8c7508f22b30641, type: 3}
   constructionList:
-  - {fileID: 9129798851093191794, guid: e7c970a6edbe1d24091e49693545540e, type: 3}
   - {fileID: 3945847580353653912, guid: 8063591a10dffcc4fa27427a838823e3, type: 3}
-  - {fileID: 9129798851093191794, guid: 0c8e2656ace88b64496b7f56a1a6b3a9, type: 3}
+  - {fileID: 9129798851093191794, guid: e7c970a6edbe1d24091e49693545540e, type: 3}
   trapType:
   - {fileID: 3945847580353653912, guid: a49bd23a2b12e42418a0eb0e15c48ea0, type: 3}
   - {fileID: 3945847580353653912, guid: 48dae0b7e7f5692469bbcaf8b04c59f7, type: 3}
   economyResourceList:
   - {fileID: 9129798851093191794, guid: 0c8e2656ace88b64496b7f56a1a6b3a9, type: 3}
+  - {fileID: 9129798851093191794, guid: 0c8e2656ace88b64496b7f56a1a6b3a9, type: 3}
+  - {fileID: 9129798851093191794, guid: 0c8e2656ace88b64496b7f56a1a6b3a9, type: 3}
   additionResourceList:
-  - {fileID: 9129798851093191794, guid: e7c970a6edbe1d24091e49693545540e, type: 3}
+  - {fileID: 217232323802203460, guid: 65039d29fdbbae84d920c4c7507962f3, type: 3}
+  - {fileID: 217232323802203460, guid: 65039d29fdbbae84d920c4c7507962f3, type: 3}
+  - {fileID: 217232323802203460, guid: 65039d29fdbbae84d920c4c7507962f3, type: 3}
+  - {fileID: 4074231328832513157, guid: 57dda08cd898d37438ba4e9c7c21be70, type: 3}
+  - {fileID: 4074231328832513157, guid: 57dda08cd898d37438ba4e9c7c21be70, type: 3}
+  - {fileID: 4074231328832513157, guid: 57dda08cd898d37438ba4e9c7c21be70, type: 3}
+  - {fileID: 3319690722006181376, guid: 4214e8f08b503744cbc24e3fd6f2ac19, type: 3}
+  - {fileID: 2198765581274878856, guid: 60748e744e9797e49a9c5dcae630a0aa, type: 3}
   mapRoot: {fileID: 0}
 --- !u!114 &294971979
 MonoBehaviour:
