@@ -29,5 +29,4 @@ target_link_libraries(capi
     gRPC::grpc
     gRPC::grpc++_reflection
     gRPC::grpc++
-    gRPC::fmt
 )
