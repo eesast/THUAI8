@@ -172,7 +172,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Leshy Leaf Sprite Sheet_0
+  m_Name: Xiaoyao
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Running
@@ -193,7 +193,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: Died
+  - m_Name: Die
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
