@@ -54,10 +54,10 @@ public class CharacterBase : MonoBehaviour
         switch (GetActiveState())
         {
             case CharacterState.Idle:
-                animator.SetBool("Moving", false);
+                animator.SetBool("Running", false);
                 break;
             case CharacterState.Moving:
-                animator.SetBool("Moving", true);
+                animator.SetBool("Running", true);
                 break;
             case CharacterState.Attacking:
             case CharacterState.Harvesting:
