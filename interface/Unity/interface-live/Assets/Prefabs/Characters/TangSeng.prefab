@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8620132749652069948}
   - component: {fileID: 1664420682501756573}
   - component: {fileID: 2372721880191122229}
+  - component: {fileID: 7241663361833932806}
   m_Layer: 0
   m_Name: Spine Mecanim GameObject (Tangseng)
   m_TagString: Untagged
@@ -145,6 +146,18 @@ MonoBehaviour:
     useCustomMixMode: 1
     layerMixModes: 01000000
     layerBlendModes: 01000000
+--- !u!210 &7241663361833932806
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326077175412362523}
+  m_Enabled: 1
+  m_SortingLayerID: -1397136051
+  m_SortingLayer: 2
+  m_SortingOrder: 0
+  m_SortAtRoot: 1
 --- !u!1 &4640104279501151647
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,7 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 0
-  characterType: 0
+  characterType: 1
 --- !u!1001 &1146275977946985824
 PrefabInstance:
   m_ObjectHideFlags: 0

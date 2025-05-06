@@ -435,7 +435,7 @@ MonoBehaviour:
   - {fileID: 369265814251635733, guid: 118dc5ffac29bae489b9435855a76e1f, type: 3}
   - {fileID: 8145575428188969615, guid: c8b48ecbdd432e8459707d4ad7df8144, type: 3}
   - {fileID: 4537900822133641867, guid: 8cb9fd8a4ef88934cb881c2f54293cfc, type: 3}
-  - {fileID: 4537900822133641867, guid: 8cb9fd8a4ef88934cb881c2f54293cfc, type: 3}
+  - {fileID: 1574744894063471534, guid: a7e528134c368bd41b18f42cc6a5c2a4, type: 3}
   - {fileID: 4537900822133641867, guid: 8cb9fd8a4ef88934cb881c2f54293cfc, type: 3}
   - {fileID: 3278167705416939424, guid: fff923b9a9dd4b1428217ae1d1cca8d6, type: 3}
   - {fileID: 4621310388395840504, guid: ed4451ffa489e29498fe811b0e4fecde, type: 3}
@@ -788,24 +788,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddfe76a77bc0155448788971463b7f57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  student1: {fileID: 0}
-  student2: {fileID: 0}
-  student3: {fileID: 0}
-  student4: {fileID: 0}
-  student5: {fileID: 0}
-  student6: {fileID: 0}
-  tricker1: {fileID: 0}
-  tricker2: {fileID: 0}
-  tricker3: {fileID: 0}
-  student1_icon: {fileID: 0}
-  student2_icon: {fileID: 0}
-  student3_icon: {fileID: 0}
-  student4_icon: {fileID: 0}
-  student5_icon: {fileID: 0}
-  student6_icon: {fileID: 0}
-  tricker1_icon: {fileID: 0}
-  tricker2_icon: {fileID: 0}
-  tricker3_icon: {fileID: 0}
 --- !u!1 &987801385
 GameObject:
   m_ObjectHideFlags: 0

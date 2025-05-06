@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7614215860544958153}
   - component: {fileID: 8372018544827026772}
   - component: {fileID: 5294428292381881019}
+  - component: {fileID: 3960947140168067628}
   m_Layer: 0
   m_Name: Spine Mecanim GameObject (Bajie)
   m_TagString: Untagged
@@ -145,6 +146,18 @@ MonoBehaviour:
     useCustomMixMode: 1
     layerMixModes: 01000000
     layerBlendModes: 01000000
+--- !u!210 &3960947140168067628
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2445534331828921217}
+  m_Enabled: 1
+  m_SortingLayerID: -1397136051
+  m_SortingLayer: 2
+  m_SortingOrder: 0
+  m_SortAtRoot: 1
 --- !u!1 &8145575428188969615
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,7 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 0
-  characterType: 0
+  characterType: 3
 --- !u!1001 &2098291705223012081
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 0
-  characterType: 0
+  characterType: 9
 --- !u!1 &5927713002552526840
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,6 +62,7 @@ GameObject:
   - component: {fileID: 6521516417521118965}
   - component: {fileID: 2570699893963725866}
   - component: {fileID: 2387394808809469690}
+  - component: {fileID: 8364694197509410244}
   m_Layer: 0
   m_Name: Spine Mecanim GameObject (Niumo)
   m_TagString: Untagged
@@ -194,6 +195,18 @@ MonoBehaviour:
     useCustomMixMode: 1
     layerMixModes: 01000000
     layerBlendModes: 01000000
+--- !u!210 &8364694197509410244
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5927713002552526840}
+  m_Enabled: 1
+  m_SortingLayerID: -1397136051
+  m_SortingLayer: 2
+  m_SortingOrder: 0
+  m_SortAtRoot: 1
 --- !u!1001 &3053512281396845208
 PrefabInstance:
   m_ObjectHideFlags: 0

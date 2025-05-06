@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 0
-  characterType: 0
+  characterType: 10
 --- !u!1 &7740504934277700564
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,6 +62,7 @@ GameObject:
   - component: {fileID: 699994122395183232}
   - component: {fileID: 4943975549710799082}
   - component: {fileID: 5491400047278277585}
+  - component: {fileID: 3613710244665917130}
   m_Layer: 0
   m_Name: Spine Mecanim GameObject (Tieshan)
   m_TagString: Untagged
@@ -194,6 +195,18 @@ MonoBehaviour:
     useCustomMixMode: 1
     layerMixModes: 01000000
     layerBlendModes: 01000000
+--- !u!210 &3613710244665917130
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7740504934277700564}
+  m_Enabled: 1
+  m_SortingLayerID: -1397136051
+  m_SortingLayer: 2
+  m_SortingOrder: 0
+  m_SortAtRoot: 1
 --- !u!1001 &1507560487691673212
 PrefabInstance:
   m_ObjectHideFlags: 0

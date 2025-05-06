@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4858336641698211589}
   - component: {fileID: 23312998764050416}
   - component: {fileID: 2345407421200564996}
+  - component: {fileID: 6997840380649797541}
   m_Layer: 0
   m_Name: Spine Mecanim GameObject (Honghaier)
   m_TagString: Untagged
@@ -145,6 +146,18 @@ MonoBehaviour:
     useCustomMixMode: 1
     layerMixModes: 01000000
     layerBlendModes: 01000000
+--- !u!210 &6997840380649797541
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3437506829199162176}
+  m_Enabled: 1
+  m_SortingLayerID: -1397136051
+  m_SortingLayer: 2
+  m_SortingOrder: 0
+  m_SortAtRoot: 1
 --- !u!1 &4621310388395840504
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,7 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 0
-  characterType: 0
+  characterType: 8
 --- !u!1001 &1992149008955219834
 PrefabInstance:
   m_ObjectHideFlags: 0
