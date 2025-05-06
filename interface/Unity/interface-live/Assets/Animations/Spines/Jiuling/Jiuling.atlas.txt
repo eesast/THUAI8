@@ -1,0 +1,27 @@
+
+Jiuling.png
+size: 57,50
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+backarm
+  rotate: true
+  xy: 33, 4
+  size: 15, 21
+  orig: 15, 21
+  offset: 0, 0
+  index: -1
+body
+  rotate: false
+  xy: 2, 2
+  size: 29, 46
+  orig: 29, 46
+  offset: 0, 0
+  index: -1
+legs
+  rotate: true
+  xy: 33, 21
+  size: 27, 22
+  orig: 27, 22
+  offset: 0, 0
+  index: -1

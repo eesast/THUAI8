@@ -1,0 +1,55 @@
+
+Xiaobailong.png
+size: 41,76
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+backarm
+  rotate: false
+  xy: 17, 7
+  size: 15, 15
+  orig: 15, 15
+  offset: 0, 0
+  index: -1
+backleg
+  rotate: false
+  xy: 32, 41
+  size: 7, 10
+  orig: 7, 10
+  offset: 0, 0
+  index: -1
+foreleg
+  rotate: false
+  xy: 32, 41
+  size: 7, 10
+  orig: 7, 10
+  offset: 0, 0
+  index: -1
+body
+  rotate: false
+  xy: 2, 24
+  size: 28, 50
+  orig: 28, 50
+  offset: 0, 0
+  index: -1
+effect
+  rotate: false
+  xy: 32, 32
+  size: 7, 7
+  orig: 7, 7
+  offset: 0, 0
+  index: -1
+forearm
+  rotate: false
+  xy: 2, 2
+  size: 13, 20
+  orig: 13, 20
+  offset: 0, 0
+  index: -1
+weapon
+  rotate: true
+  xy: 32, 53
+  size: 21, 6
+  orig: 21, 6
+  offset: 0, 0
+  index: -1
