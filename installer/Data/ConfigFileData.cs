@@ -64,6 +64,7 @@ namespace installer.Data
         protected string playerMode = "API";
         protected bool characterTypePickerEnabled = false;
         protected int characterType = 0;
+        protected int sideFlag = 0;
         [JsonInclude]
         public int TeamID
         {
@@ -120,6 +121,16 @@ namespace installer.Data
             set
             {
                 characterType = value;
+                OnPropertyChanged();
+            }
+        }
+        [JsonInclude]
+        public int SideFlag
+        {
+            get => sideFlag;
+            set
+            {
+                sideFlag = value;
                 OnPropertyChanged();
             }
         }

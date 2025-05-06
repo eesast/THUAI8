@@ -1,7 +1,7 @@
 name: deploy
 on:
   push:
-    branches: [dev, main, master]
+    branches: [main]
 jobs:
   build:
     runs-on: windows-latest
@@ -30,6 +30,22 @@ jobs:
         Remove-Item -recurse D:\a\mirror\installer
         Remove-Item -recurse D:\a\mirror\interface
         Remove-Item -recurse D:\a\mirror\logic
+        Remove-Item -recurse D:\a\mirror\resource
+        Remove-Item -recurse D:\a\mirror\run_python_clients.cmd
+        Remove-Item -recurse D:\a\mirror\_config.yml
+        Remove-Item -recurse D:\a\mirror\114514
+        Remove-Item -recurse D:\a\mirror\LICENSE
+        Remove-Item -recurse D:\a\mirror\.clang-format
+        Remove-Item -recurse D:\a\mirror\.editorconfig
+        Remove-Item -recurse D:\a\mirror\.gitattributes
+        Remove-Item -recurse D:\a\mirror\.gitignore
+        Remove-Item -recurse D:\a\mirror\renovate.json
+        Remove-Item -recurse D:\a\mirror\CODE_OF_CONDUCT.md
+        Remove-Item -recurse D:\a\mirror\CONTRIBUTING.md
+        Remove-Item -recurse D:\a\mirror\README.md
+        Remove-Item -recurse D:\a\mirror\SECURITY.md
+        Remove-Item -recurse D:\a\mirror\run_API.cmd
+        Remove-Item -recurse D:\a\mirror\run_client_test.cmd
     - name: Build Server
       run: |
         mkdir D:\a\mirror\logic
@@ -66,4 +82,4 @@ jobs:
         dotnet run --project "./dependency/deploy/deploy.csproj" "upload"
       env:
         INSTALLER_COS_SECRET_ID: ${{ secrets.INSTALLER_COS_SECRET_ID }}
-        INSTALLER_COS_SECRET_KEY: ${{ secrets.INSTALLER_COS_SECRET_KEY }}    
+        INSTALLER_COS_SECRET_KEY: ${{ secrets.INSTALLER_COS_SECRET_KEY }}

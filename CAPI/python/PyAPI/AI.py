@@ -46,13 +46,18 @@ class AI(IAI):
 
     def CharacterPlay(self, api: ICharacterAPI) -> None:
         # 公共操作
+        api.PrintSelfInfo()
+        api.PrintSelfInfo()
+        api.PrintSelfInfo()
         if self.__playerID == 1:
             # player1的操作
-            api.Move(2500, 1000, 0)
+            api.PrintSelfInfo()
+            api.Move(100, 0)
+            api.MoveLeft(100)
+            api.Common_Attack(0)
             return
         elif self.__playerID == 2:
             # player2的操作
-            api.Move(2500, 1000, 0)
             return
         elif self.__playerID == 3:
             # player3的操作
@@ -64,4 +69,5 @@ class AI(IAI):
 
     def TeamPlay(self, api: ITeamAPI) -> None:
         # player0的操作
+        api.PrintSelfInfo()
         return

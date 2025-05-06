@@ -247,10 +247,10 @@ bool Logic::Produce(int64_t playerID, int64_t teamID)
     return pComm->Produce(playerID, teamID);
 }
 
-bool Logic::Move(int64_t teamID, int64_t characterID, int32_t moveTimeInMilliseconds, double angle)
+bool Logic::Move(int64_t moveTimeInMilliseconds, double angle)
 {
     logger->debug("Called Move");
-    return pComm->Move(teamID, characterID, moveTimeInMilliseconds, angle);
+    return pComm->Move(playerID, teamID, moveTimeInMilliseconds, angle);
 }
 
 /*bool Logic::Rebuild(THUAI8::ConstructionType constructionType)
@@ -367,7 +367,13 @@ void Logic::LoadBufferSelf(const protobuf::MessageToClient& message)
     {
         for (const auto& item : message.obj_message())
         {
-            if (Proto2THUAI8::messageOfObjDict[item.message_of_obj_case()] == THUAI8::MessageOfObj::CharacterMessage && item.character_message().player_id() == playerID)
+            if (Proto2THUAI8::messageOfObjDict[item.message_of_obj_case()] == THUAI8::MessageOfObj::CharacterMessage && item.character_message().player_id() == playerID && item.character_message().team_id() == teamID)
+            {
+                bufferState->characterSelf = Proto2THUAI8::Protobuf2THUAI8Character(item.character_message());
+                bufferState->characters.push_back(bufferState->characterSelf);
+                logger->debug("Load Self Character!");
+            }
+            else if (Proto2THUAI8::messageOfObjDict[item.message_of_obj_case()] == THUAI8::MessageOfObj::CharacterMessage && item.character_message().player_id() != playerID && item.character_message().team_id() == teamID)
             {
                 bufferState->characterSelf = Proto2THUAI8::Protobuf2THUAI8Character(item.character_message());
                 bufferState->characters.push_back(bufferState->characterSelf);
@@ -1039,6 +1045,7 @@ void Logic::Main(CreateAIFunc createAI, std::string IP, std::string port, bool f
         if (!file && !print)
             timer = std::make_unique<CharacterAPI>(*this);
         else
+
             timer = std::make_unique<CharacterDebugAPI>(*this, file, print, warnOnly, playerID, teamID);
     }
     else

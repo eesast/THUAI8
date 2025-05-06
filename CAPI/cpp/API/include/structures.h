@@ -49,9 +49,9 @@ namespace THUAI8
 
     enum class PlayerTeam : unsigned char
     {
-        NullTeam = 0,
-        BuddhistsTeam = 1,
-        MonstersTeam = 2,
+        BuddhistsTeam = 0,
+        MonstersTeam = 1,
+        NullTeam = 2,
     };
 
     enum class PlayerType : unsigned char
@@ -71,7 +71,6 @@ namespace THUAI8
         ShaWujing = 4,
         BaiLongma = 5,
         Monkid = 6,
-
         JiuLing = 7,
         HongHaier = 8,
         NiuMowang = 9,
@@ -79,7 +78,7 @@ namespace THUAI8
         ZhiZhujing = 11,
         Pawn = 12,
     };
-
+ 
     enum class EquipmentType : unsigned char
     {
         NullEquipmentType = 0,
@@ -217,7 +216,7 @@ namespace THUAI8
         int64_t playerID;
 
         CharacterType characterType;
-
+        
         CharacterState characterActiveState;
 
         bool isBlind;
@@ -376,6 +375,7 @@ namespace THUAI8
         {CharacterType::ShaWujing, "ShaWujing"},
         {CharacterType::BaiLongma, "BaiLongma"},
         {CharacterType::Monkid, "Monkid"},
+        {CharacterType::JiuLing, "JiuLing"},
         {CharacterType::JiuLing, "JiuLing"},
         {CharacterType::HongHaier, "HongHaier"},
         {CharacterType::NiuMowang, "NiuMowang"},
