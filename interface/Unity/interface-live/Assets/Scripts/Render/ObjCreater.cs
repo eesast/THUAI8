@@ -29,7 +29,7 @@ public class ObjCreater : SingletonMono<ObjCreater>
             return Instantiate(Tool.RandomSelect(placeList[enumValue - 1].p), Pos, rotation, mapRoot);
         }
         return null;
-        
+
     }
 
     public GameObject CreateObj(CharacterType characterType, Vector2 Pos, Quaternion? quaternion = null)
