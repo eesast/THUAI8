@@ -31,7 +31,7 @@ public class Character : Movable, ICharacter
     public bool blind { get; set; } = false;
     public double HarmCut = 0.0;//伤害减免，该值范围为0-1，为比例减伤。
     public double ATKFrequency = 1.0;//攻击频率，即每秒攻击次数。
-    public long LastAttackTime = long.MaxValue;
+    public long LastAttackTime = 0;
     public long TrapTime = long.MaxValue;
     public long CageTime = long.MaxValue;
     public long BurnedTime = long.MaxValue;
