@@ -31,7 +31,6 @@ public class PlaybackController : MonoBehaviour
             filename = null;
             playSpeed = 1;
             isMap = true;
-            isInitial = false;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             yield break;
         }
@@ -44,7 +43,6 @@ public class PlaybackController : MonoBehaviour
         StartCoroutine(WebReader(filename));
         timer = frequency;
         isMap = true;
-        isInitial = false;
     }
 
     void Update()
@@ -67,8 +65,7 @@ public class PlaybackController : MonoBehaviour
                         filename = null;
                         playSpeed = -1;
                         isMap = true;
-                        isInitial = false;
-                        SceneManager.LoadScene("Playback");
+                        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                     }
                     Debug.Log("reader created");
                 }
@@ -80,22 +77,17 @@ public class PlaybackController : MonoBehaviour
                     filename = null;
                     playSpeed = -1;
                     isMap = true;
-                    isInitial = false;
                     SceneManager.LoadScene("GameEnd");
                 }
                 else if (isMap)
                 {
-                    map = responseVal.ObjMessage[0].MapMessage;
+                    CoreParam.firstFrame = responseVal;
                     isMap = false;
-                }
-                else if (!isInitial)
-                {
-                    Receive(responseVal);
-                    isInitial = true;
                 }
                 else
                 {
-                    Receive(responseVal);
+                    CoreParam.frameQueue.Add(responseVal);
+                    CoreParam.cnt++;
                 }
             }
 
@@ -105,33 +97,9 @@ public class PlaybackController : MonoBehaviour
             filename = null;
             playSpeed = 1;
             isMap = true;
-            isInitial = false;
-            SceneManager.LoadScene("Playback");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
-    }
-
-    private void Receive(MessageToClient message)
-    {
-        //Debug.Log(message.ToString());
-        time = message.AllMessage.GameTime;
-        foreach (var messageOfObj in message.ObjMessage)
-        {
-            // switch (messageOfObj.MessageOfObjCase)
-            // {
-            //     case MessageOfObj.MessageOfObjOneofCase.StudentMessage:
-            //         Student[studentCnt] = messageOfObj.StudentMessage; studentCnt++; break;
-            //     case MessageOfObj.MessageOfObjOneofCase.TrickerMessage:
-            //         tricker = messageOfObj.TrickerMessage; break;
-            //     case MessageOfObj.MessageOfObjOneofCase.ClassroomMessage:
-            //         classroom[classroomCnt] = messageOfObj.ClassroomMessage; classroomCnt++; break;
-            //     case MessageOfObj.MessageOfObjOneofCase.PropMessage:
-            //         break;
-            //     case MessageOfObj.MessageOfObjOneofCase.HiddenGateMessage:
-            //         break;
-            //     default: break;
-            // }
-        }
     }
 
     public static string filename;
@@ -140,8 +108,5 @@ public class PlaybackController : MonoBehaviour
     float timer;
     public static int playSpeed = 1;
 
-    public static MessageOfMap map;
     public static bool isMap;
-    public static bool isInitial;
-    public static int time;
 }
