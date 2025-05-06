@@ -714,6 +714,7 @@ GameObject:
   - component: {fileID: 969977512}
   - component: {fileID: 969977514}
   - component: {fileID: 969977515}
+  - component: {fileID: 969977516}
   m_Layer: 0
   m_Name: UpdateManager
   m_TagString: Untagged
@@ -770,11 +771,41 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 969977511}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b1273a75eb69b74f9fa445239263213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &969977516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969977511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddfe76a77bc0155448788971463b7f57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  student1: {fileID: 0}
+  student2: {fileID: 0}
+  student3: {fileID: 0}
+  student4: {fileID: 0}
+  student5: {fileID: 0}
+  student6: {fileID: 0}
+  tricker1: {fileID: 0}
+  tricker2: {fileID: 0}
+  tricker3: {fileID: 0}
+  student1_icon: {fileID: 0}
+  student2_icon: {fileID: 0}
+  student3_icon: {fileID: 0}
+  student4_icon: {fileID: 0}
+  student5_icon: {fileID: 0}
+  student6_icon: {fileID: 0}
+  tricker1_icon: {fileID: 0}
+  tricker2_icon: {fileID: 0}
+  tricker3_icon: {fileID: 0}
 --- !u!1 &987801385
 GameObject:
   m_ObjectHideFlags: 0
