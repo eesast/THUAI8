@@ -31,7 +31,7 @@ public class ObjCreater : SingletonMono<ObjCreater>
                 return Instantiate(Tool.RandomSelect(placeList[enumValue - 2].p), Pos, rotation, mapRoot);
             }
         }
-        catch (Exception e)
+        catch (Exception)
         {
             print(placeType);
         }

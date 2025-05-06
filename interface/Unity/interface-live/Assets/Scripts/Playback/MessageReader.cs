@@ -13,7 +13,7 @@ namespace Playback
         {
 
         }
-        public override string Message => $"The file is not a legal playback file for THUAI6.";
+        public override string Message => $"The file is not a legal playback file for THUAI8.";
     }
 
     public class MessageReader : IDisposable
@@ -67,7 +67,7 @@ namespace Playback
             cos = new CodedInputStream(buffer);
         }
 
-        public MessageToClient? ReadOne()
+        public MessageToClient ReadOne()
         {
         beginRead:
             if (Finished)
@@ -75,7 +75,7 @@ namespace Playback
             var pos = cos.Position;
             try
             {
-                MessageToClient? msg = new MessageToClient();
+                MessageToClient msg = new MessageToClient();
                 cos.ReadMessage(msg);
                 return msg;
             }
