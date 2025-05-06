@@ -22,12 +22,11 @@ message(STATUS "Using gRPC ${gRPC_VERSION}")
 
 add_executable(capi ${CPP_LIST} ${PROTO_CPP_LIST})
 
-target_include_directories(capi PUBLIC ${PROJECT_SOURCE_DIR}/proto ${PROJECT_SOURCE_DIR}/API/include ${PROJECT_SOURCE_DIR}/tclap/include ${PROJECT_SOURCE_DIR}/spdlog/include)
+target_include_directories(capi PUBLIC ${PROJECT_SOURCE_DIR}/proto ${PROJECT_SOURCE_DIR}/API/include ${PROJECT_SOURCE_DIR}/tclap/include ${PROJECT_SOURCE_DIR}/spdlog/include ${PROJECT_SOURCE_DIR}/grpc/include)
 
 target_link_libraries(capi
     protobuf::libprotobuf
     gRPC::grpc
     gRPC::grpc++_reflection
     gRPC::grpc++
-    gRPC::fmt
 )
