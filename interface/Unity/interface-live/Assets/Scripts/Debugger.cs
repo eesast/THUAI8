@@ -6,6 +6,8 @@ using UnityEngine;
 using Newtonsoft.Json;
 public class Debugger : SingletonMono<Debugger>
 {
+    const string path = @"D:\Projects\THUAI8\interface\Unity\interface-live\Assets\Debugging\";
+
     public string info;
     public TextMeshProUGUI text;
     public MessageOfCharacter messageOfShip1, messageOfShip2;
@@ -16,9 +18,9 @@ public class Debugger : SingletonMono<Debugger>
     void Start()
     {
 
-        info = System.IO.File.ReadAllText(@"D:\Projects\THUAI8\interface\Unity\interface-live\Assets\message 0.json");
+        info = System.IO.File.ReadAllText(path + "message 0.json");
         UpdateManager.GetInstance().UpdateMessageByJson(info);
-        info = System.IO.File.ReadAllText(@"D:\Projects\THUAI8\interface\Unity\interface-live\Assets\message 1.json");
+        info = System.IO.File.ReadAllText(path + "message 1.json");
         UpdateManager.GetInstance().UpdateMessageByJson(info);
         /*MessageOfSpring messageOfFort = new MessageOfSpring()
         {
@@ -43,7 +45,7 @@ public class Debugger : SingletonMono<Debugger>
 
     public void OnDebugPressed()
     {
-        info = System.IO.File.ReadAllText(@"D:\Projects\THUAI8\interface\Unity\interface-live\Assets\message 2.json");
+        info = System.IO.File.ReadAllText(path + "message 2.json");
         UpdateManager.GetInstance().UpdateMessageByJson(info);
     }
 }

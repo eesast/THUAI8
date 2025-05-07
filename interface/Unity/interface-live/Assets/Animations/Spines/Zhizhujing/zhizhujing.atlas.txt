@@ -1,0 +1,34 @@
+
+zhizhujing.png
+size: 73,38
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+body
+  rotate: true
+  xy: 2, 2
+  size: 34, 47
+  orig: 34, 47
+  offset: 0, 0
+  index: -1
+hand
+  rotate: false
+  xy: 66, 3
+  size: 5, 10
+  orig: 5, 10
+  offset: 0, 0
+  index: -1
+legs
+  rotate: true
+  xy: 51, 15
+  size: 21, 18
+  orig: 21, 18
+  offset: 0, 0
+  index: -1
+net
+  rotate: true
+  xy: 51, 2
+  size: 11, 13
+  orig: 11, 13
+  offset: 0, 0
+  index: -1

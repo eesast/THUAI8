@@ -1,0 +1,41 @@
+
+Bajie.png
+size: 105,37
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+arm
+  rotate: true
+  xy: 47, 3
+  size: 15, 18
+  orig: 15, 18
+  offset: 0, 0
+  index: -1
+backleg
+  rotate: false
+  xy: 85, 3
+  size: 14, 15
+  orig: 14, 15
+  offset: 0, 0
+  index: -1
+body
+  rotate: true
+  xy: 2, 6
+  size: 29, 43
+  orig: 29, 43
+  offset: 0, 0
+  index: -1
+foreleg
+  rotate: false
+  xy: 67, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+weapon
+  rotate: true
+  xy: 47, 20
+  size: 15, 56
+  orig: 15, 56
+  offset: 0, 0
+  index: -1
