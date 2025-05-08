@@ -1,20 +1,24 @@
 #!/usr/local
+# === THUAI8 非对称竞技启动脚本 ===
+
+# 运行目录与路径设置
 python_dir=/usr/local/PlayerCode/CAPI/python/PyAPI
 python_main_dir=/usr/local/PlayerCode/CAPI/python
 playback_dir=/usr/local/output
 map_dir=/usr/local/map
 mkdir -p $playback_dir
 
-# initialize
+# 模式初始化
 if [[ "${MODE}" == "ARENA" ]]; then
     MODE_NUM=2
 elif [[ "${MODE}" == "COMPETITION" ]]; then
     MODE_NUM=1
 fi
-# set default value
+
+# 默认参数赋值
 : "${TEAM_SEQ_ID:=0}"
-: "${TEAM_LABELS:=Team:Team}"
-: "${TEAM_LABEL:=Team}"
+: "${TEAM_LABELS:=Buddhist:Monster}" 
+: "${TEAM_LABEL:=Buddhist}"
 : "${EXPOSED=1}"
 : "${MODE_NUM=2}"
 : "${GAME_TIME=600}"
@@ -49,6 +53,7 @@ fi
 #     done
 # }
 
+# 重试函数：用于多进程启动时防止短暂网络失败
 function retry_command {
     local command="$1"
     local max_attempts=5
@@ -76,87 +81,101 @@ function retry_command {
     return 1
 }
 
-
-
 if [ "$TERMINAL" = "SERVER" ]; then
     map_path=$map_dir/$MAP_ID.txt
-    if [ $EXPOSED -eq 1 ]; then
-        nice -10 ./Server --port 8888 --teamCount 2 --shipNum 4 --resultFileName $playback_dir/result --gameTimeInSecond $GAME_TIME --mode $MODE_NUM --mapResource $map_path --url $SCORE_URL --token $TOKEN --fileName $playback_dir/playback --startLockFile $playback_dir/start.lock > $playback_dir/server.log 2>&1 &
-        server_pid=$!
-    else
-        nice -10 ./Server --port 8888 --teamCount 2 --shipNum 4 --resultFileName $playback_dir/result --gameTimeInSecond $GAME_TIME --mode $MODE_NUM --mapResource $map_path --notAllowSpectator --url $SCORE_URL --token $TOKEN --fileName $playback_dir/playback --startLockFile $playback_dir/start.lock > $playback_dir/server.log 2>&1 &
-        server_pid=$!
-    fi
+    echo "Starting THUAI8 SERVER..."
 
-    echo "server pid: $server_pid"
+    nice -10 ./Server --port 8888 --buddhistCount 6 --monsterCount 6 --resultFileName $playback_dir/result \
+        --gameTimeInSecond $GAME_TIME --mode $MODE_NUM --mapResource $map_path \
+        --url $SCORE_URL --token $TOKEN --fileName $playback_dir/playback \
+        --startLockFile $playback_dir/start.lock > $playback_dir/server.log 2>&1 &
+
+    server_pid=$!
+    echo "Server PID: $server_pid"
     ls $playback_dir
 
     echo "SCORE URL: $SCORE_URL"
     echo "FINISH URL: $FINISH_URL"
 
     echo "waiting..."
-    sleep 60 # wait connection time
+    sleep 60 # 等待连接时间
     echo "watching..."
-
-    if [ ! -f $playback_dir/start.lock ]; then
-        echo "Failed to start game."
-        touch temp.lock
-        mv -f temp.lock $playback_dir/playback.thuaipb
-        kill -9 $server_pid
-        finish_payload='{"status": "Crashed", "scores": [0, 0]}'
-        curl $FINISH_URL -X POST -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" -d "${finish_payload}" > $playback_dir/send.log 2>&1
-    else
-        echo "Game is started."
+    
+    # 如果启动锁文件存在，说明客户端已连接，比赛开始
+    if [ -f $playback_dir/start.lock ]; then
         ps -p $server_pid
         while [ $? -eq 0 ]
         do
             sleep 1
             ps -p $server_pid > /dev/null 2>&1
         done
-        echo "Server is down."
+
+        # 根据完成网址更新分数
+        echo "Getting result score..."
+        result=$(cat $playback_dir/result.json)
+        score0=$(echo "$result" | grep -oP '(?<="Buddhist":)\d+')   # Buddhist 分数
+        score1=$(echo "$result" | grep -oP '(?<="Monster":)\d+')    # Monster 分数
+        echo "Result score: Buddhist: $score0, Monster: $score1"
+
+        # 解析 TEAM_LABELS，按队伍序号决定得分上报顺序
+        IFS=':' read -r -a labels <<< "$TEAM_LABELS"
+        if (( TEAM_SEQ_ID == 0 )); then
+            finish_payload="{\"status\": \"Finished\", \"scores\": [$score0, $score1]}"
+        else
+            finish_payload="{\"status\": \"Finished\", \"scores\": [$score1, $score0]}"
+        fi
+        echo "Parse Success: $finish_payload"
+        curl "$FINISH_URL" -X POST -H 'Content-Type: application/json' -H "Authorization: Bearer $TOKEN" -d "$finish_payload" \
+             > "$playback_dir/send.log" 2>&1
+    else
+        echo "Game failed to start."
+        touch $playback_dir/playback.thuaipb
+        kill -9 $server_pid
+        payload='{"status": "Crashed", "scores": [0, 0]}'
+        curl -X POST "$FINISH_URL" -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" -d "$payload" > $playback_dir/send.log 2>&1
     fi
 
 elif [ "$TERMINAL" = "CLIENT" ]; then
-    echo "Client Mode! Team Label data - $TEAM_LABEL"
+    echo "Starting CLIENT for team $TEAM_LABEL (ID: $TEAM_SEQ_ID)"
+    
+    # 根据队伍标签选择对应的玩家脚本/可执行文件列表
+    if [[ "$TEAM_LABEL" == "Buddhist" ]]; then
+        players=( "Buddhist1" "Buddhist2" "Buddhist3" "Buddhist4" "Buddhist5" "Buddhist6" )
+    elif [[ "$TEAM_LABEL" == "Monster" ]]; then
+        players=( "Monster1" "Monster2" "Monster3" "Monster4" "Monster5" "Monster6" )
+    else
+        echo "Error: Invalid Team Label $TEAM_LABEL"
+        exit 1
+    fi
+    
+    # 进入代码目录，依次启动每个玩家进程
+    pushd /usr/local/code 
+    for idx in "${!players[@]}"; do
+        code_name="${players[$idx]}"
 
-    k=$TEAM_SEQ_ID
-    pushd /usr/local/code
-        for i in {0..6}
-        do
-            if [ $i -eq 0 ]; then
-                code_name=Team
-                if [ -f "./$code_name.py" ]; then
-                    echo "find ./$code_name.py"
-                    cp -r $python_main_dir $python_main_dir$i
-                    cp -f ./$code_name.py $python_main_dir$i/PyAPI/AI.py
-                    command="nice -0 python3 $python_main_dir$i/PyAPI/main.py -I $CONNECT_IP -P $PORT -t $k -p $i > $playback_dir/team$k-$code_name.log 2>&1 &"
-                    retry_command "$command" > $playback_dir/client$k-$i.log &
-                elif [ -f "./$code_name" ]; then
-                    echo "find ./$code_name"
-                    command="nice -0 ./$code_name -I $CONNECT_IP -P $PORT -t $k -p $i > $playback_dir/team$k-$code_name.log 2>&1 &"
-                    retry_command "$command" > $playback_dir/client$k-$i.log &
-                else
-                    echo "ERROR. $code_name is not found."
-                fi
-            else 
-                code_name=Ship$i
-                if [ -f "./$code_name.py" ]; then
-                    echo "find ./$code_name.py"
-                    cp -r $python_main_dir $python_main_dir$i
-                    cp -f ./$code_name.py $python_main_dir$i/PyAPI/AI.py
-                    command="nice -0 python3 $python_main_dir$i/PyAPI/main.py -I $CONNECT_IP -P $PORT -t $k -p $i > $playback_dir/team$k-$code_name.log 2>&1 &"
-                    retry_command "$command" > $playback_dir/client$k-$i.log &
-                elif [ -f "./$code_name" ]; then
-                    echo "find ./$code_name"
-                    command="nice -0 ./$code_name -I $CONNECT_IP -P $PORT -t $k -p $i > $playback_dir/team$k-$code_name.log 2>&1 &"
-                    retry_command "$command" > $playback_dir/client$k-$i.log &
-                else
-                    echo "ERROR. $code_name is not found."
-                fi
-            fi
-        done
-        sleep $((GAME_TIME+90))
-    popd
+        if [[ -f "./$code_name.py" ]]; then #Python 脚本
+            echo "Found ./$code_name.py"
+            cp -r "$python_main_dir" "${python_main_dir}${idx}"
+            cp -f "./$code_name.py" "${python_main_dir}${idx}/PyAPI/AI.py"
+            command="nice -n0 python3 ${python_main_dir}${idx}/PyAPI/main.py -I $CONNECT_IP -P $PORT -t $TEAM_SEQ_ID -p $idx > $playback_dir/team${TEAM_SEQ_ID}-${code_name}.log 2>&1 &"
+
+            retry_command "$command" &
+            ps -aux |grep main.py
+
+        elif [[ -f "./$code_name" ]]; then # C++ 可执行文件
+            echo "find ./$code_name"
+            command="nice -n0 ./$code_name -I $CONNECT_IP -P $PORT -t $TEAM_SEQ_ID -p $idx > $playback_dir/team${TEAM_SEQ_ID}-player${idx}.log 2>&1 &"
+            retry_command "$command" &
+            ps -aux |grep $code_name
+
+        else
+            echo "ERROR: $code_name not found."; continue
+        fi
+
+    done
+    sleep $((GAME_TIME+90))
+    popd 
+
 else
-    echo "VALUE ERROR: TERMINAL is neither SERVER nor CLIENT."
+    echo "ERROR: TERMINAL must be SERVER or CLIENT."; exit 1
 fi
