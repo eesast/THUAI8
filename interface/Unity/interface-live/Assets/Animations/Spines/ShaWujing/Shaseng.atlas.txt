@@ -1,0 +1,55 @@
+
+Shaseng.png
+size: 71,40
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+backarm
+  rotate: false
+  xy: 51, 21
+  size: 9, 17
+  orig: 9, 17
+  offset: 0, 0
+  index: -1
+backleg
+  rotate: false
+  xy: 52, 6
+  size: 8, 13
+  orig: 8, 13
+  offset: 0, 0
+  index: -1
+foreleg
+  rotate: false
+  xy: 52, 6
+  size: 8, 13
+  orig: 8, 13
+  offset: 0, 0
+  index: -1
+body
+  rotate: true
+  xy: 2, 15
+  size: 23, 47
+  orig: 23, 47
+  offset: 0, 0
+  index: -1
+effect
+  rotate: false
+  xy: 62, 13
+  size: 7, 7
+  orig: 7, 7
+  offset: 0, 0
+  index: -1
+forearm
+  rotate: false
+  xy: 62, 22
+  size: 7, 16
+  orig: 7, 16
+  offset: 0, 0
+  index: -1
+weapon
+  rotate: true
+  xy: 2, 2
+  size: 11, 48
+  orig: 11, 48
+  offset: 0, 0
+  index: -1

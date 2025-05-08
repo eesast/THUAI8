@@ -128,6 +128,34 @@ function saveAsPng() {
     document.body.removeChild(a);
 }
 
+function saveAsJson() {
+    var rows = [];
+    for (var i = 0; i < 50; i++) {
+        rows[i] = { cols: new Array(50) };
+        for (var j = 0; j < 50; j++) {
+            rows[i].cols[j] = map[j][i];
+        }
+    }
+    var data = {
+        objMessageList: [
+            {
+                mapMessage: {
+                    height: 50,
+                    width: 50,
+                    rows
+                }
+            }
+        ]
+    }
+    var a = document.createElement("a");
+    a.style.display = "none";
+    a.href = "data:text/json;charset=utf-8," + JSON.stringify(data);
+    a.download = "map.json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
+
 function isEmptyNearby(x, y, radius) {
     for (var i = (x - radius >= 0 ? x - radius : 0); i <= (x + radius <= 49 ? x + radius : 49); i++) {
         for (var j = (y - radius >= 0 ? y - radius : 0); j <= (y + radius <= 49 ? y + radius : 49); j++) {

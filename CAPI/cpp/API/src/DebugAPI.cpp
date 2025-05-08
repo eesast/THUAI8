@@ -105,7 +105,7 @@ bool CharacterDebugAPI::Wait()
         return logic.WaitThread();
 }
 
-// 修改后的实现需要匹配接口参数 (int32_t speed, int64_t timeInMilliseconds, ...)
+
 std::future<bool> CharacterDebugAPI::Move(int64_t timeInMilliseconds, double angleInRadian)
 {
     logger->info("Move: timeInMilliseconds = {}, angleInRadian = {}, called at {}ms", timeInMilliseconds, angleInRadian, Time::TimeSinceStart(startPoint));
@@ -116,25 +116,25 @@ std::future<bool> CharacterDebugAPI::Move(int64_t timeInMilliseconds, double ang
                         return result; });
 }
 
-// 下方所有方向移动需要添加speed参数并调整调用
+
 std::future<bool> CharacterDebugAPI::MoveDown(int64_t timeInMilliseconds)
 {
-    return Move(timeInMilliseconds, PI * 1.5);  // 参数顺序：speed, time, angle
+    return Move(timeInMilliseconds, 0);  
 }
 
 std::future<bool> CharacterDebugAPI::MoveRight(int64_t timeInMilliseconds)
 {
-    return Move(timeInMilliseconds, 0);  // 补充speed参数
+    return Move(timeInMilliseconds, PI * 0.5);  
 }
 
 std::future<bool> CharacterDebugAPI::MoveUp(int64_t timeInMilliseconds)
 {
-    return Move(timeInMilliseconds, PI / 2);  // 调整角度定义
+    return Move(timeInMilliseconds, PI);  
 }
 
 std::future<bool> CharacterDebugAPI::MoveLeft(int64_t timeInMilliseconds)
 {
-    return Move(timeInMilliseconds, PI);
+    return Move(timeInMilliseconds, PI * 1.5);
 }
 
 std::future<bool> CharacterDebugAPI::Skill_Attack(double angle)
@@ -178,15 +178,6 @@ std::future<bool> CharacterDebugAPI::Produce(int64_t playerID, int64_t teamID)
                         return result; });
 }
 
-/* std::future<bool> CharacterDebugAPI::Rebuild(THUAI8::ConstructionType constructionType)
-{
-    logger->info("Rebuild: constructionType = {}, called at {}ms", constructionType, Time::TimeSinceStart(startPoint));
-    return std::async(std::launch::async, [=]()
-                      { auto result = logic.Rebuild(constructionType);
-                        if (!result)
-                            logger->warn("Rebuild: failed at {}ms", Time::TimeSinceStart(startPoint));
-                        return result; });
-}*/
 
 std::future<bool> CharacterDebugAPI::Construct(THUAI8::ConstructionType constructionType)
 {
@@ -233,20 +224,6 @@ std::shared_ptr<const THUAI8::GameInfo> CharacterDebugAPI::GetGameInfo() const
         logger->warn("GetGameInfo: failed at {}ms", Time::TimeSinceStart(startPoint));
     return result;
 }
-
-/* THUAI8::PlaceType CharacterDebugAPI::GetPlaceType(int32_t cellX, int32_t cellY) const
-{
-    logger->info("GetPlaceType: cellX = {}, cellY = {}, called at {}ms", cellX, cellY, Time::TimeSinceStart(startPoint));
-    auto result = logic.GetPlaceType(cellX, cellY);
-    if (!result.has_value())
-    {
-        logger->warn("GetPlaceType: failed at {}ms", Time::TimeSinceStart(startPoint));
-        // 如果失败，返回一个默认值或抛出异常
-        throw std::runtime_error("GetPlaceType failed");
-    }
-    return *result; // 解包 std::optional 并返回实际值
-}*/
-// 稍后再改
 
 std::optional<THUAI8::EconomyResourceState> CharacterDebugAPI::GetEnconomyResourceState(int32_t cellX, int32_t cellY) const
 {

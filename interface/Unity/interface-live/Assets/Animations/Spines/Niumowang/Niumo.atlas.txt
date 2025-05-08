@@ -1,0 +1,48 @@
+
+Niumo.png
+size: 77,45
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+backarm
+  rotate: false
+  xy: 57, 3
+  size: 17, 6
+  orig: 17, 6
+  offset: 0, 0
+  index: -1
+backleg
+  rotate: false
+  xy: 66, 30
+  size: 9, 13
+  orig: 9, 13
+  offset: 0, 0
+  index: -1
+body
+  rotate: true
+  xy: 2, 11
+  size: 32, 51
+  orig: 32, 51
+  offset: 0, 0
+  index: -1
+forearm
+  rotate: false
+  xy: 55, 23
+  size: 9, 20
+  orig: 9, 20
+  offset: 0, 0
+  index: -1
+foreleg
+  rotate: true
+  xy: 55, 11
+  size: 10, 12
+  orig: 10, 12
+  offset: 0, 0
+  index: -1
+weapon
+  rotate: true
+  xy: 2, 2
+  size: 7, 53
+  orig: 7, 53
+  offset: 0, 0
+  index: -1

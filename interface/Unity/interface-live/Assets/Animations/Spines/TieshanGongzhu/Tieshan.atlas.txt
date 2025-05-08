@@ -1,0 +1,27 @@
+
+Tieshan.png
+size: 56,65
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+body
+  rotate: true
+  xy: 2, 2
+  size: 38, 50
+  orig: 38, 50
+  offset: 0, 0
+  index: -1
+legs
+  rotate: false
+  xy: 2, 46
+  size: 21, 17
+  orig: 21, 17
+  offset: 0, 0
+  index: -1
+weapon
+  rotate: true
+  xy: 25, 42
+  size: 21, 29
+  orig: 21, 29
+  offset: 0, 0
+  index: -1
