@@ -2,10 +2,198 @@
     "objMessageList": [
         {
             "springMessage": {
-                "x": 500,
-                "y": 4500,
+                "x": 47500,
+                "y": 2500,
                 "hp": 100,
                 "teamId": 1
+            }
+        },
+        {
+            "springMessage": {
+                "x": 2500,
+                "y": 47500,
+                "hp": 100,
+                "teamId": 2
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 5500,
+                "y": 14500,
+                "progress": 100,
+                "id": 0
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 5500,
+                "y": 15500,
+                "progress": 100,
+                "id": 1
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 5500,
+                "y": 24500,
+                "progress": 100,
+                "id": 2
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 5500,
+                "y": 25500,
+                "progress": 100,
+                "id": 3
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 5500,
+                "y": 34500,
+                "progress": 100,
+                "id": 4
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 5500,
+                "y": 35500,
+                "progress": 100,
+                "id": 5
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 44500,
+                "y": 14500,
+                "progress": 100,
+                "id": 10
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 44500,
+                "y": 15500,
+                "progress": 100,
+                "id": 11
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 44500,
+                "y": 24500,
+                "progress": 100,
+                "id": 12
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 44500,
+                "y": 25500,
+                "progress": 100,
+                "id": 13
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 44500,
+                "y": 34500,
+                "progress": 100,
+                "id": 14
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 44500,
+                "y": 35500,
+                "progress": 100,
+                "id": 15
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 12500,
+                "y": 24500,
+                "progress": 100,
+                "id": 20
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 12500,
+                "y": 25500,
+                "progress": 100,
+                "id": 20
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 13500,
+                "y": 24500,
+                "progress": 100,
+                "id": 20
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 13500,
+                "y": 25500,
+                "progress": 100,
+                "id": 20
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 4500,
+                "y": 7500,
+                "progress": 100,
+                "id": 20
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 7500,
+                "y": 4500,
+                "progress": 100,
+                "id": 20
             }
         },
         {
@@ -17,7 +205,7 @@
                 "teamId": 0,
                 "playerId": 1,
                 "guid": 850,
-                "characterState1": 1,
+                "characterActiveState": 1,
                 "characterType": 1,
                 "viewRange": 8000,
                 "atk": 0,
@@ -38,7 +226,7 @@
                 "teamId": 0,
                 "playerId": 2,
                 "guid": 851,
-                "characterState1": 1,
+                "characterActiveState": 1,
                 "characterType": 2,
                 "viewRange": 8000,
                 "atk": 0,
@@ -48,6 +236,546 @@
                 "killScore": 0,
                 "equipmentType": 0,
                 "facingDirection": 180
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 35500,
+                "y": 5500,
+                "progress": 100,
+                "id": 10000
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 44500,
+                "y": 35500,
+                "progress": 100,
+                "id": 10001
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 14500,
+                "y": 44500,
+                "progress": 100,
+                "id": 10002
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 34500,
+                "y": 5500,
+                "progress": 100,
+                "id": 10003
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 44500,
+                "y": 34500,
+                "progress": 100,
+                "id": 10004
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 15500,
+                "y": 44500,
+                "progress": 100,
+                "id": 10005
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 25500,
+                "y": 5500,
+                "progress": 100,
+                "id": 10006
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 44500,
+                "y": 25500,
+                "progress": 100,
+                "id": 10007
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 24500,
+                "y": 44500,
+                "progress": 100,
+                "id": 10008
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 24500,
+                "y": 5500,
+                "progress": 100,
+                "id": 10009
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 44500,
+                "y": 24500,
+                "progress": 100,
+                "id": 10010
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 25500,
+                "y": 44500,
+                "progress": 100,
+                "id": 10011
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 15500,
+                "y": 5500,
+                "progress": 100,
+                "id": 10012
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 44500,
+                "y": 15500,
+                "progress": 100,
+                "id": 10013
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 34500,
+                "y": 44500,
+                "progress": 100,
+                "id": 10014
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 14500,
+                "y": 5500,
+                "progress": 100,
+                "id": 10015
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 44500,
+                "y": 14500,
+                "progress": 100,
+                "id": 10016
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 35500,
+                "y": 44500,
+                "progress": 100,
+                "id": 10017
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 35500,
+                "y": 44500,
+                "progress": 100,
+                "id": 10018
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 5500,
+                "y": 35500,
+                "progress": 100,
+                "id": 10019
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 14500,
+                "y": 5500,
+                "progress": 100,
+                "id": 10020
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 34500,
+                "y": 44500,
+                "progress": 100,
+                "id": 10021
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 5500,
+                "y": 34500,
+                "progress": 100,
+                "id": 10022
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 15500,
+                "y": 5500,
+                "progress": 100,
+                "id": 10023
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 25500,
+                "y": 44500,
+                "progress": 100,
+                "id": 10024
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 5500,
+                "y": 25500,
+                "progress": 100,
+                "id": 10025
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 24500,
+                "y": 5500,
+                "progress": 100,
+                "id": 10026
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 24500,
+                "y": 44500,
+                "progress": 100,
+                "id": 10027
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 5500,
+                "y": 24500,
+                "progress": 100,
+                "id": 10028
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 25500,
+                "y": 5500,
+                "progress": 100,
+                "id": 10029
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 15500,
+                "y": 44500,
+                "progress": 100,
+                "id": 10030
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 5500,
+                "y": 15500,
+                "progress": 100,
+                "id": 10031
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 34500,
+                "y": 5500,
+                "progress": 100,
+                "id": 10032
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 14500,
+                "y": 44500,
+                "progress": 100,
+                "id": 10033
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 5500,
+                "y": 14500,
+                "progress": 100,
+                "id": 10034
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 35500,
+                "y": 5500,
+                "progress": 100,
+                "id": 10035
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 25500,
+                "y": 12500,
+                "progress": 100,
+                "id": 10036
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 37500,
+                "y": 25500,
+                "progress": 100,
+                "id": 10037
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 24500,
+                "y": 37500,
+                "progress": 100,
+                "id": 10038
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 24500,
+                "y": 12500,
+                "progress": 100,
+                "id": 10039
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 37500,
+                "y": 24500,
+                "progress": 100,
+                "id": 10040
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 25500,
+                "y": 37500,
+                "progress": 100,
+                "id": 10041
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 25500,
+                "y": 13500,
+                "progress": 100,
+                "id": 10042
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 36500,
+                "y": 25500,
+                "progress": 100,
+                "id": 10043
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 24500,
+                "y": 36500,
+                "progress": 100,
+                "id": 10044
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 24500,
+                "y": 13500,
+                "progress": 100,
+                "id": 10045
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 36500,
+                "y": 24500,
+                "progress": 100,
+                "id": 10046
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 25500,
+                "y": 36500,
+                "progress": 100,
+                "id": 10047
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 42500,
+                "y": 4500,
+                "progress": 100,
+                "id": 10048
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 45500,
+                "y": 42500,
+                "progress": 100,
+                "id": 10049
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 7500,
+                "y": 45500,
+                "progress": 100,
+                "id": 10050
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 45500,
+                "y": 7500,
+                "progress": 100,
+                "id": 10051
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 42500,
+                "y": 45500,
+                "progress": 100,
+                "id": 10052
+            }
+        },
+        {
+            "economyResourceMessage": {
+                "economyResourceType": 1,
+                "economyResourceState": 0,
+                "x": 4500,
+                "y": 42500,
+                "progress": 100,
+                "id": 10053
             }
         }
     ],

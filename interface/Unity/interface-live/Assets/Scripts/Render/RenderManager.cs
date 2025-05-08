@@ -3,13 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Protobuf;
 using System;
-using Newtonsoft.Json;
-using Unity.Mathematics;
-using Unity.Collections.LowLevel.Unsafe;
 using TMPro;
 using System.Linq;
-using UnityEngine.Rendering;
-using UnityEditor.VersionControl;
 
 public class RenderManager : SingletonMono<RenderManager>
 {
@@ -141,19 +136,21 @@ public class RenderManager : SingletonMono<RenderManager>
             {
                 if (!CoreParam.charactersG.ContainsKey(character.Key))
                 {
-                    CoreParam.charactersG[character.Value.TeamId * 4 + character.Value.PlayerId - 1] =
+                    var characterG =
                         ObjCreater.GetInstance().CreateObj(character.Value.CharacterType,
                             Tool.GridToUxy(character.Value.X, character.Value.Y),
                             /*Quaternion.Euler(0, 0, (float)character.Value.FacingDirection)*/
                             Quaternion.identity);
+                    CoreParam.charactersG[character.Key] = characterG;
+                    characterG.GetComponent<CharacterBase>().ID = character.Key;
                     /*RendererControl.GetInstance().SetColToChild((PlayerTeam)(character.Value.TeamId + 1),
-                        CoreParam.charactersG[character.Value.TeamId * 4 + character.Value.PlayerId - 1].transform);*/
+                        CoreParam.charactersG[character.Key].transform);*/
                 }
                 else
                 {
-                    CoreParam.charactersG[character.Value.TeamId * 4 + character.Value.PlayerId - 1].transform.position =
+                    CoreParam.charactersG[character.Key].transform.position =
                         Tool.GridToUxy(character.Value.X, character.Value.Y);
-                    /*CoreParam.charactersG[character.Value.TeamId * 4 + character.Value.PlayerId - 1].transform.rotation =
+                    /*CoreParam.charactersG[character.Key].transform.rotation =
                         Quaternion.AngleAxis((float)character.Value.FacingDirection * Mathf.Rad2Deg + 180, Vector3.forward);*/
                 }
             }
@@ -238,78 +235,7 @@ public class RenderManager : SingletonMono<RenderManager>
             _ => Vector3.zero,
         };
     }
-    /*void ShowBarracks(Dictionary<Tuple<int, int>, MessageOfBarracks> barracks)
-    {
-        foreach (KeyValuePair<Tuple<int, int>, MessageOfBarracks> barrack in barracks)
-        {
-            if (barrack.Value != null)
-            {
-                if (!CoreParam.barracksG.ContainsKey(barrack.Key))
-                {
-                    CoreParam.barracksG[barrack.Key] =
-                        ObjCreater.GetInstance().CreateObj(ConstructionType.Barracks,
-                            Tool.GridToUxy(barrack.Value.X, barrack.Value.Y));
-                    // RendererControl.GetInstance().SetColToChild((PlayerTeam)(barrack.Value.TeamId + 1),
-                    //     CoreParam.factoriesG[barrack.Key].transform, 5);
 
-                }
-                else
-                {
-                    CoreParam.barracksG[barrack.Key].transform.position = Tool.GridToUxy(barrack.Value.X, barrack.Value.Y);
-                    // CoreParam.factoriesG[barrack.Key].transform.rotation =
-                    //     Quaternion.AngleAxis((float)barrack.Value.FacingDirection * Mathf.Rad2Deg + 180, Vector3.forward);
-                }
-            }
-        }
-        for (int i = 0; i < CoreParam.barracksG.Count; i++)
-        {
-            KeyValuePair<Tuple<int, int>, GameObject> barrackG = CoreParam.barracksG.ElementAt(i);
-            if (barrackG.Value != null)
-            {
-                if (!CoreParam.barracks.ContainsKey(barrackG.Key))
-                {
-                    Destroy(barrackG.Value);
-                    CoreParam.barracksG.Remove(barrackG.Key);
-                }
-            }
-        }
-    }
-    void ShowSpring(Dictionary<Tuple<int, int>, MessageOfSpring> springs)
-    {
-        foreach (KeyValuePair<Tuple<int, int>, MessageOfSpring> spring in springs)
-        {
-            if (spring.Value != null)
-            {
-                if (!CoreParam.springsG.ContainsKey(spring.Key))
-                {
-                    CoreParam.springsG[spring.Key] =
-                        ObjCreater.GetInstance().CreateObj(ConstructionType.Spring,
-                            Tool.GridToUxy(spring.Value.X, spring.Value.Y));
-                    // RendererControl.GetInstance().SetColToChild((PlayerTeam)(spring.Value.TeamId + 1),
-                    //     CoreParam.springsG[spring.Key].transform);
-
-                }
-                else
-                {
-                    CoreParam.springsG[spring.Key].transform.position = Tool.GridToUxy(spring.Value.X, spring.Value.Y);
-                    // CoreParam.springsG[spring.Key].transform.rotation =
-                    //     Quaternion.AngleAxis((float)spring.Value.FacingDirection * Mathf.Rad2Deg + 180, Vector3.forward);
-                }
-            }
-        }
-        for (int i = 0; i < CoreParam.springsG.Count; i++)
-        {
-            KeyValuePair<Tuple<int, int>, GameObject> springG = CoreParam.springsG.ElementAt(i);
-            if (springG.Value != null)
-            {
-                if (!CoreParam.springs.ContainsKey(springG.Key))
-                {
-                    Destroy(springG.Value);
-                    CoreParam.springsG.Remove(springG.Key);
-                }
-            }
-        }
-    }*/
     void ShowAllMessage(MessageToClient messageToClient)
     {
         gameTime.text = "GameTime:" + messageToClient.AllMessage.GameTime;

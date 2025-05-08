@@ -1,0 +1,55 @@
+
+Honghaier.png
+size: 42,77
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+backarm
+  rotate: false
+  xy: 2, 4
+  size: 15, 16
+  orig: 15, 16
+  offset: 0, 0
+  index: -1
+backfire
+  rotate: true
+  xy: 19, 2
+  size: 6, 21
+  orig: 6, 21
+  offset: 0, 0
+  index: -1
+backleg
+  rotate: false
+  xy: 17, 22
+  size: 10, 21
+  orig: 10, 21
+  offset: 0, 0
+  index: -1
+body
+  rotate: true
+  xy: 2, 45
+  size: 30, 38
+  orig: 30, 38
+  offset: 0, 0
+  index: -1
+forearm
+  rotate: true
+  xy: 19, 10
+  size: 10, 21
+  orig: 10, 21
+  offset: 0, 0
+  index: -1
+forefire
+  rotate: false
+  xy: 29, 26
+  size: 9, 17
+  orig: 9, 17
+  offset: 0, 0
+  index: -1
+foreleg
+  rotate: false
+  xy: 2, 22
+  size: 13, 21
+  orig: 13, 21
+  offset: 0, 0
+  index: -1

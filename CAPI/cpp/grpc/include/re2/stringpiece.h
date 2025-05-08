@@ -7,11 +7,12 @@
 
 #include "absl/strings/string_view.h"
 
-namespace re2 {
+namespace re2
+{
 
-// Until RE2 requires C++17 and uses std::string_view, allow users to
-// continue to #include "re2/stringpiece.h" and use re2::StringPiece.
-using StringPiece = absl::string_view;
+    // Until RE2 requires C++17 and uses std::string_view, allow users to
+    // continue to #include "re2/stringpiece.h" and use re2::StringPiece.
+    using StringPiece = absl::string_view;
 
 }  // namespace re2
 
