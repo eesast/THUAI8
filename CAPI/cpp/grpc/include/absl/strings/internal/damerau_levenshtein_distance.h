@@ -19,16 +19,17 @@
 
 #include "absl/strings/string_view.h"
 
-namespace absl {
-ABSL_NAMESPACE_BEGIN
-namespace strings_internal {
-// Calculate DamerauLevenshtein distance between two strings.
-// When the distance is larger than cutoff, the code just returns cutoff + 1.
-uint8_t CappedDamerauLevenshteinDistance(absl::string_view s1,
-                                         absl::string_view s2, uint8_t cutoff);
+namespace absl
+{
+    ABSL_NAMESPACE_BEGIN
+    namespace strings_internal
+    {
+        // Calculate DamerauLevenshtein distance between two strings.
+        // When the distance is larger than cutoff, the code just returns cutoff + 1.
+        uint8_t CappedDamerauLevenshteinDistance(absl::string_view s1, absl::string_view s2, uint8_t cutoff);
 
-}  // namespace strings_internal
-ABSL_NAMESPACE_END
+    }  // namespace strings_internal
+    ABSL_NAMESPACE_END
 }  // namespace absl
 
 #endif  // ABSL_STRINGS_INTERNAL_DAMERAU_LEVENSHTEIN_DISTANCE_H_

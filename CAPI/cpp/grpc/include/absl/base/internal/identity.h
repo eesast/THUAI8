@@ -18,22 +18,23 @@
 
 #include "absl/base/config.h"
 
-namespace absl {
-ABSL_NAMESPACE_BEGIN
-namespace internal {
+namespace absl
+{
+    ABSL_NAMESPACE_BEGIN
+    namespace internal
+    {
 
-// This is a back-fill of C++20's `std::type_identity`.
-template <typename T>
-struct type_identity {
-  typedef T type;
-};
+        template<typename T>
+        struct identity
+        {
+            typedef T type;
+        };
 
-// This is a back-fill of C++20's `std::type_identity_t`.
-template <typename T>
-using type_identity_t = typename type_identity<T>::type;
+        template<typename T>
+        using identity_t = typename identity<T>::type;
 
-}  // namespace internal
-ABSL_NAMESPACE_END
+    }  // namespace internal
+    ABSL_NAMESPACE_END
 }  // namespace absl
 
 #endif  // ABSL_BASE_INTERNAL_IDENTITY_H_

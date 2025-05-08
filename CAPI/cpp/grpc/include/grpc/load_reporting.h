@@ -19,10 +19,11 @@
 #ifndef GRPC_LOAD_REPORTING_H
 #define GRPC_LOAD_REPORTING_H
 
-#include <grpc/support/port_platform.h>
+#include <grpc/impl/codegen/port_platform.h>
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
 /** Metadata key for the gRPC LB load balancer token.
