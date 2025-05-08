@@ -46,24 +46,26 @@
 #error ABSL_WAITER_MODE is undefined
 #endif
 
-namespace absl {
-ABSL_NAMESPACE_BEGIN
-namespace synchronization_internal {
+namespace absl
+{
+    ABSL_NAMESPACE_BEGIN
+    namespace synchronization_internal
+    {
 
 #if ABSL_WAITER_MODE == ABSL_WAITER_MODE_FUTEX
-using Waiter = FutexWaiter;
+        using Waiter = FutexWaiter;
 #elif ABSL_WAITER_MODE == ABSL_WAITER_MODE_SEM
-using Waiter = SemWaiter;
+        using Waiter = SemWaiter;
 #elif ABSL_WAITER_MODE == ABSL_WAITER_MODE_CONDVAR
-using Waiter = PthreadWaiter;
+        using Waiter = PthreadWaiter;
 #elif ABSL_WAITER_MODE == ABSL_WAITER_MODE_WIN32
-using Waiter = Win32Waiter;
+        using Waiter = Win32Waiter;
 #elif ABSL_WAITER_MODE == ABSL_WAITER_MODE_STDCPP
-using Waiter = StdcppWaiter;
+        using Waiter = StdcppWaiter;
 #endif
 
-}  // namespace synchronization_internal
-ABSL_NAMESPACE_END
+    }  // namespace synchronization_internal
+    ABSL_NAMESPACE_END
 }  // namespace absl
 
 #endif  // ABSL_SYNCHRONIZATION_INTERNAL_WAITER_H_

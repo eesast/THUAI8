@@ -29,35 +29,38 @@
 #include "absl/synchronization/internal/kernel_timeout.h"
 #include "absl/synchronization/internal/waiter_base.h"
 
-namespace absl {
-ABSL_NAMESPACE_BEGIN
-namespace synchronization_internal {
+namespace absl
+{
+    ABSL_NAMESPACE_BEGIN
+    namespace synchronization_internal
+    {
 
 #define ABSL_INTERNAL_HAVE_SEM_WAITER 1
 
-class SemWaiter : public WaiterCrtp<SemWaiter> {
- public:
-  SemWaiter();
+        class SemWaiter : public WaiterCrtp<SemWaiter>
+        {
+        public:
+            SemWaiter();
 
-  bool Wait(KernelTimeout t);
-  void Post();
-  void Poke();
+            bool Wait(KernelTimeout t);
+            void Post();
+            void Poke();
 
-  static constexpr char kName[] = "SemWaiter";
+            static constexpr char kName[] = "SemWaiter";
 
- private:
-  int TimedWait(KernelTimeout t);
+        private:
+            int TimedWait(KernelTimeout t);
 
-  sem_t sem_;
+            sem_t sem_;
 
-  // This seems superfluous, but for Poke() we need to cause spurious
-  // wakeups on the semaphore. Hence we can't actually use the
-  // semaphore's count.
-  std::atomic<int> wakeups_;
-};
+            // This seems superfluous, but for Poke() we need to cause spurious
+            // wakeups on the semaphore. Hence we can't actually use the
+            // semaphore's count.
+            std::atomic<int> wakeups_;
+        };
 
-}  // namespace synchronization_internal
-ABSL_NAMESPACE_END
+    }  // namespace synchronization_internal
+    ABSL_NAMESPACE_END
 }  // namespace absl
 
 #endif  // ABSL_HAVE_SEMAPHORE_H

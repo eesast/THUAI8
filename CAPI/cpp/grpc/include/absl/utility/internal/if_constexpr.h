@@ -42,29 +42,34 @@
 
 #include "absl/base/config.h"
 
-namespace absl {
-ABSL_NAMESPACE_BEGIN
+namespace absl
+{
+    ABSL_NAMESPACE_BEGIN
 
-namespace utility_internal {
+    namespace utility_internal
+    {
 
-template <bool condition, typename TrueFunc, typename FalseFunc,
-          typename... Args>
-auto IfConstexprElse(TrueFunc&& true_func, FalseFunc&& false_func,
-                     Args&&... args) {
-  return std::get<condition>(std::forward_as_tuple(
-      std::forward<FalseFunc>(false_func), std::forward<TrueFunc>(true_func)))(
-      std::forward<Args>(args)...);
-}
+        template<bool condition, typename TrueFunc, typename FalseFunc, typename... Args>
+        auto IfConstexprElse(TrueFunc&& true_func, FalseFunc&& false_func, Args&&... args)
+        {
+            return std::get<condition>(std::forward_as_tuple(
+                std::forward<FalseFunc>(false_func), std::forward<TrueFunc>(true_func)
+            ))(
+                std::forward<Args>(args)...
+            );
+        }
 
-template <bool condition, typename Func, typename... Args>
-void IfConstexpr(Func&& func, Args&&... args) {
-  IfConstexprElse<condition>(std::forward<Func>(func), [](auto&&...){},
-                             std::forward<Args>(args)...);
-}
+        template<bool condition, typename Func, typename... Args>
+        void IfConstexpr(Func&& func, Args&&... args)
+        {
+            IfConstexprElse<condition>(
+                std::forward<Func>(func), [](auto&&...) {}, std::forward<Args>(args)...
+            );
+        }
 
-}  // namespace utility_internal
+    }  // namespace utility_internal
 
-ABSL_NAMESPACE_END
+    ABSL_NAMESPACE_END
 }  // namespace absl
 
 #endif  // ABSL_UTILITY_INTERNAL_IF_CONSTEXPR_H_
