@@ -1,3 +1,4 @@
+protoc --version
 protoc Message2Clients.proto --cpp_out=.
 protoc MessageType.proto --cpp_out=.
 protoc Message2Server.proto --cpp_out=.
