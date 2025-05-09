@@ -450,6 +450,18 @@ namespace Gaming
             }
             return false;
         }
+        public bool AttackConstruction(long teamID, long characterID)
+        {
+            if (!gameMap.Timer.IsGaming)
+                return false;
+            Character? character = gameMap.FindCharacterInPlayerID(teamID, characterID);
+            Construction? construction = (Construction?)gameMap.OneForInteract(character.Position, GameObjType.CONSTRUCTION);
+            if (character != null && character.IsRemoved == false && construction != null)
+            {
+                return attackManager.Attack(character, construction);
+            }
+            return false;
+        }
         public bool Produce(long teamID, long characterID)
         {
             if (!gameMap.Timer.IsGaming)
