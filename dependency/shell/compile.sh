@@ -15,7 +15,8 @@ then
     cd $workdir
     cp -f $bind/$filename $workdir/API/src/AI.cpp
     # cmake ./CMakeLists.txt && make -j$(nproc) >$base_name.log 2>&1
-    cmake ./CMakeLists.txt -DProtobuf_DIR=/usr/local/lib/cmake/protobuf .. --trace-expand --debug-find >$base_name.log 2>&1 && make -j$(nproc) > build_output.log 2>&1
+    # cmake ./CMakeLists.txt -DProtobuf_DIR=/usr/local/lib/cmake/protobuf .. --trace-expand --debug-find >$base_name.log 2>&1 && make -j$(nproc) > build_output.log 2>&1
+    (cmake ./CMakeLists.txt -DProtobuf_DIR=/usr/local/lib/cmake/protobuf .. --trace-expand --debug-find && make -j$(nproc)) > combined_output.log 2>&1
     mv ./capi $output/$base_name
     if [ $? -ne 0 ]; then
         flag=0
