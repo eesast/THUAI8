@@ -70,10 +70,10 @@ class CharacterAPI(ICharacterAPI, IGameTimer):
     def GetPlaceType(self, cellX: int, cellY: int) -> THUAI8.PlaceType:
         return self.__logic.GetPlaceType(cellX, cellY)
 
-    def GetEnconomyResourceState(
+    def GetEconomyResourceState(
         self, cellX: int, cellY: int
     ) -> Optional[THUAI8.EconomyResourceState]:
-        return self.__logic.GetEnconomyResourceState(cellX, cellY)
+        return self.__logic.GetEconomyResourceState(cellX, cellY)
 
     def GetAdditionResourceState(
         self, cellX: int, cellY: int
@@ -178,11 +178,14 @@ class TeamAPI(ITeamAPI, IGameTimer):
     # endregion
 
     # region 实现IAPI接口
-    def SendTextMessage(self, toPlayerID: int, message: str) -> Future[bool]:
-        return self.__pool.submit(self.__logic.Send, toPlayerID, message, False)
+    # def SendTextMessage(self, toPlayerID: int, message: str) -> Future[bool]:
+    #     return self.__pool.submit(self.__logic.Send, toPlayerID, message, False)
 
-    def SendBinaryMessage(self, toPlayerID: int, message: str) -> Future[bool]:
-        return self.__pool.submit(self.__logic.Send, toPlayerID, message, True)
+    # def SendBinaryMessage(self, toPlayerID: int, message: str) -> Future[bool]:
+    #     return self.__pool.submit(self.__logic.Send, toPlayerID, message, True)
+
+    def SendMessage(self, toPlayerID: int, message: Union[str, bytes]) -> Future[bool]:
+        return self.__pool.submit(self.__logic.SendMessage, toPlayerID, message)
 
     def HaveMessage(self) -> bool:
         return self.__logic.HaveMessage()
@@ -214,19 +217,13 @@ class TeamAPI(ITeamAPI, IGameTimer):
     def GetPlaceType(self, cellX: int, cellY: int) -> THUAI8.PlaceType:
         return self.__logic.GetPlaceType(cellX, cellY)
 
-    def GetEnconomyResourceState(
-        self, cellX: int, cellY: int
-    ) -> Optional[THUAI8.EconomyResourceState]:
-        return self.__logic.GetEnconomyResourceState(cellX, cellY)
+    def GetEconomyResourceState(self, cellX: int, cellY: int) -> int:
+        return self.__logic.GetEconomyResourceState(cellX, cellY)
 
-    def GetAdditionResourceState(
-        self, cellX: int, cellY: int
-    ) -> Optional[THUAI8.AdditionResourceState]:
+    def GetAdditionResourceState(self, cellX: int, cellY: int) -> int:
         return self.__logic.GetAdditionResourceState(cellX, cellY)
 
-    def GetConstructionState(
-        self, cellX: int, cellY: int
-    ) -> Optional[THUAI8.ConstructionState]:
+    def GetConstructionState(self, cellX: int, cellY: int) -> int:
         return self.__logic.GetConstructionState(cellX, cellY)
 
     def GetPlayerGUIDs(self) -> List[int]:

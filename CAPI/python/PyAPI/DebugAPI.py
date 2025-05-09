@@ -1165,10 +1165,10 @@ class TeamDebugAPI(ITeamAPI, IGameTimer):
         for char in self.__logic.GetCharacters():
             self.__logger.info("******Team Info******")
             self.__logger.info(
-                f"type={char.characterType}, ID={char.characterID}, GUID={char.guid}, x={char.x}, y={char.y}"
+                f"type={char.characterType}, ID={char.playerID}, GUID={char.guid}, x={char.x}, y={char.y}"
             )
             self.__logger.info(
-                f"state={char.characterState}, speed={char.speed}, view={char.viewRange}, facing={char.facingDirection}"
+                f"activestate={char.characterActiveState}, passiveatate={char.characterPassiveState}, speed={char.speed}, view={char.viewRange}, facing={char.facingDirection}"
             )
             self.__logger.info("**************************")
 
