@@ -112,8 +112,8 @@ private:
     bool EndAllAction();
 
     // ICharacterAPI使用的部分
-    bool Move(int64_t teamID, int64_t characterID, int32_t moveTimeInMilliseconds, double angle);
-    bool Skill_Attack(int64_t teamID, int64_t playerID, double angleInRadian);
+    bool Move(int64_t moveTimeInMilliseconds, double angle);
+    bool Skill_Attack(int64_t playerID, int64_t teamID, double angleInRadian);
     bool Common_Attack(int64_t playerID, int64_t teamID, int64_t ATKplayerID, int64_t ATKteamID);
     bool Recover(int64_t recover);
     bool Produce(int64_t playerID, int64_t teamID);

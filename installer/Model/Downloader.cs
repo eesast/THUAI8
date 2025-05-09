@@ -300,8 +300,11 @@ namespace installer.Model
         /// 检测是否需要进行更新
         /// 返回真时则表明需要更新
         /// </summary>
+        /// <param name="writeMD5">是否保存MD5数据</param>
+        /// <param name="ignoreVersionCheck">是否忽略版本号检查，仅检查文件变化</param>
+        /// <param name="fileContentPriority">当设为true时，文件内容检查结果优先于版本号检查（当版本号显示需要更新但文件无变化时，以文件检查结果为准）</param>
         /// <returns></returns>
-        public bool CheckUpdate(bool writeMD5 = true)
+        public bool CheckUpdate(bool writeMD5 = true, bool ignoreVersionCheck = false, bool fileContentPriority = true)
         {
             UpdateMD5();
             Data.MD5Update.Clear();
@@ -309,14 +312,39 @@ namespace installer.Model
             Status = UpdateStatus.hash_computing;
             Data.ScanDir(false);
             Status = UpdateStatus.success;
-            if (Data.MD5Update.Count != 0 || CurrentVersion < Data.FileHashData.TVersion)
+
+            bool filesNeedUpdate = Data.MD5Update.Count != 0;
+
+            bool versionNeedUpdate = !ignoreVersionCheck && (CurrentVersion < Data.FileHashData.TVersion);
+
+            bool needUpdate;
+            if (fileContentPriority)
             {
-                Data.Log.LogInfo("代码库需要更新，请点击更新按钮以更新。");
+                needUpdate = filesNeedUpdate;
+            }
+            else if (ignoreVersionCheck)
+            {
+                needUpdate = filesNeedUpdate;
+            }
+            else
+            {
+                needUpdate = filesNeedUpdate || versionNeedUpdate;
+            }
+
+            if (needUpdate)
+            {
+                if (filesNeedUpdate)
+                    Data.Log.LogInfo("检测到文件变化，需要更新。");
+                if (versionNeedUpdate && !fileContentPriority)
+                    Data.Log.LogInfo("检测到版本不匹配，需要更新。");
+                else if (versionNeedUpdate && fileContentPriority && !filesNeedUpdate)
+                    Data.Log.LogInfo("检测到版本不匹配，但文件无变化，可以忽略更新。");
+
                 if (writeMD5)
                 {
                     Data.SaveMD5Data();
                 }
-                return true;
+                return needUpdate;
             }
             else if (!Data.LangEnabled[LanguageOption.cpp].Item1 || !Data.LangEnabled[LanguageOption.python].Item1)
             {
@@ -352,9 +380,11 @@ namespace installer.Model
         /// </summary>
         public int Update()
         {
+            Data.Log.LogInfo("Update() 方法开始执行");
             int result = 0;
-            if (CheckUpdate(false))
+            if (CheckUpdate(false, false, true))
             {
+                Data.Log.LogInfo("CheckUpdate 返回 true，开始更新流程");
                 // 如果缺少选手代码，应当立刻下载最新的选手代码
                 if (!Data.LangEnabled[LanguageOption.cpp].Item1)
                 {
@@ -399,7 +429,7 @@ namespace installer.Model
                 {
                     Cloud.Report.Count += 1;
                     string zp = Path.Combine(Data.Config.InstallPath, "protoCpp.tar.gz");
-                    Cloud.Log.LogInfo("已检测到proto cpp库缺失，正在下载……");
+                    Cloud.Log.LogInfo("正在下载proto cpp库……");
                     Cloud.DownloadFileAsync(zp, "Setup/proto/protoCpp.tar.gz").Wait();
                     CloudReport.ComCount += 1;
                     Status = UpdateStatus.unarchieving;
@@ -411,222 +441,157 @@ namespace installer.Model
                     Cloud.Log.LogInfo($"proto cpp库解压完成");
                     File.Delete(zp);
                 }
-
-                // 如果是更新模板，应当尝试使用AI.cpp.temp和AI.py.temp来存储选手原来的AI代码
-                if (CurrentVersion < Data.FileHashData.TVersion &&
-                    Data.LangEnabled[LanguageOption.cpp].Item1 && Data.LangEnabled[LanguageOption.python].Item1 &&
-                    CurrentVersion.TemplateVersion < Data.FileHashData.TVersion.TemplateVersion)
+                // 启动器本身需要更新，返回结果为16
+                if (CurrentVersion.InstallerVersion < Data.FileHashData.TVersion.InstallerVersion)
                 {
-                    Log.LogInfo("待更新：新的选手代码模板");
-                    // 对于C++ API
+                    var local = Path.Combine(AppContext.BaseDirectory, "Cache", $"Installer_v{Data.FileHashData.TVersion.InstallerVersion}.zip");
+                    Cloud.Log.LogWarning("启动器即将升级，正在下载压缩包……");
+                    Status = UpdateStatus.downloading;
+                    Log.CountDict[LogLevel.Error] = 0;
+                    CloudReport.Count++;
+                    var i = Cloud.DownloadFileAsync(local, $"Setup/Installer_v{Data.FileHashData.TVersion.InstallerVersion}.zip").Result;
+                    if (i >= 0)
                     {
-                        var aiCppFile = Data.LangEnabled[LanguageOption.cpp].Item2;
-                        if (aiCppFile == null || !File.Exists(aiCppFile))
+                        CloudReport.ComCount++;
+                        Cloud.Log.LogWarning("下载完成，请退出下载器，并将压缩包解压到原下载器安装位置。");
+                        Status = UpdateStatus.exiting;
+                        if (DeviceInfo.Platform == DevicePlatform.WinUI)
                         {
-                            Data.LangEnabled[LanguageOption.cpp] = (false, string.Empty);
-                            goto skip_cpp;
-                        }
-                        try
-                        {
-                            // 备份原始AI.cpp
-                            string aiCppTemp = Path.ChangeExtension(aiCppFile, ".cpp.temp");
-                            if (File.Exists(aiCppTemp))
-                                File.Delete(aiCppTemp);
-                            Log.LogInfo("正在备份旧的选手cpp代码……");
-                            File.Move(aiCppFile, aiCppTemp);
-                            // 保存旧模板到oldTemplate.cpp
-                            string oldTemplatePath = Path.Combine(
-                                Path.GetDirectoryName(aiCppFile), "oldTemplate.cpp"
-                            );
-                            string oldTemplate = $"./Templates/t.{CurrentVersion.TemplateVersion}.cpp";
-                            string newTemplate = $"./Templates/t.{Data.FileHashData.TVersion.TemplateVersion}.cpp";
-                            Log.LogInfo($"正在下载旧模板 {oldTemplate}");
-                            CloudReport.Count++;
-                            var toOld = Cloud.DownloadFileAsync(oldTemplatePath, oldTemplate).ContinueWith(_ => CloudReport.ComCount++);
-                            toOld.Wait();
-                            // 下载新的CPP模板
-                            Log.LogInfo($"正在下载新模板 {newTemplate}");
-                            CloudReport.Count++;
-                            var toCpp = Cloud.DownloadFileAsync(aiCppFile, newTemplate).ContinueWith(_ => CloudReport.ComCount++);
-                            toCpp.Wait();
-                            // 如果下载成功，则进行选手代码和模板代码的合并
-                            if (File.Exists(oldTemplatePath) && File.Exists(aiCppFile))
+                            Process.Start(new ProcessStartInfo()
                             {
-                                if (File.Exists(aiCppTemp))
-                                {
-                                    Log.LogInfo("正在合并选手cpp代码……");
-                                    string temp = FileService.ReadToEnd(aiCppTemp);
-                                    string oldTpl = FileService.ReadToEnd(oldTemplatePath);
-                                    string newTpl = FileService.ReadToEnd(aiCppFile);
-                                    string mergedTpl = FileService.MergeUserCode(temp, oldTpl, newTpl);
-                                    File.WriteAllText(aiCppFile, mergedTpl);
-                                    Log.LogInfo("选手cpp代码合并成功！");
-                                }
-                            }
-                            else
-                            {
-                                Log.LogError("下载模板失败，尝试回滚……");
-                                File.Move(aiCppTemp, aiCppFile);
-                            }
+                                Arguments = '\"' + local + '\"',
+                                FileName = "explorer.exe"
+                            });
                         }
-                        catch (Exception exc)
-                        {
-                            Log.LogError($"cpp选手代码合并发生错误：{exc.Message}");
-                        }
-                    skip_cpp:;
+                        CurrentVersion = Data.FileHashData.TVersion;
+                        Data.SaveMD5Data();
+                        return 16;
                     }
-                    // 对于Python API
+                    else
                     {
-                        var aiPyFile = Data.LangEnabled[LanguageOption.python].Item2;
-                        if (aiPyFile == null || !File.Exists(aiPyFile))
-                        {
-                            Data.LangEnabled[LanguageOption.python] = (false, string.Empty);
-                            goto skip_py;
-                        }
-                        try
-                        {
-                            // 备份原始AI.py
-                            string aiPyTemp = Path.ChangeExtension(aiPyFile, ".py.temp");
-                            if (File.Exists(aiPyTemp))
-                                File.Delete(aiPyTemp);
-                            Log.LogInfo("正在备份旧的选手py代码……");
-                            File.Move(aiPyFile, aiPyTemp);
-                            // 保存旧模板到oldTemplate.py
-                            string oldTemplatePath = Path.Combine(
-                                Path.GetDirectoryName(aiPyFile), "oldTemplate.py"
-                            );
-                            string oldTemplate = $"./Templates/t.{CurrentVersion.TemplateVersion}.py";
-                            string newTemplate = $"./Templates/t.{Data.FileHashData.TVersion.TemplateVersion}.py";
-                            Log.LogInfo($"正在下载旧模板 {oldTemplate}");
-                            CloudReport.Count++;
-                            var toOld = Cloud.DownloadFileAsync(oldTemplatePath, oldTemplate).ContinueWith(_ => CloudReport.ComCount++);
-                            toOld.Wait();
-                            // 下载新的Python模板
-                            Log.LogInfo($"正在下载新模板 {newTemplate}");
-                            CloudReport.Count++;
-                            var toPy = Cloud.DownloadFileAsync(aiPyFile, newTemplate).ContinueWith(_ => CloudReport.ComCount++);
-                            toPy.Wait();
-                            // 如果下载成功，则进行选手代码和模板代码的合并
-                            if (File.Exists(oldTemplatePath) && File.Exists(aiPyFile))
-                            {
-                                if (File.Exists(aiPyTemp))
-                                {
-                                    Log.LogInfo("正在合并选手py代码……");
-                                    string temp = FileService.ReadToEnd(aiPyTemp);
-                                    string oldTpl = FileService.ReadToEnd(oldTemplatePath);
-                                    string newTpl = FileService.ReadToEnd(aiPyFile);
-                                    string mergedTpl = FileService.MergeUserCode(temp, oldTpl, newTpl);
-                                    File.WriteAllText(aiPyFile, mergedTpl);
-                                    Log.LogInfo("选手py代码合并成功！");
-                                }
-                            }
-                            else
-                            {
-                                Log.LogError("下载模板失败，尝试回滚……");
-                                File.Move(aiPyTemp, aiPyFile);
-                            }
-                        }
-                        catch (Exception exc)
-                        {
-                            Log.LogError($"python选手代码合并发生错误：{exc.Message}");
-                        }
-                    skip_py:;
+                        // 下载失败
+                        Cloud.Log.LogError("启动器下载失败。");
+                        Data.SaveMD5Data();
+                        return -1;
                     }
                 }
-                // 如果是更新libVersion，需要使用COS下载器下载
-                if (CurrentVersion < Data.FileHashData.TVersion &&
-                    CurrentVersion.LibVersion < Data.FileHashData.TVersion.LibVersion)
+                // AI.cpp/AI.py有改动
+                // 返回结果为Flags，1: AI.cpp升级；2: AI.py升级
+                if (CurrentVersion.TemplateVersion < Data.FileHashData.TVersion.TemplateVersion)
                 {
-                    result = 1;
-                    Log.LogInfo("待更新：新的代码库");
-                    // 按照需要自动删除和修改的文件列表进行处理
-                    foreach (var item in Data.MD5Update)
+                    Cloud.Log.LogWarning("检测到选手代码升级，即将下载选手代码模板……");
+                    Status = UpdateStatus.downloading;
+                    var p = Path.Combine(Data.Config.InstallPath, "Templates");
+                    if (!Directory.Exists(p))
                     {
-                        switch (item.state)
+                        Directory.CreateDirectory(p);
+                    }
+                    Log.CountDict[LogLevel.Error] = 0;
+                    CloudReport.Count += 4;
+
+                    // 下载路径
+                    var tpocpp = Path.Combine(Directory.GetParent(Data.LangEnabled[LanguageOption.cpp].Item2)?.FullName ?? Data.Config.InstallPath, $"oldTemplate.cpp");
+                    var tpncpp = Path.Combine(Directory.GetParent(Data.LangEnabled[LanguageOption.cpp].Item2)?.FullName ?? Data.Config.InstallPath, $"newTemplate.cpp");
+                    var tpopy = Path.Combine(Directory.GetParent(Data.LangEnabled[LanguageOption.python].Item2)?.FullName ?? Data.Config.InstallPath, $"oldTemplate.py");
+                    var tpnpy = Path.Combine(Directory.GetParent(Data.LangEnabled[LanguageOption.python].Item2)?.FullName ?? Data.Config.InstallPath, $"newTemplate.py");
+                    // 下载任务
+                    var tocpp = Cloud.DownloadFileAsync(tpocpp, $"./Templates/t.{CurrentVersion.TemplateVersion}.cpp");
+                    var topy = Cloud.DownloadFileAsync(tpopy, $"./Templates/t.{CurrentVersion.TemplateVersion}.py");
+                    var tncpp = Cloud.DownloadFileAsync(tpncpp, $"./Templates/t.{Data.FileHashData.TVersion.TemplateVersion}.cpp");
+                    var tnpy = Cloud.DownloadFileAsync(tpnpy, $"./Templates/t.{Data.FileHashData.TVersion.TemplateVersion}.py");
+                    Task.WaitAll(tocpp, topy, tncpp, tnpy);
+                    var r = (tocpp.Result >= 0 ? 1 : 0) + (topy.Result >= 0 ? 1 : 0) + (tncpp.Result >= 0 ? 1 : 0) + (tnpy.Result >= 0 ? 1 : 0);
+                    CloudReport.ComCount += r;
+                    if (r == 4)
+                    {
+                        Cloud.Log.LogWarning("下载完毕，即将合并模板与用户代码，结果可能出现问题，请务必核实新旧模板代码和选手代码，确认正确后用同名temp文件覆盖源文件");
+                        if (Data.LangEnabled[LanguageOption.cpp].Item1)
                         {
-                            case DataRowState.Deleted:
-                                { // 已经不存在的文件，进行删除
-                                    Log.LogInfo($"删除 {item.name}");
-                                    var file = item.name;
-                                    if (file.StartsWith('.'))
-                                    {
-                                        file = Path.Combine(Data.Config.InstallPath, file);
-                                    }
-                                    try
-                                    {
-                                        if (File.Exists(file)) File.Delete(file);
-                                    }
-                                    catch (IOException ioe)
-                                    {
-                                        Log.LogWarning($"文件删除失败 {ioe.Message}");
-                                    }
-                                    break;
-                                }
-                            case DataRowState.Modified:
-                                { // 修改后的文件，用服务器的覆盖
-                                    Log.LogInfo($"修改 {item.name}");
-                                    var fileLocal = item.name;
-                                    if (fileLocal.StartsWith('.'))
-                                    {
-                                        fileLocal = Path.Combine(Data.Config.InstallPath, fileLocal);
-                                    }
-                                    var fileRemote = item.name.Replace(Path.DirectorySeparatorChar, '/');
-                                    if (fileRemote.StartsWith("./"))
-                                    {
-                                        fileRemote = fileRemote[2..];
-                                    }
-                                    if (File.Exists(fileLocal))
-                                    {
-                                        try
-                                        {
-                                            File.Delete(fileLocal);
-                                        }
-                                        catch (IOException)
-                                        {
-                                            Log.LogWarning($"文件 {fileLocal} 被占用，跳过。");
-                                            continue;
-                                        }
-                                    }
-                                    // 确保目录存在
-                                    string dir = Path.GetDirectoryName(fileLocal);
-                                    if (!Directory.Exists(dir))
-                                    {
-                                        Directory.CreateDirectory(dir);
-                                    }
-                                    CloudReport.Count++;
-                                    Cloud.DownloadFileAsync(fileLocal, fileRemote).ContinueWith(_ => CloudReport.ComCount++);
-                                    break;
-                                }
-                            case DataRowState.Added:
-                                { // 新增的文件，下载
-                                    Log.LogInfo($"新增 {item.name}");
-                                    var fileLocal = item.name;
-                                    if (fileLocal.StartsWith('.'))
-                                    {
-                                        fileLocal = Path.Combine(Data.Config.InstallPath, fileLocal);
-                                    }
-                                    var fileRemote = item.name.Replace(Path.DirectorySeparatorChar, '/');
-                                    if (fileRemote.StartsWith("./"))
-                                    {
-                                        fileRemote = fileRemote[2..];
-                                    }
-                                    // 确保目录存在
-                                    string dir = Path.GetDirectoryName(fileLocal);
-                                    if (!Directory.Exists(dir))
-                                    {
-                                        Directory.CreateDirectory(dir);
-                                    }
-                                    CloudReport.Count++;
-                                    Cloud.DownloadFileAsync(fileLocal, fileRemote).ContinueWith(_ => CloudReport.ComCount++);
-                                    break;
-                                }
+                            var so = FileService.ReadToEnd(tpocpp);
+                            var sn = FileService.ReadToEnd(tpncpp);
+                            var sa = FileService.ReadToEnd(Data.LangEnabled[LanguageOption.cpp].Item2);
+                            var s = FileService.MergeUserCode(sa, so, sn);
+                            using (var f = new FileStream(Data.LangEnabled[LanguageOption.cpp].Item2 + ".temp", FileMode.Create))
+                            using (var w = new StreamWriter(f))
+                            {
+                                w.Write(s);
+                                w.Flush();
+                            }
+                            result |= 1;
+                            if (DeviceInfo.Platform == DevicePlatform.WinUI)
+                            {
+                                Process.Start(new ProcessStartInfo()
+                                {
+                                    Arguments = Directory.GetParent(Data.LangEnabled[LanguageOption.cpp].Item2)?.FullName,
+                                    FileName = "explorer.exe"
+                                });
+                            }
+                        }
+                        if (Data.LangEnabled[LanguageOption.python].Item1)
+                        {
+                            var so = FileService.ReadToEnd(tpopy);
+                            var sn = FileService.ReadToEnd(tpnpy);
+                            var sa = FileService.ReadToEnd(Data.LangEnabled[LanguageOption.python].Item2);
+                            var s = FileService.MergeUserCode(sa, so, sn);
+                            using (var f = new FileStream(Data.LangEnabled[LanguageOption.python].Item2 + ".temp", FileMode.Create))
+                            using (var w = new StreamWriter(f))
+                            {
+                                w.Write(s);
+                                w.Flush();
+                            }
+                            result |= 2;
+                            if (DeviceInfo.Platform == DevicePlatform.WinUI)
+                            {
+                                Process.Start(new ProcessStartInfo()
+                                {
+                                    Arguments = Directory.GetParent(Data.LangEnabled[LanguageOption.python].Item2)?.FullName,
+                                    FileName = "explorer.exe"
+                                });
+                            }
                         }
                     }
-                    CurrentVersion = Data.FileHashData.TVersion;
+                }
+                Log.CountDict[LogLevel.Error] = 0;
+
+                // 更新成功后返回值Flags增加0x8
+                Status = UpdateStatus.downloading;
+                Cloud.Log.LogInfo("正在更新……");
+                Cloud.DownloadQueueAsync(Data.Config.InstallPath,
+                    from item in Data.MD5Update where item.state != System.Data.DataRowState.Added select item.name).Wait();
+                Cloud.Log.LogWarning("正在删除冗余文件……");
+                foreach (var item in Data.MD5Update.Where((s) => s.state == System.Data.DataRowState.Added))
+                {
+                    var _file = item.name;
+                    var file = _file.StartsWith('.') ?
+                        Path.Combine(Data.Config.InstallPath, _file) : _file;
+                    File.Delete(file);
+                }
+                if (Log.CountDict[LogLevel.Error] == 0)
+                {
                     Data.MD5Update.Clear();
-                    Data.SaveMD5Data();
+                    var c = CurrentVersion;
+                    CurrentVersion = Data.FileHashData.TVersion;
+                    Status = UpdateStatus.hash_computing;
+                    Data.Log.LogInfo("正在校验……");
+                    Data.Log.LogInfo($"比较版本: CurrentVersion={CurrentVersion}, FileHashData.TVersion={Data.FileHashData.TVersion}");
+                    if (!CheckUpdate(true, false, true))
+                    {
+                        Data.Log.LogInfo("更新成功！");
+                        Status = UpdateStatus.success;
+                        Data.Installed = true;
+                        result |= 8;
+                        Data.SaveMD5Data();
+                        return result;
+                    }
+                    else
+                        CurrentVersion = c;
                 }
             }
+            else
+            {
+                Data.Log.LogInfo("CheckUpdate 返回 false，无需更新");
+            }
+            Data.SaveMD5Data();
             return result;
         }
 
@@ -703,9 +668,9 @@ namespace installer.Model
             return Task.Run(() => ResetInstallPath(newPath));
         }
 
-        public Task<bool> CheckUpdateAsync()
+        public Task<bool> CheckUpdateAsync(bool ignoreVersionCheck = false, bool fileContentPriority = true)
         {
-            return Task.Run(() => CheckUpdate());
+            return Task.Run(() => CheckUpdate(true, ignoreVersionCheck, fileContentPriority));
         }
 
         public Task<int> UpdateAsync()

@@ -216,48 +216,47 @@ int32_t TeamAPI::GetEnergy() const
 
 // Character独有
 // 修改后的实现需要严格匹配接口参数列表
-std::future<bool> CharacterAPI::Move(int64_t teamID, int64_t characterID, int32_t moveTimeInMilliseconds, double angle)
+std::future<bool> CharacterAPI::Move(int64_t moveTimeInMilliseconds, double angle)
 {
-    // 参数顺序需要与接口声明一致：speed, time, angle
+    // 参数顺序需要与接口声明一致：time, angle
     return std::async(std::launch::async, [=]()
-                      { return logic.Move(teamID, characterID, moveTimeInMilliseconds, angle); });  // 传递三个参数
+                      { return logic.Move(moveTimeInMilliseconds, angle); });  // 传递两个参数
 }
 
-// 下方各方向移动需要补充speed参数
-/* std::future<bool> CharacterAPI::MoveDown(int32_t speed, int64_t timeInMilliseconds)
+
+std::future<bool> CharacterAPI::MoveDown(int64_t timeInMilliseconds)
 {
     // 向下移动角度应为3π/2 (270度) 或根据坐标系定义确认
-    return Move(speed, timeInMilliseconds, PI * 1.5);
+    return Move(timeInMilliseconds, PI * 1.5);
 }
 
-std::future<bool> CharacterAPI::MoveRight(int32_t speed, int64_t timeInMilliseconds)
+std::future<bool> CharacterAPI::MoveRight(int64_t timeInMilliseconds)
 {
     // 向右移动通常是0弧度（东方向）或 π/2（北方向），需确认坐标系定义
-    return Move(speed, timeInMilliseconds, 0);
+    return Move(timeInMilliseconds, 0);
 }
 
-std::future<bool> CharacterAPI::MoveUp(int32_t speed, int64_t timeInMilliseconds)
+std::future<bool> CharacterAPI::MoveUp(int64_t timeInMilliseconds)
 {
     // 向上移动通常是π/2（北方向）或 π（西方向），需确认坐标系定义
-    return Move(speed, timeInMilliseconds, PI / 2);
+    return Move(timeInMilliseconds, PI / 2);
 }
 
-std::future<bool> CharacterAPI::MoveLeft(int32_t speed, int64_t timeInMilliseconds)
+std::future<bool> CharacterAPI::MoveLeft(int64_t timeInMilliseconds)
 {
     // 向左移动通常是π弧度（西方向）或 3π/2（南方向）
-    return Move(speed, timeInMilliseconds, PI);
-}*/
-
-std::future<bool> CharacterAPI::Common_Attack(int64_t teamID, int64_t PlayerID, int64_t attackedTeamID, int64_t attackedPlayerID)
+    return Move(timeInMilliseconds, PI);
+}
+std::future<bool> CharacterAPI::Common_Attack(int64_t attackedPlayerID)
 {
     return std::async(std::launch::async, [=]()
-                      { return logic.Common_Attack(teamID, PlayerID, attackedTeamID, attackedPlayerID); });
+                      { return logic.Common_Attack(this->GetSelfInfo()->teamID, this->GetSelfInfo()->playerID, 1 - this->GetSelfInfo()->teamID, attackedPlayerID); });
 }
 
-std::future<bool> CharacterAPI::Skill_Attack(int64_t TeamID, int64_t PlayerID, double angle)
+std::future<bool> CharacterAPI::Skill_Attack(double angle)
 {
     return std::async(std::launch::async, [=]()
-                      { return logic.Skill_Attack(TeamID, PlayerID, angle); });
+                      { return logic.Skill_Attack(this->GetSelfInfo()->playerID, this->GetSelfInfo()->teamID, angle); });
 }
 
 std::future<bool> CharacterAPI::Recover(int64_t recover)

@@ -2,13 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="installer.Page.PlaybackPage"
-             Title="Playback"
-             BackgroundColor="#f5f5f5">
+             Title="Playback">
     
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="CardStyle" TargetType="Frame">
-                <Setter Property="BackgroundColor" Value="White" />
                 <Setter Property="CornerRadius" Value="10" />
                 <Setter Property="Margin" Value="0,10" />
                 <Setter Property="Padding" Value="20" />
@@ -17,8 +15,6 @@
             </Style>
             
             <Style x:Key="PrimaryButton" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="#3498db" />
-                <Setter Property="TextColor" Value="White" />
                 <Setter Property="CornerRadius" Value="5" />
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="Margin" Value="5" />
@@ -27,8 +23,6 @@
             </Style>
             
             <Style x:Key="SecondaryButton" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="#95a5a6" />
-                <Setter Property="TextColor" Value="White" />
                 <Setter Property="CornerRadius" Value="5" />
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="Margin" Value="5" />
@@ -40,7 +34,6 @@
                 <Setter Property="FontSize" Value="20" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="Margin" Value="0,0,0,10" />
-                <Setter Property="TextColor" Value="#2c3e50" />
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -84,8 +77,7 @@
                         <Label Grid.Column="0" 
                                Text="{Binding PlaybackSpeed, StringFormat='速度: {0:F1}x'}" 
                                VerticalOptions="Center"
-                               WidthRequest="100" 
-                               TextColor="#2c3e50"/>
+                               WidthRequest="100" />
                         
                         <Slider Grid.Column="1" 
                                 Minimum="0.1" 
@@ -130,7 +122,6 @@
             <!-- 底部信息 -->
             <Label Text="THUAI8 © 2025 EESAST"
                  HorizontalOptions="Center"
-                 TextColor="#7f8c8d"
                  Margin="0,20,0,10"
                  FontSize="12"/>
         </VerticalStackLayout>

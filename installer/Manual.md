@@ -61,7 +61,7 @@
 #### 观战模式
 
 - 如果您的电脑没有设置为 `Manual` 模式的 *Player*，需要启动 *Spectator* 来观看比赛；如果已有 `Manual` 模式的 *Player*，则无需启动 *Spectator*
-- *Spectator* 的 `ID` 值应大于等于 `2024`，观看同一场比赛的多个 *Spectator* 需使用不同的 `ID` 值
+- *Spectator* 的 `ID` 值应大于等于 `2026`，观看同一场比赛的多个 *Spectator* 需使用不同的 `ID` 值
 
 ### Playback（回放）
 

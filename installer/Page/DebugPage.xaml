@@ -9,12 +9,12 @@
         <Grid
             HorizontalOptions="Center"
             WidthRequest="600"
-            RowDefinitions="*,*,*,*,*,*,*,*,*,*"
+            RowDefinitions="*,*,*,*,*,*,*,*,*,*,*"
             ColumnDefinitions="*">
 
             <VerticalStackLayout
                 Grid.Row="0"
-                Grid.RowSpan="9"
+                Grid.RowSpan="11"
                 HorizontalOptions="Center"
                 VerticalOptions="Center">
 
@@ -69,19 +69,23 @@
                     <HorizontalStackLayout
                         HeightRequest="30">
                         <Label
-                            WidthRequest="150"
+                            WidthRequest="100"
                             Text="Team ID"
                             VerticalOptions="Center"/>
                         <Label
-                            WidthRequest="150"
-                            Text="Player ID"
-                            VerticalOptions="Center"/>
-                        <Label
-                            WidthRequest="170"
-                            Text="Player Mode"
+                            WidthRequest="100"
+                            Text="Side Flag"
                             VerticalOptions="Center"/>
                         <Label
                             WidthRequest="100"
+                            Text="Player ID"
+                            VerticalOptions="Center"/>
+                        <Label
+                            WidthRequest="150"
+                            Text="Player Mode"
+                            VerticalOptions="Center"/>
+                        <Label
+                            WidthRequest="150"
                             Text="Character Type"
                             VerticalOptions="Center"/>
                     </HorizontalStackLayout>
@@ -93,7 +97,7 @@
                             <DataTemplate>
                                 <HorizontalStackLayout>
                                     <Picker
-                                        WidthRequest="150"
+                                        WidthRequest="100"
                                         SelectedItem="{Binding TeamID}">
                                         <Picker.ItemsSource>
                                             <x:Array
@@ -104,7 +108,18 @@
                                         </Picker.ItemsSource>
                                     </Picker>
                                     <Picker
-                                        WidthRequest="150"
+                                        WidthRequest="100"
+                                        SelectedItem="{Binding SideFlag}">
+                                        <Picker.ItemsSource>
+                                            <x:Array
+                                                Type="{x:Type x:Int32}">
+                                                <x:Int32>0</x:Int32>
+                                                <x:Int32>1</x:Int32>
+                                            </x:Array>
+                                        </Picker.ItemsSource>
+                                    </Picker>
+                                    <Picker
+                                        WidthRequest="100"
                                         SelectedItem="{Binding PlayerID}">
                                         <Picker.ItemsSource>
                                             <x:Array
@@ -114,11 +129,13 @@
                                                 <x:Int32>2</x:Int32>
                                                 <x:Int32>3</x:Int32>
                                                 <x:Int32>4</x:Int32>
+                                                <x:Int32>5</x:Int32>
+                                                <x:Int32>6</x:Int32>
                                             </x:Array>
                                         </Picker.ItemsSource>
                                     </Picker>
                                     <Picker
-                                        WidthRequest="170"
+                                        WidthRequest="150"
                                         SelectedItem="{Binding PlayerMode}">
                                         <Picker.ItemsSource>
                                             <x:Array
@@ -129,7 +146,7 @@
                                         </Picker.ItemsSource>
                                     </Picker>
                                     <Picker
-                                        WidthRequest="100"
+                                        WidthRequest="150"
                                         IsEnabled="{Binding CharacterTypePickerEnabled}"
                                         SelectedItem="{Binding CharacterType}">
                                         <Picker.ItemsSource>
@@ -167,16 +184,12 @@
                         <Button
                             Grid.Column="2"
                             Text="Add"
-                            BackgroundColor="DimGray"
                             BorderWidth="2"
-                            TextColor="{Binding ConstTextColor}"
                             Command="{Binding AddBtnClickedCommand}"/>
                         <Button
                             Grid.Column="3"
                             Text="Delete"
-                            BackgroundColor="DimGray"
                             BorderWidth="2"
-                            TextColor="{Binding ConstTextColor}"
                             Command="{Binding DelBtnClickedCommand}"/>
                     </Grid>
 
@@ -211,21 +224,16 @@
                         BorderWidth="2"
                         Command="{Binding SaveBtnClickedCommand}"
                         IsEnabled="{Binding SaveEnabled}"
-                        BackgroundColor="{Binding ConstBackgroundColor}"
-                        FontSize="{Binding ConstFontSize}"
-                        TextColor="{Binding ConstTextColor}"/>
+                        FontSize="{Binding ConstFontSize}"/>
                     <Button
                         WidthRequest="400"
                         Text="启动"
                         BorderWidth="2"
                         Command="{Binding ClientStartBtnClickedCommand}"
                         IsEnabled="{Binding StartEnabled}"
-                        BackgroundColor="{Binding ConstBackgroundColor}"
-                        FontSize="{Binding ConstFontSize}"
-                        TextColor="{Binding ConstTextColor}"/>
+                        FontSize="{Binding ConstFontSize}"/>
 
                 </VerticalStackLayout>
-
 
                 <VerticalStackLayout
                     IsVisible="{Binding ServerVisible}">
@@ -242,7 +250,7 @@
                             <Picker.ItemsSource>
                                 <x:Array
                                     Type="{x:Type x:Int32}">
-                                    <x:Int32>1</x:Int32>
+                                    
                                     <x:Int32>2</x:Int32>
                                 </x:Array>
                             </Picker.ItemsSource>
@@ -261,11 +269,13 @@
                             <Picker.ItemsSource>
                                 <x:Array
                                     Type="{x:Type x:Int32}">
-                                    <x:Int32>0</x:Int32>
+                                    
                                     <x:Int32>1</x:Int32>
                                     <x:Int32>2</x:Int32>
                                     <x:Int32>3</x:Int32>
                                     <x:Int32>4</x:Int32>
+                                    <x:Int32>5</x:Int32>
+                                    <x:Int32>6</x:Int32>
                                 </x:Array>
                             </Picker.ItemsSource>
                         </Picker>
@@ -281,18 +291,14 @@
                         BorderWidth="2"
                         Command="{Binding SaveBtnClickedCommand}"
                         IsEnabled="{Binding SaveEnabled}"
-                        BackgroundColor="{Binding ConstBackgroundColor}"
-                        FontSize="{Binding ConstFontSize}"
-                        TextColor="{Binding ConstTextColor}"/>
+                        FontSize="{Binding ConstFontSize}"/>
                     <Button
                         WidthRequest="400"
                         Text="{Binding ServerStartBtnText}"
                         BorderWidth="2"
                         Command="{Binding ServerStartBtnClickedCommand}"
                         IsEnabled="{Binding StartEnabled}"
-                        BackgroundColor="{Binding ConstBackgroundColor}"
-                        FontSize="{Binding ConstFontSize}"
-                        TextColor="{Binding ConstTextColor}"/>
+                        FontSize="{Binding ConstFontSize}"/>
 
                 </VerticalStackLayout>
 

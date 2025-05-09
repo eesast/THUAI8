@@ -39,6 +39,7 @@ def THUAI8Main(argv: List[str], AIBuilder: Callable) -> None:
     file: bool = True
     screen: bool = True
     warnOnly: bool = False
+    side_flag: int = 0
     parser = argparse.ArgumentParser(
         description="THUAI8 Python Interface Commandline Parameter Introduction"
     )
@@ -92,6 +93,14 @@ def THUAI8Main(argv: List[str], AIBuilder: Callable) -> None:
         help="Set this flag to only print warning on the screen",
         dest="warnOnly",
     )
+    parser.add_argument(
+        "-s",
+        type=int,
+        required=False,
+        help="Set this flag to set the side flag",
+        dest="side",
+        choices=[0, 1],
+    )
     args = parser.parse_args()
     tID = args.tID
     pID = args.pID
@@ -100,15 +109,14 @@ def THUAI8Main(argv: List[str], AIBuilder: Callable) -> None:
     file = args.file
     screen = args.screen
     warnOnly = args.warnOnly
+    side_flag = args.side
     playerType = THUAI8.PlayerType.NullPlayerType
     characterType = THUAI8.CharacterType.NullCharacterType
     if pID == 0:
         playerType = THUAI8.PlayerType.Team
     elif tID == 0:
         playerType = THUAI8.PlayerType.Character
-        characterType = Setting.BuddhistsCharacterTypes()[
-            pID - 1
-        ]  # 减去1 是因为字典从0计数，而我们的角色是从1计数
+        characterType = Setting.BuddhistsCharacterTypes()[pID - 1]
     elif tID == 1:
         playerType = THUAI8.PlayerType.Character
         characterType = Setting.MonsterCharacterTypes()[pID - 1]
@@ -116,8 +124,8 @@ def THUAI8Main(argv: List[str], AIBuilder: Callable) -> None:
     if platform.system().lower() == "windows":
         PrintWelcomeString()
 
-    logic = Logic(pID, tID, playerType, characterType)
-    logic.Main(AIBuilder, sIP, sPort, file, screen, warnOnly)
+    logic = Logic(pID, tID, playerType, characterType, side_flag)
+    logic.Main(AIBuilder, sIP, sPort, file, screen, warnOnly, side_flag)
 
 
 def CreateAI(pID: int) -> IAI:
