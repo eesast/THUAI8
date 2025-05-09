@@ -22,6 +22,8 @@ find_package(absl CONFIG REQUIRED)
 message(STATUS "Using protobuf ${Protobuf_VERSION}")
 message(STATUS "Using gRPC ${gRPC_VERSION}")
 
+message(STATUS "absl found at ${absl_DIR}")
+
 add_executable(capi ${CPP_LIST} ${PROTO_CPP_LIST})
 
 target_include_directories(capi PUBLIC ${PROJECT_SOURCE_DIR}/proto ${PROJECT_SOURCE_DIR}/API/include ${PROJECT_SOURCE_DIR}/tclap/include ${PROJECT_SOURCE_DIR}/spdlog/include ${PROJECT_SOURCE_DIR}/grpc/include)
