@@ -14,6 +14,7 @@ endif()
 aux_source_directory(./API/src CPP_LIST)
 aux_source_directory(./proto PROTO_CPP_LIST)
 
+set(Protobuf_DIR "/usr/local/lib/cmake/protobuf")
 find_package(Protobuf CONFIG REQUIRED)
 find_package(gRPC CONFIG REQUIRED)
 
