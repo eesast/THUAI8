@@ -28,7 +28,7 @@ target_include_directories(capi PUBLIC ${PROJECT_SOURCE_DIR}/proto ${PROJECT_SOU
 
 target_link_libraries(capi
     absl::base
-    absl::synchronization
+    absl::synchronization
     protobuf::libprotobuf
     gRPC::grpc
     gRPC::grpc++_reflection
