@@ -170,12 +170,12 @@ class Logic(ILogic):
             if (
                 cellX,
                 cellY,
-            ) not in self.__currentState.mapInfo.economyResourceState:
+            ) not in self.__currentState.mapInfo.economyResource:
                 self.__logger.warning("GetEconomyResourceState: Out of range")
                 return -1
             else:
                 return copy.deepcopy(
-                    self.__currentState.mapInfo.economyResourceState[(cellX, cellY)]
+                    self.__currentState.mapInfo.economyResource[(cellX, cellY)]
                 )
 
     def GetAdditionResourceState(self, cellX: int, cellY: int) -> int:
@@ -184,21 +184,21 @@ class Logic(ILogic):
             if (
                 cellX,
                 cellY,
-            ) not in self.__currentState.mapInfo.additionResourceState:
+            ) not in self.__currentState.mapInfo.additionResource:
                 self.__logger.warning("GetAdditionResourceState: Out of range")
                 return -1
             else:
                 return copy.deepcopy(
-                    self.__currentState.mapInfo.additionResourceState[(cellX, cellY)]
+                    self.__currentState.mapInfo.additionResource[(cellX, cellY)]
                 )
 
     def GetEnergy(self) -> int:
         with self.__mtxState:
             self.__logger.debug("Called GetEnergy")
             return copy.deepcopy(
-                self.__currentState.gameInfo.buddhistsTeamEnergy
+                self.__currentState.gameInfo.buddhistsTeamEconomy
                 if self.__teamID == 0
-                else self.__currentState.gameInfo.monstersTeamEnergy
+                else self.__currentState.gameInfo.monstersTeamEconomy
             )
 
     def GetScore(self) -> int:
