@@ -375,6 +375,6 @@ class GameInfo:
         self.buddhistsTeamScore: int = 0
         self.buddhistsTeamEconomy: int = 0
         self.buddhistsTeamHeroHp: int = 0
-        self.monstersScore: int = 0
-        self.monstersEconomy: int = 0
-        self.monstersHeroHp: int = 0
+        self.monstersTeamScore: int = 0
+        self.monstersTeamEconomy: int = 0
+        self.monstersTeamHeroHp: int = 0
