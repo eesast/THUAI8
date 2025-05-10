@@ -338,7 +338,7 @@ namespace Gaming
                                 }
                                 return true;
                             },
-                            timeInterval: GameData.CheckInterval,
+                            timeInterval: GameData.CheckInterval * 100,
                             finallyReturn: () => 0
                         ).Start();
                         character.ThreadNum.Release();

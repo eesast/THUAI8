@@ -70,14 +70,10 @@ class CharacterAPI(ICharacterAPI, IGameTimer):
     def GetPlaceType(self, cellX: int, cellY: int) -> THUAI8.PlaceType:
         return self.__logic.GetPlaceType(cellX, cellY)
 
-    def GetEconomyResourceState(
-        self, cellX: int, cellY: int
-    ) -> Optional[THUAI8.EconomyResourceState]:
+    def GetEconomyResourceState(self, cellX: int, cellY: int) -> int:
         return self.__logic.GetEconomyResourceState(cellX, cellY)
 
-    def GetAdditionResourceState(
-        self, cellX: int, cellY: int
-    ) -> Optional[THUAI8.AdditionResourceState]:
+    def GetAdditionResourceState(self, cellX: int, cellY: int) -> int:
         return self.__logic.GetAdditionResourceState(cellX, cellY)
 
     def GetConstructionState(
@@ -132,6 +128,9 @@ class CharacterAPI(ICharacterAPI, IGameTimer):
             self.__logic.Common_Attack,
             attackedPlayerID,
         )
+
+    def Attack_Construction(self) -> Future[bool]:
+        return self.__pool.submit(self.__logic.Attack_Construction)
 
     def Recover(self, recover: int) -> Future[bool]:
         return self.__pool.submit(self.__logic.Recover, recover)
@@ -217,9 +216,11 @@ class TeamAPI(ITeamAPI, IGameTimer):
     def GetPlaceType(self, cellX: int, cellY: int) -> THUAI8.PlaceType:
         return self.__logic.GetPlaceType(cellX, cellY)
 
+    # 返回process
     def GetEconomyResourceState(self, cellX: int, cellY: int) -> int:
         return self.__logic.GetEconomyResourceState(cellX, cellY)
 
+    # 返回hp
     def GetAdditionResourceState(self, cellX: int, cellY: int) -> int:
         return self.__logic.GetAdditionResourceState(cellX, cellY)
 
