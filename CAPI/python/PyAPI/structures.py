@@ -365,6 +365,8 @@ class GameMap:
         self.springState: Dict[Tuple[int, int], Tuple[int, int]] = {}
         self.farmState: Dict[Tuple[int, int], Tuple[int, int]] = {}
         self.trapState: Dict[Tuple[int, int], Tuple[int, int]] = {}
+
+        # [x, y] -> process/hp
         self.economyResource: Dict[Tuple[int, int], int] = {}
         self.additionResource: Dict[Tuple[int, int], int] = {}
 

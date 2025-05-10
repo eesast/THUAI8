@@ -84,7 +84,7 @@ THUAI8::PlaceType Logic::GetPlaceType(int32_t cellX, int32_t cellY) const
     return currentState->gameMap[cellX][cellY];
 }
 
-std::optional<THUAI8::EconomyResourceState> Logic::GetEnconomyResourceState(int32_t cellX, int32_t cellY) const
+int32_t Logic::GetEconomyResourceState(int32_t cellX, int32_t cellY) const
 {
     std::unique_lock<std::mutex> lock(mtxState);
     logger->debug("Called GetEconomyResourceState");
@@ -92,16 +92,16 @@ std::optional<THUAI8::EconomyResourceState> Logic::GetEnconomyResourceState(int3
     auto it = currentState->mapInfo->economyResource.find(pos);
     if (it != currentState->mapInfo->economyResource.end())
     {
-        return THUAI8::EconomyResourceState(currentState->mapInfo->economyResource[pos]);
+        return it->second.first;  // 直接返回存储的pair<int64_t, int32_t>的第一个元素
     }
     else
     {
         logger->warn("EconomyResource not found");
-        return std::nullopt;
+        return -1;
     }
 }
 
-std::optional<std::pair<int32_t, int32_t>> Logic::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
+int32_t Logic::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
 {
     std::unique_lock<std::mutex> lock(mtxState);
     logger->debug("Called GetAdditionResourceState");
@@ -109,12 +109,12 @@ std::optional<std::pair<int32_t, int32_t>> Logic::GetAdditionResourceState(int32
     auto it = currentState->mapInfo->additionResource.find(pos);
     if (it != currentState->mapInfo->additionResource.end())
     {
-        return it->second;  // 直接返回存储的pair<int64_t, int32_t>
+        return it->second.first;  // 直接返回存储的pair<int64_t, int32_t>
     }
     else
     {
         logger->warn("AdditionResource not found");
-        return std::nullopt;
+        return -1;
     }
 }
 
@@ -570,7 +570,7 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
                         bufferState->mapInfo->economyResource.emplace(
                             std::piecewise_construct,
                             std::forward_as_tuple(pos.first, pos.second),  // 构造键 cellxy_t{pos.first, pos.second}
-                            std::forward_as_tuple(item.economy_resource_message().process())
+                            item.economy_resource_message().process()      // 构造值 {process}
                         );
                         logger->debug("Load EconomyResource!");
                     }
@@ -594,17 +594,13 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
                         bufferState->mapInfo->additionResource.emplace(
                             std::piecewise_construct,
                             std::forward_as_tuple(pos.first, pos.second),
-                            std::forward_as_tuple(
-                                static_cast<int32_t>(item.addition_resource_message().hp()),
-                                static_cast<int32_t>(item.addition_resource_message().addition_resource_type())  // 枚举转 int
-                            )
+                            item.addition_resource_message().hp()
                         );
                         logger->debug("Load AdditionResource!");
                     }
                     else
                     {
-                        bufferState->mapInfo->additionResource[pos].first = item.addition_resource_message().hp();
-                        bufferState->mapInfo->additionResource[pos].second = item.addition_resource_message().addition_resource_type();
+                        bufferState->mapInfo->additionResource[pos] = item.addition_resource_message().hp();
                         logger->debug("Update AdditionResource!");
                     }
                     break;
@@ -824,8 +820,8 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
                         // bufferState->mapInfo->economyResource.emplace(pos, item.economy_resource_message().process());
                         bufferState->mapInfo->economyResource.emplace(
                             std::piecewise_construct,
-                            std::forward_as_tuple(pos.first, pos.second),                     // 构造键 cellxy_t{pos.first, pos.second}
-                            std::forward_as_tuple(item.economy_resource_message().process())  // 构造值 {team_id}
+                            std::forward_as_tuple(pos.first, pos.second),  // 构造键 cellxy_t{pos.first, pos.second}
+                            item.economy_resource_message().process()
                         );
                         logger->debug("Load EconomyResource!");
                     }
@@ -849,17 +845,13 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
                         bufferState->mapInfo->additionResource.emplace(
                             std::piecewise_construct,
                             std::forward_as_tuple(pos.first, pos.second),
-                            std::forward_as_tuple(
-                                static_cast<int32_t>(item.addition_resource_message().hp()),
-                                static_cast<int32_t>(item.addition_resource_message().addition_resource_type())  // 枚举转 int
-                            )
+                            item.addition_resource_message().hp()
                         );
                         logger->debug("Load AdditionResource!");
                     }
                     else
                     {
-                        bufferState->mapInfo->additionResource[pos].first = item.addition_resource_message().hp();
-                        bufferState->mapInfo->additionResource[pos].second = item.addition_resource_message().addition_resource_type();
+                        bufferState->mapInfo->additionResource[pos] = item.addition_resource_message().hp();
                         logger->debug("Update AdditionResource!");
                     }
                     break;
