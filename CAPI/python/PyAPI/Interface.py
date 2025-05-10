@@ -29,15 +29,11 @@ class ILogic(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def GetEconomyResourceState(
-        self, cellX: int, cellY: int
-    ) -> THUAI8.EconomyResourceState:
+    def GetEconomyResourceState(self, cellX: int, cellY: int) -> int:
         pass
 
     @abstractmethod
-    def GetAdditionResourceState(
-        self, cellX: int, cellY: int
-    ) -> THUAI8.AdditionResourceState:
+    def GetAdditionResourceState(self, cellX: int, cellY: int) -> int:
         pass
 
     @abstractmethod

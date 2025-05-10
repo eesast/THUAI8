@@ -70,14 +70,10 @@ class CharacterAPI(ICharacterAPI, IGameTimer):
     def GetPlaceType(self, cellX: int, cellY: int) -> THUAI8.PlaceType:
         return self.__logic.GetPlaceType(cellX, cellY)
 
-    def GetEconomyResourceState(
-        self, cellX: int, cellY: int
-    ) -> Optional[THUAI8.EconomyResourceState]:
+    def GetEconomyResourceState(self, cellX: int, cellY: int) -> int:
         return self.__logic.GetEconomyResourceState(cellX, cellY)
 
-    def GetAdditionResourceState(
-        self, cellX: int, cellY: int
-    ) -> Optional[THUAI8.AdditionResourceState]:
+    def GetAdditionResourceState(self, cellX: int, cellY: int) -> int:
         return self.__logic.GetAdditionResourceState(cellX, cellY)
 
     def GetConstructionState(
