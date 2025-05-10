@@ -7,7 +7,7 @@
 #include <map>
 #include <vector>
 #include <string>
-#include <fmt/format.h>
+#include <format.h>
 #undef GetMessage
 #undef SendMessage
 #undef PeekMessage
@@ -78,7 +78,7 @@ namespace THUAI8
         ZhiZhujing = 11,
         Pawn = 12,
     };
-
+ 
     enum class EquipmentType : unsigned char
     {
         NullEquipmentType = 0,
@@ -216,7 +216,7 @@ namespace THUAI8
         int64_t playerID;
 
         CharacterType characterType;
-
+        
         CharacterState characterActiveState;
 
         bool isBlind;
@@ -343,7 +343,7 @@ namespace THUAI8
         std::map<cellxy_t, std::pair<int32_t, int32_t>> farmState;
         std::map<cellxy_t, std::pair<int32_t, int32_t>> trapState;
         std::map<cellxy_t, int32_t> economyResource;
-        std::map<cellxy_t, int32_t> additionResource;
+        std::map<cellxy_t, std::pair<int32_t, int32_t>> additionResource;
     };
 
     struct GameInfo

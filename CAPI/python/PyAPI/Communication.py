@@ -92,7 +92,7 @@ class Communication:
         except grpc.RpcError:
             return False
         else:
-            return commonAttackResult.act_success
+            return commonAttackResult.act_success()
 
     def Skill_Attack(self, playerID: int, teamID: int, angle: float) -> bool:
         self.__skillrange = 0  # 技能范围待修改,技能位置待定

@@ -49,10 +49,10 @@ namespace Gaming
                     switch (characterType)
                     {
                         case CharacterType.Null:
-                        {
+                            {
                                 GameLogging.logger.ConsoleLogDebug($"Failed to add character: invalid character type Null");
                                 return GameObj.invalidID;
-                        }
+                            }
                         case CharacterType.TangSeng:
                             if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.TangSeng)
                                 >= GameData.MaxCharacterNum)
@@ -96,10 +96,10 @@ namespace Gaming
                         case CharacterType.Monkid:
                             break;
                         default:
-                        {
-                            GameLogging.logger.ConsoleLogDebug($"Failed to add character: invalid character type {characterType}");
-                            return GameObj.invalidID;
-                        }
+                            {
+                                GameLogging.logger.ConsoleLogDebug($"Failed to add character: invalid character type {characterType}");
+                                return GameObj.invalidID;
+                            }
                     }
                 }
                 else
@@ -107,10 +107,10 @@ namespace Gaming
                     switch (characterType)
                     {
                         case CharacterType.Null:
-                        {
-                            GameLogging.logger.ConsoleLogDebug($"Failed to add character: invalid character type Null");
-                            return GameObj.invalidID;
-                        }
+                            {
+                                GameLogging.logger.ConsoleLogDebug($"Failed to add character: invalid character type Null");
+                                return GameObj.invalidID;
+                            }
                         case CharacterType.JiuLing:
                             if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.JiuLing)
                                 >= GameData.MaxCharacterNum)
@@ -154,10 +154,10 @@ namespace Gaming
                         case CharacterType.Pawn:
                             break;
                         default:
-                        {
-                            GameLogging.logger.ConsoleLogDebug($"Failed to add character: invalid character type {characterType}");
-                            return GameObj.invalidID;
-                        }
+                            {
+                                GameLogging.logger.ConsoleLogDebug($"Failed to add character: invalid character type {characterType}");
+                                return GameObj.invalidID;
+                            }
                     }
                 }
                 Character? newCharacter = CharacterManager.AddCharacter(playerInitInfo.teamID,

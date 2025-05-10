@@ -138,10 +138,10 @@ THUAI8::PlaceType GetPlaceType(int32_t cellX, int32_t cellY) const
 获取指定格子的类型，如障碍、空地等。
 
 ```cpp
-int32_t GetEconomyResourceState(int32_t cellX, int32_t cellY) const
+std::optional<THUAI8::EconomyResourceState> GetEnconomyResourceState(int32_t cellX, int32_t cellY) const
 ```
 
-- **返回类型：** `int32_t`
+- **返回类型：** `std::optional<THUAI8::EconomyResourceState>`
 - **参数：**
   - `cellX`：格子X坐标
   - `cellY`：格子Y坐标
@@ -149,10 +149,10 @@ int32_t GetEconomyResourceState(int32_t cellX, int32_t cellY) const
 获取指定格子的经济资源状态，如果该格子没有经济资源则返回空。
 
 ```cpp
-int32_t GetAdditionResourceState(int32_t cellX, int32_t cellY) const
+std::optional<std::pair<int32_t, int32_t>> GetAdditionResourceState(int32_t cellX, int32_t cellY) const
 ```
 
-- **返回类型：** `int32_t`
+- **返回类型：** `std::optional<std::pair<int32_t, int32_t>>`
 - **参数：**
   - `cellX`：格子X坐标
   - `cellY`：格子Y坐标
@@ -246,26 +246,21 @@ std::future<bool> Move(int64_t teamID, int64_t characterID, int32_t moveTimeInMi
 ### 角色攻击
 
 ```cpp
-std::future<bool> Skill_Attack(int64_t TeamID, int64_t PlayerID, double angle)
+std::future<bool> Skill_Attack(double angle)
 ```
 
 - **返回类型：** `std::future<bool>`
 - **参数：**
-  - `TeamID`：队伍ID
-  - `PlayerID`：角色ID
   - `angle`：攻击方向，单位为弧度
 
 角色向指定方向使用技能攻击，返回操作是否成功的future对象。
 
 ```cpp
-std::future<bool> Common_Attack(int64_t teamID, int64_t PlayerID, int64_t attackedTeamID, int64_t attackedPlayerID)
+std::future<bool> Common_Attack(int64_t attackedPlayerID)
 ```
 
 - **返回类型：** `std::future<bool>`
 - **参数：**
-  - `teamID`：攻击者队伍ID
-  - `PlayerID`：攻击者角色ID
-  - `attackedTeamID`：被攻击者队伍ID
   - `attackedPlayerID`：被攻击者角色ID
 
 角色对指定目标进行普通攻击，返回操作是否成功的future对象。

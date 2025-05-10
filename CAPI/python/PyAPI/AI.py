@@ -46,25 +46,22 @@ class AI(IAI):
 
     def CharacterPlay(self, api: ICharacterAPI) -> None:
         # 公共操作
-        api.GetEconomyResourceState(0, 0)
         api.PrintSelfInfo()
-        # api.PrintSelfInfo()
-        # api.PrintSelfInfo()
+        api.PrintSelfInfo()
+        api.PrintSelfInfo()
         if self.__playerID == 1:
             # api.GetEconomyResourceState(0, 0)
             # player1的操作
-            # api.PrintSelfInfo()
-            # api.Move(100, 0)
-            # api.MoveLeft(100)
-            # api.Common_Attack(0)
+            api.PrintSelfInfo()
+            api.Move(100, 0)
+            api.MoveLeft(100)
+            api.Common_Attack(0)
             return
         elif self.__playerID == 2:
             # player2的操作
-            # api.GetAdditionResourceState(0, 0)
             return
         elif self.__playerID == 3:
             # player3的操作
-            # api.GetEconomyResourceState(0, 0)
             return
         elif self.__playerID == 4:
             # player4的操作
