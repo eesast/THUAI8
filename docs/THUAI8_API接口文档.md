@@ -138,10 +138,10 @@ THUAI8::PlaceType GetPlaceType(int32_t cellX, int32_t cellY) const
 获取指定格子的类型，如障碍、空地等。
 
 ```cpp
-int32_t GetEconomyResourceState(int32_t cellX, int32_t cellY) const
+std::optional<THUAI8::EconomyResourceState> GetEnconomyResourceState(int32_t cellX, int32_t cellY) const
 ```
 
-- **返回类型：** `int32_t`
+- **返回类型：** `std::optional<THUAI8::EconomyResourceState>`
 - **参数：**
   - `cellX`：格子X坐标
   - `cellY`：格子Y坐标
@@ -149,10 +149,10 @@ int32_t GetEconomyResourceState(int32_t cellX, int32_t cellY) const
 获取指定格子的经济资源状态，如果该格子没有经济资源则返回空。
 
 ```cpp
-int32_t GetAdditionResourceState(int32_t cellX, int32_t cellY) const
+std::optional<std::pair<int32_t, int32_t>> GetAdditionResourceState(int32_t cellX, int32_t cellY) const
 ```
 
-- **返回类型：** `int32_t`
+- **返回类型：** `std::optional<std::pair<int32_t, int32_t>>`
 - **参数：**
   - `cellX`：格子X坐标
   - `cellY`：格子Y坐标

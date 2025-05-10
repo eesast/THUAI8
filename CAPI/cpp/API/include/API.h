@@ -44,8 +44,8 @@ public:
     [[nodiscard]] virtual std::shared_ptr<const THUAI8::GameInfo> GetGameInfo() const = 0;
     [[nodiscard]] virtual std::vector<int64_t> GetPlayerGUIDs() const = 0;
     [[nodiscard]] virtual THUAI8::PlaceType GetPlaceType(int32_t cellX, int32_t cellY) const = 0;
-    [[nodiscard]] virtual int32_t GetEconomyResourceState(int32_t cellX, int32_t cellY) const = 0;
-    [[nodiscard]] virtual int32_t GetAdditionResourceState(int32_t cellX, int32_t cellY) const = 0;
+    [[nodiscard]] virtual std::optional<THUAI8::EconomyResourceState> GetEnconomyResourceState(int32_t cellX, int32_t cellY) const = 0;
+    [[nodiscard]] virtual std::optional<std::pair<int32_t, int32_t>> GetAdditionResourceState(int32_t cellX, int32_t cellY) const = 0;
     //[[nodiscard]] virtual std::optional<THUAI8::ConstructionState> GetConstructionState(int32_t cellX, int32_t cellY) const = 0;
     [[nodiscard]] virtual int32_t GetEnergy() const = 0;
     [[nodiscard]] virtual int32_t GetScore() const = 0;
@@ -95,8 +95,8 @@ public:
     [[nodiscard]] virtual std::vector<std::vector<THUAI8::PlaceType>> GetFullMap() const = 0;
     [[nodiscard]] virtual std::shared_ptr<const THUAI8::GameInfo> GetGameInfo() const = 0;
     [[nodiscard]] virtual THUAI8::PlaceType GetPlaceType(int32_t cellX, int32_t cellY) const = 0;
-    [[nodiscard]] virtual int32_t GetEconomyResourceState(int32_t cellX, int32_t cellY) const = 0;
-    [[nodiscard]] virtual int32_t GetAdditionResourceState(int32_t cellX, int32_t cellY) const = 0;
+    [[nodiscard]] virtual std::optional<THUAI8::EconomyResourceState> GetEnconomyResourceState(int32_t cellX, int32_t cellY) const = 0;
+    [[nodiscard]] virtual std::optional<std::pair<int32_t, int32_t>> GetAdditionResourceState(int32_t cellX, int32_t cellY) const = 0;
     //[[nodiscard]] virtual std::optional<THUAI8::ConstructionState> GetConstructionState(int32_t cellX, int32_t cellY) const = 0;
     [[nodiscard]] virtual std::vector<int64_t> GetPlayerGUIDs() const = 0;
     [[nodiscard]] virtual int32_t GetEnergy() const = 0;
@@ -202,8 +202,8 @@ public:
     [[nodiscard]] std::vector<std::vector<THUAI8::PlaceType>> GetFullMap() const override;
     [[nodiscard]] std::shared_ptr<const THUAI8::GameInfo> GetGameInfo() const override;
     [[nodiscard]] THUAI8::PlaceType GetPlaceType(int32_t cellX, int32_t cellY) const override;
-    [[nodiscard]] int32_t GetEconomyResourceState(int32_t cellX, int32_t cellY) const override;
-    [[nodiscard]] int32_t GetAdditionResourceState(int32_t cellX, int32_t cellY) const override;
+    [[nodiscard]] std::optional<THUAI8::EconomyResourceState> GetEnconomyResourceState(int32_t cellX, int32_t cellY) const override;
+    [[nodiscard]] std::optional<std::pair<int32_t, int32_t>> GetAdditionResourceState(int32_t cellX, int32_t cellY) const override;
     //[[nodiscard]] std::optional<THUAI8::ConstructionState> GetConstructionState(int32_t cellX, int32_t cellY) const override;
     [[nodiscard]] std::vector<int64_t> GetPlayerGUIDs() const override;
     [[nodiscard]] int32_t GetEnergy() const override;
@@ -256,8 +256,8 @@ public:
     [[nodiscard]] std::vector<std::vector<THUAI8::PlaceType>> GetFullMap() const override;
     [[nodiscard]] std::shared_ptr<const THUAI8::GameInfo> GetGameInfo() const override;
     [[nodiscard]] THUAI8::PlaceType GetPlaceType(int32_t cellX, int32_t cellY) const override;
-    [[nodiscard]] int32_t GetEconomyResourceState(int32_t cellX, int32_t cellY) const override;
-    [[nodiscard]] int32_t GetAdditionResourceState(int32_t cellX, int32_t cellY) const override;
+    [[nodiscard]] std::optional<THUAI8::EconomyResourceState> GetEnconomyResourceState(int32_t cellX, int32_t cellY) const override;
+    [[nodiscard]] std::optional<std::pair<int32_t, int32_t>> GetAdditionResourceState(int32_t cellX, int32_t cellY) const override;
     //[[nodiscard]] std::optional<THUAI8::ConstructionState> GetConstructionState(int32_t cellX, int32_t cellY) const override;
     [[nodiscard]] std::vector<int64_t> GetPlayerGUIDs() const override;
     [[nodiscard]] int32_t GetEnergy() const override;
@@ -315,8 +315,8 @@ public:
     [[nodiscard]] std::vector<std::vector<THUAI8::PlaceType>> GetFullMap() const override;
     [[nodiscard]] std::shared_ptr<const THUAI8::GameInfo> GetGameInfo() const override;
     [[nodiscard]] THUAI8::PlaceType GetPlaceType(int32_t cellX, int32_t cellY) const override;
-    [[nodiscard]] int32_t GetEconomyResourceState(int32_t cellX, int32_t cellY) const override;
-    [[nodiscard]] int32_t GetAdditionResourceState(int32_t cellX, int32_t cellY) const override;
+    [[nodiscard]] std::optional<THUAI8::EconomyResourceState> GetEnconomyResourceState(int32_t cellX, int32_t cellY) const override;
+    [[nodiscard]] std::optional<std::pair<int32_t, int32_t>> GetAdditionResourceState(int32_t cellX, int32_t cellY) const override;
     //[[nodiscard]] std::optional<THUAI8::ConstructionState> GetConstructionState(int32_t cellX, int32_t cellY) const override;
     [[nodiscard]] std::vector<int64_t> GetPlayerGUIDs() const override;
     [[nodiscard]] int32_t GetEnergy() const override;
@@ -359,8 +359,8 @@ public:
     [[nodiscard]] std::vector<std::vector<THUAI8::PlaceType>> GetFullMap() const override;
     [[nodiscard]] std::shared_ptr<const THUAI8::GameInfo> GetGameInfo() const override;
     [[nodiscard]] THUAI8::PlaceType GetPlaceType(int32_t cellX, int32_t cellY) const override;
-    [[nodiscard]] int32_t GetEconomyResourceState(int32_t cellX, int32_t cellY) const override;
-    [[nodiscard]] int32_t GetAdditionResourceState(int32_t cellX, int32_t cellY) const override;
+    [[nodiscard]] std::optional<THUAI8::EconomyResourceState> GetEnconomyResourceState(int32_t cellX, int32_t cellY) const override;
+    [[nodiscard]] std::optional<std::pair<int32_t, int32_t>> GetAdditionResourceState(int32_t cellX, int32_t cellY) const override;
     //[[nodiscard]] std::optional<THUAI8::ConstructionState> GetConstructionState(int32_t cellX, int32_t cellY) const override;
     [[nodiscard]] std::vector<int64_t> GetPlayerGUIDs() const override;
     [[nodiscard]] int32_t GetEnergy() const override;
