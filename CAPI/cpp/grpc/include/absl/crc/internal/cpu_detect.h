@@ -17,47 +17,44 @@
 
 #include "absl/base/config.h"
 
-namespace absl {
-ABSL_NAMESPACE_BEGIN
-namespace crc_internal {
+namespace absl
+{
+    ABSL_NAMESPACE_BEGIN
+    namespace crc_internal
+    {
 
-// Enumeration of architectures that we have special-case tuning parameters for.
-// This set may change over time.
-enum class CpuType {
-  kUnknown,
-  kIntelHaswell,
-  kAmdRome,
-  kAmdNaples,
-  kAmdMilan,
-  kAmdGenoa,
-  kAmdRyzenV3000,
-  kIntelCascadelakeXeon,
-  kIntelSkylakeXeon,
-  kIntelBroadwell,
-  kIntelSkylake,
-  kIntelIvybridge,
-  kIntelSandybridge,
-  kIntelWestmere,
-  kArmNeoverseN1,
-  kArmNeoverseV1,
-  kAmpereSiryn,
-  kArmNeoverseN2,
-  kArmNeoverseV2
-};
+        // Enumeration of architectures that we have special-case tuning parameters for.
+        // This set may change over time.
+        enum class CpuType
+        {
+            kUnknown,
+            kIntelHaswell,
+            kAmdRome,
+            kAmdNaples,
+            kAmdMilan,
+            kIntelCascadelakeXeon,
+            kIntelSkylakeXeon,
+            kIntelBroadwell,
+            kIntelSkylake,
+            kIntelIvybridge,
+            kIntelSandybridge,
+            kIntelWestmere,
+            kArmNeoverseN1,
+        };
 
-// Returns the type of host CPU this code is running on.  Returns kUnknown if
-// the host CPU is of unknown type, or if detection otherwise fails.
-CpuType GetCpuType();
+        // Returns the type of host CPU this code is running on.  Returns kUnknown if
+        // the host CPU is of unknown type, or if detection otherwise fails.
+        CpuType GetCpuType();
 
-// Returns whether the host CPU supports the CPU features needed for our
-// accelerated implementations. The CpuTypes enumerated above apart from
-// kUnknown support the required features. On unknown CPUs, we can use
-// this to see if it's safe to use hardware acceleration, though without any
-// tuning.
-bool SupportsArmCRC32PMULL();
+        // Returns whether the host CPU supports the CPU features needed for our
+        // accelerated implementations. The CpuTypes enumerated above apart from
+        // kUnknown support the required features. On unknown CPUs, we can use
+        // this to see if it's safe to use hardware acceleration, though without any
+        // tuning.
+        bool SupportsArmCRC32PMULL();
 
-}  // namespace crc_internal
-ABSL_NAMESPACE_END
+    }  // namespace crc_internal
+    ABSL_NAMESPACE_END
 }  // namespace absl
 
 #endif  // ABSL_CRC_INTERNAL_CPU_DETECT_H_

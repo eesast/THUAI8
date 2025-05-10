@@ -1,0 +1,1 @@
+start logic\Server\Server.exe --port 8888 --CharacterNum 6

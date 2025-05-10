@@ -32,11 +32,13 @@ namespace Gaming
         {
             if (teamList[(int)playerInitInfo.teamID].CharacterNum >= GameData.CharacterTotalNumMax)
             {
+                GameLogging.logger.ConsoleLogDebug($"Failed to add character: team {playerInitInfo.teamID} reached max character limit");
                 return GameObj.invalidID;
             }
             teamList[(int)playerInitInfo.teamID].CharacterNum.Add(1);
             if (!gameMap.TeamExists(playerInitInfo.teamID))
             {
+                GameLogging.logger.ConsoleLogDebug($"Failed to add character: team {playerInitInfo.teamID} does not exist");
                 return GameObj.invalidID;
             }
             if (playerInitInfo.playerID != 0)
@@ -47,11 +49,15 @@ namespace Gaming
                     switch (characterType)
                     {
                         case CharacterType.Null:
-                            return GameObj.invalidID;
+                        {
+                                GameLogging.logger.ConsoleLogDebug($"Failed to add character: invalid character type Null");
+                                return GameObj.invalidID;
+                        }
                         case CharacterType.TangSeng:
                             if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.TangSeng)
                                 >= GameData.MaxCharacterNum)
                             {
+                                GameLogging.logger.ConsoleLogDebug($"Failed to add character: reached max TangSeng limit");
                                 return GameObj.invalidID;
                             }
                             break;
@@ -59,6 +65,7 @@ namespace Gaming
                             if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.SunWukong)
                                 >= GameData.MaxCharacterNum)
                             {
+                                GameLogging.logger.ConsoleLogDebug($"Failed to add character: reached max SunWukong limit");
                                 return GameObj.invalidID;
                             }
                             break;
@@ -66,6 +73,7 @@ namespace Gaming
                             if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.ZhuBajie)
                                 >= GameData.MaxCharacterNum)
                             {
+                                GameLogging.logger.ConsoleLogDebug($"Failed to add character: reached max ZhuBajie limit");
                                 return GameObj.invalidID;
                             }
                             break;
@@ -73,6 +81,7 @@ namespace Gaming
                             if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.ShaWujing)
                                 >= GameData.MaxCharacterNum)
                             {
+                                GameLogging.logger.ConsoleLogDebug($"Failed to add character: reached max ShaWujing limit");
                                 return GameObj.invalidID;
                             }
                             break;
@@ -80,13 +89,17 @@ namespace Gaming
                             if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.BaiLongma)
                                 >= GameData.MaxCharacterNum)
                             {
+                                GameLogging.logger.ConsoleLogDebug($"Failed to add character: reached max BaiLongma limit");
                                 return GameObj.invalidID;
                             }
                             break;
                         case CharacterType.Monkid:
                             break;
                         default:
+                        {
+                            GameLogging.logger.ConsoleLogDebug($"Failed to add character: invalid character type {characterType}");
                             return GameObj.invalidID;
+                        }
                     }
                 }
                 else
@@ -94,11 +107,15 @@ namespace Gaming
                     switch (characterType)
                     {
                         case CharacterType.Null:
+                        {
+                            GameLogging.logger.ConsoleLogDebug($"Failed to add character: invalid character type Null");
                             return GameObj.invalidID;
+                        }
                         case CharacterType.JiuLing:
                             if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.JiuLing)
                                 >= GameData.MaxCharacterNum)
                             {
+                                GameLogging.logger.ConsoleLogDebug($"Failed to add character: reached max JiuLing limit");
                                 return GameObj.invalidID;
                             }
                             break;
@@ -106,6 +123,7 @@ namespace Gaming
                             if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.HongHaier)
                                 >= GameData.MaxCharacterNum)
                             {
+                                GameLogging.logger.ConsoleLogDebug($"Failed to add character: reached max HongHaier limit");
                                 return GameObj.invalidID;
                             }
                             break;
@@ -113,6 +131,7 @@ namespace Gaming
                             if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.NiuMowang)
                                 >= GameData.MaxCharacterNum)
                             {
+                                GameLogging.logger.ConsoleLogDebug($"Failed to add character: reached max NiuMowang limit");
                                 return GameObj.invalidID;
                             }
                             break;
@@ -120,6 +139,7 @@ namespace Gaming
                             if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.TieShan)
                                 >= GameData.MaxCharacterNum)
                             {
+                                GameLogging.logger.ConsoleLogDebug($"Failed to add character: reached max TieShan limit");
                                 return GameObj.invalidID;
                             }
                             break;
@@ -127,13 +147,17 @@ namespace Gaming
                             if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.ZhiZhujing)
                                 >= GameData.MaxCharacterNum)
                             {
+                                GameLogging.logger.ConsoleLogDebug($"Failed to add character: reached max ZhiZhujing limit");
                                 return GameObj.invalidID;
                             }
                             break;
                         case CharacterType.Pawn:
                             break;
                         default:
+                        {
+                            GameLogging.logger.ConsoleLogDebug($"Failed to add character: invalid character type {characterType}");
                             return GameObj.invalidID;
+                        }
                     }
                 }
                 Character? newCharacter = CharacterManager.AddCharacter(playerInitInfo.teamID,
@@ -142,6 +166,7 @@ namespace Gaming
                                                     teamList[(int)playerInitInfo.teamID].MoneyPool);
                 if (newCharacter == null)
                 {
+                    GameLogging.logger.ConsoleLogDebug($"Failed to add character: character manager returned null");
                     return GameObj.invalidID;
                 }
                 teamList[(int)playerInitInfo.teamID].CharacterPool.Append(newCharacter);
@@ -422,6 +447,18 @@ namespace Gaming
             if (character != null && character.IsRemoved == false)
             {
                 return actionManager.Construct(character, constructionType);
+            }
+            return false;
+        }
+        public bool AttackConstruction(long teamID, long characterID)
+        {
+            if (!gameMap.Timer.IsGaming)
+                return false;
+            Character? character = gameMap.FindCharacterInPlayerID(teamID, characterID);
+            Construction? construction = (Construction?)gameMap.OneForInteract(character.Position, GameObjType.CONSTRUCTION);
+            if (character != null && character.IsRemoved == false && construction != null)
+            {
+                return attackManager.Attack(character, construction);
             }
             return false;
         }

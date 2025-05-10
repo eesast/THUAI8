@@ -218,7 +218,7 @@ namespace Preparation.Utility
         public const int ScoreFarmPerSecond = 100;
         public const int MaxCharacterNum = 1;
         public const int InitialMoney = 5000;
-        public const int CharacterTotalNumMax = 6;
+        public const int CharacterTotalNumMax = 7;
         public const double RecycleRate = 0.5;
         public const int ThreeMinutes = 180000;
         public const int SevenMinutes = 420000;

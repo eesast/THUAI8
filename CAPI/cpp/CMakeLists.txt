@@ -14,11 +14,16 @@ endif()
 aux_source_directory(./API/src CPP_LIST)
 aux_source_directory(./proto PROTO_CPP_LIST)
 
+set(Protobuf_DIR "/usr/local/lib/cmake/protobuf")
 find_package(Protobuf CONFIG REQUIRED)
 find_package(gRPC CONFIG REQUIRED)
+find_package(absl CONFIG REQUIRED)
 
 message(STATUS "Using protobuf ${Protobuf_VERSION}")
 message(STATUS "Using gRPC ${gRPC_VERSION}")
+message(STATUS "Using absl ${absl_VERSION}")
+
+message(STATUS "absl found at ${absl_DIR}")
 
 add_executable(capi ${CPP_LIST} ${PROTO_CPP_LIST})
 
@@ -29,4 +34,6 @@ target_link_libraries(capi
     gRPC::grpc
     gRPC::grpc++_reflection
     gRPC::grpc++
+    absl::synchronization
+    absl::base
 )

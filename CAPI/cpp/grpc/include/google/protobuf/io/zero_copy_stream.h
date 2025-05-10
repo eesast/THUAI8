@@ -1,9 +1,32 @@
 // Protocol Buffers - Google's data interchange format
 // Copyright 2008 Google Inc.  All rights reserved.
+// https://developers.google.com/protocol-buffers/
 //
-// Use of this source code is governed by a BSD-style
-// license that can be found in the LICENSE file or at
-// https://developers.google.com/open-source/licenses/bsd
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are
+// met:
+//
+//     * Redistributions of source code must retain the above copyright
+// notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above
+// copyright notice, this list of conditions and the following disclaimer
+// in the documentation and/or other materials provided with the
+// distribution.
+//     * Neither the name of Google Inc. nor the names of its
+// contributors may be used to endorse or promote products derived from
+// this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 // Author: kenton@google.com (Kenton Varda)
 //  Based on original Protocol Buffers design by
@@ -84,177 +107,166 @@
 #ifndef GOOGLE_PROTOBUF_IO_ZERO_COPY_STREAM_H__
 #define GOOGLE_PROTOBUF_IO_ZERO_COPY_STREAM_H__
 
-#include "google/protobuf/stubs/common.h"
-#include "absl/strings/cord.h"
-#include "google/protobuf/port.h"
-
+#include <google/protobuf/stubs/common.h>
 
 // Must be included last.
-#include "google/protobuf/port_def.inc"
+#include <google/protobuf/port_def.inc>
 
-namespace google {
-namespace protobuf {
-namespace io {
+namespace google
+{
+    namespace protobuf
+    {
+        namespace io
+        {
 
-// Abstract interface similar to an input stream but designed to minimize
-// copying.
-class PROTOBUF_EXPORT ZeroCopyInputStream {
- public:
-  ZeroCopyInputStream() = default;
-  virtual ~ZeroCopyInputStream() = default;
+            // Defined in this file.
+            class ZeroCopyInputStream;
+            class ZeroCopyOutputStream;
 
-  ZeroCopyInputStream(const ZeroCopyInputStream&) = delete;
-  ZeroCopyInputStream& operator=(const ZeroCopyInputStream&) = delete;
-  ZeroCopyInputStream(ZeroCopyInputStream&&) = delete;
-  ZeroCopyInputStream& operator=(ZeroCopyInputStream&&) = delete;
+            // Abstract interface similar to an input stream but designed to minimize
+            // copying.
+            class PROTOBUF_EXPORT ZeroCopyInputStream
+            {
+            public:
+                ZeroCopyInputStream()
+                {
+                }
+                virtual ~ZeroCopyInputStream()
+                {
+                }
 
-  // Obtains a chunk of data from the stream.
-  //
-  // Preconditions:
-  // * "size" and "data" are not NULL.
-  //
-  // Postconditions:
-  // * If the returned value is false, there is no more data to return or
-  //   an error occurred.  All errors are permanent.
-  // * Otherwise, "size" points to the actual number of bytes read and "data"
-  //   points to a pointer to a buffer containing these bytes.
-  // * Ownership of this buffer remains with the stream, and the buffer
-  //   remains valid only until some other method of the stream is called
-  //   or the stream is destroyed.
-  // * It is legal for the returned buffer to have zero size, as long
-  //   as repeatedly calling Next() eventually yields a buffer with non-zero
-  //   size.
-  virtual bool Next(const void** data, int* size) = 0;
+                // Obtains a chunk of data from the stream.
+                //
+                // Preconditions:
+                // * "size" and "data" are not NULL.
+                //
+                // Postconditions:
+                // * If the returned value is false, there is no more data to return or
+                //   an error occurred.  All errors are permanent.
+                // * Otherwise, "size" points to the actual number of bytes read and "data"
+                //   points to a pointer to a buffer containing these bytes.
+                // * Ownership of this buffer remains with the stream, and the buffer
+                //   remains valid only until some other method of the stream is called
+                //   or the stream is destroyed.
+                // * It is legal for the returned buffer to have zero size, as long
+                //   as repeatedly calling Next() eventually yields a buffer with non-zero
+                //   size.
+                virtual bool Next(const void** data, int* size) = 0;
 
-  // Backs up a number of bytes, so that the next call to Next() returns
-  // data again that was already returned by the last call to Next().  This
-  // is useful when writing procedures that are only supposed to read up
-  // to a certain point in the input, then return.  If Next() returns a
-  // buffer that goes beyond what you wanted to read, you can use BackUp()
-  // to return to the point where you intended to finish.
-  //
-  // Preconditions:
-  // * The last method called must have been Next().
-  // * count must be less than or equal to the size of the last buffer
-  //   returned by Next().
-  //
-  // Postconditions:
-  // * The last "count" bytes of the last buffer returned by Next() will be
-  //   pushed back into the stream.  Subsequent calls to Next() will return
-  //   the same data again before producing new data.
-  virtual void BackUp(int count) = 0;
+                // Backs up a number of bytes, so that the next call to Next() returns
+                // data again that was already returned by the last call to Next().  This
+                // is useful when writing procedures that are only supposed to read up
+                // to a certain point in the input, then return.  If Next() returns a
+                // buffer that goes beyond what you wanted to read, you can use BackUp()
+                // to return to the point where you intended to finish.
+                //
+                // This method can be called with `count = 0` to finalize (flush) any
+                // previously returned buffer. For example, a file output stream can
+                // flush buffers returned from a previous call to Next() upon such
+                // BackUp(0) invocations. ZeroCopyOutputStream callers should always
+                // invoke BackUp() after a final Next() call, even if there is no
+                // excess buffer data to be backed up to indicate a flush point.
+                //
+                // Preconditions:
+                // * The last method called must have been Next().
+                // * count must be less than or equal to the size of the last buffer
+                //   returned by Next().
+                //
+                // Postconditions:
+                // * The last "count" bytes of the last buffer returned by Next() will be
+                //   pushed back into the stream.  Subsequent calls to Next() will return
+                //   the same data again before producing new data.
+                virtual void BackUp(int count) = 0;
 
-  // Skips `count` number of bytes.
-  // Returns true on success, or false if some input error occurred, or `count`
-  // exceeds the end of the stream. This function may skip up to `count - 1`
-  // bytes in case of failure.
-  //
-  // Preconditions:
-  // * `count` is non-negative.
-  //
-  virtual bool Skip(int count) = 0;
+                // Skips a number of bytes.  Returns false if the end of the stream is
+                // reached or some input error occurred.  In the end-of-stream case, the
+                // stream is advanced to the end of the stream (so ByteCount() will return
+                // the total size of the stream).
+                virtual bool Skip(int count) = 0;
 
-  // Returns the total number of bytes read since this object was created.
-  virtual int64_t ByteCount() const = 0;
+                // Returns the total number of bytes read since this object was created.
+                virtual int64_t ByteCount() const = 0;
 
-  // Read the next `count` bytes and append it to the given Cord.
-  //
-  // In the case of a read error, the method reads as much data as possible into
-  // the cord before returning false. The default implementation iterates over
-  // the buffers and appends up to `count` bytes of data into `cord` using the
-  // `absl::CordBuffer` API.
-  //
-  // Some streams may implement this in a way that avoids copying by sharing or
-  // reference counting existing data managed by the stream implementation.
-  //
-  virtual bool ReadCord(absl::Cord* cord, int count);
+            private:
+                GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ZeroCopyInputStream);
+            };
 
-};
+            // Abstract interface similar to an output stream but designed to minimize
+            // copying.
+            class PROTOBUF_EXPORT ZeroCopyOutputStream
+            {
+            public:
+                ZeroCopyOutputStream()
+                {
+                }
+                virtual ~ZeroCopyOutputStream()
+                {
+                }
 
-// Abstract interface similar to an output stream but designed to minimize
-// copying.
-class PROTOBUF_EXPORT ZeroCopyOutputStream {
- public:
-  ZeroCopyOutputStream() {}
-  ZeroCopyOutputStream(const ZeroCopyOutputStream&) = delete;
-  ZeroCopyOutputStream& operator=(const ZeroCopyOutputStream&) = delete;
-  virtual ~ZeroCopyOutputStream() {}
+                // Obtains a buffer into which data can be written.  Any data written
+                // into this buffer will eventually (maybe instantly, maybe later on)
+                // be written to the output.
+                //
+                // Preconditions:
+                // * "size" and "data" are not NULL.
+                //
+                // Postconditions:
+                // * If the returned value is false, an error occurred.  All errors are
+                //   permanent.
+                // * Otherwise, "size" points to the actual number of bytes in the buffer
+                //   and "data" points to the buffer.
+                // * Ownership of this buffer remains with the stream, and the buffer
+                //   remains valid only until some other method of the stream is called
+                //   or the stream is destroyed.
+                // * Any data which the caller stores in this buffer will eventually be
+                //   written to the output (unless BackUp() is called).
+                // * It is legal for the returned buffer to have zero size, as long
+                //   as repeatedly calling Next() eventually yields a buffer with non-zero
+                //   size.
+                virtual bool Next(void** data, int* size) = 0;
 
-  // Obtains a buffer into which data can be written.  Any data written
-  // into this buffer will eventually (maybe instantly, maybe later on)
-  // be written to the output.
-  //
-  // Preconditions:
-  // * "size" and "data" are not NULL.
-  //
-  // Postconditions:
-  // * If the returned value is false, an error occurred.  All errors are
-  //   permanent.
-  // * Otherwise, "size" points to the actual number of bytes in the buffer
-  //   and "data" points to the buffer.
-  // * Ownership of this buffer remains with the stream, and the buffer
-  //   remains valid only until some other method of the stream is called
-  //   or the stream is destroyed.
-  // * Any data which the caller stores in this buffer will eventually be
-  //   written to the output (unless BackUp() is called).
-  // * It is legal for the returned buffer to have zero size, as long
-  //   as repeatedly calling Next() eventually yields a buffer with non-zero
-  //   size.
-  virtual bool Next(void** data, int* size) = 0;
+                // Backs up a number of bytes, so that the end of the last buffer returned
+                // by Next() is not actually written.  This is needed when you finish
+                // writing all the data you want to write, but the last buffer was bigger
+                // than you needed.  You don't want to write a bunch of garbage after the
+                // end of your data, so you use BackUp() to back up.
+                //
+                // Preconditions:
+                // * The last method called must have been Next().
+                // * count must be less than or equal to the size of the last buffer
+                //   returned by Next().
+                // * The caller must not have written anything to the last "count" bytes
+                //   of that buffer.
+                //
+                // Postconditions:
+                // * The last "count" bytes of the last buffer returned by Next() will be
+                //   ignored.
+                virtual void BackUp(int count) = 0;
 
-  // Backs up a number of bytes, so that the end of the last buffer returned
-  // by Next() is not actually written.  This is needed when you finish
-  // writing all the data you want to write, but the last buffer was bigger
-  // than you needed.  You don't want to write a bunch of garbage after the
-  // end of your data, so you use BackUp() to back up.
-  //
-  // This method can be called with `count = 0` to finalize (flush) any
-  // previously returned buffer. For example, a file output stream can
-  // flush buffers returned from a previous call to Next() upon such
-  // BackUp(0) invocations. ZeroCopyOutputStream callers should always
-  // invoke BackUp() after a final Next() call, even if there is no
-  // excess buffer data to be backed up to indicate a flush point.
-  //
-  // Preconditions:
-  // * The last method called must have been Next().
-  // * count must be less than or equal to the size of the last buffer
-  //   returned by Next().
-  // * The caller must not have written anything to the last "count" bytes
-  //   of that buffer.
-  //
-  // Postconditions:
-  // * The last "count" bytes of the last buffer returned by Next() will be
-  //   ignored.
-  virtual void BackUp(int count) = 0;
+                // Returns the total number of bytes written since this object was created.
+                virtual int64_t ByteCount() const = 0;
 
-  // Returns the total number of bytes written since this object was created.
-  virtual int64_t ByteCount() const = 0;
+                // Write a given chunk of data to the output.  Some output streams may
+                // implement this in a way that avoids copying. Check AllowsAliasing() before
+                // calling WriteAliasedRaw(). It will GOOGLE_CHECK fail if WriteAliasedRaw() is
+                // called on a stream that does not allow aliasing.
+                //
+                // NOTE: It is caller's responsibility to ensure that the chunk of memory
+                // remains live until all of the data has been consumed from the stream.
+                virtual bool WriteAliasedRaw(const void* data, int size);
+                virtual bool AllowsAliasing() const
+                {
+                    return false;
+                }
 
-  // Write a given chunk of data to the output.  Some output streams may
-  // implement this in a way that avoids copying. Check AllowsAliasing() before
-  // calling WriteAliasedRaw(). It will ABSL_CHECK fail if WriteAliasedRaw() is
-  // called on a stream that does not allow aliasing.
-  //
-  // NOTE: It is caller's responsibility to ensure that the chunk of memory
-  // remains live until all of the data has been consumed from the stream.
-  virtual bool WriteAliasedRaw(const void* data, int size);
-  virtual bool AllowsAliasing() const { return false; }
+            private:
+                GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ZeroCopyOutputStream);
+            };
 
-  // Writes the given Cord to the output.
-  //
-  // The default implementation iterates over all Cord chunks copying all cord
-  // data into the buffer(s) returned by the stream's `Next()` method.
-  //
-  // Some streams may implement this in a way that avoids copying the cord
-  // data by copying and managing a copy of the provided cord instead.
-  virtual bool WriteCord(const absl::Cord& cord);
-
-};
-
-}  // namespace io
-}  // namespace protobuf
+        }  // namespace io
+    }      // namespace protobuf
 }  // namespace google
 
-#include "google/protobuf/port_undef.inc"
+#include <google/protobuf/port_undef.inc>
 
 #endif  // GOOGLE_PROTOBUF_IO_ZERO_COPY_STREAM_H__

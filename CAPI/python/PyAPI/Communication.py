@@ -277,7 +277,7 @@ class Communication:
                             with self.__mtxLimit:
                                 self.__counter = 0
                                 self.__counterMove = 0
-                elif playerID >= 1 and playerID <= 8:
+                elif playerID >= 1 and playerID <= 6:
                     playerMsg = THUAI82Proto.THUAI82ProtobufCharacterMsg(
                         playerID, teamID, characterType, side_flag
                     )

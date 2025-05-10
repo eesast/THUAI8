@@ -70,4 +70,11 @@ class AI(IAI):
     def TeamPlay(self, api: ITeamAPI) -> None:
         # player0的操作
         api.PrintSelfInfo()
+        api.GetEconomyResourceState(0, 0)
+        api.SendMessage(0, 1, "Hello")
+        api.GetCharacters()
+        api.GetConstructionState(0, 0)
+        api.GetEnemyCharacters()
+        api.GetScore()
+        api.PrintTeam()
         return
