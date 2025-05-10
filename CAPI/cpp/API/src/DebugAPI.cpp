@@ -105,6 +105,7 @@ bool CharacterDebugAPI::Wait()
         return logic.WaitThread();
 }
 
+
 std::future<bool> CharacterDebugAPI::Move(int64_t timeInMilliseconds, double angleInRadian)
 {
     logger->info("Move: timeInMilliseconds = {}, angleInRadian = {}, called at {}ms", timeInMilliseconds, angleInRadian, Time::TimeSinceStart(startPoint));
@@ -115,19 +116,20 @@ std::future<bool> CharacterDebugAPI::Move(int64_t timeInMilliseconds, double ang
                         return result; });
 }
 
+
 std::future<bool> CharacterDebugAPI::MoveDown(int64_t timeInMilliseconds)
 {
-    return Move(timeInMilliseconds, 0);
+    return Move(timeInMilliseconds, 0);  
 }
 
 std::future<bool> CharacterDebugAPI::MoveRight(int64_t timeInMilliseconds)
 {
-    return Move(timeInMilliseconds, PI * 0.5);
+    return Move(timeInMilliseconds, PI * 0.5);  
 }
 
 std::future<bool> CharacterDebugAPI::MoveUp(int64_t timeInMilliseconds)
 {
-    return Move(timeInMilliseconds, PI);
+    return Move(timeInMilliseconds, PI);  
 }
 
 std::future<bool> CharacterDebugAPI::MoveLeft(int64_t timeInMilliseconds)
@@ -176,6 +178,7 @@ std::future<bool> CharacterDebugAPI::Produce(int64_t playerID, int64_t teamID)
                         return result; });
 }
 
+
 std::future<bool> CharacterDebugAPI::Construct(THUAI8::ConstructionType constructionType)
 {
     logger->info("Construct: constructionType = {}, called at {}ms", constructionType, Time::TimeSinceStart(startPoint));
@@ -222,16 +225,16 @@ std::shared_ptr<const THUAI8::GameInfo> CharacterDebugAPI::GetGameInfo() const
     return result;
 }
 
-int32_t CharacterDebugAPI::GetEconomyResourceState(int32_t cellX, int32_t cellY) const
+std::optional<THUAI8::EconomyResourceState> CharacterDebugAPI::GetEnconomyResourceState(int32_t cellX, int32_t cellY) const
 {
-    logger->info("GetEconomyResourceState: cellX = {}, cellY = {}, called at {}ms", cellX, cellY, Time::TimeSinceStart(startPoint));
-    auto result = logic.GetEconomyResourceState(cellX, cellY);
+    logger->info("GetEnconomyResourceState: cellX = {}, cellY = {}, called at {}ms", cellX, cellY, Time::TimeSinceStart(startPoint));
+    auto result = logic.GetEnconomyResourceState(cellX, cellY);
     if (!result)
-        logger->warn("GetEconomyResourceState: failed at {}ms", Time::TimeSinceStart(startPoint));
+        logger->warn("GetEnconomyResourceState: failed at {}ms", Time::TimeSinceStart(startPoint));
     return result;
 }
 
-int32_t CharacterDebugAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
+std::optional<std::pair<int32_t, int32_t>> CharacterDebugAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
 {
     logger->info("GetAdditionResourceState: cellX = {}, cellY = {}, called at {}ms", cellX, cellY, Time::TimeSinceStart(startPoint));
     auto result = logic.GetAdditionResourceState(cellX, cellY);
@@ -239,7 +242,7 @@ int32_t CharacterDebugAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY
         logger->warn("GetAdditionResourceState: failed at {}ms", Time::TimeSinceStart(startPoint));
     return result;
 }
-int32_t TeamDebugAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
+std::optional<std::pair<int32_t, int32_t>> TeamDebugAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
 {
     logger->info("GetAdditionResourceState: cellX = {}, cellY = {}, called at {}ms", cellX, cellY, Time::TimeSinceStart(startPoint));
     auto result = logic.GetAdditionResourceState(cellX, cellY);
@@ -503,12 +506,12 @@ THUAI8::PlaceType TeamDebugAPI::GetPlaceType(int32_t cellX, int32_t cellY) const
     return result;  // 返回实际值
 }
 
-int32_t TeamDebugAPI::GetEconomyResourceState(int32_t cellX, int32_t cellY) const
+std::optional<THUAI8::EconomyResourceState> TeamDebugAPI::GetEnconomyResourceState(int32_t cellX, int32_t cellY) const
 {
-    logger->info("GetEconomyResourceState: cellX = {}, cellY = {}, called at {}ms", cellX, cellY, Time::TimeSinceStart(startPoint));
-    auto result = logic.GetEconomyResourceState(cellX, cellY);
+    logger->info("GetEnconomyResourceState: cellX = {}, cellY = {}, called at {}ms", cellX, cellY, Time::TimeSinceStart(startPoint));
+    auto result = logic.GetEnconomyResourceState(cellX, cellY);
     if (!result)
-        logger->warn("GetEconomyResourceState: failed at {}ms", Time::TimeSinceStart(startPoint));
+        logger->warn("GetEnconomyResourceState: failed at {}ms", Time::TimeSinceStart(startPoint));
     return result;
 }
 

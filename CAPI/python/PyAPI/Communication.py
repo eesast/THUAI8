@@ -91,7 +91,7 @@ class Communication:
         except grpc.RpcError:
             return False
         else:
-            return commonAttackResult.act_success
+            return commonAttackResult.act_success()
 
     def Skill_Attack(self, playerID: int, teamID: int, angle: float) -> bool:
         self.__skillrange = 0  # 技能范围待修改,技能位置待定
@@ -108,21 +108,7 @@ class Communication:
         except grpc.RpcError:
             return False
         else:
-            return skillAttackResult.act_success
-        
-    def Attack_Construction(self, playerID: int, teamID: int) -> bool:
-        try:
-            with self.__mtxLimit:
-                if self.__counter >= self.__limit:
-                    return False
-                self.__counter += 1
-            attackConstructionResult: Message2Clients.BoolRes = self.__THUAI8Stub.AttackConstruction(
-                THUAI82Proto.THUAI82ProtobufAttackConstructionMsg(playerID, teamID)
-            )
-        except grpc.RpcError:
-            return False
-        else:
-            return attackConstructionResult.act_success
+            return skillAttackResult.act_success()
 
     def Recover(self, playerID: int, teamID: int, recover: int) -> bool:
         try:

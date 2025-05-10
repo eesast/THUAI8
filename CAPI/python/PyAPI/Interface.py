@@ -29,11 +29,15 @@ class ILogic(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def GetEconomyResourceState(self, cellX: int, cellY: int) -> int:
+    def GetEconomyResourceState(
+        self, cellX: int, cellY: int
+    ) -> THUAI8.EconomyResourceState:
         pass
 
     @abstractmethod
-    def GetAdditionResourceState(self, cellX: int, cellY: int) -> int:
+    def GetAdditionResourceState(
+        self, cellX: int, cellY: int
+    ) -> THUAI8.AdditionResourceState:
         pass
 
     @abstractmethod
@@ -110,11 +114,6 @@ class ILogic(metaclass=ABCMeta):
     def Common_Attack(
         self, playerID: int, teamID: int, ATKplayerID: int, ATKteamID: int
     ) -> bool:
-        pass
-
-    @abstractmethod
-    def Attack_Construction(self) -> bool:
-        """攻击建筑"""
         pass
 
     @abstractmethod
@@ -251,22 +250,26 @@ class IAPI(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def GetEconomyResourceState(self, cellX: int, cellY: int) -> int:
+    def GetEconomyResourceState(
+        self, cellX: int, cellY: int
+    ) -> THUAI8.EconomyResourceState:
         """获取当前经济资源状态
 
         :param cellX: X坐标, 单位Cell
         :param cellY: Y坐标, 单位Cell
-        :return: 该坐标的经济资源process
+        :return: 该坐标的经济资源状态
         """
         pass
 
     @abstractmethod
-    def GetAdditionResourceState(self, cellX: int, cellY: int) -> int:
+    def GetAdditionResourceState(
+        self, cellX: int, cellY: int
+    ) -> THUAI8.AdditionResourceState:
         """获取当前附加资源状态
 
         :param cellX: X坐标, 单位Cell
         :param cellY: Y坐标, 单位Cell
-        :return: 该坐标的附加资源hp
+        :return: 该坐标的附加资源状态
         """
         pass
 
