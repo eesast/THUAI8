@@ -46,10 +46,12 @@ class AI(IAI):
 
     def CharacterPlay(self, api: ICharacterAPI) -> None:
         # 公共操作
-        # api.PrintSelfInfo()
+        api.GetEconomyResourceState(0, 0)
+        api.PrintSelfInfo()
         # api.PrintSelfInfo()
         # api.PrintSelfInfo()
         if self.__playerID == 1:
+            # api.GetEconomyResourceState(0, 0)
             # player1的操作
             # api.PrintSelfInfo()
             # api.Move(100, 0)
@@ -58,11 +60,11 @@ class AI(IAI):
             return
         elif self.__playerID == 2:
             # player2的操作
-            api.GetAdditionResourceState(0, 0)
+            # api.GetAdditionResourceState(0, 0)
             return
         elif self.__playerID == 3:
             # player3的操作
-            api.GetEconomyResourceState(0, 0)
+            # api.GetEconomyResourceState(0, 0)
             return
         elif self.__playerID == 4:
             # player4的操作
@@ -72,11 +74,11 @@ class AI(IAI):
     def TeamPlay(self, api: ITeamAPI) -> None:
         # player0的操作
         api.PrintSelfInfo()
-        api.GetEconomyResourceState(0, 0)
-        api.SendMessage(0, 1, "Hello")
-        api.GetCharacters()
-        api.GetConstructionState(0, 0)
-        api.GetEnemyCharacters()
-        api.GetScore()
-        api.PrintTeam()
+        # api.GetEconomyResourceState(0, 0)
+        # api.SendMessage(0, 1, "Hello")
+        # api.GetCharacters()
+        # api.GetConstructionState(0, 0)
+        # api.GetEnemyCharacters()
+        # api.GetScore()
+        # api.PrintTeam()
         return
