@@ -167,10 +167,7 @@ class Logic(ILogic):
     def GetEconomyResourceState(self, cellX: int, cellY: int) -> int:
         with self.__mtxState:
             self.__logger.debug("Called GetEconomyResourceState")
-            if (
-                cellX,
-                cellY,
-            ) not in self.__currentState.mapInfo.economyResource:
+            if (cellX, cellY) not in self.__currentState.mapInfo.economyResource:
                 self.__logger.warning("GetEconomyResourceState: Out of range")
                 return -1
             else:
@@ -181,10 +178,7 @@ class Logic(ILogic):
     def GetAdditionResourceState(self, cellX: int, cellY: int) -> int:
         with self.__mtxState:
             self.__logger.debug("Called GetAdditionResourceState")
-            if (
-                cellX,
-                cellY,
-            ) not in self.__currentState.mapInfo.additionResource:
+            if (cellX, cellY) not in self.__currentState.mapInfo.additionResource:
                 self.__logger.warning("GetAdditionResourceState: Out of range")
                 return -1
             else:
@@ -219,6 +213,10 @@ class Logic(ILogic):
     def Skill_Attack(self, playerID: int, teamID: int, angle: float) -> bool:
         self.__logger.debug("Called SkillAttack")
         return self.__comm.Skill_Attack(playerID, teamID, angle)
+
+    def Attack_Construction(self, playerID: int, teamID: int) -> bool:
+        self.__logger.debug("Called Attack_Construction")
+        return self.__comm.Attack_Construction(playerID, teamID)
 
     def Recover(self, recover: int) -> bool:
         self.__logger.debug("Called Recover")
@@ -555,13 +553,13 @@ class Logic(ILogic):
                     AssistFunction.GridToCell(economy_message.y),
                 )
                 if pos not in self.__bufferState.mapInfo.economyResourceState:
-                    self.__bufferState.mapInfo.economyResourceState[pos] = (
-                        economy_message.hp
+                    self.__bufferState.mapInfo.economyResource[pos] = (
+                        economy_message.process
                     )
                     self.__logger.debug("Load EconomyResource!")
                 else:
                     self.__bufferState.mapInfo.economyResourceState[pos] = (
-                        economy_message.hp
+                        economy_message.process
                     )
                     self.__logger.debug("Update EconomyResource!")
 
@@ -572,12 +570,12 @@ class Logic(ILogic):
                     AssistFunction.GridToCell(addition_message.y),
                 )
                 if pos not in self.__bufferState.mapInfo.additionResourceState:
-                    self.__bufferState.mapInfo.additionResourceState[pos] = (
+                    self.__bufferState.mapInfo.additionResource[pos] = (
                         addition_message.hp
                     )
                     self.__logger.debug("Load AdditionResource!")
                 else:
-                    self.__bufferState.mapInfo.additionResourceState[pos] = (
+                    self.__bufferState.mapInfo.additionResource[pos] = (
                         addition_message.hp
                     )
                     self.__logger.debug("Update AdditionResource!")
@@ -775,13 +773,13 @@ class Logic(ILogic):
                     AssistFunction.GridToCell(economy_message.y),
                 )
                 if pos not in self.__bufferState.mapInfo.economyResourceState:
-                    self.__bufferState.mapInfo.economyResourceState[pos] = (
-                        economy_message.hp
+                    self.__bufferState.mapInfo.economyResource[pos] = (
+                        economy_message.process
                     )
                     self.__logger.debug("Load EconomyResource!")
                 else:
-                    self.__bufferState.mapInfo.economyResourceState[pos] = (
-                        economy_message.hp
+                    self.__bufferState.mapInfo.economyResource[pos] = (
+                        economy_message.process
                     )
                     self.__logger.debug("Update EconomyResource!")
 
@@ -792,12 +790,12 @@ class Logic(ILogic):
                     AssistFunction.GridToCell(addition_message.y),
                 )
                 if pos not in self.__bufferState.mapInfo.additionResourceState:
-                    self.__bufferState.mapInfo.additionResourceState[pos] = (
+                    self.__bufferState.mapInfo.additionResource[pos] = (
                         addition_message.hp
                     )
                     self.__logger.debug("Load AdditionResource!")
                 else:
-                    self.__bufferState.mapInfo.additionResourceState[pos] = (
+                    self.__bufferState.mapInfo.additionResource[pos] = (
                         addition_message.hp
                     )
                     self.__logger.debug("Update AdditionResource!")

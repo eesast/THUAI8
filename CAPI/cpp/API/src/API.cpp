@@ -130,32 +130,32 @@ THUAI8::PlaceType TeamAPI::GetPlaceType(int32_t cellX, int32_t cellY) const
     return logic.GetPlaceType(cellX, cellY);
 }
 
-/* std::optional<THUAI8::ConstructionState> CharacterAPI::GetConstructionState(int32_t cellX, int32_t cellY) const
+// std::optional<THUAI8::ConstructionState> CharacterAPI::GetConstructionState(int32_t cellX, int32_t cellY) const
+// {
+//     return logic.GetConstructionState(cellX, cellY);
+// }
+
+// std::optional<THUAI8::ConstructionState> TeamAPI::GetConstructionState(int32_t cellX, int32_t cellY) const
+// {
+//     return logic.GetConstructionState(cellX, cellY);
+// }
+
+int32_t CharacterAPI::GetEconomyResourceState(int32_t cellX, int32_t cellY) const
 {
-    return logic.GetConstructionState(cellX, cellY);
+    return logic.GetEconomyResourceState(cellX, cellY);
 }
 
-std::optional<THUAI8::ConstructionState> TeamAPI::GetConstructionState(int32_t cellX, int32_t cellY) const
+int32_t TeamAPI::GetEconomyResourceState(int32_t cellX, int32_t cellY) const
 {
-    return logic.GetConstructionState(cellX, cellY);
-}*/
-
-std::optional<THUAI8::EconomyResourceState> CharacterAPI::GetEnconomyResourceState(int32_t cellX, int32_t cellY) const
-{
-    return logic.GetEnconomyResourceState(cellX, cellY);
+    return logic.GetEconomyResourceState(cellX, cellY);
 }
 
-std::optional<THUAI8::EconomyResourceState> TeamAPI::GetEnconomyResourceState(int32_t cellX, int32_t cellY) const
-{
-    return logic.GetEnconomyResourceState(cellX, cellY);
-}
-
-std::optional<std::pair<int32_t, int32_t>> CharacterAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
+int32_t CharacterAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
 {
     return logic.GetAdditionResourceState(cellX, cellY);
 }
 
-std::optional<std::pair<int32_t, int32_t>> TeamAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
+int32_t TeamAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
 {
     return logic.GetAdditionResourceState(cellX, cellY);
 }
@@ -214,13 +214,11 @@ int32_t TeamAPI::GetEnergy() const
     return logic.GetEnergy();
 }
 
-
 std::future<bool> CharacterAPI::Move(int64_t moveTimeInMilliseconds, double angle)
 {
     return std::async(std::launch::async, [=]()
                       { return logic.Move(moveTimeInMilliseconds, angle); });
 }
-
 
 std::future<bool> CharacterAPI::MoveDown(int64_t timeInMilliseconds)
 {

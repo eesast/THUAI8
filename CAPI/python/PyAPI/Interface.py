@@ -117,6 +117,11 @@ class ILogic(metaclass=ABCMeta):
         pass
 
     @abstractmethod
+    def Attack_Construction(self) -> bool:
+        """攻击建筑"""
+        pass
+
+    @abstractmethod
     def Recover(self, recover: int) -> bool:
         pass
 
@@ -250,26 +255,22 @@ class IAPI(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def GetEconomyResourceState(
-        self, cellX: int, cellY: int
-    ) -> THUAI8.EconomyResourceState:
+    def GetEconomyResourceState(self, cellX: int, cellY: int) -> int:
         """获取当前经济资源状态
 
         :param cellX: X坐标, 单位Cell
         :param cellY: Y坐标, 单位Cell
-        :return: 该坐标的经济资源状态
+        :return: 该坐标的经济资源process
         """
         pass
 
     @abstractmethod
-    def GetAdditionResourceState(
-        self, cellX: int, cellY: int
-    ) -> THUAI8.AdditionResourceState:
+    def GetAdditionResourceState(self, cellX: int, cellY: int) -> int:
         """获取当前附加资源状态
 
         :param cellX: X坐标, 单位Cell
         :param cellY: Y坐标, 单位Cell
-        :return: 该坐标的附加资源状态
+        :return: 该坐标的附加资源hp
         """
         pass
 
