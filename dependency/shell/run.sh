@@ -134,15 +134,20 @@ elif [ "$TERMINAL" = "CLIENT" ]; then
     pushd /usr/local/code 
         for idx in "${!players[@]}"; do
             code_name="${players[$idx]}"
+            if [[ "$TEAM_LABEL" == "Buddhist" ]]; then
+                s_param=0
+            else
+                s_param=1
+            fi
             if [[ -f "./$code_name.py" ]]; then
                 echo "Found ./$code_name.py"
                 cp -r "$python_main_dir" "${python_main_dir}${idx}"
                 cp -f "./$code_name.py" "${python_main_dir}${idx}/PyAPI/AI.py"
-                command="nice -n 0 python3 ${python_main_dir}${idx}/PyAPI/main.py -I $CONNECT_IP -P $PORT -t $TEAM_SEQ_ID -p $idx > $playback_dir/team$TEAM_SEQ_ID-$code_name.log 2>&1 &"
+                command="nice -n 0 python3 ${python_main_dir}${idx}/PyAPI/main.py -I $CONNECT_IP -P $PORT -t $TEAM_SEQ_ID -s $s_param -p $idx > $playback_dir/team$TEAM_SEQ_ID-$code_name.log 2>&1 &"
                 retry_command "$command" > $playback_dir/client$TEAM_SEQ_ID-$idx.log &
             elif [[ -f "./$code_name" ]]; then
                 echo "find ./$code_name"
-                command="nice -n 0 ./$code_name -I $CONNECT_IP -P $PORT -t $TEAM_SEQ_ID -p $idx > $playback_dir/team$TEAM_SEQ_ID-$code_name.log 2>&1 &"
+                command="nice -n 0 ./$code_name -I $CONNECT_IP -P $PORT -t $TEAM_SEQ_ID -s $s_param -p $idx > $playback_dir/team$TEAM_SEQ_ID-$code_name.log 2>&1 &"
                 retry_command "$command" > $playback_dir/client$TEAM_SEQ_ID-$idx.log &
             else
                 echo "ERROR: $code_name not found."; continue
