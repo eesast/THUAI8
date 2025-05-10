@@ -135,7 +135,10 @@ def THUAI8Main(argv: List[str], AIBuilder: Callable) -> None:
 
 
 def CreateAI(pID: int) -> IAI:
-    return AI(pID)
+    # print(f"Creating AI for player {pID}...")
+    ai = AI(pID)
+    # print(f"✔ Successfully created AI instance for player {pID}")
+    return ai
 
 
 if __name__ == "__main__":
