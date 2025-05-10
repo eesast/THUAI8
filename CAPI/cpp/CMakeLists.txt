@@ -21,6 +21,7 @@ find_package(absl CONFIG REQUIRED)
 
 message(STATUS "Using protobuf ${Protobuf_VERSION}")
 message(STATUS "Using gRPC ${gRPC_VERSION}")
+message(STATUS "Using absl ${absl_VERSION}")
 
 message(STATUS "absl found at ${absl_DIR}")
 
