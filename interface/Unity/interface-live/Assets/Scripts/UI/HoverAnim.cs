@@ -25,10 +25,5 @@ public class HoverAnim : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         transform.localScale = sacleOrigin;
     }
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
 }

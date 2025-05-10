@@ -39,8 +39,10 @@ public class PlaybackController : MonoBehaviour
 
     void Start()
     {
+#if UNITY_EDITOR
         filename = "E:\\playback.thuaipb";
         StartCoroutine(WebReader(filename));
+#endif
         timer = frequency;
         isMap = true;
     }
