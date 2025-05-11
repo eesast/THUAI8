@@ -145,38 +145,40 @@ class Logic(ILogic):
             self.__logger.debug("Called GetConstructionState")
             if (cellX, cellY) in self.__currentState.mapInfo.barracksState:
                 return THUAI8.ConstructionState(
-                    self.__currentState.mapInfo.barracksState[(cellX, cellY)],
+                    self.__currentState.mapInfo.barracksState[(cellX, cellY)][0],
+                    self.__currentState.mapInfo.barracksState[(cellX, cellY)][1],
                     THUAI8.ConstructionType.Barracks,
                 )
             elif (cellX, cellY) in self.__currentState.mapInfo.springState:
                 return THUAI8.ConstructionState(
-                    self.__currentState.mapInfo.springState[(cellX, cellY)],
+                    self.__currentState.mapInfo.springState[(cellX, cellY)][0],
+                    self.__currentState.mapInfo.springState[(cellX, cellY)][1],
                     THUAI8.ConstructionType.Spring,
                 )
             elif (cellX, cellY) in self.__currentState.mapInfo.farmState:
                 return THUAI8.ConstructionState(
-                    self.__currentState.mapInfo.farmState[(cellX, cellY)],
+                    self.__currentState.mapInfo.farmState[(cellX, cellY)][0],
+                    self.__currentState.mapInfo.farmState[(cellX, cellY)][1],
                     THUAI8.ConstructionType.Farm,
                 )
             else:
                 self.__logger.warning("GetConstructionState: Out of range")
                 return None
 
-    def GetEconomyResourceState(self, cellX: int, cellY: int) -> int:
+    def GetEconomyResourceState(self, cellX: int, cellY: int) -> THUAI8.EconomyResource:
         with self.__mtxState:
             self.__logger.debug("Called GetEconomyResourceState")
-            if (
-                cellX,
-                cellY,
-            ) not in self.__currentState.mapInfo.economyResource:
+            if (cellX, cellY) not in self.__currentState.mapInfo.economyResource:
                 self.__logger.warning("GetEconomyResourceState: Out of range")
-                return -1
+                return None
             else:
                 return copy.deepcopy(
                     self.__currentState.mapInfo.economyResource[(cellX, cellY)]
                 )
 
-    def GetAdditionResourceState(self, cellX: int, cellY: int) -> int:
+    def GetAdditionResourceState(
+        self, cellX: int, cellY: int
+    ) -> THUAI8.AdditionResource:
         with self.__mtxState:
             self.__logger.debug("Called GetAdditionResourceState")
             if (
@@ -567,12 +569,16 @@ class Logic(ILogic):
                 )
                 if pos not in self.__bufferState.mapInfo.economyResourceState:
                     self.__bufferState.mapInfo.economyResourceState[pos] = (
-                        economy_message.hp
+                        economy_message.id,
+                        economy_message.process,
+                        economy_message.economy_resource_type,
                     )
                     self.__logger.debug("Load EconomyResource!")
                 else:
                     self.__bufferState.mapInfo.economyResourceState[pos] = (
-                        economy_message.hp
+                        economy_message.id,
+                        economy_message.process,
+                        economy_message.economy_resource_type,
                     )
                     self.__logger.debug("Update EconomyResource!")
 
@@ -584,12 +590,16 @@ class Logic(ILogic):
                 )
                 if pos not in self.__bufferState.mapInfo.additionResourceState:
                     self.__bufferState.mapInfo.additionResourceState[pos] = (
-                        addition_message.hp
+                        addition_message.id,
+                        addition_message.hp,
+                        addition_message.addition_resource_type,
                     )
                     self.__logger.debug("Load AdditionResource!")
                 else:
                     self.__bufferState.mapInfo.additionResourceState[pos] = (
-                        addition_message.hp
+                        addition_message.id,
+                        addition_message.hp,
+                        addition_message.addition_resource_type,
                     )
                     self.__logger.debug("Update AdditionResource!")
 
@@ -787,12 +797,16 @@ class Logic(ILogic):
                 )
                 if pos not in self.__bufferState.mapInfo.economyResourceState:
                     self.__bufferState.mapInfo.economyResourceState[pos] = (
-                        economy_message.hp
+                        economy_message.id,
+                        economy_message.process,
+                        economy_message.economy_resource_type,
                     )
                     self.__logger.debug("Load EconomyResource!")
                 else:
                     self.__bufferState.mapInfo.economyResourceState[pos] = (
-                        economy_message.hp
+                        economy_message.id,
+                        economy_message.process,
+                        economy_message.economy_resource_type,
                     )
                     self.__logger.debug("Update EconomyResource!")
 
@@ -804,12 +818,16 @@ class Logic(ILogic):
                 )
                 if pos not in self.__bufferState.mapInfo.additionResourceState:
                     self.__bufferState.mapInfo.additionResourceState[pos] = (
-                        addition_message.hp
+                        addition_message.id,
+                        addition_message.hp,
+                        addition_message.addition_resource_type,
                     )
                     self.__logger.debug("Load AdditionResource!")
                 else:
                     self.__bufferState.mapInfo.additionResourceState[pos] = (
-                        addition_message.hp
+                        addition_message.id,
+                        addition_message.hp,
+                        addition_message.addition_resource_type,
                     )
                     self.__logger.debug("Update AdditionResource!")
 
