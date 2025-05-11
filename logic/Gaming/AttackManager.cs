@@ -42,7 +42,7 @@ namespace Gaming
             }
             public bool Attack(Character character, Character gameobj)
             {
-                if (character.Commandable() || character.CharacterState2 == CharacterState.BLIND)
+                if (!character.Commandable() || character.CharacterState2 == CharacterState.BLIND)
                 {
                     return false;
                 }
@@ -72,7 +72,7 @@ namespace Gaming
             }
             public bool Attack(Character character, A_Resource gameobj)
             {
-                if (character.Commandable() || character.CharacterState2 == CharacterState.BLIND)
+                if (!character.Commandable() || character.CharacterState2 == CharacterState.BLIND)
                 {
                     return false;
                 }
@@ -95,7 +95,7 @@ namespace Gaming
             }
             public bool Attack(Character character, Construction gameobj)
             {
-                if (character.Commandable() || character.CharacterState2 == CharacterState.BLIND)
+                if (!character.Commandable() || character.CharacterState2 == CharacterState.BLIND)
                 {
                     return false;
                 }
