@@ -93,21 +93,49 @@ def GetPlaceType(self, cellX: int, cellY: int) -> THUAI8.PlaceType
 
 #### GetEconomyResourceState
 ```python
-def GetEconomyResourceState(self, cellX: int, cellY: int) -> int
+def GetEconomyResourceState(self, cellX: int, cellY: int) -> THUAI8.EconomyResource
 ```
 - **参数**:
   - `cellX`: 格子X坐标
   - `cellY`: 格子Y坐标
-- **返回值**: 指定格子的经济资源采集进度，若无返回-1
+- **返回值**: `EconomyResource` 结构体，包含以下字段：
+  ```python
+  class EconomyResource:
+      def __init__(
+          self,
+          id: int = 0,
+          process: int = 0,
+          type: EconomyResourceType = EconomyResourceType.NullEconomyResourceType
+      ):
+          self.economyResourceType = type 
+          self.process = process
+          self.id = id 
+  ```
+- **说明**: 
+  - 若指定位置无经济资源，返回默认值（所有字段为0或Null）
 
 #### GetAdditionResourceState
 ```python
-def GetAdditionResourceState(self, cellX: int, cellY: int) -> int
+def GetAdditionResourceState(self, cellX: int, cellY: int) -> THUAI8.AdditionResource
 ```
 - **参数**:
   - `cellX`: 格子X坐标
   - `cellY`: 格子Y坐标
-- **返回值**: 指定格子的加成资源血量，若无返回-1
+- **返回值**: `AdditionResource` 结构体，包含以下字段：
+  ```python
+  class AdditionResource:
+      def __init__(
+          self,
+          id: int = 0,
+          hp: int = 0,
+          type: AdditionResourceType = AdditionResourceType.NullAdditionResourceType
+      ):
+          self.additionResourceType = type
+          self.hp = hp
+          self.id = id
+  ```
+- **说明**: 
+  - 若指定位置无加成资源，返回默认值（所有字段为0或Null）
 
 #### GetConstructionState
 ```python
@@ -116,7 +144,21 @@ def GetConstructionState(self, cellX: int, cellY: int) -> THUAI8.ConstructionSta
 - **参数**:
   - `cellX`: 格子X坐标
   - `cellY`: 格子Y坐标
-- **返回值**: 建筑状态信息
+- **返回值**: `ConstructionState` 结构体，包含以下字段：
+  ```python
+  class ConstructionState:
+      def __init__(
+          self,
+          teamID: int = 0,
+          HP: int = 0,
+          type: ConstructionType = ConstructionType.NullConstructionType
+      ):
+          self.teamID = teamID 
+          self.hp = HP 
+          self.constructionType = type 
+  ```
+- **说明**: 
+  - 若指定位置无建筑，返回默认值（所有字段为0或Null）
 
 #### GetEnergy
 ```python
