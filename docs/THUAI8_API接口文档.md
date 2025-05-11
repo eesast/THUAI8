@@ -253,6 +253,8 @@ std::future<bool> Skill_Attack(double angle)
 - **参数：**
   - `angle`：攻击方向，单位为弧度
 
+
+
 角色向指定方向使用技能攻击，返回操作是否成功的future对象。
 
 ```cpp
@@ -262,6 +264,8 @@ std::future<bool> Common_Attack(int64_t attackedPlayerID)
 - **返回类型：** `std::future<bool>`
 - **参数：**
   - `attackedPlayerID`：被攻击者角色ID
+
+
 
 角色对指定目标进行普通攻击，返回操作是否成功的future对象。
 

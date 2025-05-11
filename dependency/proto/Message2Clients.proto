@@ -144,6 +144,16 @@ message MessageOfAdditionResource
     int32 id = 6;
 }
 
+message MessageOfConstruction
+{
+    ConstructionType construction_type = 1;
+    ConstructionState construction_state = 2;
+    int32 x = 3;
+    int32 y = 4;
+    int32 hp = 5;
+    int64 team_id = 6;
+}
+
 message MessageOfMap
 {
     uint32 height = 1;

@@ -158,7 +158,7 @@ namespace Proto2THUAI8
     };
 
     inline std::map<protobuf::AdditionResourceType, THUAI8::AdditionResourceType> additionResourceTypeDict{
-        {protobuf::AdditionResourceType::NULL_ADDITION_RESOURCE_TYPE, THUAI8::AdditionResourceType::NullAdditionReourceType},
+        {protobuf::AdditionResourceType::NULL_ADDITION_RESOURCE_TYPE, THUAI8::AdditionResourceType::NullAdditionResourceType},
         {protobuf::AdditionResourceType::LIFE_POOL1, THUAI8::AdditionResourceType::LIFE_POOL1},
         {protobuf::AdditionResourceType::LIFE_POOL2, THUAI8::AdditionResourceType::LIFE_POOL2},
         {protobuf::AdditionResourceType::LIFE_POOL3, THUAI8::AdditionResourceType::LIFE_POOL3},
@@ -316,9 +316,8 @@ namespace Proto2THUAI8
     {
         auto economyResource = std::make_shared<THUAI8::EconomyResource>();
         economyResource->economyResourceType = economyResourceTypeDict.at(EconomyResourceMsg.economy_resource_type());
-        economyResource->economyResourceState = economyResourceStateDict.at(EconomyResourceMsg.economy_resource_state());
-        economyResource->x = EconomyResourceMsg.x();
-        economyResource->y = EconomyResourceMsg.y();
+        //economyResource->pos.first = EconomyResourceMsg.x();
+        //economyResource->pos.second = EconomyResourceMsg.y();
         return economyResource;
     }
 
@@ -326,20 +325,19 @@ namespace Proto2THUAI8
     {
         auto additionResource = std::make_shared<THUAI8::AdditionResource>();
         additionResource->additionResourceType = additionResourceTypeDict.at(AdditionResourceMsg.addition_resource_type());
-        additionResource->additionResourceState = additionResourceStateDict.at(AdditionResourceMsg.addition_resource_state());
-        additionResource->x = AdditionResourceMsg.x();
-        additionResource->y = AdditionResourceMsg.y();
+        //additionResource->pos.first = AdditionResourceMsg.x();
+        //additionResource->pos.second = AdditionResourceMsg.y();
         return additionResource;
     }
 
-    /* inline std::shared_ptr<THUAI8::ConstructionState> Protobuf2THUAI8ConstructionState(const protobuf::MessageOfConstructionState& ConstructionStateMsg)
+    inline std::shared_ptr<THUAI8::ConstructionState> Protobuf2THUAI8ConstructionState(const protobuf::MessageOfConstruction& ConstructionStateMsg)
     {
         auto constructionState = std::make_shared<THUAI8::ConstructionState>();
-        constructionState->teamID = ConstructionStateMsg.constructionstate().teamid();
-        constructionState->hp = ConstructionStateMsg.constructionstate().hp();
-        constructionState->constructionType = constructionTypeDict.at(ConstructionStateMsg.constructionstate().constructiontype());
+        constructionState->teamID = ConstructionStateMsg.team_id();
+        constructionState->hp = ConstructionStateMsg.hp();
+        constructionState->constructionType = constructionTypeDict.at(ConstructionStateMsg.construction_type());
         return constructionState;
-    }*/
+    }
 
     // ?
     // inline std::shared_ptr<THUAI8::GameMap> Protobuf2THUAI8GameMap(const protobuf::MessageOfGameMap& GameMapMsg)
@@ -463,7 +461,7 @@ namespace THUAI8Proto
     };
 
     inline std::map<THUAI8::AdditionResourceType, protobuf::AdditionResourceType> additionResourceTypeDict{
-        {THUAI8::AdditionResourceType::NullAdditionReourceType, protobuf::AdditionResourceType::NULL_ADDITION_RESOURCE_TYPE},
+        {THUAI8::AdditionResourceType::NullAdditionResourceType, protobuf::AdditionResourceType::NULL_ADDITION_RESOURCE_TYPE},
         {THUAI8::AdditionResourceType::LIFE_POOL1, protobuf::AdditionResourceType::LIFE_POOL1},
         {THUAI8::AdditionResourceType::LIFE_POOL2, protobuf::AdditionResourceType::LIFE_POOL2},
         {THUAI8::AdditionResourceType::LIFE_POOL3, protobuf::AdditionResourceType::LIFE_POOL3},
@@ -614,6 +612,11 @@ namespace THUAI8Proto
         attackMsg.set_attacked_character_id(attacked_character_id);
         attackMsg.set_attacked_character_id(attacked_team_id);
         return attackMsg;
+    }
+
+    inline protobuf::AttackConstructionMsg(int64_t team_id, int64_t player_id)
+    {
+        protobuf::AttackConstructionMsg attackConstructionMsg;
     }
 }  // namespace THUAI8Proto
 
