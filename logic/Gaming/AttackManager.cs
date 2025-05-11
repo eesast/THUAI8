@@ -59,7 +59,7 @@ namespace Gaming
                     return false;
                 }
                 long nowtime = Environment.TickCount64;
-                if (nowtime - character.LastAttackTime < 1 / (character.ATKFrequency * 1000))
+                if (nowtime - character.LastAttackTime < 1000 / character.ATKFrequency)
                     return false;
                 characterManager.BeAttacked(gameobj, character);
                 character.LastAttackTime = nowtime;
@@ -85,7 +85,7 @@ namespace Gaming
                     return false;
                 }
                 long nowtime = Environment.TickCount64;
-                if (nowtime - character.LastAttackTime < 1 / (character.ATKFrequency * 1000))
+                if (nowtime - character.LastAttackTime < 1000 / character.ATKFrequency)
                     return false;
                 ARManager.BeAttacked(gameobj, character);
                 character.LastAttackTime = nowtime;
@@ -108,7 +108,7 @@ namespace Gaming
                     return false;
                 }
                 long nowtime = Environment.TickCount64;
-                if (nowtime - character.LastAttackTime < 1 / (character.ATKFrequency * 1000))
+                if (nowtime - character.LastAttackTime < 1000 / character.ATKFrequency)
                     return false;
                 gameobj.BeAttacked(character);
                 character.LastAttackTime = nowtime;
