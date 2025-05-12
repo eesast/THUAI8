@@ -78,7 +78,7 @@ namespace THUAI8
         ZhiZhujing = 11,
         Pawn = 12,
     };
-
+ 
     enum class EquipmentType : unsigned char
     {
         NullEquipmentType = 0,
@@ -141,7 +141,7 @@ namespace THUAI8
 
     enum class AdditionResourceType : unsigned char
     {
-        NullAdditionResourceType = 0,
+        NullAdditionReourceType = 0,
 
         LIFE_POOL1 = 1,
         LIFE_POOL2 = 2,
@@ -178,14 +178,6 @@ namespace THUAI8
         Spring = 2,
         Farm = 3,
     };
-
-    //enum class ConstructionState
-    //{
-    //   NullConstructionState = 0,
-    //    TeamID = 1,
-    //    Hp = 2,
-    //    ConstructionType = 3,
-    //};
 
     enum class TrapType
     {
@@ -224,7 +216,7 @@ namespace THUAI8
         int64_t playerID;
 
         CharacterType characterType;
-
+        
         CharacterState characterActiveState;
 
         bool isBlind;
@@ -295,62 +287,41 @@ namespace THUAI8
     struct EconomyResource
     {
         EconomyResourceType economyResourceType;
-        int32_t process;
-        int32_t id;
-        // 默认构造函数
-        EconomyResource() :
-            economyResourceType(EconomyResourceType::NullEconomyResourceType),  // 默认值为 NullEconomyResourceType
-            process(0),                                                         // 默认进度为 0
-            id(0)                                                               // 默认 ID 为 0
-        {
-        }
-        EconomyResource(int32_t ID, int32_t Process, EconomyResourceType type) :
-            id(ID),
-            process(Process),
-            economyResourceType(type)
-        {
+        EconomyResourceState economyResourceState;
 
-        }
+        int32_t x;
+        int32_t y;
+
+        int32_t process;
+
+        int32_t id;
     };
 
     struct AdditionResource
     {
         AdditionResourceType additionResourceType;
+        AdditionResourceState additionResourceState;
+
+        int32_t x;
+        int32_t y;
+
         int32_t hp;
+
         int32_t id;
-        // 默认构造函数
-        AdditionResource() :
-            additionResourceType(AdditionResourceType::NullAdditionResourceType),  // 默认值为 NullAdditionResourceType
-            hp(0),                                                         // 默认进度为 0
-            id(0)                                                               // 默认 ID 为 0
-        {
-        }
-        AdditionResource(int32_t ID, int32_t HP, AdditionResourceType type) :
-            id(ID),
-            hp(HP),
-            additionResourceType(type)
-        {
-        }
     };
 
-    struct ConstructionState
+    /* struct ConstructionState
     {
         int64_t teamID;
         int32_t hp;
         ConstructionType constructionType;
-        ConstructionState() :
-            constructionType(ConstructionType::NullConstructionType),  // 默认值为 NullConstructionType
-            hp(0),                                                                 // 默认进度为 0
-            teamID(0)                                                                  // 默认 ID 为 0
-        {
-        }
-        ConstructionState(int64_t teamID, int32_t HP, ConstructionType type) :
-            teamID(teamID),
-            hp(HP),
+        ConstructionState(std::pair<int64_t, int32_t> teamHP, ConstructionType type) :
+            teamID(teamHP.first),
+            hp(teamHP.second),
             constructionType(type)
         {
         }
-    };
+    };*/
 
     // struct BombedBullet
     // {
@@ -371,9 +342,8 @@ namespace THUAI8
         std::map<cellxy_t, std::pair<int32_t, int32_t>> springState;
         std::map<cellxy_t, std::pair<int32_t, int32_t>> farmState;
         std::map<cellxy_t, std::pair<int32_t, int32_t>> trapState;
-        std::map<cellxy_t, EconomyResource> economyResource;
-        std::map<cellxy_t, AdditionResource> additionResource;
-
+        std::map<cellxy_t, int32_t> economyResource;
+        std::map<cellxy_t, std::pair<int32_t, int32_t>> additionResource;
     };
 
     struct GameInfo
@@ -479,7 +449,7 @@ namespace THUAI8
     };
 
     inline std::map<AdditionResourceType, std::string> additionResourceTypeDict{
-        {AdditionResourceType::NullAdditionResourceType, "NullAdditionResourceType"},
+        {AdditionResourceType::NullAdditionReourceType, "NullAdditionReourceType"},
         {AdditionResourceType::LIFE_POOL1, "LIFE_POOL1"},
         {AdditionResourceType::LIFE_POOL2, "MediumAdditionResource1"},
         {AdditionResourceType::LIFE_POOL3, "LargeAdditionResource1"},
