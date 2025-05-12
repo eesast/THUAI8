@@ -117,6 +117,7 @@ private:
     bool Skill_Attack(int64_t playerID, int64_t teamID, double angleInRadian);
     bool Common_Attack(int64_t playerID, int64_t teamID, int64_t ATKplayerID, int64_t ATKteamID);
     bool AttackConstruction(int64_t teamID, int64_t playerID);
+    bool AttackAdditionResource(int64_t teamID, int64_t playerID);
     bool Recover(int64_t recover);
     bool Produce(int64_t playerID, int64_t teamID);
     // bool Rebuild(THUAI8::ConstructionType constructionType);

@@ -38,6 +38,7 @@ public:
     bool Skill_Attack(int64_t playerID, int64_t teamID, double angle);
     bool Common_Attack(int64_t playerID, int64_t teamID, int64_t attacked_playerID, int64_t attacked_teamID);
     bool AttackConstruction(int64_t teamID, int64_t playerID);
+    bool AttackAdditionResource(int64_t teamID, int64_t playerID);
     bool Send(int32_t playerID, int32_t toPlayerID, int32_t teamID, std::string message, bool binary);
     // Team
     bool InstallEquipment(int32_t playerID, int32_t teamID, THUAI8::EquipmentType equipmentType);

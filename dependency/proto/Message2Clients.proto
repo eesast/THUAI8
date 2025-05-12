@@ -147,11 +147,10 @@ message MessageOfAdditionResource
 message MessageOfConstruction
 {
     ConstructionType construction_type = 1;
-    ConstructionState construction_state = 2;
-    int32 x = 3;
-    int32 y = 4;
-    int32 hp = 5;
-    int64 team_id = 6;
+    int32 x = 2;
+    int32 y = 3;
+    int32 hp = 4;
+    int64 team_id = 5;
 }
 
 message MessageOfMap

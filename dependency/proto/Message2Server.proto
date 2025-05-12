@@ -21,8 +21,25 @@ message CharacterMsg
 
 message EconomyReourceMsg
 {
-
+    int64 team_id = 1;
+    int32 process = 2;
+    EconomyResourceType economy_resource_type = 3;
 }
+
+message AdditionResourceMsg
+{
+    int64 team_id = 1;
+    int32 hp = 2;
+    AdditionResourceType addition_resource_type = 3;
+}
+
+message ConstructionMsg
+{
+    int64 team_id = 1;
+    int32 hp = 2;
+    ConstructionType construction_type = 3;
+}
+
 message MoveMsg
 {
     int64 character_id = 1;
@@ -75,11 +92,17 @@ message AttackConstructionMsg
     int64 character_id = 2;
 }
 
+message AttackAdditionResourceMsg
+{
+    int64 team_id = 1;
+    int64 character_id = 2;
+}
+
 message ConstructMsg //修建建筑
 {
     int64 character_id = 1;
-    ConstructionType construction_type = 2;
-    int64 team_id = 3;
+    int64 team_id = 2;
+    ConstructionType construction_type = 3;
 }
 
 message EquipMsg

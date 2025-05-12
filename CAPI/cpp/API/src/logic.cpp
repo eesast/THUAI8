@@ -236,6 +236,18 @@ bool Logic::Skill_Attack(int64_t playerID, int64_t teamID, double angle)
     return pComm->Skill_Attack(playerID, teamID, angle);
 }
 
+bool Logic::AttackConstruction(int64_t teamID, int64_t playerID)
+{
+    logger->debug("Called AttackConstruction");
+    return pComm->AttackConstruction(playerID, teamID);
+}
+
+bool Logic::AttackAdditionResource(int64_t teamID, int64_t playerID)
+{
+    logger->debug("Called AttackAdditionResource");
+    return pComm->AttackAdditionResource(playerID, teamID);
+}
+
 bool Logic::Recover(int64_t recover)
 {
     logger->debug("Called Recover");

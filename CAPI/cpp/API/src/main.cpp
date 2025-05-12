@@ -41,7 +41,7 @@ static constexpr std::string_view welcomeString = R"welcome(
 int THUAI8Main(int argc, char** argv, CreateAIFunc AIBuilder)
 {
     int pID = 0;
-    int tID ;
+    int tID;
     std::string sIP = "172.22.32.1";
     std::string sPort = "8888";
     bool file = false;
@@ -69,7 +69,7 @@ int THUAI8Main(int argc, char** argv, CreateAIFunc AIBuilder)
 
         std::vector<int> validPlayerIDs{0, 1, 2, 3, 4, 5, 6};  // 0代表每队的Hero
         TCLAP::ValuesConstraint<int> playerIdConstraint(validPlayerIDs);
-        TCLAP::ValueArg<int> playerID("p", "playerID", "Player ID 0,1,2,3,4 valid only", true, -1, &playerIdConstraint);
+        TCLAP::ValueArg<int> playerID("p", "playerID", "Player ID 0,1,2,3,4,5,6 valid only", true, -1, &playerIdConstraint);
         cmd.add(playerID);
 
         std::string DebugDesc = "Set this flag to save the debug log to ./logs folder.\n";
@@ -116,9 +116,9 @@ int THUAI8Main(int argc, char** argv, CreateAIFunc AIBuilder)
         {
             playerType = THUAI8::PlayerType::Character;
             if (!side_flag)
-                CharacterType = BuddhistsCharacterTypeDict[pID-1];
+                CharacterType = BuddhistsCharacterTypeDict[pID - 1];
             else
-                CharacterType = MonstersCharacterTypeDict[pID-1];
+                CharacterType = MonstersCharacterTypeDict[pID - 1];
         }
 #ifdef _MSC_VER
         std::cout

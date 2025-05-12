@@ -21,8 +21,8 @@ service AvailableService
     rpc Equip(EquipMsg) returns (BoolRes);          // 买装备
     rpc Attack(AttackMsg) returns (BoolRes);        // 普通攻击
     rpc Cast(CastMsg) returns (BoolRes);            // 释放技能
-    rpc AttackConstruction returns (BoolRes);       //攻击建筑
-    rpc AttackAdditionResource return (BoolRes);    //攻击加成资源
+    rpc AttackConstruction(AttackConstructionMsg) returns (BoolRes);       //攻击建筑
+    rpc AttackAdditionResource(AttackAdditionResourceMsg) returns (BoolRes);    //攻击加成资源
     rpc Send(SendMsg) returns (BoolRes);            // 传递信息
     
 

@@ -67,6 +67,7 @@ public:
     virtual bool Skill_Attack(int64_t playerID, int64_t teamID, double angle) = 0;
     virtual bool Common_Attack(int64_t teamID, int64_t PlayerID, int64_t attackedTeamID, int64_t attackedPlayerID) = 0;
     virtual bool AttackConstruction(int64_t teamID, int64_t playerID) = 0;
+    virtual bool AttackAdditionResource(int64_t teamID, int64_t playerID) = 0;
     [[nodiscard]] virtual bool HaveView(int32_t x, int32_t y, int32_t newX, int32_t newY, int32_t viewRange, std::vector<std::vector<THUAI8::PlaceType>>& map) const = 0;
 
     // Team使用的部分
@@ -137,6 +138,7 @@ public:
     virtual std::future<bool> Skill_Attack(double angle) = 0;
     virtual std::future<bool> Common_Attack(int64_t attackedPlayerID) = 0;
     virtual std::future<bool> AttackConstruction(int64_t teamID, int64_t playerID) = 0;
+    virtual std::future<bool> AttackAdditionResource(int64_t teamID, int64_t playerID) = 0;
     virtual std::future<bool> Recover(int64_t recover) = 0;
     virtual std::future<bool> Produce(int64_t playerID, int64_t teamID) = 0;
     // virtual std::future<bool> Rebuild(THUAI8::ConstructionType constructionType) = 0;
@@ -195,6 +197,8 @@ public:
     std::future<bool> Skill_Attack(double angle) override;
     std::future<bool> Common_Attack(int64_t attackedPlayerID) override;
     std::future<bool> AttackConstruction(int64_t teamID, int64_t playerID) override;
+    std::future<bool> AttackAdditionResource(int64_t teamID, int64_t playerID) override;
+    
     std::future<bool> Recover(int64_t recover) override;
     std::future<bool> Produce(int64_t playerID, int64_t teamID) override;
     // std::future<bool> Rebuild(THUAI8::ConstructionType constructionType) override;
@@ -309,6 +313,7 @@ public:
     std::future<bool> Skill_Attack(double angle) override;
     std::future<bool> Common_Attack(int64_t attackedPlayerID) override;
     std::future<bool> AttackConstruction(int64_t teamID, int64_t playerID) override;
+    std::future<bool> AttackAdditionResource(int64_t teamID, int64_t playerID) override;
     std::future<bool> Recover(int64_t recover) override;
     std::future<bool> Produce(int64_t playerID, int64_t teamID);
     // std::future<bool> Rebuild(THUAI8::ConstructionType constructionType) override;
