@@ -301,12 +301,12 @@ class CharacterDebugAPI(ICharacterAPI, IGameTimer):
 
         return self.__pool.submit(logGetPlaceType)
 
-    def GetEconomyResourceState(self, cellX: int, cellY: int) -> int:
+    def GetEconomyResourceState(self, cellX: int, cellY: int) -> THUAI8.EconomyResource:
         self.__logger.info(
             f"GetEconomyResourceState: cellX={cellX}, cellY={cellY}, called at {self.__GetTime()}ms"
         )
 
-        def logGetEconomyResourceState() -> int:
+        def logGetEconomyResourceState() -> THUAI8.EconomyResource:
             result = self.__logic.GetEconomyResourceState(cellX, cellY)
             if not result:
                 self.__logger.warning(
@@ -316,12 +316,14 @@ class CharacterDebugAPI(ICharacterAPI, IGameTimer):
 
         return self.__pool.submit(logGetEconomyResourceState)
 
-    def GetAdditionResourceState(self, cellX: int, cellY: int) -> int:
+    def GetAdditionResourceState(
+        self, cellX: int, cellY: int
+    ) -> THUAI8.AdditionResource:
         self.__logger.info(
             f"GetAdditionResourceState: cellX={cellX}, cellY={cellY}, called at {self.__GetTime()}ms"
         )
 
-        def logGetAdditionResourceState() -> int:
+        def logGetAdditionResourceState() -> THUAI8.AdditionResource:
             result = self.__logic.GetAdditionResourceState(cellX, cellY)
             if not result:
                 self.__logger.warning(
@@ -980,12 +982,12 @@ class TeamDebugAPI(ITeamAPI, IGameTimer):
 
         return self.__pool.submit(logGetPlaceType)
 
-    def GetEconomyResourceState(self, cellX: int, cellY: int) -> int:
+    def GetEconomyResourceState(self, cellX: int, cellY: int) -> THUAI8.EconomyResource:
         self.__logger.info(
             f"GetEconomyResourceState: cellX={cellX}, cellY={cellY}, called at {self.__GetTime()}ms"
         )
 
-        def logGetEconomyResourceState() -> int:
+        def logGetEconomyResourceState() -> THUAI8.EconomyResource:
             result = self.__logic.GetEconomyResourceState(cellX, cellY)
             if not result:
                 self.__logger.warning(
@@ -995,12 +997,14 @@ class TeamDebugAPI(ITeamAPI, IGameTimer):
 
         return self.__pool.submit(logGetEconomyResourceState)
 
-    def GetAdditionResourceState(self, cellX: int, cellY: int) -> int:
+    def GetAdditionResourceState(
+        self, cellX: int, cellY: int
+    ) -> THUAI8.AdditionResource:
         self.__logger.info(
             f"GetAdditionResourceState: cellX={cellX}, cellY={cellY}, called at {self.__GetTime()}ms"
         )
 
-        def logGetAdditionResourceState() -> int:
+        def logGetAdditionResourceState() -> THUAI8.AdditionResource:
             result = self.__logic.GetAdditionResourceState(cellX, cellY)
             if not result:
                 self.__logger.warning(

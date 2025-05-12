@@ -316,38 +316,39 @@ class Trap:
 
 
 class EconomyResource:
-    def __init__(self):
-        self.economyResourceType: EconomyResourceType = (
-            EconomyResourceType.NullEconomyResourceType
-        )
-        self.economyResourceState: EconomyResourceState = (
-            EconomyResourceState.NullEconomyResourceState
-        )
-        self.x: int = 0
-        self.y: int = 0
-        self.process: int = 0
-        self.id: int = 0
+    def __init__(
+        self,
+        id: int = 0,
+        process: int = 0,
+        type: EconomyResourceType = EconomyResourceType.NullEconomyResourceType,
+    ):
+        self.economyResourceType = type
+        self.process = process
+        self.id = id
 
 
 class AdditionResource:
-    def __init__(self):
-        self.additionResourceType: AdditionResourceType = (
-            AdditionResourceType.NullAdditionReourceType
-        )
-        self.additionResourceState: AdditionResourceState = (
-            AdditionResourceState.NullAdditionResourceState
-        )
-        self.x: int = 0
-        self.y: int = 0
-        self.hp: int = 0
-        self.id: int = 0
+    def __init__(
+        self,
+        id: int = 0,
+        hp: int = 0,
+        type: AdditionResourceType = AdditionResourceType.NullAdditionResourceType,
+    ):
+        self.additionResourceType = type
+        self.hp = hp
+        self.id = id
 
 
 class ConstructionState:
-    def __init__(self, teamID, HP, type: ConstructionType):
+    def __init__(
+        self,
+        teamID: int = 0,
+        HP: int = 0,
+        type: ConstructionType = ConstructionType.NullConstructionType,
+    ):
         self.teamID = teamID
         self.hp = HP
-        self.constructionType: ConstructionType = ConstructionType.NullConstructionType
+        self.constructionType = type
 
 
 class GameMap:
@@ -361,12 +362,14 @@ class GameMap:
     """
 
     def __init__(self):
-        self.barracksState: Dict[Tuple[int, int], Tuple[int, int]] = {}
+        self.barracksState: Dict[
+            Tuple[int, int], Tuple[int, int]
+        ] = {}  # x, y, teamID, hp
         self.springState: Dict[Tuple[int, int], Tuple[int, int]] = {}
         self.farmState: Dict[Tuple[int, int], Tuple[int, int]] = {}
         self.trapState: Dict[Tuple[int, int], Tuple[int, int]] = {}
-        self.economyResource: Dict[Tuple[int, int], int] = {}
-        self.additionResource: Dict[Tuple[int, int], int] = {}
+        self.economyResource: Dict[Tuple[int, int], EconomyResource] = {}
+        self.additionResource: Dict[Tuple[int, int], AdditionResource] = {}
 
 
 class GameInfo:

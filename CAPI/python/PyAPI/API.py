@@ -72,12 +72,12 @@ class CharacterAPI(ICharacterAPI, IGameTimer):
 
     def GetEconomyResourceState(
         self, cellX: int, cellY: int
-    ) -> Optional[THUAI8.EconomyResourceState]:
+    ) -> Optional[THUAI8.EconomyResource]:
         return self.__logic.GetEconomyResourceState(cellX, cellY)
 
     def GetAdditionResourceState(
         self, cellX: int, cellY: int
-    ) -> Optional[THUAI8.AdditionResourceState]:
+    ) -> Optional[THUAI8.AdditionResource]:
         return self.__logic.GetAdditionResourceState(cellX, cellY)
 
     def GetConstructionState(
@@ -217,13 +217,15 @@ class TeamAPI(ITeamAPI, IGameTimer):
     def GetPlaceType(self, cellX: int, cellY: int) -> THUAI8.PlaceType:
         return self.__logic.GetPlaceType(cellX, cellY)
 
-    def GetEconomyResourceState(self, cellX: int, cellY: int) -> int:
+    def GetEconomyResourceState(self, cellX: int, cellY: int) -> THUAI8.EconomyResource:
         return self.__logic.GetEconomyResourceState(cellX, cellY)
 
-    def GetAdditionResourceState(self, cellX: int, cellY: int) -> int:
+    def GetAdditionResourceState(
+        self, cellX: int, cellY: int
+    ) -> THUAI8.AdditionResource:
         return self.__logic.GetAdditionResourceState(cellX, cellY)
 
-    def GetConstructionState(self, cellX: int, cellY: int) -> int:
+    def GetConstructionState(self, cellX: int, cellY: int) -> THUAI8.ConstructionState:
         return self.__logic.GetConstructionState(cellX, cellY)
 
     def GetPlayerGUIDs(self) -> List[int]:
