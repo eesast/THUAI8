@@ -253,7 +253,6 @@ std::future<bool> CharacterAPI::Skill_Attack(double angle)
                       { return logic.Skill_Attack(this->GetSelfInfo()->playerID, this->GetSelfInfo()->teamID, angle); });
 }
 
-<<<<<<< HEAD
 std::future <bool> CharacterAPI::AttackConstruction(int64_t teamID, int64_t playerID)
 {
     return std::async(std::launch::async, [=]()
@@ -265,9 +264,6 @@ std::future<bool> CharacterAPI::AttackAdditionResource(int64_t teamID, int64_t p
     return std::async(std::launch::async, [=]()
                       { return logic.AttackAdditionResource(this->GetSelfInfo()->teamID, this->GetSelfInfo()->playerID); });
 }
-
-=======
->>>>>>> 1defd9636d5a53cca09ed2daa86345c8ce20f1ce
 std::future<bool> CharacterAPI::Recover(int64_t recover)
 {
     return std::async(std::launch::async, [=]()

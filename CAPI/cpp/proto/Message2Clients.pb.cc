@@ -191,7 +191,6 @@ struct MessageOfAdditionResourceDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MessageOfAdditionResourceDefaultTypeInternal _MessageOfAdditionResource_default_instance_;
-<<<<<<< HEAD
 PROTOBUF_CONSTEXPR MessageOfConstruction::MessageOfConstruction(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.construction_type_)*/0
@@ -209,8 +208,6 @@ struct MessageOfConstructionDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MessageOfConstructionDefaultTypeInternal _MessageOfConstruction_default_instance_;
-=======
->>>>>>> 1defd9636d5a53cca09ed2daa86345c8ce20f1ce
 PROTOBUF_CONSTEXPR MessageOfMap_Row::MessageOfMap_Row(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.cols_)*/{}
@@ -390,7 +387,7 @@ struct MessageOfNewsDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MessageOfNewsDefaultTypeInternal _MessageOfNews_default_instance_;
 }  // namespace protobuf
-static ::_pb::Metadata file_level_metadata_Message2Clients_2eproto[20];
+static ::_pb::Metadata file_level_metadata_Message2Clients_2eproto[21];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_Message2Clients_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_Message2Clients_2eproto = nullptr;
 
@@ -518,7 +515,6 @@ const uint32_t TableStruct_Message2Clients_2eproto::offsets[] PROTOBUF_SECTION_V
   PROTOBUF_FIELD_OFFSET(::protobuf::MessageOfAdditionResource, _impl_.hp_),
   PROTOBUF_FIELD_OFFSET(::protobuf::MessageOfAdditionResource, _impl_.id_),
   ~0u,  // no _has_bits_
-<<<<<<< HEAD
   PROTOBUF_FIELD_OFFSET(::protobuf::MessageOfConstruction, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -530,8 +526,6 @@ const uint32_t TableStruct_Message2Clients_2eproto::offsets[] PROTOBUF_SECTION_V
   PROTOBUF_FIELD_OFFSET(::protobuf::MessageOfConstruction, _impl_.hp_),
   PROTOBUF_FIELD_OFFSET(::protobuf::MessageOfConstruction, _impl_.team_id_),
   ~0u,  // no _has_bits_
-=======
->>>>>>> 1defd9636d5a53cca09ed2daa86345c8ce20f1ce
   PROTOBUF_FIELD_OFFSET(::protobuf::MessageOfMap_Row, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -656,7 +650,6 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 87, -1, -1, sizeof(::protobuf::MessageOfTrap)},
   { 98, -1, -1, sizeof(::protobuf::MessageOfEconomyResource)},
   { 110, -1, -1, sizeof(::protobuf::MessageOfAdditionResource)},
-<<<<<<< HEAD
   { 122, -1, -1, sizeof(::protobuf::MessageOfConstruction)},
   { 133, -1, -1, sizeof(::protobuf::MessageOfMap_Row)},
   { 140, -1, -1, sizeof(::protobuf::MessageOfMap)},
@@ -670,20 +663,6 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 222, -1, -1, sizeof(::protobuf::CharacterInfoRes)},
   { 229, -1, -1, sizeof(::protobuf::EcoRes)},
   { 236, -1, -1, sizeof(::protobuf::MessageOfNews)},
-=======
-  { 122, -1, -1, sizeof(::protobuf::MessageOfMap_Row)},
-  { 129, -1, -1, sizeof(::protobuf::MessageOfMap)},
-  { 138, -1, -1, sizeof(::protobuf::MessageOfTeam)},
-  { 148, -1, -1, sizeof(::protobuf::MessageOfObj)},
-  { 165, -1, -1, sizeof(::protobuf::MessageOfAll)},
-  { 178, -1, -1, sizeof(::protobuf::MessageToClient)},
-  { 187, -1, -1, sizeof(::protobuf::MoveRes)},
-  { 196, -1, -1, sizeof(::protobuf::CreatCharacterRes)},
-  { 204, -1, -1, sizeof(::protobuf::BoolRes)},
-  { 211, -1, -1, sizeof(::protobuf::CharacterInfoRes)},
-  { 218, -1, -1, sizeof(::protobuf::EcoRes)},
-  { 225, -1, -1, sizeof(::protobuf::MessageOfNews)},
->>>>>>> 1defd9636d5a53cca09ed2daa86345c8ce20f1ce
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -695,6 +674,7 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::protobuf::_MessageOfTrap_default_instance_._instance,
   &::protobuf::_MessageOfEconomyResource_default_instance_._instance,
   &::protobuf::_MessageOfAdditionResource_default_instance_._instance,
+  &::protobuf::_MessageOfConstruction_default_instance_._instance,
   &::protobuf::_MessageOfMap_Row_default_instance_._instance,
   &::protobuf::_MessageOfMap_default_instance_._instance,
   &::protobuf::_MessageOfTeam_default_instance_._instance,
@@ -756,7 +736,6 @@ const char descriptor_table_protodef_Message2Clients_2eproto[] PROTOBUF_SECTION_
   "sourceType\022@\n\027addition_resource_state\030\002 "
   "\001(\0162\037.protobuf.AdditionResourceState\022\t\n\001"
   "x\030\003 \001(\005\022\t\n\001y\030\004 \001(\005\022\n\n\002hp\030\005 \001(\005\022\n\n\002id\030\006 \001"
-<<<<<<< HEAD
   "(\005\"\201\001\n\025MessageOfConstruction\0225\n\021construc"
   "tion_type\030\001 \001(\0162\032.protobuf.ConstructionT"
   "ype\022\t\n\001x\030\002 \001(\005\022\t\n\001y\030\003 \001(\005\022\n\n\002hp\030\004 \001(\005\022\017\n"
@@ -800,61 +779,15 @@ const char descriptor_table_protodef_Message2Clients_2eproto[] PROTOBUF_SECTION_
   "_message\030\001 \001(\tH\000\022\030\n\016binary_message\030\002 \001(\014"
   "H\000\022\017\n\007from_id\030\003 \001(\003\022\r\n\005to_id\030\004 \001(\003\022\017\n\007te"
   "am_id\030\005 \001(\003B\006\n\004newsb\006proto3"
-=======
-  "(\005\"\201\001\n\014MessageOfMap\022\016\n\006height\030\001 \001(\r\022\r\n\005w"
-  "idth\030\002 \001(\r\022(\n\004rows\030\003 \003(\0132\032.protobuf.Mess"
-  "ageOfMap.Row\032(\n\003Row\022!\n\004cols\030\001 \003(\0162\023.prot"
-  "obuf.PlaceType\"R\n\rMessageOfTeam\022\017\n\007team_"
-  "id\030\001 \001(\003\022\021\n\tplayer_id\030\002 \001(\003\022\r\n\005score\030\003 \001"
-  "(\003\022\016\n\006energy\030\004 \001(\003\"\316\004\n\014MessageOfObj\0229\n\021c"
-  "haracter_message\030\001 \001(\0132\034.protobuf.Messag"
-  "eOfCharacterH\000\0227\n\020barracks_message\030\002 \001(\013"
-  "2\033.protobuf.MessageOfBarracksH\000\0223\n\016sprin"
-  "g_message\030\003 \001(\0132\031.protobuf.MessageOfSpri"
-  "ngH\000\022/\n\014farm_message\030\004 \001(\0132\027.protobuf.Me"
-  "ssageOfFarmH\000\022/\n\014trap_message\030\005 \001(\0132\027.pr"
-  "otobuf.MessageOfTrapH\000\022F\n\030economy_resour"
-  "ce_message\030\006 \001(\0132\".protobuf.MessageOfEco"
-  "nomyResourceH\000\022H\n\031addition_resource_mess"
-  "age\030\007 \001(\0132#.protobuf.MessageOfAdditionRe"
-  "sourceH\000\022-\n\013map_message\030\010 \001(\0132\026.protobuf"
-  ".MessageOfMapH\000\022/\n\014news_message\030\t \001(\0132\027."
-  "protobuf.MessageOfNewsH\000\022/\n\014team_message"
-  "\030\n \001(\0132\027.protobuf.MessageOfTeamH\000B\020\n\016mes"
-  "sage_of_obj\"\320\001\n\014MessageOfAll\022\021\n\tgame_tim"
-  "e\030\001 \001(\005\022\034\n\024buddhists_team_score\030\002 \001(\005\022\033\n"
-  "\023monsters_team_score\030\003 \001(\005\022\036\n\026buddhists_"
-  "team_economy\030\004 \001(\005\022\035\n\025monsters_team_econ"
-  "omy\030\005 \001(\005\022\031\n\021buddhists_hero_hp\030\006 \001(\005\022\030\n\020"
-  "monsters_hero_hp\030\007 \001(\005\"\224\001\n\017MessageToClie"
-  "nt\022+\n\013obj_message\030\001 \003(\0132\026.protobuf.Messa"
-  "geOfObj\022\'\n\ngame_state\030\002 \001(\0162\023.protobuf.G"
-  "ameState\022+\n\013all_message\030\003 \001(\0132\026.protobuf"
-  ".MessageOfAll\"J\n\007MoveRes\022\024\n\014actual_speed"
-  "\030\001 \001(\003\022\024\n\014actual_angle\030\002 \001(\001\022\023\n\013act_succ"
-  "ess\030\003 \001(\010\";\n\021CreatCharacterRes\022\023\n\013act_su"
-  "ccess\030\001 \001(\010\022\021\n\tplayer_id\030\002 \001(\003\"\036\n\007BoolRe"
-  "s\022\023\n\013act_success\030\001 \001(\010\"H\n\020CharacterInfoR"
-  "es\0224\n\016Character_info\030\001 \003(\0132\034.protobuf.Me"
-  "ssageOfCharacter\"\031\n\006EcoRes\022\017\n\007economy\030\001 "
-  "\001(\003\"z\n\rMessageOfNews\022\026\n\014text_message\030\001 \001"
-  "(\tH\000\022\030\n\016binary_message\030\002 \001(\014H\000\022\017\n\007from_i"
-  "d\030\003 \001(\003\022\r\n\005to_id\030\004 \001(\003\022\017\n\007team_id\030\005 \001(\003B"
-  "\006\n\004newsb\006proto3"
->>>>>>> 1defd9636d5a53cca09ed2daa86345c8ce20f1ce
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_Message2Clients_2eproto_deps[1] = {
   &::descriptor_table_MessageType_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_Message2Clients_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_Message2Clients_2eproto = {
-<<<<<<< HEAD
     false, false, 3547, descriptor_table_protodef_Message2Clients_2eproto,
-=======
-    false, false, 3415, descriptor_table_protodef_Message2Clients_2eproto,
->>>>>>> 1defd9636d5a53cca09ed2daa86345c8ce20f1ce
     "Message2Clients.proto",
-    &descriptor_table_Message2Clients_2eproto_once, descriptor_table_Message2Clients_2eproto_deps, 1, 20,
+    &descriptor_table_Message2Clients_2eproto_once, descriptor_table_Message2Clients_2eproto_deps, 1, 21,
     schemas, file_default_instances, TableStruct_Message2Clients_2eproto::offsets,
     file_level_metadata_Message2Clients_2eproto, file_level_enum_descriptors_Message2Clients_2eproto,
     file_level_service_descriptors_Message2Clients_2eproto,
@@ -4049,7 +3982,6 @@ void MessageOfAdditionResource::InternalSwap(MessageOfAdditionResource* other) {
 
 // ===================================================================
 
-<<<<<<< HEAD
 class MessageOfConstruction::_Internal {
  public:
 };
@@ -4336,8 +4268,6 @@ void MessageOfConstruction::InternalSwap(MessageOfConstruction* other) {
 
 // ===================================================================
 
-=======
->>>>>>> 1defd9636d5a53cca09ed2daa86345c8ce20f1ce
 class MessageOfMap_Row::_Internal {
  public:
 };
@@ -4530,7 +4460,7 @@ void MessageOfMap_Row::InternalSwap(MessageOfMap_Row* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata MessageOfMap_Row::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Message2Clients_2eproto_getter, &descriptor_table_Message2Clients_2eproto_once,
-      file_level_metadata_Message2Clients_2eproto[8]);
+      file_level_metadata_Message2Clients_2eproto[9]);
 }
 
 // ===================================================================
@@ -4775,7 +4705,7 @@ void MessageOfMap::InternalSwap(MessageOfMap* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata MessageOfMap::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Message2Clients_2eproto_getter, &descriptor_table_Message2Clients_2eproto_once,
-      file_level_metadata_Message2Clients_2eproto[9]);
+      file_level_metadata_Message2Clients_2eproto[10]);
 }
 
 // ===================================================================
@@ -5034,7 +4964,7 @@ void MessageOfTeam::InternalSwap(MessageOfTeam* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata MessageOfTeam::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Message2Clients_2eproto_getter, &descriptor_table_Message2Clients_2eproto_once,
-      file_level_metadata_Message2Clients_2eproto[10]);
+      file_level_metadata_Message2Clients_2eproto[11]);
 }
 
 // ===================================================================
@@ -5803,7 +5733,7 @@ void MessageOfObj::InternalSwap(MessageOfObj* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata MessageOfObj::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Message2Clients_2eproto_getter, &descriptor_table_Message2Clients_2eproto_once,
-      file_level_metadata_Message2Clients_2eproto[11]);
+      file_level_metadata_Message2Clients_2eproto[12]);
 }
 
 // ===================================================================
@@ -6134,7 +6064,7 @@ void MessageOfAll::InternalSwap(MessageOfAll* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata MessageOfAll::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Message2Clients_2eproto_getter, &descriptor_table_Message2Clients_2eproto_once,
-      file_level_metadata_Message2Clients_2eproto[12]);
+      file_level_metadata_Message2Clients_2eproto[13]);
 }
 
 // ===================================================================
@@ -6395,7 +6325,7 @@ void MessageToClient::InternalSwap(MessageToClient* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata MessageToClient::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Message2Clients_2eproto_getter, &descriptor_table_Message2Clients_2eproto_once,
-      file_level_metadata_Message2Clients_2eproto[13]);
+      file_level_metadata_Message2Clients_2eproto[14]);
 }
 
 // ===================================================================
@@ -6642,7 +6572,7 @@ void MoveRes::InternalSwap(MoveRes* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata MoveRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Message2Clients_2eproto_getter, &descriptor_table_Message2Clients_2eproto_once,
-      file_level_metadata_Message2Clients_2eproto[14]);
+      file_level_metadata_Message2Clients_2eproto[15]);
 }
 
 // ===================================================================
@@ -6853,7 +6783,7 @@ void CreatCharacterRes::InternalSwap(CreatCharacterRes* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata CreatCharacterRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Message2Clients_2eproto_getter, &descriptor_table_Message2Clients_2eproto_once,
-      file_level_metadata_Message2Clients_2eproto[15]);
+      file_level_metadata_Message2Clients_2eproto[16]);
 }
 
 // ===================================================================
@@ -7031,7 +6961,7 @@ void BoolRes::InternalSwap(BoolRes* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata BoolRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Message2Clients_2eproto_getter, &descriptor_table_Message2Clients_2eproto_once,
-      file_level_metadata_Message2Clients_2eproto[16]);
+      file_level_metadata_Message2Clients_2eproto[17]);
 }
 
 // ===================================================================
@@ -7216,7 +7146,7 @@ void CharacterInfoRes::InternalSwap(CharacterInfoRes* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata CharacterInfoRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Message2Clients_2eproto_getter, &descriptor_table_Message2Clients_2eproto_once,
-      file_level_metadata_Message2Clients_2eproto[17]);
+      file_level_metadata_Message2Clients_2eproto[18]);
 }
 
 // ===================================================================
@@ -7394,7 +7324,7 @@ void EcoRes::InternalSwap(EcoRes* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata EcoRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Message2Clients_2eproto_getter, &descriptor_table_Message2Clients_2eproto_once,
-      file_level_metadata_Message2Clients_2eproto[18]);
+      file_level_metadata_Message2Clients_2eproto[19]);
 }
 
 // ===================================================================
@@ -7740,7 +7670,7 @@ void MessageOfNews::InternalSwap(MessageOfNews* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata MessageOfNews::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Message2Clients_2eproto_getter, &descriptor_table_Message2Clients_2eproto_once,
-      file_level_metadata_Message2Clients_2eproto[19]);
+      file_level_metadata_Message2Clients_2eproto[20]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -7777,6 +7707,10 @@ Arena::CreateMaybeMessage< ::protobuf::MessageOfEconomyResource >(Arena* arena) 
 template<> PROTOBUF_NOINLINE ::protobuf::MessageOfAdditionResource*
 Arena::CreateMaybeMessage< ::protobuf::MessageOfAdditionResource >(Arena* arena) {
   return Arena::CreateMessageInternal< ::protobuf::MessageOfAdditionResource >(arena);
+}
+template<> PROTOBUF_NOINLINE ::protobuf::MessageOfConstruction*
+Arena::CreateMaybeMessage< ::protobuf::MessageOfConstruction >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::protobuf::MessageOfConstruction >(arena);
 }
 template<> PROTOBUF_NOINLINE ::protobuf::MessageOfMap_Row*
 Arena::CreateMaybeMessage< ::protobuf::MessageOfMap_Row >(Arena* arena) {

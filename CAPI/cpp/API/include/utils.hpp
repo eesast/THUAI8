@@ -615,7 +615,6 @@ namespace THUAI8Proto
         attackMsg.set_attacked_character_id(attacked_team_id);
         return attackMsg;
     }
-<<<<<<< HEAD
 
     inline protobuf::AttackConstructionMsg THUAI82ProtobufAttackConstructionMsg(int64_t team_id, int64_t player_id)
     {
@@ -633,8 +632,6 @@ namespace THUAI8Proto
         return attackAdditionResourceMsg;
     }
 
-=======
->>>>>>> 1defd9636d5a53cca09ed2daa86345c8ce20f1ce
 }  // namespace THUAI8Proto
 
 namespace Time

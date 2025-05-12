@@ -115,11 +115,8 @@ private:
     bool Move(int64_t moveTimeInMilliseconds, double angle);
     bool Skill_Attack(int64_t playerID, int64_t teamID, double angleInRadian);
     bool Common_Attack(int64_t playerID, int64_t teamID, int64_t ATKplayerID, int64_t ATKteamID);
-<<<<<<< HEAD
     bool AttackConstruction(int64_t teamID, int64_t playerID);
     bool AttackAdditionResource(int64_t teamID, int64_t playerID);
-=======
->>>>>>> 1defd9636d5a53cca09ed2daa86345c8ce20f1ce
     bool Recover(int64_t recover);
     bool Produce(int64_t playerID, int64_t teamID);
     // bool Rebuild(THUAI8::ConstructionType constructionType);
