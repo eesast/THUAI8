@@ -580,6 +580,15 @@ class THUAI82Proto:
         return attackMsg
 
     @staticmethod
+    def THUAI82ProtobufAttackConstructionMsg(
+        character_id: int, team_id: int
+    ) -> Message2Server.AttackConstructionMsg:
+        attackConstructionMsg = Message2Server.AttackConstructionMsg()
+        attackConstructionMsg.character_id = character_id
+        attackConstructionMsg.team_id = team_id
+        return attackConstructionMsg
+
+    @staticmethod
     def THUAI82ProtobufRecoverMsg(
         character_id: int, team_id: int, recover: int
     ) -> Message2Server.RecoverMsg:

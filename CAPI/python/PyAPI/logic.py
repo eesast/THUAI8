@@ -220,6 +220,10 @@ class Logic(ILogic):
         self.__logger.debug("Called SkillAttack")
         return self.__comm.Skill_Attack(playerID, teamID, angle)
 
+    def AttackConstruction(self, playerID, teamID):
+        self.__logger.debug("Called AttackConstruction")
+        return self.__comm.AttackConstruction(playerID, teamID)
+
     def Recover(self, recover: int) -> bool:
         self.__logger.debug("Called Recover")
         return self.__comm.Recover(self.__playerID, self.__teamID, recover)

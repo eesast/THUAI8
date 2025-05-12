@@ -242,6 +242,12 @@ def Common_Attack(self, ATKplayerID: int) -> Future[bool]
   - `ATKplayerID`: 目标玩家ID
 - **返回值**: `Future[bool]`，表示普通攻击指令是否成功发送
 
+#### AttackConstruction
+```python
+def AttackConstruction(self) -> Future[bool]
+```
+- **返回值**: `Future[bool]`，表示攻击附近建筑指令是否成功发送
+
 ### 资源操作
 
 #### Produce

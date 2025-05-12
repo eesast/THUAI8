@@ -133,6 +133,9 @@ class CharacterAPI(ICharacterAPI, IGameTimer):
             attackedPlayerID,
         )
 
+    def AttackConstruction(self):
+        return self.__pool.submit(self.__logic.AttackConstruction)
+
     def Recover(self, recover: int) -> Future[bool]:
         return self.__pool.submit(self.__logic.Recover, recover)
 

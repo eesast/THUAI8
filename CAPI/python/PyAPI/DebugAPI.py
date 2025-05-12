@@ -142,6 +142,19 @@ class CharacterDebugAPI(ICharacterAPI, IGameTimer):
 
         return self.__pool.submit(logCommonAttack)
 
+    def AttackConstruction(self) -> Future[bool]:
+        self.__logger.info(f"AttackConstruction: called at {self.__GetTime()}ms")
+
+        def logAttackConstruction() -> bool:
+            result = self.__logic.AttackConstruction(self.__playerID, self.__teamID)
+            if not result:
+                self.__logger.warning(
+                    f"AttackConstruction failed at {self.__GetTime()}ms"
+                )
+            return result
+
+        return self.__pool.submit(logAttackConstruction)
+
     def Recover(self, recover: int) -> Future[bool]:
         self.__logger.info(f"Recover: {recover}, called at {self.__GetTime()}ms")
 
