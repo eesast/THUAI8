@@ -287,6 +287,7 @@ bool Communication::Skill_Attack(int64_t playerID, int64_t teamID, double angle)
         return false;
 }
 
+<<<<<<< HEAD
 bool Communication::AttackConstruction(int64_t teamID, int64_t playerID)
 {
     {
@@ -323,6 +324,8 @@ bool Communication::AttackAdditionResource(int64_t teamID, int64_t playerID)
         return false;
 }
 
+=======
+>>>>>>> 1defd9636d5a53cca09ed2daa86345c8ce20f1ce
 bool Communication::TryConnection(int32_t playerID, int32_t teamID)
 {
     protobuf::BoolRes reply;

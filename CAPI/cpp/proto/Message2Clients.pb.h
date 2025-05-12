@@ -70,9 +70,6 @@ extern MessageOfBarracksDefaultTypeInternal _MessageOfBarracks_default_instance_
 class MessageOfCharacter;
 struct MessageOfCharacterDefaultTypeInternal;
 extern MessageOfCharacterDefaultTypeInternal _MessageOfCharacter_default_instance_;
-class MessageOfConstruction;
-struct MessageOfConstructionDefaultTypeInternal;
-extern MessageOfConstructionDefaultTypeInternal _MessageOfConstruction_default_instance_;
 class MessageOfEconomyResource;
 struct MessageOfEconomyResourceDefaultTypeInternal;
 extern MessageOfEconomyResourceDefaultTypeInternal _MessageOfEconomyResource_default_instance_;
@@ -119,7 +116,6 @@ template<> ::protobuf::MessageOfAdditionResource* Arena::CreateMaybeMessage<::pr
 template<> ::protobuf::MessageOfAll* Arena::CreateMaybeMessage<::protobuf::MessageOfAll>(Arena*);
 template<> ::protobuf::MessageOfBarracks* Arena::CreateMaybeMessage<::protobuf::MessageOfBarracks>(Arena*);
 template<> ::protobuf::MessageOfCharacter* Arena::CreateMaybeMessage<::protobuf::MessageOfCharacter>(Arena*);
-template<> ::protobuf::MessageOfConstruction* Arena::CreateMaybeMessage<::protobuf::MessageOfConstruction>(Arena*);
 template<> ::protobuf::MessageOfEconomyResource* Arena::CreateMaybeMessage<::protobuf::MessageOfEconomyResource>(Arena*);
 template<> ::protobuf::MessageOfFarm* Arena::CreateMaybeMessage<::protobuf::MessageOfFarm>(Arena*);
 template<> ::protobuf::MessageOfMap* Arena::CreateMaybeMessage<::protobuf::MessageOfMap>(Arena*);
@@ -2047,6 +2043,7 @@ class MessageOfAdditionResource final :
 };
 // -------------------------------------------------------------------
 
+<<<<<<< HEAD
 class MessageOfConstruction final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protobuf.MessageOfConstruction) */ {
  public:
@@ -2239,6 +2236,8 @@ class MessageOfConstruction final :
 };
 // -------------------------------------------------------------------
 
+=======
+>>>>>>> 1defd9636d5a53cca09ed2daa86345c8ce20f1ce
 class MessageOfMap_Row final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protobuf.MessageOfMap.Row) */ {
  public:
@@ -2287,7 +2286,7 @@ class MessageOfMap_Row final :
                &_MessageOfMap_Row_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    8;
 
   friend void swap(MessageOfMap_Row& a, MessageOfMap_Row& b) {
     a.Swap(&b);
@@ -2444,7 +2443,7 @@ class MessageOfMap final :
                &_MessageOfMap_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    9;
 
   friend void swap(MessageOfMap& a, MessageOfMap& b) {
     a.Swap(&b);
@@ -2625,7 +2624,7 @@ class MessageOfTeam final :
                &_MessageOfTeam_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    10;
 
   friend void swap(MessageOfTeam& a, MessageOfTeam& b) {
     a.Swap(&b);
@@ -2820,7 +2819,7 @@ class MessageOfObj final :
                &_MessageOfObj_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    11;
 
   friend void swap(MessageOfObj& a, MessageOfObj& b) {
     a.Swap(&b);
@@ -3178,7 +3177,7 @@ class MessageOfAll final :
                &_MessageOfAll_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    12;
 
   friend void swap(MessageOfAll& a, MessageOfAll& b) {
     a.Swap(&b);
@@ -3392,7 +3391,7 @@ class MessageToClient final :
                &_MessageToClient_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    13;
 
   friend void swap(MessageToClient& a, MessageToClient& b) {
     a.Swap(&b);
@@ -3580,7 +3579,7 @@ class MoveRes final :
                &_MoveRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    14;
 
   friend void swap(MoveRes& a, MoveRes& b) {
     a.Swap(&b);
@@ -3750,7 +3749,7 @@ class CreatCharacterRes final :
                &_CreatCharacterRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    15;
 
   friend void swap(CreatCharacterRes& a, CreatCharacterRes& b) {
     a.Swap(&b);
@@ -3909,7 +3908,7 @@ class BoolRes final :
                &_BoolRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    16;
 
   friend void swap(BoolRes& a, BoolRes& b) {
     a.Swap(&b);
@@ -4057,7 +4056,7 @@ class CharacterInfoRes final :
                &_CharacterInfoRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    17;
 
   friend void swap(CharacterInfoRes& a, CharacterInfoRes& b) {
     a.Swap(&b);
@@ -4214,7 +4213,7 @@ class EcoRes final :
                &_EcoRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    18;
 
   friend void swap(EcoRes& a, EcoRes& b) {
     a.Swap(&b);
@@ -4368,7 +4367,7 @@ class MessageOfNews final :
                &_MessageOfNews_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    19;
 
   friend void swap(MessageOfNews& a, MessageOfNews& b) {
     a.Swap(&b);
@@ -6062,6 +6061,7 @@ inline void MessageOfAdditionResource::set_id(int32_t value) {
 
 // -------------------------------------------------------------------
 
+<<<<<<< HEAD
 // MessageOfConstruction
 
 // .protobuf.ConstructionType construction_type = 1;
@@ -6166,6 +6166,8 @@ inline void MessageOfConstruction::set_team_id(int64_t value) {
 
 // -------------------------------------------------------------------
 
+=======
+>>>>>>> 1defd9636d5a53cca09ed2daa86345c8ce20f1ce
 // MessageOfMap_Row
 
 // repeated .protobuf.PlaceType cols = 1;
@@ -7860,8 +7862,6 @@ inline MessageOfNews::NewsCase MessageOfNews::news_case() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

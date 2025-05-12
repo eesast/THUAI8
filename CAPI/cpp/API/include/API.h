@@ -44,9 +44,9 @@ public:
     [[nodiscard]] virtual std::shared_ptr<const THUAI8::GameInfo> GetGameInfo() const = 0;
     [[nodiscard]] virtual std::vector<int64_t> GetPlayerGUIDs() const = 0;
     [[nodiscard]] virtual THUAI8::PlaceType GetPlaceType(int32_t cellX, int32_t cellY) const = 0;
-    [[nodiscard]] virtual std::optional<THUAI8::EconomyResource> GetEconomyResourceState(int32_t cellX, int32_t cellY) const = 0;
-    [[nodiscard]] virtual std::optional<THUAI8::AdditionResource> GetAdditionResourceState(int32_t cellX, int32_t cellY) const = 0;
-    [[nodiscard]] virtual std::optional<THUAI8::ConstructionState> GetConstructionState(int32_t cellX, int32_t cellY) const = 0;
+    [[nodiscard]] virtual std::optional<THUAI8::EconomyResourceState> GetEnconomyResourceState(int32_t cellX, int32_t cellY) const = 0;
+    [[nodiscard]] virtual std::optional<std::pair<int32_t, int32_t>> GetAdditionResourceState(int32_t cellX, int32_t cellY) const = 0;
+    //[[nodiscard]] virtual std::optional<THUAI8::ConstructionState> GetConstructionState(int32_t cellX, int32_t cellY) const = 0;
     [[nodiscard]] virtual int32_t GetEnergy() const = 0;
     [[nodiscard]] virtual int32_t GetScore() const = 0;
 
@@ -67,7 +67,6 @@ public:
     virtual bool Skill_Attack(int64_t playerID, int64_t teamID, double angle) = 0;
     virtual bool Common_Attack(int64_t teamID, int64_t PlayerID, int64_t attackedTeamID, int64_t attackedPlayerID) = 0;
     virtual bool AttackConstruction(int64_t teamID, int64_t playerID) = 0;
-    virtual bool AttackAdditionResource(int64_t teamID, int64_t playerID) = 0;
     [[nodiscard]] virtual bool HaveView(int32_t x, int32_t y, int32_t newX, int32_t newY, int32_t viewRange, std::vector<std::vector<THUAI8::PlaceType>>& map) const = 0;
 
     // Team使用的部分
@@ -97,9 +96,9 @@ public:
     [[nodiscard]] virtual std::vector<std::vector<THUAI8::PlaceType>> GetFullMap() const = 0;
     [[nodiscard]] virtual std::shared_ptr<const THUAI8::GameInfo> GetGameInfo() const = 0;
     [[nodiscard]] virtual THUAI8::PlaceType GetPlaceType(int32_t cellX, int32_t cellY) const = 0;
-    [[nodiscard]] virtual std::optional<THUAI8::EconomyResource> GetEconomyResourceState(int32_t cellX, int32_t cellY) const = 0;
-    [[nodiscard]] virtual std::optional<THUAI8::AdditionResource> GetAdditionResourceState(int32_t cellX, int32_t cellY) const = 0;
-    [[nodiscard]] virtual std::optional<THUAI8::ConstructionState> GetConstructionState(int32_t cellX, int32_t cellY) const = 0;
+    [[nodiscard]] virtual std::optional<THUAI8::EconomyResourceState> GetEnconomyResourceState(int32_t cellX, int32_t cellY) const = 0;
+    [[nodiscard]] virtual std::optional<std::pair<int32_t, int32_t>> GetAdditionResourceState(int32_t cellX, int32_t cellY) const = 0;
+    //[[nodiscard]] virtual std::optional<THUAI8::ConstructionState> GetConstructionState(int32_t cellX, int32_t cellY) const = 0;
     [[nodiscard]] virtual std::vector<int64_t> GetPlayerGUIDs() const = 0;
     [[nodiscard]] virtual int32_t GetEnergy() const = 0;
     [[nodiscard]] virtual int32_t GetScore() const = 0;
@@ -138,7 +137,6 @@ public:
     virtual std::future<bool> Skill_Attack(double angle) = 0;
     virtual std::future<bool> Common_Attack(int64_t attackedPlayerID) = 0;
     virtual std::future<bool> AttackConstruction(int64_t teamID, int64_t playerID) = 0;
-    virtual std::future<bool> AttackAdditionResource(int64_t teamID, int64_t playerID) = 0;
     virtual std::future<bool> Recover(int64_t recover) = 0;
     virtual std::future<bool> Produce(int64_t playerID, int64_t teamID) = 0;
     // virtual std::future<bool> Rebuild(THUAI8::ConstructionType constructionType) = 0;
@@ -197,8 +195,6 @@ public:
     std::future<bool> Skill_Attack(double angle) override;
     std::future<bool> Common_Attack(int64_t attackedPlayerID) override;
     std::future<bool> AttackConstruction(int64_t teamID, int64_t playerID) override;
-    std::future<bool> AttackAdditionResource(int64_t teamID, int64_t playerID) override;
-    
     std::future<bool> Recover(int64_t recover) override;
     std::future<bool> Produce(int64_t playerID, int64_t teamID) override;
     // std::future<bool> Rebuild(THUAI8::ConstructionType constructionType) override;
@@ -209,9 +205,9 @@ public:
     [[nodiscard]] std::vector<std::vector<THUAI8::PlaceType>> GetFullMap() const override;
     [[nodiscard]] std::shared_ptr<const THUAI8::GameInfo> GetGameInfo() const override;
     [[nodiscard]] THUAI8::PlaceType GetPlaceType(int32_t cellX, int32_t cellY) const override;
-    [[nodiscard]] std::optional<THUAI8::EconomyResource> GetEconomyResourceState(int32_t cellX, int32_t cellY) const override;
-    [[nodiscard]] std::optional<THUAI8::AdditionResource> GetAdditionResourceState(int32_t cellX, int32_t cellY) const override;
-    [[nodiscard]] std::optional<THUAI8::ConstructionState> GetConstructionState(int32_t cellX, int32_t cellY) const override;
+    [[nodiscard]] std::optional<THUAI8::EconomyResourceState> GetEnconomyResourceState(int32_t cellX, int32_t cellY) const override;
+    [[nodiscard]] std::optional<std::pair<int32_t, int32_t>> GetAdditionResourceState(int32_t cellX, int32_t cellY) const override;
+    //[[nodiscard]] std::optional<THUAI8::ConstructionState> GetConstructionState(int32_t cellX, int32_t cellY) const override;
     [[nodiscard]] std::vector<int64_t> GetPlayerGUIDs() const override;
     [[nodiscard]] int32_t GetEnergy() const override;
     [[nodiscard]] int32_t GetScore() const override;
@@ -263,9 +259,9 @@ public:
     [[nodiscard]] std::vector<std::vector<THUAI8::PlaceType>> GetFullMap() const override;
     [[nodiscard]] std::shared_ptr<const THUAI8::GameInfo> GetGameInfo() const override;
     [[nodiscard]] THUAI8::PlaceType GetPlaceType(int32_t cellX, int32_t cellY) const override;
-    [[nodiscard]] std::optional<THUAI8::EconomyResource> GetEconomyResourceState(int32_t cellX, int32_t cellY) const override;
-    [[nodiscard]] std::optional<THUAI8::AdditionResource> GetAdditionResourceState(int32_t cellX, int32_t cellY) const override;
-    [[nodiscard]] std::optional<THUAI8::ConstructionState> GetConstructionState(int32_t cellX, int32_t cellY) const override;
+    [[nodiscard]] std::optional<THUAI8::EconomyResourceState> GetEnconomyResourceState(int32_t cellX, int32_t cellY) const override;
+    [[nodiscard]] std::optional<std::pair<int32_t, int32_t>> GetAdditionResourceState(int32_t cellX, int32_t cellY) const override;
+    //[[nodiscard]] std::optional<THUAI8::ConstructionState> GetConstructionState(int32_t cellX, int32_t cellY) const override;
     [[nodiscard]] std::vector<int64_t> GetPlayerGUIDs() const override;
     [[nodiscard]] int32_t GetEnergy() const override;
     [[nodiscard]] int32_t GetScore() const override;
@@ -313,7 +309,6 @@ public:
     std::future<bool> Skill_Attack(double angle) override;
     std::future<bool> Common_Attack(int64_t attackedPlayerID) override;
     std::future<bool> AttackConstruction(int64_t teamID, int64_t playerID) override;
-    std::future<bool> AttackAdditionResource(int64_t teamID, int64_t playerID) override;
     std::future<bool> Recover(int64_t recover) override;
     std::future<bool> Produce(int64_t playerID, int64_t teamID);
     // std::future<bool> Rebuild(THUAI8::ConstructionType constructionType) override;
@@ -324,9 +319,9 @@ public:
     [[nodiscard]] std::vector<std::vector<THUAI8::PlaceType>> GetFullMap() const override;
     [[nodiscard]] std::shared_ptr<const THUAI8::GameInfo> GetGameInfo() const override;
     [[nodiscard]] THUAI8::PlaceType GetPlaceType(int32_t cellX, int32_t cellY) const override;
-    [[nodiscard]] std::optional<THUAI8::EconomyResource> GetEconomyResourceState(int32_t cellX, int32_t cellY) const override;
-    [[nodiscard]] std::optional<THUAI8::AdditionResource> GetAdditionResourceState(int32_t cellX, int32_t cellY) const override;
-    [[nodiscard]] std::optional<THUAI8::ConstructionState> GetConstructionState(int32_t cellX, int32_t cellY) const override;
+    [[nodiscard]] std::optional<THUAI8::EconomyResourceState> GetEnconomyResourceState(int32_t cellX, int32_t cellY) const override;
+    [[nodiscard]] std::optional<std::pair<int32_t, int32_t>> GetAdditionResourceState(int32_t cellX, int32_t cellY) const override;
+    //[[nodiscard]] std::optional<THUAI8::ConstructionState> GetConstructionState(int32_t cellX, int32_t cellY) const override;
     [[nodiscard]] std::vector<int64_t> GetPlayerGUIDs() const override;
     [[nodiscard]] int32_t GetEnergy() const override;
     [[nodiscard]] int32_t GetScore() const override;
@@ -368,9 +363,9 @@ public:
     [[nodiscard]] std::vector<std::vector<THUAI8::PlaceType>> GetFullMap() const override;
     [[nodiscard]] std::shared_ptr<const THUAI8::GameInfo> GetGameInfo() const override;
     [[nodiscard]] THUAI8::PlaceType GetPlaceType(int32_t cellX, int32_t cellY) const override;
-    [[nodiscard]] std::optional<THUAI8::EconomyResource> GetEconomyResourceState(int32_t cellX, int32_t cellY) const override;
-    [[nodiscard]] std::optional<THUAI8::AdditionResource> GetAdditionResourceState(int32_t cellX, int32_t cellY) const override;
-    [[nodiscard]] std::optional<THUAI8::ConstructionState> GetConstructionState(int32_t cellX, int32_t cellY) const override;
+    [[nodiscard]] std::optional<THUAI8::EconomyResourceState> GetEnconomyResourceState(int32_t cellX, int32_t cellY) const override;
+    [[nodiscard]] std::optional<std::pair<int32_t, int32_t>> GetAdditionResourceState(int32_t cellX, int32_t cellY) const override;
+    //[[nodiscard]] std::optional<THUAI8::ConstructionState> GetConstructionState(int32_t cellX, int32_t cellY) const override;
     [[nodiscard]] std::vector<int64_t> GetPlayerGUIDs() const override;
     [[nodiscard]] int32_t GetEnergy() const override;
     [[nodiscard]] int32_t GetScore() const override;

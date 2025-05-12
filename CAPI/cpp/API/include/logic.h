@@ -98,9 +98,8 @@ private:
     [[nodiscard]] std::shared_ptr<const THUAI8::GameInfo> GetGameInfo() const;
     [[nodiscard]] std::vector<int64_t> GetPlayerGUIDs() const;
     [[nodiscard]] THUAI8::PlaceType GetPlaceType(int32_t cellX, int32_t cellY) const;
-    [[nodiscard]] std::optional<THUAI8::EconomyResource> GetEconomyResourceState(int32_t cellX, int32_t cellY) const;
-    [[nodiscard]] std::optional<THUAI8::AdditionResource> GetAdditionResourceState(int32_t cellX, int32_t cellY) const;
-    [[nodiscard]] std::optional<THUAI8::ConstructionState> GetConstructionState(int32_t cellX, int32_t cellY) const;
+    [[nodiscard]] std::optional<THUAI8::EconomyResourceState> GetEnconomyResourceState(int32_t cellX, int32_t cellY) const;
+    [[nodiscard]] std::optional<std::pair<int32_t, int32_t>> GetAdditionResourceState(int32_t cellX, int32_t cellY) const;
     [[nodiscard]] int32_t GetEnergy() const;
     [[nodiscard]] int32_t GetScore() const;
 
@@ -116,8 +115,11 @@ private:
     bool Move(int64_t moveTimeInMilliseconds, double angle);
     bool Skill_Attack(int64_t playerID, int64_t teamID, double angleInRadian);
     bool Common_Attack(int64_t playerID, int64_t teamID, int64_t ATKplayerID, int64_t ATKteamID);
+<<<<<<< HEAD
     bool AttackConstruction(int64_t teamID, int64_t playerID);
     bool AttackAdditionResource(int64_t teamID, int64_t playerID);
+=======
+>>>>>>> 1defd9636d5a53cca09ed2daa86345c8ce20f1ce
     bool Recover(int64_t recover);
     bool Produce(int64_t playerID, int64_t teamID);
     // bool Rebuild(THUAI8::ConstructionType constructionType);

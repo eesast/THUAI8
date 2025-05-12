@@ -84,36 +84,24 @@ THUAI8::PlaceType Logic::GetPlaceType(int32_t cellX, int32_t cellY) const
     return currentState->gameMap[cellX][cellY];
 }
 
-std::optional<THUAI8::EconomyResource> Logic::GetEconomyResourceState(int32_t cellX, int32_t cellY) const
+std::optional<THUAI8::EconomyResourceState> Logic::GetEnconomyResourceState(int32_t cellX, int32_t cellY) const
 {
     std::unique_lock<std::mutex> lock(mtxState);
     logger->debug("Called GetEconomyResourceState");
-
     auto pos = THUAI8::cellxy_t(cellX, cellY);
     auto it = currentState->mapInfo->economyResource.find(pos);
-
     if (it != currentState->mapInfo->economyResource.end())
     {
-        return std::make_optional<THUAI8::EconomyResource>(
-            it->second.id,
-            it->second.process,
-            it->second.economyResourceType
-        );
+        return THUAI8::EconomyResourceState(currentState->mapInfo->economyResource[pos]);
     }
     else
     {
-        logger->warn("EconomyResource not found at ({}, {})", cellX, cellY);
-        // 返回一个默认值
-        return std::make_optional<THUAI8::EconomyResource>(
-            0,                                                    // 默认 ID
-            0,                                                    // 默认进度
-            THUAI8::EconomyResourceType::NullEconomyResourceType  // 默认类型
-        );
+        logger->warn("EconomyResource not found");
+        return std::nullopt;
     }
 }
 
-
-std::optional<THUAI8::AdditionResource> Logic::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
+std::optional<std::pair<int32_t, int32_t>> Logic::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
 {
     std::unique_lock<std::mutex> lock(mtxState);
     logger->debug("Called GetAdditionResourceState");
@@ -121,21 +109,16 @@ std::optional<THUAI8::AdditionResource> Logic::GetAdditionResourceState(int32_t 
     auto it = currentState->mapInfo->additionResource.find(pos);
     if (it != currentState->mapInfo->additionResource.end())
     {
-        return std::make_optional<THUAI8::AdditionResource>(currentState->mapInfo->additionResource[pos].id, currentState->mapInfo->additionResource[pos].hp, currentState->mapInfo->additionResource[pos].additionResourceType);
+        return it->second;  // 直接返回存储的pair<int64_t, int32_t>
     }
-
     else
     {
-        logger->warn("AdditionResource not found at ({}, {})", cellX, cellY);
-        return std::make_optional<THUAI8::AdditionResource>(
-            0,                                                    // 默认 ID
-            0,                                                    // 默认进度
-            THUAI8::AdditionResourceType::NullAdditionResourceType  // 默认类型
-        );
+        logger->warn("AdditionResource not found");
+        return std::nullopt;
     }
 }
 
-std::optional<THUAI8::ConstructionState> Logic::GetConstructionState(int32_t cellX, int32_t cellY) const
+/* std::optional<THUAI8::ConstructionState> Logic::GetConstructionState(int32_t cellX, int32_t cellY) const
 {
     std::unique_lock<std::mutex> lock(mtxState);
     logger->debug("Called GetConstructionState");
@@ -145,22 +128,19 @@ std::optional<THUAI8::ConstructionState> Logic::GetConstructionState(int32_t cel
     auto it3 = currentState->mapInfo->farmState.find(pos);
     if (it != currentState->mapInfo->barracksState.end())
     {
-        return std::make_optional<THUAI8::ConstructionState>(currentState->mapInfo->barracksState[pos].first, currentState->mapInfo->barracksState[pos].second, THUAI8::ConstructionType::Barracks);
+        return std::make_optional<THUAI8::ConstructionState>(currentState->mapInfo->barracksState[pos], THUAI8::ConstructionType::Barracks);
     }
     else if (it2 != currentState->mapInfo->springState.end())
-        return std::make_optional<THUAI8::ConstructionState>(currentState->mapInfo->springState[pos].first, currentState->mapInfo->springState[pos].second, THUAI8::ConstructionType::Spring);
+        return std::make_optional<THUAI8::ConstructionState>(currentState->mapInfo->springState[pos], THUAI8::ConstructionType::Spring);
     else if (it3 != currentState->mapInfo->farmState.end())
-        return std::make_optional<THUAI8::ConstructionState>(currentState->mapInfo->farmState[pos].first, currentState->mapInfo->farmState[pos].second, THUAI8::ConstructionType::Farm);
+        return std::make_optional<THUAI8::ConstructionState>(currentState->mapInfo->farmState[pos], THUAI8::ConstructionType::Farm);
     else
+           
         {
-            logger->warn("Construction not found at ({}, {})", cellX, cellY);
-            return std::make_optional<THUAI8::ConstructionState>(
-                0,                                                      // 默认 ID
-                0,                                                      // 默认进度
-                THUAI8::ConstructionType::NullConstructionType  // 默认类型
-            );
+            logger->warn("Construction not found");
+            return std::nullopt;
         }
-}
+}*/
 
 int32_t Logic::GetEnergy() const
 {
@@ -602,24 +582,17 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
                         bufferState->mapInfo->economyResource.emplace(
                             std::piecewise_construct,
                             std::forward_as_tuple(pos.first, pos.second),  // 构造键 cellxy_t{pos.first, pos.second}
-                            std::forward_as_tuple(
-                                static_cast<int32_t>(item.economy_resource_message().id()),
-                                static_cast<int32_t>(item.economy_resource_message().process()),
-                                Proto2THUAI8::economyResourceTypeDict.at(item.economy_resource_message().economy_resource_type())
-                            )
+                            std::forward_as_tuple(item.economy_resource_message().process())
                         );
                         logger->debug("Load EconomyResource!");
                     }
                     else
                     {
-                        bufferState->mapInfo->economyResource[pos].id = item.economy_resource_message().id();
-                        bufferState->mapInfo->economyResource[pos].process = item.economy_resource_message().process();
-                        bufferState->mapInfo->economyResource[pos].economyResourceType = Proto2THUAI8::economyResourceTypeDict.at(item.economy_resource_message().economy_resource_type());
+                        bufferState->mapInfo->economyResource[pos] = item.economy_resource_message().process();
                         logger->debug("Update EconomyResource!");
                     }
                     break;
                 }
-           
             case THUAI8::MessageOfObj::AdditionResourceMessage:
                 {
                     auto pos = THUAI8::cellxy_t(
@@ -634,23 +607,20 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
                             std::piecewise_construct,
                             std::forward_as_tuple(pos.first, pos.second),
                             std::forward_as_tuple(
-                                static_cast<int32_t>(item.addition_resource_message().id()),
                                 static_cast<int32_t>(item.addition_resource_message().hp()),
-                                Proto2THUAI8::additionResourceTypeDict.at(item.addition_resource_message().addition_resource_type())
+                                static_cast<int32_t>(item.addition_resource_message().addition_resource_type())  // 枚举转 int
                             )
                         );
                         logger->debug("Load AdditionResource!");
                     }
                     else
                     {
-                        bufferState->mapInfo->additionResource[pos].id = item.addition_resource_message().id();
-                        bufferState->mapInfo->additionResource[pos].hp = item.addition_resource_message().hp();
-                        bufferState->mapInfo->additionResource[pos].additionResourceType = Proto2THUAI8::additionResourceTypeDict.at(item.addition_resource_message().addition_resource_type());
+                        bufferState->mapInfo->additionResource[pos].first = item.addition_resource_message().hp();
+                        bufferState->mapInfo->additionResource[pos].second = item.addition_resource_message().addition_resource_type();
                         logger->debug("Update AdditionResource!");
                     }
                     break;
                 }
-            
             case THUAI8::MessageOfObj::NewsMessage:
                 {
                     auto& news = item.news_message();
@@ -866,25 +836,18 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
                         // bufferState->mapInfo->economyResource.emplace(pos, item.economy_resource_message().process());
                         bufferState->mapInfo->economyResource.emplace(
                             std::piecewise_construct,
-                            std::forward_as_tuple(pos.first, pos.second),  // 构造键 cellxy_t{pos.first, pos.second}
-                            std::forward_as_tuple(
-                                static_cast<int32_t>(item.economy_resource_message().id()),
-                                static_cast<int32_t>(item.economy_resource_message().process()),
-                                Proto2THUAI8::economyResourceTypeDict.at(item.economy_resource_message().economy_resource_type())
-                            )
+                            std::forward_as_tuple(pos.first, pos.second),                     // 构造键 cellxy_t{pos.first, pos.second}
+                            std::forward_as_tuple(item.economy_resource_message().process())  // 构造值 {team_id}
                         );
                         logger->debug("Load EconomyResource!");
                     }
                     else
                     {
-                        bufferState->mapInfo->economyResource[pos].id = item.economy_resource_message().id();
-                        bufferState->mapInfo->economyResource[pos].process = item.economy_resource_message().process();
-                        bufferState->mapInfo->economyResource[pos].economyResourceType = Proto2THUAI8::economyResourceTypeDict.at(item.economy_resource_message().economy_resource_type());
+                        bufferState->mapInfo->economyResource[pos] = item.economy_resource_message().process();
                         logger->debug("Update EconomyResource!");
                     }
                     break;
                 }
-
             case THUAI8::MessageOfObj::AdditionResourceMessage:
                 {
                     auto pos = THUAI8::cellxy_t(
@@ -899,18 +862,16 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
                             std::piecewise_construct,
                             std::forward_as_tuple(pos.first, pos.second),
                             std::forward_as_tuple(
-                                static_cast<int32_t>(item.addition_resource_message().id()),
                                 static_cast<int32_t>(item.addition_resource_message().hp()),
-                                Proto2THUAI8::additionResourceTypeDict.at(item.addition_resource_message().addition_resource_type())
+                                static_cast<int32_t>(item.addition_resource_message().addition_resource_type())  // 枚举转 int
                             )
                         );
                         logger->debug("Load AdditionResource!");
                     }
                     else
                     {
-                        bufferState->mapInfo->additionResource[pos].id = item.addition_resource_message().id();
-                        bufferState->mapInfo->additionResource[pos].hp = item.addition_resource_message().hp();
-                        bufferState->mapInfo->additionResource[pos].additionResourceType = Proto2THUAI8::additionResourceTypeDict.at(item.addition_resource_message().addition_resource_type());
+                        bufferState->mapInfo->additionResource[pos].first = item.addition_resource_message().hp();
+                        bufferState->mapInfo->additionResource[pos].second = item.addition_resource_message().addition_resource_type();
                         logger->debug("Update AdditionResource!");
                     }
                     break;

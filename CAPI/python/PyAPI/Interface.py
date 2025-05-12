@@ -29,21 +29,17 @@ class ILogic(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def GetEconomyResourceState(
-        self, cellX: int, cellY: int
-    ) -> THUAI8.EconomyResourceState:
+    def GetEconomyResourceState(self, cellX: int, cellY: int) -> THUAI8.EconomyResource:
         pass
 
     @abstractmethod
     def GetAdditionResourceState(
         self, cellX: int, cellY: int
-    ) -> THUAI8.AdditionResourceState:
+    ) -> THUAI8.AdditionResource:
         pass
 
     @abstractmethod
-    def GetConstructionState(
-        self, cellX: int, cellY: int
-    ) -> THUAI8.ConstructionState | None:
+    def GetConstructionState(self, cellX: int, cellY: int) -> THUAI8.ConstructionState:
         pass
 
     @abstractmethod
@@ -250,9 +246,7 @@ class IAPI(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def GetEconomyResourceState(
-        self, cellX: int, cellY: int
-    ) -> THUAI8.EconomyResourceState:
+    def GetEconomyResourceState(self, cellX: int, cellY: int) -> THUAI8.EconomyResource:
         """获取当前经济资源状态
 
         :param cellX: X坐标, 单位Cell
@@ -264,7 +258,7 @@ class IAPI(metaclass=ABCMeta):
     @abstractmethod
     def GetAdditionResourceState(
         self, cellX: int, cellY: int
-    ) -> THUAI8.AdditionResourceState:
+    ) -> THUAI8.AdditionResource:
         """获取当前附加资源状态
 
         :param cellX: X坐标, 单位Cell
@@ -274,9 +268,7 @@ class IAPI(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def GetConstructionState(
-        self, cellX: int, cellY: int
-    ) -> THUAI8.ConstructionState | None:
+    def GetConstructionState(self, cellX: int, cellY: int) -> THUAI8.ConstructionState:
         """获取当前建筑状态
 
         :param cellX: X坐标, 单位Cell

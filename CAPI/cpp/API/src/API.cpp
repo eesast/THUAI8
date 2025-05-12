@@ -130,7 +130,7 @@ THUAI8::PlaceType TeamAPI::GetPlaceType(int32_t cellX, int32_t cellY) const
     return logic.GetPlaceType(cellX, cellY);
 }
 
-std::optional<THUAI8::ConstructionState> CharacterAPI::GetConstructionState(int32_t cellX, int32_t cellY) const
+/* std::optional<THUAI8::ConstructionState> CharacterAPI::GetConstructionState(int32_t cellX, int32_t cellY) const
 {
     return logic.GetConstructionState(cellX, cellY);
 }
@@ -138,24 +138,24 @@ std::optional<THUAI8::ConstructionState> CharacterAPI::GetConstructionState(int3
 std::optional<THUAI8::ConstructionState> TeamAPI::GetConstructionState(int32_t cellX, int32_t cellY) const
 {
     return logic.GetConstructionState(cellX, cellY);
-}
+}*/
 
-std::optional<THUAI8::EconomyResource> CharacterAPI::GetEconomyResourceState(int32_t cellX, int32_t cellY) const
+std::optional<THUAI8::EconomyResourceState> CharacterAPI::GetEnconomyResourceState(int32_t cellX, int32_t cellY) const
 {
-    return logic.GetEconomyResourceState(cellX, cellY);
+    return logic.GetEnconomyResourceState(cellX, cellY);
 }
 
-std::optional<THUAI8::EconomyResource> TeamAPI::GetEconomyResourceState(int32_t cellX, int32_t cellY) const
+std::optional<THUAI8::EconomyResourceState> TeamAPI::GetEnconomyResourceState(int32_t cellX, int32_t cellY) const
 {
-    return logic.GetEconomyResourceState(cellX, cellY);
+    return logic.GetEnconomyResourceState(cellX, cellY);
 }
 
-std::optional<THUAI8::AdditionResource> CharacterAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
+std::optional<std::pair<int32_t, int32_t>> CharacterAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
 {
     return logic.GetAdditionResourceState(cellX, cellY);
 }
 
-std::optional<THUAI8::AdditionResource> TeamAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
+std::optional<std::pair<int32_t, int32_t>> TeamAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
 {
     return logic.GetAdditionResourceState(cellX, cellY);
 }
@@ -253,6 +253,7 @@ std::future<bool> CharacterAPI::Skill_Attack(double angle)
                       { return logic.Skill_Attack(this->GetSelfInfo()->playerID, this->GetSelfInfo()->teamID, angle); });
 }
 
+<<<<<<< HEAD
 std::future <bool> CharacterAPI::AttackConstruction(int64_t teamID, int64_t playerID)
 {
     return std::async(std::launch::async, [=]()
@@ -265,6 +266,8 @@ std::future<bool> CharacterAPI::AttackAdditionResource(int64_t teamID, int64_t p
                       { return logic.AttackAdditionResource(this->GetSelfInfo()->teamID, this->GetSelfInfo()->playerID); });
 }
 
+=======
+>>>>>>> 1defd9636d5a53cca09ed2daa86345c8ce20f1ce
 std::future<bool> CharacterAPI::Recover(int64_t recover)
 {
     return std::async(std::launch::async, [=]()
