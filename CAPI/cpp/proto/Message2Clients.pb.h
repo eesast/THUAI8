@@ -70,6 +70,9 @@ extern MessageOfBarracksDefaultTypeInternal _MessageOfBarracks_default_instance_
 class MessageOfCharacter;
 struct MessageOfCharacterDefaultTypeInternal;
 extern MessageOfCharacterDefaultTypeInternal _MessageOfCharacter_default_instance_;
+class MessageOfConstruction;
+struct MessageOfConstructionDefaultTypeInternal;
+extern MessageOfConstructionDefaultTypeInternal _MessageOfConstruction_default_instance_;
 class MessageOfEconomyResource;
 struct MessageOfEconomyResourceDefaultTypeInternal;
 extern MessageOfEconomyResourceDefaultTypeInternal _MessageOfEconomyResource_default_instance_;
@@ -116,6 +119,7 @@ template<> ::protobuf::MessageOfAdditionResource* Arena::CreateMaybeMessage<::pr
 template<> ::protobuf::MessageOfAll* Arena::CreateMaybeMessage<::protobuf::MessageOfAll>(Arena*);
 template<> ::protobuf::MessageOfBarracks* Arena::CreateMaybeMessage<::protobuf::MessageOfBarracks>(Arena*);
 template<> ::protobuf::MessageOfCharacter* Arena::CreateMaybeMessage<::protobuf::MessageOfCharacter>(Arena*);
+template<> ::protobuf::MessageOfConstruction* Arena::CreateMaybeMessage<::protobuf::MessageOfConstruction>(Arena*);
 template<> ::protobuf::MessageOfEconomyResource* Arena::CreateMaybeMessage<::protobuf::MessageOfEconomyResource>(Arena*);
 template<> ::protobuf::MessageOfFarm* Arena::CreateMaybeMessage<::protobuf::MessageOfFarm>(Arena*);
 template<> ::protobuf::MessageOfMap* Arena::CreateMaybeMessage<::protobuf::MessageOfMap>(Arena*);
@@ -2043,6 +2047,198 @@ class MessageOfAdditionResource final :
 };
 // -------------------------------------------------------------------
 
+class MessageOfConstruction final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protobuf.MessageOfConstruction) */ {
+ public:
+  inline MessageOfConstruction() : MessageOfConstruction(nullptr) {}
+  ~MessageOfConstruction() override;
+  explicit PROTOBUF_CONSTEXPR MessageOfConstruction(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  MessageOfConstruction(const MessageOfConstruction& from);
+  MessageOfConstruction(MessageOfConstruction&& from) noexcept
+    : MessageOfConstruction() {
+    *this = ::std::move(from);
+  }
+
+  inline MessageOfConstruction& operator=(const MessageOfConstruction& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MessageOfConstruction& operator=(MessageOfConstruction&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MessageOfConstruction& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MessageOfConstruction* internal_default_instance() {
+    return reinterpret_cast<const MessageOfConstruction*>(
+               &_MessageOfConstruction_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  friend void swap(MessageOfConstruction& a, MessageOfConstruction& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MessageOfConstruction* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MessageOfConstruction* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MessageOfConstruction* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<MessageOfConstruction>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const MessageOfConstruction& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const MessageOfConstruction& from) {
+    MessageOfConstruction::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(MessageOfConstruction* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "protobuf.MessageOfConstruction";
+  }
+  protected:
+  explicit MessageOfConstruction(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kConstructionTypeFieldNumber = 1,
+    kXFieldNumber = 2,
+    kYFieldNumber = 3,
+    kHpFieldNumber = 4,
+    kTeamIdFieldNumber = 5,
+  };
+  // .protobuf.ConstructionType construction_type = 1;
+  void clear_construction_type();
+  ::protobuf::ConstructionType construction_type() const;
+  void set_construction_type(::protobuf::ConstructionType value);
+  private:
+  ::protobuf::ConstructionType _internal_construction_type() const;
+  void _internal_set_construction_type(::protobuf::ConstructionType value);
+  public:
+
+  // int32 x = 2;
+  void clear_x();
+  int32_t x() const;
+  void set_x(int32_t value);
+  private:
+  int32_t _internal_x() const;
+  void _internal_set_x(int32_t value);
+  public:
+
+  // int32 y = 3;
+  void clear_y();
+  int32_t y() const;
+  void set_y(int32_t value);
+  private:
+  int32_t _internal_y() const;
+  void _internal_set_y(int32_t value);
+  public:
+
+  // int32 hp = 4;
+  void clear_hp();
+  int32_t hp() const;
+  void set_hp(int32_t value);
+  private:
+  int32_t _internal_hp() const;
+  void _internal_set_hp(int32_t value);
+  public:
+
+  // int64 team_id = 5;
+  void clear_team_id();
+  int64_t team_id() const;
+  void set_team_id(int64_t value);
+  private:
+  int64_t _internal_team_id() const;
+  void _internal_set_team_id(int64_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:protobuf.MessageOfConstruction)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    int construction_type_;
+    int32_t x_;
+    int32_t y_;
+    int32_t hp_;
+    int64_t team_id_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_Message2Clients_2eproto;
+};
+// -------------------------------------------------------------------
+
 class MessageOfMap_Row final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protobuf.MessageOfMap.Row) */ {
  public:
@@ -2091,7 +2287,7 @@ class MessageOfMap_Row final :
                &_MessageOfMap_Row_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    9;
 
   friend void swap(MessageOfMap_Row& a, MessageOfMap_Row& b) {
     a.Swap(&b);
@@ -2248,7 +2444,7 @@ class MessageOfMap final :
                &_MessageOfMap_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    10;
 
   friend void swap(MessageOfMap& a, MessageOfMap& b) {
     a.Swap(&b);
@@ -2429,7 +2625,7 @@ class MessageOfTeam final :
                &_MessageOfTeam_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    11;
 
   friend void swap(MessageOfTeam& a, MessageOfTeam& b) {
     a.Swap(&b);
@@ -2624,7 +2820,7 @@ class MessageOfObj final :
                &_MessageOfObj_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    12;
 
   friend void swap(MessageOfObj& a, MessageOfObj& b) {
     a.Swap(&b);
@@ -2982,7 +3178,7 @@ class MessageOfAll final :
                &_MessageOfAll_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    13;
 
   friend void swap(MessageOfAll& a, MessageOfAll& b) {
     a.Swap(&b);
@@ -3196,7 +3392,7 @@ class MessageToClient final :
                &_MessageToClient_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    14;
 
   friend void swap(MessageToClient& a, MessageToClient& b) {
     a.Swap(&b);
@@ -3384,7 +3580,7 @@ class MoveRes final :
                &_MoveRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    15;
 
   friend void swap(MoveRes& a, MoveRes& b) {
     a.Swap(&b);
@@ -3554,7 +3750,7 @@ class CreatCharacterRes final :
                &_CreatCharacterRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    16;
 
   friend void swap(CreatCharacterRes& a, CreatCharacterRes& b) {
     a.Swap(&b);
@@ -3713,7 +3909,7 @@ class BoolRes final :
                &_BoolRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    17;
 
   friend void swap(BoolRes& a, BoolRes& b) {
     a.Swap(&b);
@@ -3861,7 +4057,7 @@ class CharacterInfoRes final :
                &_CharacterInfoRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    18;
 
   friend void swap(CharacterInfoRes& a, CharacterInfoRes& b) {
     a.Swap(&b);
@@ -4018,7 +4214,7 @@ class EcoRes final :
                &_EcoRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    19;
 
   friend void swap(EcoRes& a, EcoRes& b) {
     a.Swap(&b);
@@ -4172,7 +4368,7 @@ class MessageOfNews final :
                &_MessageOfNews_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    20;
 
   friend void swap(MessageOfNews& a, MessageOfNews& b) {
     a.Swap(&b);
@@ -5862,6 +6058,110 @@ inline void MessageOfAdditionResource::_internal_set_id(int32_t value) {
 inline void MessageOfAdditionResource::set_id(int32_t value) {
   _internal_set_id(value);
   // @@protoc_insertion_point(field_set:protobuf.MessageOfAdditionResource.id)
+}
+
+// -------------------------------------------------------------------
+
+// MessageOfConstruction
+
+// .protobuf.ConstructionType construction_type = 1;
+inline void MessageOfConstruction::clear_construction_type() {
+  _impl_.construction_type_ = 0;
+}
+inline ::protobuf::ConstructionType MessageOfConstruction::_internal_construction_type() const {
+  return static_cast< ::protobuf::ConstructionType >(_impl_.construction_type_);
+}
+inline ::protobuf::ConstructionType MessageOfConstruction::construction_type() const {
+  // @@protoc_insertion_point(field_get:protobuf.MessageOfConstruction.construction_type)
+  return _internal_construction_type();
+}
+inline void MessageOfConstruction::_internal_set_construction_type(::protobuf::ConstructionType value) {
+  
+  _impl_.construction_type_ = value;
+}
+inline void MessageOfConstruction::set_construction_type(::protobuf::ConstructionType value) {
+  _internal_set_construction_type(value);
+  // @@protoc_insertion_point(field_set:protobuf.MessageOfConstruction.construction_type)
+}
+
+// int32 x = 2;
+inline void MessageOfConstruction::clear_x() {
+  _impl_.x_ = 0;
+}
+inline int32_t MessageOfConstruction::_internal_x() const {
+  return _impl_.x_;
+}
+inline int32_t MessageOfConstruction::x() const {
+  // @@protoc_insertion_point(field_get:protobuf.MessageOfConstruction.x)
+  return _internal_x();
+}
+inline void MessageOfConstruction::_internal_set_x(int32_t value) {
+  
+  _impl_.x_ = value;
+}
+inline void MessageOfConstruction::set_x(int32_t value) {
+  _internal_set_x(value);
+  // @@protoc_insertion_point(field_set:protobuf.MessageOfConstruction.x)
+}
+
+// int32 y = 3;
+inline void MessageOfConstruction::clear_y() {
+  _impl_.y_ = 0;
+}
+inline int32_t MessageOfConstruction::_internal_y() const {
+  return _impl_.y_;
+}
+inline int32_t MessageOfConstruction::y() const {
+  // @@protoc_insertion_point(field_get:protobuf.MessageOfConstruction.y)
+  return _internal_y();
+}
+inline void MessageOfConstruction::_internal_set_y(int32_t value) {
+  
+  _impl_.y_ = value;
+}
+inline void MessageOfConstruction::set_y(int32_t value) {
+  _internal_set_y(value);
+  // @@protoc_insertion_point(field_set:protobuf.MessageOfConstruction.y)
+}
+
+// int32 hp = 4;
+inline void MessageOfConstruction::clear_hp() {
+  _impl_.hp_ = 0;
+}
+inline int32_t MessageOfConstruction::_internal_hp() const {
+  return _impl_.hp_;
+}
+inline int32_t MessageOfConstruction::hp() const {
+  // @@protoc_insertion_point(field_get:protobuf.MessageOfConstruction.hp)
+  return _internal_hp();
+}
+inline void MessageOfConstruction::_internal_set_hp(int32_t value) {
+  
+  _impl_.hp_ = value;
+}
+inline void MessageOfConstruction::set_hp(int32_t value) {
+  _internal_set_hp(value);
+  // @@protoc_insertion_point(field_set:protobuf.MessageOfConstruction.hp)
+}
+
+// int64 team_id = 5;
+inline void MessageOfConstruction::clear_team_id() {
+  _impl_.team_id_ = int64_t{0};
+}
+inline int64_t MessageOfConstruction::_internal_team_id() const {
+  return _impl_.team_id_;
+}
+inline int64_t MessageOfConstruction::team_id() const {
+  // @@protoc_insertion_point(field_get:protobuf.MessageOfConstruction.team_id)
+  return _internal_team_id();
+}
+inline void MessageOfConstruction::_internal_set_team_id(int64_t value) {
+  
+  _impl_.team_id_ = value;
+}
+inline void MessageOfConstruction::set_team_id(int64_t value) {
+  _internal_set_team_id(value);
+  // @@protoc_insertion_point(field_set:protobuf.MessageOfConstruction.team_id)
 }
 
 // -------------------------------------------------------------------
@@ -7560,6 +7860,8 @@ inline MessageOfNews::NewsCase MessageOfNews::news_case() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
