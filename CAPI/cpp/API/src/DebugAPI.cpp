@@ -159,6 +159,26 @@ std::future<bool> CharacterDebugAPI::Common_Attack(int64_t attackedPlayerID)
         return result; });
 }
 
+std::future<bool> CharacterDebugAPI::AttackConstruction(int64_t teamID, int64_t playerID)
+{
+    logger->info("AttackConstruction: teamID = {}, playerID = {}, called at {}ms", teamID, playerID, Time::TimeSinceStart(startPoint));
+    return std::async(std::launch::async, [=]()
+                      { auto result = logic.AttackConstruction(teamID, playerID);
+                        if (!result)
+                            logger->warn("AttackConstruction: failed at {}ms", Time::TimeSinceStart(startPoint));
+                        return result; });
+}
+
+std::future<bool> CharacterDebugAPI::AttackAdditionResource(int64_t teamID, int64_t playerID)
+{
+    logger->info("AttackAdditionResource: teamID = {}, playerID = {}, called at {}ms", teamID, playerID, Time::TimeSinceStart(startPoint));
+    return std::async(std::launch::async, [=]()
+                      { auto result = logic.AttackAdditionResource(teamID, playerID);
+                        if (!result)
+                            logger->warn("AttackAdditionResource: failed at {}ms", Time::TimeSinceStart(startPoint));
+                        return result; });
+}
+
 std::future<bool> CharacterDebugAPI::Recover(int64_t recover)
 {
     logger->info("Recover: recover = {}, called at {}ms", recover, Time::TimeSinceStart(startPoint));

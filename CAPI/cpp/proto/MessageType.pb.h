@@ -436,33 +436,6 @@ inline bool ConstructionType_Parse(
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<ConstructionType>(
     ConstructionType_descriptor(), name, value);
 }
-enum ConstructionState : int {
-  NULL_CONSTRUCTION_STATE = 0,
-  TEAM_ID = 1,
-  HP = 2,
-  CONSTRUCTION_TYPE = 3,
-  ConstructionState_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
-  ConstructionState_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
-};
-bool ConstructionState_IsValid(int value);
-constexpr ConstructionState ConstructionState_MIN = NULL_CONSTRUCTION_STATE;
-constexpr ConstructionState ConstructionState_MAX = CONSTRUCTION_TYPE;
-constexpr int ConstructionState_ARRAYSIZE = ConstructionState_MAX + 1;
-
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ConstructionState_descriptor();
-template<typename T>
-inline const std::string& ConstructionState_Name(T enum_t_value) {
-  static_assert(::std::is_same<T, ConstructionState>::value ||
-    ::std::is_integral<T>::value,
-    "Incorrect type passed to function ConstructionState_Name.");
-  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
-    ConstructionState_descriptor(), enum_t_value);
-}
-inline bool ConstructionState_Parse(
-    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, ConstructionState* value) {
-  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<ConstructionState>(
-    ConstructionState_descriptor(), name, value);
-}
 enum TrapType : int {
   NULL_TRAP_TYPE = 0,
   HOLE = 1,
@@ -627,11 +600,6 @@ template <> struct is_proto_enum< ::protobuf::ConstructionType> : ::std::true_ty
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::protobuf::ConstructionType>() {
   return ::protobuf::ConstructionType_descriptor();
-}
-template <> struct is_proto_enum< ::protobuf::ConstructionState> : ::std::true_type {};
-template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::protobuf::ConstructionState>() {
-  return ::protobuf::ConstructionState_descriptor();
 }
 template <> struct is_proto_enum< ::protobuf::TrapType> : ::std::true_type {};
 template <>

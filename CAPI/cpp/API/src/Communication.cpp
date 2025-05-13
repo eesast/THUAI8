@@ -287,6 +287,42 @@ bool Communication::Skill_Attack(int64_t playerID, int64_t teamID, double angle)
         return false;
 }
 
+bool Communication::AttackConstruction(int64_t teamID, int64_t playerID)
+{
+    {
+        std::lock_guard<std::mutex> lock(mtxLimit);
+        if (counter >= limit)
+            return false;
+        counter++;
+    }
+    protobuf::BoolRes reply;
+    ClientContext context;
+    auto request = THUAI8Proto::THUAI82ProtobufAttackConstructionMsg(teamID, playerID);
+    auto status = THUAI8Stub->AttackConstruction(&context, request, &reply);
+    if (status.ok())
+        return reply.act_success();
+    else
+        return false;
+}
+
+bool Communication::AttackAdditionResource(int64_t teamID, int64_t playerID)
+{
+    {
+        std::lock_guard<std::mutex> lock(mtxLimit);
+        if (counter >= limit)
+            return false;
+        counter++;
+    }
+    protobuf::BoolRes reply;
+    ClientContext context;
+    auto request = THUAI8Proto::THUAI82ProtobufAttackAdditionResourceMsg(teamID, playerID);
+    auto status = THUAI8Stub->AttackAdditionResource(&context, request, &reply);
+    if (status.ok())
+        return reply.act_success();
+    else
+        return false;
+}
+
 bool Communication::TryConnection(int32_t playerID, int32_t teamID)
 {
     protobuf::BoolRes reply;

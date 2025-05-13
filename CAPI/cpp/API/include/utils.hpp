@@ -615,6 +615,23 @@ namespace THUAI8Proto
         attackMsg.set_attacked_character_id(attacked_team_id);
         return attackMsg;
     }
+
+    inline protobuf::AttackConstructionMsg THUAI82ProtobufAttackConstructionMsg(int64_t team_id, int64_t player_id)
+    {
+        protobuf::AttackConstructionMsg attackConstructionMsg;
+        attackConstructionMsg.set_character_id(player_id);
+        attackConstructionMsg.set_team_id(team_id);
+        return attackConstructionMsg;
+    }
+
+    inline protobuf::AttackAdditionResourceMsg THUAI82ProtobufAttackAdditionResourceMsg(int64_t team_id, int64_t player_id)
+    {
+        protobuf::AttackAdditionResourceMsg attackAdditionResourceMsg;
+        attackAdditionResourceMsg.set_character_id(player_id);
+        attackAdditionResourceMsg.set_team_id(team_id);
+        return attackAdditionResourceMsg;
+    }
+
 }  // namespace THUAI8Proto
 
 namespace Time
