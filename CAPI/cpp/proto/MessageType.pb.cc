@@ -22,7 +22,7 @@ namespace _pbi = _pb::internal;
 
 namespace protobuf {
 }  // namespace protobuf
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_MessageType_2eproto[17];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_MessageType_2eproto[16];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_MessageType_2eproto = nullptr;
 const uint32_t TableStruct_MessageType_2eproto::offsets[1] = {};
 static constexpr ::_pbi::MigrationSchema* schemas = nullptr;
@@ -75,18 +75,16 @@ const char descriptor_table_protodef_MessageType_2eproto[] PROTOBUF_SECTION_VARI
   "\020\007\022\027\n\023PURIFICATION_POTION\020\010\022\027\n\023INVISIBIL"
   "ITY_POTION\020\t\022\022\n\016BERSERK_POTION\020\n*R\n\020Cons"
   "tructionType\022\032\n\026NULL_CONSTRUCTION_TYPE\020\000"
-  "\022\014\n\010BARRACKS\020\001\022\n\n\006SPRING\020\002\022\010\n\004FARM\020\003*\\\n\021"
-  "ConstructionState\022\033\n\027NULL_CONSTRUCTION_S"
-  "TATE\020\000\022\013\n\007TEAM_ID\020\001\022\006\n\002HP\020\002\022\025\n\021CONSTRUCT"
-  "ION_TYPE\020\003*2\n\010TrapType\022\022\n\016NULL_TRAP_TYPE"
-  "\020\000\022\010\n\004HOLE\020\001\022\010\n\004CAGE\020\002*4\n\010NewsType\022\022\n\016NU"
-  "LL_NEWS_TYPE\020\000\022\010\n\004TEXT\020\001\022\n\n\006BINARY\020\002*B\n\n"
-  "PlayerTeam\022\r\n\tNULL_TEAM\020\000\022\022\n\016BUDDHISTS_T"
-  "EAM\020\001\022\021\n\rMONSTERS_TEAM\020\002b\006proto3"
+  "\022\014\n\010BARRACKS\020\001\022\n\n\006SPRING\020\002\022\010\n\004FARM\020\003*2\n\010"
+  "TrapType\022\022\n\016NULL_TRAP_TYPE\020\000\022\010\n\004HOLE\020\001\022\010"
+  "\n\004CAGE\020\002*4\n\010NewsType\022\022\n\016NULL_NEWS_TYPE\020\000"
+  "\022\010\n\004TEXT\020\001\022\n\n\006BINARY\020\002*B\n\nPlayerTeam\022\r\n\t"
+  "NULL_TEAM\020\000\022\022\n\016BUDDHISTS_TEAM\020\001\022\021\n\rMONST"
+  "ERS_TEAM\020\002b\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_MessageType_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_MessageType_2eproto = {
-    false, false, 2152, descriptor_table_protodef_MessageType_2eproto,
+    false, false, 2058, descriptor_table_protodef_MessageType_2eproto,
     "MessageType.proto",
     &descriptor_table_MessageType_2eproto_once, nullptr, 0, 0,
     schemas, file_default_instances, TableStruct_MessageType_2eproto::offsets,
@@ -346,25 +344,9 @@ bool ConstructionType_IsValid(int value) {
   }
 }
 
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ConstructionState_descriptor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
-  return file_level_enum_descriptors_MessageType_2eproto[13];
-}
-bool ConstructionState_IsValid(int value) {
-  switch (value) {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-      return true;
-    default:
-      return false;
-  }
-}
-
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* TrapType_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
-  return file_level_enum_descriptors_MessageType_2eproto[14];
+  return file_level_enum_descriptors_MessageType_2eproto[13];
 }
 bool TrapType_IsValid(int value) {
   switch (value) {
@@ -379,7 +361,7 @@ bool TrapType_IsValid(int value) {
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* NewsType_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
-  return file_level_enum_descriptors_MessageType_2eproto[15];
+  return file_level_enum_descriptors_MessageType_2eproto[14];
 }
 bool NewsType_IsValid(int value) {
   switch (value) {
@@ -394,7 +376,7 @@ bool NewsType_IsValid(int value) {
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* PlayerTeam_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_MessageType_2eproto);
-  return file_level_enum_descriptors_MessageType_2eproto[16];
+  return file_level_enum_descriptors_MessageType_2eproto[15];
 }
 bool PlayerTeam_IsValid(int value) {
   switch (value) {

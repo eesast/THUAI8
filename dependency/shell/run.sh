@@ -123,9 +123,9 @@ elif [ "$TERMINAL" = "CLIENT" ]; then
     echo "Starting CLIENT for team $TEAM_LABEL (ID: $TEAM_SEQ_ID)"
     
     if [[ "$TEAM_LABEL" == "Buddhist" ]]; then
-        players=( "Buddhist1" "Buddhist2" "Buddhist3" "Buddhist4" "Buddhist5" "Buddhist6" )
+        players=( "Buddhist0" "Buddhist1" "Buddhist2" "Buddhist3" "Buddhist4" "Buddhist5" "Buddhist6" )
     elif [[ "$TEAM_LABEL" == "Monster" ]]; then
-        players=( "Monster1" "Monster2" "Monster3" "Monster4" "Monster5" "Monster6" )
+        players=( "Monster0" "Monster1" "Monster2" "Monster3" "Monster4" "Monster5" "Monster6" )
     else
         echo "Error: Invalid Team Label $TEAM_LABEL"
         exit 1

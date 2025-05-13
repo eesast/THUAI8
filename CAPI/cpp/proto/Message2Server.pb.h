@@ -47,6 +47,15 @@ struct TableStruct_Message2Server_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_Message2Server_2eproto;
 namespace protobuf {
+class AdditionResourceMsg;
+struct AdditionResourceMsgDefaultTypeInternal;
+extern AdditionResourceMsgDefaultTypeInternal _AdditionResourceMsg_default_instance_;
+class AttackAdditionResourceMsg;
+struct AttackAdditionResourceMsgDefaultTypeInternal;
+extern AttackAdditionResourceMsgDefaultTypeInternal _AttackAdditionResourceMsg_default_instance_;
+class AttackConstructionMsg;
+struct AttackConstructionMsgDefaultTypeInternal;
+extern AttackConstructionMsgDefaultTypeInternal _AttackConstructionMsg_default_instance_;
 class AttackMsg;
 struct AttackMsgDefaultTypeInternal;
 extern AttackMsgDefaultTypeInternal _AttackMsg_default_instance_;
@@ -59,6 +68,9 @@ extern CharacterMsgDefaultTypeInternal _CharacterMsg_default_instance_;
 class ConstructMsg;
 struct ConstructMsgDefaultTypeInternal;
 extern ConstructMsgDefaultTypeInternal _ConstructMsg_default_instance_;
+class ConstructionMsg;
+struct ConstructionMsgDefaultTypeInternal;
+extern ConstructionMsgDefaultTypeInternal _ConstructionMsg_default_instance_;
 class CreatCharacterMsg;
 struct CreatCharacterMsgDefaultTypeInternal;
 extern CreatCharacterMsgDefaultTypeInternal _CreatCharacterMsg_default_instance_;
@@ -85,10 +97,14 @@ struct SendMsgDefaultTypeInternal;
 extern SendMsgDefaultTypeInternal _SendMsg_default_instance_;
 }  // namespace protobuf
 PROTOBUF_NAMESPACE_OPEN
+template<> ::protobuf::AdditionResourceMsg* Arena::CreateMaybeMessage<::protobuf::AdditionResourceMsg>(Arena*);
+template<> ::protobuf::AttackAdditionResourceMsg* Arena::CreateMaybeMessage<::protobuf::AttackAdditionResourceMsg>(Arena*);
+template<> ::protobuf::AttackConstructionMsg* Arena::CreateMaybeMessage<::protobuf::AttackConstructionMsg>(Arena*);
 template<> ::protobuf::AttackMsg* Arena::CreateMaybeMessage<::protobuf::AttackMsg>(Arena*);
 template<> ::protobuf::CastMsg* Arena::CreateMaybeMessage<::protobuf::CastMsg>(Arena*);
 template<> ::protobuf::CharacterMsg* Arena::CreateMaybeMessage<::protobuf::CharacterMsg>(Arena*);
 template<> ::protobuf::ConstructMsg* Arena::CreateMaybeMessage<::protobuf::ConstructMsg>(Arena*);
+template<> ::protobuf::ConstructionMsg* Arena::CreateMaybeMessage<::protobuf::ConstructionMsg>(Arena*);
 template<> ::protobuf::CreatCharacterMsg* Arena::CreateMaybeMessage<::protobuf::CreatCharacterMsg>(Arena*);
 template<> ::protobuf::EconomyReourceMsg* Arena::CreateMaybeMessage<::protobuf::EconomyReourceMsg>(Arena*);
 template<> ::protobuf::EquipMsg* Arena::CreateMaybeMessage<::protobuf::EquipMsg>(Arena*);
@@ -561,9 +577,10 @@ class CharacterMsg final :
 // -------------------------------------------------------------------
 
 class EconomyReourceMsg final :
-    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:protobuf.EconomyReourceMsg) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protobuf.EconomyReourceMsg) */ {
  public:
   inline EconomyReourceMsg() : EconomyReourceMsg(nullptr) {}
+  ~EconomyReourceMsg() override;
   explicit PROTOBUF_CONSTEXPR EconomyReourceMsg(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
   EconomyReourceMsg(const EconomyReourceMsg& from);
@@ -636,15 +653,29 @@ class EconomyReourceMsg final :
   EconomyReourceMsg* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
     return CreateMaybeMessage<EconomyReourceMsg>(arena);
   }
-  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
-  inline void CopyFrom(const EconomyReourceMsg& from) {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const EconomyReourceMsg& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const EconomyReourceMsg& from) {
+    EconomyReourceMsg::MergeImpl(*this, from);
   }
-  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
-  void MergeFrom(const EconomyReourceMsg& from) {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(*this, from);
-  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
   public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(EconomyReourceMsg* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
@@ -665,6 +696,38 @@ class EconomyReourceMsg final :
 
   // accessors -------------------------------------------------------
 
+  enum : int {
+    kTeamIdFieldNumber = 1,
+    kProcessFieldNumber = 2,
+    kEconomyResourceTypeFieldNumber = 3,
+  };
+  // int64 team_id = 1;
+  void clear_team_id();
+  int64_t team_id() const;
+  void set_team_id(int64_t value);
+  private:
+  int64_t _internal_team_id() const;
+  void _internal_set_team_id(int64_t value);
+  public:
+
+  // int32 process = 2;
+  void clear_process();
+  int32_t process() const;
+  void set_process(int32_t value);
+  private:
+  int32_t _internal_process() const;
+  void _internal_set_process(int32_t value);
+  public:
+
+  // .protobuf.EconomyResourceType economy_resource_type = 3;
+  void clear_economy_resource_type();
+  ::protobuf::EconomyResourceType economy_resource_type() const;
+  void set_economy_resource_type(::protobuf::EconomyResourceType value);
+  private:
+  ::protobuf::EconomyResourceType _internal_economy_resource_type() const;
+  void _internal_set_economy_resource_type(::protobuf::EconomyResourceType value);
+  public:
+
   // @@protoc_insertion_point(class_scope:protobuf.EconomyReourceMsg)
  private:
   class _Internal;
@@ -673,7 +736,352 @@ class EconomyReourceMsg final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
+    int64_t team_id_;
+    int32_t process_;
+    int economy_resource_type_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_Message2Server_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AdditionResourceMsg final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protobuf.AdditionResourceMsg) */ {
+ public:
+  inline AdditionResourceMsg() : AdditionResourceMsg(nullptr) {}
+  ~AdditionResourceMsg() override;
+  explicit PROTOBUF_CONSTEXPR AdditionResourceMsg(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  AdditionResourceMsg(const AdditionResourceMsg& from);
+  AdditionResourceMsg(AdditionResourceMsg&& from) noexcept
+    : AdditionResourceMsg() {
+    *this = ::std::move(from);
+  }
+
+  inline AdditionResourceMsg& operator=(const AdditionResourceMsg& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AdditionResourceMsg& operator=(AdditionResourceMsg&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AdditionResourceMsg& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AdditionResourceMsg* internal_default_instance() {
+    return reinterpret_cast<const AdditionResourceMsg*>(
+               &_AdditionResourceMsg_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(AdditionResourceMsg& a, AdditionResourceMsg& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AdditionResourceMsg* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AdditionResourceMsg* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AdditionResourceMsg* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AdditionResourceMsg>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const AdditionResourceMsg& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const AdditionResourceMsg& from) {
+    AdditionResourceMsg::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AdditionResourceMsg* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "protobuf.AdditionResourceMsg";
+  }
+  protected:
+  explicit AdditionResourceMsg(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTeamIdFieldNumber = 1,
+    kHpFieldNumber = 2,
+    kAdditionResourceTypeFieldNumber = 3,
+  };
+  // int64 team_id = 1;
+  void clear_team_id();
+  int64_t team_id() const;
+  void set_team_id(int64_t value);
+  private:
+  int64_t _internal_team_id() const;
+  void _internal_set_team_id(int64_t value);
+  public:
+
+  // int32 hp = 2;
+  void clear_hp();
+  int32_t hp() const;
+  void set_hp(int32_t value);
+  private:
+  int32_t _internal_hp() const;
+  void _internal_set_hp(int32_t value);
+  public:
+
+  // .protobuf.AdditionResourceType addition_resource_type = 3;
+  void clear_addition_resource_type();
+  ::protobuf::AdditionResourceType addition_resource_type() const;
+  void set_addition_resource_type(::protobuf::AdditionResourceType value);
+  private:
+  ::protobuf::AdditionResourceType _internal_addition_resource_type() const;
+  void _internal_set_addition_resource_type(::protobuf::AdditionResourceType value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:protobuf.AdditionResourceMsg)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    int64_t team_id_;
+    int32_t hp_;
+    int addition_resource_type_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_Message2Server_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ConstructionMsg final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protobuf.ConstructionMsg) */ {
+ public:
+  inline ConstructionMsg() : ConstructionMsg(nullptr) {}
+  ~ConstructionMsg() override;
+  explicit PROTOBUF_CONSTEXPR ConstructionMsg(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ConstructionMsg(const ConstructionMsg& from);
+  ConstructionMsg(ConstructionMsg&& from) noexcept
+    : ConstructionMsg() {
+    *this = ::std::move(from);
+  }
+
+  inline ConstructionMsg& operator=(const ConstructionMsg& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ConstructionMsg& operator=(ConstructionMsg&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ConstructionMsg& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ConstructionMsg* internal_default_instance() {
+    return reinterpret_cast<const ConstructionMsg*>(
+               &_ConstructionMsg_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(ConstructionMsg& a, ConstructionMsg& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ConstructionMsg* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ConstructionMsg* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ConstructionMsg* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ConstructionMsg>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ConstructionMsg& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const ConstructionMsg& from) {
+    ConstructionMsg::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ConstructionMsg* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "protobuf.ConstructionMsg";
+  }
+  protected:
+  explicit ConstructionMsg(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTeamIdFieldNumber = 1,
+    kHpFieldNumber = 2,
+    kConstructionTypeFieldNumber = 3,
+  };
+  // int64 team_id = 1;
+  void clear_team_id();
+  int64_t team_id() const;
+  void set_team_id(int64_t value);
+  private:
+  int64_t _internal_team_id() const;
+  void _internal_set_team_id(int64_t value);
+  public:
+
+  // int32 hp = 2;
+  void clear_hp();
+  int32_t hp() const;
+  void set_hp(int32_t value);
+  private:
+  int32_t _internal_hp() const;
+  void _internal_set_hp(int32_t value);
+  public:
+
+  // .protobuf.ConstructionType construction_type = 3;
+  void clear_construction_type();
+  ::protobuf::ConstructionType construction_type() const;
+  void set_construction_type(::protobuf::ConstructionType value);
+  private:
+  ::protobuf::ConstructionType _internal_construction_type() const;
+  void _internal_set_construction_type(::protobuf::ConstructionType value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:protobuf.ConstructionMsg)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    int64_t team_id_;
+    int32_t hp_;
+    int construction_type_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
   friend struct ::TableStruct_Message2Server_2eproto;
 };
 // -------------------------------------------------------------------
@@ -726,7 +1134,7 @@ class MoveMsg final :
                &_MoveMsg_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    6;
 
   friend void swap(MoveMsg& a, MoveMsg& b) {
     a.Swap(&b);
@@ -913,7 +1321,7 @@ class SendMsg final :
                &_SendMsg_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    7;
 
   friend void swap(SendMsg& a, SendMsg& b) {
     a.Swap(&b);
@@ -1136,7 +1544,7 @@ class AttackMsg final :
                &_AttackMsg_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    8;
 
   friend void swap(AttackMsg& a, AttackMsg& b) {
     a.Swap(&b);
@@ -1328,7 +1736,7 @@ class CastMsg final :
                &_CastMsg_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    9;
 
   friend void swap(CastMsg& a, CastMsg& b) {
     a.Swap(&b);
@@ -1403,8 +1811,8 @@ class CastMsg final :
   enum : int {
     kCastedCharacterIdFieldNumber = 3,
     kCharacterIdFieldNumber = 1,
-    kTeamIdFieldNumber = 2,
-    kCastedTeamIdFieldNumber = 4,
+    kSkillIdFieldNumber = 2,
+    kTeamIdFieldNumber = 4,
     kAttackRangeFieldNumber = 5,
     kXFieldNumber = 6,
     kAngleFieldNumber = 8,
@@ -1441,22 +1849,22 @@ class CastMsg final :
   void _internal_set_character_id(int64_t value);
   public:
 
-  // int64 team_id = 2;
+  // int64 skill_id = 2;
+  void clear_skill_id();
+  int64_t skill_id() const;
+  void set_skill_id(int64_t value);
+  private:
+  int64_t _internal_skill_id() const;
+  void _internal_set_skill_id(int64_t value);
+  public:
+
+  // int64 team_id = 4;
   void clear_team_id();
   int64_t team_id() const;
   void set_team_id(int64_t value);
   private:
   int64_t _internal_team_id() const;
   void _internal_set_team_id(int64_t value);
-  public:
-
-  // int64 casted_team_id = 4;
-  void clear_casted_team_id();
-  int64_t casted_team_id() const;
-  void set_casted_team_id(int64_t value);
-  private:
-  int64_t _internal_casted_team_id() const;
-  void _internal_set_casted_team_id(int64_t value);
   public:
 
   // int32 attack_range = 5;
@@ -1520,12 +1928,330 @@ class CastMsg final :
     ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t > casted_character_id_;
     mutable std::atomic<int> _casted_character_id_cached_byte_size_;
     int64_t character_id_;
+    int64_t skill_id_;
     int64_t team_id_;
-    int64_t casted_team_id_;
     int32_t attack_range_;
     int32_t x_;
     double angle_;
     int32_t y_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_Message2Server_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AttackConstructionMsg final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protobuf.AttackConstructionMsg) */ {
+ public:
+  inline AttackConstructionMsg() : AttackConstructionMsg(nullptr) {}
+  ~AttackConstructionMsg() override;
+  explicit PROTOBUF_CONSTEXPR AttackConstructionMsg(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  AttackConstructionMsg(const AttackConstructionMsg& from);
+  AttackConstructionMsg(AttackConstructionMsg&& from) noexcept
+    : AttackConstructionMsg() {
+    *this = ::std::move(from);
+  }
+
+  inline AttackConstructionMsg& operator=(const AttackConstructionMsg& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AttackConstructionMsg& operator=(AttackConstructionMsg&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AttackConstructionMsg& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AttackConstructionMsg* internal_default_instance() {
+    return reinterpret_cast<const AttackConstructionMsg*>(
+               &_AttackConstructionMsg_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    10;
+
+  friend void swap(AttackConstructionMsg& a, AttackConstructionMsg& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AttackConstructionMsg* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AttackConstructionMsg* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AttackConstructionMsg* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AttackConstructionMsg>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const AttackConstructionMsg& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const AttackConstructionMsg& from) {
+    AttackConstructionMsg::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AttackConstructionMsg* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "protobuf.AttackConstructionMsg";
+  }
+  protected:
+  explicit AttackConstructionMsg(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTeamIdFieldNumber = 1,
+    kCharacterIdFieldNumber = 2,
+  };
+  // int64 team_id = 1;
+  void clear_team_id();
+  int64_t team_id() const;
+  void set_team_id(int64_t value);
+  private:
+  int64_t _internal_team_id() const;
+  void _internal_set_team_id(int64_t value);
+  public:
+
+  // int64 character_id = 2;
+  void clear_character_id();
+  int64_t character_id() const;
+  void set_character_id(int64_t value);
+  private:
+  int64_t _internal_character_id() const;
+  void _internal_set_character_id(int64_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:protobuf.AttackConstructionMsg)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    int64_t team_id_;
+    int64_t character_id_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_Message2Server_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AttackAdditionResourceMsg final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protobuf.AttackAdditionResourceMsg) */ {
+ public:
+  inline AttackAdditionResourceMsg() : AttackAdditionResourceMsg(nullptr) {}
+  ~AttackAdditionResourceMsg() override;
+  explicit PROTOBUF_CONSTEXPR AttackAdditionResourceMsg(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  AttackAdditionResourceMsg(const AttackAdditionResourceMsg& from);
+  AttackAdditionResourceMsg(AttackAdditionResourceMsg&& from) noexcept
+    : AttackAdditionResourceMsg() {
+    *this = ::std::move(from);
+  }
+
+  inline AttackAdditionResourceMsg& operator=(const AttackAdditionResourceMsg& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AttackAdditionResourceMsg& operator=(AttackAdditionResourceMsg&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AttackAdditionResourceMsg& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AttackAdditionResourceMsg* internal_default_instance() {
+    return reinterpret_cast<const AttackAdditionResourceMsg*>(
+               &_AttackAdditionResourceMsg_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    11;
+
+  friend void swap(AttackAdditionResourceMsg& a, AttackAdditionResourceMsg& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AttackAdditionResourceMsg* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AttackAdditionResourceMsg* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AttackAdditionResourceMsg* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AttackAdditionResourceMsg>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const AttackAdditionResourceMsg& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const AttackAdditionResourceMsg& from) {
+    AttackAdditionResourceMsg::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AttackAdditionResourceMsg* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "protobuf.AttackAdditionResourceMsg";
+  }
+  protected:
+  explicit AttackAdditionResourceMsg(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTeamIdFieldNumber = 1,
+    kCharacterIdFieldNumber = 2,
+  };
+  // int64 team_id = 1;
+  void clear_team_id();
+  int64_t team_id() const;
+  void set_team_id(int64_t value);
+  private:
+  int64_t _internal_team_id() const;
+  void _internal_set_team_id(int64_t value);
+  public:
+
+  // int64 character_id = 2;
+  void clear_character_id();
+  int64_t character_id() const;
+  void set_character_id(int64_t value);
+  private:
+  int64_t _internal_character_id() const;
+  void _internal_set_character_id(int64_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:protobuf.AttackAdditionResourceMsg)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    int64_t team_id_;
+    int64_t character_id_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
   friend struct ::TableStruct_Message2Server_2eproto;
@@ -1580,7 +2306,7 @@ class ConstructMsg final :
                &_ConstructMsg_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    12;
 
   friend void swap(ConstructMsg& a, ConstructMsg& b) {
     a.Swap(&b);
@@ -1654,8 +2380,8 @@ class ConstructMsg final :
 
   enum : int {
     kCharacterIdFieldNumber = 1,
-    kTeamIdFieldNumber = 3,
-    kConstructionTypeFieldNumber = 2,
+    kTeamIdFieldNumber = 2,
+    kConstructionTypeFieldNumber = 3,
   };
   // int64 character_id = 1;
   void clear_character_id();
@@ -1666,7 +2392,7 @@ class ConstructMsg final :
   void _internal_set_character_id(int64_t value);
   public:
 
-  // int64 team_id = 3;
+  // int64 team_id = 2;
   void clear_team_id();
   int64_t team_id() const;
   void set_team_id(int64_t value);
@@ -1675,7 +2401,7 @@ class ConstructMsg final :
   void _internal_set_team_id(int64_t value);
   public:
 
-  // .protobuf.ConstructionType construction_type = 2;
+  // .protobuf.ConstructionType construction_type = 3;
   void clear_construction_type();
   ::protobuf::ConstructionType construction_type() const;
   void set_construction_type(::protobuf::ConstructionType value);
@@ -1750,7 +2476,7 @@ class EquipMsg final :
                &_EquipMsg_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    13;
 
   friend void swap(EquipMsg& a, EquipMsg& b) {
     a.Swap(&b);
@@ -1920,7 +2646,7 @@ class RecoverMsg final :
                &_RecoverMsg_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    14;
 
   friend void swap(RecoverMsg& a, RecoverMsg& b) {
     a.Swap(&b);
@@ -2090,7 +2816,7 @@ class CreatCharacterMsg final :
                &_CreatCharacterMsg_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    15;
 
   friend void swap(CreatCharacterMsg& a, CreatCharacterMsg& b) {
     a.Swap(&b);
@@ -2352,6 +3078,194 @@ inline void CharacterMsg::set_side_flag(int32_t value) {
 // -------------------------------------------------------------------
 
 // EconomyReourceMsg
+
+// int64 team_id = 1;
+inline void EconomyReourceMsg::clear_team_id() {
+  _impl_.team_id_ = int64_t{0};
+}
+inline int64_t EconomyReourceMsg::_internal_team_id() const {
+  return _impl_.team_id_;
+}
+inline int64_t EconomyReourceMsg::team_id() const {
+  // @@protoc_insertion_point(field_get:protobuf.EconomyReourceMsg.team_id)
+  return _internal_team_id();
+}
+inline void EconomyReourceMsg::_internal_set_team_id(int64_t value) {
+  
+  _impl_.team_id_ = value;
+}
+inline void EconomyReourceMsg::set_team_id(int64_t value) {
+  _internal_set_team_id(value);
+  // @@protoc_insertion_point(field_set:protobuf.EconomyReourceMsg.team_id)
+}
+
+// int32 process = 2;
+inline void EconomyReourceMsg::clear_process() {
+  _impl_.process_ = 0;
+}
+inline int32_t EconomyReourceMsg::_internal_process() const {
+  return _impl_.process_;
+}
+inline int32_t EconomyReourceMsg::process() const {
+  // @@protoc_insertion_point(field_get:protobuf.EconomyReourceMsg.process)
+  return _internal_process();
+}
+inline void EconomyReourceMsg::_internal_set_process(int32_t value) {
+  
+  _impl_.process_ = value;
+}
+inline void EconomyReourceMsg::set_process(int32_t value) {
+  _internal_set_process(value);
+  // @@protoc_insertion_point(field_set:protobuf.EconomyReourceMsg.process)
+}
+
+// .protobuf.EconomyResourceType economy_resource_type = 3;
+inline void EconomyReourceMsg::clear_economy_resource_type() {
+  _impl_.economy_resource_type_ = 0;
+}
+inline ::protobuf::EconomyResourceType EconomyReourceMsg::_internal_economy_resource_type() const {
+  return static_cast< ::protobuf::EconomyResourceType >(_impl_.economy_resource_type_);
+}
+inline ::protobuf::EconomyResourceType EconomyReourceMsg::economy_resource_type() const {
+  // @@protoc_insertion_point(field_get:protobuf.EconomyReourceMsg.economy_resource_type)
+  return _internal_economy_resource_type();
+}
+inline void EconomyReourceMsg::_internal_set_economy_resource_type(::protobuf::EconomyResourceType value) {
+  
+  _impl_.economy_resource_type_ = value;
+}
+inline void EconomyReourceMsg::set_economy_resource_type(::protobuf::EconomyResourceType value) {
+  _internal_set_economy_resource_type(value);
+  // @@protoc_insertion_point(field_set:protobuf.EconomyReourceMsg.economy_resource_type)
+}
+
+// -------------------------------------------------------------------
+
+// AdditionResourceMsg
+
+// int64 team_id = 1;
+inline void AdditionResourceMsg::clear_team_id() {
+  _impl_.team_id_ = int64_t{0};
+}
+inline int64_t AdditionResourceMsg::_internal_team_id() const {
+  return _impl_.team_id_;
+}
+inline int64_t AdditionResourceMsg::team_id() const {
+  // @@protoc_insertion_point(field_get:protobuf.AdditionResourceMsg.team_id)
+  return _internal_team_id();
+}
+inline void AdditionResourceMsg::_internal_set_team_id(int64_t value) {
+  
+  _impl_.team_id_ = value;
+}
+inline void AdditionResourceMsg::set_team_id(int64_t value) {
+  _internal_set_team_id(value);
+  // @@protoc_insertion_point(field_set:protobuf.AdditionResourceMsg.team_id)
+}
+
+// int32 hp = 2;
+inline void AdditionResourceMsg::clear_hp() {
+  _impl_.hp_ = 0;
+}
+inline int32_t AdditionResourceMsg::_internal_hp() const {
+  return _impl_.hp_;
+}
+inline int32_t AdditionResourceMsg::hp() const {
+  // @@protoc_insertion_point(field_get:protobuf.AdditionResourceMsg.hp)
+  return _internal_hp();
+}
+inline void AdditionResourceMsg::_internal_set_hp(int32_t value) {
+  
+  _impl_.hp_ = value;
+}
+inline void AdditionResourceMsg::set_hp(int32_t value) {
+  _internal_set_hp(value);
+  // @@protoc_insertion_point(field_set:protobuf.AdditionResourceMsg.hp)
+}
+
+// .protobuf.AdditionResourceType addition_resource_type = 3;
+inline void AdditionResourceMsg::clear_addition_resource_type() {
+  _impl_.addition_resource_type_ = 0;
+}
+inline ::protobuf::AdditionResourceType AdditionResourceMsg::_internal_addition_resource_type() const {
+  return static_cast< ::protobuf::AdditionResourceType >(_impl_.addition_resource_type_);
+}
+inline ::protobuf::AdditionResourceType AdditionResourceMsg::addition_resource_type() const {
+  // @@protoc_insertion_point(field_get:protobuf.AdditionResourceMsg.addition_resource_type)
+  return _internal_addition_resource_type();
+}
+inline void AdditionResourceMsg::_internal_set_addition_resource_type(::protobuf::AdditionResourceType value) {
+  
+  _impl_.addition_resource_type_ = value;
+}
+inline void AdditionResourceMsg::set_addition_resource_type(::protobuf::AdditionResourceType value) {
+  _internal_set_addition_resource_type(value);
+  // @@protoc_insertion_point(field_set:protobuf.AdditionResourceMsg.addition_resource_type)
+}
+
+// -------------------------------------------------------------------
+
+// ConstructionMsg
+
+// int64 team_id = 1;
+inline void ConstructionMsg::clear_team_id() {
+  _impl_.team_id_ = int64_t{0};
+}
+inline int64_t ConstructionMsg::_internal_team_id() const {
+  return _impl_.team_id_;
+}
+inline int64_t ConstructionMsg::team_id() const {
+  // @@protoc_insertion_point(field_get:protobuf.ConstructionMsg.team_id)
+  return _internal_team_id();
+}
+inline void ConstructionMsg::_internal_set_team_id(int64_t value) {
+  
+  _impl_.team_id_ = value;
+}
+inline void ConstructionMsg::set_team_id(int64_t value) {
+  _internal_set_team_id(value);
+  // @@protoc_insertion_point(field_set:protobuf.ConstructionMsg.team_id)
+}
+
+// int32 hp = 2;
+inline void ConstructionMsg::clear_hp() {
+  _impl_.hp_ = 0;
+}
+inline int32_t ConstructionMsg::_internal_hp() const {
+  return _impl_.hp_;
+}
+inline int32_t ConstructionMsg::hp() const {
+  // @@protoc_insertion_point(field_get:protobuf.ConstructionMsg.hp)
+  return _internal_hp();
+}
+inline void ConstructionMsg::_internal_set_hp(int32_t value) {
+  
+  _impl_.hp_ = value;
+}
+inline void ConstructionMsg::set_hp(int32_t value) {
+  _internal_set_hp(value);
+  // @@protoc_insertion_point(field_set:protobuf.ConstructionMsg.hp)
+}
+
+// .protobuf.ConstructionType construction_type = 3;
+inline void ConstructionMsg::clear_construction_type() {
+  _impl_.construction_type_ = 0;
+}
+inline ::protobuf::ConstructionType ConstructionMsg::_internal_construction_type() const {
+  return static_cast< ::protobuf::ConstructionType >(_impl_.construction_type_);
+}
+inline ::protobuf::ConstructionType ConstructionMsg::construction_type() const {
+  // @@protoc_insertion_point(field_get:protobuf.ConstructionMsg.construction_type)
+  return _internal_construction_type();
+}
+inline void ConstructionMsg::_internal_set_construction_type(::protobuf::ConstructionType value) {
+  
+  _impl_.construction_type_ = value;
+}
+inline void ConstructionMsg::set_construction_type(::protobuf::ConstructionType value) {
+  _internal_set_construction_type(value);
+  // @@protoc_insertion_point(field_set:protobuf.ConstructionMsg.construction_type)
+}
 
 // -------------------------------------------------------------------
 
@@ -2792,24 +3706,24 @@ inline void CastMsg::set_character_id(int64_t value) {
   // @@protoc_insertion_point(field_set:protobuf.CastMsg.character_id)
 }
 
-// int64 team_id = 2;
-inline void CastMsg::clear_team_id() {
-  _impl_.team_id_ = int64_t{0};
+// int64 skill_id = 2;
+inline void CastMsg::clear_skill_id() {
+  _impl_.skill_id_ = int64_t{0};
 }
-inline int64_t CastMsg::_internal_team_id() const {
-  return _impl_.team_id_;
+inline int64_t CastMsg::_internal_skill_id() const {
+  return _impl_.skill_id_;
 }
-inline int64_t CastMsg::team_id() const {
-  // @@protoc_insertion_point(field_get:protobuf.CastMsg.team_id)
-  return _internal_team_id();
+inline int64_t CastMsg::skill_id() const {
+  // @@protoc_insertion_point(field_get:protobuf.CastMsg.skill_id)
+  return _internal_skill_id();
 }
-inline void CastMsg::_internal_set_team_id(int64_t value) {
+inline void CastMsg::_internal_set_skill_id(int64_t value) {
   
-  _impl_.team_id_ = value;
+  _impl_.skill_id_ = value;
 }
-inline void CastMsg::set_team_id(int64_t value) {
-  _internal_set_team_id(value);
-  // @@protoc_insertion_point(field_set:protobuf.CastMsg.team_id)
+inline void CastMsg::set_skill_id(int64_t value) {
+  _internal_set_skill_id(value);
+  // @@protoc_insertion_point(field_set:protobuf.CastMsg.skill_id)
 }
 
 // repeated int64 casted_character_id = 3;
@@ -2859,24 +3773,24 @@ CastMsg::mutable_casted_character_id() {
   return _internal_mutable_casted_character_id();
 }
 
-// int64 casted_team_id = 4;
-inline void CastMsg::clear_casted_team_id() {
-  _impl_.casted_team_id_ = int64_t{0};
+// int64 team_id = 4;
+inline void CastMsg::clear_team_id() {
+  _impl_.team_id_ = int64_t{0};
 }
-inline int64_t CastMsg::_internal_casted_team_id() const {
-  return _impl_.casted_team_id_;
+inline int64_t CastMsg::_internal_team_id() const {
+  return _impl_.team_id_;
 }
-inline int64_t CastMsg::casted_team_id() const {
-  // @@protoc_insertion_point(field_get:protobuf.CastMsg.casted_team_id)
-  return _internal_casted_team_id();
+inline int64_t CastMsg::team_id() const {
+  // @@protoc_insertion_point(field_get:protobuf.CastMsg.team_id)
+  return _internal_team_id();
 }
-inline void CastMsg::_internal_set_casted_team_id(int64_t value) {
+inline void CastMsg::_internal_set_team_id(int64_t value) {
   
-  _impl_.casted_team_id_ = value;
+  _impl_.team_id_ = value;
 }
-inline void CastMsg::set_casted_team_id(int64_t value) {
-  _internal_set_casted_team_id(value);
-  // @@protoc_insertion_point(field_set:protobuf.CastMsg.casted_team_id)
+inline void CastMsg::set_team_id(int64_t value) {
+  _internal_set_team_id(value);
+  // @@protoc_insertion_point(field_set:protobuf.CastMsg.team_id)
 }
 
 // int32 attack_range = 5;
@@ -2985,6 +3899,94 @@ inline void CastMsg::set_angle(double value) {
 
 // -------------------------------------------------------------------
 
+// AttackConstructionMsg
+
+// int64 team_id = 1;
+inline void AttackConstructionMsg::clear_team_id() {
+  _impl_.team_id_ = int64_t{0};
+}
+inline int64_t AttackConstructionMsg::_internal_team_id() const {
+  return _impl_.team_id_;
+}
+inline int64_t AttackConstructionMsg::team_id() const {
+  // @@protoc_insertion_point(field_get:protobuf.AttackConstructionMsg.team_id)
+  return _internal_team_id();
+}
+inline void AttackConstructionMsg::_internal_set_team_id(int64_t value) {
+  
+  _impl_.team_id_ = value;
+}
+inline void AttackConstructionMsg::set_team_id(int64_t value) {
+  _internal_set_team_id(value);
+  // @@protoc_insertion_point(field_set:protobuf.AttackConstructionMsg.team_id)
+}
+
+// int64 character_id = 2;
+inline void AttackConstructionMsg::clear_character_id() {
+  _impl_.character_id_ = int64_t{0};
+}
+inline int64_t AttackConstructionMsg::_internal_character_id() const {
+  return _impl_.character_id_;
+}
+inline int64_t AttackConstructionMsg::character_id() const {
+  // @@protoc_insertion_point(field_get:protobuf.AttackConstructionMsg.character_id)
+  return _internal_character_id();
+}
+inline void AttackConstructionMsg::_internal_set_character_id(int64_t value) {
+  
+  _impl_.character_id_ = value;
+}
+inline void AttackConstructionMsg::set_character_id(int64_t value) {
+  _internal_set_character_id(value);
+  // @@protoc_insertion_point(field_set:protobuf.AttackConstructionMsg.character_id)
+}
+
+// -------------------------------------------------------------------
+
+// AttackAdditionResourceMsg
+
+// int64 team_id = 1;
+inline void AttackAdditionResourceMsg::clear_team_id() {
+  _impl_.team_id_ = int64_t{0};
+}
+inline int64_t AttackAdditionResourceMsg::_internal_team_id() const {
+  return _impl_.team_id_;
+}
+inline int64_t AttackAdditionResourceMsg::team_id() const {
+  // @@protoc_insertion_point(field_get:protobuf.AttackAdditionResourceMsg.team_id)
+  return _internal_team_id();
+}
+inline void AttackAdditionResourceMsg::_internal_set_team_id(int64_t value) {
+  
+  _impl_.team_id_ = value;
+}
+inline void AttackAdditionResourceMsg::set_team_id(int64_t value) {
+  _internal_set_team_id(value);
+  // @@protoc_insertion_point(field_set:protobuf.AttackAdditionResourceMsg.team_id)
+}
+
+// int64 character_id = 2;
+inline void AttackAdditionResourceMsg::clear_character_id() {
+  _impl_.character_id_ = int64_t{0};
+}
+inline int64_t AttackAdditionResourceMsg::_internal_character_id() const {
+  return _impl_.character_id_;
+}
+inline int64_t AttackAdditionResourceMsg::character_id() const {
+  // @@protoc_insertion_point(field_get:protobuf.AttackAdditionResourceMsg.character_id)
+  return _internal_character_id();
+}
+inline void AttackAdditionResourceMsg::_internal_set_character_id(int64_t value) {
+  
+  _impl_.character_id_ = value;
+}
+inline void AttackAdditionResourceMsg::set_character_id(int64_t value) {
+  _internal_set_character_id(value);
+  // @@protoc_insertion_point(field_set:protobuf.AttackAdditionResourceMsg.character_id)
+}
+
+// -------------------------------------------------------------------
+
 // ConstructMsg
 
 // int64 character_id = 1;
@@ -3007,27 +4009,7 @@ inline void ConstructMsg::set_character_id(int64_t value) {
   // @@protoc_insertion_point(field_set:protobuf.ConstructMsg.character_id)
 }
 
-// .protobuf.ConstructionType construction_type = 2;
-inline void ConstructMsg::clear_construction_type() {
-  _impl_.construction_type_ = 0;
-}
-inline ::protobuf::ConstructionType ConstructMsg::_internal_construction_type() const {
-  return static_cast< ::protobuf::ConstructionType >(_impl_.construction_type_);
-}
-inline ::protobuf::ConstructionType ConstructMsg::construction_type() const {
-  // @@protoc_insertion_point(field_get:protobuf.ConstructMsg.construction_type)
-  return _internal_construction_type();
-}
-inline void ConstructMsg::_internal_set_construction_type(::protobuf::ConstructionType value) {
-  
-  _impl_.construction_type_ = value;
-}
-inline void ConstructMsg::set_construction_type(::protobuf::ConstructionType value) {
-  _internal_set_construction_type(value);
-  // @@protoc_insertion_point(field_set:protobuf.ConstructMsg.construction_type)
-}
-
-// int64 team_id = 3;
+// int64 team_id = 2;
 inline void ConstructMsg::clear_team_id() {
   _impl_.team_id_ = int64_t{0};
 }
@@ -3045,6 +4027,26 @@ inline void ConstructMsg::_internal_set_team_id(int64_t value) {
 inline void ConstructMsg::set_team_id(int64_t value) {
   _internal_set_team_id(value);
   // @@protoc_insertion_point(field_set:protobuf.ConstructMsg.team_id)
+}
+
+// .protobuf.ConstructionType construction_type = 3;
+inline void ConstructMsg::clear_construction_type() {
+  _impl_.construction_type_ = 0;
+}
+inline ::protobuf::ConstructionType ConstructMsg::_internal_construction_type() const {
+  return static_cast< ::protobuf::ConstructionType >(_impl_.construction_type_);
+}
+inline ::protobuf::ConstructionType ConstructMsg::construction_type() const {
+  // @@protoc_insertion_point(field_get:protobuf.ConstructMsg.construction_type)
+  return _internal_construction_type();
+}
+inline void ConstructMsg::_internal_set_construction_type(::protobuf::ConstructionType value) {
+  
+  _impl_.construction_type_ = value;
+}
+inline void ConstructMsg::set_construction_type(::protobuf::ConstructionType value) {
+  _internal_set_construction_type(value);
+  // @@protoc_insertion_point(field_set:protobuf.ConstructMsg.construction_type)
 }
 
 // -------------------------------------------------------------------
@@ -3242,6 +4244,14 @@ inline void CreatCharacterMsg::set_birthpoint_index(int32_t value) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

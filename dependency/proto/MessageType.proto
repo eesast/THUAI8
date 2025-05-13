@@ -158,7 +158,9 @@ enum ConstructionType // 建筑
     BARRACKS = 1;
     SPRING = 2;
     FARM = 3;
+
 }
+
 
 enum TrapType // 陷阱
 {
