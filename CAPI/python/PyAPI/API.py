@@ -34,11 +34,14 @@ class CharacterAPI(ICharacterAPI, IGameTimer):
     # endregion
 
     # region 实现IAPI接口
-    def SendTextMessage(self, toPlayerID: int, message: str) -> Future[bool]:
-        return self.__pool.submit(self.__logic.Send, toPlayerID, message, False)
+    # def SendTextMessage(self, toPlayerID: int, message: str) -> Future[bool]:
+    #     return self.__pool.submit(self.__logic.Send, toPlayerID, message, False)
 
-    def SendBinaryMessage(self, toPlayerID: int, message: str) -> Future[bool]:
-        return self.__pool.submit(self.__logic.Send, toPlayerID, message, True)
+    # def SendBinaryMessage(self, toPlayerID: int, message: str) -> Future[bool]:
+    #     return self.__pool.submit(self.__logic.Send, toPlayerID, message, True)
+
+    def SendMessage(self, toPlayerID: int, message: Union[str, bytes]) -> Future[bool]:
+        return self.__logic.SendMessage(toPlayerID, message)
 
     def HaveMessage(self) -> bool:
         return self.__logic.HaveMessage()

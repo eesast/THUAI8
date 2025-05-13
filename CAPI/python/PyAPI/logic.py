@@ -181,12 +181,9 @@ class Logic(ILogic):
     ) -> THUAI8.AdditionResource:
         with self.__mtxState:
             self.__logger.debug("Called GetAdditionResourceState")
-            if (
-                cellX,
-                cellY,
-            ) not in self.__currentState.mapInfo.additionResource:
+            if (cellX, cellY) not in self.__currentState.mapInfo.additionResource:
                 self.__logger.warning("GetAdditionResourceState: Out of range")
-                return -1
+                return None
             else:
                 return copy.deepcopy(
                     self.__currentState.mapInfo.additionResource[(cellX, cellY)]
@@ -214,7 +211,7 @@ class Logic(ILogic):
         self, playerID: int, teamID: int, ATKplayerID: int, ATKteamID: int
     ) -> bool:
         self.__logger.debug("Called CommonAttack")
-        return self.__comm.Attack(playerID, teamID, ATKplayerID, ATKteamID)
+        return self.__comm.Common_Attack(playerID, teamID, ATKplayerID, ATKteamID)
 
     def Skill_Attack(self, playerID: int, teamID: int, angle: float) -> bool:
         self.__logger.debug("Called SkillAttack")
