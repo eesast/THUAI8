@@ -113,6 +113,10 @@ class ILogic(metaclass=ABCMeta):
         pass
 
     @abstractmethod
+    def AttackConstruction(self, playerID: int, teamID: int) -> bool:
+        pass
+
+    @abstractmethod
     def Recover(self, recover: int) -> bool:
         pass
 
@@ -394,6 +398,15 @@ class ICharacterAPI(IAPI, metaclass=ABCMeta):
 
         :param ATKplayerID: 被攻击的角色编号
         :return: 普通攻击是否成功, 通过 `.result()` 方法等待获取 `bool`
+        """
+        pass
+
+    @abstractmethod
+    def AttackConstruction(self) -> Future[bool]:
+        """发出攻击建筑指令
+        - 需要接近可攻击的 `Construction`
+
+        :return: 攻击是否成功, 通过 `.result()` 方法等待获取 `bool`
         """
         pass
 
