@@ -1,6 +1,6 @@
 import math
 from concurrent.futures import Future, ThreadPoolExecutor
-from typing import List, Optional, Tuple, Union, cast
+from typing import List, Tuple, Union, cast
 
 import PyAPI.structures as THUAI8
 from PyAPI.Interface import IAI, ICharacterAPI, IGameTimer, ILogic, ITeamAPI
@@ -41,7 +41,7 @@ class CharacterAPI(ICharacterAPI, IGameTimer):
     #     return self.__pool.submit(self.__logic.Send, toPlayerID, message, True)
 
     def SendMessage(self, toPlayerID: int, message: Union[str, bytes]) -> Future[bool]:
-        return self.__logic.SendMessage(toPlayerID, message)
+        return self.__pool.submit(self.__logic.SendMessage, toPlayerID, message)
 
     def HaveMessage(self) -> bool:
         return self.__logic.HaveMessage()
@@ -73,19 +73,15 @@ class CharacterAPI(ICharacterAPI, IGameTimer):
     def GetPlaceType(self, cellX: int, cellY: int) -> THUAI8.PlaceType:
         return self.__logic.GetPlaceType(cellX, cellY)
 
-    def GetEconomyResourceState(
-        self, cellX: int, cellY: int
-    ) -> Optional[THUAI8.EconomyResource]:
+    def GetEconomyResourceState(self, cellX: int, cellY: int) -> THUAI8.EconomyResource:
         return self.__logic.GetEconomyResourceState(cellX, cellY)
 
     def GetAdditionResourceState(
         self, cellX: int, cellY: int
-    ) -> Optional[THUAI8.AdditionResource]:
+    ) -> THUAI8.AdditionResource:
         return self.__logic.GetAdditionResourceState(cellX, cellY)
 
-    def GetConstructionState(
-        self, cellX: int, cellY: int
-    ) -> Optional[THUAI8.ConstructionState]:
+    def GetConstructionState(self, cellX: int, cellY: int) -> THUAI8.ConstructionState:
         return self.__logic.GetConstructionState(cellX, cellY)
 
     def GetPlayerGUIDs(self) -> List[int]:
@@ -136,20 +132,26 @@ class CharacterAPI(ICharacterAPI, IGameTimer):
             attackedPlayerID,
         )
 
-    def AttackConstruction(self):
+    def AttackConstruction(self) -> Future[bool]:
         return self.__pool.submit(self.__logic.AttackConstruction)
+
+    def AttackAdditionResource(self) -> Future[bool]:
+        return self.__pool.submit(self.__logic.AttackAdditionResource)
 
     def Recover(self, recover: int) -> Future[bool]:
         return self.__pool.submit(self.__logic.Recover, recover)
 
-    def Harvest(self) -> Future[bool]:
-        return self.__pool.submit(self.__logic.Produce)
+    # def Harvest(self) -> Future[bool]:
+    #     return self.__pool.submit(self.__logic.Produce)
 
     def Rebuild(self, constructionType: THUAI8.ConstructionType) -> Future[bool]:
         return self.__pool.submit(self.__logic.Rebuild, constructionType)
 
     def Construct(self, constructionType: THUAI8.ConstructionType) -> Future[bool]:
         return self.__pool.submit(self.__logic.Construct, constructionType)
+
+    def ConstructTrap(self, trapType: THUAI8.TrapType) -> Future[bool]:
+        return self.__pool.submit(self.__logic.ConstructTrap, trapType)
 
     def Produce(self) -> Future[bool]:
         return self.__pool.submit(self.__logic.Produce)

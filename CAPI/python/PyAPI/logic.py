@@ -207,19 +207,23 @@ class Logic(ILogic):
                 else self.__currentState.gameInfo.monstersTeamEconomy
             )
 
-    def Common_Attack(
-        self, playerID: int, teamID: int, ATKplayerID: int, ATKteamID: int
-    ) -> bool:
+    def Common_Attack(self, ATKplayerID: int) -> bool:
         self.__logger.debug("Called CommonAttack")
-        return self.__comm.Common_Attack(playerID, teamID, ATKplayerID, ATKteamID)
+        return self.__comm.Common_Attack(
+            self.__playerID, self.__teamID, ATKplayerID, 1 - self.__teamID
+        )
 
-    def Skill_Attack(self, playerID: int, teamID: int, angle: float) -> bool:
+    def Skill_Attack(self, angle: float) -> bool:
         self.__logger.debug("Called SkillAttack")
-        return self.__comm.Skill_Attack(playerID, teamID, angle)
+        return self.__comm.Skill_Attack(self.__playerID, self.__teamID, angle)
 
-    def AttackConstruction(self, playerID, teamID):
+    def AttackConstruction(self):
         self.__logger.debug("Called AttackConstruction")
-        return self.__comm.AttackConstruction(playerID, teamID)
+        return self.__comm.AttackConstruction(self.__playerID, self.__teamID)
+
+    def AttackAdditionResource(self):
+        self.__logger.debug("Called AttackAdditionResource")
+        return self.__comm.AttackAdditionResource(self.__playerID, self.__teamID)
 
     def Recover(self, recover: int) -> bool:
         self.__logger.debug("Called Recover")
@@ -228,6 +232,10 @@ class Logic(ILogic):
     def Construct(self, constructionType: THUAI8.ConstructionType) -> bool:
         self.__logger.debug("Called Construct")
         return self.__comm.Construct(constructionType, self.__playerID, self.__teamID)
+
+    def ConstructTrap(self, trapType: THUAI8.TrapType) -> bool:
+        self.__logger.debug("Called ConstructTrap")
+        return self.__comm.ConstructTrap(trapType, self.__playerID, self.__teamID)
 
     def BuildCharacter(
         self, characterType: THUAI8.CharacterType, birthIndex: int
