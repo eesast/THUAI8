@@ -120,7 +120,7 @@ class CharacterDebugAPI(ICharacterAPI, IGameTimer):
         )
 
         def logSkillAttack() -> bool:
-            result = self.__logic.Skill_Attack(self.__playerID, self.__teamID, angle)
+            result = self.__logic.Skill_Attack(angle)
             if not result:
                 self.__logger.warning(f"Skill_Attack failed at {self.__GetTime()}ms")
             return result
@@ -133,9 +133,7 @@ class CharacterDebugAPI(ICharacterAPI, IGameTimer):
         )
 
         def logCommonAttack() -> bool:
-            result = self.__logic.Common_Attack(
-                self.__playerID, self.__teamID, attackedPlayerID, 1 - self.__teamID
-            )
+            result = self.__logic.Common_Attack(attackedPlayerID)
             if not result:
                 self.__logger.warning(f"Common_Attack failed at {self.__GetTime()}ms")
             return result
@@ -146,7 +144,7 @@ class CharacterDebugAPI(ICharacterAPI, IGameTimer):
         self.__logger.info(f"AttackConstruction: called at {self.__GetTime()}ms")
 
         def logAttackConstruction() -> bool:
-            result = self.__logic.AttackConstruction(self.__playerID, self.__teamID)
+            result = self.__logic.AttackConstruction()
             if not result:
                 self.__logger.warning(
                     f"AttackConstruction failed at {self.__GetTime()}ms"
@@ -154,6 +152,19 @@ class CharacterDebugAPI(ICharacterAPI, IGameTimer):
             return result
 
         return self.__pool.submit(logAttackConstruction)
+
+    def AttackAdditionResource(self) -> Future[bool]:
+        self.__logger.info(f"AttackAdditionResource: called at {self.__GetTime()}ms")
+
+        def logAttackAdditionResource() -> bool:
+            result = self.__logic.AttackAdditionResource()
+            if not result:
+                self.__logger.warning(
+                    f"AttackAdditionResource failed at {self.__GetTime()}ms"
+                )
+            return result
+
+        return self.__pool.submit(logAttackAdditionResource)
 
     def Recover(self, recover: int) -> Future[bool]:
         self.__logger.info(f"Recover: {recover}, called at {self.__GetTime()}ms")
@@ -189,6 +200,17 @@ class CharacterDebugAPI(ICharacterAPI, IGameTimer):
             return result
 
         return self.__pool.submit(logConstruct)
+
+    def ConstructTrap(self, trapType) -> Future[bool]:
+        self.__logger.info(f"ConstructTrap: {trapType}, called at {self.__GetTime()}ms")
+
+        def logConstructTrap() -> bool:
+            result = self.__logic.ConstructTrap(trapType)
+            if not result:
+                self.__logger.warning(f"ConstructTrap failed at {self.__GetTime()}ms")
+            return result
+
+        return self.__pool.submit(logConstructTrap)
 
     def Rebuild(self, constructionType) -> Future[bool]:
         self.__logger.info(
