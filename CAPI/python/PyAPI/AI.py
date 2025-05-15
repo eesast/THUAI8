@@ -59,7 +59,14 @@ class AI(IAI):
             # api.GetEconomyResourceState(0, 0)
             # api.GetAdditionResourceState(0, 0)
             # api.AttackConstruction()
-            api.Produce()
+            # api.Produce()
+            api.AttackAdditionResource()
+            api.AttackConstruction()
+            addition_resource = api.GetAdditionResourceState(0, 0).result()
+            if addition_resource:
+                print(f"资源生命值: {addition_resource.hp}")
+            else:
+                print("该位置没有加成资源")
             return
         elif self.__playerID == 2:
             # player2的操作

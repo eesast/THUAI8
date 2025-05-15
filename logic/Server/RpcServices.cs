@@ -344,6 +344,24 @@ namespace Server
             return Task.FromResult(boolRes);
         }
 
+        public override Task<BoolRes> ConstructTrap(ConstructTrapMsg request, ServerCallContext context)
+        {
+            GameServerLogging.logger.ConsoleLogDebug(
+                $"TRY ConstructTrap: Player {request.CharacterId} from Team {request.TeamId}");
+            BoolRes boolRes = new();
+            if (request.CharacterId >= spectatorMinPlayerID)
+            {
+                boolRes.ActSuccess = false;
+                return Task.FromResult(boolRes);
+            }
+            // var gameID = communicationToGameID[request.TeamId][request.PlayerId];
+            boolRes.ActSuccess = game.Construct(
+                request.TeamId, request.CharacterId,
+                Transformation.TrapTypeFromProto(request.TrapType));
+            GameServerLogging.logger.ConsoleLogDebug("END ConstructTrap");
+            return Task.FromResult(boolRes);
+        }
+
         public override Task<BoolRes> Equip(EquipMsg request, ServerCallContext context)
         {
             GameServerLogging.logger.ConsoleLogDebug(
@@ -432,6 +450,24 @@ namespace Server
                 request.TeamId, request.CharacterId
                 );
             GameServerLogging.logger.ConsoleLogDebug("END AttackConstruction");
+            return Task.FromResult(boolRes);
+        }
+
+        public override Task<BoolRes> AttackAdditionResource(AttackAdditionResourceMsg request, ServerCallContext context)
+        {
+            GameServerLogging.logger.ConsoleLogDebug(
+                $"TRY AttackAdditionResource: Player {request.CharacterId} from Team {request.TeamId}");
+            BoolRes boolRes = new();
+            if (request.CharacterId >= spectatorMinPlayerID)
+            {
+                boolRes.ActSuccess = false;
+                return Task.FromResult(boolRes);
+            }
+            // var gameID = communicationToGameID[request.TeamId][request.PlayerId];
+            boolRes.ActSuccess = game.AttackResource(
+                request.TeamId, request.CharacterId
+                );
+            GameServerLogging.logger.ConsoleLogDebug("END AttackAdditionResource");
             return Task.FromResult(boolRes);
         }
 
