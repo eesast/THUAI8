@@ -140,14 +140,14 @@ std::optional<THUAI8::ConstructionState> TeamAPI::GetConstructionState(int32_t c
     return logic.GetConstructionState(cellX, cellY);
 }
 
-std::optional<THUAI8::EconomyResource> CharacterAPI::GetEnconomyResourceState(int32_t cellX, int32_t cellY) const
+std::optional<THUAI8::EconomyResource> CharacterAPI::GetEconomyResourceState(int32_t cellX, int32_t cellY) const
 {
-    return logic.GetEnconomyResourceState(cellX, cellY);
+    return logic.GetEconomyResourceState(cellX, cellY);
 }
 
-std::optional<THUAI8::EconomyResource> TeamAPI::GetEnconomyResourceState(int32_t cellX, int32_t cellY) const
+std::optional<THUAI8::EconomyResource> TeamAPI::GetEconomyResourceState(int32_t cellX, int32_t cellY) const
 {
-    return logic.GetEnconomyResourceState(cellX, cellY);
+    return logic.GetEconomyResourceState(cellX, cellY);
 }
 
 std::optional<THUAI8::AdditionResource> CharacterAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const

@@ -19,7 +19,7 @@ message CharacterMsg
     int32 side_flag = 4;
 }
 
-message EconomyReourceMsg
+message EconomyResourceMsg
 {
     int64 team_id = 1;
     int32 process = 2;
