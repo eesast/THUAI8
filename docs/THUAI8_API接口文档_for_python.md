@@ -113,6 +113,17 @@ def GetEconomyResourceState(self, cellX: int, cellY: int) -> THUAI8.EconomyResou
   ```
 - **说明**: 
   - 若指定位置无经济资源，返回默认值（所有字段为0或Null）
+- **示例**:
+  ```python
+  economy_resource = api.GetEconomyResourceState(0, 0).result()
+  if economy_resource:
+      print(f"资源类型: {economy_resource.economyResourceType}")
+      print(f"采集进度: {economy_resource.process}")
+      if economy_resource.process > 0:
+          api.Produce().result()
+  else:
+      print("该位置没有经济资源")
+  ```
 
 #### GetAdditionResourceState
 ```python
@@ -136,6 +147,14 @@ def GetAdditionResourceState(self, cellX: int, cellY: int) -> THUAI8.AdditionRes
   ```
 - **说明**: 
   - 若指定位置无加成资源，返回默认值（所有字段为0或Null）
+- **示例**:
+  ```python
+  addition_resource = api.GetAdditionResourceState(0, 0).result()
+  if addition_resource:
+      print(f"资源生命值: {addition_resource.hp}")
+  else:
+      print("该位置没有加成资源")
+  ```
 
 #### GetConstructionState
 ```python
@@ -248,6 +267,15 @@ def AttackConstruction(self) -> Future[bool]
 ```
 - **返回值**: `Future[bool]`，表示攻击附近建筑指令是否成功发送
 
+#### AttackAdditionResource
+```python
+def AttackAdditionResource(self) -> Future[bool]
+```
+- **返回值**: `Future[bool]`，表示攻击附加资源指令是否成功发送
+- **说明**: 
+  - 需要在附加资源附近使用
+  - 通过 `.result()` 获取实际执行结果
+
 ### 资源操作
 
 #### Produce
@@ -276,6 +304,15 @@ def Construct(self, constructionType: THUAI8.ConstructionType) -> Future[bool]
   - `constructionType`: 建筑类型
 - **返回值**: `Future[bool]`，表示建造指令是否成功发送
 - **说明**: 在可建造位置新建建筑
+
+#### ConstructTrap
+```python
+def ConstructTrap(self, trapType: THUAI8.TrapType) -> Future[bool]
+```
+- **参数**:
+  - `trapType`: 陷阱类型
+- **返回值**: `Future[bool]`，表示建造陷阱指令是否成功发送
+- **说明**: 通过 `.result()` 获取实际执行结果
 
 #### Rebuild
 ```python
