@@ -62,21 +62,21 @@ struct CharacterMsgDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CharacterMsgDefaultTypeInternal _CharacterMsg_default_instance_;
-PROTOBUF_CONSTEXPR EconomyReourceMsg::EconomyReourceMsg(
+PROTOBUF_CONSTEXPR EconomyResourceMsg::EconomyResourceMsg(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.team_id_)*/int64_t{0}
   , /*decltype(_impl_.process_)*/0
   , /*decltype(_impl_.economy_resource_type_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
-struct EconomyReourceMsgDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR EconomyReourceMsgDefaultTypeInternal()
+struct EconomyResourceMsgDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR EconomyResourceMsgDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~EconomyReourceMsgDefaultTypeInternal() {}
+  ~EconomyResourceMsgDefaultTypeInternal() {}
   union {
-    EconomyReourceMsg _instance;
+    EconomyResourceMsg _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EconomyReourceMsgDefaultTypeInternal _EconomyReourceMsg_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EconomyResourceMsgDefaultTypeInternal _EconomyResourceMsg_default_instance_;
 PROTOBUF_CONSTEXPR AdditionResourceMsg::AdditionResourceMsg(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.team_id_)*/int64_t{0}
@@ -209,8 +209,8 @@ struct AttackAdditionResourceMsgDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AttackAdditionResourceMsgDefaultTypeInternal _AttackAdditionResourceMsg_default_instance_;
 PROTOBUF_CONSTEXPR ConstructMsg::ConstructMsg(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.character_id_)*/int64_t{0}
-  , /*decltype(_impl_.team_id_)*/int64_t{0}
+    /*decltype(_impl_.character_id_)*/0
+  , /*decltype(_impl_.team_id_)*/0
   , /*decltype(_impl_.construction_type_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct ConstructMsgDefaultTypeInternal {
@@ -222,6 +222,21 @@ struct ConstructMsgDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ConstructMsgDefaultTypeInternal _ConstructMsg_default_instance_;
+PROTOBUF_CONSTEXPR ConstructTrapMsg::ConstructTrapMsg(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.character_id_)*/0
+  , /*decltype(_impl_.team_id_)*/0
+  , /*decltype(_impl_.trap_type_)*/0
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct ConstructTrapMsgDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ConstructTrapMsgDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ConstructTrapMsgDefaultTypeInternal() {}
+  union {
+    ConstructTrapMsg _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ConstructTrapMsgDefaultTypeInternal _ConstructTrapMsg_default_instance_;
 PROTOBUF_CONSTEXPR EquipMsg::EquipMsg(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.character_id_)*/int64_t{0}
@@ -268,7 +283,7 @@ struct CreatCharacterMsgDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CreatCharacterMsgDefaultTypeInternal _CreatCharacterMsg_default_instance_;
 }  // namespace protobuf
-static ::_pb::Metadata file_level_metadata_Message2Server_2eproto[16];
+static ::_pb::Metadata file_level_metadata_Message2Server_2eproto[17];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_Message2Server_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_Message2Server_2eproto = nullptr;
 
@@ -298,14 +313,14 @@ const uint32_t TableStruct_Message2Server_2eproto::offsets[] PROTOBUF_SECTION_VA
   PROTOBUF_FIELD_OFFSET(::protobuf::CharacterMsg, _impl_.character_type_),
   PROTOBUF_FIELD_OFFSET(::protobuf::CharacterMsg, _impl_.side_flag_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::protobuf::EconomyReourceMsg, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::protobuf::EconomyResourceMsg, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::protobuf::EconomyReourceMsg, _impl_.team_id_),
-  PROTOBUF_FIELD_OFFSET(::protobuf::EconomyReourceMsg, _impl_.process_),
-  PROTOBUF_FIELD_OFFSET(::protobuf::EconomyReourceMsg, _impl_.economy_resource_type_),
+  PROTOBUF_FIELD_OFFSET(::protobuf::EconomyResourceMsg, _impl_.team_id_),
+  PROTOBUF_FIELD_OFFSET(::protobuf::EconomyResourceMsg, _impl_.process_),
+  PROTOBUF_FIELD_OFFSET(::protobuf::EconomyResourceMsg, _impl_.economy_resource_type_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::protobuf::AdditionResourceMsg, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -405,6 +420,15 @@ const uint32_t TableStruct_Message2Server_2eproto::offsets[] PROTOBUF_SECTION_VA
   PROTOBUF_FIELD_OFFSET(::protobuf::ConstructMsg, _impl_.team_id_),
   PROTOBUF_FIELD_OFFSET(::protobuf::ConstructMsg, _impl_.construction_type_),
   ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::protobuf::ConstructTrapMsg, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::protobuf::ConstructTrapMsg, _impl_.character_id_),
+  PROTOBUF_FIELD_OFFSET(::protobuf::ConstructTrapMsg, _impl_.team_id_),
+  PROTOBUF_FIELD_OFFSET(::protobuf::ConstructTrapMsg, _impl_.trap_type_),
+  ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::protobuf::EquipMsg, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -436,7 +460,7 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 0, -1, -1, sizeof(::protobuf::NullRequest)},
   { 6, -1, -1, sizeof(::protobuf::IDMsg)},
   { 14, -1, -1, sizeof(::protobuf::CharacterMsg)},
-  { 24, -1, -1, sizeof(::protobuf::EconomyReourceMsg)},
+  { 24, -1, -1, sizeof(::protobuf::EconomyResourceMsg)},
   { 33, -1, -1, sizeof(::protobuf::AdditionResourceMsg)},
   { 42, -1, -1, sizeof(::protobuf::ConstructionMsg)},
   { 51, -1, -1, sizeof(::protobuf::MoveMsg)},
@@ -446,16 +470,17 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 106, -1, -1, sizeof(::protobuf::AttackConstructionMsg)},
   { 114, -1, -1, sizeof(::protobuf::AttackAdditionResourceMsg)},
   { 122, -1, -1, sizeof(::protobuf::ConstructMsg)},
-  { 131, -1, -1, sizeof(::protobuf::EquipMsg)},
-  { 140, -1, -1, sizeof(::protobuf::RecoverMsg)},
-  { 149, -1, -1, sizeof(::protobuf::CreatCharacterMsg)},
+  { 131, -1, -1, sizeof(::protobuf::ConstructTrapMsg)},
+  { 140, -1, -1, sizeof(::protobuf::EquipMsg)},
+  { 149, -1, -1, sizeof(::protobuf::RecoverMsg)},
+  { 158, -1, -1, sizeof(::protobuf::CreatCharacterMsg)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
   &::protobuf::_NullRequest_default_instance_._instance,
   &::protobuf::_IDMsg_default_instance_._instance,
   &::protobuf::_CharacterMsg_default_instance_._instance,
-  &::protobuf::_EconomyReourceMsg_default_instance_._instance,
+  &::protobuf::_EconomyResourceMsg_default_instance_._instance,
   &::protobuf::_AdditionResourceMsg_default_instance_._instance,
   &::protobuf::_ConstructionMsg_default_instance_._instance,
   &::protobuf::_MoveMsg_default_instance_._instance,
@@ -465,6 +490,7 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::protobuf::_AttackConstructionMsg_default_instance_._instance,
   &::protobuf::_AttackAdditionResourceMsg_default_instance_._instance,
   &::protobuf::_ConstructMsg_default_instance_._instance,
+  &::protobuf::_ConstructTrapMsg_default_instance_._instance,
   &::protobuf::_EquipMsg_default_instance_._instance,
   &::protobuf::_RecoverMsg_default_instance_._instance,
   &::protobuf::_CreatCharacterMsg_default_instance_._instance,
@@ -476,52 +502,55 @@ const char descriptor_table_protodef_Message2Server_2eproto[] PROTOBUF_SECTION_V
   "haracter_id\030\001 \001(\003\022\017\n\007team_id\030\002 \001(\003\"y\n\014Ch"
   "aracterMsg\022\024\n\014character_id\030\001 \001(\003\022\017\n\007team"
   "_id\030\002 \001(\003\022/\n\016character_type\030\003 \001(\0162\027.prot"
-  "obuf.CharacterType\022\021\n\tside_flag\030\004 \001(\005\"s\n"
-  "\021EconomyReourceMsg\022\017\n\007team_id\030\001 \001(\003\022\017\n\007p"
-  "rocess\030\002 \001(\005\022<\n\025economy_resource_type\030\003 "
-  "\001(\0162\035.protobuf.EconomyResourceType\"r\n\023Ad"
-  "ditionResourceMsg\022\017\n\007team_id\030\001 \001(\003\022\n\n\002hp"
-  "\030\002 \001(\005\022>\n\026addition_resource_type\030\003 \001(\0162\036"
-  ".protobuf.AdditionResourceType\"e\n\017Constr"
-  "uctionMsg\022\017\n\007team_id\030\001 \001(\003\022\n\n\002hp\030\002 \001(\005\0225"
-  "\n\021construction_type\030\003 \001(\0162\032.protobuf.Con"
-  "structionType\"]\n\007MoveMsg\022\024\n\014character_id"
-  "\030\001 \001(\003\022\r\n\005angle\030\002 \001(\001\022\034\n\024time_in_millise"
-  "conds\030\003 \001(\003\022\017\n\007team_id\030\004 \001(\003\"\206\001\n\007SendMsg"
-  "\022\024\n\014character_id\030\001 \001(\003\022\027\n\017to_character_i"
-  "d\030\002 \001(\003\022\026\n\014text_message\030\003 \001(\tH\000\022\030\n\016binar"
-  "y_message\030\004 \001(\014H\000\022\017\n\007team_id\030\005 \001(\003B\t\n\007me"
-  "ssage\"~\n\tAttackMsg\022\024\n\014character_id\030\001 \001(\003"
-  "\022\017\n\007team_id\030\002 \001(\003\022\024\n\014attack_range\030\003 \001(\005\022"
-  "\035\n\025attacked_character_id\030\004 \001(\003\022\025\n\rattack"
-  "ed_team\030\005 \001(\003\"\277\001\n\007CastMsg\022\024\n\014character_i"
-  "d\030\001 \001(\003\022\020\n\010skill_id\030\002 \001(\003\022\033\n\023casted_char"
-  "acter_id\030\003 \003(\003\022\017\n\007team_id\030\004 \001(\003\022\024\n\014attac"
-  "k_range\030\005 \001(\005\022\016\n\001x\030\006 \001(\005H\000\210\001\001\022\016\n\001y\030\007 \001(\005"
-  "H\001\210\001\001\022\022\n\005angle\030\010 \001(\001H\002\210\001\001B\004\n\002_xB\004\n\002_yB\010\n"
-  "\006_angle\">\n\025AttackConstructionMsg\022\017\n\007team"
-  "_id\030\001 \001(\003\022\024\n\014character_id\030\002 \001(\003\"B\n\031Attac"
-  "kAdditionResourceMsg\022\017\n\007team_id\030\001 \001(\003\022\024\n"
-  "\014character_id\030\002 \001(\003\"l\n\014ConstructMsg\022\024\n\014c"
-  "haracter_id\030\001 \001(\003\022\017\n\007team_id\030\002 \001(\003\0225\n\021co"
-  "nstruction_type\030\003 \001(\0162\032.protobuf.Constru"
-  "ctionType\"b\n\010EquipMsg\022\024\n\014character_id\030\001 "
-  "\001(\003\022/\n\016equipment_type\030\002 \001(\0162\027.protobuf.E"
-  "quipmentType\022\017\n\007team_id\030\003 \001(\003\"I\n\nRecover"
-  "Msg\022\024\n\014character_id\030\001 \001(\003\022\024\n\014recovered_h"
-  "p\030\002 \001(\003\022\017\n\007team_id\030\003 \001(\003\"o\n\021CreatCharact"
-  "erMsg\022/\n\016character_type\030\001 \001(\0162\027.protobuf"
-  ".CharacterType\022\017\n\007team_id\030\002 \001(\003\022\030\n\020birth"
-  "point_index\030\003 \001(\005b\006proto3"
+  "obuf.CharacterType\022\021\n\tside_flag\030\004 \001(\005\"t\n"
+  "\022EconomyResourceMsg\022\017\n\007team_id\030\001 \001(\003\022\017\n\007"
+  "process\030\002 \001(\005\022<\n\025economy_resource_type\030\003"
+  " \001(\0162\035.protobuf.EconomyResourceType\"r\n\023A"
+  "dditionResourceMsg\022\017\n\007team_id\030\001 \001(\003\022\n\n\002h"
+  "p\030\002 \001(\005\022>\n\026addition_resource_type\030\003 \001(\0162"
+  "\036.protobuf.AdditionResourceType\"e\n\017Const"
+  "ructionMsg\022\017\n\007team_id\030\001 \001(\003\022\n\n\002hp\030\002 \001(\005\022"
+  "5\n\021construction_type\030\003 \001(\0162\032.protobuf.Co"
+  "nstructionType\"]\n\007MoveMsg\022\024\n\014character_i"
+  "d\030\001 \001(\003\022\r\n\005angle\030\002 \001(\001\022\034\n\024time_in_millis"
+  "econds\030\003 \001(\003\022\017\n\007team_id\030\004 \001(\003\"\206\001\n\007SendMs"
+  "g\022\024\n\014character_id\030\001 \001(\003\022\027\n\017to_character_"
+  "id\030\002 \001(\003\022\026\n\014text_message\030\003 \001(\tH\000\022\030\n\016bina"
+  "ry_message\030\004 \001(\014H\000\022\017\n\007team_id\030\005 \001(\003B\t\n\007m"
+  "essage\"~\n\tAttackMsg\022\024\n\014character_id\030\001 \001("
+  "\003\022\017\n\007team_id\030\002 \001(\003\022\024\n\014attack_range\030\003 \001(\005"
+  "\022\035\n\025attacked_character_id\030\004 \001(\003\022\025\n\rattac"
+  "ked_team\030\005 \001(\003\"\277\001\n\007CastMsg\022\024\n\014character_"
+  "id\030\001 \001(\003\022\020\n\010skill_id\030\002 \001(\003\022\033\n\023casted_cha"
+  "racter_id\030\003 \003(\003\022\017\n\007team_id\030\004 \001(\003\022\024\n\014atta"
+  "ck_range\030\005 \001(\005\022\016\n\001x\030\006 \001(\005H\000\210\001\001\022\016\n\001y\030\007 \001("
+  "\005H\001\210\001\001\022\022\n\005angle\030\010 \001(\001H\002\210\001\001B\004\n\002_xB\004\n\002_yB\010"
+  "\n\006_angle\">\n\025AttackConstructionMsg\022\017\n\007tea"
+  "m_id\030\001 \001(\003\022\024\n\014character_id\030\002 \001(\003\"B\n\031Atta"
+  "ckAdditionResourceMsg\022\017\n\007team_id\030\001 \001(\003\022\024"
+  "\n\014character_id\030\002 \001(\003\"l\n\014ConstructMsg\022\024\n\014"
+  "character_id\030\001 \001(\005\022\017\n\007team_id\030\002 \001(\005\0225\n\021c"
+  "onstruction_type\030\003 \001(\0162\032.protobuf.Constr"
+  "uctionType\"`\n\020ConstructTrapMsg\022\024\n\014charac"
+  "ter_id\030\001 \001(\005\022\017\n\007team_id\030\002 \001(\005\022%\n\ttrap_ty"
+  "pe\030\003 \001(\0162\022.protobuf.TrapType\"b\n\010EquipMsg"
+  "\022\024\n\014character_id\030\001 \001(\003\022/\n\016equipment_type"
+  "\030\002 \001(\0162\027.protobuf.EquipmentType\022\017\n\007team_"
+  "id\030\003 \001(\003\"I\n\nRecoverMsg\022\024\n\014character_id\030\001"
+  " \001(\003\022\024\n\014recovered_hp\030\002 \001(\003\022\017\n\007team_id\030\003 "
+  "\001(\003\"o\n\021CreatCharacterMsg\022/\n\016character_ty"
+  "pe\030\001 \001(\0162\027.protobuf.CharacterType\022\017\n\007tea"
+  "m_id\030\002 \001(\003\022\030\n\020birthpoint_index\030\003 \001(\005b\006pr"
+  "oto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_Message2Server_2eproto_deps[1] = {
   &::descriptor_table_MessageType_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_Message2Server_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_Message2Server_2eproto = {
-    false, false, 1665, descriptor_table_protodef_Message2Server_2eproto,
+    false, false, 1764, descriptor_table_protodef_Message2Server_2eproto,
     "Message2Server.proto",
-    &descriptor_table_Message2Server_2eproto_once, descriptor_table_Message2Server_2eproto_deps, 1, 16,
+    &descriptor_table_Message2Server_2eproto_once, descriptor_table_Message2Server_2eproto_deps, 1, 17,
     schemas, file_default_instances, TableStruct_Message2Server_2eproto::offsets,
     file_level_metadata_Message2Server_2eproto, file_level_enum_descriptors_Message2Server_2eproto,
     file_level_service_descriptors_Message2Server_2eproto,
@@ -1049,19 +1078,19 @@ void CharacterMsg::InternalSwap(CharacterMsg* other) {
 
 // ===================================================================
 
-class EconomyReourceMsg::_Internal {
+class EconomyResourceMsg::_Internal {
  public:
 };
 
-EconomyReourceMsg::EconomyReourceMsg(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+EconomyResourceMsg::EconomyResourceMsg(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
   SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:protobuf.EconomyReourceMsg)
+  // @@protoc_insertion_point(arena_constructor:protobuf.EconomyResourceMsg)
 }
-EconomyReourceMsg::EconomyReourceMsg(const EconomyReourceMsg& from)
+EconomyResourceMsg::EconomyResourceMsg(const EconomyResourceMsg& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  EconomyReourceMsg* const _this = this; (void)_this;
+  EconomyResourceMsg* const _this = this; (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_.team_id_){}
     , decltype(_impl_.process_){}
@@ -1072,10 +1101,10 @@ EconomyReourceMsg::EconomyReourceMsg(const EconomyReourceMsg& from)
   ::memcpy(&_impl_.team_id_, &from._impl_.team_id_,
     static_cast<size_t>(reinterpret_cast<char*>(&_impl_.economy_resource_type_) -
     reinterpret_cast<char*>(&_impl_.team_id_)) + sizeof(_impl_.economy_resource_type_));
-  // @@protoc_insertion_point(copy_constructor:protobuf.EconomyReourceMsg)
+  // @@protoc_insertion_point(copy_constructor:protobuf.EconomyResourceMsg)
 }
 
-inline void EconomyReourceMsg::SharedCtor(
+inline void EconomyResourceMsg::SharedCtor(
     ::_pb::Arena* arena, bool is_message_owned) {
   (void)arena;
   (void)is_message_owned;
@@ -1087,8 +1116,8 @@ inline void EconomyReourceMsg::SharedCtor(
   };
 }
 
-EconomyReourceMsg::~EconomyReourceMsg() {
-  // @@protoc_insertion_point(destructor:protobuf.EconomyReourceMsg)
+EconomyResourceMsg::~EconomyResourceMsg() {
+  // @@protoc_insertion_point(destructor:protobuf.EconomyResourceMsg)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
     return;
@@ -1096,16 +1125,16 @@ EconomyReourceMsg::~EconomyReourceMsg() {
   SharedDtor();
 }
 
-inline void EconomyReourceMsg::SharedDtor() {
+inline void EconomyResourceMsg::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
-void EconomyReourceMsg::SetCachedSize(int size) const {
+void EconomyResourceMsg::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
 }
 
-void EconomyReourceMsg::Clear() {
-// @@protoc_insertion_point(message_clear_start:protobuf.EconomyReourceMsg)
+void EconomyResourceMsg::Clear() {
+// @@protoc_insertion_point(message_clear_start:protobuf.EconomyResourceMsg)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -1116,7 +1145,7 @@ void EconomyReourceMsg::Clear() {
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* EconomyReourceMsg::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* EconomyResourceMsg::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
@@ -1170,9 +1199,9 @@ failure:
 #undef CHK_
 }
 
-uint8_t* EconomyReourceMsg::_InternalSerialize(
+uint8_t* EconomyResourceMsg::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:protobuf.EconomyReourceMsg)
+  // @@protoc_insertion_point(serialize_to_array_start:protobuf.EconomyResourceMsg)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -1199,12 +1228,12 @@ uint8_t* EconomyReourceMsg::_InternalSerialize(
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:protobuf.EconomyReourceMsg)
+  // @@protoc_insertion_point(serialize_to_array_end:protobuf.EconomyResourceMsg)
   return target;
 }
 
-size_t EconomyReourceMsg::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:protobuf.EconomyReourceMsg)
+size_t EconomyResourceMsg::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:protobuf.EconomyResourceMsg)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
@@ -1230,17 +1259,17 @@ size_t EconomyReourceMsg::ByteSizeLong() const {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData EconomyReourceMsg::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData EconomyResourceMsg::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    EconomyReourceMsg::MergeImpl
+    EconomyResourceMsg::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*EconomyReourceMsg::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*EconomyResourceMsg::GetClassData() const { return &_class_data_; }
 
 
-void EconomyReourceMsg::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<EconomyReourceMsg*>(&to_msg);
-  auto& from = static_cast<const EconomyReourceMsg&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:protobuf.EconomyReourceMsg)
+void EconomyResourceMsg::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<EconomyResourceMsg*>(&to_msg);
+  auto& from = static_cast<const EconomyResourceMsg&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:protobuf.EconomyResourceMsg)
   GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -1257,29 +1286,29 @@ void EconomyReourceMsg::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, cons
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void EconomyReourceMsg::CopyFrom(const EconomyReourceMsg& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:protobuf.EconomyReourceMsg)
+void EconomyResourceMsg::CopyFrom(const EconomyResourceMsg& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:protobuf.EconomyResourceMsg)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool EconomyReourceMsg::IsInitialized() const {
+bool EconomyResourceMsg::IsInitialized() const {
   return true;
 }
 
-void EconomyReourceMsg::InternalSwap(EconomyReourceMsg* other) {
+void EconomyResourceMsg::InternalSwap(EconomyResourceMsg* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(EconomyReourceMsg, _impl_.economy_resource_type_)
-      + sizeof(EconomyReourceMsg::_impl_.economy_resource_type_)
-      - PROTOBUF_FIELD_OFFSET(EconomyReourceMsg, _impl_.team_id_)>(
+      PROTOBUF_FIELD_OFFSET(EconomyResourceMsg, _impl_.economy_resource_type_)
+      + sizeof(EconomyResourceMsg::_impl_.economy_resource_type_)
+      - PROTOBUF_FIELD_OFFSET(EconomyResourceMsg, _impl_.team_id_)>(
           reinterpret_cast<char*>(&_impl_.team_id_),
           reinterpret_cast<char*>(&other->_impl_.team_id_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata EconomyReourceMsg::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata EconomyResourceMsg::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Message2Server_2eproto_getter, &descriptor_table_Message2Server_2eproto_once,
       file_level_metadata_Message2Server_2eproto[3]);
@@ -3521,8 +3550,8 @@ inline void ConstructMsg::SharedCtor(
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.character_id_){int64_t{0}}
-    , decltype(_impl_.team_id_){int64_t{0}}
+      decltype(_impl_.character_id_){0}
+    , decltype(_impl_.team_id_){0}
     , decltype(_impl_.construction_type_){0}
     , /*decltype(_impl_._cached_size_)*/{}
   };
@@ -3563,18 +3592,18 @@ const char* ConstructMsg::_InternalParse(const char* ptr, ::_pbi::ParseContext* 
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // int64 character_id = 1;
+      // int32 character_id = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.character_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _impl_.character_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
-      // int64 team_id = 2;
+      // int32 team_id = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _impl_.team_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _impl_.team_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -3617,16 +3646,16 @@ uint8_t* ConstructMsg::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // int64 character_id = 1;
+  // int32 character_id = 1;
   if (this->_internal_character_id() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt64ToArray(1, this->_internal_character_id(), target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(1, this->_internal_character_id(), target);
   }
 
-  // int64 team_id = 2;
+  // int32 team_id = 2;
   if (this->_internal_team_id() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt64ToArray(2, this->_internal_team_id(), target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(2, this->_internal_team_id(), target);
   }
 
   // .protobuf.ConstructionType construction_type = 3;
@@ -3652,14 +3681,14 @@ size_t ConstructMsg::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // int64 character_id = 1;
+  // int32 character_id = 1;
   if (this->_internal_character_id() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_character_id());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_character_id());
   }
 
-  // int64 team_id = 2;
+  // int32 team_id = 2;
   if (this->_internal_team_id() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_team_id());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_team_id());
   }
 
   // .protobuf.ConstructionType construction_type = 3;
@@ -3724,6 +3753,244 @@ void ConstructMsg::InternalSwap(ConstructMsg* other) {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Message2Server_2eproto_getter, &descriptor_table_Message2Server_2eproto_once,
       file_level_metadata_Message2Server_2eproto[12]);
+}
+
+// ===================================================================
+
+class ConstructTrapMsg::_Internal {
+ public:
+};
+
+ConstructTrapMsg::ConstructTrapMsg(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:protobuf.ConstructTrapMsg)
+}
+ConstructTrapMsg::ConstructTrapMsg(const ConstructTrapMsg& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  ConstructTrapMsg* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.character_id_){}
+    , decltype(_impl_.team_id_){}
+    , decltype(_impl_.trap_type_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::memcpy(&_impl_.character_id_, &from._impl_.character_id_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.trap_type_) -
+    reinterpret_cast<char*>(&_impl_.character_id_)) + sizeof(_impl_.trap_type_));
+  // @@protoc_insertion_point(copy_constructor:protobuf.ConstructTrapMsg)
+}
+
+inline void ConstructTrapMsg::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.character_id_){0}
+    , decltype(_impl_.team_id_){0}
+    , decltype(_impl_.trap_type_){0}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+ConstructTrapMsg::~ConstructTrapMsg() {
+  // @@protoc_insertion_point(destructor:protobuf.ConstructTrapMsg)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void ConstructTrapMsg::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void ConstructTrapMsg::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void ConstructTrapMsg::Clear() {
+// @@protoc_insertion_point(message_clear_start:protobuf.ConstructTrapMsg)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&_impl_.character_id_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.trap_type_) -
+      reinterpret_cast<char*>(&_impl_.character_id_)) + sizeof(_impl_.trap_type_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* ConstructTrapMsg::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // int32 character_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.character_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // int32 team_id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          _impl_.team_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .protobuf.TrapType trap_type = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_trap_type(static_cast<::protobuf::TrapType>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* ConstructTrapMsg::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:protobuf.ConstructTrapMsg)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int32 character_id = 1;
+  if (this->_internal_character_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(1, this->_internal_character_id(), target);
+  }
+
+  // int32 team_id = 2;
+  if (this->_internal_team_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(2, this->_internal_team_id(), target);
+  }
+
+  // .protobuf.TrapType trap_type = 3;
+  if (this->_internal_trap_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      3, this->_internal_trap_type(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:protobuf.ConstructTrapMsg)
+  return target;
+}
+
+size_t ConstructTrapMsg::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:protobuf.ConstructTrapMsg)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // int32 character_id = 1;
+  if (this->_internal_character_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_character_id());
+  }
+
+  // int32 team_id = 2;
+  if (this->_internal_team_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_team_id());
+  }
+
+  // .protobuf.TrapType trap_type = 3;
+  if (this->_internal_trap_type() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_trap_type());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ConstructTrapMsg::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ConstructTrapMsg::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ConstructTrapMsg::GetClassData() const { return &_class_data_; }
+
+
+void ConstructTrapMsg::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<ConstructTrapMsg*>(&to_msg);
+  auto& from = static_cast<const ConstructTrapMsg&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:protobuf.ConstructTrapMsg)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_character_id() != 0) {
+    _this->_internal_set_character_id(from._internal_character_id());
+  }
+  if (from._internal_team_id() != 0) {
+    _this->_internal_set_team_id(from._internal_team_id());
+  }
+  if (from._internal_trap_type() != 0) {
+    _this->_internal_set_trap_type(from._internal_trap_type());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ConstructTrapMsg::CopyFrom(const ConstructTrapMsg& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:protobuf.ConstructTrapMsg)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ConstructTrapMsg::IsInitialized() const {
+  return true;
+}
+
+void ConstructTrapMsg::InternalSwap(ConstructTrapMsg* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(ConstructTrapMsg, _impl_.trap_type_)
+      + sizeof(ConstructTrapMsg::_impl_.trap_type_)
+      - PROTOBUF_FIELD_OFFSET(ConstructTrapMsg, _impl_.character_id_)>(
+          reinterpret_cast<char*>(&_impl_.character_id_),
+          reinterpret_cast<char*>(&other->_impl_.character_id_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ConstructTrapMsg::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_Message2Server_2eproto_getter, &descriptor_table_Message2Server_2eproto_once,
+      file_level_metadata_Message2Server_2eproto[13]);
 }
 
 // ===================================================================
@@ -3961,7 +4228,7 @@ void EquipMsg::InternalSwap(EquipMsg* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata EquipMsg::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Message2Server_2eproto_getter, &descriptor_table_Message2Server_2eproto_once,
-      file_level_metadata_Message2Server_2eproto[13]);
+      file_level_metadata_Message2Server_2eproto[14]);
 }
 
 // ===================================================================
@@ -4196,7 +4463,7 @@ void RecoverMsg::InternalSwap(RecoverMsg* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RecoverMsg::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Message2Server_2eproto_getter, &descriptor_table_Message2Server_2eproto_once,
-      file_level_metadata_Message2Server_2eproto[14]);
+      file_level_metadata_Message2Server_2eproto[15]);
 }
 
 // ===================================================================
@@ -4434,7 +4701,7 @@ void CreatCharacterMsg::InternalSwap(CreatCharacterMsg* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata CreatCharacterMsg::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Message2Server_2eproto_getter, &descriptor_table_Message2Server_2eproto_once,
-      file_level_metadata_Message2Server_2eproto[15]);
+      file_level_metadata_Message2Server_2eproto[16]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -4452,9 +4719,9 @@ template<> PROTOBUF_NOINLINE ::protobuf::CharacterMsg*
 Arena::CreateMaybeMessage< ::protobuf::CharacterMsg >(Arena* arena) {
   return Arena::CreateMessageInternal< ::protobuf::CharacterMsg >(arena);
 }
-template<> PROTOBUF_NOINLINE ::protobuf::EconomyReourceMsg*
-Arena::CreateMaybeMessage< ::protobuf::EconomyReourceMsg >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::protobuf::EconomyReourceMsg >(arena);
+template<> PROTOBUF_NOINLINE ::protobuf::EconomyResourceMsg*
+Arena::CreateMaybeMessage< ::protobuf::EconomyResourceMsg >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::protobuf::EconomyResourceMsg >(arena);
 }
 template<> PROTOBUF_NOINLINE ::protobuf::AdditionResourceMsg*
 Arena::CreateMaybeMessage< ::protobuf::AdditionResourceMsg >(Arena* arena) {
@@ -4491,6 +4758,10 @@ Arena::CreateMaybeMessage< ::protobuf::AttackAdditionResourceMsg >(Arena* arena)
 template<> PROTOBUF_NOINLINE ::protobuf::ConstructMsg*
 Arena::CreateMaybeMessage< ::protobuf::ConstructMsg >(Arena* arena) {
   return Arena::CreateMessageInternal< ::protobuf::ConstructMsg >(arena);
+}
+template<> PROTOBUF_NOINLINE ::protobuf::ConstructTrapMsg*
+Arena::CreateMaybeMessage< ::protobuf::ConstructTrapMsg >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::protobuf::ConstructTrapMsg >(arena);
 }
 template<> PROTOBUF_NOINLINE ::protobuf::EquipMsg*
 Arena::CreateMaybeMessage< ::protobuf::EquipMsg >(Arena* arena) {

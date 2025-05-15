@@ -535,6 +535,18 @@ class THUAI82Proto:
         return constructMsg
 
     @staticmethod
+    def THUAI82ProtobufTrapMsg(
+        character_id: int,
+        team_id: int,
+        trap_type: THUAI8.TrapType,
+    ) -> Message2Server.ConstructTrapMsg:
+        trapMsg = Message2Server.ConstructTrapMsg()
+        trapMsg.character_id = character_id
+        trapMsg.team_id = team_id
+        trapMsg.trap_type = THUAI82Proto.trapTypeDict[trap_type]
+        return trapMsg
+
+    @staticmethod
     def THUAI82ProtobufCharacterMsg(
         character_id: int,
         team_id: int,
@@ -587,6 +599,15 @@ class THUAI82Proto:
         attackConstructionMsg.character_id = character_id
         attackConstructionMsg.team_id = team_id
         return attackConstructionMsg
+
+    @staticmethod
+    def THUAI82ProtobufAttackAdditionResourceMsg(
+        character_id: int, team_id: int
+    ) -> Message2Server.AttackAdditionResourceMsg:
+        attackAdditionResourceMsg = Message2Server.AttackAdditionResourceMsg()
+        attackAdditionResourceMsg.character_id = character_id
+        attackAdditionResourceMsg.team_id = team_id
+        return attackAdditionResourceMsg
 
     @staticmethod
     def THUAI82ProtobufRecoverMsg(

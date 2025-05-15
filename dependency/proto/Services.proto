@@ -18,6 +18,7 @@ service AvailableService
     rpc Produce(IDMsg) returns (BoolRes);           // 开采经济资源
     rpc Rebuild(ConstructMsg) returns (BoolRes);    // 给建筑回血
     rpc Construct(ConstructMsg) returns (BoolRes);  // 修建建筑
+    rpc ConstructTrap(ConstructTrapMsg) returns (BoolRes);    //修建陷阱
     rpc Equip(EquipMsg) returns (BoolRes);          // 买装备
     rpc Attack(AttackMsg) returns (BoolRes);        // 普通攻击
     rpc Cast(CastMsg) returns (BoolRes);            // 释放技能

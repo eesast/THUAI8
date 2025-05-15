@@ -30,6 +30,7 @@ static const char* AvailableService_method_names[] = {
   "/protobuf.AvailableService/Produce",
   "/protobuf.AvailableService/Rebuild",
   "/protobuf.AvailableService/Construct",
+  "/protobuf.AvailableService/ConstructTrap",
   "/protobuf.AvailableService/Equip",
   "/protobuf.AvailableService/Attack",
   "/protobuf.AvailableService/Cast",
@@ -56,15 +57,16 @@ AvailableService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& c
   , rpcmethod_Produce_(AvailableService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_Rebuild_(AvailableService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_Construct_(AvailableService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Equip_(AvailableService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Attack_(AvailableService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Cast_(AvailableService_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_AttackConstruction_(AvailableService_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_AttackAdditionResource_(AvailableService_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Send_(AvailableService_method_names[13], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CreatCharacter_(AvailableService_method_names[14], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CreatCharacterRID_(AvailableService_method_names[15], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_EndAllAction_(AvailableService_method_names[16], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ConstructTrap_(AvailableService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Equip_(AvailableService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Attack_(AvailableService_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Cast_(AvailableService_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_AttackConstruction_(AvailableService_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_AttackAdditionResource_(AvailableService_method_names[13], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Send_(AvailableService_method_names[14], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CreatCharacter_(AvailableService_method_names[15], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CreatCharacterRID_(AvailableService_method_names[16], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_EndAllAction_(AvailableService_method_names[17], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status AvailableService::Stub::TryConnection(::grpc::ClientContext* context, const ::protobuf::IDMsg& request, ::protobuf::BoolRes* response) {
@@ -240,6 +242,29 @@ void AvailableService::Stub::async::Construct(::grpc::ClientContext* context, co
 ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>* AvailableService::Stub::AsyncConstructRaw(::grpc::ClientContext* context, const ::protobuf::ConstructMsg& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncConstructRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status AvailableService::Stub::ConstructTrap(::grpc::ClientContext* context, const ::protobuf::ConstructTrapMsg& request, ::protobuf::BoolRes* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::protobuf::ConstructTrapMsg, ::protobuf::BoolRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ConstructTrap_, context, request, response);
+}
+
+void AvailableService::Stub::async::ConstructTrap(::grpc::ClientContext* context, const ::protobuf::ConstructTrapMsg* request, ::protobuf::BoolRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::protobuf::ConstructTrapMsg, ::protobuf::BoolRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ConstructTrap_, context, request, response, std::move(f));
+}
+
+void AvailableService::Stub::async::ConstructTrap(::grpc::ClientContext* context, const ::protobuf::ConstructTrapMsg* request, ::protobuf::BoolRes* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ConstructTrap_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>* AvailableService::Stub::PrepareAsyncConstructTrapRaw(::grpc::ClientContext* context, const ::protobuf::ConstructTrapMsg& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::protobuf::BoolRes, ::protobuf::ConstructTrapMsg, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ConstructTrap_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>* AvailableService::Stub::AsyncConstructTrapRaw(::grpc::ClientContext* context, const ::protobuf::ConstructTrapMsg& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncConstructTrapRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -535,6 +560,16 @@ AvailableService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       AvailableService_method_names[8],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AvailableService::Service, ::protobuf::ConstructTrapMsg, ::protobuf::BoolRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](AvailableService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::protobuf::ConstructTrapMsg* req,
+             ::protobuf::BoolRes* resp) {
+               return service->ConstructTrap(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AvailableService_method_names[9],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AvailableService::Service, ::protobuf::EquipMsg, ::protobuf::BoolRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AvailableService::Service* service,
              ::grpc::ServerContext* ctx,
@@ -543,7 +578,7 @@ AvailableService::Service::Service() {
                return service->Equip(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AvailableService_method_names[9],
+      AvailableService_method_names[10],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AvailableService::Service, ::protobuf::AttackMsg, ::protobuf::BoolRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AvailableService::Service* service,
@@ -553,7 +588,7 @@ AvailableService::Service::Service() {
                return service->Attack(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AvailableService_method_names[10],
+      AvailableService_method_names[11],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AvailableService::Service, ::protobuf::CastMsg, ::protobuf::BoolRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AvailableService::Service* service,
@@ -563,7 +598,7 @@ AvailableService::Service::Service() {
                return service->Cast(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AvailableService_method_names[11],
+      AvailableService_method_names[12],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AvailableService::Service, ::protobuf::AttackConstructionMsg, ::protobuf::BoolRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AvailableService::Service* service,
@@ -573,7 +608,7 @@ AvailableService::Service::Service() {
                return service->AttackConstruction(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AvailableService_method_names[12],
+      AvailableService_method_names[13],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AvailableService::Service, ::protobuf::AttackAdditionResourceMsg, ::protobuf::BoolRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AvailableService::Service* service,
@@ -583,7 +618,7 @@ AvailableService::Service::Service() {
                return service->AttackAdditionResource(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AvailableService_method_names[13],
+      AvailableService_method_names[14],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AvailableService::Service, ::protobuf::SendMsg, ::protobuf::BoolRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AvailableService::Service* service,
@@ -593,7 +628,7 @@ AvailableService::Service::Service() {
                return service->Send(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AvailableService_method_names[14],
+      AvailableService_method_names[15],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AvailableService::Service, ::protobuf::CreatCharacterMsg, ::protobuf::BoolRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AvailableService::Service* service,
@@ -603,7 +638,7 @@ AvailableService::Service::Service() {
                return service->CreatCharacter(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AvailableService_method_names[15],
+      AvailableService_method_names[16],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AvailableService::Service, ::protobuf::CreatCharacterMsg, ::protobuf::CreatCharacterRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AvailableService::Service* service,
@@ -613,7 +648,7 @@ AvailableService::Service::Service() {
                return service->CreatCharacterRID(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AvailableService_method_names[16],
+      AvailableService_method_names[17],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AvailableService::Service, ::protobuf::IDMsg, ::protobuf::BoolRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AvailableService::Service* service,
@@ -677,6 +712,13 @@ AvailableService::Service::~Service() {
 }
 
 ::grpc::Status AvailableService::Service::Construct(::grpc::ServerContext* context, const ::protobuf::ConstructMsg* request, ::protobuf::BoolRes* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AvailableService::Service::ConstructTrap(::grpc::ServerContext* context, const ::protobuf::ConstructTrapMsg* request, ::protobuf::BoolRes* response) {
   (void) context;
   (void) request;
   (void) response;

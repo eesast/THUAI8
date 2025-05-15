@@ -68,15 +68,18 @@ extern CharacterMsgDefaultTypeInternal _CharacterMsg_default_instance_;
 class ConstructMsg;
 struct ConstructMsgDefaultTypeInternal;
 extern ConstructMsgDefaultTypeInternal _ConstructMsg_default_instance_;
+class ConstructTrapMsg;
+struct ConstructTrapMsgDefaultTypeInternal;
+extern ConstructTrapMsgDefaultTypeInternal _ConstructTrapMsg_default_instance_;
 class ConstructionMsg;
 struct ConstructionMsgDefaultTypeInternal;
 extern ConstructionMsgDefaultTypeInternal _ConstructionMsg_default_instance_;
 class CreatCharacterMsg;
 struct CreatCharacterMsgDefaultTypeInternal;
 extern CreatCharacterMsgDefaultTypeInternal _CreatCharacterMsg_default_instance_;
-class EconomyReourceMsg;
-struct EconomyReourceMsgDefaultTypeInternal;
-extern EconomyReourceMsgDefaultTypeInternal _EconomyReourceMsg_default_instance_;
+class EconomyResourceMsg;
+struct EconomyResourceMsgDefaultTypeInternal;
+extern EconomyResourceMsgDefaultTypeInternal _EconomyResourceMsg_default_instance_;
 class EquipMsg;
 struct EquipMsgDefaultTypeInternal;
 extern EquipMsgDefaultTypeInternal _EquipMsg_default_instance_;
@@ -104,9 +107,10 @@ template<> ::protobuf::AttackMsg* Arena::CreateMaybeMessage<::protobuf::AttackMs
 template<> ::protobuf::CastMsg* Arena::CreateMaybeMessage<::protobuf::CastMsg>(Arena*);
 template<> ::protobuf::CharacterMsg* Arena::CreateMaybeMessage<::protobuf::CharacterMsg>(Arena*);
 template<> ::protobuf::ConstructMsg* Arena::CreateMaybeMessage<::protobuf::ConstructMsg>(Arena*);
+template<> ::protobuf::ConstructTrapMsg* Arena::CreateMaybeMessage<::protobuf::ConstructTrapMsg>(Arena*);
 template<> ::protobuf::ConstructionMsg* Arena::CreateMaybeMessage<::protobuf::ConstructionMsg>(Arena*);
 template<> ::protobuf::CreatCharacterMsg* Arena::CreateMaybeMessage<::protobuf::CreatCharacterMsg>(Arena*);
-template<> ::protobuf::EconomyReourceMsg* Arena::CreateMaybeMessage<::protobuf::EconomyReourceMsg>(Arena*);
+template<> ::protobuf::EconomyResourceMsg* Arena::CreateMaybeMessage<::protobuf::EconomyResourceMsg>(Arena*);
 template<> ::protobuf::EquipMsg* Arena::CreateMaybeMessage<::protobuf::EquipMsg>(Arena*);
 template<> ::protobuf::IDMsg* Arena::CreateMaybeMessage<::protobuf::IDMsg>(Arena*);
 template<> ::protobuf::MoveMsg* Arena::CreateMaybeMessage<::protobuf::MoveMsg>(Arena*);
@@ -576,24 +580,24 @@ class CharacterMsg final :
 };
 // -------------------------------------------------------------------
 
-class EconomyReourceMsg final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protobuf.EconomyReourceMsg) */ {
+class EconomyResourceMsg final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protobuf.EconomyResourceMsg) */ {
  public:
-  inline EconomyReourceMsg() : EconomyReourceMsg(nullptr) {}
-  ~EconomyReourceMsg() override;
-  explicit PROTOBUF_CONSTEXPR EconomyReourceMsg(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline EconomyResourceMsg() : EconomyResourceMsg(nullptr) {}
+  ~EconomyResourceMsg() override;
+  explicit PROTOBUF_CONSTEXPR EconomyResourceMsg(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  EconomyReourceMsg(const EconomyReourceMsg& from);
-  EconomyReourceMsg(EconomyReourceMsg&& from) noexcept
-    : EconomyReourceMsg() {
+  EconomyResourceMsg(const EconomyResourceMsg& from);
+  EconomyResourceMsg(EconomyResourceMsg&& from) noexcept
+    : EconomyResourceMsg() {
     *this = ::std::move(from);
   }
 
-  inline EconomyReourceMsg& operator=(const EconomyReourceMsg& from) {
+  inline EconomyResourceMsg& operator=(const EconomyResourceMsg& from) {
     CopyFrom(from);
     return *this;
   }
-  inline EconomyReourceMsg& operator=(EconomyReourceMsg&& from) noexcept {
+  inline EconomyResourceMsg& operator=(EconomyResourceMsg&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -616,20 +620,20 @@ class EconomyReourceMsg final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const EconomyReourceMsg& default_instance() {
+  static const EconomyResourceMsg& default_instance() {
     return *internal_default_instance();
   }
-  static inline const EconomyReourceMsg* internal_default_instance() {
-    return reinterpret_cast<const EconomyReourceMsg*>(
-               &_EconomyReourceMsg_default_instance_);
+  static inline const EconomyResourceMsg* internal_default_instance() {
+    return reinterpret_cast<const EconomyResourceMsg*>(
+               &_EconomyResourceMsg_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     3;
 
-  friend void swap(EconomyReourceMsg& a, EconomyReourceMsg& b) {
+  friend void swap(EconomyResourceMsg& a, EconomyResourceMsg& b) {
     a.Swap(&b);
   }
-  inline void Swap(EconomyReourceMsg* other) {
+  inline void Swap(EconomyResourceMsg* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -642,7 +646,7 @@ class EconomyReourceMsg final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(EconomyReourceMsg* other) {
+  void UnsafeArenaSwap(EconomyResourceMsg* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -650,14 +654,14 @@ class EconomyReourceMsg final :
 
   // implements Message ----------------------------------------------
 
-  EconomyReourceMsg* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<EconomyReourceMsg>(arena);
+  EconomyResourceMsg* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<EconomyResourceMsg>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const EconomyReourceMsg& from);
+  void CopyFrom(const EconomyResourceMsg& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const EconomyReourceMsg& from) {
-    EconomyReourceMsg::MergeImpl(*this, from);
+  void MergeFrom( const EconomyResourceMsg& from) {
+    EconomyResourceMsg::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
@@ -675,15 +679,15 @@ class EconomyReourceMsg final :
   void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(EconomyReourceMsg* other);
+  void InternalSwap(EconomyResourceMsg* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "protobuf.EconomyReourceMsg";
+    return "protobuf.EconomyResourceMsg";
   }
   protected:
-  explicit EconomyReourceMsg(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit EconomyResourceMsg(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -728,7 +732,7 @@ class EconomyReourceMsg final :
   void _internal_set_economy_resource_type(::protobuf::EconomyResourceType value);
   public:
 
-  // @@protoc_insertion_point(class_scope:protobuf.EconomyReourceMsg)
+  // @@protoc_insertion_point(class_scope:protobuf.EconomyResourceMsg)
  private:
   class _Internal;
 
@@ -2383,22 +2387,22 @@ class ConstructMsg final :
     kTeamIdFieldNumber = 2,
     kConstructionTypeFieldNumber = 3,
   };
-  // int64 character_id = 1;
+  // int32 character_id = 1;
   void clear_character_id();
-  int64_t character_id() const;
-  void set_character_id(int64_t value);
+  int32_t character_id() const;
+  void set_character_id(int32_t value);
   private:
-  int64_t _internal_character_id() const;
-  void _internal_set_character_id(int64_t value);
+  int32_t _internal_character_id() const;
+  void _internal_set_character_id(int32_t value);
   public:
 
-  // int64 team_id = 2;
+  // int32 team_id = 2;
   void clear_team_id();
-  int64_t team_id() const;
-  void set_team_id(int64_t value);
+  int32_t team_id() const;
+  void set_team_id(int32_t value);
   private:
-  int64_t _internal_team_id() const;
-  void _internal_set_team_id(int64_t value);
+  int32_t _internal_team_id() const;
+  void _internal_set_team_id(int32_t value);
   public:
 
   // .protobuf.ConstructionType construction_type = 3;
@@ -2418,9 +2422,179 @@ class ConstructMsg final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    int64_t character_id_;
-    int64_t team_id_;
+    int32_t character_id_;
+    int32_t team_id_;
     int construction_type_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_Message2Server_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ConstructTrapMsg final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protobuf.ConstructTrapMsg) */ {
+ public:
+  inline ConstructTrapMsg() : ConstructTrapMsg(nullptr) {}
+  ~ConstructTrapMsg() override;
+  explicit PROTOBUF_CONSTEXPR ConstructTrapMsg(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ConstructTrapMsg(const ConstructTrapMsg& from);
+  ConstructTrapMsg(ConstructTrapMsg&& from) noexcept
+    : ConstructTrapMsg() {
+    *this = ::std::move(from);
+  }
+
+  inline ConstructTrapMsg& operator=(const ConstructTrapMsg& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ConstructTrapMsg& operator=(ConstructTrapMsg&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ConstructTrapMsg& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ConstructTrapMsg* internal_default_instance() {
+    return reinterpret_cast<const ConstructTrapMsg*>(
+               &_ConstructTrapMsg_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    13;
+
+  friend void swap(ConstructTrapMsg& a, ConstructTrapMsg& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ConstructTrapMsg* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ConstructTrapMsg* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ConstructTrapMsg* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ConstructTrapMsg>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ConstructTrapMsg& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const ConstructTrapMsg& from) {
+    ConstructTrapMsg::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ConstructTrapMsg* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "protobuf.ConstructTrapMsg";
+  }
+  protected:
+  explicit ConstructTrapMsg(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kCharacterIdFieldNumber = 1,
+    kTeamIdFieldNumber = 2,
+    kTrapTypeFieldNumber = 3,
+  };
+  // int32 character_id = 1;
+  void clear_character_id();
+  int32_t character_id() const;
+  void set_character_id(int32_t value);
+  private:
+  int32_t _internal_character_id() const;
+  void _internal_set_character_id(int32_t value);
+  public:
+
+  // int32 team_id = 2;
+  void clear_team_id();
+  int32_t team_id() const;
+  void set_team_id(int32_t value);
+  private:
+  int32_t _internal_team_id() const;
+  void _internal_set_team_id(int32_t value);
+  public:
+
+  // .protobuf.TrapType trap_type = 3;
+  void clear_trap_type();
+  ::protobuf::TrapType trap_type() const;
+  void set_trap_type(::protobuf::TrapType value);
+  private:
+  ::protobuf::TrapType _internal_trap_type() const;
+  void _internal_set_trap_type(::protobuf::TrapType value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:protobuf.ConstructTrapMsg)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    int32_t character_id_;
+    int32_t team_id_;
+    int trap_type_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -2476,7 +2650,7 @@ class EquipMsg final :
                &_EquipMsg_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    14;
 
   friend void swap(EquipMsg& a, EquipMsg& b) {
     a.Swap(&b);
@@ -2646,7 +2820,7 @@ class RecoverMsg final :
                &_RecoverMsg_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    15;
 
   friend void swap(RecoverMsg& a, RecoverMsg& b) {
     a.Swap(&b);
@@ -2816,7 +2990,7 @@ class CreatCharacterMsg final :
                &_CreatCharacterMsg_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    16;
 
   friend void swap(CreatCharacterMsg& a, CreatCharacterMsg& b) {
     a.Swap(&b);
@@ -3077,66 +3251,66 @@ inline void CharacterMsg::set_side_flag(int32_t value) {
 
 // -------------------------------------------------------------------
 
-// EconomyReourceMsg
+// EconomyResourceMsg
 
 // int64 team_id = 1;
-inline void EconomyReourceMsg::clear_team_id() {
+inline void EconomyResourceMsg::clear_team_id() {
   _impl_.team_id_ = int64_t{0};
 }
-inline int64_t EconomyReourceMsg::_internal_team_id() const {
+inline int64_t EconomyResourceMsg::_internal_team_id() const {
   return _impl_.team_id_;
 }
-inline int64_t EconomyReourceMsg::team_id() const {
-  // @@protoc_insertion_point(field_get:protobuf.EconomyReourceMsg.team_id)
+inline int64_t EconomyResourceMsg::team_id() const {
+  // @@protoc_insertion_point(field_get:protobuf.EconomyResourceMsg.team_id)
   return _internal_team_id();
 }
-inline void EconomyReourceMsg::_internal_set_team_id(int64_t value) {
+inline void EconomyResourceMsg::_internal_set_team_id(int64_t value) {
   
   _impl_.team_id_ = value;
 }
-inline void EconomyReourceMsg::set_team_id(int64_t value) {
+inline void EconomyResourceMsg::set_team_id(int64_t value) {
   _internal_set_team_id(value);
-  // @@protoc_insertion_point(field_set:protobuf.EconomyReourceMsg.team_id)
+  // @@protoc_insertion_point(field_set:protobuf.EconomyResourceMsg.team_id)
 }
 
 // int32 process = 2;
-inline void EconomyReourceMsg::clear_process() {
+inline void EconomyResourceMsg::clear_process() {
   _impl_.process_ = 0;
 }
-inline int32_t EconomyReourceMsg::_internal_process() const {
+inline int32_t EconomyResourceMsg::_internal_process() const {
   return _impl_.process_;
 }
-inline int32_t EconomyReourceMsg::process() const {
-  // @@protoc_insertion_point(field_get:protobuf.EconomyReourceMsg.process)
+inline int32_t EconomyResourceMsg::process() const {
+  // @@protoc_insertion_point(field_get:protobuf.EconomyResourceMsg.process)
   return _internal_process();
 }
-inline void EconomyReourceMsg::_internal_set_process(int32_t value) {
+inline void EconomyResourceMsg::_internal_set_process(int32_t value) {
   
   _impl_.process_ = value;
 }
-inline void EconomyReourceMsg::set_process(int32_t value) {
+inline void EconomyResourceMsg::set_process(int32_t value) {
   _internal_set_process(value);
-  // @@protoc_insertion_point(field_set:protobuf.EconomyReourceMsg.process)
+  // @@protoc_insertion_point(field_set:protobuf.EconomyResourceMsg.process)
 }
 
 // .protobuf.EconomyResourceType economy_resource_type = 3;
-inline void EconomyReourceMsg::clear_economy_resource_type() {
+inline void EconomyResourceMsg::clear_economy_resource_type() {
   _impl_.economy_resource_type_ = 0;
 }
-inline ::protobuf::EconomyResourceType EconomyReourceMsg::_internal_economy_resource_type() const {
+inline ::protobuf::EconomyResourceType EconomyResourceMsg::_internal_economy_resource_type() const {
   return static_cast< ::protobuf::EconomyResourceType >(_impl_.economy_resource_type_);
 }
-inline ::protobuf::EconomyResourceType EconomyReourceMsg::economy_resource_type() const {
-  // @@protoc_insertion_point(field_get:protobuf.EconomyReourceMsg.economy_resource_type)
+inline ::protobuf::EconomyResourceType EconomyResourceMsg::economy_resource_type() const {
+  // @@protoc_insertion_point(field_get:protobuf.EconomyResourceMsg.economy_resource_type)
   return _internal_economy_resource_type();
 }
-inline void EconomyReourceMsg::_internal_set_economy_resource_type(::protobuf::EconomyResourceType value) {
+inline void EconomyResourceMsg::_internal_set_economy_resource_type(::protobuf::EconomyResourceType value) {
   
   _impl_.economy_resource_type_ = value;
 }
-inline void EconomyReourceMsg::set_economy_resource_type(::protobuf::EconomyResourceType value) {
+inline void EconomyResourceMsg::set_economy_resource_type(::protobuf::EconomyResourceType value) {
   _internal_set_economy_resource_type(value);
-  // @@protoc_insertion_point(field_set:protobuf.EconomyReourceMsg.economy_resource_type)
+  // @@protoc_insertion_point(field_set:protobuf.EconomyResourceMsg.economy_resource_type)
 }
 
 // -------------------------------------------------------------------
@@ -3989,42 +4163,42 @@ inline void AttackAdditionResourceMsg::set_character_id(int64_t value) {
 
 // ConstructMsg
 
-// int64 character_id = 1;
+// int32 character_id = 1;
 inline void ConstructMsg::clear_character_id() {
-  _impl_.character_id_ = int64_t{0};
+  _impl_.character_id_ = 0;
 }
-inline int64_t ConstructMsg::_internal_character_id() const {
+inline int32_t ConstructMsg::_internal_character_id() const {
   return _impl_.character_id_;
 }
-inline int64_t ConstructMsg::character_id() const {
+inline int32_t ConstructMsg::character_id() const {
   // @@protoc_insertion_point(field_get:protobuf.ConstructMsg.character_id)
   return _internal_character_id();
 }
-inline void ConstructMsg::_internal_set_character_id(int64_t value) {
+inline void ConstructMsg::_internal_set_character_id(int32_t value) {
   
   _impl_.character_id_ = value;
 }
-inline void ConstructMsg::set_character_id(int64_t value) {
+inline void ConstructMsg::set_character_id(int32_t value) {
   _internal_set_character_id(value);
   // @@protoc_insertion_point(field_set:protobuf.ConstructMsg.character_id)
 }
 
-// int64 team_id = 2;
+// int32 team_id = 2;
 inline void ConstructMsg::clear_team_id() {
-  _impl_.team_id_ = int64_t{0};
+  _impl_.team_id_ = 0;
 }
-inline int64_t ConstructMsg::_internal_team_id() const {
+inline int32_t ConstructMsg::_internal_team_id() const {
   return _impl_.team_id_;
 }
-inline int64_t ConstructMsg::team_id() const {
+inline int32_t ConstructMsg::team_id() const {
   // @@protoc_insertion_point(field_get:protobuf.ConstructMsg.team_id)
   return _internal_team_id();
 }
-inline void ConstructMsg::_internal_set_team_id(int64_t value) {
+inline void ConstructMsg::_internal_set_team_id(int32_t value) {
   
   _impl_.team_id_ = value;
 }
-inline void ConstructMsg::set_team_id(int64_t value) {
+inline void ConstructMsg::set_team_id(int32_t value) {
   _internal_set_team_id(value);
   // @@protoc_insertion_point(field_set:protobuf.ConstructMsg.team_id)
 }
@@ -4047,6 +4221,70 @@ inline void ConstructMsg::_internal_set_construction_type(::protobuf::Constructi
 inline void ConstructMsg::set_construction_type(::protobuf::ConstructionType value) {
   _internal_set_construction_type(value);
   // @@protoc_insertion_point(field_set:protobuf.ConstructMsg.construction_type)
+}
+
+// -------------------------------------------------------------------
+
+// ConstructTrapMsg
+
+// int32 character_id = 1;
+inline void ConstructTrapMsg::clear_character_id() {
+  _impl_.character_id_ = 0;
+}
+inline int32_t ConstructTrapMsg::_internal_character_id() const {
+  return _impl_.character_id_;
+}
+inline int32_t ConstructTrapMsg::character_id() const {
+  // @@protoc_insertion_point(field_get:protobuf.ConstructTrapMsg.character_id)
+  return _internal_character_id();
+}
+inline void ConstructTrapMsg::_internal_set_character_id(int32_t value) {
+  
+  _impl_.character_id_ = value;
+}
+inline void ConstructTrapMsg::set_character_id(int32_t value) {
+  _internal_set_character_id(value);
+  // @@protoc_insertion_point(field_set:protobuf.ConstructTrapMsg.character_id)
+}
+
+// int32 team_id = 2;
+inline void ConstructTrapMsg::clear_team_id() {
+  _impl_.team_id_ = 0;
+}
+inline int32_t ConstructTrapMsg::_internal_team_id() const {
+  return _impl_.team_id_;
+}
+inline int32_t ConstructTrapMsg::team_id() const {
+  // @@protoc_insertion_point(field_get:protobuf.ConstructTrapMsg.team_id)
+  return _internal_team_id();
+}
+inline void ConstructTrapMsg::_internal_set_team_id(int32_t value) {
+  
+  _impl_.team_id_ = value;
+}
+inline void ConstructTrapMsg::set_team_id(int32_t value) {
+  _internal_set_team_id(value);
+  // @@protoc_insertion_point(field_set:protobuf.ConstructTrapMsg.team_id)
+}
+
+// .protobuf.TrapType trap_type = 3;
+inline void ConstructTrapMsg::clear_trap_type() {
+  _impl_.trap_type_ = 0;
+}
+inline ::protobuf::TrapType ConstructTrapMsg::_internal_trap_type() const {
+  return static_cast< ::protobuf::TrapType >(_impl_.trap_type_);
+}
+inline ::protobuf::TrapType ConstructTrapMsg::trap_type() const {
+  // @@protoc_insertion_point(field_get:protobuf.ConstructTrapMsg.trap_type)
+  return _internal_trap_type();
+}
+inline void ConstructTrapMsg::_internal_set_trap_type(::protobuf::TrapType value) {
+  
+  _impl_.trap_type_ = value;
+}
+inline void ConstructTrapMsg::set_trap_type(::protobuf::TrapType value) {
+  _internal_set_trap_type(value);
+  // @@protoc_insertion_point(field_set:protobuf.ConstructTrapMsg.trap_type)
 }
 
 // -------------------------------------------------------------------
@@ -4244,6 +4482,8 @@ inline void CreatCharacterMsg::set_birthpoint_index(int32_t value) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

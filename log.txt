@@ -1,216 +1,406 @@
-[2025/05/13 Tuesday]
+[2025/05/15 Thursday]
 --port 8888 --CharacterNum 6 
 Server begins to run: 8888
-[16:56:12.976][GameServer] Null TOKEN Environment!
-[16:56:13.036][GameServer] Server begins to listen!
-[16:56:16.559][GameServer] TRY TryConnection: Player 0 from Team 0
-[16:56:16.559][GameServer] TryConnection: True
-[16:56:16.568][GameServer] TRY Add Player: Player 0 from Team 0
-[16:56:16.568][GameServer] AddPlayer: Check Correct
-[16:56:16.569][GameServer] Player 0 from Team 0 joins
-[16:56:16.570][GameServer] PlayerCountNow: 1
-[16:56:16.570][GameServer] PlayerTotalNum: 14
-[16:56:16.948][GameServer] TRY TryConnection: Player 0 from Team 1
-[16:56:16.948][GameServer] TryConnection: True
-[16:56:16.952][GameServer] TRY Add Player: Player 0 from Team 1
-[16:56:16.952][GameServer] AddPlayer: Check Correct
-[16:56:16.952][GameServer] Player 0 from Team 1 joins
-[16:56:16.952][GameServer] PlayerCountNow: 2
-[16:56:16.952][GameServer] PlayerNum: 14
-[16:56:17.379][GameServer] TRY TryConnection: Player 1 from Team 0
-[16:56:17.380][GameServer] TryConnection: True
-[16:56:17.382][GameServer] TRY Add Player: Player 1 from Team 0
-[16:56:17.382][GameServer] AddPlayer: Check Correct
-[16:56:17.384][GameServer] Player 1 from Team 0 joins
-[16:56:17.384][GameServer] PlayerCountNow: 3
-[16:56:17.384][GameServer] PlayerTotalNum: 14
-[16:56:17.790][GameServer] TRY TryConnection: Player 1 from Team 1
-[16:56:17.790][GameServer] TryConnection: True
-[16:56:17.793][GameServer] TRY Add Player: Player 1 from Team 1
-[16:56:17.793][GameServer] AddPlayer: Check Correct
-[16:56:17.793][GameServer] Player 1 from Team 1 joins
-[16:56:17.793][GameServer] PlayerCountNow: 4
-[16:56:17.793][GameServer] PlayerNum: 14
-[16:56:18.303][GameServer] TRY TryConnection: Player 2 from Team 0
-[16:56:18.303][GameServer] TryConnection: True
-[16:56:18.308][GameServer] TRY Add Player: Player 2 from Team 0
-[16:56:18.308][GameServer] AddPlayer: Check Correct
-[16:56:18.308][GameServer] Player 2 from Team 0 joins
-[16:56:18.308][GameServer] PlayerCountNow: 5
-[16:56:18.308][GameServer] PlayerTotalNum: 14
-[16:56:18.605][GameServer] TRY TryConnection: Player 2 from Team 1
-[16:56:18.605][GameServer] TryConnection: True
-[16:56:18.608][GameServer] TRY Add Player: Player 2 from Team 1
-[16:56:18.608][GameServer] AddPlayer: Check Correct
-[16:56:18.608][GameServer] Player 2 from Team 1 joins
-[16:56:18.608][GameServer] PlayerCountNow: 6
-[16:56:18.608][GameServer] PlayerNum: 14
-[16:56:19.047][GameServer] TRY TryConnection: Player 3 from Team 0
-[16:56:19.047][GameServer] TryConnection: True
-[16:56:19.049][GameServer] TRY Add Player: Player 3 from Team 0
-[16:56:19.049][GameServer] AddPlayer: Check Correct
-[16:56:19.050][GameServer] Player 3 from Team 0 joins
-[16:56:19.050][GameServer] PlayerCountNow: 7
-[16:56:19.050][GameServer] PlayerTotalNum: 14
-[16:56:19.458][GameServer] TRY TryConnection: Player 3 from Team 1
-[16:56:19.458][GameServer] TryConnection: True
-[16:56:19.461][GameServer] TRY Add Player: Player 3 from Team 1
-[16:56:19.461][GameServer] AddPlayer: Check Correct
-[16:56:19.461][GameServer] Player 3 from Team 1 joins
-[16:56:19.462][GameServer] PlayerCountNow: 8
-[16:56:19.462][GameServer] PlayerNum: 14
-[16:56:19.877][GameServer] TRY TryConnection: Player 4 from Team 0
-[16:56:19.877][GameServer] TryConnection: True
-[16:56:19.879][GameServer] TRY Add Player: Player 4 from Team 0
-[16:56:19.879][GameServer] AddPlayer: Check Correct
-[16:56:19.880][GameServer] Player 4 from Team 0 joins
-[16:56:19.880][GameServer] PlayerCountNow: 9
-[16:56:19.880][GameServer] PlayerTotalNum: 14
-[16:56:20.280][GameServer] TRY TryConnection: Player 4 from Team 1
-[16:56:20.281][GameServer] TryConnection: True
-[16:56:20.283][GameServer] TRY Add Player: Player 4 from Team 1
-[16:56:20.283][GameServer] AddPlayer: Check Correct
-[16:56:20.284][GameServer] Player 4 from Team 1 joins
-[16:56:20.284][GameServer] PlayerCountNow: 10
-[16:56:20.284][GameServer] PlayerNum: 14
-[16:56:20.645][GameServer] TRY TryConnection: Player 5 from Team 0
-[16:56:20.645][GameServer] TryConnection: True
-[16:56:20.647][GameServer] TRY Add Player: Player 5 from Team 0
-[16:56:20.647][GameServer] AddPlayer: Check Correct
-[16:56:20.648][GameServer] Player 5 from Team 0 joins
-[16:56:20.648][GameServer] PlayerCountNow: 11
-[16:56:20.648][GameServer] PlayerTotalNum: 14
-[16:56:21.052][GameServer] TRY TryConnection: Player 5 from Team 1
-[16:56:21.052][GameServer] TryConnection: True
-[16:56:21.054][GameServer] TRY Add Player: Player 5 from Team 1
-[16:56:21.054][GameServer] AddPlayer: Check Correct
-[16:56:21.055][GameServer] Player 5 from Team 1 joins
-[16:56:21.055][GameServer] PlayerCountNow: 12
-[16:56:21.055][GameServer] PlayerNum: 14
-[16:56:21.397][GameServer] TRY TryConnection: Player 6 from Team 0
-[16:56:21.397][GameServer] TryConnection: True
-[16:56:21.400][GameServer] TRY Add Player: Player 6 from Team 0
-[16:56:21.400][GameServer] AddPlayer: Check Correct
-[16:56:21.400][GameServer] Player 6 from Team 0 joins
-[16:56:21.400][GameServer] PlayerCountNow: 13
-[16:56:21.400][GameServer] PlayerTotalNum: 14
-[16:56:21.791][GameServer] TRY TryConnection: Player 6 from Team 1
-[16:56:21.791][GameServer] TryConnection: True
-[16:56:21.796][GameServer] TRY Add Player: Player 6 from Team 1
-[16:56:21.798][GameServer] AddPlayer: Check Correct
-[16:56:21.802][GameServer] Player 6 from Team 1 joins
-[16:56:21.803][GameServer] PlayerCountNow: 14
-[16:56:21.803][GameServer] PlayerNum: 14
-[16:56:21.803][GameServer] Game Start
-[16:56:21.803][GameServer] Game starts!
-[16:56:21.804][GameServer] Successfully Created StartLockFile!
-[16:56:21.805][Game] Try to activate 0 TangSeng at birthpoint 0
-[16:56:21.807][Game] Successfully activated 0 TangSeng at (2500, 45500)
-[16:56:21.807][Game] Try to activate 1 JiuLing at birthpoint 0
-[16:56:21.808][Game] Successfully activated 1 JiuLing at (45500, 4500)
-[16:56:21.834][GameServer] TRY Produce: Player 1 from Team 0
-[16:56:21.834][GameServer] TRY Produce: Player 1 from Team 1
-[16:56:21.834][GameServer] END Produce
-[16:56:21.834][GameServer] END Produce
-[16:56:21.881][GameServer] TRY Produce: Player 1 from Team 0
-[16:56:21.881][GameServer] END Produce
-[16:56:21.881][GameServer] TRY Produce: Player 1 from Team 1
-[16:56:21.881][GameServer] END Produce
-[16:56:21.921][GameServer] TRY Produce: Player 1 from Team 1
-[16:56:21.921][GameServer] END Produce
-[16:56:21.921][GameServer] TRY Produce: Player 1 from Team 0
-[16:56:21.922][GameServer] END Produce
-[16:56:21.990][GameServer] TRY Produce: Player 1 from Team 0
-[16:56:21.990][GameServer] TRY Produce: Player 1 from Team 1
-[16:56:21.990][GameServer] END Produce
-[16:56:21.990][GameServer] END Produce
-[16:56:22.025][GameServer] TRY Produce: Player 1 from Team 1
-[16:56:22.025][GameServer] TRY Produce: Player 1 from Team 0
-[16:56:22.025][GameServer] END Produce
-[16:56:22.026][GameServer] END Produce
-[16:56:22.085][GameServer] TRY Produce: Player 1 from Team 0
-[16:56:22.085][GameServer] TRY Produce: Player 1 from Team 1
-[16:56:22.086][GameServer] END Produce
-[16:56:22.085][GameServer] END Produce
-[16:56:22.132][GameServer] TRY Produce: Player 1 from Team 0
-[16:56:22.132][GameServer] TRY Produce: Player 1 from Team 1
-[16:56:22.140][GameServer] END Produce
-[16:56:22.140][GameServer] END Produce
-[16:56:22.181][GameServer] TRY Produce: Player 1 from Team 1
-[16:56:22.181][GameServer] END Produce
-[16:56:22.181][GameServer] TRY Produce: Player 1 from Team 0
-[16:56:22.181][GameServer] END Produce
-[16:56:22.239][GameServer] TRY Produce: Player 1 from Team 0
-[16:56:22.239][GameServer] TRY Produce: Player 1 from Team 1
-[16:56:22.250][GameServer] END Produce
-[16:56:22.250][GameServer] END Produce
-[16:56:22.279][GameServer] TRY Produce: Player 1 from Team 1
-[16:56:22.279][GameServer] TRY Produce: Player 1 from Team 0
-[16:56:22.280][GameServer] END Produce
-[16:56:22.280][GameServer] END Produce
-[16:56:22.338][GameServer] TRY Produce: Player 1 from Team 1
-[16:56:22.338][GameServer] TRY Produce: Player 1 from Team 0
-[16:56:22.339][GameServer] END Produce
-[16:56:22.339][GameServer] END Produce
-[16:56:22.375][GameServer] TRY Produce: Player 1 from Team 1
-[16:56:22.375][GameServer] TRY Produce: Player 1 from Team 0
-[16:56:22.382][GameServer] END Produce
-[16:56:22.381][GameServer] END Produce
-[16:56:22.431][GameServer] TRY Produce: Player 1 from Team 0
-[16:56:22.431][GameServer] TRY Produce: Player 1 from Team 1
-[16:56:22.431][GameServer] END Produce
-[16:56:22.431][GameServer] END Produce
-[16:56:22.481][GameServer] TRY Produce: Player 1 from Team 1
-[16:56:22.481][GameServer] TRY Produce: Player 1 from Team 0
-[16:56:22.481][GameServer] END Produce
-[16:56:22.481][GameServer] END Produce
-[16:56:22.534][GameServer] TRY Produce: Player 1 from Team 0
-[16:56:22.534][GameServer] END Produce
-[16:56:22.534][GameServer] TRY Produce: Player 1 from Team 1
-[16:56:22.535][GameServer] END Produce
-[16:56:22.586][GameServer] TRY Produce: Player 1 from Team 0
-[16:56:22.587][GameServer] END Produce
-[16:56:22.587][GameServer] TRY Produce: Player 1 from Team 1
-[16:56:22.587][GameServer] END Produce
-[16:56:22.624][GameServer] TRY Produce: Player 1 from Team 1
-[16:56:22.624][GameServer] TRY Produce: Player 1 from Team 0
-[16:56:22.624][GameServer] END Produce
-[16:56:22.624][GameServer] END Produce
-[16:56:22.683][GameServer] TRY Produce: Player 1 from Team 0
-[16:56:22.683][GameServer] TRY Produce: Player 1 from Team 1
-[16:56:22.683][GameServer] END Produce
-[16:56:22.683][GameServer] END Produce
-[16:56:22.733][GameServer] TRY Produce: Player 1 from Team 1
-[16:56:22.734][GameServer] TRY Produce: Player 1 from Team 0
-[16:56:22.741][GameServer] END Produce
-[16:56:22.741][GameServer] END Produce
-[16:56:22.780][GameServer] TRY Produce: Player 1 from Team 1
-[16:56:22.780][GameServer] TRY Produce: Player 1 from Team 0
-[16:56:22.780][GameServer] END Produce
-[16:56:22.780][GameServer] END Produce
-[16:56:22.833][GameServer] TRY Produce: Player 1 from Team 1
-[16:56:22.833][GameServer] TRY Produce: Player 1 from Team 0
-[16:56:22.842][GameServer] END Produce
-[16:56:22.842][GameServer] END Produce
-[16:56:22.884][GameServer] TRY Produce: Player 1 from Team 1
-[16:56:22.884][GameServer] TRY Produce: Player 1 from Team 0
-[16:56:22.884][GameServer] END Produce
-[16:56:22.884][GameServer] END Produce
-[16:56:22.929][GameServer] TRY Produce: Player 1 from Team 1
-[16:56:22.929][GameServer] TRY Produce: Player 1 from Team 0
-[16:56:22.931][GameServer] END Produce
-[16:56:22.931][GameServer] END Produce
-[16:56:22.979][GameServer] TRY Produce: Player 1 from Team 0
-[16:56:22.979][GameServer] TRY Produce: Player 1 from Team 1
-[16:56:22.979][GameServer] END Produce
-[16:56:22.980][GameServer] END Produce
-[16:56:23.036][GameServer] TRY Produce: Player 1 from Team 0
-[16:56:23.036][GameServer] TRY Produce: Player 1 from Team 1
-[16:56:23.036][GameServer] END Produce
-[16:56:23.037][GameServer] END Produce
-[16:56:23.075][GameServer] TRY Produce: Player 1 from Team 0
-[16:56:23.075][GameServer] TRY Produce: Player 1 from Team 1
-[16:56:23.075][GameServer] END Produce
-[16:56:23.075][GameServer] END Produce
-[16:56:23.129][GameServer] TRY Produce: Player 1 from Team 0
-[16:56:23.129][GameServer] TRY Produce: Player 1 from Team 1
+[13:38:20.291][GameServer] Null TOKEN Environment!
+[13:38:20.475][GameServer] Server begins to listen!
+[13:38:31.606][GameServer] TRY TryConnection: Player 0 from Team 1
+[13:38:31.606][GameServer] TRY TryConnection: Player 0 from Team 0
+[13:38:31.607][GameServer] TryConnection: True
+[13:38:31.607][GameServer] TryConnection: True
+[13:38:31.619][GameServer] TRY Add Player: Player 0 from Team 1
+[13:38:31.619][GameServer] TRY Add Player: Player 0 from Team 0
+[13:38:31.620][GameServer] AddPlayer: Check Correct
+[13:38:31.620][GameServer] AddPlayer: Check Correct
+[13:38:31.621][GameServer] Player 0 from Team 1 joins
+[13:38:31.621][GameServer] PlayerCountNow: 1
+[13:38:31.622][GameServer] PlayerNum: 14
+[13:38:31.622][GameServer] Player 0 from Team 0 joins
+[13:38:31.622][GameServer] PlayerCountNow: 2
+[13:38:31.622][GameServer] PlayerTotalNum: 14
+[13:38:32.021][GameServer] TRY TryConnection: Player 1 from Team 0
+[13:38:32.021][GameServer] TryConnection: True
+[13:38:32.023][GameServer] TRY Add Player: Player 1 from Team 0
+[13:38:32.023][GameServer] AddPlayer: Check Correct
+[13:38:32.025][GameServer] Player 1 from Team 0 joins
+[13:38:32.025][GameServer] PlayerCountNow: 3
+[13:38:32.025][GameServer] PlayerTotalNum: 14
+[13:38:32.421][GameServer] TRY TryConnection: Player 1 from Team 1
+[13:38:32.421][GameServer] TryConnection: True
+[13:38:32.423][GameServer] TRY Add Player: Player 1 from Team 1
+[13:38:32.423][GameServer] AddPlayer: Check Correct
+[13:38:32.423][GameServer] Player 1 from Team 1 joins
+[13:38:32.425][GameServer] PlayerCountNow: 4
+[13:38:32.425][GameServer] PlayerNum: 14
+[13:38:32.799][GameServer] TRY TryConnection: Player 2 from Team 0
+[13:38:32.799][GameServer] TryConnection: True
+[13:38:32.801][GameServer] TRY Add Player: Player 2 from Team 0
+[13:38:32.801][GameServer] AddPlayer: Check Correct
+[13:38:32.802][GameServer] Player 2 from Team 0 joins
+[13:38:32.802][GameServer] PlayerCountNow: 5
+[13:38:32.802][GameServer] PlayerTotalNum: 14
+[13:38:33.269][GameServer] TRY TryConnection: Player 2 from Team 1
+[13:38:33.269][GameServer] TryConnection: True
+[13:38:33.271][GameServer] TRY Add Player: Player 2 from Team 1
+[13:38:33.271][GameServer] AddPlayer: Check Correct
+[13:38:33.272][GameServer] Player 2 from Team 1 joins
+[13:38:33.272][GameServer] PlayerCountNow: 6
+[13:38:33.272][GameServer] PlayerNum: 14
+[13:38:33.709][GameServer] TRY TryConnection: Player 3 from Team 0
+[13:38:33.709][GameServer] TryConnection: True
+[13:38:33.712][GameServer] TRY Add Player: Player 3 from Team 0
+[13:38:33.712][GameServer] AddPlayer: Check Correct
+[13:38:33.713][GameServer] Player 3 from Team 0 joins
+[13:38:33.713][GameServer] PlayerCountNow: 7
+[13:38:33.713][GameServer] PlayerTotalNum: 14
+[13:38:34.206][GameServer] TRY TryConnection: Player 3 from Team 1
+[13:38:34.206][GameServer] TryConnection: True
+[13:38:34.208][GameServer] TRY Add Player: Player 3 from Team 1
+[13:38:34.208][GameServer] AddPlayer: Check Correct
+[13:38:34.209][GameServer] Player 3 from Team 1 joins
+[13:38:34.209][GameServer] PlayerCountNow: 8
+[13:38:34.209][GameServer] PlayerNum: 14
+[13:38:34.614][GameServer] TRY TryConnection: Player 4 from Team 0
+[13:38:34.614][GameServer] TryConnection: True
+[13:38:34.616][GameServer] TRY Add Player: Player 4 from Team 0
+[13:38:34.616][GameServer] AddPlayer: Check Correct
+[13:38:34.617][GameServer] Player 4 from Team 0 joins
+[13:38:34.617][GameServer] PlayerCountNow: 9
+[13:38:34.617][GameServer] PlayerTotalNum: 14
+[13:38:35.096][GameServer] TRY TryConnection: Player 4 from Team 1
+[13:38:35.096][GameServer] TryConnection: True
+[13:38:35.098][GameServer] TRY Add Player: Player 4 from Team 1
+[13:38:35.098][GameServer] AddPlayer: Check Correct
+[13:38:35.098][GameServer] Player 4 from Team 1 joins
+[13:38:35.098][GameServer] PlayerCountNow: 10
+[13:38:35.099][GameServer] PlayerNum: 14
+[13:38:36.141][GameServer] TRY TryConnection: Player 5 from Team 1
+[13:38:36.141][GameServer] TryConnection: True
+[13:38:36.141][GameServer] TRY TryConnection: Player 5 from Team 0
+[13:38:36.141][GameServer] TryConnection: True
+[13:38:36.143][GameServer] TRY Add Player: Player 5 from Team 1
+[13:38:36.143][GameServer] TRY Add Player: Player 5 from Team 0
+[13:38:36.144][GameServer] AddPlayer: Check Correct
+[13:38:36.143][GameServer] AddPlayer: Check Correct
+[13:38:36.144][GameServer] Player 5 from Team 0 joins
+[13:38:36.144][GameServer] PlayerCountNow: 11
+[13:38:36.145][GameServer] PlayerTotalNum: 14
+[13:38:36.145][GameServer] Player 5 from Team 1 joins
+[13:38:36.145][GameServer] PlayerCountNow: 12
+[13:38:36.145][GameServer] PlayerNum: 14
+[13:38:36.339][GameServer] TRY TryConnection: Player 6 from Team 0
+[13:38:36.339][GameServer] TryConnection: True
+[13:38:36.341][GameServer] TRY Add Player: Player 6 from Team 0
+[13:38:36.341][GameServer] AddPlayer: Check Correct
+[13:38:36.342][GameServer] Player 6 from Team 0 joins
+[13:38:36.342][GameServer] PlayerCountNow: 13
+[13:38:36.342][GameServer] PlayerTotalNum: 14
+[13:38:36.896][GameServer] TRY TryConnection: Player 6 from Team 1
+[13:38:36.896][GameServer] TryConnection: True
+[13:38:36.898][GameServer] TRY Add Player: Player 6 from Team 1
+[13:38:36.899][GameServer] AddPlayer: Check Correct
+[13:38:36.899][GameServer] Player 6 from Team 1 joins
+[13:38:36.899][GameServer] PlayerCountNow: 14
+[13:38:36.899][GameServer] PlayerNum: 14
+[13:38:36.899][GameServer] Game Start
+[13:38:36.900][GameServer] Game starts!
+[13:38:36.901][GameServer] Successfully Created StartLockFile!
+[13:38:36.902][Game] Try to activate 0 TangSeng at birthpoint 0
+[13:38:36.904][Game] Successfully activated 0 TangSeng at (2500, 45500)
+[13:38:36.905][Game] Try to activate 1 JiuLing at birthpoint 0
+[13:38:36.905][Game] Successfully activated 1 JiuLing at (47500, 4500)
+[13:38:36.932][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:36.932][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:36.932][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:36.932][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:36.933][GameServer] END AttackAdditionResource
+[13:38:36.933][GameServer] END AttackConstruction
+[13:38:36.933][GameServer] END AttackAdditionResource
+[13:38:36.933][GameServer] END AttackConstruction
+[13:38:36.972][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:36.972][GameServer] END AttackAdditionResource
+[13:38:36.972][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:36.972][GameServer] END AttackAdditionResource
+[13:38:36.972][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:36.972][GameServer] END AttackConstruction
+[13:38:36.972][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:36.972][GameServer] END AttackConstruction
+[13:38:37.011][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:37.011][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:37.011][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:37.012][GameServer] END AttackAdditionResource
+[13:38:37.012][GameServer] END AttackAdditionResource
+[13:38:37.012][GameServer] END AttackConstruction
+[13:38:37.012][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:37.012][GameServer] END AttackConstruction
+[13:38:37.072][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:37.072][GameServer] END AttackAdditionResource
+[13:38:37.072][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:37.072][GameServer] END AttackAdditionResource
+[13:38:37.072][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:37.072][GameServer] END AttackConstruction
+[13:38:37.072][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:37.073][GameServer] END AttackConstruction
+[13:38:37.123][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:37.123][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:37.124][GameServer] END AttackAdditionResource
+[13:38:37.124][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:37.124][GameServer] END AttackAdditionResource
+[13:38:37.124][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:37.124][GameServer] END AttackConstruction
+[13:38:37.124][GameServer] END AttackConstruction
+[13:38:37.174][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:37.174][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:37.175][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:37.175][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:37.176][GameServer] END AttackAdditionResource
+[13:38:37.176][GameServer] END AttackAdditionResource
+[13:38:37.176][GameServer] END AttackConstruction
+[13:38:37.176][GameServer] END AttackConstruction
+[13:38:37.233][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:37.233][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:37.234][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:37.233][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:37.233][GameServer] END AttackAdditionResource
+[13:38:37.234][GameServer] END AttackAdditionResource
+[13:38:37.234][GameServer] END AttackConstruction
+[13:38:37.234][GameServer] END AttackConstruction
+[13:38:37.273][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:37.273][GameServer] END AttackAdditionResource
+[13:38:37.273][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:37.273][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:37.273][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:37.273][GameServer] END AttackAdditionResource
+[13:38:37.273][GameServer] END AttackConstruction
+[13:38:37.273][GameServer] END AttackConstruction
+[13:38:37.323][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:37.325][GameServer] END AttackAdditionResource
+[13:38:37.324][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:37.329][GameServer] END AttackConstruction
+[13:38:37.323][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:37.324][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:37.374][GameServer] END AttackAdditionResource
+[13:38:37.374][GameServer] END AttackConstruction
+[13:38:37.374][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:37.374][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:37.374][GameServer] END AttackAdditionResource
+[13:38:37.374][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:37.375][GameServer] END AttackAdditionResource
+[13:38:37.375][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:37.376][GameServer] END AttackConstruction
+[13:38:37.375][GameServer] END AttackConstruction
+[13:38:37.425][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:37.426][GameServer] END AttackAdditionResource
+[13:38:37.426][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:37.426][GameServer] END AttackAdditionResource
+[13:38:37.426][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:37.426][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:37.427][GameServer] END AttackConstruction
+[13:38:37.426][GameServer] END AttackConstruction
+[13:38:37.485][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:37.485][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:37.485][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:37.485][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:37.493][GameServer] END AttackAdditionResource
+[13:38:37.493][GameServer] END AttackAdditionResource
+[13:38:37.493][GameServer] END AttackConstruction
+[13:38:37.493][GameServer] END AttackConstruction
+[13:38:37.525][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:37.525][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:37.525][GameServer] END AttackAdditionResource
+[13:38:37.525][GameServer] END AttackAdditionResource
+[13:38:37.525][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:37.526][GameServer] END AttackConstruction
+[13:38:37.525][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:37.575][GameServer] END AttackConstruction
+[13:38:37.575][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:37.575][GameServer] END AttackAdditionResource
+[13:38:37.575][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:37.575][GameServer] END AttackAdditionResource
+[13:38:37.576][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:37.576][GameServer] END AttackConstruction
+[13:38:37.576][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:37.576][GameServer] END AttackConstruction
+[13:38:37.625][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:37.625][GameServer] END AttackAdditionResource
+[13:38:37.625][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:37.625][GameServer] END AttackAdditionResource
+[13:38:37.625][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:37.626][GameServer] END AttackConstruction
+[13:38:37.626][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:37.626][GameServer] END AttackConstruction
+[13:38:37.675][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:37.676][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:37.676][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:37.676][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:37.684][GameServer] END AttackAdditionResource
+[13:38:37.684][GameServer] END AttackAdditionResource
+[13:38:37.684][GameServer] END AttackConstruction
+[13:38:37.684][GameServer] END AttackConstruction
+[13:38:37.734][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:37.734][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:37.734][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:37.734][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:37.748][GameServer] END AttackAdditionResource
+[13:38:37.748][GameServer] END AttackAdditionResource
+[13:38:37.748][GameServer] END AttackConstruction
+[13:38:37.748][GameServer] END AttackConstruction
+[13:38:37.776][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:37.776][GameServer] END AttackAdditionResource
+[13:38:37.776][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:37.776][GameServer] END AttackConstruction
+[13:38:37.776][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:37.776][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:37.776][GameServer] END AttackAdditionResource
+[13:38:37.776][GameServer] END AttackConstruction
+[13:38:37.826][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:37.828][GameServer] END AttackAdditionResource
+[13:38:37.828][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:37.830][GameServer] END AttackAdditionResource
+[13:38:37.830][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:37.836][GameServer] END AttackConstruction
+[13:38:37.829][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:37.837][GameServer] END AttackConstruction
+[13:38:37.875][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:37.875][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:37.875][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:37.878][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:37.913][GameServer] END AttackAdditionResource
+[13:38:37.913][GameServer] END AttackConstruction
+[13:38:37.913][GameServer] END AttackAdditionResource
+[13:38:37.913][GameServer] END AttackConstruction
+[13:38:37.925][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:37.925][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:37.925][GameServer] END AttackAdditionResource
+[13:38:37.925][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:37.925][GameServer] END AttackAdditionResource
+[13:38:37.925][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:37.925][GameServer] END AttackConstruction
+[13:38:37.925][GameServer] END AttackConstruction
+[13:38:37.985][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:37.985][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:37.985][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:37.986][GameServer] END AttackConstruction
+[13:38:37.986][GameServer] END AttackAdditionResource
+[13:38:37.986][GameServer] END AttackAdditionResource
+[13:38:37.985][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:37.994][GameServer] END AttackConstruction
+[13:38:38.046][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:38.046][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:38.046][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:38.046][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:38.065][GameServer] END AttackAdditionResource
+[13:38:38.065][GameServer] END AttackAdditionResource
+[13:38:38.065][GameServer] END AttackConstruction
+[13:38:38.065][GameServer] END AttackConstruction
+[13:38:38.075][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:38.075][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:38.075][GameServer] END AttackAdditionResource
+[13:38:38.075][GameServer] END AttackAdditionResource
+[13:38:38.075][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:38.075][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:38.086][GameServer] END AttackConstruction
+[13:38:38.087][GameServer] END AttackConstruction
+[13:38:38.126][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:38.126][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:38.127][GameServer] END AttackAdditionResource
+[13:38:38.127][GameServer] END AttackAdditionResource
+[13:38:38.127][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:38.127][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:38.128][GameServer] END AttackConstruction
+[13:38:38.128][GameServer] END AttackConstruction
+[13:38:38.185][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:38.185][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:38.186][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:38.186][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:38.213][GameServer] END AttackAdditionResource
+[13:38:38.213][GameServer] END AttackAdditionResource
+[13:38:38.213][GameServer] END AttackConstruction
+[13:38:38.213][GameServer] END AttackConstruction
+[13:38:38.225][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:38.226][GameServer] END AttackAdditionResource
+[13:38:38.226][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:38.226][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:38.228][GameServer] END AttackConstruction
+[13:38:38.228][GameServer] END AttackAdditionResource
+[13:38:38.228][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:38.229][GameServer] END AttackConstruction
+[13:38:38.267][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:38.267][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:38.267][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:38.267][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:38.286][GameServer] END AttackAdditionResource
+[13:38:38.286][GameServer] END AttackAdditionResource
+[13:38:38.286][GameServer] END AttackConstruction
+[13:38:38.286][GameServer] END AttackConstruction
+[13:38:38.325][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:38.325][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:38.325][GameServer] END AttackAdditionResource
+[13:38:38.325][GameServer] END AttackAdditionResource
+[13:38:38.325][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:38.325][GameServer] END AttackConstruction
+[13:38:38.326][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:38.326][GameServer] END AttackConstruction
+[13:38:38.379][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:38.379][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:38.379][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:38.381][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:38.435][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:38.436][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:38.436][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:38.436][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:38.451][GameServer] END AttackAdditionResource
+[13:38:38.451][GameServer] END AttackAdditionResource
+[13:38:38.451][GameServer] END AttackConstruction
+[13:38:38.451][GameServer] END AttackAdditionResource
+[13:38:38.451][GameServer] END AttackConstruction
+[13:38:38.451][GameServer] END AttackAdditionResource
+[13:38:38.451][GameServer] END AttackConstruction
+[13:38:38.451][GameServer] END AttackConstruction
+[13:38:38.476][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:38.476][GameServer] END AttackAdditionResource
+[13:38:38.476][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:38.477][GameServer] END AttackAdditionResource
+[13:38:38.477][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:38.477][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:38.477][GameServer] END AttackConstruction
+[13:38:38.477][GameServer] END AttackConstruction
+[13:38:38.516][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:38.516][GameServer] END AttackAdditionResource
+[13:38:38.516][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:38.516][GameServer] END AttackAdditionResource
+[13:38:38.516][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:38.516][GameServer] END AttackConstruction
+[13:38:38.516][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:38.516][GameServer] END AttackConstruction
+[13:38:38.577][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:38.577][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:38.577][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:38.577][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:38.610][GameServer] END AttackAdditionResource
+[13:38:38.610][GameServer] END AttackAdditionResource
+[13:38:38.610][GameServer] END AttackConstruction
+[13:38:38.611][GameServer] END AttackConstruction
+[13:38:38.628][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:38.628][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:38.629][GameServer] END AttackAdditionResource
+[13:38:38.628][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:38.628][GameServer] END AttackAdditionResource
+[13:38:38.628][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:38.630][GameServer] END AttackConstruction
+[13:38:38.629][GameServer] END AttackConstruction
+[13:38:38.679][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:38.679][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:38.679][GameServer] END AttackAdditionResource
+[13:38:38.679][GameServer] END AttackAdditionResource
+[13:38:38.680][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:38.679][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:38.680][GameServer] END AttackConstruction
+[13:38:38.680][GameServer] END AttackConstruction
+[13:38:38.720][GameServer] TRY AttackAdditionResource: Player 1 from Team 1
+[13:38:38.720][GameServer] END AttackAdditionResource
+[13:38:38.720][GameServer] TRY AttackAdditionResource: Player 1 from Team 0
+[13:38:38.720][GameServer] END AttackAdditionResource
+[13:38:38.720][GameServer] TRY AttackConstruction: Player 1 from Team 1
+[13:38:38.720][GameServer] END AttackConstruction
+[13:38:38.720][GameServer] TRY AttackConstruction: Player 1 from Team 0
+[13:38:38.720][GameServer] END AttackConstruction

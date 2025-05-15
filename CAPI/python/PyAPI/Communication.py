@@ -127,6 +127,24 @@ class Communication:
         else:
             return attackConstructionResult.act_success
 
+    def AttackAdditionResource(self, playerID: int, teamID: int) -> bool:
+        try:
+            with self.__mtxLimit:
+                if self.__counter >= self.__limit:
+                    return False
+                self.__counter += 1
+            attackAdditionResourceResult: Message2Clients.BoolRes = (
+                self.__THUAI8Stub.AttackAdditionResource(
+                    THUAI82Proto.THUAI82ProtobufAttackAdditionResourceMsg(
+                        playerID, teamID
+                    )
+                )
+            )
+        except grpc.RpcError:
+            return False
+        else:
+            return attackAdditionResourceResult.act_success
+
     def Recover(self, playerID: int, teamID: int, recover: int) -> bool:
         try:
             with self.__mtxLimit:
@@ -190,6 +208,26 @@ class Communication:
             return False
         else:
             return constructResult.act_success
+
+    def ConstructTrap(
+        self, trapType: THUAI8.TrapType, playerID: int, teamID: int
+    ) -> bool:
+        try:
+            with self.__mtxLimit:
+                if self.__counter >= self.__limit:
+                    return False
+                self.__counter += 1
+            constructTrapResult: Message2Clients.BoolRes = (
+                self.__THUAI8Stub.ConstructTrap(
+                    THUAI82Proto.THUAI82ProtobufConstructTrapMsg(
+                        playerID, teamID, trapType
+                    )
+                )
+            )
+        except grpc.RpcError:
+            return False
+        else:
+            return constructTrapResult.act_success
 
     def InstallEquipment(
         self, equipmentType: THUAI8.EquipmentType, playerID: int, teamID: int
