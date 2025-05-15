@@ -188,11 +188,11 @@ std::future<bool> CharacterDebugAPI::Recover(int64_t recover)
                             logger->warn("Recover: failed at {}ms", Time::TimeSinceStart(startPoint));
                         return result; });
 }
-std::future<bool> CharacterDebugAPI::Produce(int64_t playerID, int64_t teamID)
+std::future<bool> CharacterDebugAPI::Produce()
 {
     logger->info("Harvest: called at {}ms", Time::TimeSinceStart(startPoint));
     return std::async(std::launch::async, [=]()
-                      { auto result = logic.Produce(playerID, teamID);
+                      { auto result = logic.Produce(this->GetSelfInfo()->playerID, this->GetSelfInfo()->teamID);
                         if (!result)
                             logger->warn("Harvest: failed at {}ms", Time::TimeSinceStart(startPoint));
                         return result; });

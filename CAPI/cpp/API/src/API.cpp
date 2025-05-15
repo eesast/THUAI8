@@ -270,10 +270,10 @@ std::future<bool> CharacterAPI::Recover(int64_t recover)
                       { return logic.Recover(recover); });
 }
 
-std::future<bool> CharacterAPI::Produce(int64_t playerID, int64_t teamID)
+std::future<bool> CharacterAPI::Produce()
 {
     return std::async(std::launch::async, [=]()
-                      { return logic.Produce(playerID, teamID); });
+                      { return logic.Produce(this->GetSelfInfo()->playerID, this->GetSelfInfo()->teamID); });
 }
 
 /* std::future<bool> CharacterAPI::Rebuild(THUAI8::ConstructionType constructionType)
