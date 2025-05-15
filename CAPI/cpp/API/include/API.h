@@ -141,7 +141,7 @@ public:
     virtual std::future<bool> AttackConstruction() = 0;
     virtual std::future<bool> AttackAdditionResource() = 0;
     virtual std::future<bool> Recover(int64_t recover) = 0;
-    virtual std::future<bool> Produce(int64_t playerID, int64_t teamID) = 0;
+    virtual std::future<bool> Produce() = 0;
     // virtual std::future<bool> Rebuild(THUAI8::ConstructionType constructionType) = 0;
     virtual std::future<bool> Construct(THUAI8::ConstructionType constructionType) = 0;
     virtual std::future<bool> ConstructTrap(THUAI8::TrapType trapType) = 0;
@@ -201,7 +201,7 @@ public:
     std::future<bool> AttackConstruction() override;
     std::future<bool> AttackAdditionResource() override;
     std::future<bool> Recover(int64_t recover) override;
-    std::future<bool> Produce(int64_t playerID, int64_t teamID) override;
+    std::future<bool> Produce() override;
     // std::future<bool> Rebuild(THUAI8::ConstructionType constructionType) override;
     std::future<bool> Construct(THUAI8::ConstructionType constructionType) override;
     std::future<bool> ConstructTrap(THUAI8::TrapType trapType) override;
@@ -316,7 +316,7 @@ public:
     std::future<bool> AttackConstruction() override;
     std::future<bool> AttackAdditionResource() override;
     std::future<bool> Recover(int64_t recover) override;
-    std::future<bool> Produce(int64_t playerID, int64_t teamID);
+    std::future<bool> Produce();
     // std::future<bool> Rebuild(THUAI8::ConstructionType constructionType) override;
     std::future<bool> Construct(THUAI8::ConstructionType constructionType) override;
     std::future<bool> ConstructTrap(THUAI8::TrapType trapType) override;
