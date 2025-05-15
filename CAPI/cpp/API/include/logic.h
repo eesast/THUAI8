@@ -98,7 +98,7 @@ private:
     [[nodiscard]] std::shared_ptr<const THUAI8::GameInfo> GetGameInfo() const;
     [[nodiscard]] std::vector<int64_t> GetPlayerGUIDs() const;
     [[nodiscard]] THUAI8::PlaceType GetPlaceType(int32_t cellX, int32_t cellY) const;
-    [[nodiscard]] std::optional<THUAI8::EconomyResource> GetEnconomyResourceState(int32_t cellX, int32_t cellY) const;
+    [[nodiscard]] std::optional<THUAI8::EconomyResource> GetEconomyResourceState(int32_t cellX, int32_t cellY) const;
     [[nodiscard]] std::optional<THUAI8::AdditionResource> GetAdditionResourceState(int32_t cellX, int32_t cellY) const;
     [[nodiscard]] std::optional<THUAI8::ConstructionState> GetConstructionState(int32_t cellX, int32_t cellY) const;
     [[nodiscard]] int32_t GetEnergy() const;

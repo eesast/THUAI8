@@ -255,12 +255,12 @@ std::shared_ptr<const THUAI8::GameInfo> CharacterDebugAPI::GetGameInfo() const
     return result;
 }
 
-std::optional<THUAI8::EconomyResource> CharacterDebugAPI::GetEnconomyResourceState(int32_t cellX, int32_t cellY) const
+std::optional<THUAI8::EconomyResource> CharacterDebugAPI::GetEconomyResourceState(int32_t cellX, int32_t cellY) const
 {
-    auto result = logic.GetEnconomyResourceState(cellX, cellY);
-    logger->info("GetEnconomyResourceState: teamID = {}, process = {}, type = {}, cellX = {}, cellY = {}, called at {}ms",result->team_id, result->process, THUAI8::economyResourceTypeDict.at(result->economyResourceType), cellX, cellY, Time::TimeSinceStart(startPoint));
+    auto result = logic.GetEconomyResourceState(cellX, cellY);
+    logger->info("GetEconomyResourceState: teamID = {}, process = {}, type = {}, cellX = {}, cellY = {}, called at {}ms",result->team_id, result->process, THUAI8::economyResourceTypeDict.at(result->economyResourceType), cellX, cellY, Time::TimeSinceStart(startPoint));
     if (!result)
-        logger->warn("GetEnconomyResourceState: failed at {}ms", Time::TimeSinceStart(startPoint));
+        logger->warn("GetEconomyResourceState: failed at {}ms", Time::TimeSinceStart(startPoint));
     return result;
 }
 
@@ -536,12 +536,12 @@ THUAI8::PlaceType TeamDebugAPI::GetPlaceType(int32_t cellX, int32_t cellY) const
     return result;  // 返回实际值
 }
 
-std::optional<THUAI8::EconomyResource> TeamDebugAPI::GetEnconomyResourceState(int32_t cellX, int32_t cellY) const
+std::optional<THUAI8::EconomyResource> TeamDebugAPI::GetEconomyResourceState(int32_t cellX, int32_t cellY) const
 {
-    auto result = logic.GetEnconomyResourceState(cellX, cellY);
-    logger->info("GetEnconomyResourceState: teamID = {}, process = {}, type = {}, cellX = {}, cellY = {}, called at {}ms", result->team_id, result->process, THUAI8::economyResourceTypeDict.at(result->economyResourceType), cellX, cellY, Time::TimeSinceStart(startPoint));
+    auto result = logic.GetEconomyResourceState(cellX, cellY);
+    logger->info("GetEconomyResourceState: teamID = {}, process = {}, type = {}, cellX = {}, cellY = {}, called at {}ms", result->team_id, result->process, THUAI8::economyResourceTypeDict.at(result->economyResourceType), cellX, cellY, Time::TimeSinceStart(startPoint));
     if (!result)
-        logger->warn("GetEnconomyResourceState: failed at {}ms", Time::TimeSinceStart(startPoint));
+        logger->warn("GetEconomyResourceState: failed at {}ms", Time::TimeSinceStart(startPoint));
     return result;
 }
 

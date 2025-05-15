@@ -84,7 +84,7 @@ THUAI8::PlaceType Logic::GetPlaceType(int32_t cellX, int32_t cellY) const
     return currentState->gameMap[cellX][cellY];
 }
 
-std::optional<THUAI8::EconomyResource> Logic::GetEnconomyResourceState(int32_t cellX, int32_t cellY) const
+std::optional<THUAI8::EconomyResource> Logic::GetEconomyResourceState(int32_t cellX, int32_t cellY) const
 {
     std::unique_lock<std::mutex> lock(mtxState);
     logger->debug("Called GetEconomyResourceState");

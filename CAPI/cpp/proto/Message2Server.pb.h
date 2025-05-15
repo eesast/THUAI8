@@ -77,9 +77,9 @@ extern ConstructionMsgDefaultTypeInternal _ConstructionMsg_default_instance_;
 class CreatCharacterMsg;
 struct CreatCharacterMsgDefaultTypeInternal;
 extern CreatCharacterMsgDefaultTypeInternal _CreatCharacterMsg_default_instance_;
-class EconomyReourceMsg;
-struct EconomyReourceMsgDefaultTypeInternal;
-extern EconomyReourceMsgDefaultTypeInternal _EconomyReourceMsg_default_instance_;
+class EconomyResourceMsg;
+struct EconomyResourceMsgDefaultTypeInternal;
+extern EconomyResourceMsgDefaultTypeInternal _EconomyResourceMsg_default_instance_;
 class EquipMsg;
 struct EquipMsgDefaultTypeInternal;
 extern EquipMsgDefaultTypeInternal _EquipMsg_default_instance_;
@@ -110,7 +110,7 @@ template<> ::protobuf::ConstructMsg* Arena::CreateMaybeMessage<::protobuf::Const
 template<> ::protobuf::ConstructTrapMsg* Arena::CreateMaybeMessage<::protobuf::ConstructTrapMsg>(Arena*);
 template<> ::protobuf::ConstructionMsg* Arena::CreateMaybeMessage<::protobuf::ConstructionMsg>(Arena*);
 template<> ::protobuf::CreatCharacterMsg* Arena::CreateMaybeMessage<::protobuf::CreatCharacterMsg>(Arena*);
-template<> ::protobuf::EconomyReourceMsg* Arena::CreateMaybeMessage<::protobuf::EconomyReourceMsg>(Arena*);
+template<> ::protobuf::EconomyResourceMsg* Arena::CreateMaybeMessage<::protobuf::EconomyResourceMsg>(Arena*);
 template<> ::protobuf::EquipMsg* Arena::CreateMaybeMessage<::protobuf::EquipMsg>(Arena*);
 template<> ::protobuf::IDMsg* Arena::CreateMaybeMessage<::protobuf::IDMsg>(Arena*);
 template<> ::protobuf::MoveMsg* Arena::CreateMaybeMessage<::protobuf::MoveMsg>(Arena*);
@@ -580,24 +580,24 @@ class CharacterMsg final :
 };
 // -------------------------------------------------------------------
 
-class EconomyReourceMsg final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protobuf.EconomyReourceMsg) */ {
+class EconomyResourceMsg final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protobuf.EconomyResourceMsg) */ {
  public:
-  inline EconomyReourceMsg() : EconomyReourceMsg(nullptr) {}
-  ~EconomyReourceMsg() override;
-  explicit PROTOBUF_CONSTEXPR EconomyReourceMsg(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline EconomyResourceMsg() : EconomyResourceMsg(nullptr) {}
+  ~EconomyResourceMsg() override;
+  explicit PROTOBUF_CONSTEXPR EconomyResourceMsg(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  EconomyReourceMsg(const EconomyReourceMsg& from);
-  EconomyReourceMsg(EconomyReourceMsg&& from) noexcept
-    : EconomyReourceMsg() {
+  EconomyResourceMsg(const EconomyResourceMsg& from);
+  EconomyResourceMsg(EconomyResourceMsg&& from) noexcept
+    : EconomyResourceMsg() {
     *this = ::std::move(from);
   }
 
-  inline EconomyReourceMsg& operator=(const EconomyReourceMsg& from) {
+  inline EconomyResourceMsg& operator=(const EconomyResourceMsg& from) {
     CopyFrom(from);
     return *this;
   }
-  inline EconomyReourceMsg& operator=(EconomyReourceMsg&& from) noexcept {
+  inline EconomyResourceMsg& operator=(EconomyResourceMsg&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -620,20 +620,20 @@ class EconomyReourceMsg final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const EconomyReourceMsg& default_instance() {
+  static const EconomyResourceMsg& default_instance() {
     return *internal_default_instance();
   }
-  static inline const EconomyReourceMsg* internal_default_instance() {
-    return reinterpret_cast<const EconomyReourceMsg*>(
-               &_EconomyReourceMsg_default_instance_);
+  static inline const EconomyResourceMsg* internal_default_instance() {
+    return reinterpret_cast<const EconomyResourceMsg*>(
+               &_EconomyResourceMsg_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     3;
 
-  friend void swap(EconomyReourceMsg& a, EconomyReourceMsg& b) {
+  friend void swap(EconomyResourceMsg& a, EconomyResourceMsg& b) {
     a.Swap(&b);
   }
-  inline void Swap(EconomyReourceMsg* other) {
+  inline void Swap(EconomyResourceMsg* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -646,7 +646,7 @@ class EconomyReourceMsg final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(EconomyReourceMsg* other) {
+  void UnsafeArenaSwap(EconomyResourceMsg* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -654,14 +654,14 @@ class EconomyReourceMsg final :
 
   // implements Message ----------------------------------------------
 
-  EconomyReourceMsg* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<EconomyReourceMsg>(arena);
+  EconomyResourceMsg* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<EconomyResourceMsg>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const EconomyReourceMsg& from);
+  void CopyFrom(const EconomyResourceMsg& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const EconomyReourceMsg& from) {
-    EconomyReourceMsg::MergeImpl(*this, from);
+  void MergeFrom( const EconomyResourceMsg& from) {
+    EconomyResourceMsg::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
@@ -679,15 +679,15 @@ class EconomyReourceMsg final :
   void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(EconomyReourceMsg* other);
+  void InternalSwap(EconomyResourceMsg* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "protobuf.EconomyReourceMsg";
+    return "protobuf.EconomyResourceMsg";
   }
   protected:
-  explicit EconomyReourceMsg(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit EconomyResourceMsg(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -732,7 +732,7 @@ class EconomyReourceMsg final :
   void _internal_set_economy_resource_type(::protobuf::EconomyResourceType value);
   public:
 
-  // @@protoc_insertion_point(class_scope:protobuf.EconomyReourceMsg)
+  // @@protoc_insertion_point(class_scope:protobuf.EconomyResourceMsg)
  private:
   class _Internal;
 
@@ -3251,66 +3251,66 @@ inline void CharacterMsg::set_side_flag(int32_t value) {
 
 // -------------------------------------------------------------------
 
-// EconomyReourceMsg
+// EconomyResourceMsg
 
 // int64 team_id = 1;
-inline void EconomyReourceMsg::clear_team_id() {
+inline void EconomyResourceMsg::clear_team_id() {
   _impl_.team_id_ = int64_t{0};
 }
-inline int64_t EconomyReourceMsg::_internal_team_id() const {
+inline int64_t EconomyResourceMsg::_internal_team_id() const {
   return _impl_.team_id_;
 }
-inline int64_t EconomyReourceMsg::team_id() const {
-  // @@protoc_insertion_point(field_get:protobuf.EconomyReourceMsg.team_id)
+inline int64_t EconomyResourceMsg::team_id() const {
+  // @@protoc_insertion_point(field_get:protobuf.EconomyResourceMsg.team_id)
   return _internal_team_id();
 }
-inline void EconomyReourceMsg::_internal_set_team_id(int64_t value) {
+inline void EconomyResourceMsg::_internal_set_team_id(int64_t value) {
   
   _impl_.team_id_ = value;
 }
-inline void EconomyReourceMsg::set_team_id(int64_t value) {
+inline void EconomyResourceMsg::set_team_id(int64_t value) {
   _internal_set_team_id(value);
-  // @@protoc_insertion_point(field_set:protobuf.EconomyReourceMsg.team_id)
+  // @@protoc_insertion_point(field_set:protobuf.EconomyResourceMsg.team_id)
 }
 
 // int32 process = 2;
-inline void EconomyReourceMsg::clear_process() {
+inline void EconomyResourceMsg::clear_process() {
   _impl_.process_ = 0;
 }
-inline int32_t EconomyReourceMsg::_internal_process() const {
+inline int32_t EconomyResourceMsg::_internal_process() const {
   return _impl_.process_;
 }
-inline int32_t EconomyReourceMsg::process() const {
-  // @@protoc_insertion_point(field_get:protobuf.EconomyReourceMsg.process)
+inline int32_t EconomyResourceMsg::process() const {
+  // @@protoc_insertion_point(field_get:protobuf.EconomyResourceMsg.process)
   return _internal_process();
 }
-inline void EconomyReourceMsg::_internal_set_process(int32_t value) {
+inline void EconomyResourceMsg::_internal_set_process(int32_t value) {
   
   _impl_.process_ = value;
 }
-inline void EconomyReourceMsg::set_process(int32_t value) {
+inline void EconomyResourceMsg::set_process(int32_t value) {
   _internal_set_process(value);
-  // @@protoc_insertion_point(field_set:protobuf.EconomyReourceMsg.process)
+  // @@protoc_insertion_point(field_set:protobuf.EconomyResourceMsg.process)
 }
 
 // .protobuf.EconomyResourceType economy_resource_type = 3;
-inline void EconomyReourceMsg::clear_economy_resource_type() {
+inline void EconomyResourceMsg::clear_economy_resource_type() {
   _impl_.economy_resource_type_ = 0;
 }
-inline ::protobuf::EconomyResourceType EconomyReourceMsg::_internal_economy_resource_type() const {
+inline ::protobuf::EconomyResourceType EconomyResourceMsg::_internal_economy_resource_type() const {
   return static_cast< ::protobuf::EconomyResourceType >(_impl_.economy_resource_type_);
 }
-inline ::protobuf::EconomyResourceType EconomyReourceMsg::economy_resource_type() const {
-  // @@protoc_insertion_point(field_get:protobuf.EconomyReourceMsg.economy_resource_type)
+inline ::protobuf::EconomyResourceType EconomyResourceMsg::economy_resource_type() const {
+  // @@protoc_insertion_point(field_get:protobuf.EconomyResourceMsg.economy_resource_type)
   return _internal_economy_resource_type();
 }
-inline void EconomyReourceMsg::_internal_set_economy_resource_type(::protobuf::EconomyResourceType value) {
+inline void EconomyResourceMsg::_internal_set_economy_resource_type(::protobuf::EconomyResourceType value) {
   
   _impl_.economy_resource_type_ = value;
 }
-inline void EconomyReourceMsg::set_economy_resource_type(::protobuf::EconomyResourceType value) {
+inline void EconomyResourceMsg::set_economy_resource_type(::protobuf::EconomyResourceType value) {
   _internal_set_economy_resource_type(value);
-  // @@protoc_insertion_point(field_set:protobuf.EconomyReourceMsg.economy_resource_type)
+  // @@protoc_insertion_point(field_set:protobuf.EconomyResourceMsg.economy_resource_type)
 }
 
 // -------------------------------------------------------------------
