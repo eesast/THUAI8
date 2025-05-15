@@ -138,6 +138,24 @@ bool Communication::Construct(int32_t playerID, int32_t teamID, THUAI8::Construc
         return false;
 }
 
+bool Communication::ConstructTrap(int32_t playerID, int32_t teamID, THUAI8::TrapType trapType)
+{
+    std::lock_guard<std::mutex> lock(mtxLimit);
+    if (counter >= limit || counterMove >= moveLimit)
+        return false;
+    counter++;
+    counterMove++;
+
+    protobuf::BoolRes constructTrapResult;
+    ClientContext context;
+    auto request = THUAI8Proto::THUAI82ProtobufConstructTrapMsg(playerID, teamID, trapType);
+    auto status = THUAI8Stub->ConstructTrap(&context, request, &constructTrapResult);
+    if (status.ok())
+        return constructTrapResult.act_success();
+    else
+        return false;
+}
+
 bool Communication::InstallEquipment(int32_t playerID, int32_t teamID, THUAI8::EquipmentType equipmentType)
 {
     {
@@ -287,7 +305,7 @@ bool Communication::Skill_Attack(int64_t playerID, int64_t teamID, double angle)
         return false;
 }
 
-bool Communication::AttackConstruction(int64_t teamID, int64_t playerID)
+bool Communication::AttackConstruction(int64_t playerID, int64_t teamID)
 {
     {
         std::lock_guard<std::mutex> lock(mtxLimit);
@@ -297,7 +315,7 @@ bool Communication::AttackConstruction(int64_t teamID, int64_t playerID)
     }
     protobuf::BoolRes reply;
     ClientContext context;
-    auto request = THUAI8Proto::THUAI82ProtobufAttackConstructionMsg(teamID, playerID);
+    auto request = THUAI8Proto::THUAI82ProtobufAttackConstructionMsg(playerID, teamID);
     auto status = THUAI8Stub->AttackConstruction(&context, request, &reply);
     if (status.ok())
         return reply.act_success();
@@ -305,7 +323,7 @@ bool Communication::AttackConstruction(int64_t teamID, int64_t playerID)
         return false;
 }
 
-bool Communication::AttackAdditionResource(int64_t teamID, int64_t playerID)
+bool Communication::AttackAdditionResource(int64_t playerID, int64_t teamID)
 {
     {
         std::lock_guard<std::mutex> lock(mtxLimit);
@@ -315,7 +333,7 @@ bool Communication::AttackAdditionResource(int64_t teamID, int64_t playerID)
     }
     protobuf::BoolRes reply;
     ClientContext context;
-    auto request = THUAI8Proto::THUAI82ProtobufAttackAdditionResourceMsg(teamID, playerID);
+    auto request = THUAI8Proto::THUAI82ProtobufAttackAdditionResourceMsg(playerID, teamID);
     auto status = THUAI8Stub->AttackAdditionResource(&context, request, &reply);
     if (status.ok())
         return reply.act_success();

@@ -159,21 +159,21 @@ std::future<bool> CharacterDebugAPI::Common_Attack(int64_t attackedPlayerID)
         return result; });
 }
 
-std::future<bool> CharacterDebugAPI::AttackConstruction(int64_t teamID, int64_t playerID)
+std::future<bool> CharacterDebugAPI::AttackConstruction()
 {
-    logger->info("AttackConstruction: teamID = {}, playerID = {}, called at {}ms", teamID, playerID, Time::TimeSinceStart(startPoint));
+    logger->info("AttackConstruction: teamID = {}, characterID = {}, called at {}ms", this->GetSelfInfo()->playerID, this->GetSelfInfo()->teamID, Time::TimeSinceStart(startPoint));
     return std::async(std::launch::async, [=]()
-                      { auto result = logic.AttackConstruction(teamID, playerID);
+                      { auto result = logic.AttackConstruction(this->GetSelfInfo()->playerID, this->GetSelfInfo()->teamID);
                         if (!result)
                             logger->warn("AttackConstruction: failed at {}ms", Time::TimeSinceStart(startPoint));
                         return result; });
 }
 
-std::future<bool> CharacterDebugAPI::AttackAdditionResource(int64_t teamID, int64_t playerID)
+std::future<bool> CharacterDebugAPI::AttackAdditionResource()
 {
-    logger->info("AttackAdditionResource: teamID = {}, playerID = {}, called at {}ms", teamID, playerID, Time::TimeSinceStart(startPoint));
+    logger->info("AttackAdditionResource: teamID = {}, characterID = {}, called at {}ms", this->GetSelfInfo()->playerID, this->GetSelfInfo()->teamID, Time::TimeSinceStart(startPoint));
     return std::async(std::launch::async, [=]()
-                      { auto result = logic.AttackAdditionResource(teamID, playerID);
+                      { auto result = logic.AttackAdditionResource(this->GetSelfInfo()->playerID, this->GetSelfInfo()->teamID);
                         if (!result)
                             logger->warn("AttackAdditionResource: failed at {}ms", Time::TimeSinceStart(startPoint));
                         return result; });
@@ -201,11 +201,21 @@ std::future<bool> CharacterDebugAPI::Produce(int64_t playerID, int64_t teamID)
 
 std::future<bool> CharacterDebugAPI::Construct(THUAI8::ConstructionType constructionType)
 {
-    logger->info("Construct: constructionType = {}, called at {}ms", constructionType, Time::TimeSinceStart(startPoint));
+    logger->info("Construct: constructionType = {}, called at {}ms", THUAI8::constructionDict.at(constructionType), Time::TimeSinceStart(startPoint));
     return std::async(std::launch::async, [=]()
                       { auto result = logic.Construct(constructionType);
                         if (!result)
                             logger->warn("Construct: failed at {}ms", Time::TimeSinceStart(startPoint));
+                        return result; });
+}
+
+std::future<bool> CharacterDebugAPI::ConstructTrap(THUAI8::TrapType trapType)
+{
+    logger->info("ConstructTrap: trapType = {}, called at {}ms", THUAI8::trapTypeDict.at(trapType), Time::TimeSinceStart(startPoint));
+    return std::async(std::launch::async, [=]()
+                      { auto result = logic.ConstructTrap(trapType);
+                        if (!result)
+                            logger->warn("ConstructTrap: failed at {}ms", Time::TimeSinceStart(startPoint));
                         return result; });
 }
 
@@ -245,39 +255,39 @@ std::shared_ptr<const THUAI8::GameInfo> CharacterDebugAPI::GetGameInfo() const
     return result;
 }
 
-std::optional<THUAI8::EconomyResourceState> CharacterDebugAPI::GetEnconomyResourceState(int32_t cellX, int32_t cellY) const
+std::optional<THUAI8::EconomyResource> CharacterDebugAPI::GetEnconomyResourceState(int32_t cellX, int32_t cellY) const
 {
-    logger->info("GetEnconomyResourceState: cellX = {}, cellY = {}, called at {}ms", cellX, cellY, Time::TimeSinceStart(startPoint));
     auto result = logic.GetEnconomyResourceState(cellX, cellY);
+    logger->info("GetEnconomyResourceState: teamID = {}, process = {}, type = {}, cellX = {}, cellY = {}, called at {}ms",result->team_id, result->process, THUAI8::economyResourceTypeDict.at(result->economyResourceType), cellX, cellY, Time::TimeSinceStart(startPoint));
     if (!result)
         logger->warn("GetEnconomyResourceState: failed at {}ms", Time::TimeSinceStart(startPoint));
     return result;
 }
 
-std::optional<std::pair<int32_t, int32_t>> CharacterDebugAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
+std::optional<THUAI8::AdditionResource> CharacterDebugAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
 {
-    logger->info("GetAdditionResourceState: cellX = {}, cellY = {}, called at {}ms", cellX, cellY, Time::TimeSinceStart(startPoint));
     auto result = logic.GetAdditionResourceState(cellX, cellY);
+    logger->info("GetAdditionResourceState: teamID = {}, hp = {}, type = {}, cellX = {}, cellY = {}, called at {}ms", result->team_id, result->hp, THUAI8::additionResourceTypeDict.at(result->additionResourceType), cellX, cellY, Time::TimeSinceStart(startPoint));
     if (!result)
         logger->warn("GetAdditionResourceState: failed at {}ms", Time::TimeSinceStart(startPoint));
     return result;
 }
-std::optional<std::pair<int32_t, int32_t>> TeamDebugAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
+std::optional<THUAI8::AdditionResource> TeamDebugAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
 {
-    logger->info("GetAdditionResourceState: cellX = {}, cellY = {}, called at {}ms", cellX, cellY, Time::TimeSinceStart(startPoint));
     auto result = logic.GetAdditionResourceState(cellX, cellY);
+    logger->info("GetAdditionResourceState: teamID = {}, hp = {}, type = {}, cellX = {}, cellY = {}, called at {}ms", result->team_id, result->hp, THUAI8::additionResourceTypeDict.at(result->additionResourceType), cellX, cellY, Time::TimeSinceStart(startPoint));
     if (!result)
         logger->warn("GetAdditionResourceState: failed at {}ms", Time::TimeSinceStart(startPoint));
     return result;
 }
-/* std::optional<THUAI8::ConstructionState> CharacterDebugAPI::GetConstructionState(int32_t cellX, int32_t cellY) const
+std::optional<THUAI8::ConstructionState> CharacterDebugAPI::GetConstructionState(int32_t cellX, int32_t cellY) const
 {
-    logger->info("GetConstructionState: cellX = {}, cellY = {}, called at {}ms", cellX, cellY, Time::TimeSinceStart(startPoint));
     auto result = logic.GetConstructionState(cellX, cellY);
+    logger->info("GetConstructionState: teamID = {},  hp = {}, type = {}, cellX = {}, cellY = {}, called at {}ms", result->team_id, result->hp, THUAI8::constructionTypeDict.at(result->constructionType), cellX, cellY, Time::TimeSinceStart(startPoint));
     if (!result)
         logger->warn("GetConstructionState: failed at {}ms", Time::TimeSinceStart(startPoint));
     return result;
-}*/
+}
 
 std::vector<int64_t> CharacterDebugAPI::GetPlayerGUIDs() const
 {
@@ -526,23 +536,23 @@ THUAI8::PlaceType TeamDebugAPI::GetPlaceType(int32_t cellX, int32_t cellY) const
     return result;  // 返回实际值
 }
 
-std::optional<THUAI8::EconomyResourceState> TeamDebugAPI::GetEnconomyResourceState(int32_t cellX, int32_t cellY) const
+std::optional<THUAI8::EconomyResource> TeamDebugAPI::GetEnconomyResourceState(int32_t cellX, int32_t cellY) const
 {
-    logger->info("GetEnconomyResourceState: cellX = {}, cellY = {}, called at {}ms", cellX, cellY, Time::TimeSinceStart(startPoint));
     auto result = logic.GetEnconomyResourceState(cellX, cellY);
+    logger->info("GetEnconomyResourceState: teamID = {}, process = {}, type = {}, cellX = {}, cellY = {}, called at {}ms", result->team_id, result->process, THUAI8::economyResourceTypeDict.at(result->economyResourceType), cellX, cellY, Time::TimeSinceStart(startPoint));
     if (!result)
         logger->warn("GetEnconomyResourceState: failed at {}ms", Time::TimeSinceStart(startPoint));
     return result;
 }
 
-/* std::optional<THUAI8::ConstructionState> TeamDebugAPI::GetConstructionState(int32_t cellX, int32_t cellY) const
+std::optional<THUAI8::ConstructionState> TeamDebugAPI::GetConstructionState(int32_t cellX, int32_t cellY) const
 {
-    logger->info("GetConstructionState: cellX = {}, cellY = {}, called at {}ms", cellX, cellY, Time::TimeSinceStart(startPoint));
     auto result = logic.GetConstructionState(cellX, cellY);
+    logger->info("GetConstructionState: teamID = {},  hp = {}, type = {}, cellX = {}, cellY = {}, called at {}ms", result->team_id, result->hp, THUAI8::constructionTypeDict.at(result->constructionType), cellX, cellY, Time::TimeSinceStart(startPoint));
     if (!result)
         logger->warn("GetConstructionState: failed at {}ms", Time::TimeSinceStart(startPoint));
     return result;
-}*/
+}
 
 std::vector<int64_t> TeamDebugAPI::GetPlayerGUIDs() const
 {
