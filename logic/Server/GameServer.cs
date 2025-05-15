@@ -107,7 +107,6 @@ namespace Server
             using StreamWriter sw = new(path);
             using JsonTextWriter writer = new(sw);
             serializer.Serialize(writer, result);
-
         }
 
         protected void SendGameResult(int[] scores, bool crashed = false)		// 天梯的 Server 给网站发消息记录比赛结果
@@ -124,7 +123,21 @@ namespace Server
                 httpSender.Token = options.Token;
             }
             string state = crashed ? "Crashed" : "Finished";
-            httpSender?.SendHttpRequest(scores, state).Wait();
+            string[][] player_role = new string[2][];
+            player_role[0] = new string[6];
+            player_role[1] = new string[6];
+            foreach (var team in game.TeamList)
+            {
+                int count = 0;
+                List<Preparation.Utility.CharacterType> list;
+                list = team.CharacterPool.Travel((character) => character.CharacterType);
+                foreach(var type in list)
+                {
+                    player_role[team.TeamID][count] = type.ToString();
+                    count++;
+                }
+            }
+            httpSender?.SendHttpRequest(scores, state, player_role).Wait();
         }
 
         protected double[] PullScore(double[] scores)

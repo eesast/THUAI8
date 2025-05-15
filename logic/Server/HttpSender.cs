@@ -25,7 +25,7 @@ namespace Server
         // {
         //     this.SendHttpRequest(new()).Wait();
         // }
-        public async Task SendHttpRequest(int[] scores, string state)
+        public async Task SendHttpRequest(int[] scores, string state, string[][] player_role)
         {
             try
             {
@@ -35,6 +35,7 @@ namespace Server
                 {
                     status = state,
                     scores = new int[] { scores[0], scores[1] },
+                    player_roles = player_role
                 }));
                 GameServerLogging.logger.ConsoleLog("Send to web successfully!");
                 GameServerLogging.logger.ConsoleLog($"Web response: {await response.Content.ReadAsStringAsync()}");
