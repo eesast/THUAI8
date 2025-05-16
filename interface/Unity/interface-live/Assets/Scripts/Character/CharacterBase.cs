@@ -11,7 +11,7 @@ public class CharacterBase : MonoBehaviour
     public CharacterType characterType;
     public MessageOfCharacter message => CoreParam.characters[ID];
     bool GetDeceased() => message.Hp <= 0 || message.CharacterActiveState == CharacterState.Deceased;
-    public int maxHp => ParaDefine.GetInstance().GetMaxHp(characterType);
+    public int maxHp => ParaDefine.GetInstance().GetData(characterType).maxHp;
     private Transform hpBar;
     private TextMeshPro hpText;
     private Slider globalHpBar;

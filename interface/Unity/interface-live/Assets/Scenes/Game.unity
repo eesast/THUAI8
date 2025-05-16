@@ -1206,6 +1206,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 294971980}
+  - component: {fileID: 294971982}
   - component: {fileID: 294971979}
   - component: {fileID: 294971978}
   - component: {fileID: 294971981}
@@ -1333,6 +1334,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddfe76a77bc0155448788971463b7f57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &294971982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294971977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a3f2ac20373c1f49b6e8fa147801c69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterData:
+  - {fileID: 11400000, guid: 2bdb414a815f878498190facd4ac2031, type: 2}
+  - {fileID: 11400000, guid: 426c494275c531946aca6fd86b900e0d, type: 2}
+  - {fileID: 11400000, guid: 64a2035efc11db1478b117063fdf0899, type: 2}
+  - {fileID: 11400000, guid: b442d6b118e17144ab13c256d2541ddd, type: 2}
+  - {fileID: 11400000, guid: 7a07e3c2bbb99fc4bbe1c0981391950c, type: 2}
+  - {fileID: 11400000, guid: e7467a9502281834495e070f09fb1096, type: 2}
+  - {fileID: 11400000, guid: c6e373b12a1266b4b8682fc4e9956888, type: 2}
+  - {fileID: 11400000, guid: e0b29202fbed38040b89600a6937346a, type: 2}
+  - {fileID: 11400000, guid: ac1bcd902121ad845bd2b14c380fa44b, type: 2}
+  - {fileID: 11400000, guid: de66a0cbedc8e9a4092c1ed01bc27886, type: 2}
+  - {fileID: 11400000, guid: 03ffda359cf4b4f4a982c06a14f43538, type: 2}
+  - {fileID: 11400000, guid: f4f793a19e3954343baa0e199f9880f7, type: 2}
+  constructionData:
+  - {fileID: 11400000, guid: 9bd02901c08741945a52fa39a0425167, type: 2}
+  - {fileID: 11400000, guid: 9769eaa487d652b499becc079dc48313, type: 2}
+  trapData: []
+  additionalResourceData:
+  - {fileID: 11400000, guid: e11f3e9e406cfa145aa780b0ab62fc9d, type: 2}
+  - {fileID: 11400000, guid: bd2782ed79f1b4d45936c9154d558291, type: 2}
+  - {fileID: 11400000, guid: ee9d5a3b2ca7bfe44a96f5da753bb429, type: 2}
+  - {fileID: 11400000, guid: d73a7b4df9e43d849be418bcb444fc59, type: 2}
+  - {fileID: 11400000, guid: 4676e266eb9487c41874593d18b05910, type: 2}
+  - {fileID: 11400000, guid: 1103fbeccdd269643ad832e51bb66202, type: 2}
+  - {fileID: 11400000, guid: 790ec46937e0dc94bb7d4a75b72a6837, type: 2}
+  - {fileID: 11400000, guid: 92746af5852ed944cb6f89e86595c65f, type: 2}
 --- !u!1 &301632376
 GameObject:
   m_ObjectHideFlags: 0
@@ -1539,7 +1578,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 319495802}
-  - component: {fileID: 319495803}
   - component: {fileID: 319495804}
   - component: {fileID: 319495807}
   - component: {fileID: 319495806}
@@ -1568,19 +1606,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &319495803
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 319495800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a3f2ac20373c1f49b6e8fa147801c69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHp: 00000000e8030000c80000002c010000960000009600000032000000e8030000c80000002c010000960000009600000032000000
 --- !u!114 &319495804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1616,7 +1641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterId: 1
+  characterId: 0
   teamId: 1
 --- !u!114 &319495806
 MonoBehaviour:
