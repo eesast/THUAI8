@@ -14,9 +14,12 @@ public class PlaybackController : SingletonMono<PlaybackController>
     MessageToClient responseVal;
     MessageReader reader;
     public static bool isInitial;
-
+#if UNITY_EDITOR
+    public static string fileName;
+#else
     public static string fileName = "E://playback.thuaipb";
-    // public static string fileName;
+    public static bool fileNameFlag;
+#endif
     float frequency = 0.05f;
     float timer;
     public static float playSpeed = 1;
@@ -25,20 +28,32 @@ public class PlaybackController : SingletonMono<PlaybackController>
 
     IEnumerator WebReader()
     {
-        while (fileName == "")
-            yield return 0;
+#if !UNITY_EDITOR
+        // while (fileName == "" || !fileNameFlag)
+            // yield return 0;
+#endif
         // if (!CoreParam.fileName.EndsWith(PlayBackConstant.ExtendedName))
         //     CoreParam.fileName += PlayBackConstant.ExtendedName;
+        Debug.Log("WebReader(), fileName = " + fileName);
         UnityWebRequest request = UnityWebRequest.Get(fileName);
-        request.timeout = 5;
+        request.timeout = 10;
         yield return request.SendWebRequest();
 
         if (request.result == UnityWebRequest.Result.ProtocolError || request.result == UnityWebRequest.Result.ConnectionError)
         {
-            Debug.Log(request.error);
+            Debug.LogError(request.error);
             yield break;
         }
         bytes = request.downloadHandler.data;
+        try
+        {
+            string str = System.Text.Encoding.UTF8.GetString(bytes);
+            print(str);
+        }
+        catch
+        {
+
+        }
         reader = new MessageReader(bytes);
         responseVal = reader.ReadOne();
         while (responseVal != null)
@@ -55,8 +70,7 @@ public class PlaybackController : SingletonMono<PlaybackController>
 
     void Start()
     {
-        while (reader == null)
-            StartCoroutine(WebReader());
+        StartCoroutine(WebReader());
         isInitial = false;
     }
 

@@ -17,7 +17,7 @@ public class E_Resource(XY initPos)
     {
         return character.MoneyPool.AddMoney(-HP.SubRChange(producespeed)) > 0;
     }
-    private EconomyResourceState State = EconomyResourceState.NULL_ECONOMY_RESOURCE_STATE;
+    private EconomyResourceState State = EconomyResourceState.HARVESTABLE;
     public EconomyResourceState ERstate
     {
         get
@@ -26,5 +26,9 @@ public class E_Resource(XY initPos)
                 return State;
         }
     }
-    public EconomyResourceType EResourceType { get; }
+    public EconomyResourceType EResourceType = EconomyResourceType.LARGE_ECONOMY_RESOURCE;
+    public void SetERState(EconomyResourceState state)
+    {
+        State = state;
+    }
 }

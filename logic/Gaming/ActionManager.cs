@@ -137,12 +137,13 @@ namespace Gaming
                             {
                                 if (!Eresource.Produce(GameData.ProduceSpeedPerSecond / GameData.FrameDuration, character))
                                 {
-                                    //character.ResetShipState(stateNum);
+                                    character.ResetCharacterState(stateNum);
                                     return false;
                                 }
                                 if (Eresource.HP == 0)
                                 {
-                                    //character.ResetShipState(stateNum);
+                                    character.ResetCharacterState(stateNum);
+                                    Eresource.SetERState(EconomyResourceState.HARVESTED);
                                     return false;
                                 }
                                 return true;
@@ -159,7 +160,12 @@ namespace Gaming
             }
             public bool SetTrap(Character character, TrapType traptype)
             {
-                if (character.CharacterType != CharacterType.Monkid && character.CharacterType != CharacterType.Pawn)
+                int flag = 0;
+                if (character.CharacterType == CharacterType.Monkid || character.CharacterType == CharacterType.Pawn)
+                {
+                    flag = 1;
+                }
+                if (flag == 0)
                 {
                     return false;
                 }
@@ -274,8 +280,13 @@ namespace Gaming
             }
             public bool Construct(Character character, ConstructionType constructionType)
             {
+                int flag = 0;
                 Construction? construction = (Construction?)gameMap.OneForInteract(character.Position, GameObjType.CONSTRUCTION);
-                if (character.CharacterType != CharacterType.Monkid || character.CharacterType != CharacterType.Pawn)
+                if (character.CharacterType == CharacterType.Monkid || character.CharacterType == CharacterType.Pawn)
+                {
+                    flag = 1;
+                }
+                if (flag == 0)
                 {
                     return false;
                 }
@@ -320,7 +331,7 @@ namespace Gaming
                                 }
                                 if (construction.HP.IsMaxV())
                                 {
-                                    //ship.ResetShipState(stateNum);
+                                    character.ResetCharacterState(stateNum);
                                     if (!construction.IsActivated)
                                     {
                                         switch (construction.ConstructionType)
