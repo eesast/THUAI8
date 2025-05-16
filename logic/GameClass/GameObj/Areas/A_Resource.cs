@@ -45,6 +45,7 @@ public class A_Resource
         HP.SetVToMaxV();
         AttackPower.SetMaxV(Occupation.AttackPower);
         AttackPower.SetVToMaxV();
+        SetARState(AdditionResourceState.BEATABLE);
     }
     public A_Resource(int radius, A_ResourceType type, XY initPos) :
         base(initPos, radius, GameObjType.ADDITIONAL_RESOURCE)
