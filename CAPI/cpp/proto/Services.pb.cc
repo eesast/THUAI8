@@ -30,7 +30,7 @@ static constexpr ::_pb::Message* const* file_default_instances = nullptr;
 
 const char descriptor_table_protodef_Services_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\016Services.proto\022\010protobuf\032\025Message2Clie"
-  "nts.proto\032\024Message2Server.proto2\307\006\n\020Avai"
+  "nts.proto\032\024Message2Server.proto2\243\010\n\020Avai"
   "lableService\0223\n\rTryConnection\022\017.protobuf"
   ".IDMsg\032\021.protobuf.BoolRes\022C\n\014AddCharacte"
   "r\022\026.protobuf.CharacterMsg\032\031.protobuf.Mes"
@@ -42,17 +42,22 @@ const char descriptor_table_protodef_Services_2eproto[] PROTOBUF_SECTION_VARIABL
   "protobuf.BoolRes\0224\n\007Rebuild\022\026.protobuf.C"
   "onstructMsg\032\021.protobuf.BoolRes\0226\n\tConstr"
   "uct\022\026.protobuf.ConstructMsg\032\021.protobuf.B"
-  "oolRes\022.\n\005Equip\022\022.protobuf.EquipMsg\032\021.pr"
-  "otobuf.BoolRes\0220\n\006Attack\022\023.protobuf.Atta"
-  "ckMsg\032\021.protobuf.BoolRes\022,\n\004Cast\022\021.proto"
-  "buf.CastMsg\032\021.protobuf.BoolRes\022,\n\004Send\022\021"
-  ".protobuf.SendMsg\032\021.protobuf.BoolRes\022@\n\016"
-  "CreatCharacter\022\033.protobuf.CreatCharacter"
-  "Msg\032\021.protobuf.BoolRes\022M\n\021CreatCharacter"
-  "RID\022\033.protobuf.CreatCharacterMsg\032\033.proto"
-  "buf.CreatCharacterRes\0222\n\014EndAllAction\022\017."
-  "protobuf.IDMsg\032\021.protobuf.BoolResb\006proto"
-  "3"
+  "oolRes\022>\n\rConstructTrap\022\032.protobuf.Const"
+  "ructTrapMsg\032\021.protobuf.BoolRes\022.\n\005Equip\022"
+  "\022.protobuf.EquipMsg\032\021.protobuf.BoolRes\0220"
+  "\n\006Attack\022\023.protobuf.AttackMsg\032\021.protobuf"
+  ".BoolRes\022,\n\004Cast\022\021.protobuf.CastMsg\032\021.pr"
+  "otobuf.BoolRes\022H\n\022AttackConstruction\022\037.p"
+  "rotobuf.AttackConstructionMsg\032\021.protobuf"
+  ".BoolRes\022P\n\026AttackAdditionResource\022#.pro"
+  "tobuf.AttackAdditionResourceMsg\032\021.protob"
+  "uf.BoolRes\022,\n\004Send\022\021.protobuf.SendMsg\032\021."
+  "protobuf.BoolRes\022@\n\016CreatCharacter\022\033.pro"
+  "tobuf.CreatCharacterMsg\032\021.protobuf.BoolR"
+  "es\022M\n\021CreatCharacterRID\022\033.protobuf.Creat"
+  "CharacterMsg\032\033.protobuf.CreatCharacterRe"
+  "s\0222\n\014EndAllAction\022\017.protobuf.IDMsg\032\021.pro"
+  "tobuf.BoolResb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_Services_2eproto_deps[2] = {
   &::descriptor_table_Message2Clients_2eproto,
@@ -60,7 +65,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_Services_2eproto_de
 };
 static ::_pbi::once_flag descriptor_table_Services_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_Services_2eproto = {
-    false, false, 921, descriptor_table_protodef_Services_2eproto,
+    false, false, 1141, descriptor_table_protodef_Services_2eproto,
     "Services.proto",
     &descriptor_table_Services_2eproto_once, descriptor_table_Services_2eproto_deps, 2, 0,
     schemas, file_default_instances, TableStruct_Services_2eproto::offsets,

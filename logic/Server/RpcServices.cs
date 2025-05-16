@@ -344,6 +344,24 @@ namespace Server
             return Task.FromResult(boolRes);
         }
 
+        public override Task<BoolRes> ConstructTrap(ConstructTrapMsg request, ServerCallContext context)
+        {
+            GameServerLogging.logger.ConsoleLogDebug(
+                $"TRY ConstructTrap: Player {request.CharacterId} from Team {request.TeamId}");
+            BoolRes boolRes = new();
+            if (request.CharacterId >= spectatorMinPlayerID)
+            {
+                boolRes.ActSuccess = false;
+                return Task.FromResult(boolRes);
+            }
+            // var gameID = communicationToGameID[request.TeamId][request.PlayerId];
+            boolRes.ActSuccess = game.Construct(
+                request.TeamId, request.CharacterId,
+                Transformation.TrapTypeFromProto(request.TrapType));
+            GameServerLogging.logger.ConsoleLogDebug("END ConstructTrap");
+            return Task.FromResult(boolRes);
+        }
+
         public override Task<BoolRes> Equip(EquipMsg request, ServerCallContext context)
         {
             GameServerLogging.logger.ConsoleLogDebug(
@@ -378,15 +396,15 @@ namespace Server
                 boolRes.ActSuccess = false;
                 return Task.FromResult(boolRes);
             }
-            if (request.AttackRange <= 0)
-            {
-                boolRes.ActSuccess = false;
-                return Task.FromResult(boolRes);
-            }
+            // if (request.AttackRange <= 0)
+            // {
+            //     boolRes.ActSuccess = false;
+            //     return Task.FromResult(boolRes);
+            // }
             // var gameID = communicationToGameID[request.TeamId][request.PlayerId];
             boolRes.ActSuccess = game.Attack(
                 request.TeamId, request.CharacterId,
-                 request.AttackedCharacterId, request.AttackedTeam);
+                request.AttackedTeam, request.AttackedCharacterId);
             GameServerLogging.logger.ConsoleLogDebug("END Attack");
             return Task.FromResult(boolRes);
         }
@@ -414,6 +432,42 @@ namespace Server
             boolRes.ActSuccess = game.CastSkill(
                 request.TeamId, request.CharacterId, request.Angle);
             GameServerLogging.logger.ConsoleLogDebug("END Cast");
+            return Task.FromResult(boolRes);
+        }
+
+        public override Task<BoolRes> AttackConstruction(AttackConstructionMsg request, ServerCallContext context)
+        {
+            GameServerLogging.logger.ConsoleLogDebug(
+                $"TRY AttackConstruction: Player {request.CharacterId} from Team {request.TeamId}");
+            BoolRes boolRes = new();
+            if (request.CharacterId >= spectatorMinPlayerID)
+            {
+                boolRes.ActSuccess = false;
+                return Task.FromResult(boolRes);
+            }
+            // var gameID = communicationToGameID[request.TeamId][request.PlayerId];
+            boolRes.ActSuccess = game.AttackConstruction(
+                request.TeamId, request.CharacterId
+                );
+            GameServerLogging.logger.ConsoleLogDebug("END AttackConstruction");
+            return Task.FromResult(boolRes);
+        }
+
+        public override Task<BoolRes> AttackAdditionResource(AttackAdditionResourceMsg request, ServerCallContext context)
+        {
+            GameServerLogging.logger.ConsoleLogDebug(
+                $"TRY AttackAdditionResource: Player {request.CharacterId} from Team {request.TeamId}");
+            BoolRes boolRes = new();
+            if (request.CharacterId >= spectatorMinPlayerID)
+            {
+                boolRes.ActSuccess = false;
+                return Task.FromResult(boolRes);
+            }
+            // var gameID = communicationToGameID[request.TeamId][request.PlayerId];
+            boolRes.ActSuccess = game.AttackResource(
+                request.TeamId, request.CharacterId
+                );
+            GameServerLogging.logger.ConsoleLogDebug("END AttackAdditionResource");
             return Task.FromResult(boolRes);
         }
 

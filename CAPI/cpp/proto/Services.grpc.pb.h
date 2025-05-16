@@ -7,23 +7,24 @@
 #include "Services.pb.h"
 
 #include <functional>
-#include <grpcpp/impl/codegen/async_generic_service.h>
-#include <grpcpp/impl/codegen/async_stream.h>
-#include <grpcpp/impl/codegen/async_unary_call.h>
-#include <grpcpp/impl/codegen/client_callback.h>
-#include <grpcpp/impl/codegen/client_context.h>
-#include <grpcpp/impl/codegen/completion_queue.h>
-#include <grpcpp/impl/codegen/message_allocator.h>
-#include <grpcpp/impl/codegen/method_handler.h>
+#include <grpcpp/generic/async_generic_service.h>
+#include <grpcpp/support/async_stream.h>
+#include <grpcpp/support/async_unary_call.h>
+#include <grpcpp/support/client_callback.h>
+#include <grpcpp/client_context.h>
+#include <grpcpp/completion_queue.h>
+#include <grpcpp/support/message_allocator.h>
+#include <grpcpp/support/method_handler.h>
 #include <grpcpp/impl/codegen/proto_utils.h>
-#include <grpcpp/impl/codegen/rpc_method.h>
-#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/rpc_method.h>
+#include <grpcpp/support/server_callback.h>
 #include <grpcpp/impl/codegen/server_callback_handlers.h>
-#include <grpcpp/impl/codegen/server_context.h>
-#include <grpcpp/impl/codegen/service_type.h>
-#include <grpcpp/impl/codegen/status.h>
-#include <grpcpp/impl/codegen/stub_options.h>
-#include <grpcpp/impl/codegen/sync_stream.h>
+#include <grpcpp/server_context.h>
+#include <grpcpp/impl/service_type.h>
+#include <grpcpp/support/status.h>
+#include <grpcpp/support/stub_options.h>
+#include <grpcpp/support/sync_stream.h>
+//#include <grpcpp/ports_def.inc>
 
 namespace protobuf {
 
@@ -101,6 +102,14 @@ class AvailableService final {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>>(PrepareAsyncConstructRaw(context, request, cq));
     }
     // 修建建筑
+    virtual ::grpc::Status ConstructTrap(::grpc::ClientContext* context, const ::protobuf::ConstructTrapMsg& request, ::protobuf::BoolRes* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>> AsyncConstructTrap(::grpc::ClientContext* context, const ::protobuf::ConstructTrapMsg& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>>(AsyncConstructTrapRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>> PrepareAsyncConstructTrap(::grpc::ClientContext* context, const ::protobuf::ConstructTrapMsg& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>>(PrepareAsyncConstructTrapRaw(context, request, cq));
+    }
+    // 修建陷阱
     virtual ::grpc::Status Equip(::grpc::ClientContext* context, const ::protobuf::EquipMsg& request, ::protobuf::BoolRes* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>> AsyncEquip(::grpc::ClientContext* context, const ::protobuf::EquipMsg& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>>(AsyncEquipRaw(context, request, cq));
@@ -125,6 +134,22 @@ class AvailableService final {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>>(PrepareAsyncCastRaw(context, request, cq));
     }
     // 释放技能
+    virtual ::grpc::Status AttackConstruction(::grpc::ClientContext* context, const ::protobuf::AttackConstructionMsg& request, ::protobuf::BoolRes* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>> AsyncAttackConstruction(::grpc::ClientContext* context, const ::protobuf::AttackConstructionMsg& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>>(AsyncAttackConstructionRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>> PrepareAsyncAttackConstruction(::grpc::ClientContext* context, const ::protobuf::AttackConstructionMsg& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>>(PrepareAsyncAttackConstructionRaw(context, request, cq));
+    }
+    // 攻击建筑
+    virtual ::grpc::Status AttackAdditionResource(::grpc::ClientContext* context, const ::protobuf::AttackAdditionResourceMsg& request, ::protobuf::BoolRes* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>> AsyncAttackAdditionResource(::grpc::ClientContext* context, const ::protobuf::AttackAdditionResourceMsg& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>>(AsyncAttackAdditionResourceRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>> PrepareAsyncAttackAdditionResource(::grpc::ClientContext* context, const ::protobuf::AttackAdditionResourceMsg& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>>(PrepareAsyncAttackAdditionResourceRaw(context, request, cq));
+    }
+    // 攻击加成资源
     virtual ::grpc::Status Send(::grpc::ClientContext* context, const ::protobuf::SendMsg& request, ::protobuf::BoolRes* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>> AsyncSend(::grpc::ClientContext* context, const ::protobuf::SendMsg& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>>(AsyncSendRaw(context, request, cq));
@@ -184,6 +209,9 @@ class AvailableService final {
       virtual void Construct(::grpc::ClientContext* context, const ::protobuf::ConstructMsg* request, ::protobuf::BoolRes* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Construct(::grpc::ClientContext* context, const ::protobuf::ConstructMsg* request, ::protobuf::BoolRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // 修建建筑
+      virtual void ConstructTrap(::grpc::ClientContext* context, const ::protobuf::ConstructTrapMsg* request, ::protobuf::BoolRes* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ConstructTrap(::grpc::ClientContext* context, const ::protobuf::ConstructTrapMsg* request, ::protobuf::BoolRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // 修建陷阱
       virtual void Equip(::grpc::ClientContext* context, const ::protobuf::EquipMsg* request, ::protobuf::BoolRes* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Equip(::grpc::ClientContext* context, const ::protobuf::EquipMsg* request, ::protobuf::BoolRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // 买装备
@@ -193,6 +221,12 @@ class AvailableService final {
       virtual void Cast(::grpc::ClientContext* context, const ::protobuf::CastMsg* request, ::protobuf::BoolRes* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Cast(::grpc::ClientContext* context, const ::protobuf::CastMsg* request, ::protobuf::BoolRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // 释放技能
+      virtual void AttackConstruction(::grpc::ClientContext* context, const ::protobuf::AttackConstructionMsg* request, ::protobuf::BoolRes* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void AttackConstruction(::grpc::ClientContext* context, const ::protobuf::AttackConstructionMsg* request, ::protobuf::BoolRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // 攻击建筑
+      virtual void AttackAdditionResource(::grpc::ClientContext* context, const ::protobuf::AttackAdditionResourceMsg* request, ::protobuf::BoolRes* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void AttackAdditionResource(::grpc::ClientContext* context, const ::protobuf::AttackAdditionResourceMsg* request, ::protobuf::BoolRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // 攻击加成资源
       virtual void Send(::grpc::ClientContext* context, const ::protobuf::SendMsg* request, ::protobuf::BoolRes* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Send(::grpc::ClientContext* context, const ::protobuf::SendMsg* request, ::protobuf::BoolRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // 传递信息
@@ -228,12 +262,18 @@ class AvailableService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>* PrepareAsyncRebuildRaw(::grpc::ClientContext* context, const ::protobuf::ConstructMsg& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>* AsyncConstructRaw(::grpc::ClientContext* context, const ::protobuf::ConstructMsg& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>* PrepareAsyncConstructRaw(::grpc::ClientContext* context, const ::protobuf::ConstructMsg& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>* AsyncConstructTrapRaw(::grpc::ClientContext* context, const ::protobuf::ConstructTrapMsg& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>* PrepareAsyncConstructTrapRaw(::grpc::ClientContext* context, const ::protobuf::ConstructTrapMsg& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>* AsyncEquipRaw(::grpc::ClientContext* context, const ::protobuf::EquipMsg& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>* PrepareAsyncEquipRaw(::grpc::ClientContext* context, const ::protobuf::EquipMsg& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>* AsyncAttackRaw(::grpc::ClientContext* context, const ::protobuf::AttackMsg& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>* PrepareAsyncAttackRaw(::grpc::ClientContext* context, const ::protobuf::AttackMsg& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>* AsyncCastRaw(::grpc::ClientContext* context, const ::protobuf::CastMsg& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>* PrepareAsyncCastRaw(::grpc::ClientContext* context, const ::protobuf::CastMsg& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>* AsyncAttackConstructionRaw(::grpc::ClientContext* context, const ::protobuf::AttackConstructionMsg& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>* PrepareAsyncAttackConstructionRaw(::grpc::ClientContext* context, const ::protobuf::AttackConstructionMsg& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>* AsyncAttackAdditionResourceRaw(::grpc::ClientContext* context, const ::protobuf::AttackAdditionResourceMsg& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>* PrepareAsyncAttackAdditionResourceRaw(::grpc::ClientContext* context, const ::protobuf::AttackAdditionResourceMsg& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>* AsyncSendRaw(::grpc::ClientContext* context, const ::protobuf::SendMsg& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>* PrepareAsyncSendRaw(::grpc::ClientContext* context, const ::protobuf::SendMsg& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::protobuf::BoolRes>* AsyncCreatCharacterRaw(::grpc::ClientContext* context, const ::protobuf::CreatCharacterMsg& request, ::grpc::CompletionQueue* cq) = 0;
@@ -304,6 +344,13 @@ class AvailableService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>> PrepareAsyncConstruct(::grpc::ClientContext* context, const ::protobuf::ConstructMsg& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>>(PrepareAsyncConstructRaw(context, request, cq));
     }
+    ::grpc::Status ConstructTrap(::grpc::ClientContext* context, const ::protobuf::ConstructTrapMsg& request, ::protobuf::BoolRes* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>> AsyncConstructTrap(::grpc::ClientContext* context, const ::protobuf::ConstructTrapMsg& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>>(AsyncConstructTrapRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>> PrepareAsyncConstructTrap(::grpc::ClientContext* context, const ::protobuf::ConstructTrapMsg& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>>(PrepareAsyncConstructTrapRaw(context, request, cq));
+    }
     ::grpc::Status Equip(::grpc::ClientContext* context, const ::protobuf::EquipMsg& request, ::protobuf::BoolRes* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>> AsyncEquip(::grpc::ClientContext* context, const ::protobuf::EquipMsg& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>>(AsyncEquipRaw(context, request, cq));
@@ -324,6 +371,20 @@ class AvailableService final {
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>> PrepareAsyncCast(::grpc::ClientContext* context, const ::protobuf::CastMsg& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>>(PrepareAsyncCastRaw(context, request, cq));
+    }
+    ::grpc::Status AttackConstruction(::grpc::ClientContext* context, const ::protobuf::AttackConstructionMsg& request, ::protobuf::BoolRes* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>> AsyncAttackConstruction(::grpc::ClientContext* context, const ::protobuf::AttackConstructionMsg& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>>(AsyncAttackConstructionRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>> PrepareAsyncAttackConstruction(::grpc::ClientContext* context, const ::protobuf::AttackConstructionMsg& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>>(PrepareAsyncAttackConstructionRaw(context, request, cq));
+    }
+    ::grpc::Status AttackAdditionResource(::grpc::ClientContext* context, const ::protobuf::AttackAdditionResourceMsg& request, ::protobuf::BoolRes* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>> AsyncAttackAdditionResource(::grpc::ClientContext* context, const ::protobuf::AttackAdditionResourceMsg& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>>(AsyncAttackAdditionResourceRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>> PrepareAsyncAttackAdditionResource(::grpc::ClientContext* context, const ::protobuf::AttackAdditionResourceMsg& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>>(PrepareAsyncAttackAdditionResourceRaw(context, request, cq));
     }
     ::grpc::Status Send(::grpc::ClientContext* context, const ::protobuf::SendMsg& request, ::protobuf::BoolRes* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>> AsyncSend(::grpc::ClientContext* context, const ::protobuf::SendMsg& request, ::grpc::CompletionQueue* cq) {
@@ -371,12 +432,18 @@ class AvailableService final {
       void Rebuild(::grpc::ClientContext* context, const ::protobuf::ConstructMsg* request, ::protobuf::BoolRes* response, ::grpc::ClientUnaryReactor* reactor) override;
       void Construct(::grpc::ClientContext* context, const ::protobuf::ConstructMsg* request, ::protobuf::BoolRes* response, std::function<void(::grpc::Status)>) override;
       void Construct(::grpc::ClientContext* context, const ::protobuf::ConstructMsg* request, ::protobuf::BoolRes* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void ConstructTrap(::grpc::ClientContext* context, const ::protobuf::ConstructTrapMsg* request, ::protobuf::BoolRes* response, std::function<void(::grpc::Status)>) override;
+      void ConstructTrap(::grpc::ClientContext* context, const ::protobuf::ConstructTrapMsg* request, ::protobuf::BoolRes* response, ::grpc::ClientUnaryReactor* reactor) override;
       void Equip(::grpc::ClientContext* context, const ::protobuf::EquipMsg* request, ::protobuf::BoolRes* response, std::function<void(::grpc::Status)>) override;
       void Equip(::grpc::ClientContext* context, const ::protobuf::EquipMsg* request, ::protobuf::BoolRes* response, ::grpc::ClientUnaryReactor* reactor) override;
       void Attack(::grpc::ClientContext* context, const ::protobuf::AttackMsg* request, ::protobuf::BoolRes* response, std::function<void(::grpc::Status)>) override;
       void Attack(::grpc::ClientContext* context, const ::protobuf::AttackMsg* request, ::protobuf::BoolRes* response, ::grpc::ClientUnaryReactor* reactor) override;
       void Cast(::grpc::ClientContext* context, const ::protobuf::CastMsg* request, ::protobuf::BoolRes* response, std::function<void(::grpc::Status)>) override;
       void Cast(::grpc::ClientContext* context, const ::protobuf::CastMsg* request, ::protobuf::BoolRes* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void AttackConstruction(::grpc::ClientContext* context, const ::protobuf::AttackConstructionMsg* request, ::protobuf::BoolRes* response, std::function<void(::grpc::Status)>) override;
+      void AttackConstruction(::grpc::ClientContext* context, const ::protobuf::AttackConstructionMsg* request, ::protobuf::BoolRes* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void AttackAdditionResource(::grpc::ClientContext* context, const ::protobuf::AttackAdditionResourceMsg* request, ::protobuf::BoolRes* response, std::function<void(::grpc::Status)>) override;
+      void AttackAdditionResource(::grpc::ClientContext* context, const ::protobuf::AttackAdditionResourceMsg* request, ::protobuf::BoolRes* response, ::grpc::ClientUnaryReactor* reactor) override;
       void Send(::grpc::ClientContext* context, const ::protobuf::SendMsg* request, ::protobuf::BoolRes* response, std::function<void(::grpc::Status)>) override;
       void Send(::grpc::ClientContext* context, const ::protobuf::SendMsg* request, ::protobuf::BoolRes* response, ::grpc::ClientUnaryReactor* reactor) override;
       void CreatCharacter(::grpc::ClientContext* context, const ::protobuf::CreatCharacterMsg* request, ::protobuf::BoolRes* response, std::function<void(::grpc::Status)>) override;
@@ -413,12 +480,18 @@ class AvailableService final {
     ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>* PrepareAsyncRebuildRaw(::grpc::ClientContext* context, const ::protobuf::ConstructMsg& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>* AsyncConstructRaw(::grpc::ClientContext* context, const ::protobuf::ConstructMsg& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>* PrepareAsyncConstructRaw(::grpc::ClientContext* context, const ::protobuf::ConstructMsg& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>* AsyncConstructTrapRaw(::grpc::ClientContext* context, const ::protobuf::ConstructTrapMsg& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>* PrepareAsyncConstructTrapRaw(::grpc::ClientContext* context, const ::protobuf::ConstructTrapMsg& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>* AsyncEquipRaw(::grpc::ClientContext* context, const ::protobuf::EquipMsg& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>* PrepareAsyncEquipRaw(::grpc::ClientContext* context, const ::protobuf::EquipMsg& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>* AsyncAttackRaw(::grpc::ClientContext* context, const ::protobuf::AttackMsg& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>* PrepareAsyncAttackRaw(::grpc::ClientContext* context, const ::protobuf::AttackMsg& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>* AsyncCastRaw(::grpc::ClientContext* context, const ::protobuf::CastMsg& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>* PrepareAsyncCastRaw(::grpc::ClientContext* context, const ::protobuf::CastMsg& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>* AsyncAttackConstructionRaw(::grpc::ClientContext* context, const ::protobuf::AttackConstructionMsg& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>* PrepareAsyncAttackConstructionRaw(::grpc::ClientContext* context, const ::protobuf::AttackConstructionMsg& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>* AsyncAttackAdditionResourceRaw(::grpc::ClientContext* context, const ::protobuf::AttackAdditionResourceMsg& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>* PrepareAsyncAttackAdditionResourceRaw(::grpc::ClientContext* context, const ::protobuf::AttackAdditionResourceMsg& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>* AsyncSendRaw(::grpc::ClientContext* context, const ::protobuf::SendMsg& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>* PrepareAsyncSendRaw(::grpc::ClientContext* context, const ::protobuf::SendMsg& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::protobuf::BoolRes>* AsyncCreatCharacterRaw(::grpc::ClientContext* context, const ::protobuf::CreatCharacterMsg& request, ::grpc::CompletionQueue* cq) override;
@@ -435,9 +508,12 @@ class AvailableService final {
     const ::grpc::internal::RpcMethod rpcmethod_Produce_;
     const ::grpc::internal::RpcMethod rpcmethod_Rebuild_;
     const ::grpc::internal::RpcMethod rpcmethod_Construct_;
+    const ::grpc::internal::RpcMethod rpcmethod_ConstructTrap_;
     const ::grpc::internal::RpcMethod rpcmethod_Equip_;
     const ::grpc::internal::RpcMethod rpcmethod_Attack_;
     const ::grpc::internal::RpcMethod rpcmethod_Cast_;
+    const ::grpc::internal::RpcMethod rpcmethod_AttackConstruction_;
+    const ::grpc::internal::RpcMethod rpcmethod_AttackAdditionResource_;
     const ::grpc::internal::RpcMethod rpcmethod_Send_;
     const ::grpc::internal::RpcMethod rpcmethod_CreatCharacter_;
     const ::grpc::internal::RpcMethod rpcmethod_CreatCharacterRID_;
@@ -465,12 +541,18 @@ class AvailableService final {
     // 给建筑回血
     virtual ::grpc::Status Construct(::grpc::ServerContext* context, const ::protobuf::ConstructMsg* request, ::protobuf::BoolRes* response);
     // 修建建筑
+    virtual ::grpc::Status ConstructTrap(::grpc::ServerContext* context, const ::protobuf::ConstructTrapMsg* request, ::protobuf::BoolRes* response);
+    // 修建陷阱
     virtual ::grpc::Status Equip(::grpc::ServerContext* context, const ::protobuf::EquipMsg* request, ::protobuf::BoolRes* response);
     // 买装备
     virtual ::grpc::Status Attack(::grpc::ServerContext* context, const ::protobuf::AttackMsg* request, ::protobuf::BoolRes* response);
     // 普通攻击
     virtual ::grpc::Status Cast(::grpc::ServerContext* context, const ::protobuf::CastMsg* request, ::protobuf::BoolRes* response);
     // 释放技能
+    virtual ::grpc::Status AttackConstruction(::grpc::ServerContext* context, const ::protobuf::AttackConstructionMsg* request, ::protobuf::BoolRes* response);
+    // 攻击建筑
+    virtual ::grpc::Status AttackAdditionResource(::grpc::ServerContext* context, const ::protobuf::AttackAdditionResourceMsg* request, ::protobuf::BoolRes* response);
+    // 攻击加成资源
     virtual ::grpc::Status Send(::grpc::ServerContext* context, const ::protobuf::SendMsg* request, ::protobuf::BoolRes* response);
     // 传递信息
     // 游戏过程中核心角色可以另外执行操作的服务
@@ -642,12 +724,32 @@ class AvailableService final {
     }
   };
   template <class BaseClass>
+  class WithAsyncMethod_ConstructTrap : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_ConstructTrap() {
+      ::grpc::Service::MarkMethodAsync(8);
+    }
+    ~WithAsyncMethod_ConstructTrap() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ConstructTrap(::grpc::ServerContext* /*context*/, const ::protobuf::ConstructTrapMsg* /*request*/, ::protobuf::BoolRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestConstructTrap(::grpc::ServerContext* context, ::protobuf::ConstructTrapMsg* request, ::grpc::ServerAsyncResponseWriter< ::protobuf::BoolRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithAsyncMethod_Equip : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_Equip() {
-      ::grpc::Service::MarkMethodAsync(8);
+      ::grpc::Service::MarkMethodAsync(9);
     }
     ~WithAsyncMethod_Equip() override {
       BaseClassMustBeDerivedFromService(this);
@@ -658,7 +760,7 @@ class AvailableService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestEquip(::grpc::ServerContext* context, ::protobuf::EquipMsg* request, ::grpc::ServerAsyncResponseWriter< ::protobuf::BoolRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -667,7 +769,7 @@ class AvailableService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_Attack() {
-      ::grpc::Service::MarkMethodAsync(9);
+      ::grpc::Service::MarkMethodAsync(10);
     }
     ~WithAsyncMethod_Attack() override {
       BaseClassMustBeDerivedFromService(this);
@@ -678,7 +780,7 @@ class AvailableService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestAttack(::grpc::ServerContext* context, ::protobuf::AttackMsg* request, ::grpc::ServerAsyncResponseWriter< ::protobuf::BoolRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -687,7 +789,7 @@ class AvailableService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_Cast() {
-      ::grpc::Service::MarkMethodAsync(10);
+      ::grpc::Service::MarkMethodAsync(11);
     }
     ~WithAsyncMethod_Cast() override {
       BaseClassMustBeDerivedFromService(this);
@@ -698,7 +800,47 @@ class AvailableService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCast(::grpc::ServerContext* context, ::protobuf::CastMsg* request, ::grpc::ServerAsyncResponseWriter< ::protobuf::BoolRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_AttackConstruction : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_AttackConstruction() {
+      ::grpc::Service::MarkMethodAsync(12);
+    }
+    ~WithAsyncMethod_AttackConstruction() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AttackConstruction(::grpc::ServerContext* /*context*/, const ::protobuf::AttackConstructionMsg* /*request*/, ::protobuf::BoolRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestAttackConstruction(::grpc::ServerContext* context, ::protobuf::AttackConstructionMsg* request, ::grpc::ServerAsyncResponseWriter< ::protobuf::BoolRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_AttackAdditionResource : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_AttackAdditionResource() {
+      ::grpc::Service::MarkMethodAsync(13);
+    }
+    ~WithAsyncMethod_AttackAdditionResource() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AttackAdditionResource(::grpc::ServerContext* /*context*/, const ::protobuf::AttackAdditionResourceMsg* /*request*/, ::protobuf::BoolRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestAttackAdditionResource(::grpc::ServerContext* context, ::protobuf::AttackAdditionResourceMsg* request, ::grpc::ServerAsyncResponseWriter< ::protobuf::BoolRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(13, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -707,7 +849,7 @@ class AvailableService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_Send() {
-      ::grpc::Service::MarkMethodAsync(11);
+      ::grpc::Service::MarkMethodAsync(14);
     }
     ~WithAsyncMethod_Send() override {
       BaseClassMustBeDerivedFromService(this);
@@ -718,7 +860,7 @@ class AvailableService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSend(::grpc::ServerContext* context, ::protobuf::SendMsg* request, ::grpc::ServerAsyncResponseWriter< ::protobuf::BoolRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(14, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -727,7 +869,7 @@ class AvailableService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_CreatCharacter() {
-      ::grpc::Service::MarkMethodAsync(12);
+      ::grpc::Service::MarkMethodAsync(15);
     }
     ~WithAsyncMethod_CreatCharacter() override {
       BaseClassMustBeDerivedFromService(this);
@@ -738,7 +880,7 @@ class AvailableService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCreatCharacter(::grpc::ServerContext* context, ::protobuf::CreatCharacterMsg* request, ::grpc::ServerAsyncResponseWriter< ::protobuf::BoolRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(15, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -747,7 +889,7 @@ class AvailableService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_CreatCharacterRID() {
-      ::grpc::Service::MarkMethodAsync(13);
+      ::grpc::Service::MarkMethodAsync(16);
     }
     ~WithAsyncMethod_CreatCharacterRID() override {
       BaseClassMustBeDerivedFromService(this);
@@ -758,7 +900,7 @@ class AvailableService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCreatCharacterRID(::grpc::ServerContext* context, ::protobuf::CreatCharacterMsg* request, ::grpc::ServerAsyncResponseWriter< ::protobuf::CreatCharacterRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(13, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(16, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -767,7 +909,7 @@ class AvailableService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_EndAllAction() {
-      ::grpc::Service::MarkMethodAsync(14);
+      ::grpc::Service::MarkMethodAsync(17);
     }
     ~WithAsyncMethod_EndAllAction() override {
       BaseClassMustBeDerivedFromService(this);
@@ -778,10 +920,10 @@ class AvailableService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestEndAllAction(::grpc::ServerContext* context, ::protobuf::IDMsg* request, ::grpc::ServerAsyncResponseWriter< ::protobuf::BoolRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(14, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(17, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_TryConnection<WithAsyncMethod_AddCharacter<WithAsyncMethod_GetMap<WithAsyncMethod_Move<WithAsyncMethod_Recover<WithAsyncMethod_Produce<WithAsyncMethod_Rebuild<WithAsyncMethod_Construct<WithAsyncMethod_Equip<WithAsyncMethod_Attack<WithAsyncMethod_Cast<WithAsyncMethod_Send<WithAsyncMethod_CreatCharacter<WithAsyncMethod_CreatCharacterRID<WithAsyncMethod_EndAllAction<Service > > > > > > > > > > > > > > > AsyncService;
+  typedef WithAsyncMethod_TryConnection<WithAsyncMethod_AddCharacter<WithAsyncMethod_GetMap<WithAsyncMethod_Move<WithAsyncMethod_Recover<WithAsyncMethod_Produce<WithAsyncMethod_Rebuild<WithAsyncMethod_Construct<WithAsyncMethod_ConstructTrap<WithAsyncMethod_Equip<WithAsyncMethod_Attack<WithAsyncMethod_Cast<WithAsyncMethod_AttackConstruction<WithAsyncMethod_AttackAdditionResource<WithAsyncMethod_Send<WithAsyncMethod_CreatCharacter<WithAsyncMethod_CreatCharacterRID<WithAsyncMethod_EndAllAction<Service > > > > > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_TryConnection : public BaseClass {
    private:
@@ -994,18 +1136,45 @@ class AvailableService final {
       ::grpc::CallbackServerContext* /*context*/, const ::protobuf::ConstructMsg* /*request*/, ::protobuf::BoolRes* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithCallbackMethod_ConstructTrap : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_ConstructTrap() {
+      ::grpc::Service::MarkMethodCallback(8,
+          new ::grpc::internal::CallbackUnaryHandler< ::protobuf::ConstructTrapMsg, ::protobuf::BoolRes>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::protobuf::ConstructTrapMsg* request, ::protobuf::BoolRes* response) { return this->ConstructTrap(context, request, response); }));}
+    void SetMessageAllocatorFor_ConstructTrap(
+        ::grpc::MessageAllocator< ::protobuf::ConstructTrapMsg, ::protobuf::BoolRes>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::protobuf::ConstructTrapMsg, ::protobuf::BoolRes>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_ConstructTrap() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ConstructTrap(::grpc::ServerContext* /*context*/, const ::protobuf::ConstructTrapMsg* /*request*/, ::protobuf::BoolRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ConstructTrap(
+      ::grpc::CallbackServerContext* /*context*/, const ::protobuf::ConstructTrapMsg* /*request*/, ::protobuf::BoolRes* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithCallbackMethod_Equip : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_Equip() {
-      ::grpc::Service::MarkMethodCallback(8,
+      ::grpc::Service::MarkMethodCallback(9,
           new ::grpc::internal::CallbackUnaryHandler< ::protobuf::EquipMsg, ::protobuf::BoolRes>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::protobuf::EquipMsg* request, ::protobuf::BoolRes* response) { return this->Equip(context, request, response); }));}
     void SetMessageAllocatorFor_Equip(
         ::grpc::MessageAllocator< ::protobuf::EquipMsg, ::protobuf::BoolRes>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::protobuf::EquipMsg, ::protobuf::BoolRes>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1026,13 +1195,13 @@ class AvailableService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_Attack() {
-      ::grpc::Service::MarkMethodCallback(9,
+      ::grpc::Service::MarkMethodCallback(10,
           new ::grpc::internal::CallbackUnaryHandler< ::protobuf::AttackMsg, ::protobuf::BoolRes>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::protobuf::AttackMsg* request, ::protobuf::BoolRes* response) { return this->Attack(context, request, response); }));}
     void SetMessageAllocatorFor_Attack(
         ::grpc::MessageAllocator< ::protobuf::AttackMsg, ::protobuf::BoolRes>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::protobuf::AttackMsg, ::protobuf::BoolRes>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1053,13 +1222,13 @@ class AvailableService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_Cast() {
-      ::grpc::Service::MarkMethodCallback(10,
+      ::grpc::Service::MarkMethodCallback(11,
           new ::grpc::internal::CallbackUnaryHandler< ::protobuf::CastMsg, ::protobuf::BoolRes>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::protobuf::CastMsg* request, ::protobuf::BoolRes* response) { return this->Cast(context, request, response); }));}
     void SetMessageAllocatorFor_Cast(
         ::grpc::MessageAllocator< ::protobuf::CastMsg, ::protobuf::BoolRes>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(11);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::protobuf::CastMsg, ::protobuf::BoolRes>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1075,18 +1244,72 @@ class AvailableService final {
       ::grpc::CallbackServerContext* /*context*/, const ::protobuf::CastMsg* /*request*/, ::protobuf::BoolRes* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithCallbackMethod_AttackConstruction : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_AttackConstruction() {
+      ::grpc::Service::MarkMethodCallback(12,
+          new ::grpc::internal::CallbackUnaryHandler< ::protobuf::AttackConstructionMsg, ::protobuf::BoolRes>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::protobuf::AttackConstructionMsg* request, ::protobuf::BoolRes* response) { return this->AttackConstruction(context, request, response); }));}
+    void SetMessageAllocatorFor_AttackConstruction(
+        ::grpc::MessageAllocator< ::protobuf::AttackConstructionMsg, ::protobuf::BoolRes>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(12);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::protobuf::AttackConstructionMsg, ::protobuf::BoolRes>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_AttackConstruction() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AttackConstruction(::grpc::ServerContext* /*context*/, const ::protobuf::AttackConstructionMsg* /*request*/, ::protobuf::BoolRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* AttackConstruction(
+      ::grpc::CallbackServerContext* /*context*/, const ::protobuf::AttackConstructionMsg* /*request*/, ::protobuf::BoolRes* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_AttackAdditionResource : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_AttackAdditionResource() {
+      ::grpc::Service::MarkMethodCallback(13,
+          new ::grpc::internal::CallbackUnaryHandler< ::protobuf::AttackAdditionResourceMsg, ::protobuf::BoolRes>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::protobuf::AttackAdditionResourceMsg* request, ::protobuf::BoolRes* response) { return this->AttackAdditionResource(context, request, response); }));}
+    void SetMessageAllocatorFor_AttackAdditionResource(
+        ::grpc::MessageAllocator< ::protobuf::AttackAdditionResourceMsg, ::protobuf::BoolRes>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(13);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::protobuf::AttackAdditionResourceMsg, ::protobuf::BoolRes>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_AttackAdditionResource() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AttackAdditionResource(::grpc::ServerContext* /*context*/, const ::protobuf::AttackAdditionResourceMsg* /*request*/, ::protobuf::BoolRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* AttackAdditionResource(
+      ::grpc::CallbackServerContext* /*context*/, const ::protobuf::AttackAdditionResourceMsg* /*request*/, ::protobuf::BoolRes* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithCallbackMethod_Send : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_Send() {
-      ::grpc::Service::MarkMethodCallback(11,
+      ::grpc::Service::MarkMethodCallback(14,
           new ::grpc::internal::CallbackUnaryHandler< ::protobuf::SendMsg, ::protobuf::BoolRes>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::protobuf::SendMsg* request, ::protobuf::BoolRes* response) { return this->Send(context, request, response); }));}
     void SetMessageAllocatorFor_Send(
         ::grpc::MessageAllocator< ::protobuf::SendMsg, ::protobuf::BoolRes>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(11);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(14);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::protobuf::SendMsg, ::protobuf::BoolRes>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1107,13 +1330,13 @@ class AvailableService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_CreatCharacter() {
-      ::grpc::Service::MarkMethodCallback(12,
+      ::grpc::Service::MarkMethodCallback(15,
           new ::grpc::internal::CallbackUnaryHandler< ::protobuf::CreatCharacterMsg, ::protobuf::BoolRes>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::protobuf::CreatCharacterMsg* request, ::protobuf::BoolRes* response) { return this->CreatCharacter(context, request, response); }));}
     void SetMessageAllocatorFor_CreatCharacter(
         ::grpc::MessageAllocator< ::protobuf::CreatCharacterMsg, ::protobuf::BoolRes>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(12);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(15);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::protobuf::CreatCharacterMsg, ::protobuf::BoolRes>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1134,13 +1357,13 @@ class AvailableService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_CreatCharacterRID() {
-      ::grpc::Service::MarkMethodCallback(13,
+      ::grpc::Service::MarkMethodCallback(16,
           new ::grpc::internal::CallbackUnaryHandler< ::protobuf::CreatCharacterMsg, ::protobuf::CreatCharacterRes>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::protobuf::CreatCharacterMsg* request, ::protobuf::CreatCharacterRes* response) { return this->CreatCharacterRID(context, request, response); }));}
     void SetMessageAllocatorFor_CreatCharacterRID(
         ::grpc::MessageAllocator< ::protobuf::CreatCharacterMsg, ::protobuf::CreatCharacterRes>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(13);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(16);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::protobuf::CreatCharacterMsg, ::protobuf::CreatCharacterRes>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1161,13 +1384,13 @@ class AvailableService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_EndAllAction() {
-      ::grpc::Service::MarkMethodCallback(14,
+      ::grpc::Service::MarkMethodCallback(17,
           new ::grpc::internal::CallbackUnaryHandler< ::protobuf::IDMsg, ::protobuf::BoolRes>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::protobuf::IDMsg* request, ::protobuf::BoolRes* response) { return this->EndAllAction(context, request, response); }));}
     void SetMessageAllocatorFor_EndAllAction(
         ::grpc::MessageAllocator< ::protobuf::IDMsg, ::protobuf::BoolRes>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(14);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(17);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::protobuf::IDMsg, ::protobuf::BoolRes>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1182,7 +1405,7 @@ class AvailableService final {
     virtual ::grpc::ServerUnaryReactor* EndAllAction(
       ::grpc::CallbackServerContext* /*context*/, const ::protobuf::IDMsg* /*request*/, ::protobuf::BoolRes* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_TryConnection<WithCallbackMethod_AddCharacter<WithCallbackMethod_GetMap<WithCallbackMethod_Move<WithCallbackMethod_Recover<WithCallbackMethod_Produce<WithCallbackMethod_Rebuild<WithCallbackMethod_Construct<WithCallbackMethod_Equip<WithCallbackMethod_Attack<WithCallbackMethod_Cast<WithCallbackMethod_Send<WithCallbackMethod_CreatCharacter<WithCallbackMethod_CreatCharacterRID<WithCallbackMethod_EndAllAction<Service > > > > > > > > > > > > > > > CallbackService;
+  typedef WithCallbackMethod_TryConnection<WithCallbackMethod_AddCharacter<WithCallbackMethod_GetMap<WithCallbackMethod_Move<WithCallbackMethod_Recover<WithCallbackMethod_Produce<WithCallbackMethod_Rebuild<WithCallbackMethod_Construct<WithCallbackMethod_ConstructTrap<WithCallbackMethod_Equip<WithCallbackMethod_Attack<WithCallbackMethod_Cast<WithCallbackMethod_AttackConstruction<WithCallbackMethod_AttackAdditionResource<WithCallbackMethod_Send<WithCallbackMethod_CreatCharacter<WithCallbackMethod_CreatCharacterRID<WithCallbackMethod_EndAllAction<Service > > > > > > > > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_TryConnection : public BaseClass {
@@ -1321,12 +1544,29 @@ class AvailableService final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_ConstructTrap : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_ConstructTrap() {
+      ::grpc::Service::MarkMethodGeneric(8);
+    }
+    ~WithGenericMethod_ConstructTrap() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ConstructTrap(::grpc::ServerContext* /*context*/, const ::protobuf::ConstructTrapMsg* /*request*/, ::protobuf::BoolRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_Equip : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_Equip() {
-      ::grpc::Service::MarkMethodGeneric(8);
+      ::grpc::Service::MarkMethodGeneric(9);
     }
     ~WithGenericMethod_Equip() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1343,7 +1583,7 @@ class AvailableService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_Attack() {
-      ::grpc::Service::MarkMethodGeneric(9);
+      ::grpc::Service::MarkMethodGeneric(10);
     }
     ~WithGenericMethod_Attack() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1360,7 +1600,7 @@ class AvailableService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_Cast() {
-      ::grpc::Service::MarkMethodGeneric(10);
+      ::grpc::Service::MarkMethodGeneric(11);
     }
     ~WithGenericMethod_Cast() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1372,12 +1612,46 @@ class AvailableService final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_AttackConstruction : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_AttackConstruction() {
+      ::grpc::Service::MarkMethodGeneric(12);
+    }
+    ~WithGenericMethod_AttackConstruction() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AttackConstruction(::grpc::ServerContext* /*context*/, const ::protobuf::AttackConstructionMsg* /*request*/, ::protobuf::BoolRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_AttackAdditionResource : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_AttackAdditionResource() {
+      ::grpc::Service::MarkMethodGeneric(13);
+    }
+    ~WithGenericMethod_AttackAdditionResource() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AttackAdditionResource(::grpc::ServerContext* /*context*/, const ::protobuf::AttackAdditionResourceMsg* /*request*/, ::protobuf::BoolRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_Send : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_Send() {
-      ::grpc::Service::MarkMethodGeneric(11);
+      ::grpc::Service::MarkMethodGeneric(14);
     }
     ~WithGenericMethod_Send() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1394,7 +1668,7 @@ class AvailableService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_CreatCharacter() {
-      ::grpc::Service::MarkMethodGeneric(12);
+      ::grpc::Service::MarkMethodGeneric(15);
     }
     ~WithGenericMethod_CreatCharacter() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1411,7 +1685,7 @@ class AvailableService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_CreatCharacterRID() {
-      ::grpc::Service::MarkMethodGeneric(13);
+      ::grpc::Service::MarkMethodGeneric(16);
     }
     ~WithGenericMethod_CreatCharacterRID() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1428,7 +1702,7 @@ class AvailableService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_EndAllAction() {
-      ::grpc::Service::MarkMethodGeneric(14);
+      ::grpc::Service::MarkMethodGeneric(17);
     }
     ~WithGenericMethod_EndAllAction() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1600,12 +1874,32 @@ class AvailableService final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_ConstructTrap : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_ConstructTrap() {
+      ::grpc::Service::MarkMethodRaw(8);
+    }
+    ~WithRawMethod_ConstructTrap() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ConstructTrap(::grpc::ServerContext* /*context*/, const ::protobuf::ConstructTrapMsg* /*request*/, ::protobuf::BoolRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestConstructTrap(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_Equip : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_Equip() {
-      ::grpc::Service::MarkMethodRaw(8);
+      ::grpc::Service::MarkMethodRaw(9);
     }
     ~WithRawMethod_Equip() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1616,7 +1910,7 @@ class AvailableService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestEquip(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1625,7 +1919,7 @@ class AvailableService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_Attack() {
-      ::grpc::Service::MarkMethodRaw(9);
+      ::grpc::Service::MarkMethodRaw(10);
     }
     ~WithRawMethod_Attack() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1636,7 +1930,7 @@ class AvailableService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestAttack(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1645,7 +1939,7 @@ class AvailableService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_Cast() {
-      ::grpc::Service::MarkMethodRaw(10);
+      ::grpc::Service::MarkMethodRaw(11);
     }
     ~WithRawMethod_Cast() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1656,7 +1950,47 @@ class AvailableService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCast(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_AttackConstruction : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_AttackConstruction() {
+      ::grpc::Service::MarkMethodRaw(12);
+    }
+    ~WithRawMethod_AttackConstruction() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AttackConstruction(::grpc::ServerContext* /*context*/, const ::protobuf::AttackConstructionMsg* /*request*/, ::protobuf::BoolRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestAttackConstruction(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_AttackAdditionResource : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_AttackAdditionResource() {
+      ::grpc::Service::MarkMethodRaw(13);
+    }
+    ~WithRawMethod_AttackAdditionResource() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AttackAdditionResource(::grpc::ServerContext* /*context*/, const ::protobuf::AttackAdditionResourceMsg* /*request*/, ::protobuf::BoolRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestAttackAdditionResource(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(13, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1665,7 +1999,7 @@ class AvailableService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_Send() {
-      ::grpc::Service::MarkMethodRaw(11);
+      ::grpc::Service::MarkMethodRaw(14);
     }
     ~WithRawMethod_Send() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1676,7 +2010,7 @@ class AvailableService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSend(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(14, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1685,7 +2019,7 @@ class AvailableService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_CreatCharacter() {
-      ::grpc::Service::MarkMethodRaw(12);
+      ::grpc::Service::MarkMethodRaw(15);
     }
     ~WithRawMethod_CreatCharacter() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1696,7 +2030,7 @@ class AvailableService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCreatCharacter(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(15, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1705,7 +2039,7 @@ class AvailableService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_CreatCharacterRID() {
-      ::grpc::Service::MarkMethodRaw(13);
+      ::grpc::Service::MarkMethodRaw(16);
     }
     ~WithRawMethod_CreatCharacterRID() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1716,7 +2050,7 @@ class AvailableService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCreatCharacterRID(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(13, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(16, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1725,7 +2059,7 @@ class AvailableService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_EndAllAction() {
-      ::grpc::Service::MarkMethodRaw(14);
+      ::grpc::Service::MarkMethodRaw(17);
     }
     ~WithRawMethod_EndAllAction() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1736,7 +2070,7 @@ class AvailableService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestEndAllAction(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(14, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(17, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1916,12 +2250,34 @@ class AvailableService final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_ConstructTrap : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_ConstructTrap() {
+      ::grpc::Service::MarkMethodRawCallback(8,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ConstructTrap(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_ConstructTrap() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ConstructTrap(::grpc::ServerContext* /*context*/, const ::protobuf::ConstructTrapMsg* /*request*/, ::protobuf::BoolRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ConstructTrap(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_Equip : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_Equip() {
-      ::grpc::Service::MarkMethodRawCallback(8,
+      ::grpc::Service::MarkMethodRawCallback(9,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Equip(context, request, response); }));
@@ -1943,7 +2299,7 @@ class AvailableService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_Attack() {
-      ::grpc::Service::MarkMethodRawCallback(9,
+      ::grpc::Service::MarkMethodRawCallback(10,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Attack(context, request, response); }));
@@ -1965,7 +2321,7 @@ class AvailableService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_Cast() {
-      ::grpc::Service::MarkMethodRawCallback(10,
+      ::grpc::Service::MarkMethodRawCallback(11,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Cast(context, request, response); }));
@@ -1982,12 +2338,56 @@ class AvailableService final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_AttackConstruction : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_AttackConstruction() {
+      ::grpc::Service::MarkMethodRawCallback(12,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->AttackConstruction(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_AttackConstruction() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AttackConstruction(::grpc::ServerContext* /*context*/, const ::protobuf::AttackConstructionMsg* /*request*/, ::protobuf::BoolRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* AttackConstruction(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_AttackAdditionResource : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_AttackAdditionResource() {
+      ::grpc::Service::MarkMethodRawCallback(13,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->AttackAdditionResource(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_AttackAdditionResource() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AttackAdditionResource(::grpc::ServerContext* /*context*/, const ::protobuf::AttackAdditionResourceMsg* /*request*/, ::protobuf::BoolRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* AttackAdditionResource(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_Send : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_Send() {
-      ::grpc::Service::MarkMethodRawCallback(11,
+      ::grpc::Service::MarkMethodRawCallback(14,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Send(context, request, response); }));
@@ -2009,7 +2409,7 @@ class AvailableService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_CreatCharacter() {
-      ::grpc::Service::MarkMethodRawCallback(12,
+      ::grpc::Service::MarkMethodRawCallback(15,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CreatCharacter(context, request, response); }));
@@ -2031,7 +2431,7 @@ class AvailableService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_CreatCharacterRID() {
-      ::grpc::Service::MarkMethodRawCallback(13,
+      ::grpc::Service::MarkMethodRawCallback(16,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CreatCharacterRID(context, request, response); }));
@@ -2053,7 +2453,7 @@ class AvailableService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_EndAllAction() {
-      ::grpc::Service::MarkMethodRawCallback(14,
+      ::grpc::Service::MarkMethodRawCallback(17,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->EndAllAction(context, request, response); }));
@@ -2259,12 +2659,39 @@ class AvailableService final {
     virtual ::grpc::Status StreamedConstruct(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::protobuf::ConstructMsg,::protobuf::BoolRes>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_ConstructTrap : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_ConstructTrap() {
+      ::grpc::Service::MarkMethodStreamed(8,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::protobuf::ConstructTrapMsg, ::protobuf::BoolRes>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::protobuf::ConstructTrapMsg, ::protobuf::BoolRes>* streamer) {
+                       return this->StreamedConstructTrap(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_ConstructTrap() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status ConstructTrap(::grpc::ServerContext* /*context*/, const ::protobuf::ConstructTrapMsg* /*request*/, ::protobuf::BoolRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedConstructTrap(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::protobuf::ConstructTrapMsg,::protobuf::BoolRes>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_Equip : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_Equip() {
-      ::grpc::Service::MarkMethodStreamed(8,
+      ::grpc::Service::MarkMethodStreamed(9,
         new ::grpc::internal::StreamedUnaryHandler<
           ::protobuf::EquipMsg, ::protobuf::BoolRes>(
             [this](::grpc::ServerContext* context,
@@ -2291,7 +2718,7 @@ class AvailableService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_Attack() {
-      ::grpc::Service::MarkMethodStreamed(9,
+      ::grpc::Service::MarkMethodStreamed(10,
         new ::grpc::internal::StreamedUnaryHandler<
           ::protobuf::AttackMsg, ::protobuf::BoolRes>(
             [this](::grpc::ServerContext* context,
@@ -2318,7 +2745,7 @@ class AvailableService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_Cast() {
-      ::grpc::Service::MarkMethodStreamed(10,
+      ::grpc::Service::MarkMethodStreamed(11,
         new ::grpc::internal::StreamedUnaryHandler<
           ::protobuf::CastMsg, ::protobuf::BoolRes>(
             [this](::grpc::ServerContext* context,
@@ -2340,12 +2767,66 @@ class AvailableService final {
     virtual ::grpc::Status StreamedCast(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::protobuf::CastMsg,::protobuf::BoolRes>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_AttackConstruction : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_AttackConstruction() {
+      ::grpc::Service::MarkMethodStreamed(12,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::protobuf::AttackConstructionMsg, ::protobuf::BoolRes>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::protobuf::AttackConstructionMsg, ::protobuf::BoolRes>* streamer) {
+                       return this->StreamedAttackConstruction(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_AttackConstruction() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status AttackConstruction(::grpc::ServerContext* /*context*/, const ::protobuf::AttackConstructionMsg* /*request*/, ::protobuf::BoolRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedAttackConstruction(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::protobuf::AttackConstructionMsg,::protobuf::BoolRes>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_AttackAdditionResource : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_AttackAdditionResource() {
+      ::grpc::Service::MarkMethodStreamed(13,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::protobuf::AttackAdditionResourceMsg, ::protobuf::BoolRes>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::protobuf::AttackAdditionResourceMsg, ::protobuf::BoolRes>* streamer) {
+                       return this->StreamedAttackAdditionResource(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_AttackAdditionResource() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status AttackAdditionResource(::grpc::ServerContext* /*context*/, const ::protobuf::AttackAdditionResourceMsg* /*request*/, ::protobuf::BoolRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedAttackAdditionResource(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::protobuf::AttackAdditionResourceMsg,::protobuf::BoolRes>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_Send : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_Send() {
-      ::grpc::Service::MarkMethodStreamed(11,
+      ::grpc::Service::MarkMethodStreamed(14,
         new ::grpc::internal::StreamedUnaryHandler<
           ::protobuf::SendMsg, ::protobuf::BoolRes>(
             [this](::grpc::ServerContext* context,
@@ -2372,7 +2853,7 @@ class AvailableService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_CreatCharacter() {
-      ::grpc::Service::MarkMethodStreamed(12,
+      ::grpc::Service::MarkMethodStreamed(15,
         new ::grpc::internal::StreamedUnaryHandler<
           ::protobuf::CreatCharacterMsg, ::protobuf::BoolRes>(
             [this](::grpc::ServerContext* context,
@@ -2399,7 +2880,7 @@ class AvailableService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_CreatCharacterRID() {
-      ::grpc::Service::MarkMethodStreamed(13,
+      ::grpc::Service::MarkMethodStreamed(16,
         new ::grpc::internal::StreamedUnaryHandler<
           ::protobuf::CreatCharacterMsg, ::protobuf::CreatCharacterRes>(
             [this](::grpc::ServerContext* context,
@@ -2426,7 +2907,7 @@ class AvailableService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_EndAllAction() {
-      ::grpc::Service::MarkMethodStreamed(14,
+      ::grpc::Service::MarkMethodStreamed(17,
         new ::grpc::internal::StreamedUnaryHandler<
           ::protobuf::IDMsg, ::protobuf::BoolRes>(
             [this](::grpc::ServerContext* context,
@@ -2447,7 +2928,7 @@ class AvailableService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedEndAllAction(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::protobuf::IDMsg,::protobuf::BoolRes>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_TryConnection<WithStreamedUnaryMethod_GetMap<WithStreamedUnaryMethod_Move<WithStreamedUnaryMethod_Recover<WithStreamedUnaryMethod_Produce<WithStreamedUnaryMethod_Rebuild<WithStreamedUnaryMethod_Construct<WithStreamedUnaryMethod_Equip<WithStreamedUnaryMethod_Attack<WithStreamedUnaryMethod_Cast<WithStreamedUnaryMethod_Send<WithStreamedUnaryMethod_CreatCharacter<WithStreamedUnaryMethod_CreatCharacterRID<WithStreamedUnaryMethod_EndAllAction<Service > > > > > > > > > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_TryConnection<WithStreamedUnaryMethod_GetMap<WithStreamedUnaryMethod_Move<WithStreamedUnaryMethod_Recover<WithStreamedUnaryMethod_Produce<WithStreamedUnaryMethod_Rebuild<WithStreamedUnaryMethod_Construct<WithStreamedUnaryMethod_ConstructTrap<WithStreamedUnaryMethod_Equip<WithStreamedUnaryMethod_Attack<WithStreamedUnaryMethod_Cast<WithStreamedUnaryMethod_AttackConstruction<WithStreamedUnaryMethod_AttackAdditionResource<WithStreamedUnaryMethod_Send<WithStreamedUnaryMethod_CreatCharacter<WithStreamedUnaryMethod_CreatCharacterRID<WithStreamedUnaryMethod_EndAllAction<Service > > > > > > > > > > > > > > > > > StreamedUnaryService;
   template <class BaseClass>
   class WithSplitStreamingMethod_AddCharacter : public BaseClass {
    private:
@@ -2476,10 +2957,11 @@ class AvailableService final {
     virtual ::grpc::Status StreamedAddCharacter(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::protobuf::CharacterMsg,::protobuf::MessageToClient>* server_split_streamer) = 0;
   };
   typedef WithSplitStreamingMethod_AddCharacter<Service > SplitStreamedService;
-  typedef WithStreamedUnaryMethod_TryConnection<WithSplitStreamingMethod_AddCharacter<WithStreamedUnaryMethod_GetMap<WithStreamedUnaryMethod_Move<WithStreamedUnaryMethod_Recover<WithStreamedUnaryMethod_Produce<WithStreamedUnaryMethod_Rebuild<WithStreamedUnaryMethod_Construct<WithStreamedUnaryMethod_Equip<WithStreamedUnaryMethod_Attack<WithStreamedUnaryMethod_Cast<WithStreamedUnaryMethod_Send<WithStreamedUnaryMethod_CreatCharacter<WithStreamedUnaryMethod_CreatCharacterRID<WithStreamedUnaryMethod_EndAllAction<Service > > > > > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_TryConnection<WithSplitStreamingMethod_AddCharacter<WithStreamedUnaryMethod_GetMap<WithStreamedUnaryMethod_Move<WithStreamedUnaryMethod_Recover<WithStreamedUnaryMethod_Produce<WithStreamedUnaryMethod_Rebuild<WithStreamedUnaryMethod_Construct<WithStreamedUnaryMethod_ConstructTrap<WithStreamedUnaryMethod_Equip<WithStreamedUnaryMethod_Attack<WithStreamedUnaryMethod_Cast<WithStreamedUnaryMethod_AttackConstruction<WithStreamedUnaryMethod_AttackAdditionResource<WithStreamedUnaryMethod_Send<WithStreamedUnaryMethod_CreatCharacter<WithStreamedUnaryMethod_CreatCharacterRID<WithStreamedUnaryMethod_EndAllAction<Service > > > > > > > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace protobuf
 
 
+//#include <grpcpp/ports_undef.inc>
 #endif  // GRPC_Services_2eproto__INCLUDED

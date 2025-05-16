@@ -140,53 +140,50 @@ class Logic(ILogic):
         with self.__mtxState:
             return copy.deepcopy(self.__currentState.guids)
 
-    def GetConstructionState(
-        self, cellX: int, cellY: int
-    ) -> THUAI8.ConstructionState | None:
+    def GetConstructionState(self, cellX: int, cellY: int) -> THUAI8.ConstructionState:
         with self.__mtxState:
             self.__logger.debug("Called GetConstructionState")
             if (cellX, cellY) in self.__currentState.mapInfo.barracksState:
                 return THUAI8.ConstructionState(
-                    self.__currentState.mapInfo.barracksState[(cellX, cellY)],
+                    self.__currentState.mapInfo.barracksState[(cellX, cellY)][0],
+                    self.__currentState.mapInfo.barracksState[(cellX, cellY)][1],
                     THUAI8.ConstructionType.Barracks,
                 )
             elif (cellX, cellY) in self.__currentState.mapInfo.springState:
                 return THUAI8.ConstructionState(
-                    self.__currentState.mapInfo.springState[(cellX, cellY)],
+                    self.__currentState.mapInfo.springState[(cellX, cellY)][0],
+                    self.__currentState.mapInfo.springState[(cellX, cellY)][1],
                     THUAI8.ConstructionType.Spring,
                 )
             elif (cellX, cellY) in self.__currentState.mapInfo.farmState:
                 return THUAI8.ConstructionState(
-                    self.__currentState.mapInfo.farmState[(cellX, cellY)],
+                    self.__currentState.mapInfo.farmState[(cellX, cellY)][0],
+                    self.__currentState.mapInfo.farmState[(cellX, cellY)][1],
                     THUAI8.ConstructionType.Farm,
                 )
             else:
                 self.__logger.warning("GetConstructionState: Out of range")
                 return None
 
-    def GetEconomyResourceState(self, cellX: int, cellY: int) -> int:
+    def GetEconomyResourceState(self, cellX: int, cellY: int) -> THUAI8.EconomyResource:
         with self.__mtxState:
             self.__logger.debug("Called GetEconomyResourceState")
-            if (
-                cellX,
-                cellY,
-            ) not in self.__currentState.mapInfo.economyResource:
+            if (cellX, cellY) not in self.__currentState.mapInfo.economyResource:
                 self.__logger.warning("GetEconomyResourceState: Out of range")
-                return -1
+                return None
             else:
                 return copy.deepcopy(
                     self.__currentState.mapInfo.economyResource[(cellX, cellY)]
                 )
 
-    def GetAdditionResourceState(self, cellX: int, cellY: int) -> int:
+    def GetAdditionResourceState(
+        self, cellX: int, cellY: int
+    ) -> THUAI8.AdditionResource:
         with self.__mtxState:
             self.__logger.debug("Called GetAdditionResourceState")
-            if (
-                cellX,
-                cellY,
-            ) not in self.__currentState.mapInfo.additionResource:
+            if (cellX, cellY) not in self.__currentState.mapInfo.additionResource:
                 self.__logger.warning("GetAdditionResourceState: Out of range")
-                return -1
+                return None
             else:
                 return copy.deepcopy(
                     self.__currentState.mapInfo.additionResource[(cellX, cellY)]
@@ -210,15 +207,23 @@ class Logic(ILogic):
                 else self.__currentState.gameInfo.monstersTeamEconomy
             )
 
-    def Common_Attack(
-        self, playerID: int, teamID: int, ATKplayerID: int, ATKteamID: int
-    ) -> bool:
+    def Common_Attack(self, ATKplayerID: int) -> bool:
         self.__logger.debug("Called CommonAttack")
-        return self.__comm.Attack(playerID, teamID, ATKplayerID, ATKteamID)
+        return self.__comm.Common_Attack(
+            self.__playerID, self.__teamID, ATKplayerID, 1 - self.__teamID
+        )
 
-    def Skill_Attack(self, playerID: int, teamID: int, angle: float) -> bool:
+    def Skill_Attack(self, angle: float) -> bool:
         self.__logger.debug("Called SkillAttack")
-        return self.__comm.Skill_Attack(playerID, teamID, angle)
+        return self.__comm.Skill_Attack(self.__playerID, self.__teamID, angle)
+
+    def AttackConstruction(self):
+        self.__logger.debug("Called AttackConstruction")
+        return self.__comm.AttackConstruction(self.__playerID, self.__teamID)
+
+    def AttackAdditionResource(self):
+        self.__logger.debug("Called AttackAdditionResource")
+        return self.__comm.AttackAdditionResource(self.__playerID, self.__teamID)
 
     def Recover(self, recover: int) -> bool:
         self.__logger.debug("Called Recover")
@@ -227,6 +232,10 @@ class Logic(ILogic):
     def Construct(self, constructionType: THUAI8.ConstructionType) -> bool:
         self.__logger.debug("Called Construct")
         return self.__comm.Construct(constructionType, self.__playerID, self.__teamID)
+
+    def ConstructTrap(self, trapType: THUAI8.TrapType) -> bool:
+        self.__logger.debug("Called ConstructTrap")
+        return self.__comm.ConstructTrap(trapType, self.__playerID, self.__teamID)
 
     def BuildCharacter(
         self, characterType: THUAI8.CharacterType, birthIndex: int
@@ -300,7 +309,9 @@ class Logic(ILogic):
                     else:
                         self.__logger.error("No map message received")
 
+                    # self.__logger.info("Try LoadBuffer")
                     self.__LoadBuffer(clientMsg)
+                    # self.__logger.info("Successfully Load Buffer!")
                     self.__AILoop = True
                     self.__UnBlockAI()
 
@@ -311,6 +322,7 @@ class Logic(ILogic):
                     self.__logger.error("Unknown GameState!")
                     continue
             with self.__cvBuffer:
+                # self.__logger.info("bufferupdatetrue1")
                 self.__bufferUpdated = True
                 self.__counterBuffer = -1
                 self.__cvBuffer.notify()
@@ -341,6 +353,7 @@ class Logic(ILogic):
             )
 
             self.__LoadBufferSelf(message)
+            # self.__logger.info(self.__bufferState.self is None)
             if (
                 self.__playerType == THUAI8.PlayerType.Character
                 and self.__bufferState.self is None
@@ -359,6 +372,7 @@ class Logic(ILogic):
                     self.__logger.info("Update state!")
                 self.__freshed = True
             else:
+                # self.__logger.info("bufferupdatetrue2")
                 self.__bufferUpdated = True
             self.__counterBuffer += 1
             self.__cvBuffer.notify()
@@ -367,6 +381,12 @@ class Logic(ILogic):
         if self.__playerType == THUAI8.PlayerType.Character:
             for item in message.obj_message:
                 if item.WhichOneof("message_of_obj") == "character_message":
+                    # self.__logger.info(
+                    #     f"itemcharacterid{item.character_message.player_id}"
+                    # )
+                    # self.__logger.info(f"selfcharacterid{self.__playerID}")
+                    # self.__logger.info(f"itemteamid{item.character_message.team_id}")
+                    # self.__logger.info(f"selfteamid{self.__teamID}")
                     if (
                         item.character_message.player_id == self.__playerID
                         and item.character_message.team_id == self.__teamID
@@ -374,6 +394,7 @@ class Logic(ILogic):
                         self.__bufferState.self = Proto2THUAI8.Protobuf2THUAI8Character(
                             item.character_message
                         )
+                        # self.__logger.info("1")
                         self.__logger.debug("Load self character")
         else:
             for item in message.obj_message:
@@ -392,6 +413,7 @@ class Logic(ILogic):
                                 item.character_message
                             )
                         )
+                        # self.__logger.info("2")
                         self.__logger.debug("Load Character")
 
     def __LoadBufferCase(self, item: Message2Clients.MessageOfObj) -> None:
@@ -556,12 +578,16 @@ class Logic(ILogic):
                 )
                 if pos not in self.__bufferState.mapInfo.economyResourceState:
                     self.__bufferState.mapInfo.economyResourceState[pos] = (
-                        economy_message.hp
+                        economy_message.id,
+                        economy_message.process,
+                        economy_message.economy_resource_type,
                     )
                     self.__logger.debug("Load EconomyResource!")
                 else:
                     self.__bufferState.mapInfo.economyResourceState[pos] = (
-                        economy_message.hp
+                        economy_message.id,
+                        economy_message.process,
+                        economy_message.economy_resource_type,
                     )
                     self.__logger.debug("Update EconomyResource!")
 
@@ -573,12 +599,16 @@ class Logic(ILogic):
                 )
                 if pos not in self.__bufferState.mapInfo.additionResourceState:
                     self.__bufferState.mapInfo.additionResourceState[pos] = (
-                        addition_message.hp
+                        addition_message.id,
+                        addition_message.hp,
+                        addition_message.addition_resource_type,
                     )
                     self.__logger.debug("Load AdditionResource!")
                 else:
                     self.__bufferState.mapInfo.additionResourceState[pos] = (
-                        addition_message.hp
+                        addition_message.id,
+                        addition_message.hp,
+                        addition_message.addition_resource_type,
                     )
                     self.__logger.debug("Update AdditionResource!")
 
@@ -776,12 +806,16 @@ class Logic(ILogic):
                 )
                 if pos not in self.__bufferState.mapInfo.economyResourceState:
                     self.__bufferState.mapInfo.economyResourceState[pos] = (
-                        economy_message.hp
+                        economy_message.id,
+                        economy_message.process,
+                        economy_message.economy_resource_type,
                     )
                     self.__logger.debug("Load EconomyResource!")
                 else:
                     self.__bufferState.mapInfo.economyResourceState[pos] = (
-                        economy_message.hp
+                        economy_message.id,
+                        economy_message.process,
+                        economy_message.economy_resource_type,
                     )
                     self.__logger.debug("Update EconomyResource!")
 
@@ -793,12 +827,16 @@ class Logic(ILogic):
                 )
                 if pos not in self.__bufferState.mapInfo.additionResourceState:
                     self.__bufferState.mapInfo.additionResourceState[pos] = (
-                        addition_message.hp
+                        addition_message.id,
+                        addition_message.hp,
+                        addition_message.addition_resource_type,
                     )
                     self.__logger.debug("Load AdditionResource!")
                 else:
                     self.__bufferState.mapInfo.additionResourceState[pos] = (
-                        addition_message.hp
+                        addition_message.id,
+                        addition_message.hp,
+                        addition_message.addition_resource_type,
                     )
                     self.__logger.debug("Update AdditionResource!")
 
@@ -824,16 +862,20 @@ class Logic(ILogic):
 
     def __Update(self) -> None:
         if not Setting.Asynchronous():
+            # self.__logger.info("Waiting for state update")
             with self.__cvBuffer:
+                # self.__logger.info("Waiting for state update in cv")
                 self.__cvBuffer.wait_for(lambda: self.__bufferUpdated)
+                # self.__logger.info("State updated")
                 with self.__mtxState:
+                    # self.__logger.info("Update state in mtx")
                     self.__bufferState, self.__currentState = (
                         self.__currentState,
                         self.__bufferState,
                     )
                     self.__counterState = self.__counterBuffer
                 self.__bufferUpdated = False
-                self.__logger.info("Update state!")
+                # self.__logger.info("Update state2!")
 
     def __Wait(self) -> None:
         self.__freshed = False
@@ -923,11 +965,13 @@ class Logic(ILogic):
             ai = createAI(self.__playerID)
             while self.__AILoop:
                 if Setting.Asynchronous():
+                    # self.__logger.info("Asynchronous mode")
                     self.__Wait()
                     self.__timer.StartTimer()
                     self.__timer.Play(ai)
                     self.__timer.EndTimer()
                 else:
+                    # self.__logger.info("Synchronous mode")
                     self.__Update()
                     self.__timer.StartTimer()
                     self.__timer.Play(ai)

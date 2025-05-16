@@ -29,21 +29,17 @@ class ILogic(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def GetEconomyResourceState(
-        self, cellX: int, cellY: int
-    ) -> THUAI8.EconomyResourceState:
+    def GetEconomyResourceState(self, cellX: int, cellY: int) -> THUAI8.EconomyResource:
         pass
 
     @abstractmethod
     def GetAdditionResourceState(
         self, cellX: int, cellY: int
-    ) -> THUAI8.AdditionResourceState:
+    ) -> THUAI8.AdditionResource:
         pass
 
     @abstractmethod
-    def GetConstructionState(
-        self, cellX: int, cellY: int
-    ) -> THUAI8.ConstructionState | None:
+    def GetConstructionState(self, cellX: int, cellY: int) -> THUAI8.ConstructionState:
         pass
 
     @abstractmethod
@@ -107,13 +103,19 @@ class ILogic(metaclass=ABCMeta):
     #     pass
 
     @abstractmethod
-    def Skill_Attack(self, playerID: int, teamID: int, angle: float) -> bool:
+    def Skill_Attack(self, angle: float) -> bool:
         pass
 
     @abstractmethod
-    def Common_Attack(
-        self, playerID: int, teamID: int, ATKplayerID: int, ATKteamID: int
-    ) -> bool:
+    def Common_Attack(self, ATKplayerID: int) -> bool:
+        pass
+
+    @abstractmethod
+    def AttackConstruction(self) -> bool:
+        pass
+
+    @abstractmethod
+    def AttackAdditionResource(self) -> bool:
         pass
 
     @abstractmethod
@@ -130,6 +132,10 @@ class ILogic(metaclass=ABCMeta):
 
     @abstractmethod
     def Construct(self, constructionType: THUAI8.ConstructionType) -> bool:
+        pass
+
+    @abstractmethod
+    def ConstructTrap(self, trapType: THUAI8.TrapType) -> bool:
         pass
 
     @abstractmethod
@@ -250,9 +256,7 @@ class IAPI(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def GetEconomyResourceState(
-        self, cellX: int, cellY: int
-    ) -> THUAI8.EconomyResourceState:
+    def GetEconomyResourceState(self, cellX: int, cellY: int) -> THUAI8.EconomyResource:
         """获取当前经济资源状态
 
         :param cellX: X坐标, 单位Cell
@@ -264,7 +268,7 @@ class IAPI(metaclass=ABCMeta):
     @abstractmethod
     def GetAdditionResourceState(
         self, cellX: int, cellY: int
-    ) -> THUAI8.AdditionResourceState:
+    ) -> THUAI8.AdditionResource:
         """获取当前附加资源状态
 
         :param cellX: X坐标, 单位Cell
@@ -274,9 +278,7 @@ class IAPI(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def GetConstructionState(
-        self, cellX: int, cellY: int
-    ) -> THUAI8.ConstructionState | None:
+    def GetConstructionState(self, cellX: int, cellY: int) -> THUAI8.ConstructionState:
         """获取当前建筑状态
 
         :param cellX: X坐标, 单位Cell
@@ -406,6 +408,24 @@ class ICharacterAPI(IAPI, metaclass=ABCMeta):
         pass
 
     @abstractmethod
+    def AttackConstruction(self) -> Future[bool]:
+        """发出攻击建筑指令
+        - 需要接近可攻击的 `Construction`
+
+        :return: 攻击是否成功, 通过 `.result()` 方法等待获取 `bool`
+        """
+        pass
+
+    @abstractmethod
+    def AttackAdditionResource(self) -> Future[bool]:
+        """发出攻击附加资源指令
+        - 需要接近可攻击的 `Resource`
+
+        :return: 攻击是否成功, 通过 `.result()` 方法等待获取 `bool`
+        """
+        pass
+
+    @abstractmethod
     def Recover(self, recover: int) -> Future[bool]:
         """发出回复指令
         - 需要接近可用的 `Barrier`
@@ -425,7 +445,7 @@ class ICharacterAPI(IAPI, metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def Rebuild(self, constructionType: THUAI8.ConstructionState) -> Future[bool]:
+    def Rebuild(self, constructionType: THUAI8.ConstructionType) -> Future[bool]:
         """发出重建指令
         - 需要接近待重建 `Construction`
 
@@ -441,6 +461,14 @@ class ICharacterAPI(IAPI, metaclass=ABCMeta):
 
         :param constructionType: 建筑类型
         :return: 进入建造状态是否成功, 通过 `.result()` 方法等待获取 `bool`
+        """
+        pass
+
+    @abstractmethod
+    def ConstructTrap(self, trapType: THUAI8.TrapType) -> Future[bool]:
+        """发出建造陷阱指令
+
+        :param trapType: 陷阱类型
         """
         pass
 

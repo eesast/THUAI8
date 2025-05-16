@@ -130,7 +130,7 @@ THUAI8::PlaceType TeamAPI::GetPlaceType(int32_t cellX, int32_t cellY) const
     return logic.GetPlaceType(cellX, cellY);
 }
 
-/* std::optional<THUAI8::ConstructionState> CharacterAPI::GetConstructionState(int32_t cellX, int32_t cellY) const
+std::optional<THUAI8::ConstructionState> CharacterAPI::GetConstructionState(int32_t cellX, int32_t cellY) const
 {
     return logic.GetConstructionState(cellX, cellY);
 }
@@ -138,24 +138,24 @@ THUAI8::PlaceType TeamAPI::GetPlaceType(int32_t cellX, int32_t cellY) const
 std::optional<THUAI8::ConstructionState> TeamAPI::GetConstructionState(int32_t cellX, int32_t cellY) const
 {
     return logic.GetConstructionState(cellX, cellY);
-}*/
-
-std::optional<THUAI8::EconomyResourceState> CharacterAPI::GetEnconomyResourceState(int32_t cellX, int32_t cellY) const
-{
-    return logic.GetEnconomyResourceState(cellX, cellY);
 }
 
-std::optional<THUAI8::EconomyResourceState> TeamAPI::GetEnconomyResourceState(int32_t cellX, int32_t cellY) const
+std::optional<THUAI8::EconomyResource> CharacterAPI::GetEconomyResourceState(int32_t cellX, int32_t cellY) const
 {
-    return logic.GetEnconomyResourceState(cellX, cellY);
+    return logic.GetEconomyResourceState(cellX, cellY);
 }
 
-std::optional<std::pair<int32_t, int32_t>> CharacterAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
+std::optional<THUAI8::EconomyResource> TeamAPI::GetEconomyResourceState(int32_t cellX, int32_t cellY) const
+{
+    return logic.GetEconomyResourceState(cellX, cellY);
+}
+
+std::optional<THUAI8::AdditionResource> CharacterAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
 {
     return logic.GetAdditionResourceState(cellX, cellY);
 }
 
-std::optional<std::pair<int32_t, int32_t>> TeamAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
+std::optional<THUAI8::AdditionResource> TeamAPI::GetAdditionResourceState(int32_t cellX, int32_t cellY) const
 {
     return logic.GetAdditionResourceState(cellX, cellY);
 }
@@ -244,7 +244,7 @@ std::future<bool> CharacterAPI::MoveLeft(int64_t timeInMilliseconds)
 std::future<bool> CharacterAPI::Common_Attack(int64_t attackedPlayerID)
 {
     return std::async(std::launch::async, [=]()
-                      { return logic.Common_Attack(this->GetSelfInfo()->teamID, this->GetSelfInfo()->playerID, 1 - this->GetSelfInfo()->teamID, attackedPlayerID); });
+                      { return logic.Common_Attack(this->GetSelfInfo()->playerID, this->GetSelfInfo()->teamID, 1 - this->GetSelfInfo()->teamID, attackedPlayerID); });
 }
 
 std::future<bool> CharacterAPI::Skill_Attack(double angle)
@@ -253,16 +253,27 @@ std::future<bool> CharacterAPI::Skill_Attack(double angle)
                       { return logic.Skill_Attack(this->GetSelfInfo()->playerID, this->GetSelfInfo()->teamID, angle); });
 }
 
+std::future <bool> CharacterAPI::AttackConstruction()
+{
+    return std::async(std::launch::async, [=]()
+                      { return logic.AttackConstruction(this->GetSelfInfo()->playerID, this->GetSelfInfo()->teamID); });
+}
+
+std::future<bool> CharacterAPI::AttackAdditionResource()
+{
+    return std::async(std::launch::async, [=]()
+                      { return logic.AttackAdditionResource(this->GetSelfInfo()->playerID, this->GetSelfInfo()->teamID); });
+}
 std::future<bool> CharacterAPI::Recover(int64_t recover)
 {
     return std::async(std::launch::async, [=]()
                       { return logic.Recover(recover); });
 }
 
-std::future<bool> CharacterAPI::Produce(int64_t playerID, int64_t teamID)
+std::future<bool> CharacterAPI::Produce()
 {
     return std::async(std::launch::async, [=]()
-                      { return logic.Produce(playerID, teamID); });
+                      { return logic.Produce(this->GetSelfInfo()->playerID, this->GetSelfInfo()->teamID); });
 }
 
 /* std::future<bool> CharacterAPI::Rebuild(THUAI8::ConstructionType constructionType)
@@ -275,6 +286,12 @@ std::future<bool> CharacterAPI::Construct(THUAI8::ConstructionType constructionT
 {
     return std::async(std::launch::async, [=]()
                       { return logic.Construct(constructionType); });
+}
+
+std::future<bool> CharacterAPI::ConstructTrap(THUAI8::TrapType trapType)
+{
+    return std::async(std::launch::async, [=]()
+                      { return logic.ConstructTrap(trapType); });
 }
 
 bool CharacterAPI::HaveView(int32_t x, int32_t y, int32_t newX, int32_t newY, int32_t viewRange, std::vector<std::vector<THUAI8::PlaceType>>& map) const

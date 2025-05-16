@@ -42,7 +42,7 @@ namespace Gaming
             }
             public bool Attack(Character character, Character gameobj)
             {
-                if (character.Commandable() || character.CharacterState2 == CharacterState.BLIND)
+                if (!character.Commandable() || character.CharacterState2 == CharacterState.BLIND)
                 {
                     return false;
                 }
@@ -59,7 +59,7 @@ namespace Gaming
                     return false;
                 }
                 long nowtime = Environment.TickCount64;
-                if (nowtime - character.LastAttackTime < 1 / (character.ATKFrequency * 1000))
+                if (nowtime - character.LastAttackTime < 1000 / character.ATKFrequency)
                     return false;
                 characterManager.BeAttacked(gameobj, character);
                 character.LastAttackTime = nowtime;
@@ -72,7 +72,7 @@ namespace Gaming
             }
             public bool Attack(Character character, A_Resource gameobj)
             {
-                if (character.Commandable() || character.CharacterState2 == CharacterState.BLIND)
+                if (!character.Commandable() || character.CharacterState2 == CharacterState.BLIND)
                 {
                     return false;
                 }
@@ -85,7 +85,7 @@ namespace Gaming
                     return false;
                 }
                 long nowtime = Environment.TickCount64;
-                if (nowtime - character.LastAttackTime < 1 / (character.ATKFrequency * 1000))
+                if (nowtime - character.LastAttackTime < 1000 / character.ATKFrequency)
                     return false;
                 ARManager.BeAttacked(gameobj, character);
                 character.LastAttackTime = nowtime;
@@ -95,7 +95,7 @@ namespace Gaming
             }
             public bool Attack(Character character, Construction gameobj)
             {
-                if (character.Commandable() || character.CharacterState2 == CharacterState.BLIND)
+                if (!character.Commandable() || character.CharacterState2 == CharacterState.BLIND)
                 {
                     return false;
                 }
@@ -108,7 +108,7 @@ namespace Gaming
                     return false;
                 }
                 long nowtime = Environment.TickCount64;
-                if (nowtime - character.LastAttackTime < 1 / (character.ATKFrequency * 1000))
+                if (nowtime - character.LastAttackTime < 1000 / character.ATKFrequency)
                     return false;
                 gameobj.BeAttacked(character);
                 character.LastAttackTime = nowtime;

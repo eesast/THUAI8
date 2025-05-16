@@ -30,6 +30,7 @@ class Communication:
         self.__counterMove = 0
         self.__limit = 50
         self.__moveLimit = 10
+        self.__message_counter = 0
 
     def Move(
         self, teamID: int, playerID: int, timeInMiliseconds: int, angle: float
@@ -91,7 +92,7 @@ class Communication:
         except grpc.RpcError:
             return False
         else:
-            return commonAttackResult.act_success()
+            return commonAttackResult.act_success
 
     def Skill_Attack(self, playerID: int, teamID: int, angle: float) -> bool:
         self.__skillrange = 0  # 技能范围待修改,技能位置待定
@@ -108,7 +109,41 @@ class Communication:
         except grpc.RpcError:
             return False
         else:
-            return skillAttackResult.act_success()
+            return skillAttackResult.act_success
+
+    def AttackConstruction(self, playerID: int, teamID: int) -> bool:
+        try:
+            with self.__mtxLimit:
+                if self.__counter >= self.__limit:
+                    return False
+                self.__counter += 1
+            attackConstructionResult: Message2Clients.BoolRes = (
+                self.__THUAI8Stub.AttackConstruction(
+                    THUAI82Proto.THUAI82ProtobufAttackConstructionMsg(playerID, teamID)
+                )
+            )
+        except grpc.RpcError:
+            return False
+        else:
+            return attackConstructionResult.act_success
+
+    def AttackAdditionResource(self, playerID: int, teamID: int) -> bool:
+        try:
+            with self.__mtxLimit:
+                if self.__counter >= self.__limit:
+                    return False
+                self.__counter += 1
+            attackAdditionResourceResult: Message2Clients.BoolRes = (
+                self.__THUAI8Stub.AttackAdditionResource(
+                    THUAI82Proto.THUAI82ProtobufAttackAdditionResourceMsg(
+                        playerID, teamID
+                    )
+                )
+            )
+        except grpc.RpcError:
+            return False
+        else:
+            return attackAdditionResourceResult.act_success
 
     def Recover(self, playerID: int, teamID: int, recover: int) -> bool:
         try:
@@ -173,6 +208,26 @@ class Communication:
             return False
         else:
             return constructResult.act_success
+
+    def ConstructTrap(
+        self, trapType: THUAI8.TrapType, playerID: int, teamID: int
+    ) -> bool:
+        try:
+            with self.__mtxLimit:
+                if self.__counter >= self.__limit:
+                    return False
+                self.__counter += 1
+            constructTrapResult: Message2Clients.BoolRes = (
+                self.__THUAI8Stub.ConstructTrap(
+                    THUAI82Proto.THUAI82ProtobufConstructTrapMsg(
+                        playerID, teamID, trapType
+                    )
+                )
+            )
+        except grpc.RpcError:
+            return False
+        else:
+            return constructTrapResult.act_success
 
     def InstallEquipment(
         self, equipmentType: THUAI8.EquipmentType, playerID: int, teamID: int
@@ -254,6 +309,9 @@ class Communication:
         with self.__cvMessage:
             self.__cvMessage.wait_for(lambda: self.__haveNewMessage)
             self.__haveNewMessage = False
+            self.__message_counter += 1
+            # print(f"已收到 {self.__message_counter} 条消息")  # 打印消息数量
+            # print(self.__message2Client.)
             return self.__message2Client
 
     def AddPlayer(
@@ -261,8 +319,14 @@ class Communication:
         playerID: int,
         teamID: int,
         characterType: THUAI8.CharacterType,
-        side_flag: bool,
+        side_flag: int,
     ) -> None:
+        # print("进入addplayer")
+        # print(f"playerID: {playerID}")
+        # print(f"teamID: {teamID}")
+        # print(f"characterType: {characterType}")
+        # print(f"side_flag: {side_flag}")
+
         def tMessage():
             try:
                 if playerID == 0:

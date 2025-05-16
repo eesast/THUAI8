@@ -19,10 +19,27 @@ message CharacterMsg
     int32 side_flag = 4;
 }
 
-message EconomyReourceMsg
+message EconomyResourceMsg
 {
-
+    int64 team_id = 1;
+    int32 process = 2;
+    EconomyResourceType economy_resource_type = 3;
 }
+
+message AdditionResourceMsg
+{
+    int64 team_id = 1;
+    int32 hp = 2;
+    AdditionResourceType addition_resource_type = 3;
+}
+
+message ConstructionMsg
+{
+    int64 team_id = 1;
+    int32 hp = 2;
+    ConstructionType construction_type = 3;
+}
+
 message MoveMsg
 {
     int64 character_id = 1;
@@ -55,9 +72,10 @@ message AttackMsg // 普通攻击
 message CastMsg // 释放技能
 {
     int64 character_id = 1;
-    int64 team_id = 2;
+    int64 skill_id = 2;
     repeated int64 casted_character_id = 3; // 技能作用的对象，可能有多个
-    int64 casted_team_id = 4;
+    int64 team_id = 4;
+
     int32 attack_range = 5; // 攻击范围
 
     // 释放技能时角色的位置（击退可能有用）
@@ -68,11 +86,30 @@ message CastMsg // 释放技能
     optional double angle = 8;
 }
 
+message AttackConstructionMsg
+{
+    int64 team_id = 1;
+    int64 character_id = 2;
+}
+
+message AttackAdditionResourceMsg
+{
+    int64 team_id = 1;
+    int64 character_id = 2;
+}
+
 message ConstructMsg //修建建筑
 {
-    int64 character_id = 1;
-    ConstructionType construction_type = 2;
-    int64 team_id = 3;
+    int32 character_id = 1;
+    int32 team_id = 2;
+    ConstructionType construction_type = 3;
+}
+
+message ConstructTrapMsg
+{
+    int32 character_id = 1;
+    int32 team_id = 2;
+    TrapType trap_type = 3;
 }
 
 message EquipMsg

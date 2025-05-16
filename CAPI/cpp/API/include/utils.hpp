@@ -158,7 +158,7 @@ namespace Proto2THUAI8
     };
 
     inline std::map<protobuf::AdditionResourceType, THUAI8::AdditionResourceType> additionResourceTypeDict{
-        {protobuf::AdditionResourceType::NULL_ADDITION_RESOURCE_TYPE, THUAI8::AdditionResourceType::NullAdditionReourceType},
+        {protobuf::AdditionResourceType::NULL_ADDITION_RESOURCE_TYPE, THUAI8::AdditionResourceType::NullAdditionResourceType},
         {protobuf::AdditionResourceType::LIFE_POOL1, THUAI8::AdditionResourceType::LIFE_POOL1},
         {protobuf::AdditionResourceType::LIFE_POOL2, THUAI8::AdditionResourceType::LIFE_POOL2},
         {protobuf::AdditionResourceType::LIFE_POOL3, THUAI8::AdditionResourceType::LIFE_POOL3},
@@ -316,9 +316,9 @@ namespace Proto2THUAI8
     {
         auto economyResource = std::make_shared<THUAI8::EconomyResource>();
         economyResource->economyResourceType = economyResourceTypeDict.at(EconomyResourceMsg.economy_resource_type());
-        economyResource->economyResourceState = economyResourceStateDict.at(EconomyResourceMsg.economy_resource_state());
-        economyResource->x = EconomyResourceMsg.x();
-        economyResource->y = EconomyResourceMsg.y();
+        //economyResource->economyResourceState = economyResourceStateDict.at(EconomyResourceMsg.economy_resource_state());
+        //economyResource->x = EconomyResourceMsg.x();
+        //economyResource->y = EconomyResourceMsg.y();
         return economyResource;
     }
 
@@ -326,9 +326,9 @@ namespace Proto2THUAI8
     {
         auto additionResource = std::make_shared<THUAI8::AdditionResource>();
         additionResource->additionResourceType = additionResourceTypeDict.at(AdditionResourceMsg.addition_resource_type());
-        additionResource->additionResourceState = additionResourceStateDict.at(AdditionResourceMsg.addition_resource_state());
-        additionResource->x = AdditionResourceMsg.x();
-        additionResource->y = AdditionResourceMsg.y();
+        //additionResource->additionResourceState = additionResourceStateDict.at(AdditionResourceMsg.addition_resource_state());
+        //additionResource->x = AdditionResourceMsg.x();
+        //additionResource->y = AdditionResourceMsg.y();
         return additionResource;
     }
 
@@ -463,7 +463,7 @@ namespace THUAI8Proto
     };
 
     inline std::map<THUAI8::AdditionResourceType, protobuf::AdditionResourceType> additionResourceTypeDict{
-        {THUAI8::AdditionResourceType::NullAdditionReourceType, protobuf::AdditionResourceType::NULL_ADDITION_RESOURCE_TYPE},
+        {THUAI8::AdditionResourceType::NullAdditionResourceType, protobuf::AdditionResourceType::NULL_ADDITION_RESOURCE_TYPE},
         {THUAI8::AdditionResourceType::LIFE_POOL1, protobuf::AdditionResourceType::LIFE_POOL1},
         {THUAI8::AdditionResourceType::LIFE_POOL2, protobuf::AdditionResourceType::LIFE_POOL2},
         {THUAI8::AdditionResourceType::LIFE_POOL3, protobuf::AdditionResourceType::LIFE_POOL3},
@@ -587,6 +587,15 @@ namespace THUAI8Proto
         return constructMsg;
     }
 
+    inline protobuf::ConstructTrapMsg THUAI82ProtobufConstructTrapMsg(int64_t character_id, int64_t team_id, THUAI8::TrapType trap_type)
+    {
+        protobuf::ConstructTrapMsg constructTrapMsg;
+        constructTrapMsg.set_character_id(character_id);
+        constructTrapMsg.set_team_id(team_id);
+        constructTrapMsg.set_trap_type(protobuf::TrapType(trap_type));
+        return constructTrapMsg;
+    }
+
     inline protobuf::CharacterMsg THUAI82ProtobufCharacterMsg(int64_t character_id, int64_t team_id, THUAI8::CharacterType character_type)
     {
         protobuf::CharacterMsg characterMsg;
@@ -615,6 +624,23 @@ namespace THUAI8Proto
         attackMsg.set_attacked_character_id(attacked_team_id);
         return attackMsg;
     }
+
+    inline protobuf::AttackConstructionMsg THUAI82ProtobufAttackConstructionMsg(int64_t team_id, int64_t player_id)
+    {
+        protobuf::AttackConstructionMsg attackConstructionMsg;
+        attackConstructionMsg.set_character_id(player_id);
+        attackConstructionMsg.set_team_id(team_id);
+        return attackConstructionMsg;
+    }
+
+    inline protobuf::AttackAdditionResourceMsg THUAI82ProtobufAttackAdditionResourceMsg(int64_t team_id, int64_t player_id)
+    {
+        protobuf::AttackAdditionResourceMsg attackAdditionResourceMsg;
+        attackAdditionResourceMsg.set_character_id(player_id);
+        attackAdditionResourceMsg.set_team_id(team_id);
+        return attackAdditionResourceMsg;
+    }
+
 }  // namespace THUAI8Proto
 
 namespace Time
