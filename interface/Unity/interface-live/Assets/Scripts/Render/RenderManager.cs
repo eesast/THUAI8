@@ -5,12 +5,16 @@ using Protobuf;
 using System;
 using TMPro;
 using System.Linq;
+using UnityEngine.UI;
 
 public class RenderManager : SingletonMono<RenderManager>
 {
     // int cnt = 0;
     bool callTimeOver = false;
-    public TextMeshProUGUI gameTime, score, economy, fi;
+    public TextMeshProUGUI scoreBud, economyBud, hpBud;
+    public TextMeshProUGUI scoreMon, economyMon, hpMon;
+    public Slider hpBarBud, hpBarMon;
+    public TextMeshProUGUI gameTime, fps;
 
     void Start()
     {
@@ -22,7 +26,7 @@ public class RenderManager : SingletonMono<RenderManager>
         if (CoreParam.frameQueue.GetSize() < 50)
         {
             StartCoroutine(CalTimems(25));
-            fi.text = "fi: " + 25;
+            fps.text = "FPS: " + 25;
         }
         else
         {
@@ -31,7 +35,7 @@ public class RenderManager : SingletonMono<RenderManager>
                 CoreParam.frameQueue.GetValue();
             }
             StartCoroutine(CalTimems(1250 / CoreParam.frameQueue.GetSize()));
-            fi.text = "fi: " + (1250 / CoreParam.frameQueue.GetSize());
+            fps.text = "FPS: " + (1250 / CoreParam.frameQueue.GetSize());
         }
         if (!CoreParam.initialized && CoreParam.firstFrame != null)
         {
@@ -120,6 +124,7 @@ public class RenderManager : SingletonMono<RenderManager>
             ShowObject(CoreParam.economyResources, CoreParam.economyResourcesG);
             ShowObject(CoreParam.additionResources, CoreParam.additionResourcesG);
             ShowAllMessage(CoreParam.currentFrame);
+            // global hp bar logic in CharacterBase.cs
         }
     }
     void ShowMap(MessageOfMap map)
@@ -239,9 +244,12 @@ public class RenderManager : SingletonMono<RenderManager>
     void ShowAllMessage(MessageToClient messageToClient)
     {
         if (messageToClient == null) return;
-        gameTime.text = "GameTime:" + messageToClient.AllMessage.GameTime;
-        score.text = "Score(Buddhists:Monsters):" + messageToClient.AllMessage.BuddhistsTeamScore + ":" + messageToClient.AllMessage.MonstersTeamScore;
-        economy.text = "Economy(Buddhists:Monsters):" + messageToClient.AllMessage.BuddhistsTeamEconomy + ":" + messageToClient.AllMessage.MonstersTeamEconomy;
+        int time = messageToClient.AllMessage.GameTime;
+        gameTime.text = $"{time / 60000:00} : {time % 60000 / 1000:00}.{time % 1000:000}";
+        scoreBud.text = "得分：" + messageToClient.AllMessage.BuddhistsTeamScore;
+        scoreMon.text = "得分：" + messageToClient.AllMessage.MonstersTeamScore;
 
+        economyBud.text = "经济：" + messageToClient.AllMessage.BuddhistsTeamEconomy;
+        economyMon.text = "经济：" + messageToClient.AllMessage.MonstersTeamEconomy;
     }
 }

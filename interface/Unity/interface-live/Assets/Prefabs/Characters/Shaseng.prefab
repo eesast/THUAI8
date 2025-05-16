@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 0
-  characterType: 0
+  characterType: 4
 --- !u!114 &-6508571389535706540
 MonoBehaviour:
   m_ObjectHideFlags: 0
