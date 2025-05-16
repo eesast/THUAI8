@@ -333,7 +333,7 @@ bool Communication::AttackAdditionResource(int64_t playerID, int64_t teamID)
     }
     protobuf::BoolRes reply;
     ClientContext context;
-    auto request = THUAI8Proto::THUAI82ProtobufAttackAdditionResourceMsg(playerID, teamID);
+    auto request = THUAI8Proto::THUAI82ProtobufAttackAdditionResourceMsg(teamID, playerID);
     auto status = THUAI8Stub->AttackAdditionResource(&context, request, &reply);
     if (status.ok())
         return reply.act_success();
