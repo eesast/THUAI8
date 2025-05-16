@@ -2,6 +2,8 @@ using System;
 using Protobuf;
 using UnityEngine;
 using TMPro;
+using Spine.Unity;
+using UnityEngine.UI;
 
 public class CharacterBase : MonoBehaviour
 {
@@ -18,13 +20,24 @@ public class CharacterBase : MonoBehaviour
     public int maxHp => ParaDefine.GetInstance().GetMaxHp(characterType);
     private Transform hpBar;
     private TextMeshPro hpText;
+    private Slider globalHpBar;
+    private TextMeshProUGUI globalHpText;
     private Animator animator;
     private Transform stateIcons;
+    private Transform visual;
+    private Vector3 visualScaleInitial;
 
     void UpdateHpBar()
     {
-        hpBar.localScale = new Vector3(Mathf.Clamp01((float)message.Hp / maxHp), 1, 1);
-        hpText.text = $"{message.Hp} / {maxHp}";
+        float ratio = Mathf.Clamp01((float)message.Hp / maxHp);
+        string text = $"{message.Hp} / {maxHp}";
+        hpBar.localScale = new Vector3(ratio, 1, 1);
+        hpText.text = text;
+        if (globalHpBar != null)
+        {
+            globalHpBar.value = ratio;
+            globalHpText.text = "HP: " + text;
+        }
     }
 
     void Start()
@@ -33,16 +46,23 @@ public class CharacterBase : MonoBehaviour
 
         hpBar = transform.Find("HpBar").Find("HpBarFillWrapper");
         hpText = transform.Find("HpBar").Find("HpBarText").GetComponent<TextMeshPro>();
-        try
+        if (characterType == CharacterType.TangSeng)
         {
-            UpdateHpBar();
+            globalHpBar = RenderManager.GetInstance().hpBarBud;
+            globalHpText = RenderManager.GetInstance().hpBud;
         }
-        catch (Exception e)
+        if (characterType == CharacterType.JiuLing)
         {
-            Debug.LogError(e);
+            globalHpBar = RenderManager.GetInstance().hpBarMon;
+            globalHpText = RenderManager.GetInstance().hpMon;
         }
 
         stateIcons = transform.Find("StateIcons");
+
+        visual = transform.GetComponentInChildren<SkeletonMecanim>().transform;
+        if (visual == null) visual = transform.Find("Appearance");
+        visualScaleInitial = visual.localScale;
+
     }
 
     void Update()
@@ -80,11 +100,11 @@ public class CharacterBase : MonoBehaviour
 
         if (message.FacingDirection > 0)
         {
-            transform.localScale = new Vector3(1, 1, 1);
+            visual.localScale = visualScaleInitial;
         }
         else if (message.FacingDirection < 0)
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            visual.localScale = Vector3.Scale(visualScaleInitial, new Vector3(-1, 1, 1));
         }
     }
 }
