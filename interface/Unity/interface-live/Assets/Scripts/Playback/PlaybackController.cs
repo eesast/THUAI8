@@ -1,7 +1,10 @@
+using Newtonsoft.Json;
 using Playback;
 using Protobuf;
+using Spine;
 using System;
 using System.Collections;
+using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
@@ -14,11 +17,11 @@ public class PlaybackController : SingletonMono<PlaybackController>
     MessageToClient responseVal;
     MessageReader reader;
     public static bool isInitial;
-#if UNITY_EDITOR
+#if !UNITY_EDITOR
     public static string fileName;
-#else
-    public static string fileName = "E://playback.thuaipb";
     public static bool fileNameFlag;
+#else
+    public static string fileName = "http://localhost/playback.thuaipb";
 #endif
     float frequency = 0.05f;
     float timer;
@@ -29,8 +32,8 @@ public class PlaybackController : SingletonMono<PlaybackController>
     IEnumerator WebReader()
     {
 #if !UNITY_EDITOR
-        // while (fileName == "" || !fileNameFlag)
-            // yield return 0;
+        while (fileName == "" || fileName == null || !fileNameFlag)
+            yield return 0;
 #endif
         // if (!CoreParam.fileName.EndsWith(PlayBackConstant.ExtendedName))
         //     CoreParam.fileName += PlayBackConstant.ExtendedName;
@@ -45,26 +48,13 @@ public class PlaybackController : SingletonMono<PlaybackController>
             yield break;
         }
         bytes = request.downloadHandler.data;
-        try
-        {
-            string str = System.Text.Encoding.UTF8.GetString(bytes);
-            print(str);
-        }
-        catch
-        {
-
-        }
+        print(System.Text.Encoding.UTF8.GetString(bytes));
         reader = new MessageReader(bytes);
         responseVal = reader.ReadOne();
         while (responseVal != null)
         {
-            // ChartControl.GetInstance().score1.Add(new Tuple<int, int>(responseVal.AllMessage.GameTime, responseVal.AllMessage.RedTeamScore));
-            // ChartControl.GetInstance().score2.Add(new Tuple<int, int>(responseVal.AllMessage.GameTime, responseVal.AllMessage.BlueTeamScore));
-            // ChartControl.GetInstance().energy1.Add(new Tuple<int, int>(responseVal.AllMessage.GameTime, responseVal.AllMessage.RedTeamEnergy));
-            // ChartControl.GetInstance().energy2.Add(new Tuple<int, int>(responseVal.AllMessage.GameTime, responseVal.AllMessage.BlueTeamEnergy));
             responseVal = reader.ReadOne();
         }
-        // Debug.Log(ChartControl.GetInstance().score[0]);
         reader = new MessageReader(bytes);
     }
 
@@ -100,7 +90,6 @@ public class PlaybackController : SingletonMono<PlaybackController>
                 }
                 timer = frequency;
                 var responseVal = reader.ReadOne();
-                Debug.Log($"{responseVal}");
                 if (responseVal == null)
                 {
                     fileName = null;

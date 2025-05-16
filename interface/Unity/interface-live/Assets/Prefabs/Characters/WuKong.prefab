@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3459189079327081660}
   - component: {fileID: 3851711862201752148}
-  - component: {fileID: -8137487738867537893}
+  - component: {fileID: -3625013866011266829}
   - component: {fileID: 3351772394211269231}
   m_Layer: 6
   m_Name: WuKong
@@ -51,8 +51,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 0
-  characterType: 2
---- !u!114 &-8137487738867537893
+  characterType: 0
+--- !u!114 &-3625013866011266829
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -61,10 +61,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 369265814251635733}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 515cf190256e2214ea5daad3164a90b3, type: 3}
+  m_Script: {fileID: 11500000, guid: 9468a75a80676cc4cbf28c3bc4556e2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactType: 0
+  interactType: 3
   interactOption: 0
   tobeSelected: 0
   selected: 0
@@ -72,6 +72,7 @@ MonoBehaviour:
   tobeSelectedSign: {fileID: 5230180300230231966, guid: c35172cad03b3784c93db13d884b4bbc, type: 3}
   tobeseObj: {fileID: 0}
   seObj: {fileID: 0}
+  characterBase: {fileID: 0}
 --- !u!70 &3351772394211269231
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -77,7 +77,7 @@ public class RenderManager : SingletonMono<RenderManager>
                 CoreParam.map = obj.MapMessage;
                 break;
             case MessageOfObj.MessageOfObjOneofCase.CharacterMessage:
-                CoreParam.characters[obj.CharacterMessage.TeamId * 4 + obj.CharacterMessage.PlayerId - 1] = obj.CharacterMessage;
+                CoreParam.characters[obj.CharacterMessage.TeamId * 6 + obj.CharacterMessage.PlayerId - 1] = obj.CharacterMessage;
                 break;
             case MessageOfObj.MessageOfObjOneofCase.TeamMessage:
                 CoreParam.teams[obj.TeamMessage.TeamId] = obj.TeamMessage;

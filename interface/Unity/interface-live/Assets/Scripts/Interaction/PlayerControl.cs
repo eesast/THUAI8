@@ -7,8 +7,8 @@ public class PlayerControl : SingletonMono<PlayerControl>
 {
     public LayerMask interactableLayer;
     Collider2D raycaster;
-    public List<InteractBase> tobeSelectedInt, selectedInt;
-    public bool selectingAll;
+    public InteractBase tobeSelectedInt, selectedInt;
+    private CharacterControl selectedCharacter => selectedInt as CharacterControl;
     public List<InteractControl.InteractOption> enabledInteract;
     public InteractControl.InteractOption selectedOption;
     public float longClickTime, longClickTimer;
@@ -18,13 +18,10 @@ public class PlayerControl : SingletonMono<PlayerControl>
     void Update()
     {
         // testInput();
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && selectedInt != null)
         {
-            foreach (InteractBase i in selectedInt)
-            {
-                i.selected = false;
-            }
-            selectedInt.Clear();
+            selectedInt.selected = false;
+            selectedInt = null;
         }
         if (Input.GetMouseButtonDown(0))
         {
@@ -38,22 +35,9 @@ public class PlayerControl : SingletonMono<PlayerControl>
         CheckInteract();
         UpdateInteractList();
         Interact();
-        // ShipAttack();
-    }
-    void TestInput()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-            selectedOption = InteractControl.InteractOption.Produce;
-        if (Input.GetKeyDown(KeyCode.C))
-            selectedOption = InteractControl.InteractOption.ConstructBarracks;
     }
     void CheckInteract()
     {
-        for (int i = 0; i < selectedInt.Count; i++)
-            if (!selectedInt[i])
-            {
-                selectedInt.Remove(selectedInt[i]);
-            }
         try
         {
             raycaster = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition), interactableLayer);
@@ -65,87 +49,54 @@ public class PlayerControl : SingletonMono<PlayerControl>
         if (raycaster)
         {
             Debug.Log("raycasthit");
-            if (!selectingAll)
+            InteractBase intObj = raycaster.GetComponentInParent<InteractBase>();
+            intObj.tobeSelected = true;
+            tobeSelectedInt = intObj;
+            if (Input.GetMouseButtonDown(0))
             {
-                InteractBase intObj = raycaster.GetComponentInParent<InteractBase>();
-                intObj.tobeSelected = true;
-                if (!tobeSelectedInt.Contains(intObj))
-                {
-                    tobeSelectedInt.Add(intObj);
-                }
-                if (Input.GetMouseButtonDown(0))
-                {
-                    if (!Input.GetKey(KeyCode.LeftShift))
-                    {
-
-                        foreach (InteractBase i in selectedInt)
-                        {
-                            i.selected = false;
-                        }
-                        selectedInt.Clear();
-                    }
-                    intObj.tobeSelected = false;
-                    tobeSelectedInt.Remove(intObj);
-                    intObj.selected = true;
-                    if (!selectedInt.Contains(intObj))
-                    {
-                        selectedInt.Add(intObj);
-                    }
-                }
-                if (Input.GetMouseButtonDown(1))
-                {
-                    // CharacterMove(raycaster.transform.position);
-                }
+                if (selectedInt != null)
+                    selectedInt.selected = false;
+                intObj.tobeSelected = false;
+                intObj.selected = true;
+                selectedInt = intObj;
+            }
+            if (Input.GetMouseButtonDown(1))
+            {
+                selectedCharacter?.Move(raycaster.transform.position);
             }
         }
         else
         {
-            if (!selectingAll)
+            if (tobeSelectedInt != null)
+                tobeSelectedInt.tobeSelected = false;
+            tobeSelectedInt = null;
+            if (!EventSystem.current.IsPointerOverGameObject())
             {
-                foreach (InteractBase i in tobeSelectedInt)
+                if (Input.GetMouseButtonUp(0) && longClickTimer > 0)
                 {
-                    i.tobeSelected = false;
+                    // selectedCharacter?.Attack();
                 }
-                tobeSelectedInt.Clear();
-                // Debug.Log("clear" + tobeSelectedInt.Count);
-                if (!EventSystem.current.IsPointerOverGameObject())
+                if (Input.GetMouseButton(0))
                 {
-                    if (Input.GetMouseButtonUp(0) && longClickTimer > 0)
-                    {
-                        // CharacterAttack();
-                    }
-                    if (Input.GetMouseButton(0))
-                    {
-                        Camera.main.transform.position = ((Vector3)cameraPos - Camera.main.ScreenToWorldPoint(Input.mousePosition) + (Vector3)Camera.main.ScreenToWorldPoint(clickPnt));
-                        Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -10);
-                    }
+                    Camera.main.transform.position = (Vector3)cameraPos - Camera.main.ScreenToWorldPoint(Input.mousePosition) + (Vector3)Camera.main.ScreenToWorldPoint(clickPnt);
+                    Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -10);
                 }
-                if (Input.GetMouseButtonDown(1))
-                {
-                    // CharacterMove(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-                }
-                if (Input.GetKeyDown(KeyCode.Q))
-                {
-                    // CharacterSkill();
-                }
+            }
+            if (Input.GetMouseButtonDown(1))
+            {
+                selectedCharacter?.Move(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            }
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                selectedCharacter?.CastSkill();
             }
         }
     }
     void UpdateInteractList()
     {
-        if (selectedInt.Count > 0)
+        if (selectedInt?.interactType != null)
         {
-            // Debug.Log(selectedInt[0].interactType + "   " + InteractControl.GetInstance().interactOptions[selectedInt[0].interactType]);
-            enabledInteract = new List<InteractControl.InteractOption>(InteractControl.GetInstance().interactOptions[selectedInt[0].interactType]);
-            // Debug.Log(InteractControl.GetInstance().interactOptions[InteractControl.InteractType.Base].Count);
-            foreach (InteractBase interactBase in selectedInt)
-            {
-                for (int i = 0; i < enabledInteract.Count; i++)
-                    if (!InteractControl.GetInstance().interactOptions[interactBase.interactType].Contains(enabledInteract[i]))
-                    {
-                        enabledInteract.Remove(enabledInteract[i]);
-                    }
-            }
+            enabledInteract = new List<InteractControl.InteractOption>(InteractControl.GetInstance().interactOptions[selectedInt.interactType]);
         }
         else
         {
@@ -155,36 +106,9 @@ public class PlayerControl : SingletonMono<PlayerControl>
     }
     void Interact()
     {
-        foreach (InteractBase interactBase in selectedInt)
-        {
-            interactBase.interactOption = selectedOption;
-        }
+        if (selectedInt == null)
+            return;
+        selectedInt.interactOption = selectedOption;
         selectedOption = InteractControl.InteractOption.None;
     }
-    /*void CharacterMove(Vector2 movePos)
-    {
-        foreach (InteractBase interactBase in selectedInt)
-        {
-            interactBase.enableMove = true;
-            interactBase.moveOption = movePos;
-        }
-    }
-    void CharacterAttack()
-    {
-        foreach (InteractBase interactBase in selectedInt)
-        {
-            interactBase.attackOption = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        }
-    }
-    void CharacterSkill()
-    {
-        foreach (InteractBase interactBase in selectedInt)
-        {
-            interactBase.attackOption = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        }
-    }
-    public void ButtonInteract(InteractControl.InteractOption option)
-    {
-        selectedOption = option;
-    } */
 }

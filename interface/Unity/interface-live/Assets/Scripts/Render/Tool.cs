@@ -30,6 +30,10 @@ public static class Tool
     // {
     //     return new Vector2(-0.5f + cell.y, 51.5f - cell.x);
     // }
+    public static (float, float) UxyToGrid(Vector2 uxy)
+    {
+        return (1000 * (50.5f - uxy.y), 1000 * (uxy.x + 0.5f));
+    }
     public static bool CheckBeside(Vector2 grid, Vector2 cell)
     {
         if (Mathf.Abs(GridToCell(grid).x - cell.x) + Mathf.Abs(GridToCell(grid).y - cell.y) <= 2)

@@ -25,7 +25,7 @@ public class InputManager : SingletonMono<InputManager>
             }
             else if (playSpeedS[0] == '.')
                 inputDot = true;
-            playSpeedS = playSpeedS.Remove(0, 1);
+            playSpeedS = playSpeedS[1..];
         }
         PlaybackController.playSpeed = playSpeed > 0 ? playSpeed : 1;
         Debug.Log(PlaybackController.playSpeed);

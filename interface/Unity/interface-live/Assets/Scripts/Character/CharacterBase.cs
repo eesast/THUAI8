@@ -10,12 +10,6 @@ public class CharacterBase : MonoBehaviour
     public long ID;
     public CharacterType characterType;
     public MessageOfCharacter message => CoreParam.characters[ID];
-    public PlayerTeam GetTeamId() => (int)characterType switch
-    {
-        var x when x >= 1 && x <= 6 => PlayerTeam.BuddhistsTeam,
-        var x when x >= 7 && x <= 12 => PlayerTeam.MonstersTeam,
-        _ => PlayerTeam.NullTeam
-    };
     bool GetDeceased() => message.Hp <= 0 || message.CharacterActiveState == CharacterState.Deceased;
     public int maxHp => ParaDefine.GetInstance().GetMaxHp(characterType);
     private Transform hpBar;
@@ -68,7 +62,7 @@ public class CharacterBase : MonoBehaviour
     void Update()
     {
         UpdateHpBar();
-        switch (message.CharacterActiveState)
+        switch (message.CharacterPassiveState)
         {
             case CharacterState.Idle:
                 animator.SetBool("Running", false);
@@ -92,10 +86,10 @@ public class CharacterBase : MonoBehaviour
                 animator.SetTrigger("Die");
         }
 
-        if (message.CharacterPassiveState != CharacterState.NullCharacterState)
+        if (message.CharacterActiveState != CharacterState.NullCharacterState)
         {
             foreach (Transform icon in stateIcons)
-                icon.gameObject.SetActive(icon.name == message.CharacterPassiveState.ToString());
+                icon.gameObject.SetActive(icon.name == message.CharacterActiveState.ToString());
         }
 
         if (message.FacingDirection > 0)
