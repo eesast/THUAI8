@@ -20,5 +20,6 @@ public class UpdateManager : SingletonMono<UpdateManager>, IUpdateManager
         else
             CoreParam.frameQueue.Add(JsonConvert.DeserializeObject<MessageToClient>(jsonInfo, jSetting));
         CoreParam.cnt++;
+        Debug.Log("UpdateManager.UpdateMessageByJson()");
     }
 }
