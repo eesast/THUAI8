@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 0
-  characterType: 0
+  characterType: 7
 --- !u!114 &1969786959679261114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,9 +71,6 @@ MonoBehaviour:
   tobeSelectedSign: {fileID: 5230180300230231966, guid: c35172cad03b3784c93db13d884b4bbc, type: 3}
   tobeseObj: {fileID: 0}
   seObj: {fileID: 0}
-  moveOption: {x: 0, y: 0}
-  attackOption: {x: 0, y: 0}
-  enableMove: 0
 --- !u!70 &-3958589337943537355
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

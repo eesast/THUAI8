@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 515cf190256e2214ea5daad3164a90b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactType: 3
+  interactType: 0
   interactOption: 0
   tobeSelected: 0
   selected: 0
@@ -229,9 +229,6 @@ MonoBehaviour:
   tobeSelectedSign: {fileID: 5230180300230231966, guid: c35172cad03b3784c93db13d884b4bbc, type: 3}
   tobeseObj: {fileID: 0}
   seObj: {fileID: 0}
-  moveOption: {x: 0, y: 0}
-  attackOption: {x: 0, y: 0}
-  enableMove: 0
 --- !u!70 &2866894873969779143
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -275,6 +272,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 108675894147612591}
     m_Modifications:
+    - target: {fileID: 3748929285711189793, guid: f786d2796840d9c42a0a32d7518dd040, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748929285711189793, guid: f786d2796840d9c42a0a32d7518dd040, type: 3}
+      propertyPath: m_Color.g
+      value: 0.5485345
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748929285711189793, guid: f786d2796840d9c42a0a32d7518dd040, type: 3}
+      propertyPath: m_Color.r
+      value: 0.15294118
+      objectReference: {fileID: 0}
     - target: {fileID: 5826694835734124052, guid: f786d2796840d9c42a0a32d7518dd040, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
