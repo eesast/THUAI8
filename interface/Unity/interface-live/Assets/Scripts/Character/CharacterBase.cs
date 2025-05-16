@@ -62,8 +62,9 @@ public class CharacterBase : MonoBehaviour
     void Update()
     {
         UpdateHpBar();
-        switch (message.CharacterPassiveState)
+        switch (message.CharacterActiveState)
         {
+            case CharacterState.NullCharacterState:
             case CharacterState.Idle:
                 animator.SetBool("Running", false);
                 break;
@@ -86,10 +87,10 @@ public class CharacterBase : MonoBehaviour
                 animator.SetTrigger("Die");
         }
 
-        if (message.CharacterActiveState != CharacterState.NullCharacterState)
+        if (message.CharacterPassiveState != CharacterState.NullCharacterState)
         {
             foreach (Transform icon in stateIcons)
-                icon.gameObject.SetActive(icon.name == message.CharacterActiveState.ToString());
+                icon.gameObject.SetActive(icon.name == message.CharacterPassiveState.ToString());
         }
 
         if (message.FacingDirection > 0)
