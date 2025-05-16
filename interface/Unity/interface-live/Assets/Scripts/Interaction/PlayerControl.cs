@@ -96,7 +96,7 @@ public class PlayerControl : SingletonMono<PlayerControl>
     {
         if (selectedInt?.interactType != null)
         {
-            enabledInteract = new List<InteractControl.InteractOption>(InteractControl.GetInstance().interactOptions[selectedInt.interactType]);
+            enabledInteract = new List<InteractControl.InteractOption>(InteractControl.Instance.interactOptions[selectedInt.interactType]);
         }
         else
         {

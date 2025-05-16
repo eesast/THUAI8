@@ -11,7 +11,7 @@ public class CharacterBase : MonoBehaviour
     public CharacterType characterType;
     public MessageOfCharacter message => CoreParam.characters[ID];
     bool GetDeceased() => message.Hp <= 0 || message.CharacterActiveState == CharacterState.Deceased;
-    public int maxHp => ParaDefine.GetInstance().GetData(characterType).maxHp;
+    public int maxHp => ParaDefine.Instance.GetData(characterType).maxHp;
     private Transform hpBar;
     private TextMeshPro hpText;
     private Slider globalHpBar;
@@ -42,13 +42,13 @@ public class CharacterBase : MonoBehaviour
         hpText = transform.Find("HpBar").Find("HpBarText").GetComponent<TextMeshPro>();
         if (characterType == CharacterType.TangSeng)
         {
-            globalHpBar = RenderManager.GetInstance().hpBarBud;
-            globalHpText = RenderManager.GetInstance().hpBud;
+            globalHpBar = RenderManager.Instance.hpBarBud;
+            globalHpText = RenderManager.Instance.hpBud;
         }
         if (characterType == CharacterType.JiuLing)
         {
-            globalHpBar = RenderManager.GetInstance().hpBarMon;
-            globalHpText = RenderManager.GetInstance().hpMon;
+            globalHpBar = RenderManager.Instance.hpBarMon;
+            globalHpText = RenderManager.Instance.hpMon;
         }
 
         stateIcons = transform.Find("StateIcons");

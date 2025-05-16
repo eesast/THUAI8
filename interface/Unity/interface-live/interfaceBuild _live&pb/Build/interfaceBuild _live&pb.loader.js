@@ -1001,7 +1001,7 @@ Module.UnityCache = function () {
   }
 
   function cachedFetch(resource, init) {
-    var unityCache = UnityCache.getInstance();
+    var unityCache = UnityCache.Instance;
     var url = resolveURL((typeof resource === "string") ? resource : resource.url);
     var cache = { enabled: isCacheEnabled(url, init) };
     if (init) {

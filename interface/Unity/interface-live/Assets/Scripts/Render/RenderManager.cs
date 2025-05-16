@@ -131,7 +131,7 @@ public class RenderManager : SingletonMono<RenderManager>
     {
         for (int row = 0; row < map.Height; row++)
             for (int col = 0; col < map.Width; col++)
-                ObjCreater.GetInstance().CreateObj(map.Rows[row].Cols[col], Tool.CellToUxy(row, col));
+                ObjCreater.Instance.CreateObj(map.Rows[row].Cols[col], Tool.CellToUxy(row, col));
     }
     void ShowCharacter(Dictionary<long, MessageOfCharacter> characters)
     {
@@ -142,13 +142,13 @@ public class RenderManager : SingletonMono<RenderManager>
                 if (!CoreParam.charactersG.ContainsKey(character.Key))
                 {
                     var characterG =
-                        ObjCreater.GetInstance().CreateObj(character.Value.CharacterType,
+                        ObjCreater.Instance.CreateObj(character.Value.CharacterType,
                             Tool.GridToUxy(character.Value.X, character.Value.Y),
                             /*Quaternion.Euler(0, 0, (float)character.Value.FacingDirection)*/
                             Quaternion.identity);
                     CoreParam.charactersG[character.Key] = characterG;
                     characterG.GetComponent<CharacterBase>().ID = character.Key;
-                    /*RendererControl.GetInstance().SetColToChild((PlayerTeam)(character.Value.TeamId + 1),
+                    /*RendererControl.Instance.SetColToChild((PlayerTeam)(character.Value.TeamId + 1),
                         CoreParam.charactersG[character.Key].transform);*/
                 }
                 else
@@ -181,7 +181,7 @@ public class RenderManager : SingletonMono<RenderManager>
                 if (!objectsG.ContainsKey(obj.Key))
                 {
                     objectsG[obj.Key] = CreateObject(obj.Value);
-                    // RendererControl.GetInstance().SetColToChild((PlayerTeam)(obj.Value.TeamId + 1),
+                    // RendererControl.Instance.SetColToChild((PlayerTeam)(obj.Value.TeamId + 1),
                     //     CoreParam.factoriesG[obj.Key].transform, 5);
                 }
                 else
@@ -208,7 +208,7 @@ public class RenderManager : SingletonMono<RenderManager>
 
     GameObject CreateObject<MessageOfObject>(MessageOfObject obj)
     {
-        var creater = ObjCreater.GetInstance();
+        var creater = ObjCreater.Instance;
         return obj switch
         {
             MessageOfBarracks barracks => creater.CreateObj(ConstructionType.Barracks,
