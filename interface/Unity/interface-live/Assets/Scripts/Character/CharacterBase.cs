@@ -2,6 +2,7 @@ using System;
 using Protobuf;
 using UnityEngine;
 using TMPro;
+using Spine.Unity;
 
 public class CharacterBase : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class CharacterBase : MonoBehaviour
     private TextMeshPro hpText;
     private Animator animator;
     private Transform stateIcons;
+    private Transform visual;
 
     void UpdateHpBar()
     {
@@ -43,6 +45,9 @@ public class CharacterBase : MonoBehaviour
         }
 
         stateIcons = transform.Find("StateIcons");
+
+        visual = transform.GetComponentInChildren<SkeletonMecanim>().transform;
+        if (visual == null) visual = transform.Find("Appearance");
     }
 
     void Update()
@@ -80,11 +85,11 @@ public class CharacterBase : MonoBehaviour
 
         if (message.FacingDirection > 0)
         {
-            transform.localScale = new Vector3(1, 1, 1);
+            visual.localScale = new Vector3(1, 1, 1);
         }
         else if (message.FacingDirection < 0)
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            visual.localScale = new Vector3(-1, 1, 1);
         }
     }
 }

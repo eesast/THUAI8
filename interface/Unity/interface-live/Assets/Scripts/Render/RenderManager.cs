@@ -238,8 +238,10 @@ public class RenderManager : SingletonMono<RenderManager>
 
     void ShowAllMessage(MessageToClient messageToClient)
     {
+        if (messageToClient == null) return;
         gameTime.text = "GameTime:" + messageToClient.AllMessage.GameTime;
         score.text = "Score(Buddhists:Monsters):" + messageToClient.AllMessage.BuddhistsTeamScore + ":" + messageToClient.AllMessage.MonstersTeamScore;
         economy.text = "Economy(Buddhists:Monsters):" + messageToClient.AllMessage.BuddhistsTeamEconomy + ":" + messageToClient.AllMessage.MonstersTeamEconomy;
+
     }
 }
