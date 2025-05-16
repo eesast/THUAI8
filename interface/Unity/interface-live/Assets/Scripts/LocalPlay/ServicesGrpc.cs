@@ -3,6 +3,7 @@
 //     source: Services.proto
 // </auto-generated>
 #pragma warning disable 0414, 1591
+#if !UNITY_WEBGL
 #region Designer generated code
 
 using grpc = global::Grpc.Core;
@@ -1104,3 +1105,4 @@ namespace Protobuf {
   }
 }
 #endregion
+#endif
