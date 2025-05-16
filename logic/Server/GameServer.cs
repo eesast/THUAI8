@@ -9,12 +9,15 @@ using Protobuf;
 using System.Collections.Concurrent;
 using Timothy.FrameRateTask;
 
-namespace Server {
-    public class ContestResult {
+namespace Server
+{
+    public class ContestResult
+    {
         public string status;
         public double[] scores;
     }
-    partial class GameServer : ServerBase {
+    partial class GameServer : ServerBase
+    {
         private readonly ConcurrentDictionary<long, (SemaphoreSlim, SemaphoreSlim)> semaDict0 = new(); //for spectator and team0 player
         private readonly ConcurrentDictionary<long, (SemaphoreSlim, SemaphoreSlim)> semaDict1 = new();
         // private object semaDictLock = new();
@@ -36,10 +39,13 @@ namespace Server {
         private readonly MessageWriter? mwr = null;
         private readonly object spectatorJoinLock = new();
 
-        public void StartGame() {
+        public void StartGame()
+        {
             if (game.GameMap.Timer.IsGaming) return;
-            foreach (var team in communicationToGameID) {
-                foreach (var id in team) {
+            foreach (var team in communicationToGameID)
+            {
+                foreach (var id in team)
+                {
                     if (id == GameObj.invalidID) return;//如果有未初始化的玩家，不开始游戏
                 }
             }
@@ -47,40 +53,50 @@ namespace Server {
             CreateStartFile();
             game.StartGame((int)options.GameTimeInSecond * 1000);
             Thread.Sleep(1);
-            new Thread(() => {
+            new Thread(() =>
+            {
                 bool flag = true;
                 new FrameRateTaskExecutor<int>
                 (
                     () => game.GameMap.Timer.IsGaming,
-                    () => {
-                        if (flag == true) {
+                    () =>
+                    {
+                        if (flag == true)
+                        {
                             ReportGame(GameState.GameStart);
                             flag = false;
-                        } else ReportGame(GameState.GameRunning);
+                        }
+                        else ReportGame(GameState.GameRunning);
                     },
                     SendMessageToClientIntervalInMilliseconds,
-                    () => {
+                    () =>
+                    {
                         ReportGame(GameState.GameEnd);  // 最后发一次消息，唤醒发消息的线程，防止发消息的线程由于有概率处在 Wait 状态而卡住
                         OnGameEnd();
                         return 0;
                     }
                 ).Start();
-            }) { IsBackground = true }.Start();
+            })
+            { IsBackground = true }.Start();
         }
 
-        public void CreateStartFile() {
-            if (options.StartLockFile != DefaultArgumentOptions.FileName) {
+        public void CreateStartFile()
+        {
+            if (options.StartLockFile != DefaultArgumentOptions.FileName)
+            {
                 using var _ = File.Create(options.StartLockFile);
                 GameServerLogging.logger.ConsoleLog("Successfully Created StartLockFile!");
             }
         }
 
-        public override void WaitForEnd() {
+        public override void WaitForEnd()
+        {
             endGameSem.Wait();
             mwr?.Dispose();
         }
 
-        private void SaveGameResult(string path) {
+        private void SaveGameResult(string path)
+        {
             Dictionary<string, int> result = [];
             int[] score = GetScore();
             result.Add("Disciple Team", score[0]);
@@ -94,10 +110,13 @@ namespace Server {
         protected void SendGameResult(int[] scores, bool crashed = false)		// 天梯的 Server 给网站发消息记录比赛结果
         {
             string? url2 = Environment.GetEnvironmentVariable("FINISH_URL");
-            if (url2 == null) {
+            if (url2 == null)
+            {
                 GameServerLogging.logger.ConsoleLog("Null FINISH_URL!");
                 return;
-            } else {
+            }
+            else
+            {
                 httpSender.Url = url2;
                 httpSender.Token = options.Token;
             }
@@ -105,11 +124,13 @@ namespace Server {
             string[][] player_role = new string[2][];
             player_role[0] = new string[6];
             player_role[1] = new string[6];
-            foreach (var team in game.TeamList) {
+            foreach (var team in game.TeamList)
+            {
                 int count = 0;
                 List<Preparation.Utility.CharacterType> list;
                 list = team.CharacterPool.Travel((character) => character.CharacterType);
-                foreach (var type in list) {
+                foreach (var type in list)
+                {
                     player_role[team.TeamID][count] = type.ToString();
                     count++;
                 }
@@ -117,26 +138,34 @@ namespace Server {
             httpSender?.SendHttpRequest(scores, state, player_role).Wait();
         }
 
-        protected double[] PullScore(double[] scores) {
+        protected double[] PullScore(double[] scores)
+        {
             string? url2 = Environment.GetEnvironmentVariable("SCORE_URL");
-            if (url2 != null) {
+            if (url2 != null)
+            {
                 httpSender.Url = url2;
                 httpSender.Token = options.Token;
                 double[] org = httpSender.GetLadderScore(scores).Result;
-                if (org.Length == 0) {
+                if (org.Length == 0)
+                {
                     GameServerLogging.logger.ConsoleLog("Error: No data returned from the web!");
                     return new double[0];
-                } else {
+                }
+                else
+                {
                     double[] final = LadderCalculate(org, scores);
                     return final;
                 }
-            } else {
+            }
+            else
+            {
                 GameServerLogging.logger.ConsoleLog("Null SCORE_URL Environment!");
                 return new double[0];
             }
         }
 
-        protected static double[] LadderCalculate(double[] oriScores, double[] competitionScores) {
+        protected static double[] LadderCalculate(double[] oriScores, double[] competitionScores)
+        {
             // 调整顺序，让第一项成为获胜者，便于计算
             bool scoresReverse = false; // 顺序是否需要交换
             if (competitionScores[0] < competitionScores[1])      // 第一项为落败者
@@ -187,7 +216,8 @@ namespace Server {
             return resScore;
         }
 
-        private void OnGameEnd() {
+        private void OnGameEnd()
+        {
             game.ClearAllLists();
             mwr?.Flush();
             if (options.ResultFileName != DefaultArgumentOptions.FileName)
@@ -196,18 +226,23 @@ namespace Server {
                              : options.ResultFileName + ".json");
             int[] scores = GetScore();
             double[] doubleArray = scores.Select(x => (double)x).ToArray();
-            if (options.Mode == 2) {
+            if (options.Mode == 2)
+            {
                 bool crash = false;
                 doubleArray = PullScore(doubleArray);
-                if (doubleArray.Length == 0) {
+                if (doubleArray.Length == 0)
+                {
                     crash = true;
                     GameServerLogging.logger.ConsoleLog("Error: No data returned from the web!");
-                } else
+                }
+                else
                     scores = doubleArray.Select(x => (int)x).ToArray();
                 endGameSem.Release();
                 Thread.Sleep(1);
                 SendGameResult(scores, crash);
-            } else if (options.Mode == 1) {
+            }
+            else if (options.Mode == 1)
+            {
                 int[] s = new int[2];
                 if (scores[1] > scores[0])
                     s = [0, 2];
@@ -221,29 +256,37 @@ namespace Server {
             }
         }
 
-        public void ReportGame(GameState gameState, bool requiredGaming = true) {
+        public void ReportGame(GameState gameState, bool requiredGaming = true)
+        {
             var gameObjList = game.GetGameObj();
             currentGameInfo = new();
-            lock (messageToAllClientsLock) {
-                switch (gameState) {
+            lock (messageToAllClientsLock)
+            {
+                switch (gameState)
+                {
                     case GameState.GameRunning:
                     case GameState.GameEnd:
                     case GameState.GameStart:
-                        if (gameState == GameState.GameStart || IsSpectatorJoin) {
+                        if (gameState == GameState.GameStart || IsSpectatorJoin)
+                        {
                             currentGameInfo.ObjMessage.Add(currentMapMsg);
                             IsSpectatorJoin = false;
                         }
                         long time = Environment.TickCount64;
-                        foreach (GameObj gameObj in gameObjList.Cast<GameObj>()) {
+                        foreach (GameObj gameObj in gameObjList.Cast<GameObj>())
+                        {
                             MessageOfObj? msg = CopyInfo.Auto(gameObj, time);
                             if (msg != null) currentGameInfo.ObjMessage.Add(msg);
                         }
-                        foreach (Base team in game.TeamList) {
+                        foreach (Base team in game.TeamList)
+                        {
                             MessageOfObj? msg = CopyInfo.Auto(team, time);
                             if (msg != null) currentGameInfo.ObjMessage.Add(msg);
                         }
-                        lock (newsLock) {
-                            foreach (var news in currentNews) {
+                        lock (newsLock)
+                        {
+                            foreach (var news in currentNews)
+                            {
                                 MessageOfObj? msg = CopyInfo.Auto(news);
                                 if (msg != null) currentGameInfo.ObjMessage.Add(msg);
                             }
@@ -257,41 +300,51 @@ namespace Server {
                         break;
                 }
             }
-            lock (spectatorJoinLock) {
-                foreach (var kvp in semaDict0) {
+            lock (spectatorJoinLock)
+            {
+                foreach (var kvp in semaDict0)
+                {
                     kvp.Value.Item1.Release();
                 }
-                foreach (var kvp in semaDict1) {
+                foreach (var kvp in semaDict1)
+                {
                     kvp.Value.Item1.Release();
                 }
                 // 若此时观战者加入，则死锁，所以需要 spectatorJoinLock
 
-                foreach (var kvp in semaDict0) {
+                foreach (var kvp in semaDict0)
+                {
                     kvp.Value.Item2.Wait();
                 }
-                foreach (var kvp in semaDict1) {
+                foreach (var kvp in semaDict1)
+                {
                     kvp.Value.Item2.Wait();
                 }
             }
         }
 
-        private bool PlayerDeceased(int playerID) {
+        private bool PlayerDeceased(int playerID)
+        {
             return game.GameMap.GameObjDict[GameObjType.CHARACTER].Cast<Character>()?.Find(
                 character => character.PlayerID == playerID && character.CharacterState2 == Preparation.Utility.CharacterState.DECEASED
                 ) != null;
         }
 
-        public override int[] GetMoney() {
+        public override int[] GetMoney()
+        {
             int[] money = new int[2]; // 0代表RedTeam，1代表BlueTeam
-            foreach (Base team in game.TeamList) {
+            foreach (Base team in game.TeamList)
+            {
                 money[(int)team.TeamID] = (int)game.GetTeamMoney(team.TeamID);
             }
             return money;
         }
 
-        public override int[] GetScore() {
+        public override int[] GetScore()
+        {
             int[] score = new int[2]; // 0代表RedTeam，1代表BlueTeam
-            foreach (Base team in game.TeamList) {
+            foreach (Base team in game.TeamList)
+            {
                 score[(int)team.TeamID] = (int)game.GetTeamScore(team.TeamID);
             }
             return score;
@@ -302,14 +355,17 @@ namespace Server {
             return (uint)playerID + 1; // ID从0-8,出生点从1-9
         }
 
-        private bool ValidPlayerID(long playerID) {
+        private bool ValidPlayerID(long playerID)
+        {
             if (playerID == 0 || (1 <= playerID && playerID <= options.CharacterCount))
                 return true;
             return false;
         }
 
-        private MessageOfAll GetMessageOfAll(int time) {
-            MessageOfAll msg = new() {
+        private MessageOfAll GetMessageOfAll(int time)
+        {
+            MessageOfAll msg = new()
+            {
                 GameTime = time
             };
             int[] score = GetScore();
@@ -323,44 +379,56 @@ namespace Server {
             return msg;
         }
 
-        private MessageOfMap MapMsg() {
-            MessageOfMap msgOfMap = new() {
+        private MessageOfMap MapMsg()
+        {
+            MessageOfMap msgOfMap = new()
+            {
                 Height = game.GameMap.Height,
                 Width = game.GameMap.Width
             };
-            for (int i = 0; i < game.GameMap.Height; i++) {
+            for (int i = 0; i < game.GameMap.Height; i++)
+            {
                 msgOfMap.Rows.Add(new MessageOfMap.Types.Row());
-                for (int j = 0; j < game.GameMap.Width; j++) {
+                for (int j = 0; j < game.GameMap.Width; j++)
+                {
                     msgOfMap.Rows[i].Cols.Add(Transformation.PlaceTypeToProto(game.GameMap.ProtoGameMap[i, j]));
                 }
             }
             return msgOfMap;
         }
 
-        public GameServer(ArgumentOptions options) {
+        public GameServer(ArgumentOptions options)
+        {
             this.options = options;
             if (options.MapResource == DefaultArgumentOptions.MapResource)
                 game = new(MapInfo.defaultMapStruct, options.TeamCount);
-            else {
+            else
+            {
                 // txt文本方案
-                if (options.MapResource.EndsWith(".txt")) {
-                    try {
+                if (options.MapResource.EndsWith(".txt"))
+                {
+                    try
+                    {
                         uint[,] map = new uint[GameData.MapRows, GameData.MapCols];
                         string? line;
                         int i = 0, j = 0;
                         using StreamReader sr = new(options.MapResource);
                         #region 读取txt地图
-                        while (!sr.EndOfStream && i < GameData.MapRows) {
-                            if ((line = sr.ReadLine()) != null) {
+                        while (!sr.EndOfStream && i < GameData.MapRows)
+                        {
+                            if ((line = sr.ReadLine()) != null)
+                            {
                                 string[] nums = line.Split(' ');
-                                foreach (string item in nums) {
+                                foreach (string item in nums)
+                                {
                                     if (item.Length > 1)//以兼容原方案
                                         map[i, j] = (uint)int.Parse(item);
                                     else
                                         //2022-04-22 by LHR 十六进制编码地图方案（防止地图编辑员瞎眼x
                                         map[i, j] = (uint)MapEncoder.Hex2Dec(char.Parse(item));
                                     j++;
-                                    if (j >= GameData.MapCols) {
+                                    if (j >= GameData.MapCols)
+                                    {
                                         j = 0;
                                         break;
                                     }
@@ -371,53 +439,70 @@ namespace Server {
                         #endregion
                         game = new(new(GameData.MapRows, GameData.MapCols, map), options.TeamCount);
                     }
-                    catch {
+                    catch
+                    {
                         game = new(MapInfo.defaultMapStruct, options.TeamCount);
                     }
                 }
                 // MapStruct二进制方案
-                else if (options.MapResource.EndsWith(".map")) {
-                    try {
+                else if (options.MapResource.EndsWith(".map"))
+                {
+                    try
+                    {
                         game = new(MapStruct.FromFile(options.MapResource), options.TeamCount);
                     }
-                    catch {
+                    catch
+                    {
                         game = new(MapInfo.defaultMapStruct, options.TeamCount);
                     }
-                } else {
+                }
+                else
+                {
                     game = new(MapInfo.defaultMapStruct, options.TeamCount);
                 }
             }
             currentMapMsg = new() { MapMessage = MapMsg() };
             playerNum = options.CharacterCount + options.HomeCount;
             communicationToGameID = new long[TeamCount][];
-            for (int i = 0; i < TeamCount; i++) {
+            for (int i = 0; i < TeamCount; i++)
+            {
                 communicationToGameID[i] = new long[options.CharacterCount + options.HomeCount];
             }
             //创建server时先设定待加入对象都是invalid
-            for (int team = 0; team < TeamCount; team++) {
+            for (int team = 0; team < TeamCount; team++)
+            {
                 communicationToGameID[team][0] = GameObj.invalidID; // team
-                for (int i = 1; i <= options.CharacterCount; i++) {
+                for (int i = 1; i <= options.CharacterCount; i++)
+                {
                     communicationToGameID[team][i] = GameObj.invalidID; //character
                 }
             }
 
-            if (options.FileName != DefaultArgumentOptions.FileName) {
-                try {
+            if (options.FileName != DefaultArgumentOptions.FileName)
+            {
+                try
+                {
                     mwr = new(options.FileName, options.TeamCount, options.CharacterCount);
                 }
-                catch {
+                catch
+                {
                     GameServerLogging.logger.ConsoleLog($"Error: Cannot create the playback file: {options.FileName}!");
                 }
             }
 
             string? token2 = Environment.GetEnvironmentVariable("TOKEN");
-            if (token2 == null) {
+            if (token2 == null)
+            {
                 GameServerLogging.logger.ConsoleLog("Null TOKEN Environment!");
-            } else
+            }
+            else
                 options.Token = token2;
-            if (options.Url != DefaultArgumentOptions.Url && options.Token != DefaultArgumentOptions.Token) {
+            if (options.Url != DefaultArgumentOptions.Url && options.Token != DefaultArgumentOptions.Token)
+            {
                 httpSender = new(options.Url, options.Token);
-            } else {
+            }
+            else
+            {
                 httpSender = new(DefaultArgumentOptions.Url, DefaultArgumentOptions.Token);
             }
         }
