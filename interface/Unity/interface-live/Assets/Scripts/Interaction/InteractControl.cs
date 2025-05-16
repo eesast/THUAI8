@@ -52,7 +52,7 @@ public class InteractControl : Singleton<InteractControl>
                 InteractOption.SummonBuddhistsCharacter3,
                 InteractOption.SummonBuddhistsCharacter4,
                 InteractOption.SummonBuddhistsCharacterSP,
-                }},
+            }},
         {InteractType.Monsters,
             new List<InteractOption>{
                 InteractOption.SummonMonstersCharacter1,
@@ -60,7 +60,7 @@ public class InteractControl : Singleton<InteractControl>
                 InteractOption.SummonMonstersCharacter3,
                 InteractOption.SummonMonstersCharacter4,
                 InteractOption.SummonMonstersCharacterSP,
-                }},
+            }},
         {InteractType.Character,
             new List<InteractOption>{
                 InteractOption.PurchaseSmallHealthPotion,
@@ -74,14 +74,14 @@ public class InteractControl : Singleton<InteractControl>
                 InteractOption.PurchaseInvisibilityPotion,
                 InteractOption.PurchaseBerserkPotion,
                 InteractOption.Produce,
-                }},
+            }},
         {InteractType.CharacterSP,
             new List<InteractOption>{
                 InteractOption.ConstructBarracks,
                 InteractOption.ConstructFarm,
                 InteractOption.ConstructTrap,
                 InteractOption.ConstructCage
-                }},
+            }},
     };
     public readonly Dictionary<InteractOption, string> textDic = new Dictionary<InteractOption, string>()
     {

@@ -13,10 +13,6 @@ public class PlayerControl : SingletonMono<PlayerControl>
     public InteractControl.InteractOption selectedOption;
     public float longClickTime, longClickTimer;
     public Vector2 clickPnt, cameraPos;
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void Update()
@@ -44,7 +40,7 @@ public class PlayerControl : SingletonMono<PlayerControl>
         Interact();
         // ShipAttack();
     }
-    void testInput()
+    void TestInput()
     {
         if (Input.GetKeyDown(KeyCode.P))
             selectedOption = InteractControl.InteractOption.Produce;
@@ -98,7 +94,7 @@ public class PlayerControl : SingletonMono<PlayerControl>
                 }
                 if (Input.GetMouseButtonDown(1))
                 {
-                    ShipMove(raycaster.transform.position);
+                    // CharacterMove(raycaster.transform.position);
                 }
             }
         }
@@ -116,7 +112,7 @@ public class PlayerControl : SingletonMono<PlayerControl>
                 {
                     if (Input.GetMouseButtonUp(0) && longClickTimer > 0)
                     {
-                        ShipAttack();
+                        // CharacterAttack();
                     }
                     if (Input.GetMouseButton(0))
                     {
@@ -126,7 +122,11 @@ public class PlayerControl : SingletonMono<PlayerControl>
                 }
                 if (Input.GetMouseButtonDown(1))
                 {
-                    ShipMove(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+                    // CharacterMove(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+                }
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    // CharacterSkill();
                 }
             }
         }
@@ -161,7 +161,7 @@ public class PlayerControl : SingletonMono<PlayerControl>
         }
         selectedOption = InteractControl.InteractOption.None;
     }
-    void ShipMove(Vector2 movePos)
+    /*void CharacterMove(Vector2 movePos)
     {
         foreach (InteractBase interactBase in selectedInt)
         {
@@ -169,7 +169,14 @@ public class PlayerControl : SingletonMono<PlayerControl>
             interactBase.moveOption = movePos;
         }
     }
-    void ShipAttack()
+    void CharacterAttack()
+    {
+        foreach (InteractBase interactBase in selectedInt)
+        {
+            interactBase.attackOption = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
+    }
+    void CharacterSkill()
     {
         foreach (InteractBase interactBase in selectedInt)
         {
@@ -179,5 +186,5 @@ public class PlayerControl : SingletonMono<PlayerControl>
     public void ButtonInteract(InteractControl.InteractOption option)
     {
         selectedOption = option;
-    }
+    } */
 }
