@@ -29,7 +29,7 @@ class CharacterAPI(ICharacterAPI, IGameTimer):
         pass
 
     def Play(self, ai: IAI) -> None:
-        ai.Play(self)
+        ai.CharacterPlay(self)
 
     # endregion
 
@@ -50,7 +50,7 @@ class CharacterAPI(ICharacterAPI, IGameTimer):
         return self.__logic.GetMessage()
 
     def GetFrameCount(self) -> int:
-        return self.__logic.GetFrameCount()
+        return self.__logic.GetCounter()
 
     def Wait(self) -> bool:
         return self.__logic.WaitThread()
@@ -157,7 +157,7 @@ class CharacterAPI(ICharacterAPI, IGameTimer):
         return self.__pool.submit(self.__logic.Produce)
 
     def GetSelfInfo(self) -> THUAI8.Character:
-        return cast(THUAI8.Character, self.__logic.CharacterGetSelfInfo())
+        return cast(THUAI8.Character, self.__logic.GetSelfInfo())
 
     def HaveView(self, targetX: int, targetY: int) -> bool:
         self_info = self.GetSelfInfo()
@@ -181,7 +181,7 @@ class TeamAPI(ITeamAPI, IGameTimer):
         pass
 
     def Play(self, ai: IAI) -> None:
-        ai.Play(self)
+        ai.TeamPlay(self)
 
     # endregion
 
@@ -202,7 +202,7 @@ class TeamAPI(ITeamAPI, IGameTimer):
         return self.__logic.GetMessage()
 
     def GetFrameCount(self) -> int:
-        return self.__logic.GetFrameCount()
+        return self.__logic.GetCounter()
 
     def Wait(self) -> bool:
         return self.__logic.WaitThread()
@@ -261,7 +261,7 @@ class TeamAPI(ITeamAPI, IGameTimer):
 
     # region 实现ITeamAPI接口
     def GetSelfInfo(self) -> THUAI8.Team:
-        return cast(THUAI8.Team, self.__logic.TeamGetSelfInfo())
+        return cast(THUAI8.Team, self.__logic.GetSelfInfo())
 
     def InstallEquipment(
         self, playerID: int, equipmentType: THUAI8.EquipmentType

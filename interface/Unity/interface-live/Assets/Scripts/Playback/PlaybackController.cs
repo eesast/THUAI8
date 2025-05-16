@@ -6,43 +6,72 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
-public class PlaybackController : MonoBehaviour
+public class PlaybackController : SingletonMono<PlaybackController>
 {
+    float GameTime = 0;
 
     byte[] bytes = null;
+    MessageToClient responseVal;
+    MessageReader reader;
+    public static bool isInitial;
+#if UNITY_EDITOR
+    public static string fileName;
+#else
+    public static string fileName = "E://playback.thuaipb";
+    public static bool fileNameFlag;
+#endif
+    float frequency = 0.05f;
+    float timer;
+    public static float playSpeed = 1;
 
-    IEnumerator WebReader(string uri)
+    public static bool isMap;
+
+    IEnumerator WebReader()
     {
-        //if (!fileName.EndsWith(PlayBackConstant.ExtendedName))
-        //{
-        //    fileName += PlayBackConstant.ExtendedName;
-        //}
-        //var uri = new Uri(Path.Combine(Application.streamingAssetsPath, fileName));
-        //Debug.Log(uri.AbsoluteUri);
-
-        //UnityWebRequest request = UnityWebRequest.Get(uri.AbsoluteUri);
-        UnityWebRequest request = UnityWebRequest.Get(uri);
-        request.timeout = 5;
+#if !UNITY_EDITOR
+        // while (fileName == "" || !fileNameFlag)
+            // yield return 0;
+#endif
+        // if (!CoreParam.fileName.EndsWith(PlayBackConstant.ExtendedName))
+        //     CoreParam.fileName += PlayBackConstant.ExtendedName;
+        Debug.Log("WebReader(), fileName = " + fileName);
+        UnityWebRequest request = UnityWebRequest.Get(fileName);
+        request.timeout = 10;
         yield return request.SendWebRequest();
 
-        if (request.error != null)
+        if (request.result == UnityWebRequest.Result.ProtocolError || request.result == UnityWebRequest.Result.ConnectionError)
         {
-            Debug.Log(request.error);
-            filename = null;
-            playSpeed = 1;
-            isMap = true;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            Debug.LogError(request.error);
             yield break;
         }
         bytes = request.downloadHandler.data;
+        try
+        {
+            string str = System.Text.Encoding.UTF8.GetString(bytes);
+            print(str);
+        }
+        catch
+        {
+
+        }
+        reader = new MessageReader(bytes);
+        responseVal = reader.ReadOne();
+        while (responseVal != null)
+        {
+            // ChartControl.GetInstance().score1.Add(new Tuple<int, int>(responseVal.AllMessage.GameTime, responseVal.AllMessage.RedTeamScore));
+            // ChartControl.GetInstance().score2.Add(new Tuple<int, int>(responseVal.AllMessage.GameTime, responseVal.AllMessage.BlueTeamScore));
+            // ChartControl.GetInstance().energy1.Add(new Tuple<int, int>(responseVal.AllMessage.GameTime, responseVal.AllMessage.RedTeamEnergy));
+            // ChartControl.GetInstance().energy2.Add(new Tuple<int, int>(responseVal.AllMessage.GameTime, responseVal.AllMessage.BlueTeamEnergy));
+            responseVal = reader.ReadOne();
+        }
+        // Debug.Log(ChartControl.GetInstance().score[0]);
+        reader = new MessageReader(bytes);
     }
 
     void Start()
     {
-        filename = "E:\\playback.thuaipb";
-        StartCoroutine(WebReader(filename));
-        timer = frequency;
-        isMap = true;
+        StartCoroutine(WebReader());
+        isInitial = false;
     }
 
     void Update()
@@ -62,7 +91,7 @@ public class PlaybackController : MonoBehaviour
                     }
                     catch (FileFormatNotLegalException)
                     {
-                        filename = null;
+                        fileName = null;
                         playSpeed = -1;
                         isMap = true;
                         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -74,7 +103,7 @@ public class PlaybackController : MonoBehaviour
                 Debug.Log($"{responseVal}");
                 if (responseVal == null)
                 {
-                    filename = null;
+                    fileName = null;
                     playSpeed = -1;
                     isMap = true;
                     SceneManager.LoadScene("GameEnd");
@@ -94,19 +123,11 @@ public class PlaybackController : MonoBehaviour
         }
         catch (NullReferenceException)
         {
-            filename = null;
+            fileName = null;
             playSpeed = 1;
             isMap = true;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
     }
-
-    public static string filename;
-    MessageReader reader;
-    float frequency = 0.05f;
-    float timer;
-    public static int playSpeed = 1;
-
-    public static bool isMap;
 }

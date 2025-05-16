@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1664420682501756573}
   - component: {fileID: 2372721880191122229}
   - component: {fileID: 7241663361833932806}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spine Mecanim GameObject (Tangseng)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +168,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1869514932473897703}
   - component: {fileID: 7733828242358921311}
-  m_Layer: 0
+  - component: {fileID: -3112907805005094301}
+  - component: {fileID: 3000841331146365115}
+  m_Layer: 6
   m_Name: Tangseng
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,6 +209,61 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 0
   characterType: 1
+--- !u!114 &-3112907805005094301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4640104279501151647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 515cf190256e2214ea5daad3164a90b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactType: 0
+  interactOption: 0
+  tobeSelected: 0
+  selected: 0
+  selectedSign: {fileID: 2362405429118444927, guid: d5b0673cd77cb7f43b9b1df36ceb2520, type: 3}
+  tobeSelectedSign: {fileID: 5230180300230231966, guid: c35172cad03b3784c93db13d884b4bbc, type: 3}
+  tobeseObj: {fileID: 0}
+  seObj: {fileID: 0}
+--- !u!70 &3000841331146365115
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4640104279501151647}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.7}
+  m_Size: {x: 0.7, y: 1.4}
+  m_Direction: 0
 --- !u!1001 &1146275977946985824
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -281,6 +338,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1869514932473897703}
     m_Modifications:
+    - target: {fileID: 3748929285711189793, guid: f786d2796840d9c42a0a32d7518dd040, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748929285711189793, guid: f786d2796840d9c42a0a32d7518dd040, type: 3}
+      propertyPath: m_Color.g
+      value: 0.5485345
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748929285711189793, guid: f786d2796840d9c42a0a32d7518dd040, type: 3}
+      propertyPath: m_Color.r
+      value: 0.15294118
+      objectReference: {fileID: 0}
     - target: {fileID: 5826694835734124052, guid: f786d2796840d9c42a0a32d7518dd040, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
