@@ -22,7 +22,7 @@ namespace Server
         public ushort TeamCount { get; set; } = 2;
 
         [Option("CharacterNum", Required = false, HelpText = "The max number of Character, 6 by default")]
-        public ushort CharacterCount { get; set; } = 1;
+        public ushort CharacterCount { get; set; } = 6;
 
         [Option('g', "gameTimeInSecond", Required = false, HelpText = "The time of the game in second, 10 minutes by default")]
         public uint GameTimeInSecond { get; set; } = GameData.GameDurationInSecond;
