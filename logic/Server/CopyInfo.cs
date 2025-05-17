@@ -139,7 +139,7 @@ namespace Server
                     X = economyresource.Position.x,
                     Y = economyresource.Position.y,
 
-                    Process = 100 - (int)economyresource.HP,
+                    Process = (10000 - (int)economyresource.HP) / 10000,
                     Id = 0,
                 }
             };
