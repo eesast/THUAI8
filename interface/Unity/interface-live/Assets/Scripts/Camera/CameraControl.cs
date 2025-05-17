@@ -56,7 +56,10 @@ public class CameraControl : MonoBehaviour
                 {
                     Vector3 targetPos = PlayerControl.Instance.selectedCharacter.transform.position;
                     targetPos.z = -10;
-                    transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * 10);
+                    if ((transform.position - targetPos).sqrMagnitude > 0.1f)
+                        transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * 10);
+                    else
+                        transform.position = targetPos;
                 }
                 break;
         }
