@@ -213,7 +213,7 @@ namespace Gaming
                 long nowtime = Environment.TickCount64;
                 if (nowtime - character.TrapTime >= 5000)
                 {
-                    character.TrapTime = long.MaxValue;
+                    character.TrapTime = 0;
                     character.trapped = false;
                 }
                 else
@@ -244,7 +244,7 @@ namespace Gaming
                 long nowtime = Environment.TickCount64;
                 if (nowtime - character.CageTime >= 30000)
                 {
-                    character.CageTime = long.MaxValue;
+                    character.CageTime = 0;
                     character.caged = false;
                 }
             }
@@ -253,7 +253,7 @@ namespace Gaming
                 long nowtime = Environment.TickCount64;
                 if (nowtime - character.BurnedTime >= 5000)
                 {
-                    character.BurnedTime = long.MaxValue;
+                    character.BurnedTime = 0;
                     character.burned = false;
                 }
                 else
@@ -272,7 +272,7 @@ namespace Gaming
                 long nowtime = Environment.TickCount64;
                 if (nowtime - character.BlindTime >= 5000)
                 {
-                    character.BlindTime = long.MaxValue;
+                    character.BlindTime = 0;
                     character.blind = false;
                 }
             }
@@ -281,7 +281,7 @@ namespace Gaming
                 long nowtime = Environment.TickCount64;
                 if (nowtime - character.StunnedTime >= 5000)
                 {
-                    character.StunnedTime = long.MaxValue;
+                    character.StunnedTime = 0;
                     character.stunned = false;
                 }
             }
@@ -290,7 +290,7 @@ namespace Gaming
                 long nowtime = Environment.TickCount64;
                 if (nowtime - character.HarmCutTime >= 15000)
                 {
-                    character.HarmCutTime = long.MaxValue;
+                    character.HarmCutTime = 0;
                     character.HarmCut = 0;
                 }
             }
@@ -309,7 +309,7 @@ namespace Gaming
                 if (nowtime - character.CrazyManTime >= (15 + character.CrazyManNum * 15))
                 {
                     character.AttackPower.SubPositiveV(5 + character.CrazyManNum * 5);
-                    character.CrazyManTime = long.MaxValue;
+                    character.CrazyManTime = 0;
                 }
             }
             public void CheckQuickStepTime(Character character)
@@ -318,7 +318,7 @@ namespace Gaming
                 if (nowtime - character.QuickStepTime >= 60000)
                 {
                     character.Shoes.SubPositiveV(500);
-                    character.QuickStepTime = long.MaxValue;
+                    character.QuickStepTime = 0;
                 }
             }
             public void CheckWideViewTime(Character character)
@@ -327,7 +327,7 @@ namespace Gaming
                 if (nowtime - character.WideViewTime >= 60000)
                 {
                     character.CanSeeAll = false;
-                    character.WideViewTime = long.MaxValue;
+                    character.WideViewTime = 0;
                 }
             }
             public void CheckPurified(Character character)
@@ -336,7 +336,7 @@ namespace Gaming
                 if (nowtime - character.PurifiedTime >= 30000)
                 {
                     character.Purified = false;
-                    character.PurifiedTime = long.MaxValue;
+                    character.PurifiedTime = 0;
 
                 }
             }
@@ -350,7 +350,7 @@ namespace Gaming
                         character.AttackPower.SetRNow(character.Occupation.AttackPower);
                         character.Shoes.SubPositiveV(GameData.CrazySpeed);
                         character.ATKFrequency = GameData.ATKFreq;
-                        character.BerserkTime = long.MaxValue;
+                        character.BerserkTime = 0;
                         character.IsBerserk = false;
                     }
                 }
@@ -363,7 +363,7 @@ namespace Gaming
                     if (nowtime - character.ShoesTime >= GameData.ShoesTime)
                     {
                         character.Shoes.SubPositiveV(GameData.ShoesSpeed);
-                        character.ShoesTime = long.MaxValue;
+                        character.ShoesTime = 0;
                         character.IsShoes = false;
                     }
                 }
@@ -377,7 +377,7 @@ namespace Gaming
                     if (nowtime - character.InvisibleTime >= GameData.InvisibleTime)
                     {
                         character.visible = true;
-                        character.InvisibleTime = long.MaxValue;
+                        character.InvisibleTime = 0;
                     }
                 }
                 if (nowtime >= GameData.SevenMinutes
