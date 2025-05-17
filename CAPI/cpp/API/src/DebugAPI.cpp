@@ -161,7 +161,7 @@ std::future<bool> CharacterDebugAPI::Common_Attack(int64_t attackedPlayerID)
 
 std::future<bool> CharacterDebugAPI::AttackConstruction()
 {
-    logger->info("AttackConstruction: teamID = {}, characterID = {}, called at {}ms", this->GetSelfInfo()->playerID, this->GetSelfInfo()->teamID, Time::TimeSinceStart(startPoint));
+    logger->info("AttackConstruction: teamID = {}, characterID = {}, called at {}ms", this->GetSelfInfo()->teamID, this->GetSelfInfo()->playerID, Time::TimeSinceStart(startPoint));
     return std::async(std::launch::async, [=]()
                       { auto result = logic.AttackConstruction(this->GetSelfInfo()->playerID, this->GetSelfInfo()->teamID);
                         if (!result)
@@ -171,7 +171,7 @@ std::future<bool> CharacterDebugAPI::AttackConstruction()
 
 std::future<bool> CharacterDebugAPI::AttackAdditionResource()
 {
-    logger->info("AttackAdditionResource: teamID = {}, characterID = {}, called at {}ms", this->GetSelfInfo()->playerID, this->GetSelfInfo()->teamID, Time::TimeSinceStart(startPoint));
+    logger->info("AttackAdditionResource: teamID = {}, characterID = {}, called at {}ms", this->GetSelfInfo()->teamID, this->GetSelfInfo()->playerID, Time::TimeSinceStart(startPoint));
     return std::async(std::launch::async, [=]()
                       { auto result = logic.AttackAdditionResource(this->GetSelfInfo()->playerID, this->GetSelfInfo()->teamID);
                         if (!result)
