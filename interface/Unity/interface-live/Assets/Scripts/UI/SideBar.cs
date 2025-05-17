@@ -30,6 +30,8 @@ public class SideBar : MonoBehaviour
         item.sideBar = this;
         item.gameObject.SetActive(true);
         addButton.transform.parent.SetAsLastSibling();
+        if (currentCharacters.Count == 6)
+            addButton.transform.parent.gameObject.SetActive(false);
         currentCharacters.Add(info);
     }
     public void ManualAdd(int index)
