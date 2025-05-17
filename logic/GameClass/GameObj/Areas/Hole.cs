@@ -17,7 +17,7 @@ public class HOLE(XY initPos)//trap无法被攻击销毁，因此不以construction为基类
     {
         int constructionspeed = GameData.TrapConstructSpeed;
         TeamID.SetROri(character.TeamID);
-        return HoleCost.AddVUseOtherRChange<long>(constructionspeed, character.MoneyPool.Money, 1) > 1;
+        return HoleCost.AddVUseOtherRChange<long>(constructionspeed / GameData.NumOfStepPerSecond, character.MoneyPool.Money, 1) > 0;
     }
     /*public bool InSquare(Character character, int range)
     {
