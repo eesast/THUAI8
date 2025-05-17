@@ -289,7 +289,7 @@ public class Character : Movable, ICharacter
     public bool GetEquipments(EquipmentType equiptype)
     {
         if (equiptype == EquipmentType.NULL_EQUIPMENT_TYPE) return false;
-        if (!Occupation.IsEquipValid(equiptype)) return false;
+        //if (!Occupation.IsEquipValid(equiptype)) return false;
         if (MoneyPool.Money < EquipmentFactory.FindCost(equiptype)) return false;
         switch (equiptype)
         {

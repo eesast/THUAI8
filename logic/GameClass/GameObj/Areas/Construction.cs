@@ -10,6 +10,7 @@ public class Construction(XY initPos)
 {
     public AtomicLong TeamID { get; } = new(long.MaxValue);
     public InVariableRange<long> HP { get; } = new(0, GameData.ConstructionHP);
+    public InVariableRange<long> Process { get; } = new(0, GameData.ConstructionProcess);//一个抽象值，用于记录建造进程
     public override bool IsRigid(bool args = false) => true;
     public override ShapeType Shape => ShapeType.SQUARE;
 
@@ -41,6 +42,7 @@ public class Construction(XY initPos)
                 {
                     case ConstructionType.BARRACKS:
                         HP.SetMaxV(GameData.BarracksHP);
+                        Process.SetMaxV(GameData.BarracksCost);
                         constructSpeed = GameData.BarracksConstructSpeed;
                         break;
 
@@ -50,6 +52,7 @@ public class Construction(XY initPos)
                         break;
                     case ConstructionType.FARM:
                         HP.SetMaxV(GameData.FarmHP);
+                        Process.SetMaxV(GameData.FarmCost);
                         constructSpeed = GameData.FarmConstructSpeed;
                         break;
                     case ConstructionType.HOLE:
@@ -68,8 +71,7 @@ public class Construction(XY initPos)
                 return false;
             }
         }
-
-        return HP.AddVUseOtherRChange<long>(constructSpeed, character.MoneyPool.Money, 0.05) > 0;//原程序constructSpeed的内涵问清楚后再改
+        return Process.AddVUseOtherRChange<long>(GameData.BaseConstructSpeed / GameData.NumOfStepPerSecond, character.MoneyPool.Money, 1) > 0;//原程序constructSpeed的内涵问清楚后再改
     }
     public bool BeAttacked(Character character)
     {
@@ -82,6 +84,7 @@ public class Construction(XY initPos)
         {
             long subHP = character.AttackPower;
             HP.SubPositiveV(subHP);
+            Process.SubPositiveV(subHP * 20);
         }
         return previousActivated;
     }
@@ -96,6 +99,7 @@ public class Construction(XY initPos)
         {
             long subHP = AP;
             HP.SubPositiveV(subHP);
+            Process.SubPositiveV(subHP * 20);
         }
         return previousActivated;
     }

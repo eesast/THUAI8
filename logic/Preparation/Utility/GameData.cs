@@ -147,6 +147,9 @@ namespace Preparation.Utility
                     gameObjType != GameObjType.OUTOFBOUNDBLOCK;
         }
         public const int ConstructionHP = 1000;//建筑物的默认HP
+        public const int ConstructionProcess = 10000;
+        public const int BarracksCost = 10000;
+        public const int FarmCost = 8000;
         public const int BarracksHP = 500;
         public const int SpringHP = 300;
         public const int FarmHP = 400;
@@ -158,6 +161,7 @@ namespace Preparation.Utility
         public const int TimerInterval = 1000;
         public const int TrapDamage = 20;
         public const int TrapTime = 5000;
+        public const int BaseConstructSpeed = 800;
 
         public static readonly XY PosNotInGame = new(1, 1);
 
