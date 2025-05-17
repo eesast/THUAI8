@@ -19,10 +19,10 @@ public class PlaybackController : SingletonMono<PlaybackController>
     public static bool isInitial;
 #if !UNITY_EDITOR
     public static string fileName;
-    public static bool fileNameFlag;
 #else
     public static string fileName = "http://localhost/playback.thuaipb";
 #endif
+    public static bool fileNameFlag;
     float frequency = 0.05f;
     float timer;
     public static float playSpeed = 1;

@@ -7,4 +7,5 @@ public class CharacterData : ScriptableObject
     public int maxHp;
     public int attackRange;
     public int skillRange;
+    public Sprite avatar;
 }

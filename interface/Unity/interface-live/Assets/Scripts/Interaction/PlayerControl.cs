@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+#if !UNITY_WEBGL
 public class PlayerControl : SingletonMono<PlayerControl>
 {
     public LayerMask interactableLayer;
@@ -12,26 +13,28 @@ public class PlayerControl : SingletonMono<PlayerControl>
     public List<InteractControl.InteractOption> enabledInteract;
     public InteractControl.InteractOption selectedOption;
     public float longClickTime, longClickTimer;
-    public Vector2 clickPnt, cameraPos;
+    public Vector2 mousePos, cameraPos;
 
     // Update is called once per frame
     void Update()
     {
-        // testInput();
         if (Input.GetKeyDown(KeyCode.E) && selectedInt != null)
         {
             selectedInt.selected = false;
             selectedInt = null;
         }
+
         if (Input.GetMouseButtonDown(0))
         {
             longClickTimer = longClickTime;
             cameraPos = Camera.main.transform.position;
-            clickPnt = Input.mousePosition;
         }
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
         longClickTimer -= Time.deltaTime;
         if (longClickTimer < 0)
             longClickTimer = 0;
+
         CheckInteract();
         UpdateInteractList();
         Interact();
@@ -72,23 +75,22 @@ public class PlayerControl : SingletonMono<PlayerControl>
             tobeSelectedInt = null;
             if (!EventSystem.current.IsPointerOverGameObject())
             {
-                if (Input.GetMouseButtonUp(0) && longClickTimer > 0)
+                if (Input.GetKeyDown(KeyCode.Q))
                 {
-                    // selectedCharacter?.Attack();
-                }
-                if (Input.GetMouseButton(0))
-                {
-                    Camera.main.transform.position = (Vector3)cameraPos - Camera.main.ScreenToWorldPoint(Input.mousePosition) + (Vector3)Camera.main.ScreenToWorldPoint(clickPnt);
-                    Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -10);
+                    if (tobeSelectedInt is CharacterControl tobeSelectedCharacter)
+                    {
+                        selectedCharacter?.Attack(tobeSelectedCharacter.characterBase);
+                    }
+
                 }
             }
             if (Input.GetMouseButtonDown(1))
             {
-                selectedCharacter?.Move(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+                selectedCharacter?.Move(mousePos);
             }
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                selectedCharacter?.CastSkill();
+                selectedCharacter?.CastSkill(mousePos);
             }
         }
     }
@@ -96,7 +98,7 @@ public class PlayerControl : SingletonMono<PlayerControl>
     {
         if (selectedInt?.interactType != null)
         {
-            enabledInteract = new List<InteractControl.InteractOption>(InteractControl.Instance.interactOptions[selectedInt.interactType]);
+            enabledInteract = InteractControl.Instance.interactOptions[selectedInt.interactType];
         }
         else
         {
@@ -112,3 +114,12 @@ public class PlayerControl : SingletonMono<PlayerControl>
         selectedOption = InteractControl.InteractOption.None;
     }
 }
+#else
+class PlayerControl : MonoBehaviour
+{
+    public void Start()
+    {
+        throw new System.NotImplementedException("PlayerControl/LocalPlay mode is not implemented in this build.");
+    }
+}
+#endif

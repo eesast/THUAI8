@@ -4,7 +4,7 @@ using Protobuf;
 using UnityEngine;
 #if !UNITY_WEBGL
 [RequireComponent(typeof(CharacterBase))]
-class CharacterControl : InteractBase
+public class CharacterControl : InteractBase
 {
     public AvailableService.AvailableServiceClient client;
     public CharacterBase characterBase;
@@ -19,23 +19,25 @@ class CharacterControl : InteractBase
         {
             CharacterId = characterBase.message.PlayerId,
             TeamId = characterBase.message.TeamId,
-            AttackRange = 1, // TODO
+            AttackRange = ParaDefine.Instance.GetData(characterBase.characterType).attackRange,
             AttackedCharacterId = target.ID,
             AttackedTeam = target.message.TeamId,
         });
     }
-    public void CastSkill()
+    public void CastSkill(Vector2 position)
     {
+        var (targetX, targetY) = Tool.UxyToGrid(position);
+        float angle = Mathf.Atan2(targetY - characterBase.message.Y, targetX - characterBase.message.X);
         client.Cast(new CastMsg
         {
             CharacterId = characterBase.message.PlayerId,
             TeamId = characterBase.message.TeamId,
-            SkillId = 0, // TODO
-            CastedCharacterId = { },
-            AttackRange = 1, // TODO
+            SkillId = 0, // TO BE CONFIRMED
+            CastedCharacterId = { }, // TODO
+            AttackRange = ParaDefine.Instance.GetData(characterBase.characterType).skillRange,
             X = characterBase.message.X,
             Y = characterBase.message.Y,
-            Angle = 1, // TODO
+            Angle = angle
         });
     }
     public void Move(Vector2 position)
@@ -55,7 +57,7 @@ class CharacterControl : InteractBase
 
 }
 #else
-class CharacterControl: InteractBase
+public class CharacterControl: InteractBase
 {
     public void Start()
     {

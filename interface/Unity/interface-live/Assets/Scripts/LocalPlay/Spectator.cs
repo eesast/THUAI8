@@ -42,7 +42,7 @@ class Spectator : SingletonMono<Spectator>
 }
 #else
 // Not Implemented
-class Spectator : MonoBehaviour
+class Spectator : SingletonMono<Spectator>
 {
     public void Start()
     {

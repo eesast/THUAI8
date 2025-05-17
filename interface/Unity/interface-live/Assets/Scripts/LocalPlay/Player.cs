@@ -6,13 +6,25 @@ using Protobuf;
 
 class Player : MonoBehaviour
 {
+    public static Player buddhistsMain, monstersMain;
     public AvailableService.AvailableServiceClient client;
+    public CharacterType characterType;
     public int characterId = 0, teamId = 0;
     private bool gameStarted;
+    private long ID;
     private CharacterControl characterControl;
 
     public async void Start()
     {
+        ID = teamId * 6 + characterId - 1;
+        if (characterId == 0)
+        {
+            if (teamId == 0)
+                buddhistsMain ??= this;
+            else if (teamId == 1)
+                monstersMain ??= this;
+        }
+
         Channel channel = new("127.0.0.1:8888", ChannelCredentials.Insecure);
         // Wait for 30s.
         await channel.ConnectAsync(DateTime.UtcNow.AddSeconds(30));
@@ -20,7 +32,7 @@ class Player : MonoBehaviour
         CharacterMsg playerInfo = new()
         {
             CharacterId = characterId,
-            CharacterType = teamId == 0 ? CharacterType.TangSeng : CharacterType.JiuLing,
+            CharacterType = characterType,
             TeamId = teamId,
             SideFlag = teamId
         };
@@ -33,27 +45,23 @@ class Player : MonoBehaviour
             if (currentGameInfo.GameState == GameState.GameStart) break;
         }
         gameStarted = true;
-        client.Move(new MoveMsg()
-        {
-            CharacterId = characterId,
-            TeamId = teamId,
-            Angle = 0,
-            TimeInMilliseconds = 0
-        });
     }
 
     void Update()
     {
         if (characterId != 0 && gameStarted && characterControl == null)
         {
-            characterControl = CoreParam.charactersG[teamId * 6 + characterId - 1].GetComponent<CharacterControl>();
-            characterControl.client = client;
+            if (CoreParam.charactersG.TryGetValue(ID, out GameObject characterG))
+            {
+                characterControl = characterG.GetComponent<CharacterControl>();
+                characterControl.client = client;
+            }
         }
-    } 
+    }
 }
 #else
 // Not Implemented
-class Spectator : MonoBehaviour
+class Player : MonoBehaviour
 {
     public void Start()
     {

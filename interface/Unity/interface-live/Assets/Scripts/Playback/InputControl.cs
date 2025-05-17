@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Used for PlaybackController
 public class InputManager : SingletonMono<InputManager>
 {
     public void AfterInputPlaySpeed(string playSpeedS)
@@ -34,8 +35,6 @@ public class InputManager : SingletonMono<InputManager>
     {
         PlaybackController.fileName = fileName;
         Debug.Log("InputControl.AfterInputFilename(), fileName=" + fileName);
-#if !UNITY_EDITOR
         PlaybackController.fileNameFlag = true;
-#endif
     }
 }

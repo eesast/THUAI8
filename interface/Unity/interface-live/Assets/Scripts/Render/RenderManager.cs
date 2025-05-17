@@ -147,7 +147,21 @@ public class RenderManager : SingletonMono<RenderManager>
                             /*Quaternion.Euler(0, 0, (float)character.Value.FacingDirection)*/
                             Quaternion.identity);
                     CoreParam.charactersG[character.Key] = characterG;
-                    characterG.GetComponent<CharacterBase>().ID = character.Key;
+                    if (!characterG.TryGetComponent<CharacterControl>(out var characterControl)
+                     || !characterG.TryGetComponent<CharacterBase>(out var characterBase))
+                    {
+                        Debug.LogError("Character prefab is missing core components.");
+                        continue;
+                    }
+                    CharacterManager.Instance.AddCharacter(new CharacterInfo
+                    {
+                        ID = character.Key,
+                        playerId = character.Value.PlayerId,
+                        teamId = character.Value.TeamId,
+                        type = character.Value.CharacterType,
+                        characterBase = characterBase,
+                        characterControl = characterControl
+                    });
                     /*RendererControl.Instance.SetColToChild((PlayerTeam)(character.Value.TeamId + 1),
                         CoreParam.charactersG[character.Key].transform);*/
                 }

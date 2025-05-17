@@ -1,383 +1,44 @@
 [2025/05/17 Saturday]
---port 8888 --CharacterNum 1 --teamCount 2 
+--port 8888 --teamCount 2 
 Server begins to run: 8888
-[06:40:11.041][GameServer] Null TOKEN Environment!
-[06:40:11.096][GameServer] Server begins to listen!
-[06:40:15.354][GameServer] TRY Add Player: Player 1 from Team 0
-[06:40:15.354][GameServer] TRY Add Player: Player 0 from Team 1
-[06:40:15.354][GameServer] TRY Add Spectator: Player 5000
-[06:40:15.354][GameServer] AddPlayer: Check Correct
-[06:40:15.354][GameServer] TRY Add Player: Player 1 from Team 1
-[06:40:15.354][GameServer] TRY Add Player: Player 0 from Team 0
-[06:40:15.354][GameServer] AddPlayer: Check Correct
-[06:40:15.354][GameServer] AddPlayer: Check Correct
-[06:40:15.354][GameServer] AddPlayer: Check Correct
-[06:40:15.355][GameServer] A new spectator comes to watch this game
-[06:40:15.356][GameServer] Player 1 from Team 0 joins
-[06:40:15.356][GameServer] PlayerCountNow: 1
-[06:40:15.356][GameServer] PlayerTotalNum: 4
-[06:40:15.356][GameServer] Player 0 from Team 1 joins
-[06:40:15.356][GameServer] PlayerCountNow: 2
-[06:40:15.356][GameServer] PlayerNum: 4
-[06:40:15.356][GameServer] Player 1 from Team 1 joins
-[06:40:15.356][GameServer] PlayerCountNow: 3
-[06:40:15.356][GameServer] PlayerNum: 4
-[06:40:15.357][GameServer] Player 0 from Team 0 joins
-[06:40:15.357][GameServer] PlayerCountNow: 4
-[06:40:15.357][GameServer] PlayerTotalNum: 4
-[06:40:15.357][GameServer] Game Start
-[06:40:15.357][GameServer] Game starts!
-[06:40:15.357][GameServer] Successfully Created StartLockFile!
-[06:40:15.359][Game] Try to activate 0 TangSeng at birthpoint 0
-[06:40:15.360][Game] Successfully activated 0 TangSeng at (2500, 45500)
-[06:40:15.360][Game] Try to activate 1 JiuLing at birthpoint 0
-[06:40:15.361][Game] Successfully activated 1 JiuLing at (47500, 4500)
-[06:40:15.813][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 0
-[06:40:15.814][Game] Try to move <Character 0 1> 0 0
-[06:40:15.814][ActionManager] Move time is too short
-[06:40:15.814][GameServer] END Move: False
-[06:40:15.820][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 0
-[06:40:15.820][Game] Try to move <Character 1 1> 0 0
-[06:40:15.820][ActionManager] Move time is too short
-[06:40:15.820][GameServer] END Move: False
-[06:40:15.822][GameServer] TRY Move: Player 0 from Team 1, TimeInMilliseconds: 0
-[06:40:15.822][Game] Fail to move <Character 1 0>, not found
-[06:40:15.822][GameServer] END Move: False
-[06:40:15.824][GameServer] TRY Move: Player 0 from Team 0, TimeInMilliseconds: 0
-[06:40:15.824][Game] Fail to move <Character 0 0>, not found
-[06:40:15.824][GameServer] END Move: False
-[06:40:18.909][GameServer] TRY Move: Player 1 from Team 1, TimeInMilliseconds: 2675
-[06:40:18.909][Game] Try to move <Character 1 1> 2675 2.3082873821258545
-[06:40:18.910][GameServer] END Move: True
-[06:40:18.910][Character] <Character 1 1> StartThread succeeded
-[06:40:18.910][GameEngine] <Character> position (47500, 4500), start moving in direction 2.3082873821258545, with speed 2500
-[06:40:18.965][GameEngine] Debug info: Object moving time exceed for once
-[06:40:18.995][GameEngine] Debug info: Object moving time exceed for once
-[06:40:19.027][GameEngine] Debug info: Object moving time exceed for once
-[06:40:19.058][GameEngine] Debug info: Object moving time exceed for once
-[06:40:19.106][GameEngine] Debug info: Object moving time exceed for once
-[06:40:19.136][GameEngine] Debug info: Object moving time exceed for once
-[06:40:19.168][GameEngine] Debug info: Object moving time exceed for once
-[06:40:19.215][GameEngine] Debug info: Object moving time exceed for once
-[06:40:19.246][GameEngine] Debug info: Object moving time exceed for once
-[06:40:19.277][GameEngine] Debug info: Object moving time exceed for once
-[06:40:19.309][GameEngine] Debug info: Object moving time exceed for once
-[06:40:19.355][GameEngine] Debug info: Object moving time exceed for once
-[06:40:19.386][GameEngine] Debug info: Object moving time exceed for once
-[06:40:19.417][GameEngine] Debug info: Object moving time exceed for once
-[06:40:19.464][GameEngine] Debug info: Object moving time exceed for once
-[06:40:19.495][GameEngine] Debug info: Object moving time exceed for once
-[06:40:19.526][GameEngine] Debug info: Object moving time exceed for once
-[06:40:19.557][GameEngine] Debug info: Object moving time exceed for once
-[06:40:19.604][GameEngine] Debug info: Object moving time exceed for once
-[06:40:19.634][GameEngine] Debug info: Object moving time exceed for once
-[06:40:19.666][GameEngine] Debug info: Object moving time exceed for once
-[06:40:19.714][GameEngine] Debug info: Object moving time exceed for once
-[06:40:19.744][GameEngine] Debug info: Object moving time exceed for once
-[06:40:19.776][GameEngine] Debug info: Object moving time exceed for once
-[06:40:19.808][GameEngine] Debug info: Object moving time exceed for once
-[06:40:19.855][GameEngine] Debug info: Object moving time exceed for once
-[06:40:19.886][GameEngine] Debug info: Object moving time exceed for once
-[06:40:19.917][GameEngine] Debug info: Object moving time exceed for once
-[06:40:19.964][GameEngine] Debug info: Object moving time exceed for once
-[06:40:19.995][GameEngine] Debug info: Object moving time exceed for once
-[06:40:20.026][GameEngine] Debug info: Object moving time exceed for once
-[06:40:20.057][GameEngine] Debug info: Object moving time exceed for once
-[06:40:20.105][GameEngine] Debug info: Object moving time exceed for once
-[06:40:20.135][GameEngine] Debug info: Object moving time exceed for once
-[06:40:20.166][GameEngine] Debug info: Object moving time exceed for once
-[06:40:20.212][GameEngine] Debug info: Object moving time exceed for once
-[06:40:20.244][GameEngine] Debug info: Object moving time exceed for once
-[06:40:20.275][GameEngine] Debug info: Object moving time exceed for once
-[06:40:20.307][GameEngine] Debug info: Object moving time exceed for once
-[06:40:20.354][GameEngine] Debug info: Object moving time exceed for once
-[06:40:20.385][GameEngine] Debug info: Object moving time exceed for once
-[06:40:20.415][GameEngine] Debug info: Object moving time exceed for once
-[06:40:20.462][GameEngine] Debug info: Object moving time exceed for once
-[06:40:20.494][GameEngine] Debug info: Object moving time exceed for once
-[06:40:20.526][GameEngine] Debug info: Object moving time exceed for once
-[06:40:20.558][GameEngine] Debug info: Object moving time exceed for once
-[06:40:20.604][GameEngine] Debug info: Object moving time exceed for once
-[06:40:20.635][GameEngine] Debug info: Object moving time exceed for once
-[06:40:20.665][GameEngine] Debug info: Object moving time exceed for once
-[06:40:20.712][GameEngine] Debug info: Object moving time exceed for once
-[06:40:20.742][GameEngine] Debug info: Object moving time exceed for once
-[06:40:20.774][GameEngine] Debug info: Object moving time exceed for once
-[06:40:20.805][GameEngine] Debug info: Object moving time exceed for once
-[06:40:20.851][GameEngine] Debug info: Object moving time exceed for once
-[06:40:20.882][GameEngine] Debug info: Object moving time exceed for once
-[06:40:20.914][GameEngine] Debug info: Object moving time exceed for once
-[06:40:20.960][GameEngine] Debug info: Object moving time exceed for once
-[06:40:20.991][GameEngine] Debug info: Object moving time exceed for once
-[06:40:21.037][GameEngine] Debug info: Object moving time exceed for once
-[06:40:21.068][GameEngine] Debug info: Object moving time exceed for once
-[06:40:21.114][GameEngine] Debug info: Object moving time exceed for once
-[06:40:21.145][GameEngine] Debug info: Object moving time exceed for once
-[06:40:21.176][GameEngine] Debug info: Object moving time exceed for once
-[06:40:21.224][GameEngine] Debug info: Object moving time exceed for once
-[06:40:21.255][GameEngine] Debug info: Object moving time exceed for once
-[06:40:21.286][GameEngine] Debug info: Object moving time exceed for once
-[06:40:21.318][GameEngine] Debug info: Object moving time exceed for once
-[06:40:21.365][GameEngine] Debug info: Object moving time exceed for once
-[06:40:21.396][GameEngine] Debug info: Object moving time exceed for once
-[06:40:21.427][GameEngine] Debug info: Object moving time exceed for once
-[06:40:21.474][GameEngine] Debug info: Object moving time exceed for once
-[06:40:21.505][GameEngine] Debug info: Object moving time exceed for once
-[06:40:21.536][GameEngine] Debug info: Object moving time exceed for once
-[06:40:21.567][GameEngine] Debug info: Object moving time exceed for once
-[06:40:21.598][Character] <Character 1 1> ResetCharacterState succeeded 3
-[06:40:26.271][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1191
-[06:40:26.271][Game] Try to move <Character 0 1> 1191 -0.5919997096061707
-[06:40:26.271][GameServer] END Move: True
-[06:40:26.271][Character] <Character 0 1> StartThread succeeded
-[06:40:26.271][GameEngine] <Character> position (2500, 45500), start moving in direction -0.5919997096061707, with speed 2500
-[06:40:26.322][GameEngine] Debug info: Object moving time exceed for once
-[06:40:26.353][GameEngine] Debug info: Object moving time exceed for once
-[06:40:26.384][GameEngine] Debug info: Object moving time exceed for once
-[06:40:26.415][GameEngine] Debug info: Object moving time exceed for once
-[06:40:26.430][GameEngine] Debug info: Object moving time exceed for once
-[06:40:26.462][GameEngine] Debug info: Object moving time exceed for once
-[06:40:26.493][GameEngine] Debug info: Object moving time exceed for once
-[06:40:26.524][GameEngine] Debug info: Object moving time exceed for once
-[06:40:26.572][GameEngine] Debug info: Object moving time exceed for once
-[06:40:26.603][GameEngine] Debug info: Object moving time exceed for once
-[06:40:26.635][GameEngine] Debug info: Object moving time exceed for once
-[06:40:26.665][GameEngine] Debug info: Object moving time exceed for once
-[06:40:26.681][GameEngine] Debug info: Object moving time exceed for once
-[06:40:26.711][GameEngine] Debug info: Object moving time exceed for once
-[06:40:26.742][GameEngine] Debug info: Object moving time exceed for once
-[06:40:26.773][GameEngine] Debug info: Object moving time exceed for once
-[06:40:26.820][GameEngine] Debug info: Object moving time exceed for once
-[06:40:26.850][GameEngine] Debug info: Object moving time exceed for once
-[06:40:26.883][GameEngine] Debug info: Object moving time exceed for once
-[06:40:26.914][GameEngine] Debug info: Object moving time exceed for once
-[06:40:26.929][GameEngine] Debug info: Object moving time exceed for once
-[06:40:26.960][GameEngine] Debug info: Object moving time exceed for once
-[06:40:27.022][GameEngine] Debug info: Object moving time exceed for once
-[06:40:27.022][GameEngine] Debug info: Object moving time exceed for once
-[06:40:27.084][GameEngine] Debug info: Object moving time exceed for once
-[06:40:27.115][GameEngine] Debug info: Object moving time exceed for once
-[06:40:27.146][GameEngine] Debug info: Object moving time exceed for once
-[06:40:27.177][GameEngine] Debug info: Object moving time exceed for once
-[06:40:27.192][GameEngine] Debug info: Object moving time exceed for once
-[06:40:27.224][GameEngine] Debug info: Object moving time exceed for once
-[06:40:27.255][GameEngine] Debug info: Object moving time exceed for once
-[06:40:27.287][GameEngine] Debug info: Object moving time exceed for once
-[06:40:27.334][GameEngine] Debug info: Object moving time exceed for once
-[06:40:27.364][GameEngine] Debug info: Object moving time exceed for once
-[06:40:27.395][GameEngine] Debug info: Object moving time exceed for once
-[06:40:27.426][GameEngine] Debug info: Object moving time exceed for once
-[06:40:27.442][GameEngine] Debug info: Object moving time exceed for once
-[06:40:27.474][Character] <Character 0 1> ResetCharacterState succeeded 3
-[06:40:28.285][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 2610
-[06:40:28.285][Game] Try to move <Character 0 1> 2610 -1.4533320665359497
-[06:40:28.286][GameServer] END Move: True
-[06:40:28.286][Character] <Character 0 1> StartThread succeeded
-[06:40:28.286][GameEngine] <Character> position (4820, 43992), start moving in direction -1.4533320665359497, with speed 2500
-[06:40:28.333][GameEngine] Debug info: Object moving time exceed for once
-[06:40:28.364][GameEngine] Debug info: Object moving time exceed for once
-[06:40:28.395][GameEngine] Debug info: Object moving time exceed for once
-[06:40:28.427][GameEngine] Debug info: Object moving time exceed for once
-[06:40:28.443][GameEngine] Debug info: Object moving time exceed for once
-[06:40:28.473][GameEngine] Debug info: Object moving time exceed for once
-[06:40:28.505][GameEngine] Debug info: Object moving time exceed for once
-[06:40:28.535][GameEngine] Debug info: Object moving time exceed for once
-[06:40:28.582][GameEngine] Debug info: Object moving time exceed for once
-[06:40:28.612][GameEngine] Debug info: Object moving time exceed for once
-[06:40:28.644][GameEngine] Debug info: Object moving time exceed for once
-[06:40:28.675][GameEngine] Debug info: Object moving time exceed for once
-[06:40:28.690][GameEngine] Debug info: Object moving time exceed for once
-[06:40:28.721][GameEngine] Debug info: Object moving time exceed for once
-[06:40:28.752][GameEngine] Debug info: Object moving time exceed for once
-[06:40:28.784][GameEngine] Debug info: Object moving time exceed for once
-[06:40:28.831][GameEngine] Debug info: Object moving time exceed for once
-[06:40:28.862][GameEngine] Debug info: Object moving time exceed for once
-[06:40:28.894][GameEngine] Debug info: Object moving time exceed for once
-[06:40:28.925][GameEngine] Debug info: Object moving time exceed for once
-[06:40:28.940][GameEngine] Debug info: Object moving time exceed for once
-[06:40:28.972][GameEngine] Debug info: Object moving time exceed for once
-[06:40:29.004][GameEngine] Debug info: Object moving time exceed for once
-[06:40:29.035][GameEngine] Debug info: Object moving time exceed for once
-[06:40:29.081][GameEngine] Debug info: Object moving time exceed for once
-[06:40:29.113][GameEngine] Debug info: Object moving time exceed for once
-[06:40:29.144][GameEngine] Debug info: Object moving time exceed for once
-[06:40:29.175][GameEngine] Debug info: Object moving time exceed for once
-[06:40:29.191][GameEngine] Debug info: Object moving time exceed for once
-[06:40:29.222][GameEngine] Debug info: Object moving time exceed for once
-[06:40:29.253][GameEngine] Debug info: Object moving time exceed for once
-[06:40:29.284][GameEngine] Debug info: Object moving time exceed for once
-[06:40:29.332][GameEngine] Debug info: Object moving time exceed for once
-[06:40:29.362][GameEngine] Debug info: Object moving time exceed for once
-[06:40:29.393][GameEngine] Debug info: Object moving time exceed for once
-[06:40:29.425][GameEngine] Debug info: Object moving time exceed for once
-[06:40:29.440][GameEngine] Debug info: Object moving time exceed for once
-[06:40:29.471][GameEngine] Debug info: Object moving time exceed for once
-[06:40:29.502][GameEngine] Debug info: Object moving time exceed for once
-[06:40:29.534][GameEngine] Debug info: Object moving time exceed for once
-[06:40:29.581][GameEngine] Debug info: Object moving time exceed for once
-[06:40:29.612][GameEngine] Debug info: Object moving time exceed for once
-[06:40:29.642][GameEngine] Debug info: Object moving time exceed for once
-[06:40:29.674][GameEngine] Debug info: Object moving time exceed for once
-[06:40:29.690][GameEngine] Debug info: Object moving time exceed for once
-[06:40:29.721][GameEngine] Debug info: Object moving time exceed for once
-[06:40:29.753][GameEngine] Debug info: Object moving time exceed for once
-[06:40:29.784][GameEngine] Debug info: Object moving time exceed for once
-[06:40:29.831][GameEngine] Debug info: Object moving time exceed for once
-[06:40:29.862][GameEngine] Debug info: Object moving time exceed for once
-[06:40:29.894][GameEngine] Debug info: Object moving time exceed for once
-[06:40:29.925][GameEngine] Debug info: Object moving time exceed for once
-[06:40:29.940][GameEngine] Debug info: Object moving time exceed for once
-[06:40:29.970][GameEngine] Debug info: Object moving time exceed for once
-[06:40:30.001][GameEngine] Debug info: Object moving time exceed for once
-[06:40:30.031][GameEngine] Debug info: Object moving time exceed for once
-[06:40:30.078][GameEngine] Debug info: Object moving time exceed for once
-[06:40:30.109][GameEngine] Debug info: Object moving time exceed for once
-[06:40:30.140][GameEngine] Debug info: Object moving time exceed for once
-[06:40:30.170][GameEngine] Debug info: Object moving time exceed for once
-[06:40:30.186][GameEngine] Debug info: Object moving time exceed for once
-[06:40:30.217][GameEngine] Debug info: Object moving time exceed for once
-[06:40:30.248][GameEngine] Debug info: Object moving time exceed for once
-[06:40:30.279][GameEngine] Debug info: Object moving time exceed for once
-[06:40:30.326][GameEngine] Debug info: Object moving time exceed for once
-[06:40:30.358][GameEngine] Debug info: Object moving time exceed for once
-[06:40:30.389][GameEngine] Debug info: Object moving time exceed for once
-[06:40:30.421][GameEngine] Debug info: Object moving time exceed for once
-[06:40:30.436][GameEngine] Debug info: Object moving time exceed for once
-[06:40:30.467][GameEngine] Debug info: Object moving time exceed for once
-[06:40:30.499][GameEngine] Debug info: Object moving time exceed for once
-[06:40:30.525][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1996
-[06:40:30.526][Game] Try to move <Character 0 1> 1996 0.12289780378341675
-[06:40:30.526][ActionManager] Character is not commandable
-[06:40:30.526][GameServer] END Move: False
-[06:40:30.530][GameEngine] Debug info: Object moving time exceed for once
-[06:40:30.576][GameEngine] Debug info: Object moving time exceed for once
-[06:40:30.608][GameEngine] Debug info: Object moving time exceed for once
-[06:40:30.639][GameEngine] Debug info: Object moving time exceed for once
-[06:40:30.670][GameEngine] Debug info: Object moving time exceed for once
-[06:40:30.685][GameEngine] Debug info: Object moving time exceed for once
-[06:40:30.717][GameEngine] Debug info: Object moving time exceed for once
-[06:40:30.747][GameEngine] Debug info: Object moving time exceed for once
-[06:40:30.779][GameEngine] Debug info: Object moving time exceed for once
-[06:40:30.825][GameEngine] Debug info: Object moving time exceed for once
-[06:40:30.856][GameEngine] Debug info: Object moving time exceed for once
-[06:40:30.888][GameEngine] Debug info: Object moving time exceed for once
-[06:40:30.904][Character] <Character 0 1> ResetCharacterState succeeded 5
-[06:40:31.220][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 2230
-[06:40:31.220][Game] Try to move <Character 0 1> 2230 0.3110027313232422
-[06:40:31.221][GameServer] END Move: True
-[06:40:31.221][Character] <Character 0 1> StartThread succeeded
-[06:40:31.221][GameEngine] <Character> position (5340, 37752), start moving in direction 0.3110027313232422, with speed 2500
-[06:40:31.277][GameEngine] Debug info: Object moving time exceed for once
-[06:40:31.308][GameEngine] Debug info: Object moving time exceed for once
-[06:40:31.339][GameEngine] Debug info: Object moving time exceed for once
-[06:40:31.371][GameEngine] Debug info: Object moving time exceed for once
-[06:40:31.387][GameEngine] Debug info: Object moving time exceed for once
-[06:40:31.418][GameEngine] Debug info: Object moving time exceed for once
-[06:40:31.449][GameEngine] Debug info: Object moving time exceed for once
-[06:40:31.481][GameEngine] Debug info: Object moving time exceed for once
-[06:40:31.528][GameEngine] Debug info: Object moving time exceed for once
-[06:40:31.559][GameEngine] Debug info: Object moving time exceed for once
-[06:40:31.590][GameEngine] Debug info: Object moving time exceed for once
-[06:40:31.622][GameEngine] Debug info: Object moving time exceed for once
-[06:40:31.637][GameEngine] Debug info: Object moving time exceed for once
-[06:40:31.668][GameEngine] Debug info: Object moving time exceed for once
-[06:40:31.699][GameEngine] Debug info: Object moving time exceed for once
-[06:40:31.730][GameEngine] Debug info: Object moving time exceed for once
-[06:40:31.776][GameEngine] Debug info: Object moving time exceed for once
-[06:40:31.807][GameEngine] Debug info: Object moving time exceed for once
-[06:40:31.838][GameEngine] Debug info: Object moving time exceed for once
-[06:40:31.870][GameEngine] Debug info: Object moving time exceed for once
-[06:40:31.885][GameEngine] Debug info: Object moving time exceed for once
-[06:40:31.916][GameEngine] Debug info: Object moving time exceed for once
-[06:40:31.947][GameEngine] Debug info: Object moving time exceed for once
-[06:40:31.979][GameEngine] Debug info: Object moving time exceed for once
-[06:40:32.025][GameEngine] Debug info: Object moving time exceed for once
-[06:40:32.057][GameEngine] Debug info: Object moving time exceed for once
-[06:40:32.089][GameEngine] Debug info: Object moving time exceed for once
-[06:40:32.119][GameEngine] Debug info: Object moving time exceed for once
-[06:40:32.135][GameEngine] Debug info: Object moving time exceed for once
-[06:40:32.165][GameEngine] Debug info: Object moving time exceed for once
-[06:40:32.196][GameEngine] Debug info: Object moving time exceed for once
-[06:40:32.227][GameEngine] Debug info: Object moving time exceed for once
-[06:40:32.274][GameEngine] Debug info: Object moving time exceed for once
-[06:40:32.304][GameEngine] Debug info: Object moving time exceed for once
-[06:40:32.336][GameEngine] Debug info: Object moving time exceed for once
-[06:40:32.367][GameEngine] Debug info: Object moving time exceed for once
-[06:40:32.382][GameEngine] Debug info: Object moving time exceed for once
-[06:40:32.414][GameEngine] Debug info: Object moving time exceed for once
-[06:40:32.445][GameEngine] Debug info: Object moving time exceed for once
-[06:40:32.476][GameEngine] Debug info: Object moving time exceed for once
-[06:40:32.524][GameEngine] Debug info: Object moving time exceed for once
-[06:40:32.556][GameEngine] Debug info: Object moving time exceed for once
-[06:40:32.587][GameEngine] Debug info: Object moving time exceed for once
-[06:40:32.617][GameEngine] Debug info: Object moving time exceed for once
-[06:40:32.633][GameEngine] Debug info: Object moving time exceed for once
-[06:40:32.664][GameEngine] Debug info: Object moving time exceed for once
-[06:40:32.696][GameEngine] Debug info: Object moving time exceed for once
-[06:40:32.727][GameEngine] Debug info: Object moving time exceed for once
-[06:40:32.774][GameEngine] Debug info: Object moving time exceed for once
-[06:40:32.805][GameEngine] Debug info: Object moving time exceed for once
-[06:40:32.836][GameEngine] Debug info: Object moving time exceed for once
-[06:40:32.867][GameEngine] Debug info: Object moving time exceed for once
-[06:40:32.883][GameEngine] Debug info: Object moving time exceed for once
-[06:40:32.914][GameEngine] Debug info: Object moving time exceed for once
-[06:40:32.945][GameEngine] Debug info: Object moving time exceed for once
-[06:40:32.976][GameEngine] Debug info: Object moving time exceed for once
-[06:40:33.023][GameEngine] Debug info: Object moving time exceed for once
-[06:40:33.100][GameEngine] Debug info: Object moving time exceed for once
-[06:40:33.116][GameEngine] Debug info: Object moving time exceed for once
-[06:40:33.116][GameEngine] Debug info: Object moving time exceed for once
-[06:40:33.132][GameEngine] Debug info: Object moving time exceed for once
-[06:40:33.163][GameEngine] Debug info: Object moving time exceed for once
-[06:40:33.195][GameEngine] Debug info: Object moving time exceed for once
-[06:40:33.226][GameEngine] Debug info: Object moving time exceed for once
-[06:40:33.274][GameEngine] Debug info: Object moving time exceed for once
-[06:40:33.305][GameEngine] Debug info: Object moving time exceed for once
-[06:40:33.336][GameEngine] Debug info: Object moving time exceed for once
-[06:40:33.368][GameEngine] Debug info: Object moving time exceed for once
-[06:40:33.383][GameEngine] Debug info: Object moving time exceed for once
-[06:40:33.414][GameEngine] Debug info: Object moving time exceed for once
-[06:40:33.445][GameEngine] Debug info: Object moving time exceed for once
-[06:40:33.460][Character] <Character 0 1> ResetCharacterState succeeded 7
-[06:40:33.871][GameServer] TRY Move: Player 1 from Team 0, TimeInMilliseconds: 1334
-[06:40:33.871][Game] Try to move <Character 0 1> 1334 1.8999207019805908
-[06:40:33.871][GameServer] END Move: True
-[06:40:33.871][Character] <Character 0 1> StartThread succeeded
-[06:40:33.871][GameEngine] <Character> position (10423, 39299), start moving in direction 1.8999207019805908, with speed 2500
-[06:40:33.926][GameEngine] Debug info: Object moving time exceed for once
-[06:40:33.957][GameEngine] Debug info: Object moving time exceed for once
-[06:40:33.988][GameEngine] Debug info: Object moving time exceed for once
-[06:40:34.020][GameEngine] Debug info: Object moving time exceed for once
-[06:40:34.067][GameEngine] Debug info: Object moving time exceed for once
-[06:40:34.098][GameEngine] Debug info: Object moving time exceed for once
-[06:40:34.128][GameEngine] Debug info: Object moving time exceed for once
-[06:40:34.175][GameEngine] Debug info: Object moving time exceed for once
-[06:40:34.207][GameEngine] Debug info: Object moving time exceed for once
-[06:40:34.237][GameEngine] Debug info: Object moving time exceed for once
-[06:40:34.269][GameEngine] Debug info: Object moving time exceed for once
-[06:40:34.314][GameEngine] Debug info: Object moving time exceed for once
-[06:40:34.345][GameEngine] Debug info: Object moving time exceed for once
-[06:40:34.377][GameEngine] Debug info: Object moving time exceed for once
-[06:40:34.424][GameEngine] Debug info: Object moving time exceed for once
-[06:40:34.456][GameEngine] Debug info: Object moving time exceed for once
-[06:40:34.487][GameEngine] Debug info: Object moving time exceed for once
-[06:40:34.518][GameEngine] Debug info: Object moving time exceed for once
-[06:40:34.565][GameEngine] Debug info: Object moving time exceed for once
-[06:40:34.596][GameEngine] Debug info: Object moving time exceed for once
-[06:40:34.627][GameEngine] Debug info: Object moving time exceed for once
-[06:40:34.675][GameEngine] Debug info: Object moving time exceed for once
-[06:40:34.706][GameEngine] Debug info: Object moving time exceed for once
-[06:40:34.737][GameEngine] Debug info: Object moving time exceed for once
-[06:40:34.769][GameEngine] Debug info: Object moving time exceed for once
-[06:40:34.815][GameEngine] Debug info: Object moving time exceed for once
-[06:40:34.846][GameEngine] Debug info: Object moving time exceed for once
-[06:40:34.878][GameEngine] Debug info: Object moving time exceed for once
-[06:40:34.925][GameEngine] Debug info: Object moving time exceed for once
-[06:40:34.957][GameEngine] Debug info: Object moving time exceed for once
-[06:40:34.988][GameEngine] Debug info: Object moving time exceed for once
-[06:40:35.019][GameEngine] Debug info: Object moving time exceed for once
-[06:40:35.067][GameEngine] Debug info: Object moving time exceed for once
-[06:40:35.098][GameEngine] Debug info: Object moving time exceed for once
-[06:40:35.130][GameEngine] Debug info: Object moving time exceed for once
-[06:40:35.176][GameEngine] Debug info: Object moving time exceed for once
-[06:40:35.208][Character] <Character 0 1> ResetCharacterState succeeded 9
+[19:17:42.680][GameServer] Null TOKEN Environment!
+[19:17:42.736][GameServer] Server begins to listen!
+[19:17:44.883][GameServer] TRY Add Player: Player 3 from Team 1
+[19:17:44.905][GameServer] TRY Add Player: Player 2 from Team 1
+[19:17:44.905][GameServer] TRY Add Player: Player 5 from Team 1
+[19:17:44.905][GameServer] TRY Add Player: Player 4 from Team 1
+[19:17:44.906][GameServer] TRY Add Player: Player 6 from Team 1
+[19:17:44.906][GameServer] TRY Add Player: Player 6 from Team 0
+[19:17:44.906][GameServer] TRY Add Player: Player 4 from Team 0
+[19:17:44.906][GameServer] TRY Add Player: Player 5 from Team 0
+[19:17:44.906][GameServer] TRY Add Player: Player 2 from Team 0
+[19:17:44.907][GameServer] TRY Add Player: Player 3 from Team 0
+[19:17:44.907][GameServer] TRY Add Player: Player 0 from Team 1
+[19:17:44.907][GameServer] AddPlayer: Check Correct
+[19:17:44.907][GameServer] TRY Add Player: Player 0 from Team 0
+[19:17:44.907][GameServer] AddPlayer: Check Correct
+[19:17:44.907][GameServer] TRY Add Spectator: Player 5000
+[19:17:44.908][GameServer] TRY Add Player: Player 1 from Team 1
+[19:17:44.908][GameServer] AddPlayer: Check Correct
+[19:17:44.908][GameServer] Player 0 from Team 1 joins
+[19:17:44.908][GameServer] TRY Add Player: Player 1 from Team 0
+[19:17:44.908][GameServer] A new spectator comes to watch this game
+[19:17:44.908][GameServer] AddPlayer: Check Correct
+[19:17:44.908][GameServer] PlayerCountNow: 1
+[19:17:44.908][GameServer] PlayerNum: 4
+[19:17:44.908][GameServer] Player 0 from Team 0 joins
+[19:17:44.908][GameServer] PlayerCountNow: 2
+[19:17:44.908][GameServer] PlayerTotalNum: 4
+[19:17:44.910][GameServer] Player 1 from Team 1 joins
+[19:17:44.910][GameServer] PlayerCountNow: 3
+[19:17:44.910][GameServer] PlayerNum: 4
+[19:17:44.910][GameServer] Player 1 from Team 0 joins
+[19:17:44.910][GameServer] PlayerCountNow: 4
+[19:17:44.910][GameServer] PlayerTotalNum: 4
+[19:17:44.910][GameServer] Game Start
+[19:17:44.910][GameServer] Game starts!
+[19:17:44.911][GameServer] Successfully Created StartLockFile!
+[19:17:44.912][Game] Try to activate 0 TangSeng at birthpoint 0
+[19:17:44.914][Game] Successfully activated 0 TangSeng at (2500, 47500)
+[19:17:44.914][Game] Try to activate 1 JiuLing at birthpoint 0
+[19:17:44.914][Game] Successfully activated 1 JiuLing at (45500, 4500)
