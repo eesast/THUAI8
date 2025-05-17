@@ -21,22 +21,23 @@ public class CameraControl : MonoBehaviour
     {
         mousePos = Input.mousePosition;
         // Debug.Log(mousePos);
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)
+         || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow))
         {
             cameraSpeed = Mathf.Lerp(cameraSpeed, cameraSpeedMax, 0.1f);
-            if (Input.GetKey(KeyCode.A) && transform.position.x >= -0.5f)
+            if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && transform.position.x >= -0.5f)
             {
                 transform.Translate(Vector3.left * Time.deltaTime * currentScale * cameraSpeed);
             }
-            if (Input.GetKey(KeyCode.D) && transform.position.x <= 49.5f)
+            if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) && transform.position.x <= 49.5f)
             {
                 transform.Translate(Vector3.right * Time.deltaTime * currentScale * cameraSpeed);
             }
-            if (Input.GetKey(KeyCode.W) && transform.position.y <= 49.5f)
+            if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && transform.position.y <= 49.5f)
             {
                 transform.Translate(Vector3.up * Time.deltaTime * currentScale * cameraSpeed);
             }
-            if (Input.GetKey(KeyCode.S) && transform.position.y >= -0.5f)
+            if ((Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) && transform.position.y >= -0.5f)
             {
                 transform.Translate(Vector3.down * Time.deltaTime * currentScale * cameraSpeed);
             }
@@ -65,7 +66,7 @@ public class CameraControl : MonoBehaviour
                     }
                     if (Input.mouseScrollDelta.y > 0)
                     {
-                        currentScaleTime = Mathf.Max(0f, currentScaleTime - 0.02f);
+                        currentScaleTime = Mathf.Max(0.02f, currentScaleTime - 0.02f);
                         currentScale = cameraScaleCurve.Evaluate(currentScaleTime) * basicCameraScale;
                         camera.transform.position = camera.ScreenToWorldPoint(mousePos) +
                             currentScale / camera.orthographicSize * (camera.transform.position - camera.ScreenToWorldPoint(mousePos));
