@@ -30,7 +30,7 @@ public class PlaybackController : SingletonMono<PlaybackController>
     {
 #if !UNITY_EDITOR
         // while (fileName == "" || !fileNameFlag)
-            // yield return 0;
+        // yield return 0;
 #endif
         // if (!CoreParam.fileName.EndsWith(PlayBackConstant.ExtendedName))
         //     CoreParam.fileName += PlayBackConstant.ExtendedName;

@@ -17,6 +17,6 @@ public class Cage(XY initPos)//cage无法被攻击销毁，因此不以construct
     {
         int constructionspeed = GameData.TrapConstructSpeed;
         TeamID.SetROri(character.TeamID);
-        return CageCost.AddVUseOtherRChange<long>(constructionspeed, character.MoneyPool.Money, 1) > 1;
+        return CageCost.AddVUseOtherRChange<long>(constructionspeed / GameData.NumOfStepPerSecond, character.MoneyPool.Money, 1) > 0;
     }
 }
