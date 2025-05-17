@@ -1,45 +1,34 @@
 [2025/05/17 Saturday]
 --port 8888 --teamCount 2 
 Server begins to run: 8888
-[19:47:40.275][GameServer] Null TOKEN Environment!
-[19:47:40.335][GameServer] Server begins to listen!
-[19:47:40.814][GameServer] TRY Add Player: Player 0 from Team 1
-[19:47:40.814][GameServer] AddPlayer: Check Correct
-[19:47:40.815][GameServer] Player 0 from Team 1 joins
-[19:47:40.815][GameServer] PlayerCountNow: 1
-[19:47:40.815][GameServer] PlayerNum: 4
-[19:47:40.844][GameServer] TRY Add Player: Player 0 from Team 0
-[19:47:40.844][GameServer] TRY Add Spectator: Player 5000
-[19:47:40.844][GameServer] AddPlayer: Check Correct
-[19:47:40.844][GameServer] A new spectator comes to watch this game
-[19:47:40.844][GameServer] Player 0 from Team 0 joins
-[19:47:40.844][GameServer] TRY Add Player: Player 1 from Team 1
-[19:47:40.844][GameServer] AddPlayer: Check Correct
-[19:47:40.844][GameServer] PlayerCountNow: 2
-[19:47:40.844][GameServer] TRY Add Player: Player 1 from Team 0
-[19:47:40.844][GameServer] AddPlayer: Check Correct
-[19:47:40.844][GameServer] PlayerTotalNum: 4
-[19:47:40.846][GameServer] Player 1 from Team 1 joins
-[19:47:40.846][GameServer] PlayerCountNow: 3
-[19:47:40.846][GameServer] PlayerNum: 4
-[19:47:40.846][GameServer] Player 1 from Team 0 joins
-[19:47:40.846][GameServer] PlayerCountNow: 4
-[19:47:40.846][GameServer] PlayerTotalNum: 4
-[19:47:40.846][GameServer] Game Start
-[19:47:40.847][GameServer] Game starts!
-[19:47:40.847][GameServer] Successfully Created StartLockFile!
-[19:47:40.848][Game] Try to activate 0 TangSeng at birthpoint 0
-[19:47:40.850][Game] Successfully activated 0 TangSeng at (2500, 47500)
-[19:47:40.850][Game] Try to activate 1 JiuLing at birthpoint 0
-[19:47:40.850][Game] Successfully activated 1 JiuLing at (45500, 2500)
-[19:51:20.054][GameServer] The client 1 exited
-[19:51:20.054][GameServer] The client 0 exited
-[19:51:20.054][GameServer] The client 0 exited
-[19:51:20.054][GameServer] The client 1 exited
-[19:51:20.055][GameServer] The spectator 5000 exited
-[19:52:23.408][GameServer] TRY Add Player: Player 1 from Team 0
-[19:52:23.410][GameServer] TRY Add Player: Player 0 from Team 0
-[19:52:23.410][GameServer] TRY Add Spectator: Player 5000
-[19:52:23.410][GameServer] A new spectator comes to watch this game
-[19:52:23.411][GameServer] TRY Add Player: Player 1 from Team 1
-[19:52:23.411][GameServer] TRY Add Player: Player 0 from Team 1
+[20:33:49.064][GameServer] Null TOKEN Environment!
+[20:33:49.121][GameServer] Server begins to listen!
+[20:34:11.642][GameServer] TRY Add Player: Player 1 from Team 1
+[20:34:11.642][GameServer] TRY Add Spectator: Player 5000
+[20:34:11.642][GameServer] TRY Add Player: Player 0 from Team 0
+[20:34:11.642][GameServer] AddPlayer: Check Correct
+[20:34:11.642][GameServer] TRY Add Player: Player 0 from Team 1
+[20:34:11.642][GameServer] TRY Add Player: Player 1 from Team 0
+[20:34:11.642][GameServer] AddPlayer: Check Correct
+[20:34:11.642][GameServer] AddPlayer: Check Correct
+[20:34:11.642][GameServer] AddPlayer: Check Correct
+[20:34:11.642][GameServer] A new spectator comes to watch this game
+[20:34:11.644][GameServer] Player 1 from Team 1 joins
+[20:34:11.644][GameServer] PlayerCountNow: 1
+[20:34:11.644][GameServer] PlayerNum: 4
+[20:34:11.644][GameServer] Player 0 from Team 1 joins
+[20:34:11.644][GameServer] PlayerCountNow: 2
+[20:34:11.644][GameServer] PlayerNum: 4
+[20:34:11.644][GameServer] Player 1 from Team 0 joins
+[20:34:11.644][GameServer] PlayerCountNow: 3
+[20:34:11.644][GameServer] PlayerTotalNum: 4
+[20:34:11.645][GameServer] Player 0 from Team 0 joins
+[20:34:11.645][GameServer] PlayerCountNow: 4
+[20:34:11.645][GameServer] PlayerTotalNum: 4
+[20:34:11.645][GameServer] Game Start
+[20:34:11.645][GameServer] Game starts!
+[20:34:11.645][GameServer] Successfully Created StartLockFile!
+[20:34:11.646][Game] Try to activate 0 TangSeng at birthpoint 0
+[20:34:11.648][Game] Successfully activated 0 TangSeng at (2500, 47500)
+[20:34:11.648][Game] Try to activate 1 JiuLing at birthpoint 0
+[20:34:11.648][Game] Successfully activated 1 JiuLing at (45500, 2500)
