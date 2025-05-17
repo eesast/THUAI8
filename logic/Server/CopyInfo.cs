@@ -134,11 +134,13 @@ namespace Server
                 EconomyResourceMessage = new()
                 {
                     EconomyResourceState = Transformation.EconomyResourceStateToProto(economyresource.ERstate),
+                    EconomyResourceType = Transformation.EconomyResourceTypeToProto(economyresource.EResourceType),
 
                     X = economyresource.Position.x,
                     Y = economyresource.Position.y,
 
-                    Process = (int)economyresource.HP,      //����������
+                    Process = (10000 - (int)economyresource.HP) / 10000,
+                    Id = 0,
                 }
             };
             return msg;
@@ -157,6 +159,7 @@ namespace Server
                     Y = additionResource.Position.y,
 
                     Hp = (int)additionResource.HP,
+                    Id = 0,
                 }
             };
             //   Debugger.Output(additionResource, additionResource.Place.ToString()+" "+additionResource.Position.ToString());
@@ -175,6 +178,7 @@ namespace Server
                     Hp = (int)construction.HP,
 
                     TeamId = construction.TeamID,
+                    Id = 0,
                 }
             };
             return msg;
@@ -192,6 +196,7 @@ namespace Server
                     Hp = (int)construction.HP,
 
                     TeamId = construction.TeamID,
+                    Id = 0,
                 }
             };
             return msg;
@@ -209,6 +214,7 @@ namespace Server
                     Hp = (int)construction.HP,
 
                     TeamId = construction.TeamID,
+                    Id = 0,
                 }
             };
             return msg;
@@ -235,7 +241,8 @@ namespace Server
                     {
                         HOLE t => t.TeamID,
                         Cage c => c.TeamID,
-                    }
+                    },
+                    Id = 0,
                 }
             };
             return msg;
