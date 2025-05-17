@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Scripting;
- 
+
 [Preserve]
 public class SkipUnityLogo
 {
@@ -15,7 +15,7 @@ public class SkipUnityLogo
         System.Threading.Tasks.Task.Run(AsyncSkip);
 #endif
     }
- 
+
 #if UNITY_WEBGL
     private static void Application_focusChanged(bool obj)
     {

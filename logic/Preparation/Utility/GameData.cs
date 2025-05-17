@@ -143,25 +143,25 @@ namespace Preparation.Utility
             return gameObjType != GameObjType.NULL &&
                    gameObjType != GameObjType.BARRIER &&
                    gameObjType != GameObjType.BUSH &&
-                   gameObjType != GameObjType.ECONOMY_RESOURCE &&
-                   gameObjType != GameObjType.ADDITIONAL_RESOURCE &&
-                   gameObjType != GameObjType.CONSTRUCTION &&
-                   gameObjType != GameObjType.TRAP &&
                    gameObjType != GameObjType.HOME &&
                     gameObjType != GameObjType.OUTOFBOUNDBLOCK;
         }
         public const int ConstructionHP = 1000;//建筑物的默认HP
+        public const int ConstructionProcess = 10000;
+        public const int BarracksCost = 10000;
+        public const int FarmCost = 8000;
         public const int BarracksHP = 500;
         public const int SpringHP = 300;
         public const int FarmHP = 400;
         public const int BarracksConstructSpeed = 40;//用血量/建造时间表示速度600/15
         public const int SpringConstructSpeed = 30;//300/10
         public const int FarmConstructSpeed = 40;//400/10
-        public const int TrapConstructSpeed = 20;//100/5
-        public const int CageConstructSpeed = 20;//100/5
+        public const int TrapConstructSpeed = 200;//100/5
+        public const int CageConstructSpeed = 200;//100/5
         public const int TimerInterval = 1000;
         public const int TrapDamage = 20;
         public const int TrapTime = 5000;
+        public const int BaseConstructSpeed = 800;
 
         public static readonly XY PosNotInGame = new(1, 1);
 

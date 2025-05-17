@@ -32,35 +32,35 @@ public class Character : Movable, ICharacter
     public double HarmCut = 0.0;//伤害减免，该值范围为0-1，为比例减伤。
     public double ATKFrequency = 1.0;//攻击频率，即每秒攻击次数。
     public long LastAttackTime = 0;
-    public long TrapTime = long.MaxValue;
-    public long CageTime = long.MaxValue;
-    public long BurnedTime = long.MaxValue;
-    public long BlindTime = long.MaxValue;
-    public long StunnedTime = long.MaxValue;
-    public long HarmCutTime = long.MaxValue;
-    public long skillCD = long.MaxValue;
+    public long TrapTime = 0;
+    public long CageTime = 0;
+    public long BurnedTime = 0;
+    public long BlindTime = 0;
+    public long StunnedTime = 0;
+    public long HarmCutTime = 0;
+    public long skillCD = 0;
     public bool canskill = true;
-    public long CrazyManTime = long.MaxValue;
-    public long QuickStepTime = long.MaxValue;
+    public long CrazyManTime = 0;
+    public long QuickStepTime = 0;
     public int CrazyManNum = 0;
     public int EconomyDepletion = 0;
     public bool IsShield = false;
     public bool CanSeeAll = false;//视野之灵buff生效时为true
-    public long WideViewTime = long.MaxValue;//视野之灵计时器
+    public long WideViewTime = 0;//视野之灵计时器
     public bool Purified = false;//净化药水效果，该效果下免疫控制
-    public long PurifiedTime = long.MaxValue;
-    public long ShoesTime = long.MaxValue;//鞋子buff计时器
+    public long PurifiedTime = 0;
+    public long ShoesTime = 0;//鞋子buff计时器
     public bool IsShoes = false;
-    public long BerserkTime = long.MaxValue;//狂暴buff计时器
+    public long BerserkTime = 0;//狂暴buff计时器
     public bool IsBerserk = false;
-    public long InvisibleTime = long.MaxValue;//隐身药水计时器
+    public long InvisibleTime = 0;//隐身药水计时器
     public void StartSkillCD()
     {
         skillCD = Environment.TickCount64;
     }
     public void ResetSkillCD()
     {
-        skillCD = long.MaxValue;
+        skillCD = 0;
     }
     public long GetSkillTime()
     {
@@ -289,7 +289,7 @@ public class Character : Movable, ICharacter
     public bool GetEquipments(EquipmentType equiptype)
     {
         if (equiptype == EquipmentType.NULL_EQUIPMENT_TYPE) return false;
-        if (!Occupation.IsEquipValid(equiptype)) return false;
+        //if (!Occupation.IsEquipValid(equiptype)) return false;
         if (MoneyPool.Money < EquipmentFactory.FindCost(equiptype)) return false;
         switch (equiptype)
         {
@@ -359,6 +359,7 @@ public class Character : Movable, ICharacter
             case EquipmentType.INVISIBILITY_POTION:
                 {
                     SetCharacterState(CharacterState1, CharacterState.INVISIBLE);//此处缺少时间限制
+                    InvisibleTime = Environment.TickCount64;
                     visible = false;
                     SubMoney(EquipmentFactory.FindCost(equiptype));
                     return true;
