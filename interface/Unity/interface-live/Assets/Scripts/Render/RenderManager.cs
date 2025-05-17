@@ -192,7 +192,7 @@ public class RenderManager : SingletonMono<RenderManager>
         {
             if (obj.Value != null)
             {
-                if (!objectsG.ContainsKey(obj.Key))
+                if (!objectsG.ContainsKey(obj.Key) || objectsG[obj.Key] == null)
                 {
                     objectsG[obj.Key] = CreateObject(obj.Value);
                     // RendererControl.Instance.SetColToChild((PlayerTeam)(obj.Value.TeamId + 1),

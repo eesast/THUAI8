@@ -1,8 +1,8 @@
 using UnityEngine;
 using System;
+using Protobuf;
 #if !UNITY_WEBGL
 using Grpc.Core;
-using Protobuf;
 
 class Player : MonoBehaviour
 {
@@ -63,6 +63,8 @@ class Player : MonoBehaviour
 // Not Implemented
 class Player : MonoBehaviour
 {
+    public CharacterType characterType;
+    public int characterId = 0, teamId = 0;
     public void Start()
     {
         throw new NotImplementedException("Spectator/LocalPlay mode is not implemented in this build.");

@@ -1825,6 +1825,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterType: 0
+  characterId: 0
+  teamId: 0
 --- !u!114 &296778531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1837,6 +1840,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterType: 0
+  characterId: 0
+  teamId: 0
 --- !u!114 &296778532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1849,6 +1855,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterType: 0
+  characterId: 0
+  teamId: 0
 --- !u!114 &296778533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1861,6 +1870,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterType: 0
+  characterId: 0
+  teamId: 0
 --- !u!114 &296778534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1873,6 +1885,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterType: 0
+  characterId: 0
+  teamId: 0
 --- !u!4 &296778535
 Transform:
   m_ObjectHideFlags: 0
@@ -2134,6 +2149,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf59d8c90e17201468d97b63b11f4139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  tobeSelectedInt: {fileID: 0}
+  selectedInt: {fileID: 0}
+  enabledInteract: 
+  selectedOption: 0
+  longClickTime: 0
+  longClickTimer: 0
+  mousePos: {x: 0, y: 0}
+  cameraPos: {x: 0, y: 0}
 --- !u!114 &319495805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2146,6 +2172,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterType: 1
+  characterId: 1
+  teamId: 0
 --- !u!114 &319495806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2158,6 +2187,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterType: 1
+  characterId: 0
+  teamId: 0
 --- !u!114 &319495807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2182,6 +2214,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterType: 7
+  characterId: 1
+  teamId: 1
 --- !u!114 &319495809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2194,6 +2229,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterType: 7
+  characterId: 0
+  teamId: 1
 --- !u!1 &332362027
 GameObject:
   m_ObjectHideFlags: 0
@@ -2861,8 +2899,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1532704401}
   m_HandleRect: {fileID: 1532704400}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.9999999
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4568,7 +4606,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &820067379
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5524,10 +5562,10 @@ RectTransform:
   - {fileID: 1138224167}
   m_Father: {fileID: 820067379}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 845.9431, y: -150}
-  m_SizeDelta: {x: 250, y: 300}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 250, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &975832743
 MonoBehaviour:
@@ -5757,7 +5795,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1015067325
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7007,6 +7045,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterType: 0
+  characterId: 0
+  teamId: 0
 --- !u!114 &1273624152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7019,6 +7060,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterType: 0
+  characterId: 0
+  teamId: 0
 --- !u!114 &1273624153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7031,6 +7075,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterType: 0
+  characterId: 0
+  teamId: 0
 --- !u!114 &1273624154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7043,6 +7090,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterType: 0
+  characterId: 0
+  teamId: 0
 --- !u!114 &1273624155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7055,6 +7105,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterType: 0
+  characterId: 0
+  teamId: 0
 --- !u!4 &1273624156
 Transform:
   m_ObjectHideFlags: 0
@@ -7466,10 +7519,10 @@ RectTransform:
   - {fileID: 69038159}
   m_Father: {fileID: 1015067325}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -62}
-  m_SizeDelta: {x: 120, y: 120}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 120}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &1358128216
 CanvasRenderer:
@@ -8885,10 +8938,10 @@ RectTransform:
   - {fileID: 358829168}
   m_Father: {fileID: 820067379}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1346.9431, y: -150}
-  m_SizeDelta: {x: 500, y: 300}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 500, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1515331067
 MonoBehaviour:
@@ -9285,8 +9338,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1588569542}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.00000011920929}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -9815,10 +9868,10 @@ RectTransform:
   - {fileID: 559969821}
   m_Father: {fileID: 2120392217}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -62}
-  m_SizeDelta: {x: 120, y: 120}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 120}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &1599952512
 CanvasRenderer:
@@ -11080,10 +11133,10 @@ RectTransform:
   - {fileID: 1582353319}
   m_Father: {fileID: 820067379}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 344.9431, y: -150}
-  m_SizeDelta: {x: 500, y: 300}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 500, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1893562830
 MonoBehaviour:
@@ -11404,9 +11457,9 @@ RectTransform:
   m_Father: {fileID: 1515331066}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -17, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2045775505
 MonoBehaviour:
@@ -12321,7 +12374,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2120392217
 RectTransform:
   m_ObjectHideFlags: 0
