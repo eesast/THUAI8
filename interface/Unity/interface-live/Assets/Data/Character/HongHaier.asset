@@ -16,3 +16,4 @@ MonoBehaviour:
   maxHp: 200
   attackRange: 1000
   skillRange: 6000
+  avatar: {fileID: 21300000, guid: 6d676bc1c5c24de40bbb1ddfc71d7554, type: 3}

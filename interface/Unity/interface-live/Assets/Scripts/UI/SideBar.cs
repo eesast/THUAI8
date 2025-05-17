@@ -44,9 +44,11 @@ public class SideBar : MonoBehaviour
             TeamId = teamId,
             BirthpointIndex = 0
         });
-        print(response.ActSuccess);
-        addButton.options.RemoveAt(index);
-        addableCharacters.RemoveAt(index);
+        if (response.ActSuccess)
+        {
+            addButton.options.RemoveAt(index);
+            addableCharacters.RemoveAt(index);
+        }
 #endif
     }
 

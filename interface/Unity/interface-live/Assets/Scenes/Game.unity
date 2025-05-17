@@ -1812,7 +1812,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &296778530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1825,9 +1825,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterType: 0
-  characterId: 0
-  teamId: 0
+  characterType: 12
+  characterId: 6
+  teamId: 1
 --- !u!114 &296778531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1840,9 +1840,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterType: 0
-  characterId: 0
-  teamId: 0
+  characterType: 11
+  characterId: 5
+  teamId: 1
 --- !u!114 &296778532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1855,9 +1855,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterType: 0
-  characterId: 0
-  teamId: 0
+  characterType: 10
+  characterId: 4
+  teamId: 1
 --- !u!114 &296778533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1870,9 +1870,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterType: 0
-  characterId: 0
-  teamId: 0
+  characterType: 9
+  characterId: 3
+  teamId: 1
 --- !u!114 &296778534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1885,9 +1885,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterType: 0
-  characterId: 0
-  teamId: 0
+  characterType: 8
+  characterId: 2
+  teamId: 1
 --- !u!4 &296778535
 Transform:
   m_ObjectHideFlags: 0
@@ -2151,7 +2151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactableLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   tobeSelectedInt: {fileID: 0}
   selectedInt: {fileID: 0}
   enabledInteract: 
@@ -2899,7 +2899,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1532704401}
   m_HandleRect: {fileID: 1532704400}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -7032,7 +7032,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1273624151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7045,8 +7045,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterType: 0
-  characterId: 0
+  characterType: 6
+  characterId: 6
   teamId: 0
 --- !u!114 &1273624152
 MonoBehaviour:
@@ -7060,8 +7060,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterType: 0
-  characterId: 0
+  characterType: 5
+  characterId: 5
   teamId: 0
 --- !u!114 &1273624153
 MonoBehaviour:
@@ -7075,8 +7075,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterType: 0
-  characterId: 0
+  characterType: 4
+  characterId: 4
   teamId: 0
 --- !u!114 &1273624154
 MonoBehaviour:
@@ -7090,8 +7090,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterType: 0
-  characterId: 0
+  characterType: 3
+  characterId: 3
   teamId: 0
 --- !u!114 &1273624155
 MonoBehaviour:
@@ -7105,8 +7105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterType: 0
-  characterId: 0
+  characterType: 2
+  characterId: 2
   teamId: 0
 --- !u!4 &1273624156
 Transform:
@@ -11873,7 +11873,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0007010583}
+  m_AnchoredPosition: {x: 0, y: -0.000049987088}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &2074216018

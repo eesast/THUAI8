@@ -54,7 +54,7 @@ public class CharacterBase : MonoBehaviour
 
         stateIcons = transform.Find("StateIcons");
 
-        visual = transform.GetComponentInChildren<SkeletonMecanim>().transform;
+        visual = transform.GetComponentInChildren<SkeletonMecanim>()?.transform;
         if (visual == null) visual = transform.Find("Appearance");
         visualScaleInitial = visual.localScale;
 
