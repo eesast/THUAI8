@@ -5,11 +5,6 @@ using UnityEngine;
 public class Singleton<T>
     where T : new()
 {
-    private static T Instance;
-    public static T GetInstance()
-    {
-        if (Instance == null)
-            Instance = new T();
-        return Instance;
-    }
+    private static T instance;
+    public static T Instance => instance ??= new T();
 }

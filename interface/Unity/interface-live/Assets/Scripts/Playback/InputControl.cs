@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Used for PlaybackController
 public class InputManager : SingletonMono<InputManager>
 {
     public void AfterInputPlaySpeed(string playSpeedS)
@@ -25,7 +26,7 @@ public class InputManager : SingletonMono<InputManager>
             }
             else if (playSpeedS[0] == '.')
                 inputDot = true;
-            playSpeedS = playSpeedS.Remove(0, 1);
+            playSpeedS = playSpeedS[1..];
         }
         PlaybackController.playSpeed = playSpeed > 0 ? playSpeed : 1;
         Debug.Log(PlaybackController.playSpeed);
@@ -34,8 +35,6 @@ public class InputManager : SingletonMono<InputManager>
     {
         PlaybackController.fileName = fileName;
         Debug.Log("InputControl.AfterInputFilename(), fileName=" + fileName);
-#if !UNITY_EDITOR
         PlaybackController.fileNameFlag = true;
-#endif
     }
 }
