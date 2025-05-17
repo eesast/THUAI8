@@ -219,7 +219,7 @@ class Communication:
                 self.__counter += 1
             constructTrapResult: Message2Clients.BoolRes = (
                 self.__THUAI8Stub.ConstructTrap(
-                    THUAI82Proto.THUAI82ProtobufConstructTrapMsg(
+                    THUAI82Proto.THUAI82ProtobufTrapMsg(
                         playerID, teamID, trapType
                     )
                 )
@@ -263,19 +263,19 @@ class Communication:
         else:
             return endResult.act_success
 
-    def Recycle(self, playerID: int, teamID: int) -> bool:
-        try:
-            with self.__mtxLimit:
-                if self.__counter >= self.__limit:
-                    return False
-                self.__counter += 1
-            recycleResult: Message2Clients.BoolRes = self.__THUAI8Stub.Recycle(
-                THUAI82Proto.THUAI82ProtobufIDMsg(playerID, teamID)
-            )
-        except grpc.RpcError:
-            return False
-        else:
-            return recycleResult.act_success
+    # def Recycle(self, playerID: int, teamID: int) -> bool:
+    #     try:
+    #         with self.__mtxLimit:
+    #             if self.__counter >= self.__limit:
+    #                 return False
+    #             self.__counter += 1
+    #         recycleResult: Message2Clients.BoolRes = self.__THUAI8Stub.Recycle(
+    #             THUAI82Proto.THUAI82ProtobufIDMsg(playerID, teamID)
+    #         )
+    #     except grpc.RpcError:
+    #         return False
+    #     else:
+    #         return recycleResult.act_success
 
     def BuildCharacter(
         self, teamID: int, characterType: THUAI8.CharacterType, birthIndex: int

@@ -150,9 +150,9 @@ class ILogic(metaclass=ABCMeta):
     ) -> bool:
         pass
 
-    @abstractmethod
-    def Recycle(self, playerID: int) -> bool:
-        pass
+    # @abstractmethod
+    # def Recycle(self, playerID: int) -> bool:
+    #     pass
 
     @abstractmethod
     def BuildCharacter(
@@ -512,14 +512,14 @@ class ITeamAPI(IAPI, metaclass=ABCMeta):
         """
         pass
 
-    @abstractmethod
-    def Recycle(self, playerID: int) -> Future[bool]:
-        """回收角色
+    # @abstractmethod
+    # def Recycle(self, playerID: int) -> Future[bool]:
+    #     """回收角色
 
-        :param playerID: 待回收角色编号
-        :return: 回收是否成功, 通过 `.result()` 方法等待获取 `bool`
-        """
-        pass
+    #     :param playerID: 待回收角色编号
+    #     :return: 回收是否成功, 通过 `.result()` 方法等待获取 `bool`
+    #     """
+    #     pass
 
     @abstractmethod
     def BuildCharacter(
