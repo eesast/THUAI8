@@ -143,10 +143,6 @@ namespace Preparation.Utility
             return gameObjType != GameObjType.NULL &&
                    gameObjType != GameObjType.BARRIER &&
                    gameObjType != GameObjType.BUSH &&
-                   gameObjType != GameObjType.ECONOMY_RESOURCE &&
-                   gameObjType != GameObjType.ADDITIONAL_RESOURCE &&
-                   gameObjType != GameObjType.CONSTRUCTION &&
-                   gameObjType != GameObjType.TRAP &&
                    gameObjType != GameObjType.HOME &&
                     gameObjType != GameObjType.OUTOFBOUNDBLOCK;
         }
