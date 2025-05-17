@@ -329,6 +329,10 @@ namespace Gaming
                                     character.ResetCharacterState(stateNum);
                                     return false;
                                 }
+                                if (construction.Process.GetValue() % 40 == 0)
+                                {
+                                    construction.HP.AddPositiveV(2);
+                                }
                                 if (construction.HP.IsMaxV())
                                 {
                                     character.ResetCharacterState(stateNum);
@@ -349,7 +353,7 @@ namespace Gaming
                                 }
                                 return true;
                             },
-                            timeInterval: GameData.CheckInterval * 100,
+                            timeInterval: GameData.CheckInterval,
                             finallyReturn: () => 0
                         ).Start();
                         character.ThreadNum.Release();
