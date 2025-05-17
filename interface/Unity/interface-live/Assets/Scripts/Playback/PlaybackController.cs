@@ -11,7 +11,6 @@ using UnityEngine.SceneManagement;
 
 public class PlaybackController : SingletonMono<PlaybackController>
 {
-    float GameTime = 0;
 
     byte[] bytes = null;
     MessageToClient responseVal;
