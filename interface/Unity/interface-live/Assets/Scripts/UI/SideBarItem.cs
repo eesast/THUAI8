@@ -20,7 +20,14 @@ public class SideBarItem : MonoBehaviour
 
     void Update()
     {
+        if (info.message == null) return;
         hpBar.fillAmount = info.message.Hp / (float)info.data.maxHp;
         hpText.text = $"{info.message.Hp}/{info.data.maxHp}";
+    }
+
+    public void OnClick()
+    {
+        PlayerControl.Instance.SelectedObject = info.characterControl;
+        Camera.main.GetComponent<CameraControl>().cameraMode = CameraControl.CameraMode.Follow;
     }
 }

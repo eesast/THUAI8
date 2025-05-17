@@ -10,19 +10,16 @@ public class ParaDefine : SingletonMono<ParaDefine>
     public ConstructionData[] constructionData;
     public TrapData[] trapData;
     public AdditionResourceData[] additionalResourceData;
+    public EquipmentData[] equipmentData;
 
-    private Dictionary<CharacterType, CharacterData> characterDataDict;
-    private Dictionary<ConstructionType, ConstructionData> constructionDataDict;
-    private Dictionary<TrapType, TrapData> trapDataDict;
-    private Dictionary<AdditionResourceType, AdditionResourceData> additionalResourceDataDict;
+    private Dictionary<CharacterType, CharacterData> characterDataDict = new();
+    private Dictionary<ConstructionType, ConstructionData> constructionDataDict = new();
+    private Dictionary<TrapType, TrapData> trapDataDict = new();
+    private Dictionary<AdditionResourceType, AdditionResourceData> additionalResourceDataDict = new();
+    private Dictionary<EquipmentType, EquipmentData> equipmentDataDict = new();
 
     void Start()
     {
-        characterDataDict = new Dictionary<CharacterType, CharacterData>();
-        constructionDataDict = new Dictionary<ConstructionType, ConstructionData>();
-        trapDataDict = new Dictionary<TrapType, TrapData>();
-        additionalResourceDataDict = new Dictionary<AdditionResourceType, AdditionResourceData>();
-
         foreach (var data in characterData)
             characterDataDict[data.characterType] = data;
 
@@ -34,6 +31,9 @@ public class ParaDefine : SingletonMono<ParaDefine>
 
         foreach (var data in additionalResourceData)
             additionalResourceDataDict[data.additionResourceType] = data;
+
+        foreach (var data in equipmentData)
+            equipmentDataDict[data.equipmentType] = data;
     }
 
 
@@ -45,9 +45,17 @@ public class ParaDefine : SingletonMono<ParaDefine>
     {
         return constructionDataDict[constructionType];
     }
+    public TrapData GetData(TrapType trapType)
+    {
+        return trapDataDict[trapType];
+    }
     public AdditionResourceData GetData(AdditionResourceType additionResourceType)
     {
         return additionalResourceDataDict[additionResourceType];
+    }
+    public EquipmentData GetData(EquipmentType equipmentType)
+    {
+        return equipmentDataDict[equipmentType];
     }
 
 }

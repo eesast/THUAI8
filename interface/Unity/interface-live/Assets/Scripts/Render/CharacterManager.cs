@@ -10,7 +10,7 @@ public struct CharacterInfo
     public CharacterType type;
     public CharacterBase characterBase;
     public CharacterControl characterControl;
-    public readonly MessageOfCharacter message => CoreParam.characters[ID];
+    public readonly MessageOfCharacter message => CoreParam.characters.GetValueOrDefault(ID, null);
     public readonly CharacterData data => ParaDefine.Instance.GetData(type);
 }
 

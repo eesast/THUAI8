@@ -4,12 +4,13 @@ using UnityEngine;
 using TMPro;
 using Spine.Unity;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class CharacterBase : MonoBehaviour
 {
     public long ID;
     public CharacterType characterType;
-    public MessageOfCharacter message => CoreParam.characters[ID];
+    public MessageOfCharacter message => CoreParam.characters.GetValueOrDefault(ID, null);
     bool GetDeceased() => message.Hp <= 0 || message.CharacterActiveState == CharacterState.Deceased;
     public int maxHp => ParaDefine.Instance.GetData(characterType).maxHp;
     public long teamId => message.TeamId;
@@ -62,6 +63,7 @@ public class CharacterBase : MonoBehaviour
 
     void Update()
     {
+        if (message == null) return;
         UpdateHpBar();
         switch (message.CharacterActiveState)
         {

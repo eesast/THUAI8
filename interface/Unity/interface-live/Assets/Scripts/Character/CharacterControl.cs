@@ -57,11 +57,16 @@ public class CharacterControl : InteractBase
 
 }
 #else
-public class CharacterControl: InteractBase
+public class CharacterControl : InteractBase
 {
+    public CharacterBase characterBase;
+    public long ID => characterBase.ID;
     public void Start()
     {
-        // Debug.LogWarning("LocalPlay mode is not implemented in this build.");
+        characterBase = GetComponent<CharacterBase>();
     }
+    public void Attack(CharacterBase target) { }
+    public void CastSkill(Vector2 position) { }
+    public void Move(Vector2 position) { }
 }
 #endif
