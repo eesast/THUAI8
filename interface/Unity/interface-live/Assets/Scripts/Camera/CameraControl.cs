@@ -15,12 +15,22 @@ public class CameraControl : MonoBehaviour
     public float currentScaleTime = 0.5f, basicCameraScale, currentScale;
     public float cameraSpeedMax = 1.5f, cameraSpeed;
     private new Camera camera;
+    private bool rendererUpdateFlag;
     Vector2 mousePos;
     void Start()
     {
         camera = GetComponent<Camera>();
         currentScale = cameraScaleCurve.Evaluate(currentScaleTime) * basicCameraScale;
         camera.orthographicSize = currentScale;
+        RenderManager.Instance.onRenderEvent += () =>
+        {
+            if (rendererUpdateFlag)
+            {
+                var targetPos = PlayerControl.Instance.selectedCharacter.transform.position;
+                targetPos.z = -10;
+                camera.transform.position = targetPos;
+            }
+        };
     }
 
     void Update()
@@ -33,6 +43,7 @@ public class CameraControl : MonoBehaviour
         switch (cameraMode)
         {
             case CameraMode.Free:
+                rendererUpdateFlag = false;
                 if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)
                  || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow))
                 {
@@ -57,9 +68,15 @@ public class CameraControl : MonoBehaviour
                     Vector3 targetPos = PlayerControl.Instance.selectedCharacter.transform.position;
                     targetPos.z = -10;
                     if ((transform.position - targetPos).sqrMagnitude > 0.1f)
+                    {
                         transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * 10);
-                    else
-                        transform.position = targetPos;
+                        rendererUpdateFlag = false;
+                    }
+                    // Move to Start() and registered as an event of RenderManager in order to avoid dazzling
+                    // else
+                    //     transform.position = targetPos;
+                    else rendererUpdateFlag = true;
+
                 }
                 break;
         }
