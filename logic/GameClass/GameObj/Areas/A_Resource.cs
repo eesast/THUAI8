@@ -51,6 +51,7 @@ public class A_Resource
         base(initPos, radius, GameObjType.ADDITIONAL_RESOURCE)
     {
         Occupation = ARFactory.FindAROccupation(type);
+        AResourceType = type;
         HP = new(Occupation.MaxHp);
         AttackPower = new(Occupation.AttackPower);
         Init();
