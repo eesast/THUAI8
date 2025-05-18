@@ -616,5 +616,5 @@ class THUAI82Proto:
         recoverMsg = Message2Server.RecoverMsg()
         recoverMsg.character_id = character_id
         recoverMsg.team_id = team_id
-        recoverMsg.recover = recover
+        recoverMsg.recovered_hp = recover
         return recoverMsg

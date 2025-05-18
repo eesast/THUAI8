@@ -5,17 +5,15 @@ using UnityEngine;
 public class SingletonDontDestory<T> : MonoBehaviour
     where T : MonoBehaviour
 {
-    private static T Instance;
-    public static T GetInstance()
-    {
-        return Instance;
-    }
+    private static T instance;
+    public static T Instance => instance;
+
 
     protected void Awake()
     {
-        if (Instance == null)
+        if (instance == null)
         {
-            Instance = this as T;
+            instance = this as T;
             DontDestroyOnLoad(gameObject);
         }
         else

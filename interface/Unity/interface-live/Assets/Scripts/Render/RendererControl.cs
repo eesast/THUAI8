@@ -19,9 +19,9 @@ public class RendererControl : Singleton<RendererControl>
                 {
                     CurrentRenderer.GetPropertyBlock(CurrentPropertyBlock);
                     litColor = new Color(
-                        ParaDefine.GetInstance().Team0Color[0].color.r * Mathf.Pow(2, ParaDefine.GetInstance().Team0Color[0].idensity * idensityRevise),
-                        ParaDefine.GetInstance().Team0Color[0].color.g * Mathf.Pow(2, ParaDefine.GetInstance().Team0Color[0].idensity * idensityRevise),
-                        ParaDefine.GetInstance().Team0Color[0].color.b * Mathf.Pow(2, ParaDefine.GetInstance().Team0Color[0].idensity * idensityRevise),
+                        ParaDefine.Instance.Team0Color[0].color.r * Mathf.Pow(2, ParaDefine.Instance.Team0Color[0].idensity * idensityRevise),
+                        ParaDefine.Instance.Team0Color[0].color.g * Mathf.Pow(2, ParaDefine.Instance.Team0Color[0].idensity * idensityRevise),
+                        ParaDefine.Instance.Team0Color[0].color.b * Mathf.Pow(2, ParaDefine.Instance.Team0Color[0].idensity * idensityRevise),
                         0);
                     CurrentPropertyBlock.SetColor("_GlowColor", litColor);
                     CurrentRenderer.SetPropertyBlock(CurrentPropertyBlock);
@@ -32,9 +32,9 @@ public class RendererControl : Singleton<RendererControl>
                     {
                         CurrentRenderer.GetPropertyBlock(CurrentPropertyBlock);
                         litColor = new Color(
-                            ParaDefine.GetInstance().Team0Color[1].color.r * Mathf.Pow(2, ParaDefine.GetInstance().Team0Color[1].idensity * idensityRevise),
-                            ParaDefine.GetInstance().Team0Color[1].color.g * Mathf.Pow(2, ParaDefine.GetInstance().Team0Color[1].idensity * idensityRevise),
-                            ParaDefine.GetInstance().Team0Color[1].color.b * Mathf.Pow(2, ParaDefine.GetInstance().Team0Color[1].idensity * idensityRevise),
+                            ParaDefine.Instance.Team0Color[1].color.r * Mathf.Pow(2, ParaDefine.Instance.Team0Color[1].idensity * idensityRevise),
+                            ParaDefine.Instance.Team0Color[1].color.g * Mathf.Pow(2, ParaDefine.Instance.Team0Color[1].idensity * idensityRevise),
+                            ParaDefine.Instance.Team0Color[1].color.b * Mathf.Pow(2, ParaDefine.Instance.Team0Color[1].idensity * idensityRevise),
                             0);
                         CurrentPropertyBlock.SetColor("_GlowColor", litColor);
                         CurrentRenderer.SetPropertyBlock(CurrentPropertyBlock);
@@ -46,9 +46,9 @@ public class RendererControl : Singleton<RendererControl>
                 {
                     CurrentRenderer.GetPropertyBlock(CurrentPropertyBlock);
                     litColor = new Color(
-                        ParaDefine.GetInstance().Team1Color[0].color.r * Mathf.Pow(2, ParaDefine.GetInstance().Team1Color[0].idensity * idensityRevise),
-                        ParaDefine.GetInstance().Team1Color[0].color.g * Mathf.Pow(2, ParaDefine.GetInstance().Team1Color[0].idensity * idensityRevise),
-                        ParaDefine.GetInstance().Team1Color[0].color.b * Mathf.Pow(2, ParaDefine.GetInstance().Team1Color[0].idensity * idensityRevise),
+                        ParaDefine.Instance.Team1Color[0].color.r * Mathf.Pow(2, ParaDefine.Instance.Team1Color[0].idensity * idensityRevise),
+                        ParaDefine.Instance.Team1Color[0].color.g * Mathf.Pow(2, ParaDefine.Instance.Team1Color[0].idensity * idensityRevise),
+                        ParaDefine.Instance.Team1Color[0].color.b * Mathf.Pow(2, ParaDefine.Instance.Team1Color[0].idensity * idensityRevise),
                         0);
                     CurrentPropertyBlock.SetColor("_GlowColor", litColor);
                     CurrentRenderer.SetPropertyBlock(CurrentPropertyBlock);
@@ -59,9 +59,9 @@ public class RendererControl : Singleton<RendererControl>
                     {
                         CurrentRenderer.GetPropertyBlock(CurrentPropertyBlock);
                         litColor = new Color(
-                            ParaDefine.GetInstance().Team1Color[1].color.r * Mathf.Pow(2, ParaDefine.GetInstance().Team1Color[1].idensity * idensityRevise),
-                            ParaDefine.GetInstance().Team1Color[1].color.g * Mathf.Pow(2, ParaDefine.GetInstance().Team1Color[1].idensity * idensityRevise),
-                            ParaDefine.GetInstance().Team1Color[1].color.b * Mathf.Pow(2, ParaDefine.GetInstance().Team1Color[1].idensity * idensityRevise),
+                            ParaDefine.Instance.Team1Color[1].color.r * Mathf.Pow(2, ParaDefine.Instance.Team1Color[1].idensity * idensityRevise),
+                            ParaDefine.Instance.Team1Color[1].color.g * Mathf.Pow(2, ParaDefine.Instance.Team1Color[1].idensity * idensityRevise),
+                            ParaDefine.Instance.Team1Color[1].color.b * Mathf.Pow(2, ParaDefine.Instance.Team1Color[1].idensity * idensityRevise),
                             0);
                         CurrentPropertyBlock.SetColor("_GlowColor", litColor);
                         CurrentRenderer.SetPropertyBlock(CurrentPropertyBlock);
@@ -81,9 +81,9 @@ public class RendererControl : Singleton<RendererControl>
                 {
                     CurrentRenderer.GetPropertyBlock(CurrentPropertyBlock);
                     litColor = new Color(
-                        ParaDefine.GetInstance().ResourceColor[0].color.r * Mathf.Pow(2, ParaDefine.GetInstance().ResourceColor[0].idensity),
-                        ParaDefine.GetInstance().ResourceColor[0].color.g * Mathf.Pow(2, ParaDefine.GetInstance().ResourceColor[0].idensity),
-                        ParaDefine.GetInstance().ResourceColor[0].color.b * Mathf.Pow(2, ParaDefine.GetInstance().ResourceColor[0].idensity),
+                        ParaDefine.Instance.ResourceColor[0].color.r * Mathf.Pow(2, ParaDefine.Instance.ResourceColor[0].idensity),
+                        ParaDefine.Instance.ResourceColor[0].color.g * Mathf.Pow(2, ParaDefine.Instance.ResourceColor[0].idensity),
+                        ParaDefine.Instance.ResourceColor[0].color.b * Mathf.Pow(2, ParaDefine.Instance.ResourceColor[0].idensity),
                         0);
                     CurrentPropertyBlock.SetColor("_GlowColor", litColor);
                     CurrentRenderer.SetPropertyBlock(CurrentPropertyBlock);
@@ -93,9 +93,9 @@ public class RendererControl : Singleton<RendererControl>
                 {
                     CurrentRenderer.GetPropertyBlock(CurrentPropertyBlock);
                     litColor = new Color(
-                        ParaDefine.GetInstance().ResourceColor[0].color.r * Mathf.Pow(2, ParaDefine.GetInstance().ResourceColor[0].idensity),
-                        ParaDefine.GetInstance().ResourceColor[0].color.g * Mathf.Pow(2, ParaDefine.GetInstance().ResourceColor[0].idensity),
-                        ParaDefine.GetInstance().ResourceColor[0].color.b * Mathf.Pow(2, ParaDefine.GetInstance().ResourceColor[0].idensity),
+                        ParaDefine.Instance.ResourceColor[0].color.r * Mathf.Pow(2, ParaDefine.Instance.ResourceColor[0].idensity),
+                        ParaDefine.Instance.ResourceColor[0].color.g * Mathf.Pow(2, ParaDefine.Instance.ResourceColor[0].idensity),
+                        ParaDefine.Instance.ResourceColor[0].color.b * Mathf.Pow(2, ParaDefine.Instance.ResourceColor[0].idensity),
                         0);
                     CurrentPropertyBlock.SetColor("_GlowColor", litColor);
                     CurrentRenderer.SetPropertyBlock(CurrentPropertyBlock);
