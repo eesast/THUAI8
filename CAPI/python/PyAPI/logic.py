@@ -253,9 +253,9 @@ class Logic(ILogic):
         self.__logger.debug("Called InstallEquipment")
         return self.__comm.InstallEquipment(equipmentType, playerID, self.__teamID)
 
-    def Recycle(self, playerID: int) -> bool:
-        self.__logger.debug("Called Recycle")
-        return self.__comm.Recycle(playerID, self.__teamID)
+    # def Recycle(self, playerID: int) -> bool:
+    #     self.__logger.debug("Called Recycle")
+    #     return self.__comm.Recycle(playerID, self.__teamID)
 
     def EndAllAction(self) -> bool:
         self.__logger.debug("Called EndAllAction")

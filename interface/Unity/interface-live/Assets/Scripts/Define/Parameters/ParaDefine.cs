@@ -6,32 +6,48 @@ using UnityEngine;
 
 public class ParaDefine : SingletonMono<ParaDefine>
 {
-    /*// public BulletData laserData, plasmaData, shellData, missileData, arcData, fortBulletData;
-    // public ProducerData producer1Data, producer2Data, producer3Data;
-    // public ConstructorData constructor1Data, constructor2Data, constructor3Data;
-    // public ShipData civilShipData, militaryShipData, flagShipData;
-    // public ConstructionData factoryData, communityData, fortData;
-    // public ArmorData armor1Data, armor2Data, armor3Data;
-    // public ShieldData shield1Data, shield2Data, shield3Data;
-    // public BaseData baseData;
-    [Serializable]
-    public class litColorSetting
+    public CharacterData[] characterData;
+    public ConstructionData[] constructionData;
+    public TrapData[] trapData;
+    public AdditionResourceData[] additionalResourceData;
+
+    private Dictionary<CharacterType, CharacterData> characterDataDict;
+    private Dictionary<ConstructionType, ConstructionData> constructionDataDict;
+    private Dictionary<TrapType, TrapData> trapDataDict;
+    private Dictionary<AdditionResourceType, AdditionResourceData> additionalResourceDataDict;
+
+    void Start()
     {
-        public litColorSetting(Color _color, float _idensity)
-        {
-            this.color = _color;
-            this.idensity = _idensity;
-        }
-        public Color color;
-        public float idensity;
+        characterDataDict = new Dictionary<CharacterType, CharacterData>();
+        constructionDataDict = new Dictionary<ConstructionType, ConstructionData>();
+        trapDataDict = new Dictionary<TrapType, TrapData>();
+        additionalResourceDataDict = new Dictionary<AdditionResourceType, AdditionResourceData>();
+
+        foreach (var data in characterData)
+            characterDataDict[data.characterType] = data;
+
+        foreach (var data in constructionData)
+            constructionDataDict[data.constructionType] = data;
+
+        foreach (var data in trapData)
+            trapDataDict[data.constructionType] = data;
+
+        foreach (var data in additionalResourceData)
+            additionalResourceDataDict[data.additionResourceType] = data;
     }
-    public litColorSetting[] Team0Color, Team1Color;
-    public litColorSetting[] ResourceColor;
-    public litColorSetting[] LaserColor, PlasmaColor;*/
-    [SerializeField] int[] maxHp;
-    public int GetMaxHp(CharacterType characterType)
+
+
+    public CharacterData GetData(CharacterType characterType)
     {
-        return maxHp[(int)characterType];
+        return characterDataDict[characterType];
+    }
+    public ConstructionData GetData(ConstructionType constructionType)
+    {
+        return constructionDataDict[constructionType];
+    }
+    public AdditionResourceData GetData(AdditionResourceType additionResourceType)
+    {
+        return additionalResourceDataDict[additionResourceType];
     }
 
 }

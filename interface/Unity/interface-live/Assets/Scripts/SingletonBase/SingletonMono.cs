@@ -5,22 +5,11 @@ using UnityEngine;
 public class SingletonMono<T> : MonoBehaviour
     where T : MonoBehaviour
 {
-    private static T Instance;
-    public static T GetInstance()
-    {
-        return Instance;
-    }
+    private static T instance;
+    public static T Instance => instance;
 
     protected void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this as T;
-            // DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            // Destroy(gameObject);
-        }
+        instance ??= this as T;
     }
 }

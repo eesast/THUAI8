@@ -19,9 +19,9 @@ public class Debugger : SingletonMono<Debugger>
     {
 
         info = System.IO.File.ReadAllText(path + "message 0.json");
-        UpdateManager.GetInstance().UpdateMessageByJson(info);
+        UpdateManager.Instance.UpdateMessageByJson(info);
         info = System.IO.File.ReadAllText(path + "message 1.json");
-        UpdateManager.GetInstance().UpdateMessageByJson(info);
+        UpdateManager.Instance.UpdateMessageByJson(info);
         /*MessageOfSpring messageOfFort = new MessageOfSpring()
         {
             X = 45,
@@ -40,12 +40,12 @@ public class Debugger : SingletonMono<Debugger>
         });
         messageToClient.ObjMessage.Add(messageOfObj);
         info = JsonConvert.SerializeObject(messageToClient);
-        UpdateManager.GetInstance().UpdateMessageByJson(info);*/
+        UpdateManager.Instance.UpdateMessageByJson(info);*/
     }
 
     public void OnDebugPressed()
     {
         info = System.IO.File.ReadAllText(path + "message 2.json");
-        UpdateManager.GetInstance().UpdateMessageByJson(info);
+        UpdateManager.Instance.UpdateMessageByJson(info);
     }
 }

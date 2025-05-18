@@ -63,7 +63,7 @@ class CharacterDebugAPI(ICharacterAPI, IGameTimer):
         )
 
         def logMove() -> bool:
-            result = self.__logic.Move(time, 0)
+            result = self.__logic.Move(time, angle)
             if not result:
                 self.__logger.warning(f"Move failed at {self.__GetTime()}ms")
             return result
@@ -1064,18 +1064,18 @@ class TeamDebugAPI(ITeamAPI, IGameTimer):
 
         return self.__pool.submit(logGetConstructionState)
 
-    def Recycle(self, playerID: int) -> Future[bool]:
-        self.__logger.info(
-            f"Recycle: playerID{playerID}, called at {self.__GetTime()}ms"
-        )
+    # def Recycle(self, playerID: int) -> Future[bool]:
+    #     self.__logger.info(
+    #         f"Recycle: playerID{playerID}, called at {self.__GetTime()}ms"
+    #     )
 
-        def logRecycle() -> bool:
-            result = self.__logic.Recycle(playerID)
-            if not result:
-                self.__logger.warning(f"Recycle failed at {self.__GetTime()}ms")
-            return result
+    #     def logRecycle() -> bool:
+    #         result = self.__logic.Recycle(playerID)
+    #         if not result:
+    #             self.__logger.warning(f"Recycle failed at {self.__GetTime()}ms")
+    #         return result
 
-        return self.__pool.submit(logRecycle)
+    #     return self.__pool.submit(logRecycle)
 
     def GetFrameCount(self) -> int:
         self.__logger.info(f"GetFrameCount: called at {self.__GetTime()}ms")
