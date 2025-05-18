@@ -329,10 +329,7 @@ namespace Gaming
                                     character.ResetCharacterState(stateNum);
                                     return false;
                                 }
-                                if (construction.Process.GetValue() % 40 == 0)
-                                {
-                                    construction.HP.AddPositiveV(2);
-                                }
+                                construction.HP.SetPositiveVRNow(construction.Process.GetValue() / 20);
                                 if (construction.HP.IsMaxV())
                                 {
                                     character.ResetCharacterState(stateNum);
