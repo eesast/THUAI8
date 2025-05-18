@@ -277,8 +277,12 @@ public class Character : Movable, ICharacter
         NiuShield.SetMaxV(GameData.MaxNiuShield);
         Shoes.SetMaxV(GameData.MaxShoes);
         AttackSize = new(Occupation.BaseAttackSize);
+        AttackSize.SetMaxV(Occupation.BaseAttackSize);
         HP = new(Occupation.MaxHp);
         AttackPower = new(Occupation.AttackPower);
+        AttackPower.SetMaxV(Occupation.AttackPower);
+        AttackPower.SetVToMaxV();
+        AttackSize.SetVToMaxV();
         MoneyPool = pool;
         Init();
     }
@@ -369,6 +373,7 @@ public class Character : Movable, ICharacter
                     IsBerserk = true;
                     BerserkTime = Environment.TickCount64;
                     SetCharacterState(CharacterState1, CharacterState.BERSERK);//此处缺少时间限制
+                    AttackPower.SetMaxV((long)1.2 * (AttackPower.GetValue()));
                     AttackPower.AddPositiveV((long)(0.2 * AttackPower.GetValue()));
                     ATKFrequency = GameData.CrazyATKFreq;
                     Shoes.AddPositiveV(GameData.CrazySpeed);
