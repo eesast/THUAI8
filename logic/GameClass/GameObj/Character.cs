@@ -277,8 +277,12 @@ public class Character : Movable, ICharacter
         NiuShield.SetMaxV(GameData.MaxNiuShield);
         Shoes.SetMaxV(GameData.MaxShoes);
         AttackSize = new(Occupation.BaseAttackSize);
+        AttackSize.SetMaxV(Occupation.BaseAttackSize);
         HP = new(Occupation.MaxHp);
         AttackPower = new(Occupation.AttackPower);
+        AttackPower.SetMaxV(Occupation.AttackPower);
+        AttackPower.SetVToMaxV();
+        AttackSize.SetVToMaxV();
         MoneyPool = pool;
         Init();
     }
