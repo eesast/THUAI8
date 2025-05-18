@@ -85,7 +85,7 @@ namespace Server
                                 }
                             }
                             await responseStream.WriteAsync(info);
-                            GameServerLogging.logger.ConsoleLog("Send!", false);
+                            // GameServerLogging.logger.ConsoleLog("Send!", false);
                         }
                     }
                     catch (InvalidOperationException)
@@ -203,9 +203,9 @@ namespace Server
                         if (currentGameInfo != null && !exitFlag)
                         {
                             await responseStream.WriteAsync(currentGameInfo);
-                            GameServerLogging.logger.ConsoleLog(
-                                $"Send to Player{request.CharacterId} from Team {request.TeamId}!",
-                                false);
+                            // GameServerLogging.logger.ConsoleLog(
+                            // $"Send to Player{request.CharacterId} from Team {request.TeamId}!",
+                            //    false);
                         }
                     }
                     catch
