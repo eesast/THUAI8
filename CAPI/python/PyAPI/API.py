@@ -270,8 +270,8 @@ class TeamAPI(ITeamAPI, IGameTimer):
             self.__logic.InstallEquipment, playerID, equipmentType
         )
 
-    def Recycle(self, playerID: int) -> Future[bool]:
-        return self.__pool.submit(self.__logic.Recycle, playerID)
+    # def Recycle(self, playerID: int) -> Future[bool]:
+    #     return self.__pool.submit(self.__logic.Recycle, playerID)
 
     def BuildCharacter(
         self, CharacterType: THUAI8.CharacterType, birthIndex: int

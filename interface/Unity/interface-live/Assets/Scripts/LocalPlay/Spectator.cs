@@ -4,10 +4,9 @@ using System;
 using Grpc.Core;
 using Protobuf;
 
-class Spectator : MonoBehaviour
+class Spectator : SingletonMono<Spectator>
 {
-    public static AvailableService.AvailableServiceClient client;
-    public static IAsyncStreamReader<MessageToClient> responseStream;
+    public AvailableService.AvailableServiceClient client;
 
     public async void Start()
     {
@@ -16,7 +15,7 @@ class Spectator : MonoBehaviour
         Channel channel = new("127.0.0.1:8888", ChannelCredentials.Insecure);
         // Wait for 30s.
         await channel.ConnectAsync(DateTime.UtcNow.AddSeconds(30));
-        var client = new AvailableService.AvailableServiceClient(channel);
+        client = new AvailableService.AvailableServiceClient(channel);
         Debug.Log("Successfully connected.");
         CharacterMsg playerInfo = new()
         {
@@ -43,7 +42,7 @@ class Spectator : MonoBehaviour
 }
 #else
 // Not Implemented
-class Spectator : MonoBehaviour
+class Spectator : SingletonMono<Spectator>
 {
     public void Start()
     {
