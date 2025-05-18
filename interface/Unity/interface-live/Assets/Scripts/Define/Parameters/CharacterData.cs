@@ -8,4 +8,5 @@ public class CharacterData : ScriptableObject
     public int attackRange;
     public int skillRange;
     public Sprite avatar;
+    public string characterName;
 }

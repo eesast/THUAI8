@@ -67,9 +67,9 @@ public class CameraControl : MonoBehaviour
                 {
                     Vector3 targetPos = PlayerControl.Instance.selectedCharacter.transform.position;
                     targetPos.z = -10;
-                    if ((transform.position - targetPos).sqrMagnitude > 0.1f)
+                    if ((transform.position - targetPos).sqrMagnitude > 0.5f)
                     {
-                        transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * 10);
+                        transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * 20);
                         rendererUpdateFlag = false;
                     }
                     // Move to Start() and registered as an event of RenderManager in order to avoid dazzling

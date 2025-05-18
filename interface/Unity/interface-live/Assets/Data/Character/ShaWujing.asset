@@ -17,3 +17,4 @@ MonoBehaviour:
   attackRange: 5000
   skillRange: 6000
   avatar: {fileID: 21300000, guid: 6e71d7d7bfbdf50418f337c23c39dbe1, type: 3}
+  characterName: "\u6C99\u609F\u51C0"

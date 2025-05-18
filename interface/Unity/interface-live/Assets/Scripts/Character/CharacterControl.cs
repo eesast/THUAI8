@@ -57,6 +57,7 @@ public class CharacterControl : InteractBase
 
 }
 #else
+[RequireComponent(typeof(CharacterBase))]
 public class CharacterControl : InteractBase
 {
     public CharacterBase characterBase;
