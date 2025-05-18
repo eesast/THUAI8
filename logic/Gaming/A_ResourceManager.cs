@@ -63,7 +63,7 @@ namespace Gaming
                                     if (characterManager.ImproveATK(teamcharacter, 15))
                                     {
                                         teamcharacter.CrazyManTime = Environment.TickCount64;
-                                        teamcharacter.CrazyManNum = 1;
+                                        teamcharacter.CrazyManNum = 2;
                                     }
                                 }
                             }
@@ -76,7 +76,7 @@ namespace Gaming
                                     if (characterManager.ImproveATK(teamcharacter, 20))
                                     {
                                         teamcharacter.CrazyManTime = Environment.TickCount64;
-                                        teamcharacter.CrazyManNum = 1;
+                                        teamcharacter.CrazyManNum = 3;
                                     }
                                 }
                             }
