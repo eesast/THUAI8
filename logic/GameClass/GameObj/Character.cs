@@ -42,6 +42,7 @@ public class Character : Movable, ICharacter
     public bool canskill = true;
     public long CrazyManTime = 0;
     public long QuickStepTime = 0;
+    public bool QuickStep = false;
     public int CrazyManNum = 0;
     public int EconomyDepletion = 0;
     public bool IsShield = false;
