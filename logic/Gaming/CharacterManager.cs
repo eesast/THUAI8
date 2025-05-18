@@ -186,6 +186,7 @@ namespace Gaming
             {
                 if (ATK <= 0)
                     return false;
+                character.AttackPower.SetMaxV(character.AttackPower + ATK);
                 character.AttackPower.AddPositiveV(ATK);//暂未添加时间限制
                 return true;
             }
