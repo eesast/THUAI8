@@ -176,7 +176,7 @@ namespace Gaming
             {
                 for (int i = 0; i < gameMap.Height; i++)
                 {
-                    for (int j = 0; j < gameMap.Height; j++)
+                    for (int j = 0; j < gameMap.Width; j++)
                     {
                         if (gameMap.protoGameMap[i, j] == PlaceType.HOME)
                         {
