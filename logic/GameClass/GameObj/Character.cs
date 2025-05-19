@@ -42,6 +42,7 @@ public class Character : Movable, ICharacter
     public bool canskill = true;
     public long CrazyManTime = 0;
     public long QuickStepTime = 0;
+    public bool QuickStep = false;
     public int CrazyManNum = 0;
     public int EconomyDepletion = 0;
     public bool IsShield = false;
@@ -373,6 +374,7 @@ public class Character : Movable, ICharacter
                     IsBerserk = true;
                     BerserkTime = Environment.TickCount64;
                     SetCharacterState(CharacterState1, CharacterState.BERSERK);//此处缺少时间限制
+                    AttackPower.SetMaxV((long)1.2 * (AttackPower.GetValue()));
                     AttackPower.AddPositiveV((long)(0.2 * AttackPower.GetValue()));
                     ATKFrequency = GameData.CrazyATKFreq;
                     Shoes.AddPositiveV(GameData.CrazySpeed);
