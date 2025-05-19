@@ -151,8 +151,6 @@ namespace debug_interface.ViewModels
                         newCharacter.Guid = data.Guid;
                         UpdateCharacterViewModel(newCharacter, data); // 使用辅助方法填充数据
 
-                        myLogger?.LogInfo($"添加新角色到列表: Guid={newCharacter.Guid}, Name='{newCharacter.Name}', TeamId={newCharacter.TeamId} ({(data.TeamId == 0 ? "Buddhists" : "Monsters")})"); // 添加队伍名日志
-
                         Dispatcher.UIThread.InvokeAsync(() => targetList.Add(newCharacter));
                     }
                     else // 更新现有角色
@@ -336,7 +334,7 @@ namespace debug_interface.ViewModels
                     MapVM.UpdateBuildingCell(
                         barracks.X / 1000,
                         barracks.Y / 1000,
-                        barracks.TeamId == (int)PlayerTeam.BuddhistsTeam ? "取经队" : "妖怪队",
+                        barracks.TeamId == 0 ? "取经队" : "妖怪队",
                         "兵营",
                         barracks.Hp
                     );
@@ -348,7 +346,7 @@ namespace debug_interface.ViewModels
                     MapVM.UpdateBuildingCell(
                         spring.X / 1000,
                         spring.Y / 1000,
-                        spring.TeamId == (int)PlayerTeam.BuddhistsTeam ? "取经队" : "妖怪队",
+                        spring.TeamId == 0 ? "取经队" : "妖怪队",
                         "泉水",
                         spring.Hp
                     );
@@ -360,7 +358,7 @@ namespace debug_interface.ViewModels
                     MapVM.UpdateBuildingCell(
                         farm.X / 1000,
                         farm.Y / 1000,
-                        farm.TeamId == (int)PlayerTeam.BuddhistsTeam ? "取经队" : "妖怪队",
+                        farm.TeamId == 0 ? "取经队" : "妖怪队",
                         "农场",
                         farm.Hp
                     );
@@ -372,7 +370,7 @@ namespace debug_interface.ViewModels
                     MapVM.UpdateTrapCell(
                         trap.X / 1000,
                         trap.Y / 1000,
-                        trap.TeamId == (int)PlayerTeam.BuddhistsTeam ? "取经队" : "妖怪队",
+                        trap.TeamId == 0 ? "取经队" : "妖怪队",
                         trap.TrapType == TrapType.Hole ? "陷阱（坑洞）" : "陷阱（牢笼）" // 区分类型
                     );
                 }

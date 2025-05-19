@@ -176,7 +176,7 @@ namespace debug_interface.ViewModels
             int index = x * GridSize + y;
             if (index >= 0 && index < MapCells.Count)
             {
-                myLogger?.LogDebug($"--- UpdateBuildingCell called for ({x},{y}), Type: {buildingType}, HP: {hp} ---");
+                //myLogger?.LogDebug($"--- UpdateBuildingCell called for ({x},{y}), Type: {buildingType}, HP: {hp} ---");
                 var cell = MapCells[index];
 
                 // *** 仅更新颜色和文本，不改变 CellType ***
