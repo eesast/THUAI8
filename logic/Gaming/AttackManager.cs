@@ -73,8 +73,14 @@ namespace Gaming
                     AttackManagerLogging.logger.ConsoleLogDebug("Common_attack is still in cd!");
                     return false;
                 }
+                long stateNum = character.SetCharacterState(CharacterState.ATTACKING, character.CharacterState2);
+                if (stateNum == -1)
+                {
+                    return false;
+                }
                 characterManager.BeAttacked(gameobj, character);
                 character.LastAttackTime = nowtime;
+                character.ResetCharacterState(stateNum);
                 if (character.CharacterState2 == CharacterState.INVISIBLE || character.visible == false)
                 {
                     character.visible = true;
@@ -96,11 +102,17 @@ namespace Gaming
                 {
                     return false;
                 }
+                long stateNum = character.SetCharacterState(CharacterState.ATTACKING, character.CharacterState2);
+                if (stateNum == -1)
+                {
+                    return false;
+                }
                 long nowtime = Environment.TickCount64;
                 if (nowtime - character.LastAttackTime < 1000 / character.ATKFrequency)
                     return false;
                 ARManager.BeAttacked(gameobj, character);
                 character.LastAttackTime = nowtime;
+                character.ResetCharacterState(stateNum);
                 if (character.CharacterState2 == CharacterState.INVISIBLE)
                     character.SetCharacterState(character.CharacterState1, CharacterState.NULL_CHARACTER_STATE);//破隐
                 return true;
@@ -144,23 +156,9 @@ namespace Gaming
                 {
                     return false;
                 }
-                new Thread
-                (
-                    () =>
-                    {
-                        character.ThreadNum.WaitOne();
-                        if (!character.StartThread(stateNum))
-                        {
-                            character.ThreadNum.Release();
-                            return;
-                        }
-                        //Eresource.AddProduceNum();
-                        Thread.Sleep(GameData.CheckInterval);
-                        Attack(character, Aresource);
-                    }
-                )
-                { IsBackground = true }.Start();
-                return false;
+                Attack(character, Aresource);
+                character.ResetCharacterState(stateNum);
+                return true;
             }
         }
     }
