@@ -174,6 +174,24 @@ namespace Gaming
             }
             else
             {
+                for (int i = 0; i < gameMap.Height; i++)
+                {
+                    for (int j = 0; j < gameMap.Height; j++)
+                    {
+                        if (gameMap.protoGameMap[i, j] == PlaceType.HOME)
+                        {
+                            if (i < 25 && playerInitInfo.characterType == CharacterType.TangSeng)//取经队大本营初始化在右上角，teamID任意
+                            {
+                                gameMap.Add(new Home(GameData.GetCellCenterPos(i, j), playerInitInfo.teamID, 0));
+
+                            }
+                            else if (i > 25 && playerInitInfo.characterType == CharacterType.JiuLing)
+                            {
+                                gameMap.Add(new Home(GameData.GetCellCenterPos(i, j), playerInitInfo.teamID, 1));
+                            }
+                        }
+                    }
+                }
                 return playerInitInfo.playerID;
             }
         }
