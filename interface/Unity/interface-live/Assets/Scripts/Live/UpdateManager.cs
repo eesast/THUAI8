@@ -4,7 +4,7 @@ using Protobuf;
 using UnityEngine;
 using Newtonsoft.Json;
 
-public class UpdateManager : SingletonMono<UpdateManager>, IUpdateManager
+public class UpdateManager : SingletonMono<UpdateManager>
 {
     JsonSerializerSettings jSetting = new JsonSerializerSettings
     {
