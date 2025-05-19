@@ -20,7 +20,7 @@ public class CharacterControl : InteractBase
             CharacterId = characterBase.message.PlayerId,
             TeamId = characterBase.message.TeamId,
             AttackRange = ParaDefine.Instance.GetData(characterBase.characterType).attackRange,
-            AttackedCharacterId = target.ID,
+            AttackedCharacterId = target.message.PlayerId,
             AttackedTeam = target.message.TeamId,
         });
     }

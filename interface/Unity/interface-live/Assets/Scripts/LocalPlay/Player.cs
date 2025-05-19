@@ -33,7 +33,7 @@ class Player : MonoBehaviour
         {
             CharacterId = characterId,
             CharacterType = characterType,
-            TeamId = teamId,
+            TeamId = 1 - teamId,
             SideFlag = teamId
         };
         var call = client.AddCharacter(playerInfo);

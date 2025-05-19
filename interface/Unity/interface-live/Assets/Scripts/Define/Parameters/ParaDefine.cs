@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class ParaDefine : SingletonMono<ParaDefine>
 {
+    public Color[] teamColors;
     public CharacterData[] characterData;
     public ConstructionData[] constructionData;
     public TrapData[] trapData;

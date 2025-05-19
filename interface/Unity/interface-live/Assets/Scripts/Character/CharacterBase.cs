@@ -13,7 +13,6 @@ public class CharacterBase : MonoBehaviour
     public MessageOfCharacter message => CoreParam.characters.GetValueOrDefault(ID, null);
     bool GetDeceased() => message.Hp <= 0 || message.CharacterActiveState == CharacterState.Deceased;
     public int maxHp => ParaDefine.Instance.GetData(characterType).maxHp;
-    public long teamId => message.TeamId;
     private Transform hpBar;
     private TextMeshPro hpText;
     private Slider globalHpBar;
@@ -42,6 +41,7 @@ public class CharacterBase : MonoBehaviour
 
         hpBar = transform.Find("HpBar").Find("HpBarFillWrapper");
         hpText = transform.Find("HpBar").Find("HpBarText").GetComponent<TextMeshPro>();
+        hpBar.GetComponentInChildren<SpriteRenderer>().color = ParaDefine.Instance.teamColors[message.TeamId];
         if (characterType == CharacterType.TangSeng)
         {
             globalHpBar = RenderManager.Instance.hpBarBud;

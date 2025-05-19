@@ -34,7 +34,11 @@ public class RenderManager : SingletonMono<RenderManager>
         {
             while (CoreParam.frameQueue.GetSize() > 100)
             {
-                CoreParam.frameQueue.GetValue();
+                var frame = CoreParam.frameQueue.GetValue();
+                if(frame.ToString().Contains("ATTACK"))
+                {
+                    Debug.Log("ATTACK");
+                }
             }
             StartCoroutine(CalTimems(1250 / CoreParam.frameQueue.GetSize()));
             fps.text = "FPS: " + (1250 / CoreParam.frameQueue.GetSize());
@@ -165,8 +169,6 @@ public class RenderManager : SingletonMono<RenderManager>
                         characterBase = characterBase,
                         characterControl = characterControl
                     });
-                    /*RendererControl.Instance.SetColToChild((PlayerTeam)(character.Value.TeamId + 1),
-                        CoreParam.charactersG[character.Key].transform);*/
                 }
                 else
                 {
@@ -198,8 +200,6 @@ public class RenderManager : SingletonMono<RenderManager>
                 if (!objectsG.ContainsKey(obj.Key) || objectsG[obj.Key] == null)
                 {
                     objectsG[obj.Key] = CreateObject(obj.Value);
-                    // RendererControl.Instance.SetColToChild((PlayerTeam)(obj.Value.TeamId + 1),
-                    //     CoreParam.factoriesG[obj.Key].transform, 5);
                 }
                 else
                 {
