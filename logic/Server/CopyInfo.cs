@@ -220,29 +220,68 @@ namespace Server
             return msg;
         }
 
-        private static MessageOfObj Traps(GameObj trap)
+        // private static MessageOfObj Traps(GameObj trap)
+        // {
+        //     MessageOfObj msg = new()
+        //     {
+        //         TrapMessage = new()
+        //         {
+        //             TrapType = trap switch
+        //             {
+        //                 HOLE _ => Protobuf.TrapType.Hole,
+        //                 Cage _ => Protobuf.TrapType.Cage,
+        //             },
+
+        //             X = trap.Position.x,
+        //             Y = trap.Position.y,
+
+        //             TeamId = trap switch
+        //             {
+        //                 HOLE t => t.TeamID.Get(),
+        //                 Cage c => c.TeamID.Get(),
+        //             },
+        //             Id = 0,
+
+        //             TrapValid = !trap.IsActivated.Get(), 
+        //         }
+        //     };
+        //     return msg;
+        // }
+        private static MessageOfObj Traps(HOLE trap)
         {
             MessageOfObj msg = new()
             {
                 TrapMessage = new()
                 {
-                    TrapType = trap switch
-                    {
-                        HOLE _ => Protobuf.TrapType.Hole,
-                        Cage _ => Protobuf.TrapType.Cage,
-                    },
+                    TrapType = Protobuf.TrapType.Hole,
 
                     X = trap.Position.x,
                     Y = trap.Position.y,
 
-                    TeamId = trap switch
-                    {
-                        HOLE t => t.TeamID.Get(),
-                        Cage c => c.TeamID.Get(),
-                    },
+                    TeamId = trap.TeamID.Get(),
                     Id = 0,
 
-                    TrapValid = !trap.IsActivated.Get(), 
+                    TrapValid = !trap.IsActivated.Get(),
+                }
+            };
+            return msg;
+        }
+
+        private static MessageOfObj Traps(Cage trap)
+        {
+            MessageOfObj msg = new()
+            {
+                TrapMessage = new()
+                {
+                    TrapType = Protobuf.TrapType.Cage,
+
+                    X = trap.Position.x,
+                    Y = trap.Position.y,
+
+                    TeamId = trap.TeamID.Get(),
+                    Id = 0,
+
+                    TrapValid = !trap.IsActivated.Get(),
                 }
             };
             return msg;
