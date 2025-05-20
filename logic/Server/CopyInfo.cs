@@ -30,7 +30,10 @@ namespace Server
                         return Farm(construction);
                     return null;
                 case GameObjType.TRAP:
-                    return Traps(gameObj);
+                    if (gameObj is HOLE hole)
+                        return Traps(hole);
+                    else if (gameObj is Cage cage)
+                        return Traps(cage);
                 default: return null;
             }
         }

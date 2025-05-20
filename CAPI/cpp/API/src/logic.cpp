@@ -584,7 +584,7 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
                     break;
                 }
             case THUAI8::MessageOfObj::TrapMessage:
-                {   
+                {
                     auto pos = THUAI8::cellxy_t(
                         AssistFunction::GridToCell(item.trap_message().x()),
                         AssistFunction::GridToCell(item.trap_message().y())
@@ -854,7 +854,7 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
                     {
                         bufferState->mapInfo->trapState.emplace(
                             std::piecewise_construct,
-                            std::forward_as_tuple(pos.first, pos.second),  // 构造键 cellxy_t{pos.first, pos.second}
+                            std::forward_as_tuple(pos.first, pos.second),
                             std::forward_as_tuple(
                                 Proto2THUAI8::trapTypeDict.at(item.trap_message().trap_type()),
                                 static_cast<bool>(item.trap_message().trap_valid()),
@@ -870,7 +870,6 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
                         bufferState->mapInfo->trapState[pos].team_id = item.trap_message().team_id();
                         logger->debug("Update EconomyResource!");
                     }
-
                     break;
                 }
             case THUAI8::MessageOfObj::EconomyResourceMessage:
