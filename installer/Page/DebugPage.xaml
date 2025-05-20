@@ -291,13 +291,11 @@
                             SelectedIndex="{Binding LogLevel}"
                             WidthRequest="400">
                             <Picker.Items>
-                                <x:String>Trace</x:String>
-                                <x:String>Debug</x:String>
-                                <x:String>Information</x:String>
-                                <x:String>Warning</x:String>
                                 <x:String>Error</x:String>
-                                <x:String>Critical</x:String>
-                                <x:String>None</x:String>
+                                <x:String>Warning</x:String>
+                                <x:String>Info</x:String>
+                                <x:String>Debug</x:String>
+                                <x:String>Trace</x:String>
                             </Picker.Items>
                         </Picker>
                     </HorizontalStackLayout>
