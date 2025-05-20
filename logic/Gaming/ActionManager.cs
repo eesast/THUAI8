@@ -7,7 +7,6 @@ using System;
 using System.Threading;
 using Timothy.FrameRateTask;
 using Preparation.Utility.Value;
-using Microsoft.Extensions.Logging;
 
 namespace Gaming
 {
@@ -36,13 +35,13 @@ namespace Gaming
             {
                 if (moveTimeInMilliseconds < 5)
                 {
-                    ActionManagerLogging.logger.LogWarning("Move time is too short");
+                    ActionManagerLogging.logger.ConsoleLogDebug("Move time is too short");
                     return false;
                 }
                 long stateNum = characterToMove.SetCharacterState(CharacterState.MOVING, characterToMove.CharacterState2);
                 if (stateNum == -1)
                 {
-                    ActionManagerLogging.logger.LogWarning("Character is not commandable");
+                    ActionManagerLogging.logger.ConsoleLogDebug("Character is not commandable");
                     return false;
                 }
                 new Thread
@@ -69,7 +68,7 @@ namespace Gaming
                 CharacterState tempState = characterToMove.CharacterState2;
                 if (stateNum == -1)
                 {
-                    ActionManagerLogging.logger.LogWarning("Character can not be knocked back");
+                    ActionManagerLogging.logger.ConsoleLogDebug("Character can not be knocked back");
                     return false;
                 }
                 new Thread

@@ -188,17 +188,6 @@ class Logic(ILogic):
                 return copy.deepcopy(
                     self.__currentState.mapInfo.additionResource[(cellX, cellY)]
                 )
-            
-    def GetTrapState(self, cellX: int, cellY: int) -> THUAI8.Trap:
-        with self.__mtxState:
-            self.__logger.debug("Called GetTrapState")
-            if (cellX, cellY) not in self.__currentState.mapInfo.trapState:
-                self.__logger.warning("GetTrapState: Out of range")
-                return None
-            else:
-                return copy.deepcopy(
-                    self.__currentState.mapInfo.trapState[(cellX, cellY)]
-                )
 
     def GetEnergy(self) -> int:
         with self.__mtxState:
@@ -453,7 +442,7 @@ class Logic(ILogic):
             elif item.WhichOneof("message_of_obj") == "barracks_message":
                 barracks_message = item.barracks_message
                 if barracks_message.team_id == self.__teamID or AssistFunction.HaveView(
-                    self.__bufferState.self.viewRange,
+                    self.__bufferState.self.view_range,
                     self.__bufferState.self.x,
                     self.__bufferState.self.y,
                     barracks_message.x,
@@ -486,7 +475,7 @@ class Logic(ILogic):
             elif item.WhichOneof("message_of_obj") == "spring_message":
                 spring_message = item.spring_message
                 if spring_message.team_id == self.__teamID or AssistFunction.HaveView(
-                    self.__bufferState.self.viewRange,
+                    self.__bufferState.self.view_range,
                     self.__bufferState.self.x,
                     self.__bufferState.self.y,
                     spring_message.x,
@@ -519,7 +508,7 @@ class Logic(ILogic):
             elif item.WhichOneof("message_of_obj") == "farm_message":
                 farm_message = item.farm_message
                 if farm_message.team_id == self.__teamID or AssistFunction.HaveView(
-                    self.__bufferState.self.viewRange,
+                    self.__bufferState.self.view_range,
                     self.__bufferState.self.x,
                     self.__bufferState.self.y,
                     farm_message.x,
@@ -552,33 +541,29 @@ class Logic(ILogic):
             elif item.WhichOneof("message_of_obj") == "trap_message":
                 trap_message = item.trap_message
                 if trap_message.team_id == self.__teamID or AssistFunction.HaveView(
-                    self.__bufferState.self.viewRange,
+                    self.__bufferState.self.view_range,
                     self.__bufferState.self.x,
                     self.__bufferState.self.y,
                     trap_message.x,
                     trap_message.y,
                     self.__bufferState.gameMap,
                 ):
-                    if self.__currentState.self.visionBuffTime > 0 or trap_message.team_id == self.__teamID:
+                    if self.__currentState.visionBuffTime > 0:
                         pos = (
                             AssistFunction.GridToCell(trap_message.x),
                             AssistFunction.GridToCell(trap_message.y),
                         )
                         if pos not in self.__bufferState.mapInfo.trapState:
-                            self.__bufferState.mapInfo.trapState[pos] = THUAI8.Trap(
-                                Proto2THUAI8.trapTypeDict[trap_message.trap_type], 
-                                trap_message.team_id, 
-                                trap_message.trap_valid
+                            self.__bufferState.mapInfo.trapState[pos] = (
+                                trap_message.team_id
                             )
                             if trap_message.team_id == self.__teamID:
                                 self.__logger.debug("Load Trap!")
                             else:
                                 self.__logger.debug("Load EnemyTrap!")
                         else:
-                            self.__bufferState.mapInfo.trapState[pos] = THUAI8.Trap(
-                                Proto2THUAI8.trapTypeDict[trap_message.trap_type], 
-                                trap_message.team_id, 
-                                trap_message.trap_valid
+                            self.__bufferState.mapInfo.trapState[pos] = (
+                                trap_message.team_id
                             )
                             if trap_message.team_id == self.__teamID:
                                 self.__logger.debug("Update Trap!")
@@ -591,18 +576,18 @@ class Logic(ILogic):
                     AssistFunction.GridToCell(economy_message.x),
                     AssistFunction.GridToCell(economy_message.y),
                 )
-                if pos not in self.__bufferState.mapInfo.economyResource:
-                    self.__bufferState.mapInfo.economyResource[pos] = THUAI8.EconomyResource(
-                        economy_message.id, 
-                        economy_message.process, 
-                        Proto2THUAI8.economyResourceStateTypeDict[economy_message.economy_resource_type]
+                if pos not in self.__bufferState.mapInfo.economyResourceState:
+                    self.__bufferState.mapInfo.economyResourceState[pos] = (
+                        economy_message.id,
+                        economy_message.process,
+                        economy_message.economy_resource_type,
                     )
                     self.__logger.debug("Load EconomyResource!")
                 else:
-                    self.__bufferState.mapInfo.economyResource[pos] = THUAI8.EconomyResource(
+                    self.__bufferState.mapInfo.economyResourceState[pos] = (
                         economy_message.id,
                         economy_message.process,
-                        Proto2THUAI8.economyResourceStateTypeDict[economy_message.economy_resource_type]
+                        economy_message.economy_resource_type,
                     )
                     self.__logger.debug("Update EconomyResource!")
 
@@ -612,18 +597,18 @@ class Logic(ILogic):
                     AssistFunction.GridToCell(addition_message.x),
                     AssistFunction.GridToCell(addition_message.y),
                 )
-                if pos not in self.__bufferState.mapInfo.additionResource:
-                    self.__bufferState.mapInfo.additionResource[pos] = THUAI8.AdditionResource(
+                if pos not in self.__bufferState.mapInfo.additionResourceState:
+                    self.__bufferState.mapInfo.additionResourceState[pos] = (
                         addition_message.id,
                         addition_message.hp,
-                        Proto2THUAI8.additionResourceStateTypeDict[addition_message.addition_resource_type]
+                        addition_message.addition_resource_type,
                     )
                     self.__logger.debug("Load AdditionResource!")
                 else:
-                    self.__bufferState.mapInfo.additionResource[pos] = THUAI8.AdditionResource(
-                        addition_message.id, 
-                        addition_message.hp, 
-                        Proto2THUAI8.additionResourceStateTypeDict[addition_message.addition_resource_type]
+                    self.__bufferState.mapInfo.additionResourceState[pos] = (
+                        addition_message.id,
+                        addition_message.hp,
+                        addition_message.addition_resource_type,
                     )
                     self.__logger.debug("Update AdditionResource!")
 
@@ -694,7 +679,7 @@ class Logic(ILogic):
             elif item.WhichOneof("message_of_obj") == "barracks_message":
                 barracks_message = item.barracks_message
                 if barracks_message.team_id == self.__teamID or AssistFunction.HaveView(
-                    self.__bufferState.self.viewRange,
+                    self.__bufferState.self.view_range,
                     self.__bufferState.self.x,
                     self.__bufferState.self.y,
                     barracks_message.x,
@@ -727,7 +712,7 @@ class Logic(ILogic):
             elif item.WhichOneof("message_of_obj") == "spring_message":
                 spring_message = item.spring_message
                 if spring_message.team_id == self.__teamID or AssistFunction.HaveView(
-                    self.__bufferState.self.viewRange,
+                    self.__bufferState.self.view_range,
                     self.__bufferState.self.x,
                     self.__bufferState.self.y,
                     spring_message.x,
@@ -760,7 +745,7 @@ class Logic(ILogic):
             elif item.WhichOneof("message_of_obj") == "farm_message":
                 farm_message = item.farm_message
                 if farm_message.team_id == self.__teamID or AssistFunction.HaveView(
-                    self.__bufferState.self.viewRange,
+                    self.__bufferState.self.view_range,
                     self.__bufferState.self.x,
                     self.__bufferState.self.y,
                     farm_message.x,
@@ -819,18 +804,18 @@ class Logic(ILogic):
                     AssistFunction.GridToCell(economy_message.x),
                     AssistFunction.GridToCell(economy_message.y),
                 )
-                if pos not in self.__bufferState.mapInfo.economyResource:
-                    self.__bufferState.mapInfo.economyResource[pos] = THUAI8.EconomyResource(
+                if pos not in self.__bufferState.mapInfo.economyResourceState:
+                    self.__bufferState.mapInfo.economyResourceState[pos] = (
                         economy_message.id,
                         economy_message.process,
-                        Proto2THUAI8.economyResourceStateTypeDict[economy_message.economy_resource_type]
+                        economy_message.economy_resource_type,
                     )
                     self.__logger.debug("Load EconomyResource!")
                 else:
-                    self.__bufferState.mapInfo.economyResource[pos] = THUAI8.EconomyResource(
+                    self.__bufferState.mapInfo.economyResourceState[pos] = (
                         economy_message.id,
                         economy_message.process,
-                        Proto2THUAI8.economyResourceStateTypeDict[economy_message.economy_resource_type]
+                        economy_message.economy_resource_type,
                     )
                     self.__logger.debug("Update EconomyResource!")
 
@@ -840,18 +825,18 @@ class Logic(ILogic):
                     AssistFunction.GridToCell(addition_message.x),
                     AssistFunction.GridToCell(addition_message.y),
                 )
-                if pos not in self.__bufferState.mapInfo.additionResource:
-                    self.__bufferState.mapInfo.additionResource[pos] = THUAI8.AdditionResource(
+                if pos not in self.__bufferState.mapInfo.additionResourceState:
+                    self.__bufferState.mapInfo.additionResourceState[pos] = (
                         addition_message.id,
                         addition_message.hp,
-                        Proto2THUAI8.additionResourceStateTypeDict[addition_message.addition_resource_type]
+                        addition_message.addition_resource_type,
                     )
                     self.__logger.debug("Load AdditionResource!")
                 else:
-                    self.__bufferState.mapInfo.additionResource[pos] = THUAI8.AdditionResource(
+                    self.__bufferState.mapInfo.additionResourceState[pos] = (
                         addition_message.id,
                         addition_message.hp,
-                        Proto2THUAI8.additionResourceStateTypeDict[addition_message.addition_resource_type]
+                        addition_message.addition_resource_type,
                     )
                     self.__logger.debug("Update AdditionResource!")
 

@@ -141,10 +141,9 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR MessageOfTrap::MessageOfTrap(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.trap_type_)*/0
-  , /*decltype(_impl_.trap_valid_)*/false
   , /*decltype(_impl_.x_)*/0
-  , /*decltype(_impl_.y_)*/0
   , /*decltype(_impl_.team_id_)*/int64_t{0}
+  , /*decltype(_impl_.y_)*/0
   , /*decltype(_impl_.id_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct MessageOfTrapDefaultTypeInternal {
@@ -487,7 +486,6 @@ const uint32_t TableStruct_Message2Clients_2eproto::offsets[] PROTOBUF_SECTION_V
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::protobuf::MessageOfTrap, _impl_.trap_type_),
-  PROTOBUF_FIELD_OFFSET(::protobuf::MessageOfTrap, _impl_.trap_valid_),
   PROTOBUF_FIELD_OFFSET(::protobuf::MessageOfTrap, _impl_.x_),
   PROTOBUF_FIELD_OFFSET(::protobuf::MessageOfTrap, _impl_.y_),
   PROTOBUF_FIELD_OFFSET(::protobuf::MessageOfTrap, _impl_.team_id_),
@@ -650,21 +648,21 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 65, -1, -1, sizeof(::protobuf::MessageOfSpring)},
   { 76, -1, -1, sizeof(::protobuf::MessageOfFarm)},
   { 87, -1, -1, sizeof(::protobuf::MessageOfTrap)},
-  { 99, -1, -1, sizeof(::protobuf::MessageOfEconomyResource)},
-  { 111, -1, -1, sizeof(::protobuf::MessageOfAdditionResource)},
-  { 123, -1, -1, sizeof(::protobuf::MessageOfConstruction)},
-  { 134, -1, -1, sizeof(::protobuf::MessageOfMap_Row)},
-  { 141, -1, -1, sizeof(::protobuf::MessageOfMap)},
-  { 150, -1, -1, sizeof(::protobuf::MessageOfTeam)},
-  { 160, -1, -1, sizeof(::protobuf::MessageOfObj)},
-  { 177, -1, -1, sizeof(::protobuf::MessageOfAll)},
-  { 190, -1, -1, sizeof(::protobuf::MessageToClient)},
-  { 199, -1, -1, sizeof(::protobuf::MoveRes)},
-  { 208, -1, -1, sizeof(::protobuf::CreatCharacterRes)},
-  { 216, -1, -1, sizeof(::protobuf::BoolRes)},
-  { 223, -1, -1, sizeof(::protobuf::CharacterInfoRes)},
-  { 230, -1, -1, sizeof(::protobuf::EcoRes)},
-  { 237, -1, -1, sizeof(::protobuf::MessageOfNews)},
+  { 98, -1, -1, sizeof(::protobuf::MessageOfEconomyResource)},
+  { 110, -1, -1, sizeof(::protobuf::MessageOfAdditionResource)},
+  { 122, -1, -1, sizeof(::protobuf::MessageOfConstruction)},
+  { 133, -1, -1, sizeof(::protobuf::MessageOfMap_Row)},
+  { 140, -1, -1, sizeof(::protobuf::MessageOfMap)},
+  { 149, -1, -1, sizeof(::protobuf::MessageOfTeam)},
+  { 159, -1, -1, sizeof(::protobuf::MessageOfObj)},
+  { 176, -1, -1, sizeof(::protobuf::MessageOfAll)},
+  { 189, -1, -1, sizeof(::protobuf::MessageToClient)},
+  { 198, -1, -1, sizeof(::protobuf::MoveRes)},
+  { 207, -1, -1, sizeof(::protobuf::CreatCharacterRes)},
+  { 215, -1, -1, sizeof(::protobuf::BoolRes)},
+  { 222, -1, -1, sizeof(::protobuf::CharacterInfoRes)},
+  { 229, -1, -1, sizeof(::protobuf::EcoRes)},
+  { 236, -1, -1, sizeof(::protobuf::MessageOfNews)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -725,70 +723,69 @@ const char descriptor_table_protodef_Message2Clients_2eproto[] PROTOBUF_SECTION_
   "(\005\022\n\n\002hp\030\003 \001(\005\022\017\n\007team_id\030\004 \001(\003\022\n\n\002id\030\005 "
   "\001(\005\"N\n\rMessageOfFarm\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001"
   "(\005\022\n\n\002hp\030\003 \001(\005\022\017\n\007team_id\030\004 \001(\003\022\n\n\002id\030\005 "
-  "\001(\005\"}\n\rMessageOfTrap\022%\n\ttrap_type\030\001 \001(\0162"
-  "\022.protobuf.TrapType\022\022\n\ntrap_valid\030\002 \001(\010\022"
-  "\t\n\001x\030\003 \001(\005\022\t\n\001y\030\004 \001(\005\022\017\n\007team_id\030\005 \001(\003\022\n"
-  "\n\002id\030\006 \001(\005\"\313\001\n\030MessageOfEconomyResource\022"
-  "<\n\025economy_resource_type\030\001 \001(\0162\035.protobu"
-  "f.EconomyResourceType\022>\n\026economy_resourc"
-  "e_state\030\002 \001(\0162\036.protobuf.EconomyResource"
-  "State\022\t\n\001x\030\003 \001(\005\022\t\n\001y\030\004 \001(\005\022\017\n\007process\030\005"
-  " \001(\005\022\n\n\002id\030\006 \001(\005\"\313\001\n\031MessageOfAdditionRe"
-  "source\022>\n\026addition_resource_type\030\001 \001(\0162\036"
-  ".protobuf.AdditionResourceType\022@\n\027additi"
-  "on_resource_state\030\002 \001(\0162\037.protobuf.Addit"
-  "ionResourceState\022\t\n\001x\030\003 \001(\005\022\t\n\001y\030\004 \001(\005\022\n"
-  "\n\002hp\030\005 \001(\005\022\n\n\002id\030\006 \001(\005\"\201\001\n\025MessageOfCons"
-  "truction\0225\n\021construction_type\030\001 \001(\0162\032.pr"
-  "otobuf.ConstructionType\022\t\n\001x\030\002 \001(\005\022\t\n\001y\030"
-  "\003 \001(\005\022\n\n\002hp\030\004 \001(\005\022\017\n\007team_id\030\005 \001(\003\"\201\001\n\014M"
-  "essageOfMap\022\016\n\006height\030\001 \001(\r\022\r\n\005width\030\002 \001"
-  "(\r\022(\n\004rows\030\003 \003(\0132\032.protobuf.MessageOfMap"
-  ".Row\032(\n\003Row\022!\n\004cols\030\001 \003(\0162\023.protobuf.Pla"
-  "ceType\"R\n\rMessageOfTeam\022\017\n\007team_id\030\001 \001(\003"
-  "\022\021\n\tplayer_id\030\002 \001(\003\022\r\n\005score\030\003 \001(\003\022\016\n\006en"
-  "ergy\030\004 \001(\003\"\316\004\n\014MessageOfObj\0229\n\021character"
-  "_message\030\001 \001(\0132\034.protobuf.MessageOfChara"
-  "cterH\000\0227\n\020barracks_message\030\002 \001(\0132\033.proto"
-  "buf.MessageOfBarracksH\000\0223\n\016spring_messag"
-  "e\030\003 \001(\0132\031.protobuf.MessageOfSpringH\000\022/\n\014"
-  "farm_message\030\004 \001(\0132\027.protobuf.MessageOfF"
-  "armH\000\022/\n\014trap_message\030\005 \001(\0132\027.protobuf.M"
-  "essageOfTrapH\000\022F\n\030economy_resource_messa"
-  "ge\030\006 \001(\0132\".protobuf.MessageOfEconomyReso"
-  "urceH\000\022H\n\031addition_resource_message\030\007 \001("
-  "\0132#.protobuf.MessageOfAdditionResourceH\000"
-  "\022-\n\013map_message\030\010 \001(\0132\026.protobuf.Message"
-  "OfMapH\000\022/\n\014news_message\030\t \001(\0132\027.protobuf"
-  ".MessageOfNewsH\000\022/\n\014team_message\030\n \001(\0132\027"
-  ".protobuf.MessageOfTeamH\000B\020\n\016message_of_"
-  "obj\"\320\001\n\014MessageOfAll\022\021\n\tgame_time\030\001 \001(\005\022"
-  "\034\n\024buddhists_team_score\030\002 \001(\005\022\033\n\023monster"
-  "s_team_score\030\003 \001(\005\022\036\n\026buddhists_team_eco"
-  "nomy\030\004 \001(\005\022\035\n\025monsters_team_economy\030\005 \001("
-  "\005\022\031\n\021buddhists_hero_hp\030\006 \001(\005\022\030\n\020monsters"
-  "_hero_hp\030\007 \001(\005\"\224\001\n\017MessageToClient\022+\n\013ob"
-  "j_message\030\001 \003(\0132\026.protobuf.MessageOfObj\022"
-  "\'\n\ngame_state\030\002 \001(\0162\023.protobuf.GameState"
-  "\022+\n\013all_message\030\003 \001(\0132\026.protobuf.Message"
-  "OfAll\"J\n\007MoveRes\022\024\n\014actual_speed\030\001 \001(\003\022\024"
-  "\n\014actual_angle\030\002 \001(\001\022\023\n\013act_success\030\003 \001("
-  "\010\";\n\021CreatCharacterRes\022\023\n\013act_success\030\001 "
-  "\001(\010\022\021\n\tplayer_id\030\002 \001(\003\"\036\n\007BoolRes\022\023\n\013act"
-  "_success\030\001 \001(\010\"H\n\020CharacterInfoRes\0224\n\016Ch"
-  "aracter_info\030\001 \003(\0132\034.protobuf.MessageOfC"
-  "haracter\"\031\n\006EcoRes\022\017\n\007economy\030\001 \001(\003\"z\n\rM"
-  "essageOfNews\022\026\n\014text_message\030\001 \001(\tH\000\022\030\n\016"
-  "binary_message\030\002 \001(\014H\000\022\017\n\007from_id\030\003 \001(\003\022"
-  "\r\n\005to_id\030\004 \001(\003\022\017\n\007team_id\030\005 \001(\003B\006\n\004newsb"
-  "\006proto3"
+  "\001(\005\"i\n\rMessageOfTrap\022%\n\ttrap_type\030\001 \001(\0162"
+  "\022.protobuf.TrapType\022\t\n\001x\030\002 \001(\005\022\t\n\001y\030\003 \001("
+  "\005\022\017\n\007team_id\030\004 \001(\003\022\n\n\002id\030\005 \001(\005\"\313\001\n\030Messa"
+  "geOfEconomyResource\022<\n\025economy_resource_"
+  "type\030\001 \001(\0162\035.protobuf.EconomyResourceTyp"
+  "e\022>\n\026economy_resource_state\030\002 \001(\0162\036.prot"
+  "obuf.EconomyResourceState\022\t\n\001x\030\003 \001(\005\022\t\n\001"
+  "y\030\004 \001(\005\022\017\n\007process\030\005 \001(\005\022\n\n\002id\030\006 \001(\005\"\313\001\n"
+  "\031MessageOfAdditionResource\022>\n\026addition_r"
+  "esource_type\030\001 \001(\0162\036.protobuf.AdditionRe"
+  "sourceType\022@\n\027addition_resource_state\030\002 "
+  "\001(\0162\037.protobuf.AdditionResourceState\022\t\n\001"
+  "x\030\003 \001(\005\022\t\n\001y\030\004 \001(\005\022\n\n\002hp\030\005 \001(\005\022\n\n\002id\030\006 \001"
+  "(\005\"\201\001\n\025MessageOfConstruction\0225\n\021construc"
+  "tion_type\030\001 \001(\0162\032.protobuf.ConstructionT"
+  "ype\022\t\n\001x\030\002 \001(\005\022\t\n\001y\030\003 \001(\005\022\n\n\002hp\030\004 \001(\005\022\017\n"
+  "\007team_id\030\005 \001(\003\"\201\001\n\014MessageOfMap\022\016\n\006heigh"
+  "t\030\001 \001(\r\022\r\n\005width\030\002 \001(\r\022(\n\004rows\030\003 \003(\0132\032.p"
+  "rotobuf.MessageOfMap.Row\032(\n\003Row\022!\n\004cols\030"
+  "\001 \003(\0162\023.protobuf.PlaceType\"R\n\rMessageOfT"
+  "eam\022\017\n\007team_id\030\001 \001(\003\022\021\n\tplayer_id\030\002 \001(\003\022"
+  "\r\n\005score\030\003 \001(\003\022\016\n\006energy\030\004 \001(\003\"\316\004\n\014Messa"
+  "geOfObj\0229\n\021character_message\030\001 \001(\0132\034.pro"
+  "tobuf.MessageOfCharacterH\000\0227\n\020barracks_m"
+  "essage\030\002 \001(\0132\033.protobuf.MessageOfBarrack"
+  "sH\000\0223\n\016spring_message\030\003 \001(\0132\031.protobuf.M"
+  "essageOfSpringH\000\022/\n\014farm_message\030\004 \001(\0132\027"
+  ".protobuf.MessageOfFarmH\000\022/\n\014trap_messag"
+  "e\030\005 \001(\0132\027.protobuf.MessageOfTrapH\000\022F\n\030ec"
+  "onomy_resource_message\030\006 \001(\0132\".protobuf."
+  "MessageOfEconomyResourceH\000\022H\n\031addition_r"
+  "esource_message\030\007 \001(\0132#.protobuf.Message"
+  "OfAdditionResourceH\000\022-\n\013map_message\030\010 \001("
+  "\0132\026.protobuf.MessageOfMapH\000\022/\n\014news_mess"
+  "age\030\t \001(\0132\027.protobuf.MessageOfNewsH\000\022/\n\014"
+  "team_message\030\n \001(\0132\027.protobuf.MessageOfT"
+  "eamH\000B\020\n\016message_of_obj\"\320\001\n\014MessageOfAll"
+  "\022\021\n\tgame_time\030\001 \001(\005\022\034\n\024buddhists_team_sc"
+  "ore\030\002 \001(\005\022\033\n\023monsters_team_score\030\003 \001(\005\022\036"
+  "\n\026buddhists_team_economy\030\004 \001(\005\022\035\n\025monste"
+  "rs_team_economy\030\005 \001(\005\022\031\n\021buddhists_hero_"
+  "hp\030\006 \001(\005\022\030\n\020monsters_hero_hp\030\007 \001(\005\"\224\001\n\017M"
+  "essageToClient\022+\n\013obj_message\030\001 \003(\0132\026.pr"
+  "otobuf.MessageOfObj\022\'\n\ngame_state\030\002 \001(\0162"
+  "\023.protobuf.GameState\022+\n\013all_message\030\003 \001("
+  "\0132\026.protobuf.MessageOfAll\"J\n\007MoveRes\022\024\n\014"
+  "actual_speed\030\001 \001(\003\022\024\n\014actual_angle\030\002 \001(\001"
+  "\022\023\n\013act_success\030\003 \001(\010\";\n\021CreatCharacterR"
+  "es\022\023\n\013act_success\030\001 \001(\010\022\021\n\tplayer_id\030\002 \001"
+  "(\003\"\036\n\007BoolRes\022\023\n\013act_success\030\001 \001(\010\"H\n\020Ch"
+  "aracterInfoRes\0224\n\016Character_info\030\001 \003(\0132\034"
+  ".protobuf.MessageOfCharacter\"\031\n\006EcoRes\022\017"
+  "\n\007economy\030\001 \001(\003\"z\n\rMessageOfNews\022\026\n\014text"
+  "_message\030\001 \001(\tH\000\022\030\n\016binary_message\030\002 \001(\014"
+  "H\000\022\017\n\007from_id\030\003 \001(\003\022\r\n\005to_id\030\004 \001(\003\022\017\n\007te"
+  "am_id\030\005 \001(\003B\006\n\004newsb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_Message2Clients_2eproto_deps[1] = {
   &::descriptor_table_MessageType_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_Message2Clients_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_Message2Clients_2eproto = {
-    false, false, 3567, descriptor_table_protodef_Message2Clients_2eproto,
+    false, false, 3547, descriptor_table_protodef_Message2Clients_2eproto,
     "Message2Clients.proto",
     &descriptor_table_Message2Clients_2eproto_once, descriptor_table_Message2Clients_2eproto_deps, 1, 21,
     schemas, file_default_instances, TableStruct_Message2Clients_2eproto::offsets,
@@ -3088,10 +3085,9 @@ MessageOfTrap::MessageOfTrap(const MessageOfTrap& from)
   MessageOfTrap* const _this = this; (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_.trap_type_){}
-    , decltype(_impl_.trap_valid_){}
     , decltype(_impl_.x_){}
-    , decltype(_impl_.y_){}
     , decltype(_impl_.team_id_){}
+    , decltype(_impl_.y_){}
     , decltype(_impl_.id_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
@@ -3108,10 +3104,9 @@ inline void MessageOfTrap::SharedCtor(
   (void)is_message_owned;
   new (&_impl_) Impl_{
       decltype(_impl_.trap_type_){0}
-    , decltype(_impl_.trap_valid_){false}
     , decltype(_impl_.x_){0}
-    , decltype(_impl_.y_){0}
     , decltype(_impl_.team_id_){int64_t{0}}
+    , decltype(_impl_.y_){0}
     , decltype(_impl_.id_){0}
     , /*decltype(_impl_._cached_size_)*/{}
   };
@@ -3161,41 +3156,33 @@ const char* MessageOfTrap::_InternalParse(const char* ptr, ::_pbi::ParseContext*
         } else
           goto handle_unusual;
         continue;
-      // bool trap_valid = 2;
+      // int32 x = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _impl_.trap_valid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 x = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
           _impl_.x_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
-      // int32 y = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
+      // int32 y = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
           _impl_.y_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
-      // int64 team_id = 5;
-      case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
+      // int64 team_id = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
           _impl_.team_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
-      // int32 id = 6;
-      case 6:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
+      // int32 id = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
           _impl_.id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
@@ -3237,34 +3224,28 @@ uint8_t* MessageOfTrap::_InternalSerialize(
       1, this->_internal_trap_type(), target);
   }
 
-  // bool trap_valid = 2;
-  if (this->_internal_trap_valid() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(2, this->_internal_trap_valid(), target);
-  }
-
-  // int32 x = 3;
+  // int32 x = 2;
   if (this->_internal_x() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(3, this->_internal_x(), target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(2, this->_internal_x(), target);
   }
 
-  // int32 y = 4;
+  // int32 y = 3;
   if (this->_internal_y() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(4, this->_internal_y(), target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(3, this->_internal_y(), target);
   }
 
-  // int64 team_id = 5;
+  // int64 team_id = 4;
   if (this->_internal_team_id() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt64ToArray(5, this->_internal_team_id(), target);
+    target = ::_pbi::WireFormatLite::WriteInt64ToArray(4, this->_internal_team_id(), target);
   }
 
-  // int32 id = 6;
+  // int32 id = 5;
   if (this->_internal_id() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(6, this->_internal_id(), target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(5, this->_internal_id(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -3289,27 +3270,22 @@ size_t MessageOfTrap::ByteSizeLong() const {
       ::_pbi::WireFormatLite::EnumSize(this->_internal_trap_type());
   }
 
-  // bool trap_valid = 2;
-  if (this->_internal_trap_valid() != 0) {
-    total_size += 1 + 1;
-  }
-
-  // int32 x = 3;
+  // int32 x = 2;
   if (this->_internal_x() != 0) {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_x());
   }
 
-  // int32 y = 4;
-  if (this->_internal_y() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_y());
-  }
-
-  // int64 team_id = 5;
+  // int64 team_id = 4;
   if (this->_internal_team_id() != 0) {
     total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_team_id());
   }
 
-  // int32 id = 6;
+  // int32 y = 3;
+  if (this->_internal_y() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_y());
+  }
+
+  // int32 id = 5;
   if (this->_internal_id() != 0) {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_id());
   }
@@ -3335,17 +3311,14 @@ void MessageOfTrap::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::
   if (from._internal_trap_type() != 0) {
     _this->_internal_set_trap_type(from._internal_trap_type());
   }
-  if (from._internal_trap_valid() != 0) {
-    _this->_internal_set_trap_valid(from._internal_trap_valid());
-  }
   if (from._internal_x() != 0) {
     _this->_internal_set_x(from._internal_x());
   }
-  if (from._internal_y() != 0) {
-    _this->_internal_set_y(from._internal_y());
-  }
   if (from._internal_team_id() != 0) {
     _this->_internal_set_team_id(from._internal_team_id());
+  }
+  if (from._internal_y() != 0) {
+    _this->_internal_set_y(from._internal_y());
   }
   if (from._internal_id() != 0) {
     _this->_internal_set_id(from._internal_id());

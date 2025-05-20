@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.Extensions.Logging;
 using Preparation.Utility.Logging;
 
 namespace GameClass.GameObj
@@ -27,7 +26,7 @@ namespace GameClass.GameObj
 
     public static class CharacterLogging
     {
-        public static readonly ILogger logger = LoggerF.loggerFactory.CreateLogger("Character");
+        public static readonly Logger logger = new("Character");
     }
 }
 
@@ -35,6 +34,6 @@ namespace GameClass.GameObj.Map
 {
     public static class MapLogging
     {
-        public static readonly ILogger logger = LoggerF.loggerFactory.CreateLogger("Map");
+        public static readonly Logger logger = new("Map");
     }
 }

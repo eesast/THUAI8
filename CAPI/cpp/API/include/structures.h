@@ -277,21 +277,11 @@ namespace THUAI8
     {
         TrapType trapType;
 
-        bool trap_valid;
-        int64_t team_id;
+        int32_t x;
+        int32_t y;
 
-        Trap() :
-            trapType(TrapType::NullTrapType),
-            trap_valid(false),
-            team_id(0)
-        {
-        }
-        Trap(TrapType type, bool trap_valid, int64_t team_id) :
-            trapType(type),
-            trap_valid(trap_valid),
-            team_id(team_id)
-        {
-        }
+        int64_t teamID;
+        int32_t id;
     };
 
     struct EconomyResource
@@ -375,7 +365,7 @@ namespace THUAI8
         std::map<cellxy_t, std::pair<int32_t, int32_t>> barracksState;
         std::map<cellxy_t, std::pair<int32_t, int32_t>> springState;
         std::map<cellxy_t, std::pair<int32_t, int32_t>> farmState;
-        std::map<cellxy_t, Trap> trapState;
+        std::map<cellxy_t, std::pair<int32_t, int32_t>> trapState;
         std::map<cellxy_t, EconomyResource> economyResource;
         std::map<cellxy_t, AdditionResource> additionResource;
     };

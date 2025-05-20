@@ -177,19 +177,6 @@ std::optional<THUAI8::ConstructionState> GetConstructionState(int32_t cellX, int
 **注：这里``THUAI8::ConstructionState``包含了关于建筑的所有有效信息，包括：所属队伍``team_id``、剩余血量``hp``、建筑类型（不含陷阱）``THUAI8::ConstructionType``**
 
 ```cpp
-std::optional<THUAI8::Trap> GetTrapState(int32_t cellX, int32_t cellY) const
-```
-
-* **返回类型：**``std::optional<THUAI8::Trap>`
-* **参数：**
-  - ``cellX``：格子X坐标
-  - ``cellY``：格子Y坐标
-
-获取指定格子的陷阱状态，如果该格子没有陷阱则返回空。
-
-**注：这里``THUAI8::Trap``包含了关于陷阱的所有有效信息，包括：所属队伍``team_id``、是否有效``trap_valid``、陷阱类型``THUAI8::TrapType``**
-
-```cpp
 std::vector<int64_t> GetPlayerGUIDs() const
 ```
 
