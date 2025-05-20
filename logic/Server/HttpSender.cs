@@ -1,4 +1,5 @@
 using Google.Protobuf.WellKnownTypes;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System.Net.Http.Json;
 
@@ -37,13 +38,13 @@ namespace Server
                     scores = new int[] { scores[0], scores[1] },
                     player_roles = player_role
                 }));
-                GameServerLogging.logger.ConsoleLog("Send to web successfully!");
-                GameServerLogging.logger.ConsoleLog($"Web response: {await response.Content.ReadAsStringAsync()}");
+                GameServerLogging.logger.LogInformation("Send to web successfully!");
+                GameServerLogging.logger.LogInformation($"Web response: {await response.Content.ReadAsStringAsync()}");
             }
             catch (Exception e)
             {
-                GameServerLogging.logger.ConsoleLog("Fail to send msg to web!");
-                GameServerLogging.logger.ConsoleLog(e.ToString());
+                GameServerLogging.logger.LogInformation("Fail to send msg to web!");
+                GameServerLogging.logger.LogInformation(e.ToString());
             }
         }
 
@@ -64,8 +65,8 @@ namespace Server
             }
             catch (Exception e)
             {
-                GameServerLogging.logger.ConsoleLog("Error when pulling ladder score!");
-                GameServerLogging.logger.ConsoleLog(e.ToString());
+                GameServerLogging.logger.LogInformation("Error when pulling ladder score!");
+                GameServerLogging.logger.LogInformation(e.ToString());
                 return new double[0];
             }
 
