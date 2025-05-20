@@ -116,7 +116,6 @@ namespace Gaming
                                     if (characterManager.ImproveSpeed(teamcharacter, 500))
                                     {
                                         teamcharacter.QuickStepTime = Environment.TickCount64;
-                                        teamcharacter.QuickStep = true;
                                     }
                                 }
                             }

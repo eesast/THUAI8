@@ -2,11 +2,9 @@ using GameClass.GameObj;
 using GameClass.GameObj.Map;
 using GameClass.MapGenerator;
 using Gaming;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Playback;
 using Preparation.Utility;
-using Preparation.Utility.Logging;
 using Protobuf;
 using System.Collections.Concurrent;
 using Timothy.FrameRateTask;
@@ -15,8 +13,8 @@ namespace Server
 {
     public class ContestResult
     {
-        public required string status;
-        public required double[] scores;
+        public string status;
+        public double[] scores;
     }
     partial class GameServer : ServerBase
     {
@@ -51,7 +49,7 @@ namespace Server
                     if (id == GameObj.invalidID) return;//如果有未初始化的玩家，不开始游戏
                 }
             }
-            GameServerLogging.logger.LogInformation("Game starts!");
+            GameServerLogging.logger.ConsoleLog("Game starts!");
             CreateStartFile();
             game.StartGame((int)options.GameTimeInSecond * 1000);
             Thread.Sleep(1);
@@ -87,7 +85,7 @@ namespace Server
             if (options.StartLockFile != DefaultArgumentOptions.FileName)
             {
                 using var _ = File.Create(options.StartLockFile);
-                GameServerLogging.logger.LogInformation("Successfully Created StartLockFile!");
+                GameServerLogging.logger.ConsoleLog("Successfully Created StartLockFile!");
             }
         }
 
@@ -114,7 +112,7 @@ namespace Server
             string? url2 = Environment.GetEnvironmentVariable("FINISH_URL");
             if (url2 == null)
             {
-                GameServerLogging.logger.LogInformation("Null FINISH_URL!");
+                GameServerLogging.logger.ConsoleLog("Null FINISH_URL!");
                 return;
             }
             else
@@ -150,7 +148,7 @@ namespace Server
                 double[] org = httpSender.GetLadderScore(scores).Result;
                 if (org.Length == 0)
                 {
-                    GameServerLogging.logger.LogInformation("Error: No data returned from the web!");
+                    GameServerLogging.logger.ConsoleLog("Error: No data returned from the web!");
                     return new double[0];
                 }
                 else
@@ -161,7 +159,7 @@ namespace Server
             }
             else
             {
-                GameServerLogging.logger.LogInformation("Null SCORE_URL Environment!");
+                GameServerLogging.logger.ConsoleLog("Null SCORE_URL Environment!");
                 return new double[0];
             }
         }
@@ -235,7 +233,7 @@ namespace Server
                 if (doubleArray.Length == 0)
                 {
                     crash = true;
-                    GameServerLogging.logger.LogInformation("Error: No data returned from the web!");
+                    GameServerLogging.logger.ConsoleLog("Error: No data returned from the web!");
                 }
                 else
                     scores = doubleArray.Select(x => (int)x).ToArray();
@@ -402,16 +400,6 @@ namespace Server
         public GameServer(ArgumentOptions options)
         {
             this.options = options;
-            LogLevel logLevel = options.LogLevel switch
-            {
-                1 => LogLevel.Error,
-                2 => LogLevel.Warning,
-                3 => LogLevel.Information,
-                4 => LogLevel.Debug,
-                5 => LogLevel.Trace,
-                _ => LogLevel.Information
-            };
-            LoggerF loggerF = new(logLevel);
             if (options.MapResource == DefaultArgumentOptions.MapResource)
                 game = new(MapInfo.defaultMapStruct, options.TeamCount);
             else
@@ -498,14 +486,14 @@ namespace Server
                 }
                 catch
                 {
-                    GameServerLogging.logger.LogInformation($"Error: Cannot create the playback file: {options.FileName}!");
+                    GameServerLogging.logger.ConsoleLog($"Error: Cannot create the playback file: {options.FileName}!");
                 }
             }
 
             string? token2 = Environment.GetEnvironmentVariable("TOKEN");
             if (token2 == null)
             {
-                GameServerLogging.logger.LogInformation("Null TOKEN Environment!");
+                GameServerLogging.logger.ConsoleLog("Null TOKEN Environment!");
             }
             else
                 options.Token = token2;

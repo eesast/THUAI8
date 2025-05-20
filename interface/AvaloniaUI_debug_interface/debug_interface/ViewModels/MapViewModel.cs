@@ -62,21 +62,6 @@ namespace debug_interface.ViewModels
             }
         }
 
-        private IBrush GetTextColorBasedOnBackground(IBrush background)
-        {
-            if (background is SolidColorBrush solidColor)
-            {
-                var color = solidColor.Color;
-                // 简单的亮度计算 (YIQ 公式近似)
-                double luminance = (0.299 * color.R + 0.587 * color.G + 0.114 * color.B) / 255.0;
-                // 如果背景亮度大于 0.5 (亮色)，用黑色文本，否则用白色文本
-                return luminance > 0.2 ? Brushes.Black : Brushes.White;
-            }
-            // 对于非纯色背景，默认返回黑色
-            return Brushes.Black;
-        }
-
-
         // 更新整个地图
         public void UpdateMap(MessageOfMap mapMessage)
         {
@@ -132,11 +117,11 @@ namespace debug_interface.ViewModels
                 case PlaceType.Barrier:
                     cell.CellType = MapCellType.Barrier;
 
-                    cell.DisplayColor = new SolidColorBrush(Colors.DarkGray);
+                    cell.DisplayColor = new SolidColorBrush(Colors.Gray);
                     break;
                 case PlaceType.Bush:
                     cell.CellType = MapCellType.Bush;
-                    cell.DisplayColor =  new SolidColorBrush(Colors.LightGreen);
+                    cell.DisplayColor =  new SolidColorBrush(Colors.Green);
                     break;
                 case PlaceType.Construction: // 通用建筑点位
                     cell.CellType = MapCellType.Construction;
@@ -160,11 +145,10 @@ namespace debug_interface.ViewModels
                     break;
                 default: // 未知类型
                     cell.CellType = MapCellType.Space; // 视为 Space
-                    cell.DisplayColor = new SolidColorBrush(Colors.Gainsboro); // 用更浅的灰色标记未知
+                    cell.DisplayColor = new SolidColorBrush(Colors.Gray); // 用更浅的灰色标记未知
                     cell.DisplayText = "?";
                     break;
             }
-            cell.ForegroundColor = GetTextColorBasedOnBackground(cell.DisplayColor);
         }
 
 
@@ -176,7 +160,7 @@ namespace debug_interface.ViewModels
             int index = x * GridSize + y;
             if (index >= 0 && index < MapCells.Count)
             {
-                //myLogger?.LogDebug($"--- UpdateBuildingCell called for ({x},{y}), Type: {buildingType}, HP: {hp} ---");
+                myLogger?.LogDebug($"--- UpdateBuildingCell called for ({x},{y}), Type: {buildingType}, HP: {hp} ---");
                 var cell = MapCells[index];
 
                 // *** 仅更新颜色和文本，不改变 CellType ***
@@ -188,11 +172,10 @@ namespace debug_interface.ViewModels
                     : new SolidColorBrush(Colors.DarkBlue); // 妖怪队建筑颜色
 
                 // 设置血量文本
-                //int maxHp = GetBuildingMaxHp(buildingType);
-                cell.DisplayText = $"{hp}";
-                cell.ForegroundColor = GetTextColorBasedOnBackground(cell.DisplayColor);
-                myLogger?.LogInfo($"UpdateBuildingCell at ({x},{y}): Set DisplayText to '{cell.DisplayText}', Foreground to '{cell.ForegroundColor}'");
-                //myLogger?.LogInfo($"UpdateBuildingCell at ({x},{y}): Set DisplayText to '{cell.DisplayText}'"); // *** 添加日志 ***
+                int maxHp = GetBuildingMaxHp(buildingType);
+                cell.DisplayText = $"{hp}/{maxHp}";
+
+                myLogger?.LogInfo($"UpdateBuildingCell at ({x},{y}): Set DisplayText to '{cell.DisplayText}'"); // *** 添加日志 ***
                 // cell.ToolTipText = ... // 可以设置 Tooltip
             }
         }
@@ -208,44 +191,15 @@ namespace debug_interface.ViewModels
                 var cell = MapCells[index];
                 cell.CellType = MapCellType.Trap; // 使用新的类型
                 //cell.DisplayText = trapType.Substring(0, 1);
-                // 根据队伍和陷阱类型设置颜色
-                if (team == "取经队")
-                {
-                    if (trapType.Contains("坑洞")) // 或者 trapType == "陷阱(坑洞)"
-                    {
-                        cell.DisplayColor = new SolidColorBrush(Colors.IndianRed); // 取经队坑洞颜色
-                    }
-                    else if (trapType.Contains("牢笼")) // 或者 trapType == "陷阱(牢笼)"
-                    {
-                        cell.DisplayColor = new SolidColorBrush(Colors.Tomato); // 为取经队牢笼选择一个新颜色，例如 Tomato
-                    }
-                    else
-                    {
-                        cell.DisplayColor = new SolidColorBrush(Colors.DarkSalmon); // 默认取经队陷阱颜色
-                    }
-                }
-                else // 妖怪队
-                {
-                    if (trapType.Contains("坑洞"))
-                    {
-                        cell.DisplayColor = new SolidColorBrush(Colors.CornflowerBlue); // 妖怪队坑洞颜色
-                    }
-                    else if (trapType.Contains("牢笼"))
-                    {
-                        cell.DisplayColor = new SolidColorBrush(Colors.SteelBlue); // 为妖怪队牢笼选择一个新颜色，例如 SteelBlue
-                    }
-                    else
-                    {
-                        cell.DisplayColor = new SolidColorBrush(Colors.LightSteelBlue); // 默认妖怪队陷阱颜色
-                    }
-                }
+                cell.DisplayColor = team == "取经队"
+                    ? new SolidColorBrush(Colors.IndianRed) // 可以为不同陷阱设置不同颜色
+                    : new SolidColorBrush(Colors.CornflowerBlue);
 
                 // 更新Tooltip (陷阱没有血量)
                 cell.DisplayText = ""; // 陷阱通常不显示血量文本
                 //cell.ToolTipText = $"类型: {trapType}\n队伍: {team}";
 
-                cell.ForegroundColor = GetTextColorBasedOnBackground(cell.DisplayColor);
-
+                // OnPropertyChanged(nameof(MapCells));
             }
         }
 
@@ -260,13 +214,20 @@ namespace debug_interface.ViewModels
                 var cell = MapCells[index];
                 cell.CellType = MapCellType.Economic_Resource;
                 cell.DisplayText = process.ToString(); // 显示剩余量
-                cell.DisplayColor = new SolidColorBrush(Colors.Gold); // 经济资源金色
-
+                //cell.DisplayColor = new SolidColorBrush(Colors.Gold); // 经济资源用金色
+                cell.DisplayColor = resourceType switch
+                {
+                    "经济资源(小)" => new SolidColorBrush(Colors.Yellow),
+                    "经济资源(中)" => new SolidColorBrush(Colors.Gold),
+                    "经济资源(大)" => new SolidColorBrush(Colors.Orange),
+                    _ => new SolidColorBrush(Colors.Gold)
+                };
                 // 更新HP和Tooltip
                 int maxResource = 10000; // 根据规则，经济资源上限1w
+                cell.DisplayText = $"{process}/{maxResource}";
+                //cell.ToolTipText = $"类型: {resourceType}\n剩余量: {process}/{maxResource}";
 
 
-                cell.ForegroundColor = GetTextColorBasedOnBackground(cell.DisplayColor);
                 // OnPropertyChanged(nameof(MapCells));
             }
         }

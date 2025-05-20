@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using GameEngine;
-using Microsoft.Extensions.Logging;
 
 namespace Gaming
 {
@@ -43,29 +42,31 @@ namespace Gaming
             }
             public bool Attack(Character character, Character gameobj)
             {
+
                 if (character.CharacterState2 == CharacterState.BLIND || character.blind)
                 {
-                    AttackManagerLogging.logger.LogDebug("Character is blind!");
+                    AttackManagerLogging.logger.ConsoleLogDebug("Character is blind!");
                     return false;
                 }
                 if (!gameMap.CanSee(character, gameobj))
                 {
-                    AttackManagerLogging.logger.LogDebug("Can't see target obj!");
+                    AttackManagerLogging.logger.ConsoleLogDebug("Can't see target obj!");
                     return false;
                 }
                 if (!gameMap.InAttackSize(character, gameobj))
                 {
-                    AttackManagerLogging.logger.LogDebug("Obj is not in attacksize!");
+                    AttackManagerLogging.logger.ConsoleLogDebug("Obj is not in attacksize!");
                     return false;
                 }
                 if (gameobj.visible == false || gameobj.CharacterState2 == CharacterState.INVISIBLE)
                 {
-                    AttackManagerLogging.logger.LogDebug("Can't see target because it's invisible!");
+                    AttackManagerLogging.logger.ConsoleLogDebug("Can't see target because it's invisible!");
                     return false;
                 }
                 long nowtime = Environment.TickCount64;
                 if (nowtime - character.LastAttackTime < 1000 / character.ATKFrequency)
                 {
+
                     AttackManagerLogging.logger.LogDebug("Common_attack is still in cd!");
                     return false;
                 }
@@ -73,11 +74,11 @@ namespace Gaming
                 if (stateNum == -1)
                 {
                     AttackManagerLogging.logger.LogDebug("Character is not commandable!");
+
                     return false;
                 }
                 characterManager.BeAttacked(gameobj, character);
                 character.LastAttackTime = nowtime;
-                character.ResetCharacterState(stateNum);
                 if (character.CharacterState2 == CharacterState.INVISIBLE || character.visible == false)
                 {
                     character.visible = true;
@@ -102,12 +103,14 @@ namespace Gaming
                     AttackManagerLogging.logger.LogDebug("Obj is not in attacksize!");
                     return false;
                 }
+
                 long stateNum = character.SetCharacterState(CharacterState.ATTACKING, character.CharacterState2);
                 if (stateNum == -1)
                 {
                     AttackManagerLogging.logger.LogDebug("Character is not commandable!");
                     return false;
                 }
+
                 long nowtime = Environment.TickCount64;
                 if (nowtime - character.LastAttackTime < 1000 / character.ATKFrequency)
                 {
@@ -116,7 +119,6 @@ namespace Gaming
                 }
                 ARManager.BeAttacked(gameobj, character);
                 character.LastAttackTime = nowtime;
-                character.ResetCharacterState(stateNum);
                 if (character.CharacterState2 == CharacterState.INVISIBLE)
                     character.SetCharacterState(character.CharacterState1, CharacterState.NULL_CHARACTER_STATE);//破隐
                 return true;
@@ -176,9 +178,23 @@ namespace Gaming
                     AttackManagerLogging.logger.LogDebug("Character is not commandable!");
                     return false;
                 }
-                Attack(character, Aresource);
-                character.ResetCharacterState(stateNum);
-                return true;
+                new Thread
+                (
+                    () =>
+                    {
+                        character.ThreadNum.WaitOne();
+                        if (!character.StartThread(stateNum))
+                        {
+                            character.ThreadNum.Release();
+                            return;
+                        }
+                        //Eresource.AddProduceNum();
+                        Thread.Sleep(GameData.CheckInterval);
+                        Attack(character, Aresource);
+                    }
+                )
+                { IsBackground = true }.Start();
+                return false;
             }
         }
     }
