@@ -30,7 +30,11 @@ namespace Server
                         return Farm(construction);
                     return null;
                 case GameObjType.TRAP:
-                    return Traps(gameObj);
+                    if (gameObj is HOLE hole)
+                        return Traps(hole);
+                    else if (gameObj is Cage cage)
+                        return Traps(cage);
+                    return null;
                 default: return null;
             }
         }
@@ -220,31 +224,68 @@ namespace Server
             return msg;
         }
 
-        private static MessageOfObj Traps(GameObj trap)
+        // private static MessageOfObj Traps(GameObj trap)
+        // {
+        //     MessageOfObj msg = new()
+        //     {
+        //         TrapMessage = new()
+        //         {
+        //             TrapType = trap switch
+        //             {
+        //                 HOLE _ => Protobuf.TrapType.Hole,
+        //                 Cage _ => Protobuf.TrapType.Cage,
+        //             },
+
+        //             X = trap.Position.x,
+        //             Y = trap.Position.y,
+
+        //             TeamId = trap switch
+        //             {
+        //                 HOLE t => t.TeamID.Get(),
+        //                 Cage c => c.TeamID.Get(),
+        //             },
+        //             Id = 0,
+
+        //             TrapValid = !trap.IsActivated.Get(), 
+        //         }
+        //     };
+        //     return msg;
+        // }
+        private static MessageOfObj Traps(HOLE trap)
         {
             MessageOfObj msg = new()
             {
                 TrapMessage = new()
                 {
-                    TrapType = trap switch
-                    {
-                        HOLE _ => Protobuf.TrapType.Hole,
-                        Cage _ => Protobuf.TrapType.Cage,
-                        _ => throw new NotImplementedException(),
-                    },
+                    TrapType = Protobuf.TrapType.Hole,
 
                     X = trap.Position.x,
                     Y = trap.Position.y,
 
-                    //Hp = (int)trap.HP,            ����û��HP
-
-                    TeamId = trap switch
-                    {
-                        HOLE t => t.TeamID,
-                        Cage c => c.TeamID,
-                        _ => throw new NotImplementedException(),
-                    },
+                    TeamId = trap.TeamID.Get(),
                     Id = 0,
+
+                    TrapValid = !trap.IsActivated.Get(),
+                }
+            };
+            return msg;
+        }
+
+        private static MessageOfObj Traps(Cage trap)
+        {
+            MessageOfObj msg = new()
+            {
+                TrapMessage = new()
+                {
+                    TrapType = Protobuf.TrapType.Cage,
+
+                    X = trap.Position.x,
+                    Y = trap.Position.y,
+
+                    TeamId = trap.TeamID.Get(),
+                    Id = 0,
+
+                    TrapValid = !trap.IsActivated.Get(),
                 }
             };
             return msg;
