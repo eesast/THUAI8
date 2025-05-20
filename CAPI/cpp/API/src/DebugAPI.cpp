@@ -289,6 +289,15 @@ std::optional<THUAI8::ConstructionState> CharacterDebugAPI::GetConstructionState
     return result;
 }
 
+std::optional<THUAI8::Trap> CharacterDebugAPI::GetTrapState(int32_t cellX, int32_t cellY) const
+{
+    auto result = logic.GetTrapState(cellX, cellY);
+    logger->info("GetTrapState: teamID = {},  valid or not = {}, type = {}, cellX = {}, cellY = {}, called at {}ms", result->team_id, result->trap_valid, THUAI8::trapTypeDict.at(result->trapType), cellX, cellY, Time::TimeSinceStart(startPoint));
+    if (!result)
+        logger->warn("GetTrapState: failed at {}ms", Time::TimeSinceStart(startPoint));
+    return result;
+}
+
 std::vector<int64_t> CharacterDebugAPI::GetPlayerGUIDs() const
 {
     logger->info("GetPlayerGUIDs: called at {}ms", Time::TimeSinceStart(startPoint));
@@ -551,6 +560,16 @@ std::optional<THUAI8::ConstructionState> TeamDebugAPI::GetConstructionState(int3
     logger->info("GetConstructionState: teamID = {},  hp = {}, type = {}, cellX = {}, cellY = {}, called at {}ms", result->team_id, result->hp, THUAI8::constructionTypeDict.at(result->constructionType), cellX, cellY, Time::TimeSinceStart(startPoint));
     if (!result)
         logger->warn("GetConstructionState: failed at {}ms", Time::TimeSinceStart(startPoint));
+    return result;
+}
+
+
+std::optional<THUAI8::Trap> TeamDebugAPI::GetTrapState(int32_t cellX, int32_t cellY) const
+{
+    auto result = logic.GetTrapState(cellX, cellY);
+    logger->info("GetTrapState: teamID = {},  valid or not = {}, type = {}, cellX = {}, cellY = {}, called at {}ms", result->team_id, result->trap_valid, THUAI8::trapTypeDict.at(result->trapType), cellX, cellY, Time::TimeSinceStart(startPoint));
+    if (!result)
+        logger->warn("GetTrapState: failed at {}ms", Time::TimeSinceStart(startPoint));
     return result;
 }
 
