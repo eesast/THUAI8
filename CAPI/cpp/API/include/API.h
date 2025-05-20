@@ -47,7 +47,6 @@ public:
     [[nodiscard]] virtual std::optional<THUAI8::EconomyResource> GetEconomyResourceState(int32_t cellX, int32_t cellY) const = 0;
     [[nodiscard]] virtual std::optional<THUAI8::AdditionResource> GetAdditionResourceState(int32_t cellX, int32_t cellY) const = 0;
     [[nodiscard]] virtual std::optional<THUAI8::ConstructionState> GetConstructionState(int32_t cellX, int32_t cellY) const = 0;
-    [[nodiscard]] virtual std::optional<THUAI8::Trap> GetTrapState(int32_t cellX, int32_t cellY) const = 0;
     [[nodiscard]] virtual int32_t GetEnergy() const = 0;
     [[nodiscard]] virtual int32_t GetScore() const = 0;
 
@@ -102,7 +101,6 @@ public:
     [[nodiscard]] virtual std::optional<THUAI8::EconomyResource> GetEconomyResourceState(int32_t cellX, int32_t cellY) const = 0;
     [[nodiscard]] virtual std::optional<THUAI8::AdditionResource> GetAdditionResourceState(int32_t cellX, int32_t cellY) const = 0;
     [[nodiscard]] virtual std::optional<THUAI8::ConstructionState> GetConstructionState(int32_t cellX, int32_t cellY) const = 0;
-    [[nodiscard]] virtual std::optional<THUAI8::Trap> GetTrapState(int32_t cellX, int32_t cellY) const = 0;
     [[nodiscard]] virtual std::vector<int64_t> GetPlayerGUIDs() const = 0;
     [[nodiscard]] virtual int32_t GetEnergy() const = 0;
     [[nodiscard]] virtual int32_t GetScore() const = 0;
@@ -215,7 +213,6 @@ public:
     [[nodiscard]] std::optional<THUAI8::EconomyResource> GetEconomyResourceState(int32_t cellX, int32_t cellY) const override;
     [[nodiscard]] std::optional<THUAI8::AdditionResource> GetAdditionResourceState(int32_t cellX, int32_t cellY) const override;
     [[nodiscard]] std::optional<THUAI8::ConstructionState> GetConstructionState(int32_t cellX, int32_t cellY) const override;
-    [[nodiscard]] std::optional<THUAI8::Trap> GetTrapState(int32_t cellX, int32_t cellY) const override;
     [[nodiscard]] std::vector<int64_t> GetPlayerGUIDs() const override;
     [[nodiscard]] int32_t GetEnergy() const override;
     [[nodiscard]] int32_t GetScore() const override;
@@ -270,7 +267,6 @@ public:
     [[nodiscard]] std::optional<THUAI8::EconomyResource> GetEconomyResourceState(int32_t cellX, int32_t cellY) const override;
     [[nodiscard]] std::optional<THUAI8::AdditionResource> GetAdditionResourceState(int32_t cellX, int32_t cellY) const override;
     [[nodiscard]] std::optional<THUAI8::ConstructionState> GetConstructionState(int32_t cellX, int32_t cellY) const override;
-    [[nodiscard]] std::optional<THUAI8::Trap> GetTrapState(int32_t cellX, int32_t cellY) const override;
     [[nodiscard]] std::vector<int64_t> GetPlayerGUIDs() const override;
     [[nodiscard]] int32_t GetEnergy() const override;
     [[nodiscard]] int32_t GetScore() const override;
@@ -333,7 +329,6 @@ public:
     [[nodiscard]] std::optional<THUAI8::EconomyResource> GetEconomyResourceState(int32_t cellX, int32_t cellY) const override;
     [[nodiscard]] std::optional<THUAI8::AdditionResource> GetAdditionResourceState(int32_t cellX, int32_t cellY) const override;
     [[nodiscard]] std::optional<THUAI8::ConstructionState> GetConstructionState(int32_t cellX, int32_t cellY) const override;
-    [[nodiscard]] std::optional<THUAI8::Trap> GetTrapState(int32_t cellX, int32_t cellY) const override;
     [[nodiscard]] std::vector<int64_t> GetPlayerGUIDs() const override;
     [[nodiscard]] int32_t GetEnergy() const override;
     [[nodiscard]] int32_t GetScore() const override;
@@ -378,7 +373,6 @@ public:
     [[nodiscard]] std::optional<THUAI8::EconomyResource> GetEconomyResourceState(int32_t cellX, int32_t cellY) const override;
     [[nodiscard]] std::optional<THUAI8::AdditionResource> GetAdditionResourceState(int32_t cellX, int32_t cellY) const override;
     [[nodiscard]] std::optional<THUAI8::ConstructionState> GetConstructionState(int32_t cellX, int32_t cellY) const override;
-    [[nodiscard]] std::optional<THUAI8::Trap> GetTrapState(int32_t cellX, int32_t cellY) const override;
     [[nodiscard]] std::vector<int64_t> GetPlayerGUIDs() const override;
     [[nodiscard]] int32_t GetEnergy() const override;
     [[nodiscard]] int32_t GetScore() const override;

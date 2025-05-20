@@ -39,10 +39,6 @@ class ILogic(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def GetTrapState(self, cellX: int, cellY: int) -> THUAI8.Trap:
-        pass
-
-    @abstractmethod
     def GetConstructionState(self, cellX: int, cellY: int) -> THUAI8.ConstructionState:
         pass
 
@@ -288,16 +284,6 @@ class IAPI(metaclass=ABCMeta):
         :param cellX: X坐标, 单位Cell
         :param cellY: Y坐标, 单位Cell
         :return: 该建筑信息
-        """
-        pass
-
-    @abstractmethod
-    def GetTrapState(self, cellX: int, cellY: int) -> THUAI8.Trap:
-        """获取当前陷阱状态
-
-        :param cellX: X坐标, 单位Cell
-        :param cellY: Y坐标, 单位Cell
-        :return: 该坐标的陷阱状态
         """
         pass
 

@@ -40,7 +40,6 @@ namespace debug_interface.Models
         [ObservableProperty]
         private string displayText = ""; // 用于显示血量等
 
-        [ObservableProperty] 
-        private IBrush foregroundColor = Brushes.Black; // 默认黑色文本
+
     }
 }

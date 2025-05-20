@@ -80,9 +80,6 @@ class CharacterAPI(ICharacterAPI, IGameTimer):
         self, cellX: int, cellY: int
     ) -> THUAI8.AdditionResource:
         return self.__logic.GetAdditionResourceState(cellX, cellY)
-    
-    def GetTrapState(self, cellX: int, cellY: int) -> THUAI8.Trap:
-        return self.__logic.GetTrapState(cellX, cellY)
 
     def GetConstructionState(self, cellX: int, cellY: int) -> THUAI8.ConstructionState:
         return self.__logic.GetConstructionState(cellX, cellY)
@@ -235,9 +232,6 @@ class TeamAPI(ITeamAPI, IGameTimer):
         self, cellX: int, cellY: int
     ) -> THUAI8.AdditionResource:
         return self.__logic.GetAdditionResourceState(cellX, cellY)
-    
-    def GetTrapState(self, cellX: int, cellY: int) -> THUAI8.Trap:
-        return self.__logic.GetTrapState(cellX, cellY)
 
     def GetConstructionState(self, cellX: int, cellY: int) -> THUAI8.ConstructionState:
         return self.__logic.GetConstructionState(cellX, cellY)
@@ -276,7 +270,7 @@ class TeamAPI(ITeamAPI, IGameTimer):
             self.__logic.InstallEquipment, playerID, equipmentType
         )
 
-    # def Recycle(self, playerID: int) -> Future[bool]:/
+    # def Recycle(self, playerID: int) -> Future[bool]:
     #     return self.__pool.submit(self.__logic.Recycle, playerID)
 
     def BuildCharacter(

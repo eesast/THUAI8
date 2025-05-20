@@ -25,7 +25,7 @@ public class A_Resource
         }
     }
     public A_ResourceType AResourceType { get; }
-    public override ShapeType Shape => ShapeType.SQUARE;
+    public override ShapeType Shape => ShapeType.NULL_SHAPE_TYPE;
     public void SetARState(AdditionResourceState state)
     {
         State = state;
