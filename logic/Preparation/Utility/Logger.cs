@@ -270,12 +270,14 @@ public class LoggerF
     }
     public LoggerF(LogLevel logLevel)
     {
-        loggerFactory = LoggerFactory.Create(builder => {
+        loggerFactory = LoggerFactory.Create(builder =>
+        {
             builder.ClearProviders()
                 .SetMinimumLevel(logLevel)
                 .AddProvider(new MultiFileLoggerProvider())
                 .AddConsoleFormatter<LogConsoleFormatter, ConsoleFormatterOptions>()
-                .AddConsole(options => {
+                .AddConsole(options =>
+                {
                     options.FormatterName = "logFormatter";
                 });
         });
