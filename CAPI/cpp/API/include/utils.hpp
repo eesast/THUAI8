@@ -305,10 +305,10 @@ namespace Proto2THUAI8
     {
         auto trap = std::make_shared<THUAI8::Trap>();
         trap->trapType = trapTypeDict.at(TrapMsg.trap_type());
-        trap->x = TrapMsg.x();
-        trap->y = TrapMsg.y();
-        trap->teamID = TrapMsg.team_id();
-        trap->id = TrapMsg.id();
+        //trap->x = TrapMsg.x();
+        //trap->y = TrapMsg.y();
+        trap->team_id = TrapMsg.team_id();
+        //trap->id = TrapMsg.id();
         return trap;
     }
 

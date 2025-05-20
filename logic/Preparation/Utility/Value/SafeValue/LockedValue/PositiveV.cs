@@ -1,4 +1,5 @@
-﻿using Preparation.Interface;
+﻿using Microsoft.Extensions.Logging;
+using Preparation.Interface;
 using Preparation.Utility.Value.SafeValue.TimeBased;
 using System;
 using System.Numerics;
@@ -106,7 +107,7 @@ namespace Preparation.Utility.Value.SafeValue.LockedValue
         {
             if (value < T.Zero)
             {
-                LockedValueLogging.logger.ConsoleLogDebug($"Warning: Try to set PositiveValue to {value}");
+                LockedValueLogging.logger.LogDebug($"Warning: Try to set PositiveValue to {value}");
                 value = T.Zero;
             }
             v = value;

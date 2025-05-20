@@ -38,7 +38,7 @@ namespace debug_interface.Views
             var canvas = this.FindControl<Canvas>("CharacterCanvas");
             if (canvas != null)
             {
-                 //canvas.Background = Brushes.LightPink; // 取消或保留此行以观察 Canvas 区域
+                //canvas.Background = Brushes.LightPink; // 取消或保留此行以观察 Canvas 区域
                 // *** 添加 ZIndex ***
                 canvas.SetValue(Panel.ZIndexProperty, 1);
             }
@@ -90,7 +90,7 @@ namespace debug_interface.Views
 
         private void MapView_AttachedToVisualTree(object? sender, VisualTreeAttachmentEventArgs e)
         {
-             myLogger?.LogDebug("MapView: 已附加到可视化树。");
+            myLogger?.LogDebug("MapView: 已附加到可视化树。");
             characterCanvas = this.FindControl<Canvas>("CharacterCanvas");
             mapGrid = this.FindControl<Grid>("MapGrid");
             TryInitializeMap();
@@ -157,10 +157,6 @@ namespace debug_interface.Views
                  }, ex => myLogger?.LogError($"MapView: Bounds 订阅出错: {ex}"));
         }
         private bool IsAttachedToVisualTree() => this.Parent != null || (this.VisualRoot != null);
-
-
-
-
 
 
         private void CleanupViewModel()
