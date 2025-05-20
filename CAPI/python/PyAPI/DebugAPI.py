@@ -367,19 +367,6 @@ class CharacterDebugAPI(ICharacterAPI, IGameTimer):
             return result
 
         return self.__pool.submit(logGetAdditionResourceState)
-    
-    def GetTrapState(self, cellX: int, cellY: int) -> THUAI8.Trap:
-        self.__logger.info(
-            f"GetTrapState: cellX={cellX}, cellY={cellY}, called at {self.__GetTime()}ms"
-        )
-
-        def logGetTrapState() -> THUAI8.Trap:
-            result = self.__logic.GetTrapState(cellX, cellY)
-            if not result:
-                self.__logger.warning(f"GetTrapState failed at {self.__GetTime()}ms")
-            return result
-
-        return self.__pool.submit(logGetTrapState)
 
     def GetConstructionState(self, cellX: int, cellY: int) -> THUAI8.ConstructionState:
         self.__logger.info(
@@ -1062,7 +1049,7 @@ class TeamDebugAPI(ITeamAPI, IGameTimer):
 
         return self.__pool.submit(logGetAdditionResourceState)
 
-    def GetConstructionState(self, cellX: int, cellY: int) -> THUAI8.ConstructionState:
+    def GetConstructionState(self, cellX: int, cellY: int) -> int:
         self.__logger.info(
             f"GetConstructionState: cellX={cellX}, cellY={cellY}, called at {self.__GetTime()}ms"
         )
@@ -1076,18 +1063,6 @@ class TeamDebugAPI(ITeamAPI, IGameTimer):
             return result
 
         return self.__pool.submit(logGetConstructionState)
-    def GetTrapState(self, cellX: int, cellY: int) -> THUAI8.Trap:
-        self.__logger.info(
-            f"GetTrapState: cellX={cellX}, cellY={cellY}, called at {self.__GetTime()}ms"
-        )
-
-        def logGetTrapState() -> THUAI8.Trap:
-            result = self.__logic.GetTrapState(cellX, cellY)
-            if not result:
-                self.__logger.warning(f"GetTrapState failed at {self.__GetTime()}ms")
-            return result
-
-        return self.__pool.submit(logGetTrapState)
 
     # def Recycle(self, playerID: int) -> Future[bool]:
     #     self.__logger.info(

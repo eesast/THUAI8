@@ -160,16 +160,6 @@ std::optional<THUAI8::AdditionResource> TeamAPI::GetAdditionResourceState(int32_
     return logic.GetAdditionResourceState(cellX, cellY);
 }
 
-std::optional<THUAI8::Trap> CharacterAPI::GetTrapState(int32_t cellX, int32_t cellY) const
-{
-    return logic.GetTrapState(cellX, cellY);
-}
-
-std::optional<THUAI8::Trap> TeamAPI::GetTrapState(int32_t cellX, int32_t cellY) const
-{
-    return logic.GetTrapState(cellX, cellY);
-}
-
 std::shared_ptr<const THUAI8::GameInfo> CharacterAPI::GetGameInfo() const
 {
     return logic.GetGameInfo();

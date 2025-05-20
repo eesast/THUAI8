@@ -7,7 +7,6 @@ using Preparation.Utility.Value.SafeValue.LockedValue;
 using GameClass.GameObj.Areas;
 using GameClass.GameObj.Equipments;
 using System.Timers;
-using Microsoft.Extensions.Logging;
 
 namespace GameClass.GameObj;
 public class Character : Movable, ICharacter
@@ -43,7 +42,6 @@ public class Character : Movable, ICharacter
     public bool canskill = true;
     public long CrazyManTime = 0;
     public long QuickStepTime = 0;
-    public bool QuickStep = false;
     public int CrazyManNum = 0;
     public int EconomyDepletion = 0;
     public bool IsShield = false;
@@ -208,14 +206,14 @@ public class Character : Movable, ICharacter
         {
             if (state != stateNum)
             {
-                CharacterLogging.logger.LogDebug(
+                CharacterLogging.logger.ConsoleLogDebug(
                     LoggingFunctional.CharacterLogInfo(this)
                     + $" ResetCharacterState failed, input state {state}, StateNum {stateNum}");
                 return false;
             }
             characterState1 = value;
             ++stateNum;
-            CharacterLogging.logger.LogDebug(
+            CharacterLogging.logger.ConsoleLogDebug(
                 LoggingFunctional.CharacterLogInfo(this)
                 + $" ResetCharacterState succeeded {stateNum}");
             return true;
@@ -235,13 +233,13 @@ public class Character : Movable, ICharacter
         {
             if (StateNum == stateNum)
             {
-                CharacterLogging.logger.LogDebug(
+                CharacterLogging.logger.ConsoleLogDebug(
                     LoggingFunctional.CharacterLogInfo(this)
                     + " StartThread succeeded");
                 return true;
             }
         }
-        CharacterLogging.logger.LogDebug(
+        CharacterLogging.logger.ConsoleLogDebug(
             LoggingFunctional.CharacterLogInfo(this)
             + " StartThread failed");
         return false;
@@ -375,7 +373,6 @@ public class Character : Movable, ICharacter
                     IsBerserk = true;
                     BerserkTime = Environment.TickCount64;
                     SetCharacterState(CharacterState1, CharacterState.BERSERK);//此处缺少时间限制
-                    AttackPower.SetMaxV((long)1.2 * (AttackPower.GetValue()));
                     AttackPower.AddPositiveV((long)(0.2 * AttackPower.GetValue()));
                     ATKFrequency = GameData.CrazyATKFreq;
                     Shoes.AddPositiveV(GameData.CrazySpeed);

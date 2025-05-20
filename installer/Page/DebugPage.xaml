@@ -215,6 +215,7 @@
                             FontSize="{Binding ConstFontSize}"/>
                     </HorizontalStackLayout>
 
+
                     <Label
                         Text="{Binding DebugAlert}"/>
 
@@ -269,7 +270,6 @@
                             <Picker.ItemsSource>
                                 <x:Array
                                     Type="{x:Type x:Int32}">
-                                    
                                     <x:Int32>1</x:Int32>
                                     <x:Int32>2</x:Int32>
                                     <x:Int32>3</x:Int32>
@@ -299,6 +299,8 @@
                             </Picker.Items>
                         </Picker>
                     </HorizontalStackLayout>
+
+
                     <Label
                         Text="{Binding DebugAlert}"/>
 
