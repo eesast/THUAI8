@@ -109,12 +109,12 @@ message MessageOfFarm
 message MessageOfTrap
 {
     TrapType trap_type = 1;
+    bool trap_valid = 2;
+    int32 x = 3;
+    int32 y = 4;
 
-    int32 x = 2;
-    int32 y = 3;
-
-    int64 team_id = 4;
-    int32 id = 5;
+    int64 team_id = 5;
+    int32 id = 6;
 }
 
 message MessageOfEconomyResource

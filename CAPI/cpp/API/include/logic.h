@@ -101,6 +101,7 @@ private:
     [[nodiscard]] std::optional<THUAI8::EconomyResource> GetEconomyResourceState(int32_t cellX, int32_t cellY) const;
     [[nodiscard]] std::optional<THUAI8::AdditionResource> GetAdditionResourceState(int32_t cellX, int32_t cellY) const;
     [[nodiscard]] std::optional<THUAI8::ConstructionState> GetConstructionState(int32_t cellX, int32_t cellY) const;
+    [[nodiscard]] std::optional<THUAI8::Trap> GetTrapState(int32_t cellX, int32_t cellY) const;
     [[nodiscard]] int32_t GetEnergy() const;
     [[nodiscard]] int32_t GetScore() const;
 
