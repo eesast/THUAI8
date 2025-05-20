@@ -291,7 +291,7 @@ namespace installer.ViewModel
             server = Process.Start(new ProcessStartInfo()
             {
                 FileName = Downloader.Data.Config.DevServerPath ?? Path.Combine(Downloader.Data.Config.InstallPath, "logic", "Server", "Server.exe"),
-                Arguments = $"--ip 0.0.0.0 --port {Port} --teamCount {TeamCount} --CharacterNum {CharacterCount}",
+                Arguments = $"--ip 0.0.0.0 --port {Port} --teamCount {TeamCount} --CharacterNum {CharacterCount} --logLevel{logLevel}",
                 WorkingDirectory = Downloader.Data.Config.InstallPath,
                 RedirectStandardError = true,
             });
