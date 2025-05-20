@@ -1,14 +1,14 @@
 [*.cs]
-# Õë¶ÔÃ¶¾Ù³ÉÔ±µÄÃüÃû¹æÔò£ºÒªÇóÊ¹ÓÃ PascalCase
+# ï¿½ï¿½ï¿½Ã¶ï¿½Ù³ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½Ê¹ï¿½ï¿½ PascalCase
 dotnet_naming_rule.enum_members_should_be_pascal_case.severity = suggestion
 dotnet_naming_rule.enum_members_should_be_pascal_case.symbols = enum_members
 dotnet_naming_rule.enum_members_should_be_pascal_case.style = pascal_caser
 
-# ¶¨Òå·ûºÅ£ºÕâÀïÊÊÓÃÓÚËùÓĞ const ×Ö¶Î£¨Í¨³£Ã¶¾Ù³ÉÔ±»á±»Ê¶±ğÎª const ×Ö¶Î£©
+# ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ const ï¿½Ö¶Î£ï¿½Í¨ï¿½ï¿½Ã¶ï¿½Ù³ï¿½Ô±ï¿½á±»Ê¶ï¿½ï¿½Îª const ï¿½Ö¶Î£ï¿½
 dotnet_naming_symbols.enum_members.applicable_kinds = field
 dotnet_naming_symbols.enum_members.required_modifiers = const
 
-# ¶¨ÒåÃüÃû·ç¸ñ£ºPascalCase
+# ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½PascalCase
 dotnet_naming_style.pascal_caser.capitalization = pascal_case
 dotnet_naming_style.pascal_caser.required_prefix =
 dotnet_naming_style.pascal_caser.required_suffix =
@@ -24,3 +24,10 @@ csharp_style_expression_bodied_lambdas = true:silent
 csharp_style_expression_bodied_local_functions = false:silent
 [*.{cs,vb}]
 end_of_line = crlf
+# C# é“¾å¼è°ƒç”¨æ¯ä¸ªæ–¹æ³•å•ç‹¬ä¸€è¡Œ
+[*.cs]
+csharp_preserve_single_line_statements = false
+csharp_new_line_before_members_in_object_initializers = true
+csharp_new_line_before_open_brace = all
+csharp_new_line_between_query_expression_clauses = true
+csharp_indent_method_chain = true
