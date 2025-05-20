@@ -90,6 +90,7 @@ namespace installer.ViewModel
 
         private int teamCount = 2;
         private int characterCount = 6;
+        private int logLevel = 5;
         public int TeamCount
         {
             get => teamCount;
@@ -108,7 +109,15 @@ namespace installer.ViewModel
                 OnPropertyChanged();
             }
         }
-
+        public int LogLevel
+        {
+            get => logLevel;
+            set
+            {
+                logLevel = value;
+                OnPropertyChanged();
+            }
+        }
         private bool haveSpectator = false;
         public bool HaveSpectator
         {
