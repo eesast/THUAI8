@@ -609,7 +609,6 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
                         bufferState->mapInfo->trapState[pos].team_id = item.trap_message().team_id();
                         logger->debug("Update EconomyResource!");
                     }
-                    
                     break;
                 }
             case THUAI8::MessageOfObj::EconomyResourceMessage:
