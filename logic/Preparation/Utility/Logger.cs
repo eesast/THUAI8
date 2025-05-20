@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.Extensions.Logging.Console;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
@@ -115,7 +118,7 @@ public class Logger(string module)
         if (Duplicate)
             LogQueue.Global.Commit(msg);
     }
-    public static void RawConsoleLogDebug(string msg, bool Duplicate = true)
+    public static void RawLogDebug(string msg, bool Duplicate = true)
     {
 #if DEBUG
         Console.WriteLine(msg);
@@ -151,4 +154,130 @@ public static class LoggingData
 {
     public const string ServerLogPath = "log.txt";
     public const uint MaxLogNum = 5000;
+}
+
+public class LoggerF
+{
+    private static ILoggerFactory? _loggerFactory;
+    public static ILoggerFactory loggerFactory
+    {
+        get
+        {
+            if (_loggerFactory is null)
+                throw new InvalidOperationException("LoggerF.loggerFactory 尚未初始化！");
+            return _loggerFactory;
+        }
+        private set => _loggerFactory = value;
+    }
+    private class MultiFileLoggerProvider : ILoggerProvider
+    {
+        private readonly Dictionary<string, StreamWriter> _writers = new();
+        private static readonly string AllLogPath = "logs/all.log";
+        private static readonly StreamWriter AllLogWriter;
+
+        static MultiFileLoggerProvider()
+        {
+            var logDir = "logs";
+            if (!Directory.Exists(logDir))
+            {
+                Directory.CreateDirectory(logDir);
+            }
+            AllLogWriter = new StreamWriter(AllLogPath, append: false) { AutoFlush = true };
+        }
+        public ILogger CreateLogger(string categoryName)
+        {
+            // categoryName 就是 logger 名称
+            if (!_writers.ContainsKey(categoryName))
+            {
+                var logDir = "logs";
+                if (!Directory.Exists(logDir))
+                {
+                    Directory.CreateDirectory(logDir);
+                }
+                var file = $"logs/{categoryName}.log";
+                _writers[categoryName] = new StreamWriter(file, append: false) { AutoFlush = true };
+            }
+            return new MultiFileLogger(_writers[categoryName], categoryName);
+        }
+
+        public void Dispose()
+        {
+            foreach (var writer in _writers.Values)
+                writer.Dispose();
+            AllLogWriter.Dispose();
+        }
+        private class MultiFileLogger : ILogger
+        {
+            private readonly StreamWriter _writer;
+            private readonly string _categoryName;
+
+            public MultiFileLogger(StreamWriter writer, string categoryName)
+            {
+                _writer = writer;
+                _categoryName = categoryName;
+            }
+
+            public IDisposable BeginScope<TState>(TState state) where TState : notnull => null!;
+            public bool IsEnabled(LogLevel logLevel) => true;
+            public void Log<TState>(LogLevel logLevel, EventId eventId,
+                TState state, Exception? exception, Func<TState, Exception?, string> formatter)
+            {
+                var logLine = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}][{_categoryName}][{eventId.Id}:{eventId.Name}][{logLevel}] {formatter(state, exception)}";
+                lock (_writer)
+                {
+                    _writer.WriteLine(logLine);
+                }
+                lock (AllLogWriter)
+                {
+                    AllLogWriter.WriteLine(logLine);
+                }
+            }
+        }
+
+    };
+
+    private class LogConsoleFormatter : ConsoleFormatter
+    {
+        public LogConsoleFormatter() : base("logFormatter") { }
+
+        public override void Write<TState>(in LogEntry<TState> logEntry, IExternalScopeProvider? scopeProvider, TextWriter textWriter)
+        {
+            var logLevel = logEntry.LogLevel;
+            var category = logEntry.Category;
+            var eventId = logEntry.EventId;
+            var message = logEntry.Formatter(logEntry.State, logEntry.Exception);
+
+            // 定义不同级别的ANSI颜色
+            string color = logLevel switch
+            {
+                LogLevel.Trace => "\u001b[90m",        // 灰色
+                LogLevel.Debug => "\u001b[36m",        // 青色
+                LogLevel.Information => "\u001b[32m",  // 绿色
+                LogLevel.Warning => "\u001b[33m",      // 黄色
+                LogLevel.Error => "\u001b[31m",        // 红色
+                LogLevel.Critical => "\u001b[35m",     // 洋红
+                _ => "\u001b[0m"                       // 默认
+            };
+
+            textWriter.Write(color);
+
+            textWriter.Write(
+                $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}][{category}][{eventId.Id}:{eventId.Name}][{logLevel}] {message}\n"
+            );
+
+            textWriter.Write("\u001b[0m");
+        }
+    }
+    public LoggerF(LogLevel logLevel)
+    {
+        loggerFactory = LoggerFactory.Create(builder => {
+            builder.ClearProviders()
+                .SetMinimumLevel(logLevel)
+                .AddProvider(new MultiFileLoggerProvider())
+                .AddConsoleFormatter<LogConsoleFormatter, ConsoleFormatterOptions>()
+                .AddConsole(options => {
+                    options.FormatterName = "logFormatter";
+                });
+        });
+    }
 }

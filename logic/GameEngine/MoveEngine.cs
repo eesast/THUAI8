@@ -1,4 +1,5 @@
-﻿using Preparation.Interface;
+﻿using Microsoft.Extensions.Logging;
+using Preparation.Interface;
 using Preparation.Utility;
 using Preparation.Utility.Logging;
 using Preparation.Utility.Value;
@@ -112,7 +113,7 @@ namespace GameEngine
                         flag = true;
                         break;
                     case AfterCollision.Destroyed:
-                        GameEngineLogging.logger.ConsoleLogDebug(
+                        GameEngineLogging.logger.LogDebug(
                            Logger.ObjInfo(obj)
                            + " collide with "
                            + Logger.ObjInfo(collisionObj)
@@ -133,7 +134,7 @@ namespace GameEngine
 
         public void MoveObj(IMovable obj, int moveTime, double direction, long stateNum, long Shoes = 0)
         {
-            GameEngineLogging.logger.ConsoleLogDebug(
+            GameEngineLogging.logger.LogDebug(
                 Logger.ObjInfo(obj)
                 + $" position {obj.Position}, start moving in direction {direction}, with speed {obj.MoveSpeed + Shoes}");
             if (!gameTimer.IsGaming) return;
@@ -166,7 +167,7 @@ namespace GameEngine
                                 flag = true;
                                 break;
                             case AfterCollision.Destroyed:
-                                GameEngineLogging.logger.ConsoleLogDebug(
+                                GameEngineLogging.logger.LogDebug(
                                     Logger.ObjInfo(obj)
                                     + " collide with "
                                     + Logger.ObjInfo(collisionObj)
@@ -209,10 +210,10 @@ namespace GameEngine
                                 MaxTolerantTimeExceedCount = ulong.MaxValue,
                                 TimeExceedAction = b =>
                                 {
-                                    if (b) GameEngineLogging.logger.ConsoleLog(
+                                    if (b) GameEngineLogging.logger.LogInformation(
                                             "Fatal Error: The computer runs so slow that " +
                                             "the object cannot finish moving during this time!!!!!!");
-                                    else GameEngineLogging.logger.ConsoleLogDebug(
+                                    else GameEngineLogging.logger.LogDebug(
                                             "Debug info: Object moving time exceed for once");
                                 }
                             }.Start();
@@ -249,7 +250,7 @@ namespace GameEngine
                                             flag = true;
                                             break;
                                         case AfterCollision.Destroyed:
-                                            GameEngineLogging.logger.ConsoleLogDebug(
+                                            GameEngineLogging.logger.LogDebug(
                                                 Logger.ObjInfo(obj)
                                                 + " collide with "
                                                 + Logger.ObjInfo(collisionObj)

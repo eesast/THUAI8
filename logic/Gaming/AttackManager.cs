@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using GameEngine;
+using Microsoft.Extensions.Logging;
 
 namespace Gaming
 {
@@ -44,33 +45,33 @@ namespace Gaming
             {
                 if (!character.Commandable())
                 {
-                    AttackManagerLogging.logger.ConsoleLogDebug("Character is not commandable!");
+                    AttackManagerLogging.logger.LogDebug("Character is not commandable!");
                     return false;
                 }
                 if (character.CharacterState2 == CharacterState.BLIND || character.blind)
                 {
-                    AttackManagerLogging.logger.ConsoleLogDebug("Character is blind!");
+                    AttackManagerLogging.logger.LogDebug("Character is blind!");
                     return false;
                 }
                 if (!gameMap.CanSee(character, gameobj))
                 {
-                    AttackManagerLogging.logger.ConsoleLogDebug("Can't see target obj!");
+                    AttackManagerLogging.logger.LogDebug("Can't see target obj!");
                     return false;
                 }
                 if (!gameMap.InAttackSize(character, gameobj))
                 {
-                    AttackManagerLogging.logger.ConsoleLogDebug("Obj is not in attacksize!");
+                    AttackManagerLogging.logger.LogDebug("Obj is not in attacksize!");
                     return false;
                 }
                 if (gameobj.visible == false || gameobj.CharacterState2 == CharacterState.INVISIBLE)
                 {
-                    AttackManagerLogging.logger.ConsoleLogDebug("Can't see target because it's invisible!");
+                    AttackManagerLogging.logger.LogDebug("Can't see target because it's invisible!");
                     return false;
                 }
                 long nowtime = Environment.TickCount64;
                 if (nowtime - character.LastAttackTime < 1000 / character.ATKFrequency)
                 {
-                    AttackManagerLogging.logger.ConsoleLogDebug("Common_attack is still in cd!");
+                    AttackManagerLogging.logger.LogDebug("Common_attack is still in cd!");
                     return false;
                 }
                 long stateNum = character.SetCharacterState(CharacterState.ATTACKING, character.CharacterState2);
