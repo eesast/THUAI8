@@ -2,6 +2,7 @@
 using GameClass.GameObj.Areas;
 using GameClass.GameObj.Equipments;
 using GameClass.GameObj.Map;
+using Microsoft.Extensions.Logging;
 using Preparation.Utility;
 using Preparation.Utility.Value;
 using System.Threading;
@@ -172,11 +173,11 @@ namespace Gaming
             {
                 long characterValue =
                     (long)(character.GetCost() * character.HP.GetDivideValueByMaxV() * GameData.RecycleRate);
-                CharacterManagerLogging.logger.ConsoleLogDebug(
+                CharacterManagerLogging.logger.LogDebug(
                     LoggingFunctional.CharacterLogInfo(character)
                     + $" 's value is {characterValue}");
                 character.AddMoney(characterValue);
-                CharacterManagerLogging.logger.ConsoleLogDebug(
+                CharacterManagerLogging.logger.LogDebug(
                     LoggingFunctional.CharacterLogInfo(character)
                     + " is recycled!");
                 Remove(character);
