@@ -593,7 +593,7 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
                     {
                         bufferState->mapInfo->trapState.emplace(
                             std::piecewise_construct,
-                            std::forward_as_tuple(pos.first, pos.second),   // 构造键 cellxy_t{pos.first, pos.second}
+                            std::forward_as_tuple(pos.first, pos.second),
                             std::forward_as_tuple(
                                 Proto2THUAI8::trapTypeDict.at(item.trap_message().trap_type()),
                                 static_cast<bool>(item.trap_message().trap_valid()),
