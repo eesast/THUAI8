@@ -73,7 +73,7 @@ namespace Server
         public int Mode { get; set; } = 0;
 
         [Option("loglevel", Required = false, HelpText = "Set the log level: 1=Error, 2=Warning, 3=Info, 4=Debug, 5=Trace")]
-        public int LogLevel { get; set; } = 3; // 默认Info级别
+        public int LogLevel { get; set; } = 5; // 默认Trace级别
 
     }
 }
