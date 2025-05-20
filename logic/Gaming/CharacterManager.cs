@@ -2,7 +2,6 @@
 using GameClass.GameObj.Areas;
 using GameClass.GameObj.Equipments;
 using GameClass.GameObj.Map;
-using Microsoft.Extensions.Logging;
 using Preparation.Utility;
 using Preparation.Utility.Value;
 using System.Threading;
@@ -173,11 +172,11 @@ namespace Gaming
             {
                 long characterValue =
                     (long)(character.GetCost() * character.HP.GetDivideValueByMaxV() * GameData.RecycleRate);
-                CharacterManagerLogging.logger.LogDebug(
+                CharacterManagerLogging.logger.ConsoleLogDebug(
                     LoggingFunctional.CharacterLogInfo(character)
                     + $" 's value is {characterValue}");
                 character.AddMoney(characterValue);
-                CharacterManagerLogging.logger.LogDebug(
+                CharacterManagerLogging.logger.ConsoleLogDebug(
                     LoggingFunctional.CharacterLogInfo(character)
                     + " is recycled!");
                 Remove(character);
@@ -187,7 +186,6 @@ namespace Gaming
             {
                 if (ATK <= 0)
                     return false;
-                character.AttackPower.SetMaxV(character.AttackPower + ATK);
                 character.AttackPower.AddPositiveV(ATK);//暂未添加时间限制
                 return true;
             }
@@ -213,21 +211,18 @@ namespace Gaming
             public void CheckHole(Character character)
             {
                 long nowtime = Environment.TickCount64;
-                if (character.trapped)
+                if (nowtime - character.TrapTime >= 5000)
                 {
-                    if (nowtime - character.TrapTime >= 5000)
+                    character.TrapTime = 0;
+                    character.trapped = false;
+                }
+                else
+                {
+                    if (character.trapped)
                     {
-                        character.TrapTime = 0;
-                        character.trapped = false;
-                    }
-                    else
-                    {
-                        if (character.trapped)
+                        if ((nowtime - character.TrapTime) % 1000 <= 25 || (nowtime - character.TrapTime) % 1000 >= 975)
                         {
-                            if ((nowtime - character.TrapTime) % 1000 <= 25 || (nowtime - character.TrapTime) % 1000 >= 975)
-                            {
-                                BeAttacked(character, GameData.TrapDamage);
-                            }
+                            BeAttacked(character, GameData.TrapDamage);
                         }
                     }
                 }
@@ -247,7 +242,7 @@ namespace Gaming
             public void CheckCage(Character character)
             {
                 long nowtime = Environment.TickCount64;
-                if (nowtime - character.CageTime >= 30000 && character.caged)
+                if (nowtime - character.CageTime >= 30000)
                 {
                     character.CageTime = 0;
                     character.caged = false;
@@ -256,21 +251,18 @@ namespace Gaming
             public void CheckBurned(Character character)
             {
                 long nowtime = Environment.TickCount64;
-                if (character.burned)
+                if (nowtime - character.BurnedTime >= 5000)
                 {
-                    if (nowtime - character.BurnedTime >= 5000)
+                    character.BurnedTime = 0;
+                    character.burned = false;
+                }
+                else
+                {
+                    if (character.burned)
                     {
-                        character.BurnedTime = 0;
-                        character.burned = false;
-                    }
-                    else
-                    {
-                        if (character.burned)
+                        if ((nowtime - character.BurnedTime) % 1000 <= 25 || (nowtime - character.BurnedTime) % 1000 >= 975)
                         {
-                            if ((nowtime - character.BurnedTime) % 1000 <= 25 || (nowtime - character.BurnedTime) % 1000 >= 975)
-                            {
-                                BeAttacked(character, GameData.HongHaierSkillATK);
-                            }
+                            BeAttacked(character, GameData.HongHaierSkillATK);
                         }
                     }
                 }
@@ -278,7 +270,7 @@ namespace Gaming
             public void CheckBlind(Character character)
             {
                 long nowtime = Environment.TickCount64;
-                if (nowtime - character.BlindTime >= 5000 && character.blind)
+                if (nowtime - character.BlindTime >= 5000)
                 {
                     character.BlindTime = 0;
                     character.blind = false;
@@ -287,7 +279,7 @@ namespace Gaming
             public void CheckStunned(Character character)
             {
                 long nowtime = Environment.TickCount64;
-                if (nowtime - character.StunnedTime >= 5000 && character.stunned)
+                if (nowtime - character.StunnedTime >= 5000)
                 {
                     character.StunnedTime = 0;
                     character.stunned = false;
@@ -296,7 +288,7 @@ namespace Gaming
             public void CheckHarmCut(Character character)
             {
                 long nowtime = Environment.TickCount64;
-                if (nowtime - character.HarmCutTime >= 15000 && character.HarmCut > 0)
+                if (nowtime - character.HarmCutTime >= 15000)
                 {
                     character.HarmCutTime = 0;
                     character.HarmCut = 0;
@@ -314,17 +306,16 @@ namespace Gaming
             public void CheckCrazyManTime(Character character)
             {
                 long nowtime = Environment.TickCount64;
-                if (nowtime - character.CrazyManTime >= (15 + character.CrazyManNum * 15) && character.CrazyManNum != 0)
+                if (nowtime - character.CrazyManTime >= (15 + character.CrazyManNum * 15))
                 {
                     character.AttackPower.SubPositiveV(5 + character.CrazyManNum * 5);
                     character.CrazyManTime = 0;
-                    character.CrazyManNum = 0;
                 }
             }
             public void CheckQuickStepTime(Character character)
             {
                 long nowtime = Environment.TickCount64;
-                if (nowtime - character.QuickStepTime >= 60000 && character.QuickStep)
+                if (nowtime - character.QuickStepTime >= 60000)
                 {
                     character.Shoes.SubPositiveV(500);
                     character.QuickStepTime = 0;
@@ -333,7 +324,7 @@ namespace Gaming
             public void CheckWideViewTime(Character character)
             {
                 long nowtime = Environment.TickCount64;
-                if (nowtime - character.WideViewTime >= 60000 && character.CanSeeAll)
+                if (nowtime - character.WideViewTime >= 60000)
                 {
                     character.CanSeeAll = false;
                     character.WideViewTime = 0;
@@ -342,7 +333,7 @@ namespace Gaming
             public void CheckPurified(Character character)
             {
                 long nowtime = Environment.TickCount64;
-                if (nowtime - character.PurifiedTime >= 30000 && character.Purified)
+                if (nowtime - character.PurifiedTime >= 30000)
                 {
                     character.Purified = false;
                     character.PurifiedTime = 0;

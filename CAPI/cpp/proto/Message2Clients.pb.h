@@ -1571,11 +1571,10 @@ class MessageOfTrap final :
 
   enum : int {
     kTrapTypeFieldNumber = 1,
-    kTrapValidFieldNumber = 2,
-    kXFieldNumber = 3,
-    kYFieldNumber = 4,
-    kTeamIdFieldNumber = 5,
-    kIdFieldNumber = 6,
+    kXFieldNumber = 2,
+    kTeamIdFieldNumber = 4,
+    kYFieldNumber = 3,
+    kIdFieldNumber = 5,
   };
   // .protobuf.TrapType trap_type = 1;
   void clear_trap_type();
@@ -1586,16 +1585,7 @@ class MessageOfTrap final :
   void _internal_set_trap_type(::protobuf::TrapType value);
   public:
 
-  // bool trap_valid = 2;
-  void clear_trap_valid();
-  bool trap_valid() const;
-  void set_trap_valid(bool value);
-  private:
-  bool _internal_trap_valid() const;
-  void _internal_set_trap_valid(bool value);
-  public:
-
-  // int32 x = 3;
+  // int32 x = 2;
   void clear_x();
   int32_t x() const;
   void set_x(int32_t value);
@@ -1604,16 +1594,7 @@ class MessageOfTrap final :
   void _internal_set_x(int32_t value);
   public:
 
-  // int32 y = 4;
-  void clear_y();
-  int32_t y() const;
-  void set_y(int32_t value);
-  private:
-  int32_t _internal_y() const;
-  void _internal_set_y(int32_t value);
-  public:
-
-  // int64 team_id = 5;
+  // int64 team_id = 4;
   void clear_team_id();
   int64_t team_id() const;
   void set_team_id(int64_t value);
@@ -1622,7 +1603,16 @@ class MessageOfTrap final :
   void _internal_set_team_id(int64_t value);
   public:
 
-  // int32 id = 6;
+  // int32 y = 3;
+  void clear_y();
+  int32_t y() const;
+  void set_y(int32_t value);
+  private:
+  int32_t _internal_y() const;
+  void _internal_set_y(int32_t value);
+  public:
+
+  // int32 id = 5;
   void clear_id();
   int32_t id() const;
   void set_id(int32_t value);
@@ -1640,10 +1630,9 @@ class MessageOfTrap final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     int trap_type_;
-    bool trap_valid_;
     int32_t x_;
-    int32_t y_;
     int64_t team_id_;
+    int32_t y_;
     int32_t id_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
@@ -5743,27 +5732,7 @@ inline void MessageOfTrap::set_trap_type(::protobuf::TrapType value) {
   // @@protoc_insertion_point(field_set:protobuf.MessageOfTrap.trap_type)
 }
 
-// bool trap_valid = 2;
-inline void MessageOfTrap::clear_trap_valid() {
-  _impl_.trap_valid_ = false;
-}
-inline bool MessageOfTrap::_internal_trap_valid() const {
-  return _impl_.trap_valid_;
-}
-inline bool MessageOfTrap::trap_valid() const {
-  // @@protoc_insertion_point(field_get:protobuf.MessageOfTrap.trap_valid)
-  return _internal_trap_valid();
-}
-inline void MessageOfTrap::_internal_set_trap_valid(bool value) {
-  
-  _impl_.trap_valid_ = value;
-}
-inline void MessageOfTrap::set_trap_valid(bool value) {
-  _internal_set_trap_valid(value);
-  // @@protoc_insertion_point(field_set:protobuf.MessageOfTrap.trap_valid)
-}
-
-// int32 x = 3;
+// int32 x = 2;
 inline void MessageOfTrap::clear_x() {
   _impl_.x_ = 0;
 }
@@ -5783,7 +5752,7 @@ inline void MessageOfTrap::set_x(int32_t value) {
   // @@protoc_insertion_point(field_set:protobuf.MessageOfTrap.x)
 }
 
-// int32 y = 4;
+// int32 y = 3;
 inline void MessageOfTrap::clear_y() {
   _impl_.y_ = 0;
 }
@@ -5803,7 +5772,7 @@ inline void MessageOfTrap::set_y(int32_t value) {
   // @@protoc_insertion_point(field_set:protobuf.MessageOfTrap.y)
 }
 
-// int64 team_id = 5;
+// int64 team_id = 4;
 inline void MessageOfTrap::clear_team_id() {
   _impl_.team_id_ = int64_t{0};
 }
@@ -5823,7 +5792,7 @@ inline void MessageOfTrap::set_team_id(int64_t value) {
   // @@protoc_insertion_point(field_set:protobuf.MessageOfTrap.team_id)
 }
 
-// int32 id = 6;
+// int32 id = 5;
 inline void MessageOfTrap::clear_id() {
   _impl_.id_ = 0;
 }

@@ -54,7 +54,7 @@ namespace debug_interface.Controls
                             Margin = new Thickness(0),
                             [Grid.RowProperty] = i,
                             [Grid.ColumnProperty] = j,
-                           
+                            // Tag = index, // Tag 可能不再需要，因为我们依赖绑定
                             IsHitTestVisible = true, // 允许命中测试（如果需要 Tooltip 或点击）
                             ZIndex = 0 // 在文本下方
                         };
@@ -69,10 +69,10 @@ namespace debug_interface.Controls
                         // 创建文本块 (TextBlock)
                         var textBlock = new TextBlock
                         {
-                            FontSize = 10, // 或者你测试后确定的最佳字号
+                            FontSize = 12, // 或者你测试后确定的最佳字号
                             // Foreground = Brushes.Black, // 可以设置默认色，或绑定颜色
                             Foreground = GetTextColorBasedOnBackground(cell.DisplayColor), // *** 尝试动态文本颜色 ***
-                            TextAlignment = TextAlignment.Left,
+                            TextAlignment = TextAlignment.Center,
                             VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
                             HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
                             FontWeight = FontWeight.Bold, // 设置为粗体
@@ -80,12 +80,6 @@ namespace debug_interface.Controls
                             [Grid.ColumnProperty] = j,
                             IsHitTestVisible = false, // 文本块本身通常不需要交互
                             ZIndex = 1 // 在矩形上方
-                        };
-
-                        textBlock[!TextBlock.ForegroundProperty] = new Binding(nameof(MapCell.ForegroundColor))
-                        {
-                            Source = cell,
-                            Mode = BindingMode.OneWay
                         };
 
                         // *** 绑定 Text 属性到 MapCell.DisplayText ***

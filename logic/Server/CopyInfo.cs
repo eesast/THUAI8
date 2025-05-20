@@ -230,7 +230,6 @@ namespace Server
                     {
                         HOLE _ => Protobuf.TrapType.Hole,
                         Cage _ => Protobuf.TrapType.Cage,
-                        _ => throw new NotImplementedException(),
                     },
 
                     X = trap.Position.x,
@@ -242,7 +241,6 @@ namespace Server
                     {
                         HOLE t => t.TeamID,
                         Cage c => c.TeamID,
-                        _ => throw new NotImplementedException(),
                     },
                     Id = 0,
                 }

@@ -151,6 +151,8 @@ namespace debug_interface.ViewModels
                         newCharacter.Guid = data.Guid;
                         UpdateCharacterViewModel(newCharacter, data); // 使用辅助方法填充数据
 
+                        myLogger?.LogInfo($"添加新角色到列表: Guid={newCharacter.Guid}, Name='{newCharacter.Name}', TeamId={newCharacter.TeamId} ({(data.TeamId == 0 ? "Buddhists" : "Monsters")})"); // 添加队伍名日志
+
                         Dispatcher.UIThread.InvokeAsync(() => targetList.Add(newCharacter));
                     }
                     else // 更新现有角色
@@ -285,7 +287,7 @@ namespace debug_interface.ViewModels
             };
         }
 
-        private int GetCharacterMaxHp(CharacterType type)
+        private int GetCharacterMaxHp(Protobuf.CharacterType type)
         {
             return type switch
             {
@@ -328,7 +330,7 @@ namespace debug_interface.ViewModels
                     MapVM.UpdateBuildingCell(
                         barracks.X / 1000,
                         barracks.Y / 1000,
-                        barracks.TeamId == 0 ? "取经队" : "妖怪队",
+                        barracks.TeamId == (int)PlayerTeam.BuddhistsTeam ? "取经队" : "妖怪队",
                         "兵营",
                         barracks.Hp
                     );
@@ -340,7 +342,7 @@ namespace debug_interface.ViewModels
                     MapVM.UpdateBuildingCell(
                         spring.X / 1000,
                         spring.Y / 1000,
-                        spring.TeamId == 0 ? "取经队" : "妖怪队",
+                        spring.TeamId == (int)PlayerTeam.BuddhistsTeam ? "取经队" : "妖怪队",
                         "泉水",
                         spring.Hp
                     );
@@ -352,7 +354,7 @@ namespace debug_interface.ViewModels
                     MapVM.UpdateBuildingCell(
                         farm.X / 1000,
                         farm.Y / 1000,
-                        farm.TeamId == 0 ? "取经队" : "妖怪队",
+                        farm.TeamId == (int)PlayerTeam.BuddhistsTeam ? "取经队" : "妖怪队",
                         "农场",
                         farm.Hp
                     );
@@ -364,8 +366,8 @@ namespace debug_interface.ViewModels
                     MapVM.UpdateTrapCell(
                         trap.X / 1000,
                         trap.Y / 1000,
-                        trap.TeamId == 0 ? "取经队" : "妖怪队",
-                        trap.TrapType == TrapType.Hole ? "陷阱（坑洞）" : "陷阱（牢笼）" // 区分类型
+                        trap.TeamId == (int)PlayerTeam.BuddhistsTeam ? "取经队" : "妖怪队",
+                        trap.TrapType == TrapType.Hole ? "陷阱(坑洞)" : "陷阱(牢笼)" // 区分类型
                     );
                 }
 
@@ -404,10 +406,10 @@ namespace debug_interface.ViewModels
             // 规则中没有区分大小，但 Proto 里有
             return type switch
             {
-                EconomyResourceType.SmallEconomyResource => "经济资源",
-                EconomyResourceType.MediumEconomyResource => "经济资源",
-                EconomyResourceType.LargeEconomyResource => "经济资源",
-                _ => "经济资源"
+                EconomyResourceType.SmallEconomyResource => "经济资源(小)",
+                EconomyResourceType.MediumEconomyResource => "经济资源(中)",
+                EconomyResourceType.LargeEconomyResource => "经济资源(大)",
+                _ => "经济资源(未知)"
             };
         }
 
@@ -504,10 +506,10 @@ namespace debug_interface.ViewModels
             MonstersTeamBuildingInfo = "妖怪队建筑: " + (monsterBuildings.Any() ? string.Join(", ", monsterBuildings) : "无");
 
             // 可以在这里加入陷阱的统计信息（如果需要）
-             var buddhistTraps = listOfTraps.Count(t => t.TeamId == (int)PlayerTeam.BuddhistsTeam);
-             var monsterTraps = listOfTraps.Count(t => t.TeamId == (int)PlayerTeam.MonstersTeam);
-             BuddhistTeamBuildingInfo += $", 陷阱: {buddhistTraps}";
-             MonstersTeamBuildingInfo += $", 陷阱: {monsterTraps}";
+            // var buddhistTraps = listOfTraps.Count(t => t.TeamId == (int)PlayerTeam.BuddhistsTeam);
+            // var monsterTraps = listOfTraps.Count(t => t.TeamId == (int)PlayerTeam.MonstersTeam);
+            // BuddhistTeamBuildingInfo += $", 陷阱: {buddhistTraps}";
+            // MonstersTeamBuildingInfo += $", 陷阱: {monsterTraps}";
         }
 
         // 填充图例数据的方法
@@ -521,8 +523,9 @@ namespace debug_interface.ViewModels
             MapLegendItems.Add(new LegendItem(Brushes.LightGreen, "草丛"));
             MapLegendItems.Add(new LegendItem(Brushes.DarkGray, "障碍物"));
 
-            MapLegendItems.Add(new LegendItem(Brushes.Gold, "经济")); // 与 UpdateResourceCell 一致
-
+            MapLegendItems.Add(new LegendItem(Brushes.Orange, "大经济")); // 与 UpdateResourceCell 一致
+            MapLegendItems.Add(new LegendItem(Brushes.Gold, "中经济")); // 与 UpdateResourceCell 一致
+            MapLegendItems.Add(new LegendItem(Brushes.Yellow, "小经济")); // 与 UpdateResourceCell 一致
 
             MapLegendItems.Add(new LegendItem(Brushes.LightPink, "生命泉")); // 与 UpdateAdditionResourceCell 一致
             MapLegendItems.Add(new LegendItem(Brushes.OrangeRed, "狂战士")); // 与 UpdateAdditionResourceCell 一致
@@ -540,8 +543,8 @@ namespace debug_interface.ViewModels
             // Team 1 = 妖怪队 = CornflowerBlue
             MapLegendItems.Add(new LegendItem(Brushes.IndianRed, "取经队坑洞")); // 对应 UpdateTrapCell Team 0 颜色
             MapLegendItems.Add(new LegendItem(Brushes.CornflowerBlue, "妖怪队坑洞")); // 对应 UpdateTrapCell Team 1 颜色
-            MapLegendItems.Add(new LegendItem(Brushes.Tomato, "取经队牢笼")); // 牢笼颜色与坑洞相同
-            MapLegendItems.Add(new LegendItem(Brushes.SteelBlue, "妖怪队牢笼")); // 牢笼颜色与坑洞相同
+            MapLegendItems.Add(new LegendItem(Brushes.IndianRed, "取经队牢笼")); // 牢笼颜色与坑洞相同
+            MapLegendItems.Add(new LegendItem(Brushes.CornflowerBlue, "妖怪队牢笼")); // 牢笼颜色与坑洞相同
 
             // (可选) 添加通用建筑颜色 (如果 MapMessage 中只有 CONSTRUCTION)
             MapLegendItems.Add(new LegendItem(Brushes.Brown, "建筑点位 (未指定类型)"));

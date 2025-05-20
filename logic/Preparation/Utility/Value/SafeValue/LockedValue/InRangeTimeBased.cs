@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading;
-using Microsoft.Extensions.Logging;
 using Preparation.Interface;
 using Preparation.Utility.Value.SafeValue.Atomic;
 using Preparation.Utility.Value.SafeValue.TimeBased;
@@ -125,7 +124,7 @@ namespace Preparation.Utility.Value.SafeValue.LockedValue
         {
             progress = new LongInVariableRangeWithStartTime(0, needProgress);
             if (needProgress <= 0)
-                LockedValueLogging.logger.LogDebug(
+                LockedValueLogging.logger.ConsoleLogDebug(
                     $"Bug: TimeBasedProgressAtVariableSpeed.needProgress({needProgress}) is less than 0");
             this.speed = new AtomicDouble(speed);
         }
@@ -174,7 +173,7 @@ namespace Preparation.Utility.Value.SafeValue.LockedValue
         {
             if (needTime <= 2)
             {
-                LockedValueLogging.logger.LogDebug(
+                LockedValueLogging.logger.ConsoleLogDebug(
                     $"Warning: Start TimeBasedProgressAtVariableSpeed with the needProgress({needTime}) which is less than 0");
                 return false;
             }
