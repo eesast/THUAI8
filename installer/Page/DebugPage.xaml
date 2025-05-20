@@ -215,6 +215,7 @@
                             FontSize="{Binding ConstFontSize}"/>
                     </HorizontalStackLayout>
 
+
                     <Label
                         Text="{Binding DebugAlert}"/>
 
@@ -269,7 +270,6 @@
                             <Picker.ItemsSource>
                                 <x:Array
                                     Type="{x:Type x:Int32}">
-                                    
                                     <x:Int32>1</x:Int32>
                                     <x:Int32>2</x:Int32>
                                     <x:Int32>3</x:Int32>
@@ -281,6 +281,26 @@
                         </Picker>
                     </HorizontalStackLayout>
 
+                    <HorizontalStackLayout>
+                        <Label
+                            WidthRequest="170"
+                            Text="Log Level"
+                            VerticalOptions="Center"
+                            FontSize="{Binding ConstFontSize}"/>
+                        <Picker
+                            SelectedIndex="{Binding LogLevel}"
+                            WidthRequest="400">
+                            <Picker.Items>
+                                <x:String>Trace</x:String>
+                                <x:String>Debug</x:String>
+                                <x:String>Information</x:String>
+                                <x:String>Warning</x:String>
+                                <x:String>Error</x:String>
+                                <x:String>Critical</x:String>
+                                <x:String>None</x:String>
+                            </Picker.Items>
+                        </Picker>
+                    </HorizontalStackLayout>
 
                     <Label
                         Text="{Binding DebugAlert}"/>

@@ -90,6 +90,8 @@ namespace installer.ViewModel
 
         private int teamCount = 2;
         private int characterCount = 6;
+        private int logLevel = 2; 
+
         public int TeamCount
         {
             get => teamCount;
@@ -105,6 +107,16 @@ namespace installer.ViewModel
             set
             {
                 characterCount = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int LogLevel
+        {
+            get => logLevel;
+            set
+            {
+                logLevel = value;
                 OnPropertyChanged();
             }
         }
@@ -282,7 +294,7 @@ namespace installer.ViewModel
             server = Process.Start(new ProcessStartInfo()
             {
                 FileName = Downloader.Data.Config.DevServerPath ?? Path.Combine(Downloader.Data.Config.InstallPath, "logic", "Server", "Server.exe"),
-                Arguments = $"--ip 0.0.0.0 --port {Port} --teamCount {TeamCount} --CharacterNum {CharacterCount}",
+                Arguments = $"--ip 0.0.0.0 --port {Port} --teamCount {TeamCount} --CharacterNum {CharacterCount} --logLevel {LogLevel}",
                 WorkingDirectory = Downloader.Data.Config.InstallPath,
                 RedirectStandardError = true,
             });

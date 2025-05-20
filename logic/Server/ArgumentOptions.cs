@@ -72,5 +72,7 @@ namespace Server
         [Option("mode", Required = false, HelpText = "Whether to run final competition. 0 本地玩,1 最终比赛,2 天梯")]
         public int Mode { get; set; } = 0;
 
+        [Option("logLevel", Required = false, HelpText = "Log level (0:Trace, 1:Debug, 2:Information, 3:Warning, 4:Error, 5:Critical, 6:None)")]
+        public int LogLevel { get; set; } = 2;
     }
 }
