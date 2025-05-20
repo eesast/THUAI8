@@ -123,7 +123,7 @@ namespace Gaming
             }
             public bool Attack(Character character, Construction gameobj)
             {
-                if (character.CharacterState2 == CharacterState.BLIND||character.blind)
+                if (character.CharacterState2 == CharacterState.BLIND || character.blind)
                 {
                     AttackManagerLogging.logger.LogDebug("Character is blind!");
                     return false;
