@@ -34,6 +34,7 @@ namespace Server
                         return Traps(hole);
                     else if (gameObj is Cage cage)
                         return Traps(cage);
+                    return null;
                 default: return null;
             }
         }
