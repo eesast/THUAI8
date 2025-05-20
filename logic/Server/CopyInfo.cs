@@ -235,14 +235,14 @@ namespace Server
                     X = trap.Position.x,
                     Y = trap.Position.y,
 
-                    //Hp = (int)trap.HP,            ����û��HP
-
                     TeamId = trap switch
                     {
-                        HOLE t => t.TeamID,
-                        Cage c => c.TeamID,
+                        HOLE t => t.TeamID.Get(),
+                        Cage c => c.TeamID.Get(),
                     },
                     Id = 0,
+
+                    TrapValid = !trap.IsActivated.Get(), 
                 }
             };
             return msg;
