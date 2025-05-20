@@ -25,9 +25,3 @@ csharp_style_expression_bodied_local_functions = false:silent
 [*.{cs,vb}]
 end_of_line = crlf
 # C# 链式调用每个方法单独一行
-[*.cs]
-csharp_preserve_single_line_statements = false
-csharp_new_line_before_members_in_object_initializers = true
-csharp_new_line_before_open_brace = all
-csharp_new_line_between_query_expression_clauses = true
-csharp_indent_method_chain = true
