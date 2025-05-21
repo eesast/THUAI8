@@ -386,7 +386,7 @@ namespace Gaming
             characterManager = new(this, gameMap);
             ARManager = new(this, gameMap, characterManager);
             actionManager = new(this, gameMap, characterManager);
-            attackManager = new(this, gameMap, characterManager);
+            attackManager = new(this, gameMap, characterManager, ARManager);
             skillCastManager = new(this, gameMap, characterManager, ARManager, actionManager);
             equipManager = new();
             teamList = [];
