@@ -244,13 +244,13 @@ std::future<bool> CharacterAPI::MoveLeft(int64_t timeInMilliseconds)
 std::future<bool> CharacterAPI::Common_Attack(int64_t attackedPlayerID)
 {
     return std::async(std::launch::async, [=]()
-                      { return logic.Common_Attack(this->GetSelfInfo()->playerID, this->GetSelfInfo()->teamID, 1 - this->GetSelfInfo()->teamID, attackedPlayerID); });
+                      { return logic.Common_Attack(this->GetSelfInfo()->teamID, this->GetSelfInfo()->playerID, 1 - this->GetSelfInfo()->teamID, attackedPlayerID); });
 }
 
 std::future<bool> CharacterAPI::Skill_Attack(double angle)
 {
     return std::async(std::launch::async, [=]()
-                      { return logic.Skill_Attack(this->GetSelfInfo()->playerID, this->GetSelfInfo()->teamID, angle); });
+                      { return logic.Skill_Attack(this->GetSelfInfo()->teamID, this->GetSelfInfo()->playerID, angle); });
 }
 
 std::future <bool> CharacterAPI::AttackConstruction()

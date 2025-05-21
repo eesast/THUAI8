@@ -142,7 +142,7 @@ std::future<bool> CharacterDebugAPI::Skill_Attack(double angle)
     logger->info("Skill_Attack: player={}, teamID={}, called@{}ms", this->GetSelfInfo()->playerID, this->GetSelfInfo()->teamID, Time::TimeSinceStart(startPoint));
     return std::async(std::launch::async, [=]()
                       {
-        auto result = logic.Skill_Attack(this->GetSelfInfo()->playerID,this->GetSelfInfo()->teamID,angle); // 改为传递玩家ID
+        auto result = logic.Skill_Attack(this->GetSelfInfo()->teamID,this->GetSelfInfo()->playerID,angle); // 改为传递玩家ID
         if (!result)
             logger->warn("Skill_Attack failed@{}ms", Time::TimeSinceStart(startPoint));
         return result; });
