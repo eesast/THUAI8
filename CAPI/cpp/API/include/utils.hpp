@@ -620,7 +620,7 @@ namespace THUAI8Proto
         protobuf::AttackMsg attackMsg;
         attackMsg.set_team_id(team_id);
         attackMsg.set_character_id(character_id);
-        attackMsg.set_attacked_character_id(attacked_team_id);
+        attackMsg.set_attacked_team(attacked_team_id);
         attackMsg.set_attacked_character_id(attacked_character_id);
         return attackMsg;
     }
