@@ -305,10 +305,10 @@ namespace Proto2THUAI8
     {
         auto trap = std::make_shared<THUAI8::Trap>();
         trap->trapType = trapTypeDict.at(TrapMsg.trap_type());
-        trap->x = TrapMsg.x();
-        trap->y = TrapMsg.y();
-        trap->teamID = TrapMsg.team_id();
-        trap->id = TrapMsg.id();
+        //trap->x = TrapMsg.x();
+        //trap->y = TrapMsg.y();
+        trap->team_id = TrapMsg.team_id();
+        //trap->id = TrapMsg.id();
         return trap;
     }
 
@@ -605,23 +605,23 @@ namespace THUAI8Proto
         return characterMsg;
     }
 
-    inline protobuf::CastMsg THUAI82ProtobufCastMsg(int64_t character_id, int64_t team_id, double attack_angle)
+    inline protobuf::CastMsg THUAI82ProtobufCastMsg(int64_t team_id, int64_t character_id, double attack_angle)
     {
         protobuf::CastMsg castMsg;
+        castMsg.set_team_id(team_id);
         castMsg.set_character_id(character_id);
         // castMsg.set_skill_id(skill_id);
-        castMsg.set_team_id(team_id);
         castMsg.set_angle(attack_angle);
         return castMsg;
     }
 
-    inline protobuf::AttackMsg THUAI82ProtobufAttackMsg(int64_t character_id, int64_t team_id, int64_t attacked_character_id, int64_t attacked_team_id)
+    inline protobuf::AttackMsg THUAI82ProtobufAttackMsg(int64_t team_id, int64_t character_id, int64_t attacked_team_id, int64_t attacked_character_id)
     {
         protobuf::AttackMsg attackMsg;
-        attackMsg.set_character_id(character_id);
         attackMsg.set_team_id(team_id);
-        attackMsg.set_attacked_character_id(attacked_character_id);
+        attackMsg.set_character_id(character_id);
         attackMsg.set_attacked_character_id(attacked_team_id);
+        attackMsg.set_attacked_character_id(attacked_character_id);
         return attackMsg;
     }
 
