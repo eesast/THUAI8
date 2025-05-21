@@ -310,7 +310,7 @@ namespace debug_interface.ViewModels
                     _cts?.Cancel(); // 取消旧的
                     _cts = new CancellationTokenSource();
                     responseStream = client.AddCharacter(playerMsg, cancellationToken: _cts.Token);
-                    myLogger?.LogInfo("AddCharacter 调用成功，等待服务器消息...");
+                    myLogger?.LogDebug("AddCharacter 调用成功，等待服务器消息...");
 
                     _receiveTask = Task.Run(ReceiveMessagesAsync, _cts.Token);
 
@@ -322,7 +322,7 @@ namespace debug_interface.ViewModels
                 }
                 catch (RpcException ex) when (/* ... */ ex.StatusCode == StatusCode.Unavailable || ex.StatusCode == StatusCode.DeadlineExceeded || ex.StatusCode == StatusCode.Cancelled)
                 {
-                    myLogger?.LogWarning($"连接服务器失败 (Code: {ex.StatusCode})，将在 {ReconnectIntervalMs / 1000} 秒后重试...");
+                    myLogger?.LogDebug($"连接服务器失败 (Code: {ex.StatusCode})，将在 {ReconnectIntervalMs / 1000} 秒后重试...");
                     ConnectionStatus = $"连接失败，{ReconnectIntervalMs / 1000}秒后重试...";
                     await CleanupConnectionAsync();
                     _cts?.Cancel(); _cts?.Dispose(); _cts = null; // 清理CTS
@@ -330,7 +330,7 @@ namespace debug_interface.ViewModels
                 }
                 catch (Exception ex)
                 {
-                    myLogger?.LogError($"连接过程中发生意外错误: {ex.Message}\n{ex.StackTrace}");
+                    myLogger?.LogDebug($"连接过程中发生意外错误: {ex.Message}\n{ex.StackTrace}");
                     ConnectionStatus = "连接出错，请检查";
                     await CleanupConnectionAsync();
                     _cts?.Cancel(); _cts?.Dispose(); _cts = null; // 清理CTS
@@ -365,7 +365,7 @@ namespace debug_interface.ViewModels
                         {
                             switch (obj.MessageOfObjCase)
                             {
-                                // ... (填充列表 case 不变) ...
+                                
                                 case MessageOfObj.MessageOfObjOneofCase.CharacterMessage:
                                     listOfCharacters.Add(obj.CharacterMessage);
                                     break;
@@ -404,13 +404,14 @@ namespace debug_interface.ViewModels
                     } // lock 结束
                 }
                 myLogger?.LogInfo("服务器消息流结束 (正常关闭或取消)。");
+                
             }
             catch (RpcException ex) when (ex.StatusCode == StatusCode.Cancelled) { myLogger?.LogWarning("消息接收任务被取消。"); }
             catch (IOException ex) when (ex.InnerException is System.Net.Sockets.SocketException socketEx) { myLogger?.LogError($"网络错误导致接收中断: {socketEx.Message}"); }
             catch (Exception ex) { myLogger?.LogError($"接收消息时发生意外错误: {ex.Message}\n{ex.StackTrace}"); }
             finally
             {
-                myLogger?.LogInfo("后台接收任务结束。");
+                myLogger?.LogDebug("后台接收任务结束。");
                 bool wasConnected = _isConnected;
                 await CleanupConnectionAsync();
                 if (wasConnected && !isPlaybackMode && (_cts == null || !_cts.IsCancellationRequested))
@@ -428,13 +429,14 @@ namespace debug_interface.ViewModels
             _isConnected = false;
             _isConnecting = false; // 确保重置
             ConnectionStatus = "连接已断开";
+            //myLogger?.LogDebug("正在取消 CancellationToken...");
             if (_cts != null) { try { _cts.Cancel(); myLogger?.LogDebug(" CancellationToken 已请求取消。"); } catch (ObjectDisposedException) { } }
             if (_receiveTask != null && !_receiveTask.IsCompleted) { /* ... 等待任务 ... */ try { myLogger?.LogDebug(" 等待接收任务结束..."); await Task.WhenAny(_receiveTask, Task.Delay(500)); if (!_receiveTask.IsCompleted) myLogger?.LogWarning(" 接收任务在超时后仍未结束。"); else myLogger?.LogDebug(" 接收任务已结束。"); } catch (Exception ex) { myLogger?.LogError($"等待接收任务结束时出错: {ex.Message}"); } }
             if (responseStream != null) { try { responseStream.Dispose(); } catch { } responseStream = null; myLogger?.LogDebug(" responseStream 已 Dispose。"); }
             // 不在此处 Dispose _cts，由调用者（Dispose 或重连逻辑）处理
             client = null;
             _receiveTask = null;
-            myLogger?.LogDebug("连接资源清理完毕 (除了CTS Dispose)。");
+            //myLogger?.LogDebug("连接资源清理完毕 (除了CTS Dispose)。");
         }
 
         // *** Dispose 方法 (清理 _cts 和 _playbackReader) ***
