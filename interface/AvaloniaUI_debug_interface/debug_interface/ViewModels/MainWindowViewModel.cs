@@ -174,9 +174,9 @@ namespace debug_interface.ViewModels
             vm.TeamId = data.TeamId;
             vm.CharacterType = data.CharacterType;
             vm.Name = GetCharacterName(data.CharacterType);
-            //vm.MaxHp = GetCharacterMaxHp(data.CharacterType);
+            vm.MaxHp = GetCharacterMaxHp(data.CharacterType);
             //vm.MaxHp = 2000; // 假设最大血量
-            vm.Hp = data.Hp-390;
+            vm.Hp = data.Hp;
             vm.PosX = data.X; // 存储原始 X
             vm.PosY = data.Y; // 存储原始 Y
             vm.PosY = data.Y; // 存储原始 Y
