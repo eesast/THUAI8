@@ -215,6 +215,33 @@
                             FontSize="{Binding ConstFontSize}"/>
                     </HorizontalStackLayout>
 
+                    <HorizontalStackLayout>
+                        <Label
+                            WidthRequest="170"
+                            Text="Log Level"
+                            VerticalOptions="Center"
+                            FontSize="{Binding ConstFontSize}"/>
+                        <Picker
+                            SelectedItem="{Binding LogLevel}"
+                            WidthRequest="400">
+                            <Picker.ItemsSource>
+                                <x:Array
+                                    Type="{x:Type x:Int32}">
+                                    <x:Int32>1</x:Int32>
+                                    <x:Int32>2</x:Int32>
+                                    <x:Int32>3</x:Int32>
+                                    <x:Int32>4</x:Int32>
+                                    <x:Int32>5</x:Int32>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </Picker>
+                    </HorizontalStackLayout>
+                    <Label
+                        Text="1=Error, 2=Warning, 3=Info, 4=Debug, 5=Trace"
+                        FontSize="12"
+                        TextColor="Gray"
+                        Margin="170,0,0,10"/>
+
                     <Label
                         Text="{Binding DebugAlert}"/>
 
@@ -281,6 +308,32 @@
                         </Picker>
                     </HorizontalStackLayout>
 
+                    <HorizontalStackLayout>
+                        <Label
+                            WidthRequest="170"
+                            Text="Log Level"
+                            VerticalOptions="Center"
+                            FontSize="{Binding ConstFontSize}"/>
+                        <Picker
+                            SelectedItem="{Binding ServerLogLevel}"
+                            WidthRequest="400">
+                            <Picker.ItemsSource>
+                                <x:Array
+                                    Type="{x:Type x:Int32}">
+                                    <x:Int32>1</x:Int32>
+                                    <x:Int32>2</x:Int32>
+                                    <x:Int32>3</x:Int32>
+                                    <x:Int32>4</x:Int32>
+                                    <x:Int32>5</x:Int32>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </Picker>
+                    </HorizontalStackLayout>
+                    <Label
+                        Text="1=Error, 2=Warning, 3=Info, 4=Debug, 5=Trace"
+                        FontSize="12"
+                        TextColor="Gray"
+                        Margin="170,0,0,10"/>
 
                     <Label
                         Text="{Binding DebugAlert}"/>
