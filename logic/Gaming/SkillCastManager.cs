@@ -1,14 +1,15 @@
 ﻿using GameClass.GameObj;
+using GameClass.GameObj.Areas;
 using GameClass.GameObj.Map;
+using GameEngine;
+using Microsoft.Extensions.Logging;
 using Preparation.Interface;
 using Preparation.Utility;
-using GameClass.GameObj.Areas;
 using Preparation.Utility.Value;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using GameEngine;
 
 namespace Gaming
 {
@@ -45,10 +46,22 @@ namespace Gaming
             }
             public bool SkillCasting(Character character, double theta = 0.0)
             {
-                if (!character.Commandable() || character.CharacterState2 == CharacterState.BLIND)
+                if (character.CharacterState2 == CharacterState.BLIND || character.blind)
+                {
+                    SkillCastingManagerLogging.logger.LogDebug("Character is blind!");
                     return false;
+                }
                 if (!character.canskill)
+                {
+                    SkillCastingManagerLogging.logger.LogDebug("Skill casting is still in cd!");
                     return false;
+                }
+                long stateNum = character.SetCharacterState(CharacterState.SKILL_CASTING, character.CharacterState2);
+                if (stateNum == -1)
+                {
+                    SkillCastingManagerLogging.logger.LogDebug("Character is not commandable!");
+                    return false;
+                }
                 character.StartSkillCD();
                 character.canskill = false;
                 switch (character.CharacterType)
