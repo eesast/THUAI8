@@ -1,4 +1,4 @@
-﻿using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Input;
 using installer.Model;
 using installer.Data;
 using System;
@@ -90,6 +90,7 @@ namespace installer.ViewModel
 
         private int teamCount = 2;
         private int characterCount = 6;
+        private int serverLogLevel = 5;
         public int TeamCount
         {
             get => teamCount;
@@ -99,12 +100,22 @@ namespace installer.ViewModel
                 OnPropertyChanged();
             }
         }
+
         public int CharacterCount
         {
             get => characterCount;
             set
             {
                 characterCount = value;
+                OnPropertyChanged();
+            }
+        }
+        public int ServerLogLevel
+        {
+            get => serverLogLevel;
+            set
+            {
+                serverLogLevel = value;
                 OnPropertyChanged();
             }
         }
@@ -282,9 +293,11 @@ namespace installer.ViewModel
             server = Process.Start(new ProcessStartInfo()
             {
                 FileName = Downloader.Data.Config.DevServerPath ?? Path.Combine(Downloader.Data.Config.InstallPath, "logic", "Server", "Server.exe"),
-                Arguments = $"--ip 0.0.0.0 --port {Port} --teamCount {TeamCount} --CharacterNum {CharacterCount}",
+                Arguments = $"--ip 0.0.0.0 --port {Port} --teamCount {TeamCount} --CharacterNum {CharacterCount} --loglevel {ServerLogLevel}",
                 WorkingDirectory = Downloader.Data.Config.InstallPath,
                 RedirectStandardError = true,
+                RedirectStandardOutput = true,
+                UseShellExecute = false
             });
             if (server is null)
             {
@@ -298,6 +311,15 @@ namespace installer.ViewModel
                 Log.LogWarning("Server已退出。");
             };
             server.ErrorDataReceived += ProgramErrorReceived;
+            server.OutputDataReceived += (s, e) =>
+            {
+                if (!string.IsNullOrEmpty(e.Data))
+                {
+                    Log.LogInfo($"Server输出: {e.Data}");
+                }
+            };
+            server.BeginErrorReadLine();
+            server.BeginOutputReadLine();
             Log.LogWarning("Server成功启动，请保持网络稳定。");
             OnServerLaunched?.Invoke(this, EventArgs.Empty);
             return true;
