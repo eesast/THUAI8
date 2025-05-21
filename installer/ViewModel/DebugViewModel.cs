@@ -295,9 +295,7 @@ namespace installer.ViewModel
                 FileName = Downloader.Data.Config.DevServerPath ?? Path.Combine(Downloader.Data.Config.InstallPath, "logic", "Server", "Server.exe"),
                 Arguments = $"--ip 0.0.0.0 --port {Port} --teamCount {TeamCount} --CharacterNum {CharacterCount} --loglevel {ServerLogLevel}",
                 WorkingDirectory = Downloader.Data.Config.InstallPath,
-                RedirectStandardError = true,
-                RedirectStandardOutput = true,
-                UseShellExecute = false
+                UseShellExecute = true
             });
             if (server is null)
             {
@@ -310,16 +308,6 @@ namespace installer.ViewModel
                 OnServerExited?.Invoke(this, EventArgs.Empty);
                 Log.LogWarning("Server已退出。");
             };
-            server.ErrorDataReceived += ProgramErrorReceived;
-            server.OutputDataReceived += (s, e) =>
-            {
-                if (!string.IsNullOrEmpty(e.Data))
-                {
-                    Log.LogInfo($"Server输出: {e.Data}");
-                }
-            };
-            server.BeginErrorReadLine();
-            server.BeginOutputReadLine();
             Log.LogWarning("Server成功启动，请保持网络稳定。");
             OnServerLaunched?.Invoke(this, EventArgs.Empty);
             return true;
