@@ -1,4 +1,5 @@
-﻿using Preparation.Utility.Value.SafeValue.Atomic;
+﻿using Microsoft.Extensions.Logging;
+using Preparation.Utility.Value.SafeValue.Atomic;
 using System;
 using System.Threading;
 
@@ -32,7 +33,7 @@ namespace Preparation.Utility.Value.SafeValue
             catch (Exception ex)
             {
                 startTime.SetROri(long.MaxValue);
-                MyTimerLogging.logger.ConsoleLog(ex.Message);
+                MyTimerLogging.logger.LogInformation(ex.Message);
             }
             return true;
         }
@@ -57,7 +58,7 @@ namespace Preparation.Utility.Value.SafeValue
             catch (Exception ex)
             {
                 startTime.SetROri(long.MaxValue);
-                MyTimerLogging.logger.ConsoleLog(ex.Message);
+                MyTimerLogging.logger.LogInformation(ex.Message);
             }
             return true;
         }

@@ -176,8 +176,8 @@ namespace Gaming
                             {
                                 if (ObjBeingProtected.HP == minHP)
                                 {
-                                    ObjBeingProtected.Shield.AddPositiveV(GameData.NiuMowangShield);
-                                    character.Shield.AddPositiveV(GameData.NiuMowangShield);
+                                    ObjBeingProtected.NiuShield.AddPositiveV(GameData.NiuMowangShield);
+                                    character.NiuShield.AddPositiveV(GameData.NiuMowangShield);
                                     break;
                                 }
                             }

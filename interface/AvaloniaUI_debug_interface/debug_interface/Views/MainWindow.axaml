@@ -113,9 +113,7 @@
                                                 FontSize="8"
                                                 Foreground="{Binding TeamId, Converter={StaticResource TeamIdToColorConverter}}"
                                                 Maximum="{Binding MaxHp}"
-
                                                 ProgressTextFormat="{}{0}/{3}"
-
                                                 ShowProgressText="True"
                                                 Value="{Binding Hp}" />
                                         </Border>
@@ -312,7 +310,7 @@
                                                 FontSize="8"
                                                 Foreground="{Binding TeamId, Converter={StaticResource TeamIdToColorConverter}}"
                                                 Maximum="{Binding MaxHp}"
-                                                ProgressTextFormat="{}{0}/{1}"
+                                                ProgressTextFormat="{}{0}"
                                                 ShowProgressText="True"
                                                 Value="{Binding Hp}" />
                                         </Border>

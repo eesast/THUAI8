@@ -1,5 +1,6 @@
 using CommandLine;
 using Grpc.Core;
+using Microsoft.Extensions.Logging;
 using Preparation.Utility.Logging;
 using Protobuf;
 
@@ -31,7 +32,7 @@ namespace Server
                                \/     \/         \/       \/     \/        
         """;
 
-        static (ServerBase, Logger) CreateServer(ArgumentOptions options)
+        static (ServerBase, ILogger) CreateServer(ArgumentOptions options)
             => options.Playback ? (new PlaybackServer(options), PlaybackServerLogging.logger)
                                 : (new GameServer(options), GameServerLogging.logger);
 
@@ -66,15 +67,15 @@ namespace Server
                 };
                 rpcServer.Start();
 
-                logger.ConsoleLog("Server begins to listen!");
+                logger.LogInformation("Server begins to listen!");
                 server.WaitForEnd();
-                logger.ConsoleLog("Server end!");
+                logger.LogInformation("Server end!");
                 rpcServer.ShutdownAsync().Wait();
 
                 Logger.RawConsoleLog("", false);
-                logger.ConsoleLog("===================  Final Score  ====================", false);
-                logger.ConsoleLog($"Team0: {server.GetScore()[0]}"); //红队
-                logger.ConsoleLog($"Team1: {server.GetScore()[1]}"); //蓝队
+                logger.LogInformation("===================  Final Score  ====================");
+                logger.LogInformation($"Team0: {server.GetScore()[0]}"); //红队
+                logger.LogInformation($"Team1: {server.GetScore()[1]}"); //蓝队
             }
             catch (Exception ex)
             {
