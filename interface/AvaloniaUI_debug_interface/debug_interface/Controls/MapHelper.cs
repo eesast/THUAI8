@@ -107,7 +107,7 @@ namespace debug_interface.Controls
             AddGridLines(grid);
         }
 
-        // *** 新增：根据背景色决定文本颜色的辅助方法 ***
+        // *** 根据背景色决定文本颜色的辅助方法 ***
         private static IBrush GetTextColorBasedOnBackground(IBrush background)
         {
             if (background is SolidColorBrush solidColor)

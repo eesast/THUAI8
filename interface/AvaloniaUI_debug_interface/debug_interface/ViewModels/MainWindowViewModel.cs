@@ -118,7 +118,7 @@ namespace debug_interface.ViewModels
 
             lock (drawPicLock) // 确保线程安全
             {
-                // myLogger?.LogDebug($"开始更新角色视图模型，服务器原始数据数量: {listOfCharacters.Count}");
+                
 
                 // 1. 更新或添加角色
                 foreach (var data in listOfCharacters) // listOfCharacters 来自 ViewModelBase
@@ -180,7 +180,7 @@ namespace debug_interface.ViewModels
             vm.PosX = data.X; // 存储原始 X
             vm.PosY = data.Y; // 存储原始 Y
             vm.PosY = data.Y; // 存储原始 Y
-
+            myLogger?.LogDebug($"更新角色视图模型: Guid={vm.Guid}, TeamId={vm.TeamId}，Name='{vm.Name}', Hp={vm.Hp}, PosX={vm.PosX}, PosY={vm.PosY}");
 
             CharacterState previousActiveState = vm.ActiveState == "空闲/未知"
                 ? CharacterState.NullCharacterState
@@ -201,9 +201,8 @@ namespace debug_interface.ViewModels
             if (data.CharacterActiveState == CharacterState.SkillCasting && previousActiveState != CharacterState.SkillCasting)
             {
                 string logMessage = $"{vm.Name} (Guid: {vm.Guid}) 在 ({vm.PosX / 1000},{vm.PosY / 1000}) 释放了技能";
-                // Console.WriteLine($"[技能释放] {logMessage}"); // 可以保留或移除 Console 输出
-                //myLogger?.LogInfo($"[技能释放] {logMessage}"); // 记录到文件
-                LogConsoleVM.AddLog(logMessage, "SKILL"); // *** 添加到界面 Console ***
+
+                LogConsoleVM.AddLog(logMessage, "SKILL"); 
             }
 
 
@@ -316,17 +315,13 @@ namespace debug_interface.ViewModels
             myLogger?.LogInfo("--- UpdateMapElements called ---"); // 添加日志确认方法被调用
             lock (drawPicLock)
             {
-                myLogger?.LogDebug($"UpdateMapElements: listOfBarracks.Count = {listOfBarracks.Count}");
-                myLogger?.LogDebug($"UpdateMapElements: listOfSprings.Count = {listOfSprings.Count}");
-                myLogger?.LogDebug($"UpdateMapElements: listOfFarms.Count = {listOfFarms.Count}");
-                myLogger?.LogDebug($"UpdateMapElements: listOfTraps.Count = {listOfTraps.Count}");
-                myLogger?.LogDebug($"UpdateMapElements: listOfEconomyResources.Count = {listOfEconomyResources.Count}");
-                myLogger?.LogDebug($"UpdateMapElements: listOfAdditionResources.Count = {listOfAdditionResources.Count}");
-                // 更新地图地形 (如果需要，基于 MapMessage)
-                //MapVM.UpdateMap(MapMessage); // 假设 receivedMapMessage 在某处获得
+                //myLogger?.LogDebug($"UpdateMapElements: listOfBarracks.Count = {listOfBarracks.Count}");
+                //myLogger?.LogDebug($"UpdateMapElements: listOfSprings.Count = {listOfSprings.Count}");
+                //myLogger?.LogDebug($"UpdateMapElements: listOfFarms.Count = {listOfFarms.Count}");
+                //myLogger?.LogDebug($"UpdateMapElements: listOfTraps.Count = {listOfTraps.Count}");
+                //myLogger?.LogDebug($"UpdateMapElements: listOfEconomyResources.Count = {listOfEconomyResources.Count}");
+                //myLogger?.LogDebug($"UpdateMapElements: listOfAdditionResources.Count = {listOfAdditionResources.Count}");
 
-                // 清除动态元素的旧状态 (例如，一个格子之前是建筑，现在不是了)
-                // 最好在 MapViewModel 中处理：在更新前重置所有动态格子的状态为基础地形
 
                 // 更新兵营
                 foreach (var barracks in listOfBarracks)
@@ -383,7 +378,9 @@ namespace debug_interface.ViewModels
                         resource.Y / 1000,
                         GetEconomyResourceType(resource.EconomyResourceType),
                         resource.Process // 传入剩余量
+
                     );
+                    //myLogger?.LogDebug($"UpdateMapElements: 经济资源: {resource.X / 1000},{resource.Y / 1000}, {resource.EconomyResourceType}, {resource.Process}");
                 }
 
                 // 更新加成资源
