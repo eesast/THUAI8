@@ -272,6 +272,8 @@ namespace Gaming
         }
         public void EndGame()
         {
+            ClearAllLists();
+            gameMap.Timer.EndGame();
         }
         public bool MoveCharacter(long teamID, long characterID, int moveTimeInMilliseconds, double angle)
         {
