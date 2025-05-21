@@ -188,12 +188,14 @@ namespace debug_interface.ViewModels
                     : new SolidColorBrush(Colors.DarkBlue); // 妖怪队建筑颜色
 
                 // 设置血量文本
+
+
                 //int maxHp = GetBuildingMaxHp(buildingType);
                 cell.DisplayText = $"{hp}";
                 cell.ForegroundColor = GetTextColorBasedOnBackground(cell.DisplayColor);
-                myLogger?.LogInfo($"UpdateBuildingCell at ({x},{y}): Set DisplayText to '{cell.DisplayText}', Foreground to '{cell.ForegroundColor}'");
+                myLogger?.LogDebug($"UpdateBuildingCell at ({x},{y}): Set DisplayText to '{cell.DisplayText}', Foreground to '{cell.ForegroundColor}'");
                 //myLogger?.LogInfo($"UpdateBuildingCell at ({x},{y}): Set DisplayText to '{cell.DisplayText}'"); // *** 添加日志 ***
-                // cell.ToolTipText = ... // 可以设置 Tooltip
+                
             }
         }
 
@@ -306,8 +308,8 @@ namespace debug_interface.ViewModels
 
                 // 更新HP和Tooltip
                 // TODO: 获取加成资源Boss的最大HP (可能需要从游戏规则或新消息字段获取)
-                int maxHp = GetAdditionResourceMaxHp(resourceName); // 需要实现此辅助方法
-                cell.DisplayText = $"{hp}/{maxHp}";
+                //int maxHp = GetAdditionResourceMaxHp(resourceName); // 需要实现此辅助方法
+                cell.DisplayText = $"{hp}";
                 //cell.ToolTipText = $"类型: {resourceName} (Boss)\n血量: {hp}/{maxHp}";
 
                 // OnPropertyChanged(nameof(MapCells));

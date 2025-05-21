@@ -307,12 +307,15 @@ class Home:
 
 
 class Trap:
-    def __init__(self):
-        self.trapType: TrapType = TrapType.NullTrapType
-        self.x: int = 0
-        self.y: int = 0
-        self.teamID: int = 0
-        self.id: int = 0
+    def __init__(
+            self,
+            trapType: TrapType = TrapType.NullTrapType,
+            teamID: int = 0,
+            trapValid: bool = False,
+        ):
+        self.trapType = trapType
+        self.teamID = teamID
+        self.trapValid = trapValid
 
 
 class EconomyResource:
@@ -367,7 +370,7 @@ class GameMap:
         ] = {}  # x, y, teamID, hp
         self.springState: Dict[Tuple[int, int], Tuple[int, int]] = {}
         self.farmState: Dict[Tuple[int, int], Tuple[int, int]] = {}
-        self.trapState: Dict[Tuple[int, int], Tuple[int, int]] = {}
+        self.trapState: Dict[Tuple[int, int], Trap] = {}
         self.economyResource: Dict[Tuple[int, int], EconomyResource] = {}
         self.additionResource: Dict[Tuple[int, int], AdditionResource] = {}
 
