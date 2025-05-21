@@ -1,14 +1,14 @@
 [*.cs]
-# ���ö�ٳ�Ա����������Ҫ��ʹ�� PascalCase
+# 针对枚举成员的命名规则：要求使用 PascalCase
 dotnet_naming_rule.enum_members_should_be_pascal_case.severity = suggestion
 dotnet_naming_rule.enum_members_should_be_pascal_case.symbols = enum_members
 dotnet_naming_rule.enum_members_should_be_pascal_case.style = pascal_caser
 
-# ������ţ��������������� const �ֶΣ�ͨ��ö�ٳ�Ա�ᱻʶ��Ϊ const �ֶΣ�
+# 定义符号：这里适用于所有 const 字段（通常枚举成员会被识别为 const 字段）
 dotnet_naming_symbols.enum_members.applicable_kinds = field
 dotnet_naming_symbols.enum_members.required_modifiers = const
 
-# �����������PascalCase
+# 定义命名风格：PascalCase
 dotnet_naming_style.pascal_caser.capitalization = pascal_case
 dotnet_naming_style.pascal_caser.required_prefix =
 dotnet_naming_style.pascal_caser.required_suffix =
