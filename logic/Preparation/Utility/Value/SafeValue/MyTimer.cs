@@ -62,5 +62,9 @@ namespace Preparation.Utility.Value.SafeValue
             }
             return true;
         }
+        public void EndGame()
+        {
+            startTime.SetROri(long.MaxValue);
+        }
     }
 }

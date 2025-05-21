@@ -102,14 +102,17 @@ namespace Gaming
                 {
                     long score = 0;
                     if (character.CharacterType == CharacterType.TangSeng || character.CharacterType == CharacterType.JiuLing)
+                    {
                         score = 200000;
+                        gameMap.Timer.EndGame();
+                    }
                     else if (character.CharacterType == CharacterType.Monkid || character.CharacterType == CharacterType.Pawn)
                         score = 500;
                     else
                         score = character.GetCost();
                     //此处缺失加分代码。由于阵营是分明的（妖怪和取经团队，THUAI7阵营并无明显差别），可以直接将得分加至相应阵营。小局结束后再加到队伍得分。
-                    var team = game.TeamList[(int)character.TeamID.Get()];
-                    team.MoneyPool.SubScore(score);
+                    var team = game.TeamList[(int)obj.TeamID.Get()];
+                    team.MoneyPool.AddScore(score);
                     Remove(character);
                 }
             }
@@ -142,13 +145,16 @@ namespace Gaming
                 {
                     long score = 0;
                     if (character.CharacterType == CharacterType.TangSeng || character.CharacterType == CharacterType.JiuLing)
+                    {
                         score = 200000;
+                        gameMap.Timer.EndGame();
+                    }
                     else if (character.CharacterType == CharacterType.Monkid || character.CharacterType == CharacterType.Pawn)
                         score = 500;
                     else
                         score = character.GetCost();
-                    var team = game.TeamList[(int)character.TeamID.Get()];
-                    team.MoneyPool.SubScore(score);
+                    var team = game.TeamList[1 - (int)character.TeamID.Get()];
+                    team.MoneyPool.AddScore(score);
                     Remove(character);
                 }
             }
