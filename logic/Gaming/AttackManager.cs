@@ -25,11 +25,12 @@ namespace Gaming
             private readonly MoveEngine moveEngine;
             private readonly A_ResourceManager ARManager;
 
-            public AttackManager(Game game, Map gameMap, CharacterManager characterManager)
+            public AttackManager(Game game, Map gameMap, CharacterManager characterManager, A_ResourceManager ARManager)
             {
                 this.game = game;
                 this.gameMap = gameMap;
                 this.characterManager = characterManager;
+                this.ARManager = ARManager;
                 moveEngine = new(
                     gameMap: gameMap,
                     OnCollision: (obj, collisionObj, moveVec) =>

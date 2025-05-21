@@ -272,6 +272,8 @@ namespace Gaming
         }
         public void EndGame()
         {
+            ClearAllLists();
+            gameMap.Timer.EndGame();
         }
         public bool MoveCharacter(long teamID, long characterID, int moveTimeInMilliseconds, double angle)
         {
@@ -384,7 +386,7 @@ namespace Gaming
             characterManager = new(this, gameMap);
             ARManager = new(this, gameMap, characterManager);
             actionManager = new(this, gameMap, characterManager);
-            attackManager = new(this, gameMap, characterManager);
+            attackManager = new(this, gameMap, characterManager, ARManager);
             skillCastManager = new(this, gameMap, characterManager, ARManager, actionManager);
             equipManager = new();
             teamList = [];
