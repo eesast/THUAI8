@@ -386,6 +386,7 @@ namespace Gaming
             actionManager = new(this, gameMap, characterManager);
             attackManager = new(this, gameMap, characterManager);
             skillCastManager = new(this, gameMap, characterManager, ARManager, actionManager);
+            equipManager = new();
             teamList = [];
             gameMap.GameObjDict[GameObjType.HOME].Cast<GameObj>()?.ForEach(
                 delegate (GameObj gameObj)

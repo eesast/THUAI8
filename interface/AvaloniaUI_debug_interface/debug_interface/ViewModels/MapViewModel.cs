@@ -188,12 +188,14 @@ namespace debug_interface.ViewModels
                     : new SolidColorBrush(Colors.DarkBlue); // 妖怪队建筑颜色
 
                 // 设置血量文本
+
+
                 //int maxHp = GetBuildingMaxHp(buildingType);
                 cell.DisplayText = $"{hp}";
                 cell.ForegroundColor = GetTextColorBasedOnBackground(cell.DisplayColor);
                 myLogger?.LogDebug($"UpdateBuildingCell at ({x},{y}): Set DisplayText to '{cell.DisplayText}', Foreground to '{cell.ForegroundColor}'");
                 //myLogger?.LogInfo($"UpdateBuildingCell at ({x},{y}): Set DisplayText to '{cell.DisplayText}'"); // *** 添加日志 ***
-                // cell.ToolTipText = ... // 可以设置 Tooltip
+                
             }
         }
 
