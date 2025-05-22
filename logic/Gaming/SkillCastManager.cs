@@ -64,6 +64,7 @@ namespace Gaming
                 }
                 character.StartSkillCD();
                 character.canskill = false;
+                character.ResetCharacterState(stateNum);
                 switch (character.CharacterType)
                 {
                     case CharacterType.SunWukong:
