@@ -121,7 +121,7 @@ namespace Gaming
                 long nowtime = Environment.TickCount64;
                 if (nowtime - character.LastAttackTime < 1000 / character.ATKFrequency)
                 {
-                    AttackManagerLogging.logger.LogDebug("Common_attack is still in cd!");
+                    LogicLogging.logger.LogDebug("Common_attack is still in cd!");
                     return false;
                 }
                 long stateNum = character.SetCharacterState(
