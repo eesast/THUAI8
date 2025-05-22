@@ -149,7 +149,7 @@ namespace Preparation.Utility.Value.SafeValue.TimeBased
         public TimeBasedProgressOptimizedForInterrupting(long needTime)
         {
             if (needTime <= 0)
-                TimeBasedLogging.logger.LogDebug(
+                LogicLogging.logger.LogDebug(
                     $"Bug: TimeBasedProgressOptimizedForInterrupting.needProgress({needTime}) is less than 0");
             needT = needTime;
         }
@@ -236,7 +236,7 @@ namespace Preparation.Utility.Value.SafeValue.TimeBased
         {
             if (needTime <= 0)
             {
-                TimeBasedLogging.logger.LogDebug(
+                LogicLogging.logger.LogDebug(
                     $"Warning: Start TimeBasedProgressOptimizedForInterrupting with the needProgress({needTime}) which is less than 0");
                 return false;
             }
@@ -244,7 +244,7 @@ namespace Preparation.Utility.Value.SafeValue.TimeBased
             if (Interlocked.CompareExchange(ref endT, Environment.TickCount64 + needTime, long.MaxValue) != long.MaxValue)
                 return false;
             if (needTime <= 2)
-                TimeBasedLogging.logger.LogDebug(
+                LogicLogging.logger.LogDebug(
                     $"Warning: The field of TimeBasedProgressOptimizedForInterrupting is {needTime},which is too small");
             Interlocked.Exchange(ref needT, needTime);
             return true;
@@ -285,19 +285,19 @@ namespace Preparation.Utility.Value.SafeValue.TimeBased
         public BoolUpdateEachCD(int cd)
         {
             if (cd <= 1)
-                TimeBasedLogging.logger.LogDebug($"Bug: BoolUpdateEachCD.cd({cd}) is less than 1");
+                LogicLogging.logger.LogDebug($"Bug: BoolUpdateEachCD.cd({cd}) is less than 1");
             this.cd = cd;
         }
         public BoolUpdateEachCD(long cd)
         {
             if (cd <= 1)
-                TimeBasedLogging.logger.LogDebug($"Bug: BoolUpdateEachCD.cd({cd}) is less than 1");
+                LogicLogging.logger.LogDebug($"Bug: BoolUpdateEachCD.cd({cd}) is less than 1");
             this.cd = cd;
         }
         public BoolUpdateEachCD(long cd, long startTime)
         {
             if (cd <= 1)
-                TimeBasedLogging.logger.LogDebug($"Bug: BoolUpdateEachCD.cd({cd}) is less than 1");
+                LogicLogging.logger.LogDebug($"Bug: BoolUpdateEachCD.cd({cd}) is less than 1");
             this.cd = cd;
             nextUpdateTime = startTime;
         }
@@ -318,7 +318,7 @@ namespace Preparation.Utility.Value.SafeValue.TimeBased
         public void SetCD(int cd)
         {
             if (cd <= 1)
-                TimeBasedLogging.logger.LogDebug($"Bug: BoolUpdateEachCD.cd to {cd}");
+                LogicLogging.logger.LogDebug($"Bug: BoolUpdateEachCD.cd to {cd}");
             Interlocked.Exchange(ref this.cd, cd);
         }
     }
@@ -334,19 +334,19 @@ namespace Preparation.Utility.Value.SafeValue.TimeBased
         public LongProgressUpdateEachCD(int cd)
         {
             if (cd <= 1)
-                TimeBasedLogging.logger.LogDebug($"Bug: LongProgressUpdateEachCD.cd({cd}) is less than 1");
+                LogicLogging.logger.LogDebug($"Bug: LongProgressUpdateEachCD.cd({cd}) is less than 1");
             this.cd = cd;
         }
         public LongProgressUpdateEachCD(long cd)
         {
             if (cd <= 1)
-                TimeBasedLogging.logger.LogDebug($"Bug: LongProgressUpdateEachCD.cd({cd}) is less than 1");
+                LogicLogging.logger.LogDebug($"Bug: LongProgressUpdateEachCD.cd({cd}) is less than 1");
             this.cd = cd;
         }
         public LongProgressUpdateEachCD(long cd, long startTime)
         {
             if (cd <= 1)
-                TimeBasedLogging.logger.LogDebug($"Bug: LongProgressUpdateEachCD.cd({cd}) is less than 1");
+                LogicLogging.logger.LogDebug($"Bug: LongProgressUpdateEachCD.cd({cd}) is less than 1");
             this.cd = cd;
             nextUpdateTime = startTime;
         }
@@ -374,7 +374,7 @@ namespace Preparation.Utility.Value.SafeValue.TimeBased
         public void SetCD(int cd)
         {
             if (cd <= 1)
-                TimeBasedLogging.logger.LogDebug($"Bug: Set LongProgressUpdateEachCD.cd to {cd}");
+                LogicLogging.logger.LogDebug($"Bug: Set LongProgressUpdateEachCD.cd to {cd}");
             Interlocked.Exchange(ref this.cd, cd);
         }
     }
@@ -392,11 +392,11 @@ namespace Preparation.Utility.Value.SafeValue.TimeBased
         public IntNumUpdateEachCD(int num, int maxNum, int cd)
         {
             if (num < 0)
-                TimeBasedLogging.logger.LogDebug($"Bug: IntNumUpdateEachCD.num({num}) is less than 0");
+                LogicLogging.logger.LogDebug($"Bug: IntNumUpdateEachCD.num({num}) is less than 0");
             if (maxNum < 0)
-                TimeBasedLogging.logger.LogDebug($"Bug: IntNumUpdateEachCD.maxNum({maxNum}) is less than 0");
+                LogicLogging.logger.LogDebug($"Bug: IntNumUpdateEachCD.maxNum({maxNum}) is less than 0");
             if (cd <= 0)
-                TimeBasedLogging.logger.LogDebug($"Bug: IntNumUpdateEachCD.cd({cd}) is less than 0");
+                LogicLogging.logger.LogDebug($"Bug: IntNumUpdateEachCD.cd({cd}) is less than 0");
             this.num = num < maxNum ? num : maxNum;
             this.maxNum = maxNum;
             CD.Set(cd);
@@ -408,9 +408,9 @@ namespace Preparation.Utility.Value.SafeValue.TimeBased
         public IntNumUpdateEachCD(int maxNum, int cd)
         {
             if (maxNum < 0)
-                TimeBasedLogging.logger.LogDebug($"Bug: IntNumUpdateEachCD.maxNum({maxNum}) is less than 0");
+                LogicLogging.logger.LogDebug($"Bug: IntNumUpdateEachCD.maxNum({maxNum}) is less than 0");
             if (cd <= 0)
-                TimeBasedLogging.logger.LogDebug($"Bug: IntNumUpdateEachCD.cd({cd}) is less than 0");
+                LogicLogging.logger.LogDebug($"Bug: IntNumUpdateEachCD.cd({cd}) is less than 0");
             num = this.maxNum = maxNum;
             CD.Set(cd);
         }
@@ -442,7 +442,7 @@ namespace Preparation.Utility.Value.SafeValue.TimeBased
         public int TrySub(int subV)
         {
             if (subV < 0)
-                TimeBasedLogging.logger.LogDebug($"Bug: IntNumUpdateEachCD Try to sub {subV}, which is less than 0");
+                LogicLogging.logger.LogDebug($"Bug: IntNumUpdateEachCD Try to sub {subV}, which is less than 0");
             long time = Environment.TickCount64;
             lock (numLock)
             {
@@ -463,7 +463,7 @@ namespace Preparation.Utility.Value.SafeValue.TimeBased
         public void TryAdd(int addV)
         {
             if (addV < 0)
-                TimeBasedLogging.logger.LogDebug($"Bug: IntNumUpdateEachCD Try to add {addV}, which is less than 0");
+                LogicLogging.logger.LogDebug($"Bug: IntNumUpdateEachCD Try to add {addV}, which is less than 0");
             lock (numLock)
             {
                 num += Math.Min(addV, maxNum - num);
@@ -555,7 +555,7 @@ namespace Preparation.Utility.Value.SafeValue.TimeBased
         public void SetCD(int cd)
         {
             if (cd <= 0)
-                TimeBasedLogging.logger.LogDebug($"Bug: Set IntNumUpdateEachCD.cd to {cd}");
+                LogicLogging.logger.LogDebug($"Bug: Set IntNumUpdateEachCD.cd to {cd}");
             CD.Set(cd);
         }
     }

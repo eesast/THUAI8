@@ -113,10 +113,10 @@ namespace GameEngine
                         flag = true;
                         break;
                     case AfterCollision.Destroyed:
-                        GameEngineLogging.logger.LogDebug(
-                           Logger.ObjInfo(obj)
+                        LogicLogging.logger.LogDebug(
+                           LogUtility.GetObjectInfo(obj)
                            + " collide with "
-                           + Logger.ObjInfo(collisionObj)
+                           + LogUtility.GetObjectInfo(collisionObj)
                            + " and has been removed from the game");
                         return false;
                     case AfterCollision.MoveMax:
@@ -134,8 +134,8 @@ namespace GameEngine
 
         public void MoveObj(IMovable obj, int moveTime, double direction, long stateNum, long Shoes = 0)
         {
-            GameEngineLogging.logger.LogDebug(
-                Logger.ObjInfo(obj)
+            LogicLogging.logger.LogDebug(
+                LogUtility.GetObjectInfo(obj)
                 + $" position {obj.Position}, start moving in direction {direction}, with speed {obj.MoveSpeed + Shoes}");
             if (!gameTimer.IsGaming) return;
             lock (obj.ActionLock)
@@ -167,10 +167,10 @@ namespace GameEngine
                                 flag = true;
                                 break;
                             case AfterCollision.Destroyed:
-                                GameEngineLogging.logger.LogDebug(
-                                    Logger.ObjInfo(obj)
+                                LogicLogging.logger.LogDebug(
+                                    LogUtility.GetObjectInfo(obj)
                                     + " collide with "
-                                    + Logger.ObjInfo(collisionObj)
+                                    + LogUtility.GetObjectInfo(collisionObj)
                                     + " and has been removed from the game");
                                 isEnded = true;
                                 break;
@@ -210,10 +210,10 @@ namespace GameEngine
                                 MaxTolerantTimeExceedCount = ulong.MaxValue,
                                 TimeExceedAction = b =>
                                 {
-                                    if (b) GameEngineLogging.logger.LogInformation(
+                                    if (b) LogicLogging.logger.LogInfo(
                                             "Fatal Error: The computer runs so slow that " +
                                             "the object cannot finish moving during this time!!!!!!");
-                                    else GameEngineLogging.logger.LogDebug(
+                                    else LogicLogging.logger.LogDebug(
                                             "Debug info: Object moving time exceed for once");
                                 }
                             }.Start();
@@ -250,10 +250,10 @@ namespace GameEngine
                                             flag = true;
                                             break;
                                         case AfterCollision.Destroyed:
-                                            GameEngineLogging.logger.LogDebug(
-                                                Logger.ObjInfo(obj)
+                                            LogicLogging.logger.LogDebug(
+                                                LogUtility.GetObjectInfo(obj)
                                                 + " collide with "
-                                                + Logger.ObjInfo(collisionObj)
+                                                + LogUtility.GetObjectInfo(collisionObj)
                                                 + " and has been removed from the game");
                                             isEnded = true;
                                             break;

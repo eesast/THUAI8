@@ -51,7 +51,7 @@ namespace Server
                     if (id == GameObj.invalidID) return;//如果有未初始化的玩家，不开始游戏
                 }
             }
-            GameServerLogging.logger.LogInformation("Game starts!");
+            GameServerLogging.logger.LogInfo("Game starts!");
             CreateStartFile();
             game.StartGame((int)options.GameTimeInSecond * 1000);
             Thread.Sleep(1);
@@ -87,7 +87,7 @@ namespace Server
             if (options.StartLockFile != DefaultArgumentOptions.FileName)
             {
                 using var _ = File.Create(options.StartLockFile);
-                GameServerLogging.logger.LogInformation("Successfully Created StartLockFile!");
+                GameServerLogging.logger.LogInfo("Successfully Created StartLockFile!");
             }
         }
 
@@ -114,7 +114,7 @@ namespace Server
             string? url2 = Environment.GetEnvironmentVariable("FINISH_URL");
             if (url2 == null)
             {
-                GameServerLogging.logger.LogInformation("Null FINISH_URL!");
+                GameServerLogging.logger.LogInfo("Null FINISH_URL!");
                 return;
             }
             else
@@ -150,7 +150,7 @@ namespace Server
                 double[] org = httpSender.GetLadderScore(scores).Result;
                 if (org.Length == 0)
                 {
-                    GameServerLogging.logger.LogInformation("Error: No data returned from the web!");
+                    GameServerLogging.logger.LogInfo("Error: No data returned from the web!");
                     return new double[0];
                 }
                 else
@@ -161,7 +161,7 @@ namespace Server
             }
             else
             {
-                GameServerLogging.logger.LogInformation("Null SCORE_URL Environment!");
+                GameServerLogging.logger.LogInfo("Null SCORE_URL Environment!");
                 return new double[0];
             }
         }
@@ -235,7 +235,7 @@ namespace Server
                 if (doubleArray.Length == 0)
                 {
                     crash = true;
-                    GameServerLogging.logger.LogInformation("Error: No data returned from the web!");
+                    GameServerLogging.logger.LogInfo("Error: No data returned from the web!");
                 }
                 else
                     scores = doubleArray.Select(x => (int)x).ToArray();
@@ -411,7 +411,7 @@ namespace Server
                 5 => LogLevel.Trace,
                 _ => LogLevel.Information
             };
-            LoggerF loggerF = new(logLevel);
+            AdvancedLoggerFactory.SetLogLevel(logLevel);
             if (options.MapResource == DefaultArgumentOptions.MapResource)
                 game = new(MapInfo.defaultMapStruct, options.TeamCount);
             else
@@ -498,14 +498,14 @@ namespace Server
                 }
                 catch
                 {
-                    GameServerLogging.logger.LogInformation($"Error: Cannot create the playback file: {options.FileName}!");
+                    GameServerLogging.logger.LogInfo($"Error: Cannot create the playback file: {options.FileName}!");
                 }
             }
 
             string? token2 = Environment.GetEnvironmentVariable("TOKEN");
             if (token2 == null)
             {
-                GameServerLogging.logger.LogInformation("Null TOKEN Environment!");
+                GameServerLogging.logger.LogInfo("Null TOKEN Environment!");
             }
             else
                 options.Token = token2;

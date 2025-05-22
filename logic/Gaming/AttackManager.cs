@@ -49,22 +49,22 @@ namespace Gaming
             {
                 if (character.CharacterState2 == CharacterState.BLIND || character.blind)
                 {
-                    AttackManagerLogging.logger.LogDebug("Character is blind!");
+                    LogicLogging.logger.LogDebug("Character is blind!");
                     return false;
                 }
                 if (!gameMap.CanSee(character, gameobj))
                 {
-                    AttackManagerLogging.logger.LogDebug("Can't see target obj!");
+                    LogicLogging.logger.LogDebug("Can't see target obj!");
                     return false;
                 }
                 if (!gameMap.InAttackSize(character, gameobj))
                 {
-                    AttackManagerLogging.logger.LogDebug("Obj is not in attacksize!");
+                    LogicLogging.logger.LogDebug("Obj is not in attacksize!");
                     return false;
                 }
                 if (gameobj.visible == false || gameobj.CharacterState2 == CharacterState.INVISIBLE)
                 {
-                    AttackManagerLogging.logger.LogDebug(
+                    LogicLogging.logger.LogDebug(
                         "Can't see target because it's invisible!"
                     );
                     return false;
@@ -72,7 +72,7 @@ namespace Gaming
                 long nowtime = Environment.TickCount64;
                 if (nowtime - character.LastAttackTime < 1000 / character.ATKFrequency)
                 {
-                    AttackManagerLogging.logger.LogDebug("Common_attack is still in cd!");
+                    LogicLogging.logger.LogDebug("Common_attack is still in cd!");
                     return false;
                 }
                 long stateNum = character.SetCharacterState(
@@ -81,7 +81,7 @@ namespace Gaming
                 );
                 if (stateNum == -1)
                 {
-                    AttackManagerLogging.logger.LogDebug("Character is not commandable!");
+                    LogicLogging.logger.LogDebug("Character is not commandable!");
                     return false;
                 }
                 characterManager.BeAttacked(gameobj, character);
@@ -105,23 +105,23 @@ namespace Gaming
             {
                 if (character.CharacterState2 == CharacterState.BLIND || character.blind)
                 {
-                    AttackManagerLogging.logger.LogDebug("Character is blind!");
+                    LogicLogging.logger.LogDebug("Character is blind!");
                     return false;
                 }
                 if (!gameMap.CanSee(character, gameobj))
                 {
-                    AttackManagerLogging.logger.LogDebug("Can't see target obj!");
+                    LogicLogging.logger.LogDebug("Can't see target obj!");
                     return false;
                 }
                 if (!gameMap.InAttackSize(character, gameobj))
                 {
-                    AttackManagerLogging.logger.LogDebug("Obj is not in attacksize!");
+                    LogicLogging.logger.LogDebug("Obj is not in attacksize!");
                     return false;
                 }
                 long nowtime = Environment.TickCount64;
                 if (nowtime - character.LastAttackTime < 1000 / character.ATKFrequency)
                 {
-                    AttackManagerLogging.logger.LogDebug("Common_attack is still in cd!");
+                    LogicLogging.logger.LogDebug("Common_attack is still in cd!");
                     return false;
                 }
                 long stateNum = character.SetCharacterState(
@@ -130,7 +130,7 @@ namespace Gaming
                 );
                 if (stateNum == -1)
                 {
-                    AttackManagerLogging.logger.LogDebug("Character is not commandable!");
+                    LogicLogging.logger.LogDebug("Character is not commandable!");
                     return false;
                 }
                 ARManager.BeAttacked(gameobj, character);
@@ -148,23 +148,23 @@ namespace Gaming
             {
                 if (character.CharacterState2 == CharacterState.BLIND || character.blind)
                 {
-                    AttackManagerLogging.logger.LogDebug("Character is blind!");
+                    LogicLogging.logger.LogDebug("Character is blind!");
                     return false;
                 }
                 if (!gameMap.CanSee(character, gameobj))
                 {
-                    AttackManagerLogging.logger.LogDebug("Can't see target obj!");
+                    LogicLogging.logger.LogDebug("Can't see target obj!");
                     return false;
                 }
                 if (!gameMap.InAttackSize(character, gameobj))
                 {
-                    AttackManagerLogging.logger.LogDebug("Obj is not in attacksize!");
+                    LogicLogging.logger.LogDebug("Obj is not in attacksize!");
                     return false;
                 }
                 long nowtime = Environment.TickCount64;
                 if (nowtime - character.LastAttackTime < 1000 / character.ATKFrequency)
                 {
-                    AttackManagerLogging.logger.LogDebug("Common_attack is still in cd!");
+                    LogicLogging.logger.LogDebug("Common_attack is still in cd!");
                     return false;
                 }
                 long stateNum = character.SetCharacterState(
@@ -173,7 +173,7 @@ namespace Gaming
                 );
                 if (stateNum == -1)
                 {
-                    AttackManagerLogging.logger.LogDebug("Character is not commandable!");
+                    LogicLogging.logger.LogDebug("Character is not commandable!");
                     return false;
                 }
                 gameobj.BeAttacked(character);
@@ -193,14 +193,14 @@ namespace Gaming
                     gameMap.OneForInteract(character.Position, GameObjType.ADDITIONAL_RESOURCE);
                 if (Aresource == null)
                 {
-                    AttackManagerLogging.logger.LogDebug(
+                    LogicLogging.logger.LogDebug(
                         "Don't have AdditionResource in the range!!"
                     );
                     return false;
                 }
                 if (Aresource.HP == 0)
                 {
-                    AttackManagerLogging.logger.LogDebug("This AdditionResource has been beaten");
+                    LogicLogging.logger.LogDebug("This AdditionResource has been beaten");
                     return false;
                 }
                 return Attack(character, Aresource);

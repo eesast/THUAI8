@@ -4,171 +4,96 @@ using Microsoft.Extensions.Logging.Console;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
-using Timothy.FrameRateTask;
+using System.Runtime.CompilerServices;
 
 namespace Preparation.Utility.Logging;
 
-public class LogQueue
+/// <summary>
+/// 日志相关静态工具方法集合。
+/// </summary>
+public static class LogUtility
 {
-    public static LogQueue Global { get; } = new();
-    private static uint logNum = 0;
-    private static uint logCopyNum = 0;
-    private static readonly object queueLock = new();
+    public static string GetTypeName(object obj) => obj.GetType().Name;
+    public static string GetTypeName(Type type) => type.Name;
 
-    private readonly Queue<string> logInfoQueue = new();
+    public static string GetObjectInfo(object obj, string message = "") =>
+        string.IsNullOrEmpty(message)
+        ? $"<{GetTypeName(obj)}>"
+        : $"<{GetTypeName(obj)} {message}>";
 
-    public void Commit(string info)
-    {
-        lock (queueLock) logInfoQueue.Enqueue(info);
-    }
+    public static string GetObjectInfo(Type type, string message = "") =>
+        string.IsNullOrEmpty(message)
+        ? $"<{GetTypeName(type)}>"
+        : $"<{GetTypeName(type)} {message}>";
 
-    public static bool IsClosed { get; private set; } = false;
-    public static void Close()
-    {
-        if (IsClosed) return;
-        LogWrite();
-        LogCopy();
-        IsClosed = true;
-    }
+    public static string GetCurrentTime() =>
+        DateTime.Now.ToString("HH:mm:ss.fff");
 
-    static void LogCopy()
-    {
-        if (IsClosed) return;
-        string copyPath = $"{LoggingData.ServerLogPath}-copy{logCopyNum}.txt";
-        if (File.Exists(copyPath))
-            File.Delete(copyPath);
-        File.Copy(LoggingData.ServerLogPath, copyPath);
-        logCopyNum++;
-        File.Delete(LoggingData.ServerLogPath);
-        logNum = 0;
-    }
-    static void LogWrite()
-    {
-        if (IsClosed) return;
-        lock (queueLock)
-        {
-            while (Global.logInfoQueue.Count != 0)
-            {
-                var info = Global.logInfoQueue.Dequeue();
-                File.AppendAllText(LoggingData.ServerLogPath, info + Environment.NewLine);
-                logNum++;
-                if (logNum >= LoggingData.MaxLogNum)
-                    LogCopy();
-            }
-        }
-    }
-
-    private LogQueue()
-    {
-        if (File.Exists(LoggingData.ServerLogPath))
-            File.Delete(LoggingData.ServerLogPath);
-        File.AppendAllText(LoggingData.ServerLogPath, $"[{Logger.NowDate()}]" + Environment.NewLine);
-        new Thread(() =>
-        {
-            new FrameRateTaskExecutor<int>(
-                loopCondition: () => Global != null,
-                loopToDo: LogWrite,
-                timeInterval: 100,
-                finallyReturn: () =>
-                {
-                    Close();
-                    return 0;
-                }
-                ).Start();
-        })
-        { IsBackground = true }.Start();
-    }
+    public static string GetCurrentDate() =>
+        $"{DateTime.Today:yyyy/MM/dd} {DateTime.Today.DayOfWeek}";
 }
 
-public class Logger(string module)
-{
-    public readonly string Module = module;
-    public bool Enable { get; set; } = true;
-    public bool Background { get; set; } = false;
-
-    public void ConsoleLog(string msg, bool Duplicate = true)
-    {
-        var info = $"[{NowTime()}][{Module}] {msg}";
-        if (Enable)
-        {
-            if (!Background)
-                Console.WriteLine(info);
-            if (Duplicate)
-                LogQueue.Global.Commit(info);
-        }
-    }
-    public void ConsoleLogDebug(string msg, bool Duplicate = true)
-    {
-#if DEBUG
-        var info = $"[{NowTime()}][{Module}] {msg}";
-        if (Enable)
-        {
-            if (!Background)
-                Console.WriteLine(info);
-            if (Duplicate)
-                LogQueue.Global.Commit(info);
-        }
-#endif
-    }
-    public static void RawConsoleLog(string msg, bool Duplicate = true)
-    {
-        Console.WriteLine(msg);
-        if (Duplicate)
-            LogQueue.Global.Commit(msg);
-    }
-    public static void RawLogDebug(string msg, bool Duplicate = true)
-    {
-#if DEBUG
-        Console.WriteLine(msg);
-        if (Duplicate)
-            LogQueue.Global.Commit(msg);
-#endif
-    }
-
-    public static string TypeName(object obj)
-        => obj.GetType().Name;
-    public static string TypeName(Type tp)
-        => tp.Name;
-    public static string ObjInfo(object obj, string msg = "")
-        => msg == "" ? $"<{TypeName(obj)}>"
-                     : $"<{TypeName(obj)} {msg}>";
-    public static string ObjInfo(Type tp, string msg = "")
-        => msg == "" ? $"<{TypeName(tp)}>"
-                     : $"<{TypeName(tp)} {msg}>";
-
-    public static string NowTime()
-    {
-        DateTime now = DateTime.Now;
-        return $"{now.Hour:D2}:{now.Minute:D2}:{now.Second:D2}.{now.Millisecond:D3}";
-    }
-    public static string NowDate()
-    {
-        DateTime now = DateTime.Today;
-        return $"{now.Year:D4}/{now.Month:D2}/{now.Day:D2} {now.DayOfWeek}";
-    }
-}
-
-public static class LoggingData
-{
-    public const string ServerLogPath = "log.txt";
-    public const uint MaxLogNum = 5000;
-}
-
-public class LoggerF
+/// <summary>
+/// 高级日志工厂，支持多文件输出和自动携带调用者信息。
+/// </summary>
+public class AdvancedLoggerFactory
 {
     private static ILoggerFactory? _loggerFactory;
-    public static ILoggerFactory loggerFactory
+    public static ILoggerFactory LoggerFactory
     {
         get
         {
             if (_loggerFactory is null)
-                throw new InvalidOperationException("LoggerF.loggerFactory 尚未初始化！");
+                throw new InvalidOperationException("AdvancedLoggerFactory.LoggerFactory 尚未初始化！");
             return _loggerFactory;
         }
         private set => _loggerFactory = value;
     }
+
+    /// <summary>
+    /// 日志调用者信息载体
+    /// </summary>
+    public record CallerState(string Message, string Member, string File)
+    {
+        public string FileName => Path.GetFileNameWithoutExtension(File);
+        public override string ToString() => Message;
+    }
+
+    /// <summary>
+    /// 日志封装类，便于自动携带调用者信息
+    /// </summary>
+    public class Logger
+    {
+        private readonly ILogger _logger;
+        public Logger(ILogger logger) => _logger = logger;
+
+        public void LogError(string msg, [CallerFilePath] string file = "", [CallerMemberName] string member = "")
+            => Log(LogLevel.Error, msg, file, member);
+
+        public void LogWarning(string msg, [CallerFilePath] string file = "", [CallerMemberName] string member = "")
+            => Log(LogLevel.Warning, msg, file, member);
+
+        public void LogInfo(string msg, [CallerFilePath] string file = "", [CallerMemberName] string member = "")
+            => Log(LogLevel.Information, msg, file, member);
+
+        public void LogDebug(string msg, [CallerFilePath] string file = "", [CallerMemberName] string member = "")
+            => Log(LogLevel.Debug, msg, file, member);
+
+        public void LogTrace(string msg, [CallerFilePath] string file = "", [CallerMemberName] string member = "")
+            => Log(LogLevel.Trace, msg, file, member);
+
+        public void LogRaw(string msg, [CallerFilePath] string file = "", [CallerMemberName] string member = "")
+            => Console.WriteLine(msg);
+
+        private void Log(LogLevel level, string msg, string file, string member)
+        {
+            _logger.Log(level, new EventId(0), new CallerState(msg, member, file), null, (s, e) => s.ToString());
+        }
+    }
+
+    /// <summary>
+    /// 多文件日志提供器
+    /// </summary>
     private class MultiFileLoggerProvider : ILoggerProvider
     {
         private readonly Dictionary<string, StreamWriter> _writers = new();
@@ -177,23 +102,14 @@ public class LoggerF
 
         static MultiFileLoggerProvider()
         {
-            var logDir = "logs";
-            if (!Directory.Exists(logDir))
-            {
-                Directory.CreateDirectory(logDir);
-            }
+            Directory.CreateDirectory("logs");
             AllLogWriter = new StreamWriter(AllLogPath, append: false) { AutoFlush = true };
         }
+
         public ILogger CreateLogger(string categoryName)
         {
-            // categoryName 就是 logger 名称
             if (!_writers.ContainsKey(categoryName))
             {
-                var logDir = "logs";
-                if (!Directory.Exists(logDir))
-                {
-                    Directory.CreateDirectory(logDir);
-                }
                 var file = $"logs/{categoryName}.log";
                 _writers[categoryName] = new StreamWriter(file, append: false) { AutoFlush = true };
             }
@@ -206,6 +122,10 @@ public class LoggerF
                 writer.Dispose();
             AllLogWriter.Dispose();
         }
+
+        /// <summary>
+        /// 多文件日志实现
+        /// </summary>
         private class MultiFileLogger : ILogger
         {
             private readonly StreamWriter _writer;
@@ -219,10 +139,22 @@ public class LoggerF
 
             public IDisposable BeginScope<TState>(TState state) where TState : notnull => null!;
             public bool IsEnabled(LogLevel logLevel) => true;
+
             public void Log<TState>(LogLevel logLevel, EventId eventId,
                 TState state, Exception? exception, Func<TState, Exception?, string> formatter)
             {
-                var logLine = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}][{_categoryName}][{eventId.Id}:{eventId.Name}][{logLevel}] {formatter(state, exception)}";
+                string file = "", member = "";
+                if (state is CallerState callerState)
+                {
+                    file = callerState.FileName;
+                    member = callerState.Member;
+                }
+
+                var logLine = $"[{DateTime.Now:HH:mm:ss.fff}]" +
+                              $"[{_categoryName}]" +
+                              $"[{file}.{member}]" +
+                              $"[{logLevel}]" +
+                              $" {formatter(state, exception)}";
                 lock (_writer)
                 {
                     _writer.WriteLine(logLine);
@@ -233,9 +165,11 @@ public class LoggerF
                 }
             }
         }
+    }
 
-    };
-
+    /// <summary>
+    /// 控制台日志格式化
+    /// </summary>
     private class LogConsoleFormatter : ConsoleFormatter
     {
         public LogConsoleFormatter() : base("logFormatter") { }
@@ -244,8 +178,14 @@ public class LoggerF
         {
             var logLevel = logEntry.LogLevel;
             var category = logEntry.Category;
-            var eventId = logEntry.EventId;
             var message = logEntry.Formatter(logEntry.State, logEntry.Exception);
+
+            string file = "", member = "";
+            if (logEntry.State is CallerState callerState)
+            {
+                file = callerState.FileName;
+                member = callerState.Member;
+            }
 
             // 定义不同级别的ANSI颜色
             string color = logLevel switch
@@ -260,26 +200,47 @@ public class LoggerF
             };
 
             textWriter.Write(color);
-
             textWriter.Write(
-                $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}][{category}][{eventId.Id}:{eventId.Name}][{logLevel}] {message}\n"
+                $"[{DateTime.Now:HH:mm:ss.fff}][{category}][{file}.{member}][{logLevel}] {message}\n"
             );
-
             textWriter.Write("\u001b[0m");
         }
     }
-    public LoggerF(LogLevel logLevel)
+
+    /// <summary>
+    /// 创建带有调用者信息的 Logger 实例。
+    /// </summary>
+    public static Logger CreateLogger(string name)
+        => new(LoggerFactory.CreateLogger(name));
+
+    /// <summary>
+    /// 动态设置日志级别（会重建 LoggerFactory，已创建的 Logger 实例需重新获取）。
+    /// </summary>
+    public static void SetLogLevel(LogLevel loglevel)
     {
-        loggerFactory = LoggerFactory.Create(builder =>
+        LoggerFactory = Microsoft.Extensions.Logging.LoggerFactory.Create(builder =>
         {
             builder.ClearProviders()
-                .SetMinimumLevel(logLevel)
+                .SetMinimumLevel(loglevel)
                 .AddProvider(new MultiFileLoggerProvider())
                 .AddConsoleFormatter<LogConsoleFormatter, ConsoleFormatterOptions>()
                 .AddConsole(options =>
                 {
                     options.FormatterName = "logFormatter";
                 });
+        });
+    }
+
+    /// <summary>
+    /// 初始化 AdvancedLoggerFactory
+    /// </summary>
+    static AdvancedLoggerFactory()
+    {
+        LoggerFactory = Microsoft.Extensions.Logging.LoggerFactory.Create(builder =>
+        {
+            builder
+                .AddProvider(new MultiFileLoggerProvider())
+                .AddConsole();
         });
     }
 }

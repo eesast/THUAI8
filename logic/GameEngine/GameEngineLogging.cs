@@ -3,8 +3,8 @@ using Preparation.Utility.Logging;
 
 namespace GameEngine
 {
-    public static class GameEngineLogging
-    {
-        public static readonly ILogger logger = LoggerF.loggerFactory.CreateLogger("GameEngine");
-    }
+    //public static class LogicLogging
+    //{
+    //    public static readonly ILogger logger = AdvancedLoggerFactory.loggerFactory.CreateLogger("GameEngine");
+    //}
 }

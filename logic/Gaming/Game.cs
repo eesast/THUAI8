@@ -33,13 +33,13 @@ namespace Gaming
         {
             if (teamList[(int)playerInitInfo.teamID].CharacterNum >= GameData.CharacterTotalNumMax)
             {
-                GameLogging.logger.LogDebug($"Failed to add character: team {playerInitInfo.teamID} reached max character limit");
+                LogicLogging.logger.LogDebug($"Failed to add character: team {playerInitInfo.teamID} reached max character limit");
                 return GameObj.invalidID;
             }
             teamList[(int)playerInitInfo.teamID].CharacterNum.Add(1);
             if (!gameMap.TeamExists(playerInitInfo.teamID))
             {
-                GameLogging.logger.LogDebug($"Failed to add character: team {playerInitInfo.teamID} does not exist");
+                LogicLogging.logger.LogDebug($"Failed to add character: team {playerInitInfo.teamID} does not exist");
                 return GameObj.invalidID;
             }
             if (playerInitInfo.playerID != 0)
@@ -51,14 +51,14 @@ namespace Gaming
                     {
                         case CharacterType.Null:
                             {
-                                GameLogging.logger.LogDebug($"Failed to add character: invalid character type Null");
+                                LogicLogging.logger.LogDebug($"Failed to add character: invalid character type Null");
                                 return GameObj.invalidID;
                             }
                         case CharacterType.TangSeng:
                             if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.TangSeng)
                                 >= GameData.MaxCharacterNum)
                             {
-                                GameLogging.logger.LogDebug($"Failed to add character: reached max TangSeng limit");
+                                LogicLogging.logger.LogDebug($"Failed to add character: reached max TangSeng limit");
                                 return GameObj.invalidID;
                             }
                             break;
@@ -66,7 +66,7 @@ namespace Gaming
                             if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.SunWukong)
                                 >= GameData.MaxCharacterNum)
                             {
-                                GameLogging.logger.LogDebug($"Failed to add character: reached max SunWukong limit");
+                                LogicLogging.logger.LogDebug($"Failed to add character: reached max SunWukong limit");
                                 return GameObj.invalidID;
                             }
                             break;
@@ -74,7 +74,7 @@ namespace Gaming
                             if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.ZhuBajie)
                                 >= GameData.MaxCharacterNum)
                             {
-                                GameLogging.logger.LogDebug($"Failed to add character: reached max ZhuBajie limit");
+                                LogicLogging.logger.LogDebug($"Failed to add character: reached max ZhuBajie limit");
                                 return GameObj.invalidID;
                             }
                             break;
@@ -82,7 +82,7 @@ namespace Gaming
                             if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.ShaWujing)
                                 >= GameData.MaxCharacterNum)
                             {
-                                GameLogging.logger.LogDebug($"Failed to add character: reached max ShaWujing limit");
+                                LogicLogging.logger.LogDebug($"Failed to add character: reached max ShaWujing limit");
                                 return GameObj.invalidID;
                             }
                             break;
@@ -90,7 +90,7 @@ namespace Gaming
                             if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.BaiLongma)
                                 >= GameData.MaxCharacterNum)
                             {
-                                GameLogging.logger.LogDebug($"Failed to add character: reached max BaiLongma limit");
+                                LogicLogging.logger.LogDebug($"Failed to add character: reached max BaiLongma limit");
                                 return GameObj.invalidID;
                             }
                             break;
@@ -98,7 +98,7 @@ namespace Gaming
                             break;
                         default:
                             {
-                                GameLogging.logger.LogDebug($"Failed to add character: invalid character type {characterType}");
+                                LogicLogging.logger.LogDebug($"Failed to add character: invalid character type {characterType}");
                                 return GameObj.invalidID;
                             }
                     }
@@ -109,14 +109,14 @@ namespace Gaming
                     {
                         case CharacterType.Null:
                             {
-                                GameLogging.logger.LogDebug($"Failed to add character: invalid character type Null");
+                                LogicLogging.logger.LogDebug($"Failed to add character: invalid character type Null");
                                 return GameObj.invalidID;
                             }
                         case CharacterType.JiuLing:
                             if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.JiuLing)
                                 >= GameData.MaxCharacterNum)
                             {
-                                GameLogging.logger.LogDebug($"Failed to add character: reached max JiuLing limit");
+                                LogicLogging.logger.LogDebug($"Failed to add character: reached max JiuLing limit");
                                 return GameObj.invalidID;
                             }
                             break;
@@ -124,7 +124,7 @@ namespace Gaming
                             if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.HongHaier)
                                 >= GameData.MaxCharacterNum)
                             {
-                                GameLogging.logger.LogDebug($"Failed to add character: reached max HongHaier limit");
+                                LogicLogging.logger.LogDebug($"Failed to add character: reached max HongHaier limit");
                                 return GameObj.invalidID;
                             }
                             break;
@@ -132,7 +132,7 @@ namespace Gaming
                             if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.NiuMowang)
                                 >= GameData.MaxCharacterNum)
                             {
-                                GameLogging.logger.LogDebug($"Failed to add character: reached max NiuMowang limit");
+                                LogicLogging.logger.LogDebug($"Failed to add character: reached max NiuMowang limit");
                                 return GameObj.invalidID;
                             }
                             break;
@@ -140,7 +140,7 @@ namespace Gaming
                             if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.TieShan)
                                 >= GameData.MaxCharacterNum)
                             {
-                                GameLogging.logger.LogDebug($"Failed to add character: reached max TieShan limit");
+                                LogicLogging.logger.LogDebug($"Failed to add character: reached max TieShan limit");
                                 return GameObj.invalidID;
                             }
                             break;
@@ -148,7 +148,7 @@ namespace Gaming
                             if (teamList[(int)playerInitInfo.teamID].CharacterPool.GetNum(CharacterType.ZhiZhujing)
                                 >= GameData.MaxCharacterNum)
                             {
-                                GameLogging.logger.LogDebug($"Failed to add character: reached max ZhiZhujing limit");
+                                LogicLogging.logger.LogDebug($"Failed to add character: reached max ZhiZhujing limit");
                                 return GameObj.invalidID;
                             }
                             break;
@@ -156,7 +156,7 @@ namespace Gaming
                             break;
                         default:
                             {
-                                GameLogging.logger.LogDebug($"Failed to add character: invalid character type {characterType}");
+                                LogicLogging.logger.LogDebug($"Failed to add character: invalid character type {characterType}");
                                 return GameObj.invalidID;
                             }
                     }
@@ -167,7 +167,7 @@ namespace Gaming
                                                     teamList[(int)playerInitInfo.teamID].MoneyPool);
                 if (newCharacter == null)
                 {
-                    GameLogging.logger.LogDebug($"Failed to add character: character manager returned null");
+                    LogicLogging.logger.LogDebug($"Failed to add character: character manager returned null");
                     return GameObj.invalidID;
                 }
                 teamList[(int)playerInitInfo.teamID].CharacterPool.Append(newCharacter);
@@ -225,11 +225,11 @@ namespace Gaming
         }
         public long ActivateCharacter(long teamID, CharacterType characterType, int birthPointIndex = 0)
         {
-            GameLogging.logger.LogDebug($"Try to activate {teamID} {characterType} at birthpoint {birthPointIndex}");
+            LogicLogging.logger.LogDebug($"Try to activate {teamID} {characterType} at birthpoint {birthPointIndex}");
             Character? character = teamList[(int)teamID].CharacterPool.GetObj(characterType);
             if (character == null)
             {
-                GameLogging.logger.LogDebug($"Fail to activate {teamID} {characterType}, no character available");
+                LogicLogging.logger.LogDebug($"Fail to activate {teamID} {characterType}, no character available");
                 return GameObj.invalidID;
             }
             if (birthPointIndex < 0)
@@ -240,13 +240,13 @@ namespace Gaming
             pos += new XY(((random.Next() & 2) - 1) * 1000, ((random.Next() & 2) - 1) * 1000);
             if (characterManager.ActivateCharacter(character, pos))
             {
-                GameLogging.logger.LogDebug($"Successfully activated {teamID} {characterType} at {pos}");
+                LogicLogging.logger.LogDebug($"Successfully activated {teamID} {characterType} at {pos}");
                 return character.PlayerID;
             }
             else
             {
                 teamList[(int)teamID].CharacterPool.ReturnObj(character);
-                GameLogging.logger.LogDebug($"Fail to activate {teamID} {characterType} at {pos}, rule not permitted");
+                LogicLogging.logger.LogDebug($"Fail to activate {teamID} {characterType} at {pos}, rule not permitted");
                 return GameObj.invalidID;
             }
         }
@@ -282,7 +282,7 @@ namespace Gaming
             Character? character = gameMap.FindCharacterInPlayerID(teamID, characterID);
             if (character != null && character.IsRemoved == false)
             {
-                GameLogging.logger.LogDebug(
+                LogicLogging.logger.LogDebug(
                     "Try to move "
                     + LoggingFunctional.CharacterLogInfo(character)
                     + $" {moveTimeInMilliseconds} {angle}");
@@ -290,7 +290,7 @@ namespace Gaming
             }
             else
             {
-                GameLogging.logger.LogDebug(
+                LogicLogging.logger.LogDebug(
                     "Fail to move "
                     + LoggingFunctional.CharacterLogInfo(teamID, characterID)
                     + ", not found");
