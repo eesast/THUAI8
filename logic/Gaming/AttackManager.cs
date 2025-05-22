@@ -118,6 +118,12 @@ namespace Gaming
                     LogicLogging.logger.LogDebug("Obj is not in attacksize!");
                     return false;
                 }
+                long nowtime = Environment.TickCount64;
+                if (nowtime - character.LastAttackTime < 1000 / character.ATKFrequency)
+                {
+                    AttackManagerLogging.logger.LogDebug("Common_attack is still in cd!");
+                    return false;
+                }
                 long stateNum = character.SetCharacterState(
                     CharacterState.ATTACKING,
                     character.CharacterState2
@@ -125,12 +131,6 @@ namespace Gaming
                 if (stateNum == -1)
                 {
                     LogicLogging.logger.LogDebug("Character is not commandable!");
-                    return false;
-                }
-                long nowtime = Environment.TickCount64;
-                if (nowtime - character.LastAttackTime < 1000 / character.ATKFrequency)
-                {
-                    LogicLogging.logger.LogDebug("Common_attack is still in cd!");
                     return false;
                 }
                 ARManager.BeAttacked(gameobj, character);
@@ -203,18 +203,7 @@ namespace Gaming
                     LogicLogging.logger.LogDebug("This AdditionResource has been beaten");
                     return false;
                 }
-                long stateNum = character.SetCharacterState(
-                    CharacterState.ATTACKING,
-                    character.CharacterState2
-                );
-                if (stateNum == -1)
-                {
-                    LogicLogging.logger.LogDebug("Character is not commandable!");
-                    return false;
-                }
-                Attack(character, Aresource);
-                character.ResetCharacterState(stateNum);
-                return true;
+                return Attack(character, Aresource);
             }
         }
     }
