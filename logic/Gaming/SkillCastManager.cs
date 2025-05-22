@@ -48,18 +48,18 @@ namespace Gaming
             {
                 if (character.CharacterState2 == CharacterState.BLIND || character.blind)
                 {
-                    SkillCastingManagerLogging.logger.LogDebug("Character is blind!");
+                    LogicLogging.logger.LogDebug("Character is blind!");
                     return false;
                 }
                 if (!character.canskill)
                 {
-                    SkillCastingManagerLogging.logger.LogDebug("Skill casting is still in cd!");
+                    LogicLogging.logger.LogDebug("Skill casting is still in cd!");
                     return false;
                 }
                 long stateNum = character.SetCharacterState(CharacterState.SKILL_CASTING, character.CharacterState2);
                 if (stateNum == -1)
                 {
-                    SkillCastingManagerLogging.logger.LogDebug("Character is not commandable!");
+                    LogicLogging.logger.LogDebug("Character is not commandable!");
                     return false;
                 }
                 character.StartSkillCD();
@@ -88,14 +88,13 @@ namespace Gaming
                             }
                             return true;
                         }
-                        break;
                     case CharacterType.ZhuBajie:
                         {
                             characterManager.Recover(character, 150);//回复一半血量
                             character.HarmCut = 0.5;//设置伤害减免。此处尚未增加时间限制
                             character.HarmCutTime = Environment.TickCount64;
+                            return true;
                         }
-                        break;
                     case CharacterType.ShaWujing:
                         {
                             var ObjBeingShots = gameMap.CharacterInTheRangeNotTeamID(character.Position, GameData.SkillRange1, character.TeamID);
@@ -124,7 +123,6 @@ namespace Gaming
                             }
                             return true;
                         }
-                        break;
                     case CharacterType.BaiLongma:
                         {
                             var ObjBeingShots = gameMap.CharacterInTheRangeNotTeamID(character.Position, GameData.SkillRange2, character.TeamID);
@@ -146,7 +144,6 @@ namespace Gaming
                             }
                             return true;
                         }
-                        break;
                     case CharacterType.HongHaier:
                         {
                             var ObjBeingShots = gameMap.CharacterInTheRangeNotTeamID(character.Position, GameData.SkillRange1, character.TeamID);
@@ -170,7 +167,6 @@ namespace Gaming
                             }
                             return true;
                         }
-                        break;
                     case CharacterType.NiuMowang:
                         {
                             var ObjBeingProtecteds = gameMap.CharacterInTheRangeInTeamID(character.Position, GameData.SkillRange1, character.TeamID);
@@ -197,7 +193,6 @@ namespace Gaming
                             }
                             return true;
                         }
-                        break;
                     case CharacterType.TieShan:
                         {
                             var ObjBeingShots = gameMap.CharacterInTheRangeNotTeamID(character.Position, GameData.SkillRange1, character.TeamID);
@@ -238,7 +233,6 @@ namespace Gaming
                             }
                             return true;
                         }
-                        break;
                     case CharacterType.ZhiZhujing:
                         {
                             var ObjBeingShots = gameMap.CharacterInTheRangeNotTeamID(character.Position, GameData.SkillRange1, character.TeamID);
@@ -268,7 +262,6 @@ namespace Gaming
                             }
                             return true;
                         }
-                        break;
                 }
                 return true;
             }

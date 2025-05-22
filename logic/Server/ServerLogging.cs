@@ -5,11 +5,11 @@ namespace Server
 {
     public static class GameServerLogging
     {
-        public static readonly ILogger logger = LoggerF.loggerFactory.CreateLogger("GameServer");
+        public static readonly AdvancedLoggerFactory.Logger logger = AdvancedLoggerFactory.CreateLogger("GameServer");
     }
 
     public static class PlaybackServerLogging
     {
-        public static readonly ILogger logger = LoggerF.loggerFactory.CreateLogger("PlaybackServer");
+        public static readonly AdvancedLoggerFactory.Logger logger = AdvancedLoggerFactory.CreateLogger("PlaybackServer");
     }
 }

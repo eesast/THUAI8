@@ -36,7 +36,7 @@ namespace Server
                 if (0 <= request.CharacterId && request.CharacterId < playerNum)
                 {
                     onConnection.ActSuccess = true;
-                    GameServerLogging.logger.LogInformation($"TryConnection: {onConnection.ActSuccess}");
+                    GameServerLogging.logger.LogInfo($"TryConnection: {onConnection.ActSuccess}");
                     return Task.FromResult(onConnection);
                 }
             }
@@ -51,7 +51,7 @@ namespace Server
         public override async Task AddCharacter(CharacterMsg request, IServerStreamWriter<MessageToClient> responseStream, ServerCallContext context)
         {
 #if !DEBUG
-            GameServerLogging.logger.LogInformation($"AddPlayer: Player {request.CharacterId} from Team {request.TeamId}");
+            GameServerLogging.logger.LogInfo($"AddPlayer: Player {request.CharacterId} from Team {request.TeamId}");
 #endif
             if (request.CharacterId >= spectatorMinPlayerID && options.NotAllowSpectator == false)
             {
@@ -61,12 +61,12 @@ namespace Server
                 {
                     if (semaDict0.TryAdd(request.CharacterId, (new SemaphoreSlim(0, 1), new SemaphoreSlim(0, 1))))
                     {
-                        GameServerLogging.logger.LogInformation("A new spectator comes to watch this game");
+                        GameServerLogging.logger.LogInfo("A new spectator comes to watch this game");
                         IsSpectatorJoin = true;
                     }
                     else
                     {
-                        GameServerLogging.logger.LogInformation($"Duplicated Spectator ID {request.CharacterId}");
+                        GameServerLogging.logger.LogInfo($"Duplicated Spectator ID {request.CharacterId}");
                         return;
                     }
                 }
@@ -86,7 +86,7 @@ namespace Server
                                 }
                             }
                             await responseStream.WriteAsync(info);
-                            // GameServerLogging.logger.LogInformation("Send!", false);
+                            // GameServerLogging.logger.LogInfo("Send!", false);
                         }
                     }
                     catch (InvalidOperationException)
@@ -101,13 +101,13 @@ namespace Server
                             catch
                             {
                             }
-                            GameServerLogging.logger.LogInformation($"The spectator {request.CharacterId} exited");
+                            GameServerLogging.logger.LogInfo($"The spectator {request.CharacterId} exited");
                             return;
                         }
                     }
                     catch (Exception ex)
                     {
-                        GameServerLogging.logger.LogInformation(ex.ToString());
+                        GameServerLogging.logger.LogInfo(ex.ToString());
                     }
                     finally
                     {
@@ -147,7 +147,7 @@ namespace Server
                 communicationToGameID[request.TeamId][request.CharacterId] = newPlayerID;
                 var temp = (new SemaphoreSlim(0, 1), new SemaphoreSlim(0, 1));
                 bool start = false;
-                GameServerLogging.logger.LogInformation($"Player {request.CharacterId} from Team {request.TeamId} joins");
+                GameServerLogging.logger.LogInfo($"Player {request.CharacterId} from Team {request.TeamId} joins");
                 lock (spectatorJoinLock)  // 为了保证绝对安全，还是加上这个锁吧
                 {
                     if (request.TeamId == 0)
@@ -185,14 +185,14 @@ namespace Server
                 Character? character = game.GameMap.FindCharacterInPlayerID(request.TeamId, request.CharacterId);
                 // if(character!=null)
                 // {
-                //     GameServerLogging.logger.LogInformation($"Character {request.PlayerId} exist! IsRemoved {character.IsRemoved}");
+                //     GameServerLogging.logger.LogInfo($"Character {request.PlayerId} exist! IsRemoved {character.IsRemoved}");
                 // }
                 // else{
-                //     GameServerLogging.logger.LogInformation($"Character {request.PlayerId} null");
+                //     GameServerLogging.logger.LogInfo($"Character {request.PlayerId} null");
                 // }
                 if (!firstTime && request.CharacterId > 0 && (character == null || character.IsRemoved == true))
                 {
-                    // GameServerLogging.logger.LogInformation($"Cannot find character {request.PlayerId} from Team {request.TeamId}!");
+                    // GameServerLogging.logger.LogInfo($"Cannot find character {request.PlayerId} from Team {request.TeamId}!");
                 }
                 else
                 {
@@ -203,7 +203,7 @@ namespace Server
                         if (currentGameInfo != null && !exitFlag)
                         {
                             await responseStream.WriteAsync(currentGameInfo);
-                            // GameServerLogging.logger.LogInformation(
+                            // GameServerLogging.logger.LogInfo(
                             // $"Send to Player{request.CharacterId} from Team {request.TeamId}!",
                             //    false);
                         }
@@ -212,7 +212,7 @@ namespace Server
                     {
                         if (!exitFlag)
                         {
-                            GameServerLogging.logger.LogInformation($"The client {request.CharacterId} exited");
+                            GameServerLogging.logger.LogInfo($"The client {request.CharacterId} exited");
                             exitFlag = true;
                         }
                     }
