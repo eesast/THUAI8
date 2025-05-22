@@ -81,7 +81,7 @@ public class AdvancedLoggerFactory
 
         public void LogTrace(string msg, [CallerFilePath] string file = "", [CallerMemberName] string member = "")
             => Log(LogLevel.Trace, msg, file, member);
-        
+
         public void LogRaw(string msg, [CallerFilePath] string file = "", [CallerMemberName] string member = "")
             => Console.WriteLine(msg);
 
@@ -216,13 +216,16 @@ public class AdvancedLoggerFactory
     /// <summary>
     /// 动态设置日志级别（会重建 LoggerFactory，已创建的 Logger 实例需重新获取）。
     /// </summary>
-    public static void SetLogLevel(LogLevel loglevel) {
-        LoggerFactory = Microsoft.Extensions.Logging.LoggerFactory.Create(builder => {
+    public static void SetLogLevel(LogLevel loglevel)
+    {
+        LoggerFactory = Microsoft.Extensions.Logging.LoggerFactory.Create(builder =>
+        {
             builder.ClearProviders()
                 .SetMinimumLevel(loglevel)
                 .AddProvider(new MultiFileLoggerProvider())
                 .AddConsoleFormatter<LogConsoleFormatter, ConsoleFormatterOptions>()
-                .AddConsole(options => {
+                .AddConsole(options =>
+                {
                     options.FormatterName = "logFormatter";
                 });
         });
