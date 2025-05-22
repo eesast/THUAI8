@@ -135,7 +135,6 @@ namespace Gaming
                     var team = game.TeamList[(int)character.TeamID.Get()];
                     team.MoneyPool.AddScore(score);
                     AResource.SetARState(AdditionResourceState.BEATEN);
-                    Remove(AResource);
                     return true;
                 }
                 AResource.SetARState(AdditionResourceState.BEING_BEATEN);
