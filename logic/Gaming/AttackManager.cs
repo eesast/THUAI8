@@ -118,6 +118,12 @@ namespace Gaming
                     AttackManagerLogging.logger.LogDebug("Obj is not in attacksize!");
                     return false;
                 }
+                long nowtime = Environment.TickCount64;
+                if (nowtime - character.LastAttackTime < 1000 / character.ATKFrequency)
+                {
+                    AttackManagerLogging.logger.LogDebug("Common_attack is still in cd!");
+                    return false;
+                }
                 long stateNum = character.SetCharacterState(
                     CharacterState.ATTACKING,
                     character.CharacterState2
@@ -125,12 +131,6 @@ namespace Gaming
                 if (stateNum == -1)
                 {
                     AttackManagerLogging.logger.LogDebug("Character is not commandable!");
-                    return false;
-                }
-                long nowtime = Environment.TickCount64;
-                if (nowtime - character.LastAttackTime < 1000 / character.ATKFrequency)
-                {
-                    AttackManagerLogging.logger.LogDebug("Common_attack is still in cd!");
                     return false;
                 }
                 ARManager.BeAttacked(gameobj, character);
