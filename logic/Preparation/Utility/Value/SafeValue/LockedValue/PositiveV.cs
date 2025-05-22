@@ -107,7 +107,7 @@ namespace Preparation.Utility.Value.SafeValue.LockedValue
         {
             if (value < T.Zero)
             {
-                LockedValueLogging.logger.LogDebug($"Warning: Try to set PositiveValue to {value}");
+                LogicLogging.logger.LogDebug($"Warning: Try to set PositiveValue to {value}");
                 value = T.Zero;
             }
             v = value;

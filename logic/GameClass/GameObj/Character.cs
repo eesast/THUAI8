@@ -208,14 +208,14 @@ public class Character : Movable, ICharacter
         {
             if (state != stateNum)
             {
-                CharacterLogging.logger.LogDebug(
+                LogicLogging.logger.LogDebug(
                     LoggingFunctional.CharacterLogInfo(this)
                     + $" ResetCharacterState failed, input state {state}, StateNum {stateNum}");
                 return false;
             }
             characterState1 = value;
             ++stateNum;
-            CharacterLogging.logger.LogDebug(
+            LogicLogging.logger.LogDebug(
                 LoggingFunctional.CharacterLogInfo(this)
                 + $" ResetCharacterState succeeded {stateNum}");
             return true;
@@ -235,13 +235,13 @@ public class Character : Movable, ICharacter
         {
             if (StateNum == stateNum)
             {
-                CharacterLogging.logger.LogDebug(
+                LogicLogging.logger.LogDebug(
                     LoggingFunctional.CharacterLogInfo(this)
                     + " StartThread succeeded");
                 return true;
             }
         }
-        CharacterLogging.logger.LogDebug(
+        LogicLogging.logger.LogDebug(
             LoggingFunctional.CharacterLogInfo(this)
             + " StartThread failed");
         return false;
