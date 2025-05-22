@@ -253,7 +253,7 @@ bool Logic::Common_Attack(int64_t teamID, int64_t playerID, int64_t attacked_tea
 bool Logic::Skill_Attack(int64_t teamID, int64_t playerID, double angle)
 {
     logger->debug("Called SkillAttack");
-    return pComm->Skill_Attack(playerID, teamID, angle);
+    return pComm->Skill_Attack(teamID, playerID, angle);
 }
 
 bool Logic::AttackConstruction(int64_t playerID, int64_t teamID)
