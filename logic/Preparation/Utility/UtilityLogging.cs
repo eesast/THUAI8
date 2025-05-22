@@ -26,8 +26,10 @@ using Preparation.Utility.Logging;
 //    }
 //}
 
-namespace Preparation.Utility {
-    public static class LogicLogging {
+namespace Preparation.Utility
+{
+    public static class LogicLogging
+    {
         public static readonly AdvancedLoggerFactory.Logger logger = AdvancedLoggerFactory.CreateLogger("Logic");
     }
 }
