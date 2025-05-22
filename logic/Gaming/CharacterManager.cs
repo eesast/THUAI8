@@ -179,11 +179,11 @@ namespace Gaming
             {
                 long characterValue =
                     (long)(character.GetCost() * character.HP.GetDivideValueByMaxV() * GameData.RecycleRate);
-                CharacterManagerLogging.logger.LogDebug(
+                LogicLogging.logger.LogDebug(
                     LoggingFunctional.CharacterLogInfo(character)
                     + $" 's value is {characterValue}");
                 character.AddMoney(characterValue);
-                CharacterManagerLogging.logger.LogDebug(
+                LogicLogging.logger.LogDebug(
                     LoggingFunctional.CharacterLogInfo(character)
                     + " is recycled!");
                 Remove(character);

@@ -36,13 +36,13 @@ namespace Gaming
             {
                 if (moveTimeInMilliseconds < 5)
                 {
-                    ActionManagerLogging.logger.LogWarning("Move time is too short");
+                    LogicLogging.logger.LogWarning("Move time is too short");
                     return false;
                 }
                 long stateNum = characterToMove.SetCharacterState(CharacterState.MOVING, characterToMove.CharacterState2);
                 if (stateNum == -1)
                 {
-                    ActionManagerLogging.logger.LogWarning("Character is not commandable");
+                    LogicLogging.logger.LogWarning("Character is not commandable");
                     return false;
                 }
                 new Thread
@@ -69,7 +69,7 @@ namespace Gaming
                 CharacterState tempState = characterToMove.CharacterState2;
                 if (stateNum == -1)
                 {
-                    ActionManagerLogging.logger.LogWarning("Character can not be knocked back");
+                    LogicLogging.logger.LogWarning("Character can not be knocked back");
                     return false;
                 }
                 new Thread
