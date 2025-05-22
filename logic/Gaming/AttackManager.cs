@@ -203,18 +203,7 @@ namespace Gaming
                     AttackManagerLogging.logger.LogDebug("This AdditionResource has been beaten");
                     return false;
                 }
-                long stateNum = character.SetCharacterState(
-                    CharacterState.ATTACKING,
-                    character.CharacterState2
-                );
-                if (stateNum == -1)
-                {
-                    AttackManagerLogging.logger.LogDebug("Character is not commandable!");
-                    return false;
-                }
-                Attack(character, Aresource);
-                character.ResetCharacterState(stateNum);
-                return true;
+                return Attack(character, Aresource);
             }
         }
     }
