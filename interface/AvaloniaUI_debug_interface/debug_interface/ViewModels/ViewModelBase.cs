@@ -197,12 +197,15 @@ namespace debug_interface.ViewModels
                     myLogger?.LogDebug($"GameState: {content.GameState}");
                     foreach (var obj in content.ObjMessage)
                     {
+                        //myLogger?.LogDebug($"MessageOfObjCase总共: {obj.MessageOfObjCase}");
                         switch (obj.MessageOfObjCase)
                         {
+                            
                             case MessageOfObj.MessageOfObjOneofCase.CharacterMessage:
                                 listOfCharacters.Add(obj.CharacterMessage);
                                 break;
                             case MessageOfObj.MessageOfObjOneofCase.BarracksMessage:
+                                //myLogger?.LogDebug("BarracksMessage: " + obj.BarracksMessage.ToString());
                                 listOfBarracks.Add(obj.BarracksMessage);
                                 break;
                             case MessageOfObj.MessageOfObjOneofCase.TrapMessage:

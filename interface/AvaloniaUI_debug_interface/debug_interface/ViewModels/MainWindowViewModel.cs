@@ -180,7 +180,7 @@ namespace debug_interface.ViewModels
             vm.PosX = data.X; // 存储原始 X
             vm.PosY = data.Y; // 存储原始 Y
             vm.PosY = data.Y; // 存储原始 Y
-            myLogger?.LogDebug($"更新角色视图模型: Guid={vm.Guid}, TeamId={vm.TeamId}，Name='{vm.Name}', Hp={vm.Hp}, PosX={vm.PosX}, PosY={vm.PosY}");
+            //myLogger?.LogDebug($"更新角色视图模型: Guid={vm.Guid}, TeamId={vm.TeamId}，Name='{vm.Name}', Hp={vm.Hp}, PosX={vm.PosX}, PosY={vm.PosY}");
 
             CharacterState previousActiveState = vm.ActiveState == "空闲/未知"
                 ? CharacterState.NullCharacterState
@@ -269,7 +269,7 @@ namespace debug_interface.ViewModels
         {
             return type switch
             {
-                CharacterType.TangSeng => "唐僧111",
+                CharacterType.TangSeng => "唐僧",
                 CharacterType.SunWukong => "孙悟空",
                 CharacterType.ZhuBajie => "猪八戒",
                 CharacterType.ShaWujing => "沙悟净",
@@ -321,11 +321,14 @@ namespace debug_interface.ViewModels
                 //myLogger?.LogDebug($"UpdateMapElements: listOfTraps.Count = {listOfTraps.Count}");
                 //myLogger?.LogDebug($"UpdateMapElements: listOfEconomyResources.Count = {listOfEconomyResources.Count}");
                 //myLogger?.LogDebug($"UpdateMapElements: listOfAdditionResources.Count = {listOfAdditionResources.Count}");
-
+                //myLogger?.LogDebug($"UpdateMapElements: listOfAll.Count = {listOfAll.Count}" + " 其中包含：" + string.Join(",", listOfAll.Select(x => x.GetType().Name)));
+               
+                //myLogger?.LogDebug($"UpdateMapElements: listOfFarms.Count = {listOfFarms.Count}");
 
                 // 更新兵营
                 foreach (var barracks in listOfBarracks)
                 {
+                    myLogger?.LogDebug($"UpdateMapElements: 兵营: {barracks.X / 1000},{barracks.Y / 1000}, {barracks.TeamId}, {barracks.Hp}");
                     MapVM.UpdateBuildingCell(
                         barracks.X / 1000,
                         barracks.Y / 1000,
@@ -338,6 +341,7 @@ namespace debug_interface.ViewModels
                 // 更新春泉
                 foreach (var spring in listOfSprings)
                 {
+                    myLogger?.LogDebug($"UpdateMapElements: 泉水: {spring.X / 1000},{spring.Y / 1000}, {spring.TeamId}, {spring.Hp}");
                     MapVM.UpdateBuildingCell(
                         spring.X / 1000,
                         spring.Y / 1000,
@@ -350,6 +354,7 @@ namespace debug_interface.ViewModels
                 // 更新农场
                 foreach (var farm in listOfFarms)
                 {
+                    myLogger?.LogDebug($"UpdateMapElements: 农场: {farm.X / 1000},{farm.Y / 1000}, {farm.TeamId}, {farm.Hp}");
                     MapVM.UpdateBuildingCell(
                         farm.X / 1000,
                         farm.Y / 1000,
@@ -362,6 +367,7 @@ namespace debug_interface.ViewModels
                 // 更新陷阱
                 foreach (var trap in listOfTraps)
                 {
+                    myLogger?.LogDebug($"UpdateMapElements: 陷阱: {trap.X / 1000},{trap.Y / 1000}, {trap.TeamId}, {trap.TrapType}");
                     MapVM.UpdateTrapCell(
                         trap.X / 1000,
                         trap.Y / 1000,
@@ -437,8 +443,10 @@ namespace debug_interface.ViewModels
 
             lock (drawPicLock) // 确保访问列表时线程安全
             {
+                myLogger?.LogDebug("UpdateGameStatus: 开始更新游戏状态 数量：" + listOfAll.Count);
                 if (listOfAll.Count > 0)
                 {
+                    
                     var data = listOfAll[0]; // 全局状态信息
                     CurrentTime = FormatGameTime(data.GameTime); // 使用服务器时间
                     RedScore = data.BuddhistsTeamScore;
@@ -492,21 +500,30 @@ namespace debug_interface.ViewModels
         // 更新建筑摘要信息的方法
         private void UpdateBuildingSummary()
         {
+            
             // 使用 Linq 对建筑列表进行分组和计数
-            var buddhistBuildings = listOfBarracks.Where(b => b.TeamId == (int)PlayerTeam.BuddhistsTeam).Select(b => $"兵营({b.Hp}/{GetBuildingMaxHp("兵营")})")
-                .Concat(listOfSprings.Where(s => s.TeamId == (int)PlayerTeam.BuddhistsTeam).Select(s => $"泉水({s.Hp}/{GetBuildingMaxHp("泉水")})"))
-                .Concat(listOfFarms.Where(f => f.TeamId == (int)PlayerTeam.BuddhistsTeam).Select(f => $"农场({f.Hp}/{GetBuildingMaxHp("农场")})"));
+            //myLogger?.LogDebug($"UpdateBuildingSummary: （int）PlayerTeam.BuddhistsTeam 值是：{(int)PlayerTeam.BuddhistsTeam}"+ $"现在对比的Teamid是barraks[0].TeamId：{listOfBarracks[0].TeamId}");
+            var buddhistBuildings = listOfBarracks.Where(b => b.TeamId == (int)PlayerTeam.BuddhistsTeam-1).Select(b => $"兵营({b.X},{b.Y})")
+                .Concat(listOfSprings.Where(s => s.TeamId == (int)PlayerTeam.BuddhistsTeam - 1).Select(s => $"泉水({s.X},{s.Y})"))
+                .Concat(listOfFarms.Where(f => f.TeamId == (int)PlayerTeam.BuddhistsTeam - 1).Select(f => $"农场({f.X},{f.Y})"));
 
-            var monsterBuildings = listOfBarracks.Where(b => b.TeamId == (int)PlayerTeam.MonstersTeam).Select(b => $"兵营({b.Hp}/{GetBuildingMaxHp("兵营")})")
-                .Concat(listOfSprings.Where(s => s.TeamId == (int)PlayerTeam.MonstersTeam).Select(s => $"泉水({s.Hp}/{GetBuildingMaxHp("泉水")})"))
-                .Concat(listOfFarms.Where(f => f.TeamId == (int)PlayerTeam.MonstersTeam).Select(f => $"农场({f.Hp}/{GetBuildingMaxHp("农场")})"));
+            var monsterBuildings = listOfBarracks.Where(b => b.TeamId == (int)PlayerTeam.MonstersTeam - 1).Select(b => $"兵营({b.X},{b.Y})")
+                .Concat(listOfSprings.Where(s => s.TeamId == (int)PlayerTeam.MonstersTeam - 1).Select(s => $"泉水({s.X},{s.Y})"))
+                .Concat(listOfFarms.Where(f => f.TeamId == (int)PlayerTeam.MonstersTeam - 1).Select(f => $"农场({f.X},{f.Y})"));
 
+            var buddhistTraps = listOfTraps.Count(t => t.TeamId == (int)PlayerTeam.BuddhistsTeam - 1);
+            var monsterTraps = listOfTraps.Count(t => t.TeamId == (int)PlayerTeam.MonstersTeam-1);
+
+            //myLogger?.LogDebug($"UpdateBuildingSummary: buddhistBuildings = {buddhistBuildings.Count()} " + $" monsterBuildings = {monsterBuildings.Count()}"  
+            //    + $" listOfBarracks = {listOfBarracks.Count}" + $" listOfSprings = {listOfSprings.Count}" + $" listOfFarms = {listOfFarms.Count}" 
+            //    + $",陷阱取经: {buddhistTraps}" + $",陷阱妖怪: {monsterTraps}");
+
+            
             BuddhistTeamBuildingInfo = "取经队建筑: " + (buddhistBuildings.Any() ? string.Join(", ", buddhistBuildings) : "无");
             MonstersTeamBuildingInfo = "妖怪队建筑: " + (monsterBuildings.Any() ? string.Join(", ", monsterBuildings) : "无");
 
             // 可以在这里加入陷阱的统计信息（如果需要）
-             var buddhistTraps = listOfTraps.Count(t => t.TeamId == (int)PlayerTeam.BuddhistsTeam);
-             var monsterTraps = listOfTraps.Count(t => t.TeamId == (int)PlayerTeam.MonstersTeam);
+             
              BuddhistTeamBuildingInfo += $", 陷阱: {buddhistTraps}";
              MonstersTeamBuildingInfo += $", 陷阱: {monsterTraps}";
         }
