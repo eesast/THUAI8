@@ -36,16 +36,15 @@ public class CameraControl : MonoBehaviour
     void Update()
     {
         mousePos = Input.mousePosition;
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)
-         || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow)
-         || PlayerControl.Instance.selectedCharacter == null)
+        bool gotMoveKeys = Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)
+         || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow);
+        if (gotMoveKeys || PlayerControl.Instance.selectedCharacter == null)
             cameraMode = CameraMode.Free;
         switch (cameraMode)
         {
             case CameraMode.Free:
                 rendererUpdateFlag = false;
-                if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)
-                 || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow))
+                if (gotMoveKeys)
                 {
                     cameraSpeed = Mathf.Lerp(cameraSpeed, cameraSpeedMax, 0.1f);
                     if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && transform.position.x >= -0.5f)
@@ -88,7 +87,7 @@ public class CameraControl : MonoBehaviour
                 CameraMode.Free => camera.ScreenToWorldPoint(mousePos),
                 CameraMode.Follow => PlayerControl.Instance.selectedCharacter.transform.position,
                 _ => camera.ScreenToWorldPoint(mousePos),
-            }; 
+            };
             if (targetPos.x > -1 &&
                 targetPos.x < 50 &&
                 targetPos.y > -1 &&

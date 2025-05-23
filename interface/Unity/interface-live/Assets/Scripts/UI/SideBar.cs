@@ -26,7 +26,7 @@ public class SideBar : MonoBehaviour
     public void AddItem(CharacterInfo info)
     {
         SideBarItem item = Instantiate(itemTemplate, transform).GetComponent<SideBarItem>();
-        item.info = info;
+        item.ID = info.ID;
         item.sideBar = this;
         item.gameObject.SetActive(true);
         addButton.transform.parent.SetAsLastSibling();

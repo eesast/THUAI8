@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 public class CharacterBase : MonoBehaviour
 {
-    public long ID;
+    public long ID = -1;
     public CharacterType characterType;
     public MessageOfCharacter message => CoreParam.characters.GetValueOrDefault(ID, null);
     bool GetDeceased() => message.Hp <= 0 || message.CharacterActiveState == CharacterState.Deceased;
