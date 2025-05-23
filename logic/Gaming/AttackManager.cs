@@ -177,6 +177,31 @@ namespace Gaming
                     return false;
                 }
                 gameobj.BeAttacked(character);
+                if (gameobj.IsActivated == false)
+                {
+                    if (gameobj.ConstructionType == ConstructionType.BARRACKS)
+                    {
+                        game.RemoveBirthPoint(gameobj.TeamID, gameobj.Position);
+                    }
+                    else if (gameobj.ConstructionType == ConstructionType.FARM)
+                    {
+                        game.RemoveFactory(gameobj.TeamID);
+                    }
+                }
+                if (gameobj.HP == 0)
+                {
+                    var team = game.TeamList[(int)character.TeamID.Get()];
+                    int score = 0;
+                    if (gameobj.ConstructionType == ConstructionType.BARRACKS)
+                    {
+                        score = 10000;
+                    }
+                    else if (gameobj.ConstructionType == ConstructionType.FARM)
+                    {
+                        score = 8000;
+                    }
+                    team.MoneyPool.AddScore(score);
+                }
                 character.LastAttackTime = nowtime;
                 character.ResetCharacterState(stateNum);
                 if (character.CharacterState2 == CharacterState.INVISIBLE)
