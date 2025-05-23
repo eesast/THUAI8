@@ -76,8 +76,8 @@ namespace Gaming
                     return;
                 }
                 long subHP = (long)(obj.AttackPower * (1 - character.HarmCut));
-                var team = game.TeamList[(int)obj.TeamID.Get()];
-                team.MoneyPool.AddScore(subHP*20);
+                var team0 = game.TeamList[(int)obj.TeamID.Get()];
+                team0.MoneyPool.AddScore(subHP * 20);
                 /*if (character.Shield > 0)
                 {
                     character.Shield.SubPositiveV(subHP);

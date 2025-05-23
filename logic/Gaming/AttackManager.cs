@@ -177,13 +177,13 @@ namespace Gaming
                     return false;
                 }
                 gameobj.BeAttacked(character);
-                if(gameobj.IsActivated==false)
+                if (gameobj.IsActivated == false)
                 {
-                    if(gameobj.ConstructionType==ConstructionType.BARRACKS)
+                    if (gameobj.ConstructionType == ConstructionType.BARRACKS)
                     {
                         game.RemoveBirthPoint(gameobj.TeamID, gameobj.Position);
                     }
-                    else if(gameobj.ConstructionType==ConstructionType.FARM)
+                    else if (gameobj.ConstructionType == ConstructionType.FARM)
                     {
                         game.RemoveFactory(gameobj.TeamID);
                     }

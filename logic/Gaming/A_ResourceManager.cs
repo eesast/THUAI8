@@ -199,7 +199,7 @@ namespace Gaming
                 {
                     if (AResource.AResourceType == A_ResourceType.CRAZY_MAN2)
                     {
-                        AResource = new A_Resource(GameData.AResourceRadius, A_ResourceType.CRAZY_MAN3, AResource.Position);                        
+                        AResource = new A_Resource(GameData.AResourceRadius, A_ResourceType.CRAZY_MAN3, AResource.Position);
                     }
                     else if (AResource.AResourceType == A_ResourceType.LIFE_POOL2)
                     {
