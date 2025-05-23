@@ -4,10 +4,10 @@ using Protobuf;
 using UnityEngine;
 #if !UNITY_WEBGL
 [RequireComponent(typeof(CharacterBase))]
-public class CharacterControl : InteractBase
+public class CharacterInteract : InteractBase
 {
     public AvailableService.AvailableServiceClient client;
-    public CharacterBase characterBase;
+    [NonSerialized] public CharacterBase characterBase;
     public long ID => characterBase.ID;
     public void Start()
     {
@@ -58,9 +58,9 @@ public class CharacterControl : InteractBase
 }
 #else
 [RequireComponent(typeof(CharacterBase))]
-public class CharacterControl : InteractBase
+public class CharacterInteract : InteractBase
 {
-    public CharacterBase characterBase;
+    [NonSerialized] public CharacterBase characterBase;
     public long ID => characterBase.ID;
     public void Start()
     {

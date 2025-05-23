@@ -12,7 +12,7 @@ class Player : MonoBehaviour
     public int characterId = 0, teamId = 0;
     private bool gameStarted;
     private long ID;
-    private CharacterControl characterControl;
+    private CharacterControl characterInteract;
 
     public async void Start()
     {
@@ -33,7 +33,7 @@ class Player : MonoBehaviour
         {
             CharacterId = characterId,
             CharacterType = characterType,
-            TeamId = 1 - teamId,
+            TeamId = teamId,
             SideFlag = teamId
         };
         var call = client.AddCharacter(playerInfo);
@@ -49,12 +49,12 @@ class Player : MonoBehaviour
 
     void Update()
     {
-        if (characterId != 0 && gameStarted && characterControl == null)
+        if (characterId != 0 && gameStarted && characterInteract == null)
         {
             if (CoreParam.charactersG.TryGetValue(ID, out GameObject characterG))
             {
-                characterControl = characterG.GetComponent<CharacterControl>();
-                characterControl.client = client;
+                characterInteract = characterG.GetComponent<CharacterControl>();
+                characterInteract.client = client;
             }
         }
     }

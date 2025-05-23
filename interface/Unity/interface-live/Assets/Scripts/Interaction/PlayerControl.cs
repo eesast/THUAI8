@@ -8,7 +8,8 @@ public class PlayerControl : SingletonMono<PlayerControl>
     public LayerMask interactableLayer;
     Collider2D raycaster;
     private InteractBase tobeSelectedInt, selectedInt;
-    public CharacterControl selectedCharacter => selectedInt as CharacterControl;
+    public CharacterInteract selectedCharacter => selectedInt as CharacterInteract;
+    public TileInteract selectedTile => selectedInt as TileInteract;
     public InteractBase SelectedObject
     {
         get => selectedInt;
@@ -110,7 +111,7 @@ public class PlayerControl : SingletonMono<PlayerControl>
             }
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                if (tobeSelectedInt is CharacterControl tobeSelectedCharacter)
+                if (tobeSelectedInt is CharacterInteract tobeSelectedCharacter)
                 {
                     selectedCharacter?.Attack(tobeSelectedCharacter.characterBase);
                 }
@@ -156,16 +157,39 @@ public class PlayerControl : SingletonMono<PlayerControl>
 
     void OnBeginSelect()
     {
-        Inspector.Instance.Toggle(true);
-        Inspector.Instance.SetCharacter(CharacterManager.Instance.characterInfo[selectedCharacter.ID]);
+        if (selectedCharacter)
+        {
+            InspectorCharacter.Instance.Toggle(true);
+            InspectorCharacter.Instance.SetCharacter(CharacterManager.Instance.characterInfo[selectedCharacter.ID]);
+        }
+        if (selectedTile)
+        {
+            // Inspector.Instance.Toggle(true);
+            // Inspector.Instance.SetTile(selectedTile);
+        }
     }
     void OnChangeSelect()
     {
-        Inspector.Instance.SetCharacter(CharacterManager.Instance.characterInfo[selectedCharacter.ID]);
+        if (selectedCharacter)
+        {
+            InspectorCharacter.Instance.SetCharacter(CharacterManager.Instance.characterInfo[selectedCharacter.ID]);
+        }
+        if (selectedTile)
+        {
+            // Inspector.Instance.SetTile(selectedTile);
+        }
+        
     }
     void OnEndSelect()
     {
-        Inspector.Instance.Toggle(false);
+        if (selectedCharacter)
+        {
+            InspectorCharacter.Instance.Toggle(false);
+        }
+        if (selectedTile)
+        {
+            InspectorCharacter.Instance.Toggle(false);
+        }
     }
 
     void OnDoubleClick()
