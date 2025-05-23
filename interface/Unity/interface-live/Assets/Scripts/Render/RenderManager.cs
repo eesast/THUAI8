@@ -6,6 +6,7 @@ using System;
 using TMPro;
 using System.Linq;
 using UnityEngine.UI;
+using System.Runtime.CompilerServices;
 
 public class RenderManager : SingletonMono<RenderManager>
 {
@@ -35,7 +36,7 @@ public class RenderManager : SingletonMono<RenderManager>
             while (CoreParam.frameQueue.GetSize() > 100)
             {
                 var frame = CoreParam.frameQueue.GetValue();
-                if(frame.ToString().Contains("ATTACK"))
+                if (frame.ToString().Contains("ATTACK"))
                 {
                     Debug.Log("ATTACK");
                 }
@@ -123,12 +124,12 @@ public class RenderManager : SingletonMono<RenderManager>
         else
         {
             ShowCharacter(CoreParam.characters);
-            ShowObject(CoreParam.barracks, CoreParam.barracksG);
-            ShowObject(CoreParam.springs, CoreParam.springsG);
-            ShowObject(CoreParam.farms, CoreParam.farmsG);
-            ShowObject(CoreParam.traps, CoreParam.trapsG);
-            ShowObject(CoreParam.economyResources, CoreParam.economyResourcesG);
-            ShowObject(CoreParam.additionResources, CoreParam.additionResourcesG);
+            ShowObject(CoreParam.barracks, ref CoreParam.barracksG);
+            ShowObject(CoreParam.springs, ref CoreParam.springsG);
+            ShowObject(CoreParam.farms, ref CoreParam.farmsG);
+            ShowObject(CoreParam.traps, ref CoreParam.trapsG);
+            ShowObject(CoreParam.economyResources, ref CoreParam.economyResourcesG);
+            ShowObject(CoreParam.additionResources, ref CoreParam.additionResourcesG);
             ShowAllMessage(CoreParam.currentFrame);
             // global hp bar logic in CharacterBase.cs
         }
@@ -154,7 +155,7 @@ public class RenderManager : SingletonMono<RenderManager>
                             /*Quaternion.Euler(0, 0, (float)character.Value.FacingDirection)*/
                             Quaternion.identity);
                     CoreParam.charactersG[character.Key] = characterG;
-                    if (!characterG.TryGetComponent<CharacterControl>(out var characterControl)
+                    if (!characterG.TryGetComponent<CharacterInteract>(out var characterInteract)
                      || !characterG.TryGetComponent<CharacterBase>(out var characterBase))
                     {
                         Debug.LogError("Character prefab is missing core components.");
@@ -167,7 +168,7 @@ public class RenderManager : SingletonMono<RenderManager>
                         teamId = character.Value.TeamId,
                         type = character.Value.CharacterType,
                         characterBase = characterBase,
-                        characterControl = characterControl
+                        characterInteract = characterInteract
                     });
                 }
                 else
@@ -187,19 +188,20 @@ public class RenderManager : SingletonMono<RenderManager>
                 if (!CoreParam.characters.ContainsKey(characterG.Key))
                 {
                     Destroy(characterG.Value);
+                    CoreParam.charactersG.Remove(characterG.Key);
                 }
             }
         }
     }
-    void ShowObject<MessageOfObject>(Dictionary<Tuple<int, int>, MessageOfObject> objects, Dictionary<Tuple<int, int>, GameObject> objectsG)
+    void ShowObject<MessageOfObject>(Dictionary<Tuple<int, int>, MessageOfObject> objects, ref Dictionary<Tuple<int, int>, GameObject> objectsG)
     {
         foreach (KeyValuePair<Tuple<int, int>, MessageOfObject> obj in objects)
         {
             if (obj.Value != null)
             {
-                if (!objectsG.ContainsKey(obj.Key) || objectsG[obj.Key] == null)
+                if (!objectsG.ContainsKey(obj.Key))
                 {
-                    objectsG[obj.Key] = CreateObject(obj.Value);
+                    objectsG[obj.Key] = CreateObject(obj.Value, obj.Key);
                 }
                 else
                 {
@@ -223,23 +225,26 @@ public class RenderManager : SingletonMono<RenderManager>
         }
     }
 
-    GameObject CreateObject<MessageOfObject>(MessageOfObject obj)
+    GameObject CreateObject<MessageOfObject>(MessageOfObject obj, Tuple<int, int> pos)
     {
         var creater = ObjCreater.Instance;
         return obj switch
         {
             MessageOfBarracks barracks => creater.CreateObj(ConstructionType.Barracks,
-                Tool.GridToUxy(barracks.X, barracks.Y)),
-            MessageOfSpring spring => creater.CreateObj(ConstructionType.Spring,
-                Tool.GridToUxy(spring.X, spring.Y)),
+                Tool.GridToUxy(barracks.X, barracks.Y))
+                .TryInitializeTileInfo(TileInteract.TileType.Construction, pos),
             MessageOfFarm farm => creater.CreateObj(ConstructionType.Farm,
-                Tool.GridToUxy(farm.X, farm.Y)),
+                Tool.GridToUxy(farm.X, farm.Y))
+                .TryInitializeTileInfo(TileInteract.TileType.Construction, pos),
             MessageOfTrap trap => creater.CreateObj(trap.TrapType,
-                Tool.GridToUxy(trap.X, trap.Y)),
+                Tool.GridToUxy(trap.X, trap.Y))
+                .TryInitializeTileInfo(TileInteract.TileType.Trap, pos),
             MessageOfEconomyResource resourceE => creater.CreateObj(resourceE.EconomyResourceType,
-                Tool.GridToUxy(resourceE.X, resourceE.Y)),
+                Tool.GridToUxy(resourceE.X, resourceE.Y))
+                .TryInitializeTileInfo(TileInteract.TileType.EconomyResource, pos),
             MessageOfAdditionResource resourceA => creater.CreateObj(resourceA.AdditionResourceType,
-                Tool.GridToUxy(resourceA.X, resourceA.Y)),
+                Tool.GridToUxy(resourceA.X, resourceA.Y))
+                .TryInitializeTileInfo(TileInteract.TileType.AdditionResource, pos),
             _ => null,
         };
     }
@@ -261,12 +266,26 @@ public class RenderManager : SingletonMono<RenderManager>
     void ShowAllMessage(MessageToClient messageToClient)
     {
         if (messageToClient == null) return;
-        int time = messageToClient.AllMessage.GameTime;
+        int time = Mathf.Min(messageToClient.AllMessage.GameTime, 3600000);
         gameTime.text = $"{time / 60000:00} : {time % 60000 / 1000:00}.{time % 1000:000}";
         scoreBud.text = "得分：" + messageToClient.AllMessage.BuddhistsTeamScore;
         scoreMon.text = "得分：" + messageToClient.AllMessage.MonstersTeamScore;
 
         economyBud.text = "经济：" + messageToClient.AllMessage.BuddhistsTeamEconomy;
         economyMon.text = "经济：" + messageToClient.AllMessage.MonstersTeamEconomy;
+    }
+
+}
+
+static class GameObjectExtensions
+{
+    public static GameObject TryInitializeTileInfo(this GameObject gameObject, TileInteract.TileType tileType, Tuple<int, int> pos)
+    {
+        if (gameObject.TryGetComponent<TileInteract>(out var tileInteract))
+        {
+            tileInteract.tileType = tileType;
+            tileInteract.pos = pos;
+        }
+        return gameObject;
     }
 }
