@@ -200,7 +200,7 @@ namespace Gaming
                                 {
                                     switch (traptype)
                                     {
-                                        case TrapType.CAGE:  
+                                        case TrapType.CAGE:
                                             if (cage == null)
                                             {
                                                 return false;
@@ -298,6 +298,7 @@ namespace Gaming
                                                 { IsBackground = true }.Start();
                                             }
                                             break;
+                                        default:break;
                                     }
                                     return true;
                                 },
@@ -306,8 +307,8 @@ namespace Gaming
                             ).Start();
                             character.ThreadNum.Release();
                         }
-                    )
-                    { IsBackground = true }.Start();
+                )
+                { IsBackground = true }.Start();
                 return false;
             }
             public bool Construct(Character character, ConstructionType constructionType)
