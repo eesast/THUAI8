@@ -12,6 +12,7 @@ public class A_Resource
     public InVariableRange<long> HP { get; }
     public InVariableRange<long> AttackPower { get; }
     public override bool IsRigid(bool args = false) => true;
+    public int refreshCount = 0;
     protected readonly object actionLock = new();
     public object ActionLock => actionLock;
     public IAROccupation Occupation { get; }

@@ -1,17 +1,18 @@
 using GameClass.GameObj;
-using GameClass.GameObj.Map;
 using GameClass.GameObj.Areas;
-using GameClass.MapGenerator;
+using GameClass.GameObj.Map;
 using GameClass.GameObj.Occupations;
+using GameClass.MapGenerator;
+using Microsoft.Extensions.Logging;
+using Preparation.Interface;
 using Preparation.Utility;
 using Preparation.Utility.Value;
-using Preparation.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Reflection.Metadata;
-using Microsoft.Extensions.Logging;
+using System.Threading;
+using Timothy.FrameRateTask;
 
 namespace Gaming
 {
@@ -268,6 +269,27 @@ namespace Gaming
                 }
             }
             gameMap.Timer.Start(() => { }, () => EndGame(), milliSeconds);
+            new Thread
+                (
+                    () =>
+                    {
+                        Thread.Sleep(GameData.CheckInterval);
+                        new FrameRateTaskExecutor<int>
+                        (
+                            loopCondition: () => gameMap.Timer.IsGaming,
+                            loopToDo: () =>
+                            {
+                                gameMap.GameObjDict[GameObjType.ADDITIONAL_RESOURCE].ForEach(delegate (IGameObj Aresource)
+                                {
+                                    ARManager.LevelUpAR((A_Resource)Aresource);
+                                    ARManager.autoAttack((A_Resource)Aresource);
+                                });
+                            },
+                            timeInterval: GameData.CheckInterval,
+                            finallyReturn: () => 0
+                        ).Start();
+                    }
+                ).Start();
             return true;
         }
         public void EndGame()
@@ -328,6 +350,22 @@ namespace Gaming
             if (!teamList[(int)teamID].HoleList.Contains(pos))
                 return;
             teamList[(int)teamID].HoleList.Remove(pos);
+        }
+        public void AddCageTrap(long teamID, XY pos)
+        {
+            if (!gameMap.TeamExists(teamID))
+                return;
+            if (teamList[(int)teamID].CageList.Contains(pos))
+                return;
+            teamList[(int)teamID].CageList.Add(pos);
+        }
+        public void RemoveCageTrap(long teamID, XY pos)
+        {
+            if (!gameMap.TeamExists(teamID))
+                return;
+            if (!teamList[(int)teamID].CageList.Contains(pos))
+                return;
+            teamList[(int)teamID].CageList.Remove(pos);
         }
         public void AddFactory(long teamID)
         {

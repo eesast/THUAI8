@@ -198,6 +198,7 @@ namespace Gaming
                                     case TrapType.CAGE:
                                         gameMap.Add(new Cage(GameData.GetCellCenterPos(nowPos.x, nowPos.y)));
                                         Cage? cage = (Cage?)gameMap.OneForInteract(character.Position, GameObjType.TRAP);
+                                        game.AddCageTrap(character.TeamID, GameData.GetCellCenterPos(nowPos.x, nowPos.y));
                                         cage.SetCage(character);
                                         cage.IsActivated.Set(true);
                                         new Thread
@@ -221,6 +222,7 @@ namespace Gaming
                                                                 {
                                                                     characterManager.InCage(cage, character);
                                                                 }
+                                                                game.RemoveHoleTrap(cage.TeamID, cage.Position);
                                                                 gameMap.Remove(cage);//实时捕捉，用后即毁
                                                                 return true;
                                                             },
@@ -235,6 +237,7 @@ namespace Gaming
                                         gameMap.Add(new HOLE(GameData.GetCellCenterPos(nowPos.x, nowPos.y)));
                                         HOLE? hole = (HOLE?)gameMap.OneForInteract(character.Position, GameObjType.TRAP);
                                         hole.SetHole(character);
+                                        game.AddHoleTrap(character.TeamID, GameData.GetCellCenterPos(nowPos.x, nowPos.y));
                                         hole.IsActivated.Set(true);
                                         new Thread
                                                 (
@@ -257,6 +260,7 @@ namespace Gaming
                                                                 {
                                                                     characterManager.InHole(hole, character);
                                                                 }
+                                                                game.RemoveHoleTrap(hole.TeamID, hole.Position);
                                                                 gameMap.Remove(hole);//实时捕捉，用后即毁
                                                                 return true;
                                                             },
