@@ -86,7 +86,11 @@ public class Construction(XY initPos)
             HP.SubPositiveV(subHP);
             Process.SubPositiveV(subHP * 20);
         }
-        return previousActivated;
+        if (HP.IsBelowMaxTimes(0.5))
+        {
+            IsActivated.Set(false);
+        }
+        return HP.IsBelowMaxTimes(0.5) && previousActivated;
     }
     public bool BeAttacked(Character character, long AP)
     {
@@ -101,7 +105,11 @@ public class Construction(XY initPos)
             HP.SubPositiveV(subHP);
             Process.SubPositiveV(subHP * 20);
         }
-        return previousActivated;
+        if (HP.IsBelowMaxTimes(0.5))
+        {
+            IsActivated.Set(false);
+        }
+        return HP.IsBelowMaxTimes(0.5) && previousActivated;
     }
     public void AddConstructNum(int add = 1)
     {

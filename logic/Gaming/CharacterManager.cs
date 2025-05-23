@@ -76,6 +76,8 @@ namespace Gaming
                     return;
                 }
                 long subHP = (long)(obj.AttackPower * (1 - character.HarmCut));
+                var team0 = game.TeamList[(int)obj.TeamID.Get()];
+                team0.MoneyPool.AddScore(subHP * 20);
                 /*if (character.Shield > 0)
                 {
                     character.Shield.SubPositiveV(subHP);
@@ -150,7 +152,7 @@ namespace Gaming
                         gameMap.Timer.EndGame();
                     }
                     else if (character.CharacterType == CharacterType.Monkid || character.CharacterType == CharacterType.Pawn)
-                        score = 500;
+                        score = 1000;
                     else
                         score = character.GetCost();
                     var team = game.TeamList[1 - (int)character.TeamID.Get()];
