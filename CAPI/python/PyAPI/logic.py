@@ -438,7 +438,7 @@ class Logic(ILogic):
                         item.character_message.x,
                         item.character_message.y,
                         self.__bufferState.gameMap,
-                    ):
+                    ) and item.character_message.is_invisible == 0:
                         self.__bufferState.enemyCharacters.append(
                             Proto2THUAI8.Protobuf2THUAI8Character(
                                 item.character_message
@@ -679,7 +679,7 @@ class Logic(ILogic):
                         item.character_message.x,
                         item.character_message.y,
                     ):
-                        if ~item.character_message.is_invisible:
+                        if not item.character_message.is_invisible:
                             self.__bufferState.enemyCharacters.append(
                                 Proto2THUAI8.Protobuf2THUAI8Character(
                                     item.character_message
