@@ -227,6 +227,7 @@ namespace debug_interface.ViewModels
                                 var mapMsg = obj.MapMessage;
                                 if (this is MainWindowViewModel vm && vm.MapVM != null)
                                 {
+                                    vm.currentMapMessage = mapMsg;
                                     // 地图更新直接在回放线程安排到UI线程
                                     Dispatcher.UIThread.InvokeAsync(() => vm.MapVM.UpdateMap(mapMsg));
                                 }
@@ -393,8 +394,10 @@ namespace debug_interface.ViewModels
                                 case MessageOfObj.MessageOfObjOneofCase.MapMessage:
                                     // *** 直接更新地图 ***
                                     var mapMsg = obj.MapMessage;
+
                                     if (this is MainWindowViewModel vm && vm.MapVM != null)
                                     {
+                                        vm.currentMapMessage = mapMsg;
                                         Dispatcher.UIThread.InvokeAsync(() => vm.MapVM.UpdateMap(mapMsg));
                                     }
                                     break;

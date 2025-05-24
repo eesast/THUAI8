@@ -193,7 +193,7 @@ namespace debug_interface.ViewModels
                 //int maxHp = GetBuildingMaxHp(buildingType);
                 cell.DisplayText = $"{hp}";
                 cell.ForegroundColor = GetTextColorBasedOnBackground(cell.DisplayColor);
-                myLogger?.LogDebug($"UpdateBuildingCell at ({x},{y}): Set DisplayText to '{cell.DisplayText}', Foreground to '{cell.ForegroundColor}'");
+                //myLogger?.LogDebug($"UpdateBuildingCell at ({x},{y}): Set DisplayText to '{cell.DisplayText}', Foreground to '{cell.ForegroundColor}'");
                 //myLogger?.LogInfo($"UpdateBuildingCell at ({x},{y}): Set DisplayText to '{cell.DisplayText}'"); // *** 添加日志 ***
                 
             }
@@ -204,6 +204,7 @@ namespace debug_interface.ViewModels
         // 更新陷阱
         public void UpdateTrapCell(int x, int y, string team, string trapType)
         {
+            myLogger?.LogDebug($"--- UpdateTrapCell called for ({x},{y}), Team: {team}，Type: {trapType} ---");
             int index = x * GridSize + y;
             if (index >= 0 && index < MapCells.Count)
             {
@@ -242,10 +243,10 @@ namespace debug_interface.ViewModels
                     }
                 }
 
-                // 更新Tooltip (陷阱没有血量)
-                cell.DisplayText = ""; // 陷阱通常不显示血量文本
+               
+                cell.DisplayText = "T"; // 陷阱通常不显示血量文本
                 //cell.ToolTipText = $"类型: {trapType}\n队伍: {team}";
-
+                myLogger?.LogDebug($"UpdateTrapCell at ({x},{y}):Team: {team}, TrapType: {trapType}");
                 cell.ForegroundColor = GetTextColorBasedOnBackground(cell.DisplayColor);
 
             }
@@ -340,6 +341,82 @@ namespace debug_interface.ViewModels
             if (resourceName.Contains("疾步")) return 300;
             if (resourceName.Contains("视野")) return 300;
             return 0; // 未知
+        }
+
+        /// <summary>
+        /// 根据PlaceType更新单元格基础类型（用于增量更新）
+        /// </summary>
+        public void UpdateCellTypeFromPlace(int x, int y, PlaceType placeType)
+        {
+            int index = x * GridSize + y;
+            if (index >= 0 && index < MapCells.Count)
+            {
+                var cell = MapCells[index];
+
+                // 重置为基础状态
+                cell.DisplayText = "";
+
+                // 根据地形类型设置单元格属性和初始颜色
+                switch (placeType)
+                {
+                    case PlaceType.Home:
+                        cell.CellType = MapCellType.Home;
+                        cell.DisplayColor = new SolidColorBrush(Colors.Cyan);
+                        break;
+                    case PlaceType.Space:
+                        cell.CellType = MapCellType.Space;
+                        cell.DisplayColor = new SolidColorBrush(Colors.White);
+                        break;
+                    case PlaceType.Barrier:
+                        cell.CellType = MapCellType.Barrier;
+                        cell.DisplayColor = new SolidColorBrush(Colors.DarkGray);
+                        break;
+                    case PlaceType.Bush:
+                        cell.CellType = MapCellType.Bush;
+                        cell.DisplayColor = new SolidColorBrush(Colors.LightGreen);
+                        break;
+                    case PlaceType.Construction:
+                        cell.CellType = MapCellType.Construction;
+                        cell.DisplayColor = new SolidColorBrush(Colors.Brown);
+                        cell.DisplayText = "建";
+                        break;
+                    case PlaceType.EconomyResource:
+                        cell.CellType = MapCellType.Economic_Resource;
+                        cell.DisplayColor = new SolidColorBrush(Colors.Gold);
+                        cell.DisplayText = "ER";
+                        break;
+                    case PlaceType.AdditionResource:
+                        cell.CellType = MapCellType.Additional_Resource;
+                        cell.DisplayColor = new SolidColorBrush(Colors.Purple);
+                        cell.DisplayText = "AR";
+                        break;
+                    case PlaceType.Trap:
+                        cell.CellType = MapCellType.Trap;
+                        cell.DisplayColor = new SolidColorBrush(Colors.LightGray);
+                        cell.DisplayText = "Trap";
+                        break;
+                    default:
+                        cell.CellType = MapCellType.Space;
+                        cell.DisplayColor = new SolidColorBrush(Colors.Gainsboro);
+                        cell.DisplayText = "?";
+                        break;
+                }
+                cell.ForegroundColor = GetTextColorBasedOnBackground(cell.DisplayColor);
+            }
+        }
+
+        /// <summary>
+        /// 将单元格重置为基础地图类型（移除动态对象时使用）
+        /// </summary>
+        public void ResetCellToBaseType(int x, int y, PlaceType[,] baseMapState)
+        {
+            int index = x * GridSize + y;
+            if (index >= 0 && index < MapCells.Count && x < 50 && y < 50)
+            {
+                var baseType = baseMapState[x, y];
+                UpdateCellTypeFromPlace(x, y, baseType);
+                myLogger?.LogDebug($"重置单元格({x},{y})为基础类型: {baseType}");
+            }
         }
 
     }
