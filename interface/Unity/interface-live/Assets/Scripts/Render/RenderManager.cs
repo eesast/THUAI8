@@ -263,7 +263,7 @@ public class RenderManager : SingletonMono<RenderManager>
     void ShowAllMessage(MessageToClient messageToClient)
     {
         if (messageToClient == null) return;
-        int time = Mathf.Min(messageToClient.AllMessage.GameTime, 3600000);
+        int time = Mathf.Min(messageToClient.AllMessage.GameTime, 600000);
         gameTime.text = $"{time / 60000:00} : {time % 60000 / 1000:00}.{time % 1000:000}";
         scoreBud.text = "得分：" + messageToClient.AllMessage.BuddhistsTeamScore;
         scoreMon.text = "得分：" + messageToClient.AllMessage.MonstersTeamScore;

@@ -5,6 +5,7 @@ using Spine;
 using System;
 using System.Collections;
 using System.IO;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
@@ -22,11 +23,12 @@ public class PlaybackController : SingletonMono<PlaybackController>
     public static string fileName = "http://localhost/playback.thuaipb";
 #endif
     public static bool fileNameFlag;
-    float frequency = 0.05f;
+    float deltaTime = 0.05f;
     float timer;
     public static float playSpeed = 1;
 
     public static bool isMap;
+    public TextMeshProUGUI speedText;
 
     IEnumerator WebReader()
     {
@@ -87,20 +89,25 @@ public class PlaybackController : SingletonMono<PlaybackController>
                     }
                     Debug.Log("reader created");
                 }
-                timer = frequency;
-                var responseVal = reader.ReadOne();
-                if (responseVal == null)
+                if (isMap)
                 {
-                    fileName = null;
-                    playSpeed = -1;
-                    isMap = true;
-                    SceneManager.LoadScene("GameEnd");
-                }
-                else if (isMap)
-                {
-                    CoreParam.firstFrame = responseVal;
+                    CoreParam.firstFrame = reader.ReadOne();
                     isMap = false;
+                    return;
                 }
+                int frameToSkip = Mathf.FloorToInt(-timer / deltaTime);
+                timer = deltaTime;
+                MessageToClient responseVal;
+                while (frameToSkip > 0 && reader != null)
+                {
+                    responseVal = reader.ReadOne();
+                    if (responseVal == null)
+                        EndGame();
+                    frameToSkip--;
+                }
+                responseVal = reader.ReadOne();
+                if (responseVal == null)
+                    EndGame();
                 else
                 {
                     CoreParam.frameQueue.Add(responseVal);
@@ -117,5 +124,29 @@ public class PlaybackController : SingletonMono<PlaybackController>
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
+    }
+
+    public void SetSpeed(float speed)
+    {
+        playSpeed = speed;
+        // Time.timeScale = speed;
+        speedText.text = $"{speed:0}x";
+    }
+
+    void EndGame()
+    {
+        if (reader != null)
+        {
+            reader.Dispose();
+            reader = null;
+        }
+        if (bytes != null)
+        {
+            bytes = null;
+        }
+        fileName = null;
+        playSpeed = 1;
+        isMap = true;
+        SceneManager.LoadScene("GameEnd");
     }
 }
