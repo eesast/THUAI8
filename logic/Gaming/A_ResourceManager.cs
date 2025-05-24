@@ -231,8 +231,12 @@ namespace Gaming
             public void autoAttack(A_Resource aresource)
             {
                 var characters = gameMap.AllCharacterInTheRange(aresource.Position, GameData.AdditionResourceAttackRange);
+                long nowtime = Environment.TickCount64;
                 if (characters == null || characters.Count == 0)
                     return;
+                if (nowtime - aresource.LastAttackTime < 1000)
+                    return;
+                aresource.LastAttackTime = nowtime;
                 var character = characters[random.Next(characters.Count)];
                 characterManager.BeAttacked(character, aresource.AttackPower);
                 return;
