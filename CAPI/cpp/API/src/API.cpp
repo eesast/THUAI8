@@ -260,7 +260,7 @@ std::future<bool> CharacterAPI::Common_Attack(int64_t attackedPlayerID)
 std::future<bool> CharacterAPI::Skill_Attack(double angle)
 {
     return std::async(std::launch::async, [=]()
-                      { return logic.Skill_Attack(this->GetSelfInfo()->playerID, this->GetSelfInfo()->teamID, angle); });
+                      { return logic.Skill_Attack(this->GetSelfInfo()->teamID, this->GetSelfInfo()->playerID, angle); });
 }
 
 std::future <bool> CharacterAPI::AttackConstruction()

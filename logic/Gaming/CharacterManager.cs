@@ -2,6 +2,7 @@
 using GameClass.GameObj.Areas;
 using GameClass.GameObj.Equipments;
 using GameClass.GameObj.Map;
+using Microsoft.Extensions.Logging;
 using Preparation.Utility;
 using Preparation.Utility.Value;
 using System.Threading;
@@ -75,6 +76,8 @@ namespace Gaming
                     return;
                 }
                 long subHP = (long)(obj.AttackPower * (1 - character.HarmCut));
+                var team0 = game.TeamList[(int)obj.TeamID.Get()];
+                team0.MoneyPool.AddScore(subHP * 20);
                 /*if (character.Shield > 0)
                 {
                     character.Shield.SubPositiveV(subHP);
@@ -101,14 +104,17 @@ namespace Gaming
                 {
                     long score = 0;
                     if (character.CharacterType == CharacterType.TangSeng || character.CharacterType == CharacterType.JiuLing)
+                    {
                         score = 200000;
+                        gameMap.Timer.EndGame();
+                    }
                     else if (character.CharacterType == CharacterType.Monkid || character.CharacterType == CharacterType.Pawn)
                         score = 500;
                     else
                         score = character.GetCost();
                     //此处缺失加分代码。由于阵营是分明的（妖怪和取经团队，THUAI7阵营并无明显差别），可以直接将得分加至相应阵营。小局结束后再加到队伍得分。
-                    var team = game.TeamList[(int)character.TeamID.Get()];
-                    team.MoneyPool.SubScore(score);
+                    var team = game.TeamList[(int)obj.TeamID.Get()];
+                    team.MoneyPool.AddScore(score);
                     Remove(character);
                 }
             }
@@ -141,13 +147,16 @@ namespace Gaming
                 {
                     long score = 0;
                     if (character.CharacterType == CharacterType.TangSeng || character.CharacterType == CharacterType.JiuLing)
+                    {
                         score = 200000;
+                        gameMap.Timer.EndGame();
+                    }
                     else if (character.CharacterType == CharacterType.Monkid || character.CharacterType == CharacterType.Pawn)
-                        score = 500;
+                        score = 1000;
                     else
                         score = character.GetCost();
-                    var team = game.TeamList[(int)character.TeamID.Get()];
-                    team.MoneyPool.SubScore(score);
+                    var team = game.TeamList[1 - (int)character.TeamID.Get()];
+                    team.MoneyPool.AddScore(score);
                     Remove(character);
                 }
             }
@@ -172,11 +181,11 @@ namespace Gaming
             {
                 long characterValue =
                     (long)(character.GetCost() * character.HP.GetDivideValueByMaxV() * GameData.RecycleRate);
-                CharacterManagerLogging.logger.ConsoleLogDebug(
+                LogicLogging.logger.LogDebug(
                     LoggingFunctional.CharacterLogInfo(character)
                     + $" 's value is {characterValue}");
                 character.AddMoney(characterValue);
-                CharacterManagerLogging.logger.ConsoleLogDebug(
+                LogicLogging.logger.LogDebug(
                     LoggingFunctional.CharacterLogInfo(character)
                     + " is recycled!");
                 Remove(character);

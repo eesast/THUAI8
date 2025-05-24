@@ -1,34 +1,35 @@
-﻿using Preparation.Utility.Logging;
+﻿using Microsoft.Extensions.Logging;
+using Preparation.Utility.Logging;
 
 namespace Gaming
 {
-    public static class GameLogging
-    {
-        public static readonly Logger logger = new("Game");
-    }
+    //public static class LogicLogging
+    //{
+    //    public static readonly ILogger logger = AdvancedLoggerFactory.loggerFactory.CreateLogger("Game");
+    //}
 
-    public static class ActionManagerLogging
-    {
-        public static readonly Logger logger = new("ActionManager");
-    }
+    //public static class LogicLogging
+    //{
+    //    public static readonly ILogger logger = AdvancedLoggerFactory.loggerFactory.CreateLogger("ActionManager");
+    //}
 
-    public static class AttackManagerLogging
-    {
-        public static readonly Logger logger = new("AttackManager");
-    }
+    //public static class LogicLogging
+    //{
+    //    public static readonly ILogger logger = AdvancedLoggerFactory.loggerFactory.CreateLogger("AttackManager");
+    //}
 
-    public static class CharacterManagerLogging
-    {
-        public static readonly Logger logger = new("CharacterManager");
-    }
+    //public static class LogicLogging
+    //{
+    //    public static readonly ILogger logger = AdvancedLoggerFactory.loggerFactory.CreateLogger("CharacterManager");
+    //}
 
-    public static class A_ResourceManagerLogging
-    {
-        public static readonly Logger logger = new("A_ResourceManager");
-    }
+    //public static class A_ResourceManagerLogging
+    //{
+    //    public static readonly ILogger logger = AdvancedLoggerFactory.loggerFactory.CreateLogger("A_ResourceManager");
+    //}
 
-    public static class SkillCastingManagerLogging
-    {
-        public static readonly Logger logger = new("SkillCastingManager");
-    }
+    //public static class LogicLogging
+    //{
+    //    public static readonly ILogger logger = AdvancedLoggerFactory.loggerFactory.CreateLogger("SkillCastingManager");
+    //}
 }

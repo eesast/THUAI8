@@ -287,7 +287,7 @@ bool Communication::BuildCharacter(int32_t teamID, THUAI8::CharacterType charact
 // 技能必中，angle改toplayerID
 
 // 待修改，不知道要不要toteamID
-bool Communication::Skill_Attack(int64_t playerID, int64_t teamID, double angle)
+bool Communication::Skill_Attack(int64_t teamID, int64_t playerID, double angle)
 {
     {
         std::lock_guard<std::mutex> lock(mtxLimit);
@@ -297,7 +297,7 @@ bool Communication::Skill_Attack(int64_t playerID, int64_t teamID, double angle)
     }
     protobuf::BoolRes reply;
     ClientContext context;
-    auto request = THUAI8Proto::THUAI82ProtobufCastMsg(playerID, teamID, angle);
+    auto request = THUAI8Proto::THUAI82ProtobufCastMsg(teamID, playerID, angle);
     auto status = THUAI8Stub->Cast(&context, request, &reply);
     if (status.ok())
         return reply.act_success();

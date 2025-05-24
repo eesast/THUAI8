@@ -305,10 +305,10 @@ namespace Proto2THUAI8
     {
         auto trap = std::make_shared<THUAI8::Trap>();
         trap->trapType = trapTypeDict.at(TrapMsg.trap_type());
-        //trap->x = TrapMsg.x();
-        //trap->y = TrapMsg.y();
+        // trap->x = TrapMsg.x();
+        // trap->y = TrapMsg.y();
         trap->team_id = TrapMsg.team_id();
-        //trap->id = TrapMsg.id();
+        // trap->id = TrapMsg.id();
         return trap;
     }
 
@@ -316,9 +316,9 @@ namespace Proto2THUAI8
     {
         auto economyResource = std::make_shared<THUAI8::EconomyResource>();
         economyResource->economyResourceType = economyResourceTypeDict.at(EconomyResourceMsg.economy_resource_type());
-        //economyResource->economyResourceState = economyResourceStateDict.at(EconomyResourceMsg.economy_resource_state());
-        //economyResource->x = EconomyResourceMsg.x();
-        //economyResource->y = EconomyResourceMsg.y();
+        // economyResource->economyResourceState = economyResourceStateDict.at(EconomyResourceMsg.economy_resource_state());
+        // economyResource->x = EconomyResourceMsg.x();
+        // economyResource->y = EconomyResourceMsg.y();
         return economyResource;
     }
 
@@ -326,9 +326,9 @@ namespace Proto2THUAI8
     {
         auto additionResource = std::make_shared<THUAI8::AdditionResource>();
         additionResource->additionResourceType = additionResourceTypeDict.at(AdditionResourceMsg.addition_resource_type());
-        //additionResource->additionResourceState = additionResourceStateDict.at(AdditionResourceMsg.addition_resource_state());
-        //additionResource->x = AdditionResourceMsg.x();
-        //additionResource->y = AdditionResourceMsg.y();
+        // additionResource->additionResourceState = additionResourceStateDict.at(AdditionResourceMsg.addition_resource_state());
+        // additionResource->x = AdditionResourceMsg.x();
+        // additionResource->y = AdditionResourceMsg.y();
         return additionResource;
     }
 
@@ -605,12 +605,12 @@ namespace THUAI8Proto
         return characterMsg;
     }
 
-    inline protobuf::CastMsg THUAI82ProtobufCastMsg(int64_t character_id, int64_t team_id, double attack_angle)
+    inline protobuf::CastMsg THUAI82ProtobufCastMsg(int64_t team_id, int64_t character_id, double attack_angle)
     {
         protobuf::CastMsg castMsg;
+        castMsg.set_team_id(team_id);
         castMsg.set_character_id(character_id);
         // castMsg.set_skill_id(skill_id);
-        castMsg.set_team_id(team_id);
         castMsg.set_angle(attack_angle);
         return castMsg;
     }
