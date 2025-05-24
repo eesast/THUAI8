@@ -42,7 +42,7 @@ namespace installer.Data
 
         public string? PlaybackFile { get; set; } = "";
 
-        public double PlaybackSpeed { get; set; } = 2.0;
+        public double PlaybackSpeed { get; set; } = 1.0;
 
         public LanguageOption Language { get; set; } = LanguageOption.cpp;
 
