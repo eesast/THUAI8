@@ -1,14 +1,15 @@
 ﻿using GameClass.GameObj;
+using GameClass.GameObj.Areas;
 using GameClass.GameObj.Map;
+using GameEngine;
+using Microsoft.Extensions.Logging;
 using Preparation.Interface;
 using Preparation.Utility;
-using GameClass.GameObj.Areas;
 using Preparation.Utility.Value;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using GameEngine;
 
 namespace Gaming
 {
@@ -45,12 +46,25 @@ namespace Gaming
             }
             public bool SkillCasting(Character character, double theta = 0.0)
             {
-                if (!character.Commandable() || character.CharacterState2 == CharacterState.BLIND)
+                if (character.CharacterState2 == CharacterState.BLIND || character.blind)
+                {
+                    LogicLogging.logger.LogDebug("Character is blind!");
                     return false;
+                }
                 if (!character.canskill)
+                {
+                    LogicLogging.logger.LogDebug("Skill casting is still in cd!");
                     return false;
+                }
+                long stateNum = character.SetCharacterState(CharacterState.SKILL_CASTING, character.CharacterState2);
+                if (stateNum == -1)
+                {
+                    LogicLogging.logger.LogDebug("Character is not commandable!");
+                    return false;
+                }
                 character.StartSkillCD();
                 character.canskill = false;
+                character.ResetCharacterState(stateNum);
                 switch (character.CharacterType)
                 {
                     case CharacterType.SunWukong:
@@ -74,14 +88,13 @@ namespace Gaming
                             }
                             return true;
                         }
-                        break;
                     case CharacterType.ZhuBajie:
                         {
                             characterManager.Recover(character, 150);//回复一半血量
                             character.HarmCut = 0.5;//设置伤害减免。此处尚未增加时间限制
                             character.HarmCutTime = Environment.TickCount64;
+                            return true;
                         }
-                        break;
                     case CharacterType.ShaWujing:
                         {
                             var ObjBeingShots = gameMap.CharacterInTheRangeNotTeamID(character.Position, GameData.SkillRange1, character.TeamID);
@@ -110,7 +123,6 @@ namespace Gaming
                             }
                             return true;
                         }
-                        break;
                     case CharacterType.BaiLongma:
                         {
                             var ObjBeingShots = gameMap.CharacterInTheRangeNotTeamID(character.Position, GameData.SkillRange2, character.TeamID);
@@ -132,7 +144,6 @@ namespace Gaming
                             }
                             return true;
                         }
-                        break;
                     case CharacterType.HongHaier:
                         {
                             var ObjBeingShots = gameMap.CharacterInTheRangeNotTeamID(character.Position, GameData.SkillRange1, character.TeamID);
@@ -156,7 +167,6 @@ namespace Gaming
                             }
                             return true;
                         }
-                        break;
                     case CharacterType.NiuMowang:
                         {
                             var ObjBeingProtecteds = gameMap.CharacterInTheRangeInTeamID(character.Position, GameData.SkillRange1, character.TeamID);
@@ -183,7 +193,6 @@ namespace Gaming
                             }
                             return true;
                         }
-                        break;
                     case CharacterType.TieShan:
                         {
                             var ObjBeingShots = gameMap.CharacterInTheRangeNotTeamID(character.Position, GameData.SkillRange1, character.TeamID);
@@ -224,7 +233,6 @@ namespace Gaming
                             }
                             return true;
                         }
-                        break;
                     case CharacterType.ZhiZhujing:
                         {
                             var ObjBeingShots = gameMap.CharacterInTheRangeNotTeamID(character.Position, GameData.SkillRange1, character.TeamID);
@@ -254,7 +262,6 @@ namespace Gaming
                             }
                             return true;
                         }
-                        break;
                 }
                 return true;
             }

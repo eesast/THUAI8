@@ -1,4 +1,5 @@
-﻿using Preparation.Utility.Value.SafeValue.Atomic;
+﻿using Microsoft.Extensions.Logging;
+using Preparation.Utility.Value.SafeValue.Atomic;
 using System;
 using System.Threading;
 
@@ -32,7 +33,7 @@ namespace Preparation.Utility.Value.SafeValue
             catch (Exception ex)
             {
                 startTime.SetROri(long.MaxValue);
-                MyTimerLogging.logger.ConsoleLog(ex.Message);
+                LogicLogging.logger.LogInfo(ex.Message);
             }
             return true;
         }
@@ -57,9 +58,13 @@ namespace Preparation.Utility.Value.SafeValue
             catch (Exception ex)
             {
                 startTime.SetROri(long.MaxValue);
-                MyTimerLogging.logger.ConsoleLog(ex.Message);
+                LogicLogging.logger.LogInfo(ex.Message);
             }
             return true;
+        }
+        public void EndGame()
+        {
+            startTime.SetROri(long.MaxValue);
         }
     }
 }

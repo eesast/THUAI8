@@ -13,6 +13,7 @@ namespace Preparation.Utility
         public const int ProduceSpeedPerSecond = 200;       // 每秒生产值
         public const int KnockedBackTime = 50;
         public const int KnockedBackSpeed = 1500;           // 击退速度(额外速度，需加上基础移速）
+        public const int AdditionResourceAttackRange = 2000;//加成资源攻击范围
 
         public const long MaxShield = 150;
         public const long MaxNiuShield = 100;
@@ -50,17 +51,17 @@ namespace Preparation.Utility
         public const int PawnHP = 50;
 
         public const int TangSengATKsize = 0;
-        public const int SunWukongATKsize = 1000;
-        public const int ZhuBajieATKsize = 2000;
+        public const int SunWukongATKsize = 2500;
+        public const int ZhuBajieATKsize = 2500;
         public const int ShaWujingATKsize = 5000;
         public const int BaiLongmaATKsize = 5000;
-        public const int MonkidATKsize = 1000;
+        public const int MonkidATKsize = 2500;
         public const int JiuLingATKsize = 0;
-        public const int HongHaierATKsize = 1000;
-        public const int NiuMowangATKsize = 2000;
+        public const int HongHaierATKsize = 2500;
+        public const int NiuMowangATKsize = 2500;
         public const int TieShanATKsize = 5000;
         public const int ZhiZhujingATKsize = 5000;
-        public const int PawnATKsize = 1000;
+        public const int PawnATKsize = 2500;
 
         public const int TangSengATKpower = 0;
         public const int SunWukongATKpower = 30;
