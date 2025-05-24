@@ -465,7 +465,7 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
                 {
                     if (teamID != item.character_message().team_id())
                     {
-                        if (AssistFunction::HaveView(x, y, item.character_message().x(), item.character_message().y(), viewRange, bufferState->gameMap))
+                        if (AssistFunction::HaveView(x, y, item.character_message().x(), item.character_message().y(), viewRange, bufferState->gameMap) && !item.character_message().is_invisible())
                         {
                             std::shared_ptr<THUAI8::Character> Character = Proto2THUAI8::Protobuf2THUAI8Character(item.character_message());
                             bufferState->enemyCharacters.push_back(Character);
@@ -473,8 +473,6 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
                         }
                     }
                     else if (teamID == item.character_message().team_id() && playerID != item.character_message().player_id())
-
-                        if (AssistFunction::HaveView(x, y, item.character_message().x(), item.character_message().y(), viewRange, bufferState->gameMap) && !item.character_message().is_invisible())
                         {
                             std::shared_ptr<THUAI8::Character> Character = Proto2THUAI8::Protobuf2THUAI8Character(item.character_message());
                             bufferState->characters.push_back(Character);
