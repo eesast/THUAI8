@@ -197,12 +197,15 @@ namespace debug_interface.ViewModels
                     myLogger?.LogDebug($"GameState: {content.GameState}");
                     foreach (var obj in content.ObjMessage)
                     {
+                        //myLogger?.LogDebug($"MessageOfObjCase总共: {obj.MessageOfObjCase}");
                         switch (obj.MessageOfObjCase)
                         {
+                            
                             case MessageOfObj.MessageOfObjOneofCase.CharacterMessage:
                                 listOfCharacters.Add(obj.CharacterMessage);
                                 break;
                             case MessageOfObj.MessageOfObjOneofCase.BarracksMessage:
+                                //myLogger?.LogDebug("BarracksMessage: " + obj.BarracksMessage.ToString());
                                 listOfBarracks.Add(obj.BarracksMessage);
                                 break;
                             case MessageOfObj.MessageOfObjOneofCase.TrapMessage:
@@ -224,6 +227,7 @@ namespace debug_interface.ViewModels
                                 var mapMsg = obj.MapMessage;
                                 if (this is MainWindowViewModel vm && vm.MapVM != null)
                                 {
+                                    vm.currentMapMessage = mapMsg;
                                     // 地图更新直接在回放线程安排到UI线程
                                     Dispatcher.UIThread.InvokeAsync(() => vm.MapVM.UpdateMap(mapMsg));
                                 }
@@ -390,8 +394,10 @@ namespace debug_interface.ViewModels
                                 case MessageOfObj.MessageOfObjOneofCase.MapMessage:
                                     // *** 直接更新地图 ***
                                     var mapMsg = obj.MapMessage;
+
                                     if (this is MainWindowViewModel vm && vm.MapVM != null)
                                     {
+                                        vm.currentMapMessage = mapMsg;
                                         Dispatcher.UIThread.InvokeAsync(() => vm.MapVM.UpdateMap(mapMsg));
                                     }
                                     break;
