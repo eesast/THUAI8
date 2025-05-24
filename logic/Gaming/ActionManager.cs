@@ -175,6 +175,13 @@ namespace Gaming
                 {
                     return false;
                 }
+                CellXY nowPos = GameData.PosGridToCellXY(character.Position);
+                if (traptype == TrapType.CAGE)
+                    gameMap.Add(new Cage(GameData.GetCellCenterPos(nowPos.x, nowPos.y), character.TeamID));
+                else if (traptype == TrapType.HOLE)
+                    gameMap.Add(new HOLE(GameData.GetCellCenterPos(nowPos.x, nowPos.y), character.TeamID));
+                Cage? cage = (Cage?)gameMap.OneForInteract(character.Position, GameObjType.TRAP);
+                HOLE? hole = (HOLE?)gameMap.OneForInteract(character.Position, GameObjType.TRAP);
                 new Thread
                 (
                     () =>
@@ -191,55 +198,73 @@ namespace Gaming
                             loopCondition: () => stateNum == character.StateNum && gameMap.Timer.IsGaming,
                             loopToDo: () =>
                             {
-                                CellXY nowPos = GameData.PosGridToCellXY(character.Position);
-                                character.ResetCharacterState(stateNum);
                                 switch (traptype)
                                 {
                                     case TrapType.CAGE:
-                                        gameMap.Add(new Cage(GameData.GetCellCenterPos(nowPos.x, nowPos.y)));
-                                        Cage? cage = (Cage?)gameMap.OneForInteract(character.Position, GameObjType.TRAP);
-                                        game.AddCageTrap(character.TeamID, GameData.GetCellCenterPos(nowPos.x, nowPos.y));
-                                        cage.SetCage(character);
-                                        cage.IsActivated.Set(true);
-                                        new Thread
-                                                (
-                                                    () =>
-                                                    {
-                                                        Thread.Sleep(GameData.CheckInterval);
-                                                        new FrameRateTaskExecutor<int>
-                                                        (
-                                                            loopCondition: () =>
-                                                                gameMap.Timer.IsGaming && cage != null,
-                                                            loopToDo: () =>
-                                                            {
-                                                                var characters = gameMap.CharacterInTheRangeNotTeamID(
-                                                                    cage.Position, GameData.TrapRange, cage.TeamID);
-                                                                if (characters == null || characters.Count == 0)
+                                        if (cage == null)
+                                        {
+                                            return false;
+                                        }
+                                        if (!cage.SetCage(character))
+                                        {
+                                            character.ResetCharacterState(stateNum);
+                                            return false;
+                                        }
+                                        if (cage.CageCost.IsMaxV() && !cage.IsActivated)
+                                        {
+                                            character.ResetCharacterState(stateNum);
+                                            game.AddCageTrap(character.TeamID, GameData.GetCellCenterPos(nowPos.x, nowPos.y));
+                                            cage.IsActivated.Set(true);
+                                            new Thread
+                                                    (
+                                                        () =>
+                                                        {
+                                                            Thread.Sleep(GameData.CheckInterval);
+                                                            new FrameRateTaskExecutor<int>
+                                                            (
+                                                                loopCondition: () =>
+                                                                    gameMap.Timer.IsGaming && cage != null,
+                                                                loopToDo: () =>
                                                                 {
+                                                                    var characters = gameMap.CharacterInTheRangeNotTeamID(
+                                                                        cage.Position, GameData.TrapRange, cage.TeamID);
+                                                                    if (characters == null || characters.Count == 0)
+                                                                    {
+                                                                        return true;
+                                                                    }
+                                                                    foreach (var character in characters)
+                                                                    {
+                                                                        characterManager.InCage(cage, character);
+                                                                    }
+                                                                    cage.IsActivated.Set(false);
+                                                                    game.RemoveCageTrap(cage.TeamID, cage.Position);
+                                                                    gameMap.Remove(cage);//实时捕捉，用后即毁
                                                                     return true;
-                                                                }
-                                                                foreach (var character in characters)
-                                                                {
-                                                                    characterManager.InCage(cage, character);
-                                                                }
-                                                                game.RemoveHoleTrap(cage.TeamID, cage.Position);
-                                                                gameMap.Remove(cage);//实时捕捉，用后即毁
-                                                                return true;
-                                                            },
-                                                            timeInterval: GameData.CheckInterval,
-                                                            finallyReturn: () => 0
-                                                        ).Start();
-                                                    }
-                                                )
-                                        { IsBackground = true }.Start();
+                                                                },
+                                                                timeInterval: GameData.CheckInterval,
+                                                                finallyReturn: () => 0
+                                                            ).Start();
+                                                        }
+                                                    )
+                                            { IsBackground = true }.Start();
+                                        }
                                         break;
                                     case TrapType.HOLE:
-                                        gameMap.Add(new HOLE(GameData.GetCellCenterPos(nowPos.x, nowPos.y)));
-                                        HOLE? hole = (HOLE?)gameMap.OneForInteract(character.Position, GameObjType.TRAP);
-                                        hole.SetHole(character);
-                                        game.AddHoleTrap(character.TeamID, GameData.GetCellCenterPos(nowPos.x, nowPos.y));
-                                        hole.IsActivated.Set(true);
-                                        new Thread
+                                        if (hole == null)
+                                        {
+                                            return false;
+                                        }
+                                        if (!hole.SetHole(character))
+                                        {
+                                            character.ResetCharacterState(stateNum);
+                                            return false;
+                                        }
+                                        if (hole.HoleCost.IsMaxV() && !hole.IsActivated)
+                                        {
+                                            character.ResetCharacterState(stateNum);
+                                            game.AddHoleTrap(character.TeamID, GameData.GetCellCenterPos(nowPos.x, nowPos.y));
+                                            hole.IsActivated.Set(true);
+                                            new Thread
                                                 (
                                                     () =>
                                                     {
@@ -260,6 +285,7 @@ namespace Gaming
                                                                 {
                                                                     characterManager.InHole(hole, character);
                                                                 }
+                                                                hole.IsActivated.Set(false);
                                                                 game.RemoveHoleTrap(hole.TeamID, hole.Position);
                                                                 gameMap.Remove(hole);//实时捕捉，用后即毁
                                                                 return true;
@@ -269,8 +295,10 @@ namespace Gaming
                                                         ).Start();
                                                     }
                                                 )
-                                        { IsBackground = true }.Start();
+                                            { IsBackground = true }.Start();
+                                        }
                                         break;
+                                    default: break;
                                 }
                                 return true;
                             },
