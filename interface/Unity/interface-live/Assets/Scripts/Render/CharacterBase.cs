@@ -13,8 +13,6 @@ public class CharacterBase : MonoBehaviour
     public MessageOfCharacter message => CoreParam.characters.GetValueOrDefault(ID, null);
     bool GetDeceased() => message.Hp <= 0 || message.CharacterActiveState == CharacterState.Deceased;
     public int maxHp => ParaDefine.Instance.GetData(characterType).maxHp;
-    private Transform hpBar;
-    private TextMeshPro hpText;
     private Slider globalHpBar;
     private TextMeshProUGUI globalHpText;
     private Animator animator;
@@ -26,8 +24,6 @@ public class CharacterBase : MonoBehaviour
     {
         float ratio = Mathf.Clamp01((float)message.Hp / maxHp);
         string text = $"{message.Hp} / {maxHp}";
-        hpBar.localScale = new Vector3(ratio, 1, 1);
-        hpText.text = text;
         if (globalHpBar != null)
         {
             globalHpBar.value = ratio;
@@ -39,9 +35,10 @@ public class CharacterBase : MonoBehaviour
     {
         animator = GetComponentInChildren<Animator>();
 
-        hpBar = transform.Find("HpBar").Find("HpBarFillWrapper");
-        hpText = transform.Find("HpBar").Find("HpBarText").GetComponent<TextMeshPro>();
-        hpBar.GetComponentInChildren<SpriteRenderer>().color = ParaDefine.Instance.teamColors[message.TeamId];
+        var hpBar = GetComponentInChildren<HpBar>();
+        hpBar.team = message.TeamId == 0 ? PlayerTeam.BuddhistsTeam : PlayerTeam.MonstersTeam;
+        hpBar.getHp = () => message.Hp;
+        hpBar.maxHp = maxHp;
         if (characterType == CharacterType.TangSeng)
         {
             globalHpBar = RenderManager.Instance.hpBarBud;

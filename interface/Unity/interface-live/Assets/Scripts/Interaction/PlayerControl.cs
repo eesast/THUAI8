@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,9 +20,10 @@ public class PlayerControl : SingletonMono<PlayerControl>
             {
                 if (selectedInt != null)
                 {
+                    var prevSelectedInt = selectedInt;
                     selectedInt.selected = false;
                     selectedInt = value;
-                    OnChangeSelect();
+                    OnChangeSelect(prevSelectedInt);
                 }
                 else
                 {
@@ -54,7 +56,7 @@ public class PlayerControl : SingletonMono<PlayerControl>
                 value.tobeSelected = true;
         }
     }
-    public List<InteractControl.InteractOption> enabledInteract;
+    [NonSerialized] public List<InteractControl.InteractOption> enabledInteract = new();
     public InteractControl.InteractOption selectedOption;
     public float longClickTime, doubleClickTime;
     private float longClickTimer, doubleClickTimer;
@@ -143,8 +145,10 @@ public class PlayerControl : SingletonMono<PlayerControl>
         }
         else
         {
+            if (enabledInteract == null)
+                enabledInteract = new List<InteractControl.InteractOption>();
             if (enabledInteract.Count > 0)
-                enabledInteract.Clear();
+                    enabledInteract.Clear();
         }
     }
     void Interact()
@@ -157,38 +161,48 @@ public class PlayerControl : SingletonMono<PlayerControl>
 
     void OnBeginSelect()
     {
-        if (selectedCharacter)
+        if (selectedCharacter != null)
         {
             InspectorCharacter.Instance.Toggle(true);
             InspectorCharacter.Instance.SetCharacter(CharacterManager.Instance.characterInfo[selectedCharacter.ID]);
         }
-        if (selectedTile)
+        if (selectedTile != null)
         {
-            // Inspector.Instance.Toggle(true);
-            // Inspector.Instance.SetTile(selectedTile);
+            InspectorTile.Instance.Toggle(true);
+            InspectorTile.Instance.SetTile(selectedTile);
         }
     }
-    void OnChangeSelect()
+    void OnChangeSelect(InteractBase prev)
     {
-        if (selectedCharacter)
+        if (selectedCharacter != null)
         {
+            if (prev is TileInteract)
+            {
+                InspectorTile.Instance.Toggle(false);
+                InspectorCharacter.Instance.Toggle(true);
+            }
             InspectorCharacter.Instance.SetCharacter(CharacterManager.Instance.characterInfo[selectedCharacter.ID]);
         }
-        if (selectedTile)
+        if (selectedTile != null)
         {
-            // Inspector.Instance.SetTile(selectedTile);
+            if (prev is CharacterInteract)
+            {
+                InspectorCharacter.Instance.Toggle(false);
+            }
+            InspectorTile.Instance.Toggle(true);
+            InspectorTile.Instance.SetTile(selectedTile);
         }
         
     }
     void OnEndSelect()
     {
-        if (selectedCharacter)
+        if (selectedCharacter != null)
         {
             InspectorCharacter.Instance.Toggle(false);
         }
-        if (selectedTile)
+        if (selectedTile != null)
         {
-            InspectorCharacter.Instance.Toggle(false);
+            InspectorTile.Instance.Toggle(false);
         }
     }
 

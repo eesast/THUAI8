@@ -49,7 +49,8 @@ public class InspectorCharacter : SingletonMono<InspectorCharacter>
             infoText.text =
                 $"玩家 ID: {info.playerId}      " +
                 $"队伍 ID: {info.teamId}\n" +
-                $"角色类型: {info.data.characterName}\n";
+                $"角色类型: {info.data.characterName}\n" +
+                $"位置: ({info.message.X}, {info.message.Y})\n";
             if (info.deceased)
             {
                 infoText.text += "角色已死亡";
@@ -78,18 +79,6 @@ public class InspectorCharacter : SingletonMono<InspectorCharacter>
 
     public void Toggle(bool isShow)
     {
-        if (isShow)
-        {
-            animator.SetTrigger("Appear");
-        }
-        else
-        {
-            animator.SetTrigger("Disappear");
-        }
-    }
-
-    public void Toggle()
-    {
-        animator.SetTrigger("Toggle");
+        animator.SetBool("Show", isShow);
     }
 }

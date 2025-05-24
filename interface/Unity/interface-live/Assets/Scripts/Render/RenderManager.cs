@@ -201,7 +201,9 @@ public class RenderManager : SingletonMono<RenderManager>
             {
                 if (!objectsG.ContainsKey(obj.Key))
                 {
-                    objectsG[obj.Key] = CreateObject(obj.Value, obj.Key);
+                    var gameObject = objectsG[obj.Key] = CreateObject(obj.Value);
+                    if (gameObject.TryGetComponent(out TileInteract tileInteract))
+                        tileInteract.pos = obj.Key;
                 }
                 else
                 {
@@ -225,26 +227,21 @@ public class RenderManager : SingletonMono<RenderManager>
         }
     }
 
-    GameObject CreateObject<MessageOfObject>(MessageOfObject obj, Tuple<int, int> pos)
+    GameObject CreateObject<MessageOfObject>(MessageOfObject obj)
     {
         var creater = ObjCreater.Instance;
         return obj switch
         {
             MessageOfBarracks barracks => creater.CreateObj(ConstructionType.Barracks,
-                Tool.GridToUxy(barracks.X, barracks.Y))
-                .TryInitializeTileInfo(TileInteract.TileType.Construction, pos),
+                Tool.GridToUxy(barracks.X, barracks.Y)),
             MessageOfFarm farm => creater.CreateObj(ConstructionType.Farm,
-                Tool.GridToUxy(farm.X, farm.Y))
-                .TryInitializeTileInfo(TileInteract.TileType.Construction, pos),
+                Tool.GridToUxy(farm.X, farm.Y)),
             MessageOfTrap trap => creater.CreateObj(trap.TrapType,
-                Tool.GridToUxy(trap.X, trap.Y))
-                .TryInitializeTileInfo(TileInteract.TileType.Trap, pos),
+                Tool.GridToUxy(trap.X, trap.Y)),
             MessageOfEconomyResource resourceE => creater.CreateObj(resourceE.EconomyResourceType,
-                Tool.GridToUxy(resourceE.X, resourceE.Y))
-                .TryInitializeTileInfo(TileInteract.TileType.EconomyResource, pos),
+                Tool.GridToUxy(resourceE.X, resourceE.Y)),
             MessageOfAdditionResource resourceA => creater.CreateObj(resourceA.AdditionResourceType,
-                Tool.GridToUxy(resourceA.X, resourceA.Y))
-                .TryInitializeTileInfo(TileInteract.TileType.AdditionResource, pos),
+                Tool.GridToUxy(resourceA.X, resourceA.Y)),
             _ => null,
         };
     }
@@ -275,17 +272,4 @@ public class RenderManager : SingletonMono<RenderManager>
         economyMon.text = "经济：" + messageToClient.AllMessage.MonstersTeamEconomy;
     }
 
-}
-
-static class GameObjectExtensions
-{
-    public static GameObject TryInitializeTileInfo(this GameObject gameObject, TileInteract.TileType tileType, Tuple<int, int> pos)
-    {
-        if (gameObject.TryGetComponent<TileInteract>(out var tileInteract))
-        {
-            tileInteract.tileType = tileType;
-            tileInteract.pos = pos;
-        }
-        return gameObject;
-    }
 }

@@ -5,4 +5,5 @@ public class AdditionResourceData : ScriptableObject
 {
     public AdditionResourceType additionResourceType;
     public int maxHp;
+    public new string name;
 }
