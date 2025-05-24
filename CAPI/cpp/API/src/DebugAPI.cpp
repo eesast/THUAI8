@@ -153,7 +153,7 @@ std::future<bool> CharacterDebugAPI::Common_Attack(int64_t attackedPlayerID)
     logger->info("characterID={}, teamID={}, Common_Attack: target={}, called@{}ms", this->GetSelfInfo()->playerID, this->GetSelfInfo()->teamID, attackedPlayerID, Time::TimeSinceStart(startPoint));
     return std::async(std::launch::async, [=]()
                       {
-        auto result = logic.Common_Attack(this->GetSelfInfo()->playerID,this->GetSelfInfo()->teamID,1-this->GetSelfInfo()->teamID, attackedPlayerID); // 改为传递玩家ID
+        auto result = logic.Common_Attack(this->GetSelfInfo()->teamID,this->GetSelfInfo()->playerID,1-this->GetSelfInfo()->teamID, attackedPlayerID); // 改为传递玩家ID
         if (!result)
             logger->warn("Common_Attack failed@{}ms", Time::TimeSinceStart(startPoint));
         return result; });
