@@ -15,6 +15,7 @@ public class A_Resource
     public int refreshCount = 0;
     protected readonly object actionLock = new();
     public object ActionLock => actionLock;
+    public long LastAttackTime = 0;
     public IAROccupation Occupation { get; }
     private AdditionResourceState State = AdditionResourceState.NULL_ADDITION_RESOURCE_STATE;
     public AdditionResourceState ARstate
