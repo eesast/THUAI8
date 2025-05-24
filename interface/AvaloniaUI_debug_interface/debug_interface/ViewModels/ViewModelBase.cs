@@ -80,6 +80,7 @@ namespace debug_interface.ViewModels
                 teamID = Convert.ToInt64(d.Commands.TeamID);
                 CharacterIdTypeID = Convert.ToInt64(d.Commands.CharacterType);
                 string? playbackFile = d.Commands.PlaybackFile;
+                //string? playbackFile = "D:\\Download\\playback.thuaipb";
                 double playbackSpeed = d.Commands.PlaybackSpeed;
 
                 string logDir = Path.Combine(d.InstallPath, "Logs");
@@ -225,7 +226,7 @@ namespace debug_interface.ViewModels
                                 break;
                             case MessageOfObj.MessageOfObjOneofCase.MapMessage:
                                 var mapMsg = obj.MapMessage;
-                                if (this is MainWindowViewModel vm && vm.MapVM != null)
+                                if (this is MainWindowViewModel vm && vm.MapVM!= null)
                                 {
                                     vm.currentMapMessage = mapMsg;
                                     // 地图更新直接在回放线程安排到UI线程
@@ -392,7 +393,6 @@ namespace debug_interface.ViewModels
                                     listOfAdditionResources.Add(obj.AdditionResourceMessage);
                                     break;
                                 case MessageOfObj.MessageOfObjOneofCase.MapMessage:
-                                    // *** 直接更新地图 ***
                                     var mapMsg = obj.MapMessage;
 
                                     if (this is MainWindowViewModel vm && vm.MapVM != null)
