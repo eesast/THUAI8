@@ -116,7 +116,7 @@ private:
     // ICharacterAPI使用的部分
     bool Move(int64_t moveTimeInMilliseconds, double angle);
     bool Skill_Attack(int64_t playerID, int64_t teamID, double angleInRadian);
-    bool Common_Attack(int64_t playerID, int64_t teamID, int64_t ATKplayerID, int64_t ATKteamID);
+    bool Common_Attack(int64_t teamID, int64_t playerID, int64_t attacked_teamID, int64_t attacked_playerID);
     bool AttackConstruction(int64_t playerID, int64_t teamID);
     bool AttackAdditionResource(int64_t playerID, int64_t teamID);
     bool Recover(int64_t recover);
