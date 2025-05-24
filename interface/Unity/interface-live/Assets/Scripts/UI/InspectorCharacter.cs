@@ -49,8 +49,7 @@ public class InspectorCharacter : SingletonMono<InspectorCharacter>
             infoText.text =
                 $"玩家 ID: {info.playerId}      " +
                 $"队伍 ID: {info.teamId}\n" +
-                $"角色类型: {info.data.characterName}\n" +
-                $"位置: ({info.message.X}, {info.message.Y})\n";
+                $"角色类型: {info.data.characterName}\n";
             if (info.deceased)
             {
                 infoText.text += "角色已死亡";
@@ -58,6 +57,7 @@ public class InspectorCharacter : SingletonMono<InspectorCharacter>
             else
             {
                 infoText.text +=
+                    $"位置: ({info.message.X}, {info.message.Y})\n" +
                     $"HP: {info.message.Hp}/{info.data.maxHp}\n" +
                     $"主动状态: {activeStateTranslation[info.message.CharacterActiveState]}\n" +
                     $"被动状态: {passiveStateTranslation[info.message.CharacterPassiveState]}\n";

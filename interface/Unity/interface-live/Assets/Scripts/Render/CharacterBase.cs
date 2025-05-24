@@ -102,4 +102,13 @@ public class CharacterBase : MonoBehaviour
             visual.localScale = Vector3.Scale(visualScaleInitial, new Vector3(-1, 1, 1));
         }
     }
+
+    void OnDestroy()
+    {
+        if (globalHpBar != null)
+        {
+            globalHpBar.value = 0;
+            globalHpText.text = "HP: 0 / " + maxHp;
+        }
+    }
 }
