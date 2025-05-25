@@ -16,8 +16,8 @@ public class RenderManager : SingletonMono<RenderManager>
     public TextMeshProUGUI scoreMon, economyMon, hpMon;
     public Slider hpBarBud, hpBarMon;
     public TextMeshProUGUI gameTime, fps;
-    public delegate void OnRender();
-    public OnRender onRenderEvent;
+    public delegate void RenderManagerCallback();
+    public RenderManagerCallback onRender, onFirstFrame;
 
     void Start()
     {
@@ -48,6 +48,7 @@ public class RenderManager : SingletonMono<RenderManager>
         {
             DealFrame(CoreParam.firstFrame);
             ShowFrame();
+            // onFirstFrame();
         }
         else
         {
@@ -56,6 +57,7 @@ public class RenderManager : SingletonMono<RenderManager>
             {
                 DealFrame(CoreParam.currentFrame);
                 ShowFrame();
+                // onRender();
             }
         }
         while (!callTimeOver)
@@ -136,7 +138,6 @@ public class RenderManager : SingletonMono<RenderManager>
             ShowAllMessage(CoreParam.currentFrame);
             // global hp bar logic in CharacterBase.cs
         }
-        onRenderEvent();
     }
     void ShowMap(MessageOfMap map)
     {

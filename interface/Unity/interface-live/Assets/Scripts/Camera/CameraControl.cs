@@ -22,7 +22,7 @@ public class CameraControl : MonoBehaviour
         camera = GetComponent<Camera>();
         currentScale = cameraScaleCurve.Evaluate(currentScaleTime) * basicCameraScale;
         camera.orthographicSize = currentScale;
-        RenderManager.Instance.onRenderEvent += () =>
+        RenderManager.Instance.onRender += () =>
         {
             if (rendererUpdateFlag)
             {

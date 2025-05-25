@@ -2,11 +2,14 @@
 using System;
 using Protobuf;
 using UnityEngine;
-#if !UNITY_WEBGL
 [RequireComponent(typeof(CharacterBase))]
 public class CharacterInteract : InteractBase
 {
-    public AvailableService.AvailableServiceClient client;
+#if !UNITY_WEBGL || UNITY_EDITOR
+    public AvailableService.AvailableServiceClient client => Players.Instance.GetClient(ID);
+#else
+    public WebGLClient client => Players.Instance.GetClient(ID);
+#endif
     [NonSerialized] public CharacterBase characterBase;
     public long ID => characterBase.ID;
     public void Start()
@@ -56,18 +59,3 @@ public class CharacterInteract : InteractBase
     }
 
 }
-#else
-[RequireComponent(typeof(CharacterBase))]
-public class CharacterInteract : InteractBase
-{
-    [NonSerialized] public CharacterBase characterBase;
-    public long ID => characterBase.ID;
-    public void Start()
-    {
-        characterBase = GetComponent<CharacterBase>();
-    }
-    public void Attack(CharacterBase target) { }
-    public void CastSkill(Vector2 position) { }
-    public void Move(Vector2 position) { }
-}
-#endif

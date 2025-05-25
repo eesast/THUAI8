@@ -1,34 +1,38 @@
 using UnityEngine;
 using System;
 using Protobuf;
-#if !UNITY_WEBGL
+using System.Threading.Tasks;
+using System.Collections.Generic;
+
+#if !UNITY_WEBGL || UNITY_EDITOR
 using Grpc.Core;
+using Client = Protobuf.AvailableService.AvailableServiceClient;
+#else
+#pragma warning disable CS1998
+using Client = WebGLClient;
+#endif
 
-class Player : MonoBehaviour
+class Players : SingletonMono<Players>
 {
-    public static Player buddhistsMain, monstersMain;
-    public AvailableService.AvailableServiceClient client;
-    public CharacterType characterType;
-    public int characterId = 0, teamId = 0;
+    public CharacterType[] buddhists, monsters;
+    private CharacterInteract[] characterInteracts = new CharacterInteract[12];
     private bool gameStarted;
-    private long ID;
-    private CharacterControl characterInteract;
-
-    public async void Start()
+    private Client[] _clients;
+    public Client GetClient(long ID)
     {
-        ID = teamId * 6 + characterId - 1;
-        if (characterId == 0)
-        {
-            if (teamId == 0)
-                buddhistsMain ??= this;
-            else if (teamId == 1)
-                monstersMain ??= this;
-        }
+        if (0 <= ID && ID < 6) return _clients[ID + 1]; // Buddhists
+        if (6 <= ID && ID < 12) return _clients[ID + 2]; // Monsters
+        Debug.LogError($"Invalid client ID: {ID}");
+        return null;
+    }
 
+#if !UNITY_WEBGL || UNITY_EDITOR
+
+    public async Task<Client> CreateClient(int teamId, int characterId, CharacterType characterType)
+    {
         Channel channel = new("127.0.0.1:8888", ChannelCredentials.Insecure);
-        // Wait for 30s.
         await channel.ConnectAsync(DateTime.UtcNow.AddSeconds(30));
-        client = new AvailableService.AvailableServiceClient(channel);
+        var client = new Client(channel);
         CharacterMsg playerInfo = new()
         {
             CharacterId = characterId,
@@ -41,33 +45,34 @@ class Player : MonoBehaviour
         while (await call.ResponseStream.MoveNext())
         {
             var currentGameInfo = call.ResponseStream.Current;
-            print(currentGameInfo);
             if (currentGameInfo.GameState == GameState.GameStart) break;
         }
-        gameStarted = true;
+        return client;
     }
+#else
+    public async Task<Client> CreateClient(int teamId, int characterId, CharacterType characterType)
+        => new(teamId, characterId, characterType);
+#endif
 
-    void Update()
+    public async void Start()
     {
-        if (characterId != 0 && gameStarted && characterInteract == null)
+        Task<Client>[] clientTasks = new Task<Client>[14];
+        for (int teamId = 0; teamId < 2; teamId++)
         {
-            if (CoreParam.charactersG.TryGetValue(ID, out GameObject characterG))
+            long baseId = teamId * 7;
             {
-                characterInteract = characterG.GetComponent<CharacterControl>();
-                characterInteract.client = client;
+                // 大本营和唐僧/九灵
+                var type = teamId == 0 ? CharacterType.TangSeng : CharacterType.JiuLing;
+                clientTasks[baseId] = CreateClient(teamId, 0, type);
+                clientTasks[baseId + 1] = CreateClient(teamId, 1, type);
+            }
+            for (int characterId = 2; characterId <= 6; characterId++)
+            {
+                clientTasks[baseId + characterId] = CreateClient(
+                    teamId, characterId, (teamId == 0 ? buddhists : monsters)[characterId - 2]);
             }
         }
+        _clients = await Task.WhenAll(clientTasks);
     }
+
 }
-#else
-// Not Implemented
-class Player : MonoBehaviour
-{
-    public CharacterType characterType;
-    public int characterId = 0, teamId = 0;
-    public void Start()
-    {
-        throw new NotImplementedException("Spectator/LocalPlay mode is not implemented in this build.");
-    }
-}
-#endif

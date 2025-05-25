@@ -547,117 +547,6 @@ MonoBehaviour:
   selectedOption: 0
   longClickTime: 0
   doubleClickTime: 0.8
---- !u!1 &296778529
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 296778535}
-  - component: {fileID: 296778534}
-  - component: {fileID: 296778533}
-  - component: {fileID: 296778532}
-  - component: {fileID: 296778531}
-  - component: {fileID: 296778530}
-  m_Layer: 0
-  m_Name: PlayersMonsters
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &296778530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 296778529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterType: 12
-  characterId: 6
-  teamId: 1
---- !u!114 &296778531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 296778529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterType: 11
-  characterId: 5
-  teamId: 1
---- !u!114 &296778532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 296778529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterType: 10
-  characterId: 4
-  teamId: 1
---- !u!114 &296778533
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 296778529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterType: 9
-  characterId: 3
-  teamId: 1
---- !u!114 &296778534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 296778529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterType: 8
-  characterId: 2
-  teamId: 1
---- !u!4 &296778535
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 296778529}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 319495802}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &319495800
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,9 +558,6 @@ GameObject:
   - component: {fileID: 319495802}
   - component: {fileID: 319495807}
   - component: {fileID: 319495806}
-  - component: {fileID: 319495805}
-  - component: {fileID: 319495809}
-  - component: {fileID: 319495808}
   m_Layer: 0
   m_Name: LocalPlayManager
   m_TagString: Untagged
@@ -691,26 +577,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1273624156}
-  - {fileID: 296778535}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &319495805
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 319495800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterType: 1
-  characterId: 1
-  teamId: 0
 --- !u!114 &319495806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -723,9 +592,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterType: 1
-  characterId: 0
-  teamId: 0
+  buddhists: 0200000003000000040000000500000006000000
+  monsters: 08000000090000000a0000000b0000000c000000
 --- !u!114 &319495807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -738,36 +606,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1273a75eb69b74f9fa445239263213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &319495808
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 319495800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterType: 7
-  characterId: 1
-  teamId: 1
---- !u!114 &319495809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 319495800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterType: 7
-  characterId: 0
-  teamId: 1
 --- !u!1 &349110793
 GameObject:
   m_ObjectHideFlags: 0
@@ -4055,117 +3893,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1269033155}
   m_CullTransparentMesh: 1
---- !u!1 &1273624150
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1273624156}
-  - component: {fileID: 1273624155}
-  - component: {fileID: 1273624154}
-  - component: {fileID: 1273624153}
-  - component: {fileID: 1273624152}
-  - component: {fileID: 1273624151}
-  m_Layer: 0
-  m_Name: PlayersBuddhusts
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1273624151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1273624150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterType: 6
-  characterId: 6
-  teamId: 0
---- !u!114 &1273624152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1273624150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterType: 5
-  characterId: 5
-  teamId: 0
---- !u!114 &1273624153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1273624150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterType: 4
-  characterId: 4
-  teamId: 0
---- !u!114 &1273624154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1273624150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterType: 3
-  characterId: 3
-  teamId: 0
---- !u!114 &1273624155
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1273624150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c8fbb9242f856544b4d25d467e26f38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterType: 2
-  characterId: 2
-  teamId: 0
---- !u!4 &1273624156
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1273624150}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 319495802}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1421838950
 GameObject:
   m_ObjectHideFlags: 0

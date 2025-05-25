@@ -1,34 +1,84 @@
-[2025/05/17 Saturday]
---port 8888 --teamCount 2 
+[2025/05/26 Monday]
+--port 8888 --CharacterNum 6 
 Server begins to run: 8888
-[20:33:49.064][GameServer] Null TOKEN Environment!
-[20:33:49.121][GameServer] Server begins to listen!
-[20:34:11.642][GameServer] TRY Add Player: Player 1 from Team 1
-[20:34:11.642][GameServer] TRY Add Spectator: Player 5000
-[20:34:11.642][GameServer] TRY Add Player: Player 0 from Team 0
-[20:34:11.642][GameServer] AddPlayer: Check Correct
-[20:34:11.642][GameServer] TRY Add Player: Player 0 from Team 1
-[20:34:11.642][GameServer] TRY Add Player: Player 1 from Team 0
-[20:34:11.642][GameServer] AddPlayer: Check Correct
-[20:34:11.642][GameServer] AddPlayer: Check Correct
-[20:34:11.642][GameServer] AddPlayer: Check Correct
-[20:34:11.642][GameServer] A new spectator comes to watch this game
-[20:34:11.644][GameServer] Player 1 from Team 1 joins
-[20:34:11.644][GameServer] PlayerCountNow: 1
-[20:34:11.644][GameServer] PlayerNum: 4
-[20:34:11.644][GameServer] Player 0 from Team 1 joins
-[20:34:11.644][GameServer] PlayerCountNow: 2
-[20:34:11.644][GameServer] PlayerNum: 4
-[20:34:11.644][GameServer] Player 1 from Team 0 joins
-[20:34:11.644][GameServer] PlayerCountNow: 3
-[20:34:11.644][GameServer] PlayerTotalNum: 4
-[20:34:11.645][GameServer] Player 0 from Team 0 joins
-[20:34:11.645][GameServer] PlayerCountNow: 4
-[20:34:11.645][GameServer] PlayerTotalNum: 4
-[20:34:11.645][GameServer] Game Start
-[20:34:11.645][GameServer] Game starts!
-[20:34:11.645][GameServer] Successfully Created StartLockFile!
-[20:34:11.646][Game] Try to activate 0 TangSeng at birthpoint 0
-[20:34:11.648][Game] Successfully activated 0 TangSeng at (2500, 47500)
-[20:34:11.648][Game] Try to activate 1 JiuLing at birthpoint 0
-[20:34:11.648][Game] Successfully activated 1 JiuLing at (45500, 2500)
+[02:16:01.929][GameServer] Null TOKEN Environment!
+[02:16:01.994][GameServer] Server begins to listen!
+[02:16:40.605][GameServer] TRY Add Player: Player 5 from Team 1
+[02:16:40.605][GameServer] TRY Add Player: Player 0 from Team 1
+[02:16:40.605][GameServer] TRY Add Spectator: Player 5000
+[02:16:40.605][GameServer] TRY Add Player: Player 4 from Team 0
+[02:16:40.605][GameServer] TRY Add Player: Player 4 from Team 1
+[02:16:40.605][GameServer] TRY Add Player: Player 2 from Team 0
+[02:16:40.605][GameServer] AddPlayer: Check Correct
+[02:16:40.605][GameServer] TRY Add Player: Player 1 from Team 1
+[02:16:40.605][GameServer] TRY Add Player: Player 2 from Team 1
+[02:16:40.605][GameServer] AddPlayer: Check Correct
+[02:16:40.605][GameServer] TRY Add Player: Player 6 from Team 0
+[02:16:40.605][GameServer] TRY Add Player: Player 1 from Team 0
+[02:16:40.605][GameServer] TRY Add Player: Player 5 from Team 0
+[02:16:40.605][GameServer] TRY Add Player: Player 3 from Team 0
+[02:16:40.605][GameServer] AddPlayer: Check Correct
+[02:16:40.605][GameServer] AddPlayer: Check Correct
+[02:16:40.605][GameServer] AddPlayer: Check Correct
+[02:16:40.605][GameServer] AddPlayer: Check Correct
+[02:16:40.605][GameServer] AddPlayer: Check Correct
+[02:16:40.605][GameServer] AddPlayer: Check Correct
+[02:16:40.605][GameServer] TRY Add Player: Player 6 from Team 1
+[02:16:40.605][GameServer] TRY Add Player: Player 0 from Team 0
+[02:16:40.605][GameServer] AddPlayer: Check Correct
+[02:16:40.605][GameServer] AddPlayer: Check Correct
+[02:16:40.605][GameServer] AddPlayer: Check Correct
+[02:16:40.605][GameServer] TRY Add Player: Player 3 from Team 1
+[02:16:40.605][GameServer] AddPlayer: Check Correct
+[02:16:40.605][GameServer] AddPlayer: Check Correct
+[02:16:40.605][GameServer] A new spectator comes to watch this game
+[02:16:40.605][GameServer] AddPlayer: Check Correct
+[02:16:40.607][GameServer] Player 5 from Team 1 joins
+[02:16:40.608][GameServer] PlayerCountNow: 1
+[02:16:40.608][GameServer] PlayerNum: 14
+[02:16:40.608][GameServer] Player 2 from Team 1 joins
+[02:16:40.608][GameServer] PlayerCountNow: 2
+[02:16:40.608][GameServer] PlayerNum: 14
+[02:16:40.608][GameServer] Player 3 from Team 0 joins
+[02:16:40.608][GameServer] PlayerCountNow: 3
+[02:16:40.608][GameServer] PlayerTotalNum: 14
+[02:16:40.609][GameServer] Player 4 from Team 1 joins
+[02:16:40.609][GameServer] PlayerCountNow: 4
+[02:16:40.609][GameServer] PlayerNum: 14
+[02:16:40.609][GameServer] Player 0 from Team 1 joins
+[02:16:40.609][GameServer] PlayerCountNow: 5
+[02:16:40.609][GameServer] PlayerNum: 14
+[02:16:40.609][GameServer] Player 4 from Team 0 joins
+[02:16:40.609][GameServer] PlayerCountNow: 6
+[02:16:40.609][GameServer] PlayerTotalNum: 14
+[02:16:40.609][GameServer] Player 2 from Team 0 joins
+[02:16:40.609][GameServer] PlayerCountNow: 7
+[02:16:40.609][GameServer] PlayerTotalNum: 14
+[02:16:40.610][GameServer] Player 1 from Team 1 joins
+[02:16:40.610][GameServer] PlayerCountNow: 8
+[02:16:40.610][GameServer] PlayerNum: 14
+[02:16:40.610][GameServer] Player 0 from Team 0 joins
+[02:16:40.610][GameServer] PlayerCountNow: 9
+[02:16:40.610][GameServer] PlayerTotalNum: 14
+[02:16:40.610][GameServer] Player 1 from Team 0 joins
+[02:16:40.610][GameServer] PlayerCountNow: 10
+[02:16:40.610][GameServer] PlayerTotalNum: 14
+[02:16:40.611][GameServer] Player 5 from Team 0 joins
+[02:16:40.611][GameServer] PlayerCountNow: 11
+[02:16:40.611][GameServer] PlayerTotalNum: 14
+[02:16:40.612][GameServer] Player 6 from Team 1 joins
+[02:16:40.612][GameServer] PlayerCountNow: 12
+[02:16:40.612][GameServer] PlayerNum: 14
+[02:16:40.612][GameServer] Player 6 from Team 0 joins
+[02:16:40.612][GameServer] PlayerCountNow: 13
+[02:16:40.612][GameServer] PlayerTotalNum: 14
+[02:16:40.612][GameServer] Player 3 from Team 1 joins
+[02:16:40.612][GameServer] PlayerCountNow: 14
+[02:16:40.612][GameServer] PlayerNum: 14
+[02:16:40.612][GameServer] Game Start
+[02:16:40.613][GameServer] Game starts!
+[02:16:40.613][GameServer] Successfully Created StartLockFile!
+[02:16:40.615][Game] Try to activate 0 JiuLing at birthpoint 0
+[02:16:40.615][Game] Fail to activate 0 JiuLing, no character available
+[02:16:40.615][Game] Try to activate 1 TangSeng at birthpoint 0
+[02:16:40.615][Game] Fail to activate 1 TangSeng, no character available
