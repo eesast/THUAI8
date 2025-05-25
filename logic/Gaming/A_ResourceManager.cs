@@ -1,8 +1,9 @@
 ﻿using GameClass.GameObj;
+using GameClass.GameObj.Areas;
+using GameClass.GameObj.Equipments;
 using GameClass.GameObj.Map;
 using Preparation.Utility;
 using Preparation.Utility.Value;
-using GameClass.GameObj.Areas;
 
 
 namespace Gaming
@@ -15,6 +16,7 @@ namespace Gaming
             private readonly Game game = game;
             private readonly Map map = gameMap;
             private readonly CharacterManager characterManager = characterManager;
+            private readonly Random random = new();
             public static A_Resource? AddAResource(A_ResourceType type, XY pos)
             {
                 A_Resource NewAResource = new(GameData.AResourceRadius, type, pos);
@@ -44,7 +46,7 @@ namespace Gaming
                     {
                         case A_ResourceType.CRAZY_MAN1:
                             {
-                                score = 4000;
+                                score = 8000;
                                 foreach (var teamcharacter in characters)
                                 {
                                     if (characterManager.ImproveATK(teamcharacter, 10))
@@ -57,7 +59,7 @@ namespace Gaming
                             break;
                         case A_ResourceType.CRAZY_MAN2:
                             {
-                                score = 5000;
+                                score = 10000;
                                 foreach (var teamcharacter in characters)
                                 {
                                     if (characterManager.ImproveATK(teamcharacter, 15))
@@ -70,7 +72,7 @@ namespace Gaming
                             break;
                         case A_ResourceType.CRAZY_MAN3:
                             {
-                                score = 6000;
+                                score = 12000;
                                 foreach (var teamcharacter in characters)
                                 {
                                     if (characterManager.ImproveATK(teamcharacter, 20))
@@ -83,7 +85,7 @@ namespace Gaming
                             break;
                         case A_ResourceType.LIFE_POOL1:
                             {
-                                score = 2000;
+                                score = 4000;
                                 foreach (var teamcharacter in characters)
                                 {
                                     characterManager.Recover(teamcharacter, 50);
@@ -92,7 +94,7 @@ namespace Gaming
                             break;
                         case A_ResourceType.LIFE_POOL2:
                             {
-                                score = 3000;
+                                score = 6000;
                                 foreach (var teamcharacter in characters)
                                 {
                                     characterManager.Recover(teamcharacter, 100);
@@ -101,7 +103,7 @@ namespace Gaming
                             break;
                         case A_ResourceType.LIFE_POOL3:
                             {
-                                score = 4000;
+                                score = 8000;
                                 foreach (var teamcharacter in characters)
                                 {
                                     characterManager.Recover(teamcharacter, 150);
@@ -110,7 +112,7 @@ namespace Gaming
                             break;
                         case A_ResourceType.QUICK_STEP:
                             {
-                                score = 3000;
+                                score = 6000;
                                 foreach (var teamcharacter in characters)
                                 {
                                     if (characterManager.ImproveSpeed(teamcharacter, 500))
@@ -123,7 +125,7 @@ namespace Gaming
                             break;
                         case A_ResourceType.WIDE_VIEW:
                             {
-                                score = 3000;
+                                score = 6000;
                                 foreach (var teamcharacter in characters)
                                 {
                                     teamcharacter.CanSeeAll = true;
@@ -135,7 +137,6 @@ namespace Gaming
                     var team = game.TeamList[(int)character.TeamID.Get()];
                     team.MoneyPool.AddScore(score);
                     AResource.SetARState(AdditionResourceState.BEATEN);
-                    Remove(AResource);
                     return true;
                 }
                 AResource.SetARState(AdditionResourceState.BEING_BEATEN);
@@ -194,36 +195,51 @@ namespace Gaming
             public void LevelUpAR(A_Resource AResource)
             {
                 int nowtime = gameMap.Timer.NowTime();
-                if (nowtime >= GameData.SevenMinutes)
+                if (nowtime >= GameData.SevenMinutes && AResource.refreshCount == 1)
                 {
                     if (AResource.AResourceType == A_ResourceType.CRAZY_MAN2)
                     {
-                        A_Resource newAR = AddAResource(A_ResourceType.CRAZY_MAN3, AResource.Position);
-                        activateAR(newAR);
-                        Remove(AResource);
+                        AResource = new A_Resource(GameData.AResourceRadius, A_ResourceType.CRAZY_MAN3, AResource.Position);
                     }
-                    if (AResource.AResourceType == A_ResourceType.LIFE_POOL2)
+                    else if (AResource.AResourceType == A_ResourceType.LIFE_POOL2)
                     {
-                        A_Resource newAR = AddAResource(A_ResourceType.LIFE_POOL3, AResource.Position);
-                        activateAR(newAR);
-                        Remove(AResource);
+                        AResource = new A_Resource(GameData.AResourceRadius, A_ResourceType.LIFE_POOL3, AResource.Position);
                     }
+                    else
+                    {
+                        AResource = new A_Resource(GameData.AResourceRadius, AResource.AResourceType, AResource.Position);
+                    }
+                    AResource.refreshCount = 2;
                 }
-                else if (nowtime >= GameData.ThreeMinutes)
+                else if (nowtime >= GameData.ThreeMinutes && AResource.refreshCount == 0)
                 {
                     if (AResource.AResourceType == A_ResourceType.CRAZY_MAN1)
                     {
-                        A_Resource newAR = AddAResource(A_ResourceType.CRAZY_MAN2, AResource.Position);
-                        activateAR(newAR);
-                        Remove(AResource);
+                        AResource = new A_Resource(GameData.AResourceRadius, A_ResourceType.CRAZY_MAN2, AResource.Position);
                     }
-                    if (AResource.AResourceType == A_ResourceType.LIFE_POOL1)
+                    else if (AResource.AResourceType == A_ResourceType.LIFE_POOL1)
                     {
-                        A_Resource newAR = AddAResource(A_ResourceType.LIFE_POOL2, AResource.Position);
-                        activateAR(newAR);
-                        Remove(AResource);
+                        AResource = new A_Resource(GameData.AResourceRadius, A_ResourceType.LIFE_POOL2, AResource.Position);
                     }
+                    else
+                    {
+                        AResource = new A_Resource(GameData.AResourceRadius, AResource.AResourceType, AResource.Position);
+                    }
+                    AResource.refreshCount = 1;
                 }
+            }
+            public void autoAttack(A_Resource aresource)
+            {
+                var characters = gameMap.AllCharacterInTheRange(aresource.Position, GameData.AdditionResourceAttackRange);
+                long nowtime = Environment.TickCount64;
+                if (characters == null || characters.Count == 0)
+                    return;
+                if (nowtime - aresource.LastAttackTime < 1000)
+                    return;
+                aresource.LastAttackTime = nowtime;
+                var character = characters[random.Next(characters.Count)];
+                characterManager.BeAttacked(character, aresource.AttackPower);
+                return;
             }
         }
     }

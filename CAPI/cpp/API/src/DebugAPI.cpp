@@ -142,7 +142,7 @@ std::future<bool> CharacterDebugAPI::Skill_Attack(double angle)
     logger->info("Skill_Attack: player={}, teamID={}, called@{}ms", this->GetSelfInfo()->playerID, this->GetSelfInfo()->teamID, Time::TimeSinceStart(startPoint));
     return std::async(std::launch::async, [=]()
                       {
-        auto result = logic.Skill_Attack(this->GetSelfInfo()->playerID,this->GetSelfInfo()->teamID,angle); // 改为传递玩家ID
+        auto result = logic.Skill_Attack(this->GetSelfInfo()->teamID,this->GetSelfInfo()->playerID,angle); // 改为传递玩家ID
         if (!result)
             logger->warn("Skill_Attack failed@{}ms", Time::TimeSinceStart(startPoint));
         return result; });
@@ -286,6 +286,15 @@ std::optional<THUAI8::ConstructionState> CharacterDebugAPI::GetConstructionState
     logger->info("GetConstructionState: teamID = {},  hp = {}, type = {}, cellX = {}, cellY = {}, called at {}ms", result->team_id, result->hp, THUAI8::constructionTypeDict.at(result->constructionType), cellX, cellY, Time::TimeSinceStart(startPoint));
     if (!result)
         logger->warn("GetConstructionState: failed at {}ms", Time::TimeSinceStart(startPoint));
+    return result;
+}
+
+std::optional<THUAI8::Trap> CharacterDebugAPI::GetTrapState(int32_t cellX, int32_t cellY) const
+{
+    auto result = logic.GetTrapState(cellX, cellY);
+    logger->info("GetTrapState: teamID = {},  valid or not = {}, type = {}, cellX = {}, cellY = {}, called at {}ms", result->team_id, result->trap_valid, THUAI8::trapTypeDict.at(result->trapType), cellX, cellY, Time::TimeSinceStart(startPoint));
+    if (!result)
+        logger->warn("GetTrapState: failed at {}ms", Time::TimeSinceStart(startPoint));
     return result;
 }
 
@@ -551,6 +560,16 @@ std::optional<THUAI8::ConstructionState> TeamDebugAPI::GetConstructionState(int3
     logger->info("GetConstructionState: teamID = {},  hp = {}, type = {}, cellX = {}, cellY = {}, called at {}ms", result->team_id, result->hp, THUAI8::constructionTypeDict.at(result->constructionType), cellX, cellY, Time::TimeSinceStart(startPoint));
     if (!result)
         logger->warn("GetConstructionState: failed at {}ms", Time::TimeSinceStart(startPoint));
+    return result;
+}
+
+
+std::optional<THUAI8::Trap> TeamDebugAPI::GetTrapState(int32_t cellX, int32_t cellY) const
+{
+    auto result = logic.GetTrapState(cellX, cellY);
+    logger->info("GetTrapState: teamID = {},  valid or not = {}, type = {}, cellX = {}, cellY = {}, called at {}ms", result->team_id, result->trap_valid, THUAI8::trapTypeDict.at(result->trapType), cellX, cellY, Time::TimeSinceStart(startPoint));
+    if (!result)
+        logger->warn("GetTrapState: failed at {}ms", Time::TimeSinceStart(startPoint));
     return result;
 }
 

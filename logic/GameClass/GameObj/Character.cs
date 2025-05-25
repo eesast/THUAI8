@@ -7,6 +7,7 @@ using Preparation.Utility.Value.SafeValue.LockedValue;
 using GameClass.GameObj.Areas;
 using GameClass.GameObj.Equipments;
 using System.Timers;
+using Microsoft.Extensions.Logging;
 
 namespace GameClass.GameObj;
 public class Character : Movable, ICharacter
@@ -207,14 +208,14 @@ public class Character : Movable, ICharacter
         {
             if (state != stateNum)
             {
-                CharacterLogging.logger.ConsoleLogDebug(
+                LogicLogging.logger.LogDebug(
                     LoggingFunctional.CharacterLogInfo(this)
                     + $" ResetCharacterState failed, input state {state}, StateNum {stateNum}");
                 return false;
             }
             characterState1 = value;
             ++stateNum;
-            CharacterLogging.logger.ConsoleLogDebug(
+            LogicLogging.logger.LogDebug(
                 LoggingFunctional.CharacterLogInfo(this)
                 + $" ResetCharacterState succeeded {stateNum}");
             return true;
@@ -234,13 +235,13 @@ public class Character : Movable, ICharacter
         {
             if (StateNum == stateNum)
             {
-                CharacterLogging.logger.ConsoleLogDebug(
+                LogicLogging.logger.LogDebug(
                     LoggingFunctional.CharacterLogInfo(this)
                     + " StartThread succeeded");
                 return true;
             }
         }
-        CharacterLogging.logger.ConsoleLogDebug(
+        LogicLogging.logger.LogDebug(
             LoggingFunctional.CharacterLogInfo(this)
             + " StartThread failed");
         return false;

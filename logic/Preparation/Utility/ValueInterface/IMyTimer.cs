@@ -7,5 +7,6 @@ namespace Preparation.Utility
         bool IsGaming { get; }
         public int NowTime();
         public bool Start(Action start, Action end, int timeInMilliseconds);
+        public void EndGame();
     }
 }

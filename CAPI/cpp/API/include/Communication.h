@@ -37,7 +37,7 @@ public:
     bool Construct(int32_t playerID, int32_t teamID, THUAI8::ConstructionType constructionType);
     bool ConstructTrap(int32_t playerID, int32_t teamID, THUAI8::TrapType trapType);
     bool Skill_Attack(int64_t playerID, int64_t teamID, double angle);
-    bool Common_Attack(int64_t playerID, int64_t teamID, int64_t attacked_playerID, int64_t attacked_teamID);
+    bool Common_Attack(int64_t teamID, int64_t playerID, int64_t attacked_teamID, int64_t attacked_playerID);
     bool AttackConstruction(int64_t playerID, int64_t teamID);
     bool AttackAdditionResource(int64_t playerID, int64_t teamID);
     bool Send(int32_t playerID, int32_t toPlayerID, int32_t teamID, std::string message, bool binary);

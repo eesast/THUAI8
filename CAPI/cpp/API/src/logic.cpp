@@ -161,6 +161,27 @@ std::optional<THUAI8::ConstructionState> Logic::GetConstructionState(int32_t cel
     }
 }
 
+std::optional<THUAI8::Trap> Logic::GetTrapState(int32_t cellX, int32_t cellY) const
+{
+    std::unique_lock<std::mutex> lock(mtxState);
+    logger->debug("Called GetTrapState");
+    auto pos = THUAI8::cellxy_t(cellX, cellY);
+    auto it = currentState->mapInfo->trapState.find(pos);
+    if (it != currentState->mapInfo->trapState.end())
+    {
+        return std::make_optional<THUAI8::Trap>(currentState->mapInfo->trapState[pos].trapType, currentState->mapInfo->trapState[pos].trap_valid, currentState->mapInfo->trapState[pos].team_id);
+    }
+    else
+    {
+        logger->warn("Trap not found at ({}, {})", cellX, cellY);
+        return std::make_optional<THUAI8::Trap>(
+            THUAI8::TrapType::NullTrapType,  // 默认类型
+            false,                           // 默认有效性
+            0                                // 默认 ID
+        );
+    }
+}
+
 int32_t Logic::GetEnergy() const
 {
     std::unique_lock<std::mutex> lock(mtxState);
@@ -223,16 +244,16 @@ std::pair<int32_t, std::string> Logic::GetMessage()
     }
 }
 
-bool Logic::Common_Attack(int64_t playerID, int64_t teamID, int64_t attacked_playerID, int64_t attacked_teamID)
+bool Logic::Common_Attack(int64_t teamID, int64_t playerID, int64_t attacked_teamID, int64_t attacked_playerID)
 {
     logger->debug("Called Attack");
-    return pComm->Common_Attack(playerID, teamID, attacked_playerID, attacked_teamID);
+    return pComm->Common_Attack(teamID, playerID, attacked_teamID, attacked_playerID);
 }
 
-bool Logic::Skill_Attack(int64_t playerID, int64_t teamID, double angle)
+bool Logic::Skill_Attack(int64_t teamID, int64_t playerID, double angle)
 {
     logger->debug("Called SkillAttack");
-    return pComm->Skill_Attack(playerID, teamID, angle);
+    return pComm->Skill_Attack(teamID, playerID, angle);
 }
 
 bool Logic::AttackConstruction(int64_t playerID, int64_t teamID)
@@ -443,7 +464,7 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
                 {
                     if (teamID != item.character_message().team_id())
                     {
-                        if (AssistFunction::HaveView(x, y, item.character_message().x(), item.character_message().y(), viewRange, bufferState->gameMap))
+                        if (AssistFunction::HaveView(x, y, item.character_message().x(), item.character_message().y(), viewRange, bufferState->gameMap) && !item.character_message().is_invisible())
                         {
                             std::shared_ptr<THUAI8::Character> Character = Proto2THUAI8::Protobuf2THUAI8Character(item.character_message());
                             bufferState->enemyCharacters.push_back(Character);
@@ -451,13 +472,11 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
                         }
                     }
                     else if (teamID == item.character_message().team_id() && playerID != item.character_message().player_id())
-
-                        if (AssistFunction::HaveView(x, y, item.character_message().x(), item.character_message().y(), viewRange, bufferState->gameMap) && !item.character_message().is_invisible())
-                        {
-                            std::shared_ptr<THUAI8::Character> Character = Proto2THUAI8::Protobuf2THUAI8Character(item.character_message());
-                            bufferState->characters.push_back(Character);
-                            logger->debug("Load Character!");
-                        }
+                    {
+                        std::shared_ptr<THUAI8::Character> Character = Proto2THUAI8::Protobuf2THUAI8Character(item.character_message());
+                        bufferState->characters.push_back(Character);
+                        logger->debug("Load Character!");
+                    }
                     break;
                 }
             case THUAI8::MessageOfObj::BarracksMessage:
@@ -564,34 +583,29 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
                 }
             case THUAI8::MessageOfObj::TrapMessage:
                 {
-                    // 待定
-                    if (item.trap_message().team_id() == teamID || AssistFunction::HaveView(x, y, item.trap_message().x(), item.trap_message().y(), viewRange, bufferState->gameMap) && currentState->characterSelf->visionBuffTime > 0)
+                    auto pos = THUAI8::cellxy_t(
+                        AssistFunction::GridToCell(item.trap_message().x()),
+                        AssistFunction::GridToCell(item.trap_message().y())
+                    );
+                    if (bufferState->mapInfo->trapState.count(pos) == 0)
                     {
-                        auto pos = THUAI8::cellxy_t(
-                            AssistFunction::GridToCell(item.trap_message().x()),
-                            AssistFunction::GridToCell(item.trap_message().y())
+                        bufferState->mapInfo->trapState.emplace(
+                            std::piecewise_construct,
+                            std::forward_as_tuple(pos.first, pos.second),  // 构造键 cellxy_t{pos.first, pos.second}
+                            std::forward_as_tuple(
+                                Proto2THUAI8::trapTypeDict.at(item.trap_message().trap_type()),
+                                static_cast<bool>(item.trap_message().trap_valid()),
+                                static_cast<int32_t>(item.trap_message().team_id())
+                            )
                         );
-                        if (bufferState->mapInfo->trapState.count(pos) == 0)
-                        {
-                            bufferState->mapInfo->trapState.emplace(
-                                std::piecewise_construct,
-                                std::forward_as_tuple(pos.first, pos.second),            // 构造键 cellxy_t{pos.first, pos.second}
-                                std::forward_as_tuple(item.trap_message().team_id(), 0)  // 构造值 {team_id}
-                            );
-
-                            if (item.trap_message().team_id() == teamID)
-                                logger->debug("Load Trap!");
-                            else
-                                logger->debug("Load EnemyTrap!");
-                        }
-                        else
-                        {
-                            bufferState->mapInfo->trapState[pos].second = item.trap_message().team_id();
-                            if (item.trap_message().team_id() == teamID)
-                                logger->debug("Update Trap!");
-                            else
-                                logger->debug("Update EnemyTrap!");
-                        }
+                        logger->debug("Load Trap!");
+                    }
+                    else
+                    {
+                        bufferState->mapInfo->trapState[pos].trapType = Proto2THUAI8::trapTypeDict.at(item.trap_message().trap_type());
+                        bufferState->mapInfo->trapState[pos].trap_valid = item.trap_message().trap_valid();
+                        bufferState->mapInfo->trapState[pos].team_id = item.trap_message().team_id();
+                        logger->debug("Update EconomyResource!");
                     }
                     break;
                 }
@@ -829,33 +843,29 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
                 }
             case THUAI8::MessageOfObj::TrapMessage:
                 {
-                    if (item.trap_message().team_id() == teamID || HaveOverTrapView(item.trap_message().x(), item.trap_message().y()))
+                    auto pos = THUAI8::cellxy_t(
+                        AssistFunction::GridToCell(item.trap_message().x()),
+                        AssistFunction::GridToCell(item.trap_message().y())
+                    );
+                    if (bufferState->mapInfo->trapState.count(pos) == 0)
                     {
-                        auto pos = THUAI8::cellxy_t(
-                            AssistFunction::GridToCell(item.trap_message().x()),
-                            AssistFunction::GridToCell(item.trap_message().y())
+                        bufferState->mapInfo->trapState.emplace(
+                            std::piecewise_construct,
+                            std::forward_as_tuple(pos.first, pos.second),
+                            std::forward_as_tuple(
+                                Proto2THUAI8::trapTypeDict.at(item.trap_message().trap_type()),
+                                static_cast<bool>(item.trap_message().trap_valid()),
+                                static_cast<int32_t>(item.trap_message().team_id())
+                            )
                         );
-                        if (bufferState->mapInfo->trapState.count(pos) == 0)
-                        {
-                            bufferState->mapInfo->trapState.emplace(
-                                std::piecewise_construct,
-                                std::forward_as_tuple(pos.first, pos.second),            // 构造键 cellxy_t{pos.first, pos.second}
-                                std::forward_as_tuple(item.trap_message().team_id(), 0)  // 构造值 {team_id}
-                            );
-
-                            if (item.trap_message().team_id() == teamID)
-                                logger->debug("Load Trap!");
-                            else
-                                logger->debug("Load EnemyTrap!");
-                        }
-                        else
-                        {
-                            bufferState->mapInfo->trapState[pos].second = item.trap_message().team_id();
-                            if (item.trap_message().team_id() == teamID)
-                                logger->debug("Update Trap!");
-                            else
-                                logger->debug("Update EnemyTrap!");
-                        }
+                        logger->debug("Load Trap!");
+                    }
+                    else
+                    {
+                        bufferState->mapInfo->trapState[pos].trapType = Proto2THUAI8::trapTypeDict.at(item.trap_message().trap_type());
+                        bufferState->mapInfo->trapState[pos].trap_valid = item.trap_message().trap_valid();
+                        bufferState->mapInfo->trapState[pos].team_id = item.trap_message().team_id();
+                        logger->debug("Update EconomyResource!");
                     }
                     break;
                 }
