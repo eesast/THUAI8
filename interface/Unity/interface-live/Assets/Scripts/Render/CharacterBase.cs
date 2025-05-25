@@ -37,7 +37,7 @@ public class CharacterBase : MonoBehaviour
 
         var hpBar = GetComponentInChildren<HpBar>();
         hpBar.team = message.TeamId == 0 ? PlayerTeam.BuddhistsTeam : PlayerTeam.MonstersTeam;
-        hpBar.getHp = () => message.Hp;
+        hpBar.getHp = () => message?.Hp ?? 0;
         hpBar.maxHp = maxHp;
         if (characterType == CharacterType.TangSeng)
         {

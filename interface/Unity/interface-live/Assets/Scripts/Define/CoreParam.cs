@@ -27,6 +27,10 @@ public class CoreParam
         {
             return valQueue.Count;
         }
+        public void Clear()
+        {
+            valQueue.Clear();
+        }
     };
     public static FrameQueue<MessageToClient> frameQueue = new FrameQueue<MessageToClient>();
     public static MessageToClient firstFrame, currentFrame;
@@ -48,4 +52,27 @@ public class CoreParam
     public static Dictionary<Tuple<int, int>, GameObject> additionResourcesG = new();
     public static bool initialized;
     public static int cnt = 0;
+    public static void Reset()
+    {
+        frameQueue.Clear();
+        map = null;
+        firstFrame = currentFrame = null;
+        teams[0] = teams[1] = null;
+        characters.Clear();
+        charactersG.Clear();
+        barracks.Clear();
+        barracksG.Clear();
+        springs.Clear();
+        springsG.Clear();
+        farms.Clear();
+        farmsG.Clear();
+        traps.Clear();
+        trapsG.Clear();
+        economyResources.Clear();
+        economyResourcesG.Clear();
+        additionResources.Clear();
+        additionResourcesG.Clear();
+        cnt = 0;
+        initialized = false;
+    }
 }

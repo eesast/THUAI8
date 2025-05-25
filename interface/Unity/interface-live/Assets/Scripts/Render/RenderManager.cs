@@ -49,14 +49,17 @@ public class RenderManager : SingletonMono<RenderManager>
             DealFrame(CoreParam.firstFrame);
             ShowFrame();
         }
-        CoreParam.currentFrame = CoreParam.frameQueue.GetValue();
-        if (CoreParam.currentFrame != null)
+        else
         {
-            DealFrame(CoreParam.currentFrame);
-            ShowFrame();
+            CoreParam.currentFrame = CoreParam.frameQueue.GetValue();
+            if (CoreParam.currentFrame != null)
+            {
+                DealFrame(CoreParam.currentFrame);
+                ShowFrame();
+            }
         }
         while (!callTimeOver)
-            yield return 0;
+                yield return 0;
         StartCoroutine(UpdateFrame());
     }
 

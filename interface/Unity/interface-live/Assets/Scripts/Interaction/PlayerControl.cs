@@ -90,6 +90,15 @@ public class PlayerControl : SingletonMono<PlayerControl>
     }
     void CheckInteract()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            TobeSelectedObject = null;
+            if (Input.GetMouseButtonDown(0))
+            {
+                SelectedObject = null;
+            }
+            return;
+        }
         try
         {
             raycaster = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition), interactableLayer);
@@ -100,7 +109,7 @@ public class PlayerControl : SingletonMono<PlayerControl>
         }
         if (raycaster)
         {
-            Debug.Log("raycasthit");
+            // Debug.Log("raycasthit");
             InteractBase intObj = raycaster.GetComponentInParent<InteractBase>();
             TobeSelectedObject = intObj;
             if (Input.GetMouseButtonDown(0))
