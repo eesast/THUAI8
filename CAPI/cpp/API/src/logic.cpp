@@ -464,7 +464,7 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
                 {
                     if (teamID != item.character_message().team_id())
                     {
-                        if (AssistFunction::HaveView(x, y, item.character_message().x(), item.character_message().y(), viewRange, bufferState->gameMap))
+                        if (AssistFunction::HaveView(x, y, item.character_message().x(), item.character_message().y(), viewRange, bufferState->gameMap) && !item.character_message().is_invisible())
                         {
                             std::shared_ptr<THUAI8::Character> Character = Proto2THUAI8::Protobuf2THUAI8Character(item.character_message());
                             bufferState->enemyCharacters.push_back(Character);
@@ -472,13 +472,11 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
                         }
                     }
                     else if (teamID == item.character_message().team_id() && playerID != item.character_message().player_id())
-
-                        if (AssistFunction::HaveView(x, y, item.character_message().x(), item.character_message().y(), viewRange, bufferState->gameMap) && !item.character_message().is_invisible())
-                        {
-                            std::shared_ptr<THUAI8::Character> Character = Proto2THUAI8::Protobuf2THUAI8Character(item.character_message());
-                            bufferState->characters.push_back(Character);
-                            logger->debug("Load Character!");
-                        }
+                    {
+                        std::shared_ptr<THUAI8::Character> Character = Proto2THUAI8::Protobuf2THUAI8Character(item.character_message());
+                        bufferState->characters.push_back(Character);
+                        logger->debug("Load Character!");
+                    }
                     break;
                 }
             case THUAI8::MessageOfObj::BarracksMessage:
@@ -593,7 +591,7 @@ void Logic::LoadBufferCase(const protobuf::MessageOfObj& item)
                     {
                         bufferState->mapInfo->trapState.emplace(
                             std::piecewise_construct,
-                            std::forward_as_tuple(pos.first, pos.second),
+                            std::forward_as_tuple(pos.first, pos.second),  // 构造键 cellxy_t{pos.first, pos.second}
                             std::forward_as_tuple(
                                 Proto2THUAI8::trapTypeDict.at(item.trap_message().trap_type()),
                                 static_cast<bool>(item.trap_message().trap_valid()),
