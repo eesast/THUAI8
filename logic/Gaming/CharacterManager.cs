@@ -160,7 +160,47 @@ namespace Gaming
                     Remove(character);
                 }
             }
-
+            public void BeAttacked(Character character, A_Resource obj)
+            {
+                long subHP = (long)(obj.AttackPower * (1 - character.HarmCut));
+                /*if (character.Shield > 0)
+                {
+                    character.Shield.SubPositiveV(subHP);
+                }
+                else
+                {
+                    character.HP.SubPositiveV(subHP);
+                }*/
+                character.NiuShield.SubPositiveV(subHP);
+                if (character.NiuShield > 0)
+                {
+                    return;
+                }
+                subHP -= character.NiuShield;
+                character.Shield.SubPositiveV(subHP);
+                if (character.Shield > 0)
+                {
+                    return;
+                }
+                subHP -= character.Shield;
+                character.IsShield = false;
+                character.HP.SubPositiveV(subHP);
+                if (character.HP == 0)
+                {
+                    long score = 0;
+                    if (character.CharacterType == CharacterType.TangSeng || character.CharacterType == CharacterType.JiuLing)
+                    {
+                        score = 200000;
+                        gameMap.Timer.EndGame();
+                    }
+                    else if (character.CharacterType == CharacterType.Monkid || character.CharacterType == CharacterType.Pawn)
+                        score = 500;
+                    else
+                        score = character.GetCost();
+                    //此处缺失加分代码。由于阵营是分明的（妖怪和取经团队，THUAI7阵营并无明显差别），可以直接将得分加至相应阵营。小局结束后再加到队伍得分。
+                    Remove(character);
+                }
+            }
             public bool Recover(Character character, long recover)
             {
                 if (recover <= 0)

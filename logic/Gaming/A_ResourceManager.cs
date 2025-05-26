@@ -238,7 +238,7 @@ namespace Gaming
                     return;
                 aresource.LastAttackTime = nowtime;
                 var character = characters[random.Next(characters.Count)];
-                characterManager.BeAttacked(character, aresource.AttackPower);
+                characterManager.BeAttacked(character, aresource);
                 return;
             }
         }
