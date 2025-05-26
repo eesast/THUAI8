@@ -625,7 +625,7 @@ namespace THUAI8Proto
         return attackMsg;
     }
 
-    inline protobuf::AttackConstructionMsg THUAI82ProtobufAttackConstructionMsg(int64_t team_id, int64_t player_id)
+    inline protobuf::AttackConstructionMsg THUAI82ProtobufAttackConstructionMsg(int64_t player_id, int64_t team_id)
     {
         protobuf::AttackConstructionMsg attackConstructionMsg;
         attackConstructionMsg.set_character_id(player_id);
