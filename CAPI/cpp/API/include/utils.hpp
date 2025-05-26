@@ -621,7 +621,7 @@ namespace THUAI8Proto
         attackMsg.set_character_id(playerID);
         attackMsg.set_team_id(teamID);
         attackMsg.set_attacked_character_id(attacked_playerID);
-        attackMsg.set_attacked_character_id(attacked_teamID);
+        attackMsg.set_attacked_team(attacked_teamID);
         return attackMsg;
     }
 
