@@ -236,6 +236,8 @@ namespace Gaming
                     return;
                 if (nowtime - aresource.LastAttackTime < 1000)
                     return;
+                if (nowtime - aresource.LastBeAttackedTime > 5000)
+                    return;
                 aresource.LastAttackTime = nowtime;
                 var character = characters[random.Next(characters.Count)];
                 characterManager.BeAttacked(character, aresource);
