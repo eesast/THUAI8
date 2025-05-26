@@ -65,7 +65,7 @@ namespace debug_interface.ViewModels
         public ObservableCollection<LegendItem> MapLegendItems { get; } = new();
 
 
-        private bool enableDetailedLogging = true;
+        private bool enableDetailedLogging = false;
 
 
 
@@ -130,8 +130,7 @@ namespace debug_interface.ViewModels
             var currentFrameGuids = new HashSet<long>(); // 存储本帧出现的所有角色 Guid
 
             lock (drawPicLock) // 确保线程安全
-            {
-                
+            {    
 
                 // 1. 更新或添加角色
                 foreach (var data in listOfCharacters) // listOfCharacters 来自 ViewModelBase
