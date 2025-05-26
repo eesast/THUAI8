@@ -621,11 +621,11 @@ namespace THUAI8Proto
         attackMsg.set_character_id(playerID);
         attackMsg.set_team_id(teamID);
         attackMsg.set_attacked_character_id(attacked_playerID);
-        attackMsg.set_attacked_character_id(attacked_teamID);
+        attackMsg.set_attacked_team(attacked_teamID);
         return attackMsg;
     }
 
-    inline protobuf::AttackConstructionMsg THUAI82ProtobufAttackConstructionMsg(int64_t team_id, int64_t player_id)
+    inline protobuf::AttackConstructionMsg THUAI82ProtobufAttackConstructionMsg(int64_t player_id, int64_t team_id)
     {
         protobuf::AttackConstructionMsg attackConstructionMsg;
         attackConstructionMsg.set_character_id(player_id);
