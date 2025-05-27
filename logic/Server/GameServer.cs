@@ -177,7 +177,7 @@ namespace Server
              *   https://github.com/eesast/THUAI5/discussions/86
              * 中的讨论
              */
-            
+
             // 调整顺序，让第一项成为获胜者，便于计算
             bool scoresReverse = false; // 顺序是否需要交换
             if (competitionScores[0] < competitionScores[1])      // 第一项为落败者
