@@ -135,6 +135,7 @@ namespace Gaming
                 }
                 ARManager.BeAttacked(gameobj, character);
                 character.LastAttackTime = nowtime;
+                gameobj.LastBeAttackedTime = nowtime;
                 character.ResetCharacterState(stateNum);
                 if (character.CharacterState2 == CharacterState.INVISIBLE)
                     character.SetCharacterState(
