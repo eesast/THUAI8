@@ -1,2 +1,6 @@
-Plugins
+Plugins/*
 Plugins.meta
+!Plugins/WebGL
+!Plugins/WebGL.meta
+!Plugins/Proto
+!Plugins/Proto.meta

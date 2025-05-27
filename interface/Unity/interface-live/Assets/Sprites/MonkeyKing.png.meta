@@ -3,7 +3,7 @@ guid: 601361bad8ee47d448e5b581ffdf3b0d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -99,6 +99,19 @@ TextureImporter:
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -1558,6 +1571,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: MonkeyKing_69
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 220
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d1496adeecb9a84a846bcac4fb3d866
+      internalID: -1807898616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1635,6 +1669,7 @@ TextureImporter:
       MonkeyKing_66: -808952056
       MonkeyKing_67: 1210656836
       MonkeyKing_68: -1084824718
+      MonkeyKing_69: -1807898616
       MonkeyKing_7: -779532254
       MonkeyKing_8: 474370120
       MonkeyKing_9: -2120771938

@@ -1,46 +1,104 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-#if !UNITY_WEBGL
 public class PlayerControl : SingletonMono<PlayerControl>
 {
     public LayerMask interactableLayer;
     Collider2D raycaster;
-    public InteractBase tobeSelectedInt, selectedInt;
-    private CharacterControl selectedCharacter => selectedInt as CharacterControl;
-    public List<InteractControl.InteractOption> enabledInteract;
+    private InteractBase tobeSelectedInt, selectedInt;
+    public CharacterInteract selectedCharacter => selectedInt as CharacterInteract;
+    public TileInteract selectedTile => selectedInt as TileInteract;
+    public InteractBase SelectedObject
+    {
+        get => selectedInt;
+        set
+        {
+            if (value != null)
+            {
+                if (selectedInt != null)
+                {
+                    var prevSelectedInt = selectedInt;
+                    selectedInt.selected = false;
+                    selectedInt = value;
+                    OnChangeSelect(prevSelectedInt);
+                }
+                else
+                {
+                    selectedInt = value;
+                    OnBeginSelect();
+                }
+                value.tobeSelected = false;
+                value.selected = true;
+            }
+            else
+            {
+                if (selectedInt != null)
+                {
+                    selectedInt.selected = false;
+                    OnEndSelect();
+                }
+                selectedInt = null;
+            }
+        }
+    }
+    public InteractBase TobeSelectedObject
+    {
+        get => tobeSelectedInt;
+        set
+        {
+            if (tobeSelectedInt != null)
+                tobeSelectedInt.tobeSelected = false;
+            tobeSelectedInt = value;
+            if (value != null)
+                value.tobeSelected = true;
+        }
+    }
+    [NonSerialized] public List<InteractControl.InteractOption> enabledInteract = new();
     public InteractControl.InteractOption selectedOption;
-    public float longClickTime, longClickTimer;
-    public Vector2 mousePos, cameraPos;
+    public float longClickTime, doubleClickTime;
+    private float longClickTimer, doubleClickTimer;
+    Vector2 mousePos;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && selectedInt != null)
-        {
-            selectedInt.selected = false;
-            selectedInt = null;
-        }
-
         if (Input.GetMouseButtonDown(0))
         {
             longClickTimer = longClickTime;
-            cameraPos = Camera.main.transform.position;
+            if (doubleClickTimer > 0)
+            {
+                doubleClickTimer = 0;
+                OnDoubleClick();
+            }
+            else
+            {
+                doubleClickTimer = doubleClickTime;
+            }
         }
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
         longClickTimer -= Time.deltaTime;
-        if (longClickTimer < 0)
-            longClickTimer = 0;
+        doubleClickTimer -= Time.deltaTime;
+        if (longClickTimer < 0) longClickTimer = 0;
+        if (doubleClickTimer < 0) doubleClickTimer = 0;
 
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         CheckInteract();
         UpdateInteractList();
         Interact();
     }
     void CheckInteract()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            TobeSelectedObject = null;
+            if (Input.GetMouseButtonDown(0))
+            {
+                SelectedObject = null;
+            }
+            return;
+        }
         try
         {
             raycaster = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition), interactableLayer);
@@ -51,44 +109,38 @@ public class PlayerControl : SingletonMono<PlayerControl>
         }
         if (raycaster)
         {
-            Debug.Log("raycasthit");
+            // Debug.Log("raycasthit");
             InteractBase intObj = raycaster.GetComponentInParent<InteractBase>();
-            intObj.tobeSelected = true;
-            tobeSelectedInt = intObj;
+            TobeSelectedObject = intObj;
             if (Input.GetMouseButtonDown(0))
             {
-                if (selectedInt != null)
-                    selectedInt.selected = false;
-                intObj.tobeSelected = false;
-                intObj.selected = true;
-                selectedInt = intObj;
+                SelectedObject = intObj;
             }
             if (Input.GetMouseButtonDown(1))
             {
                 selectedCharacter?.Move(raycaster.transform.position);
             }
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                if (tobeSelectedInt is CharacterInteract tobeSelectedCharacter)
+                {
+                    selectedCharacter?.Attack(tobeSelectedCharacter.characterBase);
+                }
+            }
         }
         else
         {
-            if (tobeSelectedInt != null)
-                tobeSelectedInt.tobeSelected = false;
-            tobeSelectedInt = null;
-            if (!EventSystem.current.IsPointerOverGameObject())
-            {
-                if (Input.GetKeyDown(KeyCode.Q))
-                {
-                    if (tobeSelectedInt is CharacterControl tobeSelectedCharacter)
-                    {
-                        selectedCharacter?.Attack(tobeSelectedCharacter.characterBase);
-                    }
+            TobeSelectedObject = null;
 
-                }
+            if (Input.GetMouseButtonDown(0))
+            {
+                SelectedObject = null;
             }
             if (Input.GetMouseButtonDown(1))
             {
                 selectedCharacter?.Move(mousePos);
             }
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 selectedCharacter?.CastSkill(mousePos);
             }
@@ -102,6 +154,7 @@ public class PlayerControl : SingletonMono<PlayerControl>
         }
         else
         {
+            enabledInteract ??= new List<InteractControl.InteractOption>();
             if (enabledInteract.Count > 0)
                 enabledInteract.Clear();
         }
@@ -113,13 +166,59 @@ public class PlayerControl : SingletonMono<PlayerControl>
         selectedInt.interactOption = selectedOption;
         selectedOption = InteractControl.InteractOption.None;
     }
-}
-#else
-class PlayerControl : MonoBehaviour
-{
-    public void Start()
+
+    void OnBeginSelect()
     {
-        throw new System.NotImplementedException("PlayerControl/LocalPlay mode is not implemented in this build.");
+        if (selectedCharacter != null)
+        {
+            InspectorCharacter.Instance.Toggle(true);
+            InspectorCharacter.Instance.SetCharacter(CharacterManager.Instance.characterInfo[selectedCharacter.ID]);
+        }
+        if (selectedTile != null)
+        {
+            InspectorTile.Instance.Toggle(true);
+            InspectorTile.Instance.SetTile(selectedTile);
+        }
+    }
+    void OnChangeSelect(InteractBase prev)
+    {
+        if (selectedCharacter != null)
+        {
+            if (prev is TileInteract)
+            {
+                InspectorTile.Instance.Toggle(false);
+                InspectorCharacter.Instance.Toggle(true);
+            }
+            InspectorCharacter.Instance.SetCharacter(CharacterManager.Instance.characterInfo[selectedCharacter.ID]);
+        }
+        if (selectedTile != null)
+        {
+            if (prev is CharacterInteract)
+            {
+                InspectorCharacter.Instance.Toggle(false);
+            }
+            InspectorTile.Instance.Toggle(true);
+            InspectorTile.Instance.SetTile(selectedTile);
+        }
+    }
+
+    void OnEndSelect()
+    {
+        if (selectedCharacter != null)
+        {
+            InspectorCharacter.Instance.Toggle(false);
+        }
+        if (selectedTile != null)
+        {
+            InspectorTile.Instance.Toggle(false);
+        }
+    }
+
+    void OnDoubleClick()
+    {
+        if (selectedCharacter != null)
+        {
+            Camera.main.GetComponent<CameraControl>().cameraMode = CameraControl.CameraMode.Follow;
+        }
     }
 }
-#endif
