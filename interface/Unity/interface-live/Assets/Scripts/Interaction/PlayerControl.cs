@@ -154,10 +154,9 @@ public class PlayerControl : SingletonMono<PlayerControl>
         }
         else
         {
-            if (enabledInteract == null)
-                enabledInteract = new List<InteractControl.InteractOption>();
+            enabledInteract ??= new List<InteractControl.InteractOption>();
             if (enabledInteract.Count > 0)
-                    enabledInteract.Clear();
+                enabledInteract.Clear();
         }
     }
     void Interact()
@@ -201,8 +200,8 @@ public class PlayerControl : SingletonMono<PlayerControl>
             InspectorTile.Instance.Toggle(true);
             InspectorTile.Instance.SetTile(selectedTile);
         }
-        
     }
+
     void OnEndSelect()
     {
         if (selectedCharacter != null)

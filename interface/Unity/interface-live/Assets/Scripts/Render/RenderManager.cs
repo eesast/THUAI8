@@ -48,7 +48,8 @@ public class RenderManager : SingletonMono<RenderManager>
         {
             DealFrame(CoreParam.firstFrame);
             ShowFrame();
-            // onFirstFrame();
+            try { onFirstFrame(); }
+            catch { }
         }
         else
         {
@@ -57,11 +58,12 @@ public class RenderManager : SingletonMono<RenderManager>
             {
                 DealFrame(CoreParam.currentFrame);
                 ShowFrame();
-                // onRender();
+                try { onRender(); }
+                catch { }
             }
         }
         while (!callTimeOver)
-                yield return 0;
+            yield return 0;
         StartCoroutine(UpdateFrame());
     }
 
