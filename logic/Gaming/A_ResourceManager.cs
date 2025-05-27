@@ -199,15 +199,21 @@ namespace Gaming
                 {
                     if (AResource.AResourceType == A_ResourceType.CRAZY_MAN2)
                     {
-                        AResource = new A_Resource(GameData.AResourceRadius, A_ResourceType.CRAZY_MAN3, AResource.Position);
+                        AResource.HP.SetMaxV(GameData.CrazyMan3HP);
+                        AResource.HP.SetVToMaxV();
+                        AResource.AttackPower.SetMaxV(GameData.CrazyMan3ATK);
+                        AResource.AttackPower.SetVToMaxV();
                     }
                     else if (AResource.AResourceType == A_ResourceType.LIFE_POOL2)
                     {
-                        AResource = new A_Resource(GameData.AResourceRadius, A_ResourceType.LIFE_POOL3, AResource.Position);
+                        AResource.HP.SetMaxV(GameData.LifePool3HP);
+                        AResource.HP.SetVToMaxV();
+                        AResource.AttackPower.SetMaxV(GameData.LifePoolATK);
+                        AResource.AttackPower.SetVToMaxV();
                     }
                     else
                     {
-                        AResource = new A_Resource(GameData.AResourceRadius, AResource.AResourceType, AResource.Position);
+                        AResource.HP.SetVToMaxV();
                     }
                     AResource.refreshCount = 2;
                 }
@@ -215,15 +221,21 @@ namespace Gaming
                 {
                     if (AResource.AResourceType == A_ResourceType.CRAZY_MAN1)
                     {
-                        AResource = new A_Resource(GameData.AResourceRadius, A_ResourceType.CRAZY_MAN2, AResource.Position);
+                        AResource.HP.SetMaxV(GameData.CrazyMan2HP);
+                        AResource.HP.SetVToMaxV();
+                        AResource.AttackPower.SetMaxV(GameData.CrazyMan2ATK);
+                        AResource.AttackPower.SetVToMaxV();
                     }
                     else if (AResource.AResourceType == A_ResourceType.LIFE_POOL1)
                     {
-                        AResource = new A_Resource(GameData.AResourceRadius, A_ResourceType.LIFE_POOL2, AResource.Position);
+                        AResource.HP.SetMaxV(GameData.LifePool2HP);
+                        AResource.HP.SetVToMaxV();
+                        AResource.AttackPower.SetMaxV(GameData.LifePoolATK);
+                        AResource.AttackPower.SetVToMaxV();
                     }
                     else
                     {
-                        AResource = new A_Resource(GameData.AResourceRadius, AResource.AResourceType, AResource.Position);
+                        AResource.HP.SetVToMaxV();
                     }
                     AResource.refreshCount = 1;
                 }
