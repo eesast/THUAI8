@@ -195,7 +195,7 @@ namespace Gaming
             public void LevelUpAR(A_Resource AResource)
             {
                 int nowtime = gameMap.Timer.NowTime();
-                if (nowtime >= GameData.SevenMinutes && AResource.refreshCount == 1)
+                if (nowtime >= GameData.SevenMinutes && nowtime <= GameData.SevenMinutes + 1000 && !AResource.refresh_at_7_min)
                 {
                     if (AResource.AResourceType == A_ResourceType.CRAZY_MAN2)
                     {
@@ -203,6 +203,7 @@ namespace Gaming
                         AResource.HP.SetVToMaxV();
                         AResource.AttackPower.SetMaxV(GameData.CrazyMan3ATK);
                         AResource.AttackPower.SetVToMaxV();
+                        AResource.SetARtype(A_ResourceType.CRAZY_MAN3);
                     }
                     else if (AResource.AResourceType == A_ResourceType.LIFE_POOL2)
                     {
@@ -210,14 +211,16 @@ namespace Gaming
                         AResource.HP.SetVToMaxV();
                         AResource.AttackPower.SetMaxV(GameData.LifePoolATK);
                         AResource.AttackPower.SetVToMaxV();
+                        AResource.SetARtype(A_ResourceType.LIFE_POOL3);
                     }
                     else
                     {
                         AResource.HP.SetVToMaxV();
                     }
-                    AResource.refreshCount = 2;
+                    AResource.SetARState(AdditionResourceState.BEATABLE);
+                    AResource.refresh_at_7_min = true;
                 }
-                else if (nowtime >= GameData.ThreeMinutes && AResource.refreshCount == 0)
+                else if (nowtime >= GameData.ThreeMinutes && nowtime <= GameData.ThreeMinutes + 1000 && !AResource.refresh_at_3_min)
                 {
                     if (AResource.AResourceType == A_ResourceType.CRAZY_MAN1)
                     {
@@ -225,6 +228,7 @@ namespace Gaming
                         AResource.HP.SetVToMaxV();
                         AResource.AttackPower.SetMaxV(GameData.CrazyMan2ATK);
                         AResource.AttackPower.SetVToMaxV();
+                        AResource.SetARtype(A_ResourceType.CRAZY_MAN2);
                     }
                     else if (AResource.AResourceType == A_ResourceType.LIFE_POOL1)
                     {
@@ -232,12 +236,14 @@ namespace Gaming
                         AResource.HP.SetVToMaxV();
                         AResource.AttackPower.SetMaxV(GameData.LifePoolATK);
                         AResource.AttackPower.SetVToMaxV();
+                        AResource.SetARtype(A_ResourceType.LIFE_POOL2);
                     }
                     else
                     {
                         AResource.HP.SetVToMaxV();
                     }
-                    AResource.refreshCount = 1;
+                    AResource.SetARState(AdditionResourceState.BEATABLE);
+                    AResource.refresh_at_3_min = true;
                 }
             }
             public void autoAttack(A_Resource aresource)
