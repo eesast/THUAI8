@@ -53,56 +53,57 @@ namespace Protobuf {
             "Z2VPZlNwcmluZxIJCgF4GAEgASgFEgkKAXkYAiABKAUSCgoCaHAYAyABKAUS",
             "DwoHdGVhbV9pZBgEIAEoAxIKCgJpZBgFIAEoBSJOCg1NZXNzYWdlT2ZGYXJt",
             "EgkKAXgYASABKAUSCQoBeRgCIAEoBRIKCgJocBgDIAEoBRIPCgd0ZWFtX2lk",
-            "GAQgASgDEgoKAmlkGAUgASgFImkKDU1lc3NhZ2VPZlRyYXASJQoJdHJhcF90",
-            "eXBlGAEgASgOMhIucHJvdG9idWYuVHJhcFR5cGUSCQoBeBgCIAEoBRIJCgF5",
-            "GAMgASgFEg8KB3RlYW1faWQYBCABKAMSCgoCaWQYBSABKAUiywEKGE1lc3Nh",
-            "Z2VPZkVjb25vbXlSZXNvdXJjZRI8ChVlY29ub215X3Jlc291cmNlX3R5cGUY",
-            "ASABKA4yHS5wcm90b2J1Zi5FY29ub215UmVzb3VyY2VUeXBlEj4KFmVjb25v",
-            "bXlfcmVzb3VyY2Vfc3RhdGUYAiABKA4yHi5wcm90b2J1Zi5FY29ub215UmVz",
-            "b3VyY2VTdGF0ZRIJCgF4GAMgASgFEgkKAXkYBCABKAUSDwoHcHJvY2VzcxgF",
-            "IAEoBRIKCgJpZBgGIAEoBSLLAQoZTWVzc2FnZU9mQWRkaXRpb25SZXNvdXJj",
-            "ZRI+ChZhZGRpdGlvbl9yZXNvdXJjZV90eXBlGAEgASgOMh4ucHJvdG9idWYu",
-            "QWRkaXRpb25SZXNvdXJjZVR5cGUSQAoXYWRkaXRpb25fcmVzb3VyY2Vfc3Rh",
-            "dGUYAiABKA4yHy5wcm90b2J1Zi5BZGRpdGlvblJlc291cmNlU3RhdGUSCQoB",
-            "eBgDIAEoBRIJCgF5GAQgASgFEgoKAmhwGAUgASgFEgoKAmlkGAYgASgFIoEB",
-            "ChVNZXNzYWdlT2ZDb25zdHJ1Y3Rpb24SNQoRY29uc3RydWN0aW9uX3R5cGUY",
-            "ASABKA4yGi5wcm90b2J1Zi5Db25zdHJ1Y3Rpb25UeXBlEgkKAXgYAiABKAUS",
-            "CQoBeRgDIAEoBRIKCgJocBgEIAEoBRIPCgd0ZWFtX2lkGAUgASgDIoEBCgxN",
-            "ZXNzYWdlT2ZNYXASDgoGaGVpZ2h0GAEgASgNEg0KBXdpZHRoGAIgASgNEigK",
-            "BHJvd3MYAyADKAsyGi5wcm90b2J1Zi5NZXNzYWdlT2ZNYXAuUm93GigKA1Jv",
-            "dxIhCgRjb2xzGAEgAygOMhMucHJvdG9idWYuUGxhY2VUeXBlIlIKDU1lc3Nh",
-            "Z2VPZlRlYW0SDwoHdGVhbV9pZBgBIAEoAxIRCglwbGF5ZXJfaWQYAiABKAMS",
-            "DQoFc2NvcmUYAyABKAMSDgoGZW5lcmd5GAQgASgDIs4ECgxNZXNzYWdlT2ZP",
-            "YmoSOQoRY2hhcmFjdGVyX21lc3NhZ2UYASABKAsyHC5wcm90b2J1Zi5NZXNz",
-            "YWdlT2ZDaGFyYWN0ZXJIABI3ChBiYXJyYWNrc19tZXNzYWdlGAIgASgLMhsu",
-            "cHJvdG9idWYuTWVzc2FnZU9mQmFycmFja3NIABIzCg5zcHJpbmdfbWVzc2Fn",
-            "ZRgDIAEoCzIZLnByb3RvYnVmLk1lc3NhZ2VPZlNwcmluZ0gAEi8KDGZhcm1f",
-            "bWVzc2FnZRgEIAEoCzIXLnByb3RvYnVmLk1lc3NhZ2VPZkZhcm1IABIvCgx0",
-            "cmFwX21lc3NhZ2UYBSABKAsyFy5wcm90b2J1Zi5NZXNzYWdlT2ZUcmFwSAAS",
-            "RgoYZWNvbm9teV9yZXNvdXJjZV9tZXNzYWdlGAYgASgLMiIucHJvdG9idWYu",
-            "TWVzc2FnZU9mRWNvbm9teVJlc291cmNlSAASSAoZYWRkaXRpb25fcmVzb3Vy",
-            "Y2VfbWVzc2FnZRgHIAEoCzIjLnByb3RvYnVmLk1lc3NhZ2VPZkFkZGl0aW9u",
-            "UmVzb3VyY2VIABItCgttYXBfbWVzc2FnZRgIIAEoCzIWLnByb3RvYnVmLk1l",
-            "c3NhZ2VPZk1hcEgAEi8KDG5ld3NfbWVzc2FnZRgJIAEoCzIXLnByb3RvYnVm",
-            "Lk1lc3NhZ2VPZk5ld3NIABIvCgx0ZWFtX21lc3NhZ2UYCiABKAsyFy5wcm90",
-            "b2J1Zi5NZXNzYWdlT2ZUZWFtSABCEAoObWVzc2FnZV9vZl9vYmoi0AEKDE1l",
-            "c3NhZ2VPZkFsbBIRCglnYW1lX3RpbWUYASABKAUSHAoUYnVkZGhpc3RzX3Rl",
-            "YW1fc2NvcmUYAiABKAUSGwoTbW9uc3RlcnNfdGVhbV9zY29yZRgDIAEoBRIe",
-            "ChZidWRkaGlzdHNfdGVhbV9lY29ub215GAQgASgFEh0KFW1vbnN0ZXJzX3Rl",
-            "YW1fZWNvbm9teRgFIAEoBRIZChFidWRkaGlzdHNfaGVyb19ocBgGIAEoBRIY",
-            "ChBtb25zdGVyc19oZXJvX2hwGAcgASgFIpQBCg9NZXNzYWdlVG9DbGllbnQS",
-            "KwoLb2JqX21lc3NhZ2UYASADKAsyFi5wcm90b2J1Zi5NZXNzYWdlT2ZPYmoS",
-            "JwoKZ2FtZV9zdGF0ZRgCIAEoDjITLnByb3RvYnVmLkdhbWVTdGF0ZRIrCgth",
-            "bGxfbWVzc2FnZRgDIAEoCzIWLnByb3RvYnVmLk1lc3NhZ2VPZkFsbCJKCgdN",
-            "b3ZlUmVzEhQKDGFjdHVhbF9zcGVlZBgBIAEoAxIUCgxhY3R1YWxfYW5nbGUY",
-            "AiABKAESEwoLYWN0X3N1Y2Nlc3MYAyABKAgiOwoRQ3JlYXRDaGFyYWN0ZXJS",
-            "ZXMSEwoLYWN0X3N1Y2Nlc3MYASABKAgSEQoJcGxheWVyX2lkGAIgASgDIh4K",
-            "B0Jvb2xSZXMSEwoLYWN0X3N1Y2Nlc3MYASABKAgiSAoQQ2hhcmFjdGVySW5m",
-            "b1JlcxI0Cg5DaGFyYWN0ZXJfaW5mbxgBIAMoCzIcLnByb3RvYnVmLk1lc3Nh",
-            "Z2VPZkNoYXJhY3RlciIZCgZFY29SZXMSDwoHZWNvbm9teRgBIAEoAyJ6Cg1N",
-            "ZXNzYWdlT2ZOZXdzEhYKDHRleHRfbWVzc2FnZRgBIAEoCUgAEhgKDmJpbmFy",
-            "eV9tZXNzYWdlGAIgASgMSAASDwoHZnJvbV9pZBgDIAEoAxINCgV0b19pZBgE",
-            "IAEoAxIPCgd0ZWFtX2lkGAUgASgDQgYKBG5ld3NiBnByb3RvMw=="));
+            "GAQgASgDEgoKAmlkGAUgASgFIn0KDU1lc3NhZ2VPZlRyYXASJQoJdHJhcF90",
+            "eXBlGAEgASgOMhIucHJvdG9idWYuVHJhcFR5cGUSEgoKdHJhcF92YWxpZBgC",
+            "IAEoCBIJCgF4GAMgASgFEgkKAXkYBCABKAUSDwoHdGVhbV9pZBgFIAEoAxIK",
+            "CgJpZBgGIAEoBSLLAQoYTWVzc2FnZU9mRWNvbm9teVJlc291cmNlEjwKFWVj",
+            "b25vbXlfcmVzb3VyY2VfdHlwZRgBIAEoDjIdLnByb3RvYnVmLkVjb25vbXlS",
+            "ZXNvdXJjZVR5cGUSPgoWZWNvbm9teV9yZXNvdXJjZV9zdGF0ZRgCIAEoDjIe",
+            "LnByb3RvYnVmLkVjb25vbXlSZXNvdXJjZVN0YXRlEgkKAXgYAyABKAUSCQoB",
+            "eRgEIAEoBRIPCgdwcm9jZXNzGAUgASgFEgoKAmlkGAYgASgFIssBChlNZXNz",
+            "YWdlT2ZBZGRpdGlvblJlc291cmNlEj4KFmFkZGl0aW9uX3Jlc291cmNlX3R5",
+            "cGUYASABKA4yHi5wcm90b2J1Zi5BZGRpdGlvblJlc291cmNlVHlwZRJAChdh",
+            "ZGRpdGlvbl9yZXNvdXJjZV9zdGF0ZRgCIAEoDjIfLnByb3RvYnVmLkFkZGl0",
+            "aW9uUmVzb3VyY2VTdGF0ZRIJCgF4GAMgASgFEgkKAXkYBCABKAUSCgoCaHAY",
+            "BSABKAUSCgoCaWQYBiABKAUigQEKFU1lc3NhZ2VPZkNvbnN0cnVjdGlvbhI1",
+            "ChFjb25zdHJ1Y3Rpb25fdHlwZRgBIAEoDjIaLnByb3RvYnVmLkNvbnN0cnVj",
+            "dGlvblR5cGUSCQoBeBgCIAEoBRIJCgF5GAMgASgFEgoKAmhwGAQgASgFEg8K",
+            "B3RlYW1faWQYBSABKAMigQEKDE1lc3NhZ2VPZk1hcBIOCgZoZWlnaHQYASAB",
+            "KA0SDQoFd2lkdGgYAiABKA0SKAoEcm93cxgDIAMoCzIaLnByb3RvYnVmLk1l",
+            "c3NhZ2VPZk1hcC5Sb3caKAoDUm93EiEKBGNvbHMYASADKA4yEy5wcm90b2J1",
+            "Zi5QbGFjZVR5cGUiUgoNTWVzc2FnZU9mVGVhbRIPCgd0ZWFtX2lkGAEgASgD",
+            "EhEKCXBsYXllcl9pZBgCIAEoAxINCgVzY29yZRgDIAEoAxIOCgZlbmVyZ3kY",
+            "BCABKAMizgQKDE1lc3NhZ2VPZk9iahI5ChFjaGFyYWN0ZXJfbWVzc2FnZRgB",
+            "IAEoCzIcLnByb3RvYnVmLk1lc3NhZ2VPZkNoYXJhY3RlckgAEjcKEGJhcnJh",
+            "Y2tzX21lc3NhZ2UYAiABKAsyGy5wcm90b2J1Zi5NZXNzYWdlT2ZCYXJyYWNr",
+            "c0gAEjMKDnNwcmluZ19tZXNzYWdlGAMgASgLMhkucHJvdG9idWYuTWVzc2Fn",
+            "ZU9mU3ByaW5nSAASLwoMZmFybV9tZXNzYWdlGAQgASgLMhcucHJvdG9idWYu",
+            "TWVzc2FnZU9mRmFybUgAEi8KDHRyYXBfbWVzc2FnZRgFIAEoCzIXLnByb3Rv",
+            "YnVmLk1lc3NhZ2VPZlRyYXBIABJGChhlY29ub215X3Jlc291cmNlX21lc3Nh",
+            "Z2UYBiABKAsyIi5wcm90b2J1Zi5NZXNzYWdlT2ZFY29ub215UmVzb3VyY2VI",
+            "ABJIChlhZGRpdGlvbl9yZXNvdXJjZV9tZXNzYWdlGAcgASgLMiMucHJvdG9i",
+            "dWYuTWVzc2FnZU9mQWRkaXRpb25SZXNvdXJjZUgAEi0KC21hcF9tZXNzYWdl",
+            "GAggASgLMhYucHJvdG9idWYuTWVzc2FnZU9mTWFwSAASLwoMbmV3c19tZXNz",
+            "YWdlGAkgASgLMhcucHJvdG9idWYuTWVzc2FnZU9mTmV3c0gAEi8KDHRlYW1f",
+            "bWVzc2FnZRgKIAEoCzIXLnByb3RvYnVmLk1lc3NhZ2VPZlRlYW1IAEIQCg5t",
+            "ZXNzYWdlX29mX29iaiLQAQoMTWVzc2FnZU9mQWxsEhEKCWdhbWVfdGltZRgB",
+            "IAEoBRIcChRidWRkaGlzdHNfdGVhbV9zY29yZRgCIAEoBRIbChNtb25zdGVy",
+            "c190ZWFtX3Njb3JlGAMgASgFEh4KFmJ1ZGRoaXN0c190ZWFtX2Vjb25vbXkY",
+            "BCABKAUSHQoVbW9uc3RlcnNfdGVhbV9lY29ub215GAUgASgFEhkKEWJ1ZGRo",
+            "aXN0c19oZXJvX2hwGAYgASgFEhgKEG1vbnN0ZXJzX2hlcm9faHAYByABKAUi",
+            "lAEKD01lc3NhZ2VUb0NsaWVudBIrCgtvYmpfbWVzc2FnZRgBIAMoCzIWLnBy",
+            "b3RvYnVmLk1lc3NhZ2VPZk9iahInCgpnYW1lX3N0YXRlGAIgASgOMhMucHJv",
+            "dG9idWYuR2FtZVN0YXRlEisKC2FsbF9tZXNzYWdlGAMgASgLMhYucHJvdG9i",
+            "dWYuTWVzc2FnZU9mQWxsIkoKB01vdmVSZXMSFAoMYWN0dWFsX3NwZWVkGAEg",
+            "ASgDEhQKDGFjdHVhbF9hbmdsZRgCIAEoARITCgthY3Rfc3VjY2VzcxgDIAEo",
+            "CCI7ChFDcmVhdENoYXJhY3RlclJlcxITCgthY3Rfc3VjY2VzcxgBIAEoCBIR",
+            "CglwbGF5ZXJfaWQYAiABKAMiHgoHQm9vbFJlcxITCgthY3Rfc3VjY2VzcxgB",
+            "IAEoCCJIChBDaGFyYWN0ZXJJbmZvUmVzEjQKDkNoYXJhY3Rlcl9pbmZvGAEg",
+            "AygLMhwucHJvdG9idWYuTWVzc2FnZU9mQ2hhcmFjdGVyIhkKBkVjb1JlcxIP",
+            "CgdlY29ub215GAEgASgDInoKDU1lc3NhZ2VPZk5ld3MSFgoMdGV4dF9tZXNz",
+            "YWdlGAEgASgJSAASGAoOYmluYXJ5X21lc3NhZ2UYAiABKAxIABIPCgdmcm9t",
+            "X2lkGAMgASgDEg0KBXRvX2lkGAQgASgDEg8KB3RlYW1faWQYBSABKANCBgoE",
+            "bmV3c2IGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Protobuf.MessageTypeReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -111,7 +112,7 @@ namespace Protobuf {
             new pbr::GeneratedClrTypeInfo(typeof(global::Protobuf.MessageOfBarracks), global::Protobuf.MessageOfBarracks.Parser, new[]{ "X", "Y", "Hp", "TeamId", "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protobuf.MessageOfSpring), global::Protobuf.MessageOfSpring.Parser, new[]{ "X", "Y", "Hp", "TeamId", "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protobuf.MessageOfFarm), global::Protobuf.MessageOfFarm.Parser, new[]{ "X", "Y", "Hp", "TeamId", "Id" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protobuf.MessageOfTrap), global::Protobuf.MessageOfTrap.Parser, new[]{ "TrapType", "X", "Y", "TeamId", "Id" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protobuf.MessageOfTrap), global::Protobuf.MessageOfTrap.Parser, new[]{ "TrapType", "TrapValid", "X", "Y", "TeamId", "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protobuf.MessageOfEconomyResource), global::Protobuf.MessageOfEconomyResource.Parser, new[]{ "EconomyResourceType", "EconomyResourceState", "X", "Y", "Process", "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protobuf.MessageOfAdditionResource), global::Protobuf.MessageOfAdditionResource.Parser, new[]{ "AdditionResourceType", "AdditionResourceState", "X", "Y", "Hp", "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protobuf.MessageOfConstruction), global::Protobuf.MessageOfConstruction.Parser, new[]{ "ConstructionType", "X", "Y", "Hp", "TeamId" }, null, null, null, null),
@@ -3115,6 +3116,7 @@ namespace Protobuf {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public MessageOfTrap(MessageOfTrap other) : this() {
       trapType_ = other.trapType_;
+      trapValid_ = other.trapValid_;
       x_ = other.x_;
       y_ = other.y_;
       teamId_ = other.teamId_;
@@ -3140,8 +3142,20 @@ namespace Protobuf {
       }
     }
 
+    /// <summary>Field number for the "trap_valid" field.</summary>
+    public const int TrapValidFieldNumber = 2;
+    private bool trapValid_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool TrapValid {
+      get { return trapValid_; }
+      set {
+        trapValid_ = value;
+      }
+    }
+
     /// <summary>Field number for the "x" field.</summary>
-    public const int XFieldNumber = 2;
+    public const int XFieldNumber = 3;
     private int x_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -3153,7 +3167,7 @@ namespace Protobuf {
     }
 
     /// <summary>Field number for the "y" field.</summary>
-    public const int YFieldNumber = 3;
+    public const int YFieldNumber = 4;
     private int y_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -3165,7 +3179,7 @@ namespace Protobuf {
     }
 
     /// <summary>Field number for the "team_id" field.</summary>
-    public const int TeamIdFieldNumber = 4;
+    public const int TeamIdFieldNumber = 5;
     private long teamId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -3177,7 +3191,7 @@ namespace Protobuf {
     }
 
     /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 5;
+    public const int IdFieldNumber = 6;
     private int id_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -3204,6 +3218,7 @@ namespace Protobuf {
         return true;
       }
       if (TrapType != other.TrapType) return false;
+      if (TrapValid != other.TrapValid) return false;
       if (X != other.X) return false;
       if (Y != other.Y) return false;
       if (TeamId != other.TeamId) return false;
@@ -3216,6 +3231,7 @@ namespace Protobuf {
     public override int GetHashCode() {
       int hash = 1;
       if (TrapType != global::Protobuf.TrapType.NullTrapType) hash ^= TrapType.GetHashCode();
+      if (TrapValid != false) hash ^= TrapValid.GetHashCode();
       if (X != 0) hash ^= X.GetHashCode();
       if (Y != 0) hash ^= Y.GetHashCode();
       if (TeamId != 0L) hash ^= TeamId.GetHashCode();
@@ -3242,20 +3258,24 @@ namespace Protobuf {
         output.WriteRawTag(8);
         output.WriteEnum((int) TrapType);
       }
-      if (X != 0) {
+      if (TrapValid != false) {
         output.WriteRawTag(16);
+        output.WriteBool(TrapValid);
+      }
+      if (X != 0) {
+        output.WriteRawTag(24);
         output.WriteInt32(X);
       }
       if (Y != 0) {
-        output.WriteRawTag(24);
+        output.WriteRawTag(32);
         output.WriteInt32(Y);
       }
       if (TeamId != 0L) {
-        output.WriteRawTag(32);
+        output.WriteRawTag(40);
         output.WriteInt64(TeamId);
       }
       if (Id != 0) {
-        output.WriteRawTag(40);
+        output.WriteRawTag(48);
         output.WriteInt32(Id);
       }
       if (_unknownFields != null) {
@@ -3272,20 +3292,24 @@ namespace Protobuf {
         output.WriteRawTag(8);
         output.WriteEnum((int) TrapType);
       }
-      if (X != 0) {
+      if (TrapValid != false) {
         output.WriteRawTag(16);
+        output.WriteBool(TrapValid);
+      }
+      if (X != 0) {
+        output.WriteRawTag(24);
         output.WriteInt32(X);
       }
       if (Y != 0) {
-        output.WriteRawTag(24);
+        output.WriteRawTag(32);
         output.WriteInt32(Y);
       }
       if (TeamId != 0L) {
-        output.WriteRawTag(32);
+        output.WriteRawTag(40);
         output.WriteInt64(TeamId);
       }
       if (Id != 0) {
-        output.WriteRawTag(40);
+        output.WriteRawTag(48);
         output.WriteInt32(Id);
       }
       if (_unknownFields != null) {
@@ -3300,6 +3324,9 @@ namespace Protobuf {
       int size = 0;
       if (TrapType != global::Protobuf.TrapType.NullTrapType) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) TrapType);
+      }
+      if (TrapValid != false) {
+        size += 1 + 1;
       }
       if (X != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(X);
@@ -3327,6 +3354,9 @@ namespace Protobuf {
       }
       if (other.TrapType != global::Protobuf.TrapType.NullTrapType) {
         TrapType = other.TrapType;
+      }
+      if (other.TrapValid != false) {
+        TrapValid = other.TrapValid;
       }
       if (other.X != 0) {
         X = other.X;
@@ -3364,18 +3394,22 @@ namespace Protobuf {
             break;
           }
           case 16: {
-            X = input.ReadInt32();
+            TrapValid = input.ReadBool();
             break;
           }
           case 24: {
-            Y = input.ReadInt32();
+            X = input.ReadInt32();
             break;
           }
           case 32: {
-            TeamId = input.ReadInt64();
+            Y = input.ReadInt32();
             break;
           }
           case 40: {
+            TeamId = input.ReadInt64();
+            break;
+          }
+          case 48: {
             Id = input.ReadInt32();
             break;
           }
@@ -3403,18 +3437,22 @@ namespace Protobuf {
             break;
           }
           case 16: {
-            X = input.ReadInt32();
+            TrapValid = input.ReadBool();
             break;
           }
           case 24: {
-            Y = input.ReadInt32();
+            X = input.ReadInt32();
             break;
           }
           case 32: {
-            TeamId = input.ReadInt64();
+            Y = input.ReadInt32();
             break;
           }
           case 40: {
+            TeamId = input.ReadInt64();
+            break;
+          }
+          case 48: {
             Id = input.ReadInt32();
             break;
           }

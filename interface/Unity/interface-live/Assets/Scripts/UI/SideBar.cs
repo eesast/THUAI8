@@ -36,22 +36,20 @@ public class SideBar : MonoBehaviour
     }
     public void ManualAdd(int index)
     {
-#if !UNITY_WEBGL
         // Create new Player
         int teamId = (int)team - 1;
         CharacterType type = addableCharacters[index];
-        var response = Player.buddhistsMain.client.CreatCharacter(new CreatCharacterMsg
+        if (ParaDefine.Instance.GetData(type).cost < CoreParam.teams[teamId].Energy)
         {
-            CharacterType = type,
-            TeamId = teamId,
-            BirthpointIndex = 0
-        });
-        if (response.ActSuccess)
-        {
+            Players.Instance.GetMainClient(teamId).CreatCharacter(new CreatCharacterMsg
+            {
+                CharacterType = type,
+                TeamId = teamId,
+                BirthpointIndex = 0
+            });
             addButton.options.RemoveAt(index);
             addableCharacters.RemoveAt(index);
         }
-#endif
     }
 
 }

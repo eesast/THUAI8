@@ -2,7 +2,7 @@ using UnityEngine;
 using System;
 using Protobuf;
 using System.Threading.Tasks;
-using System.Collections.Generic;
+using System.Threading;
 
 #if !UNITY_WEBGL || UNITY_EDITOR
 using Grpc.Core;
@@ -25,23 +25,22 @@ class Players : SingletonMono<Players>
         Debug.LogError($"Invalid client ID: {ID}");
         return null;
     }
+    public Client GetMainClient(int teamId) => _clients[teamId * 7];
 
 #if !UNITY_WEBGL || UNITY_EDITOR
-
     public async Task<Client> CreateClient(int teamId, int characterId, CharacterType characterType)
     {
         Channel channel = new("127.0.0.1:8888", ChannelCredentials.Insecure);
         await channel.ConnectAsync(DateTime.UtcNow.AddSeconds(30));
         var client = new Client(channel);
-        CharacterMsg playerInfo = new()
+        var call = client.AddCharacter(new()
         {
             CharacterId = characterId,
             CharacterType = characterType,
             TeamId = teamId,
             SideFlag = teamId
-        };
-        var call = client.AddCharacter(playerInfo);
-        Debug.Log($"Trying to join game as {(teamId == 0 ? "buddhists" : "monsters")}...");
+        });
+        Debug.Log($"Trying to join game as {characterType}...");
         while (await call.ResponseStream.MoveNext())
         {
             var currentGameInfo = call.ResponseStream.Current;
@@ -50,13 +49,20 @@ class Players : SingletonMono<Players>
         return client;
     }
 #else
-    public async Task<Client> CreateClient(int teamId, int characterId, CharacterType characterType)
-        => new(teamId, characterId, characterType);
+    public Client CreateClient(int teamId, int characterId, CharacterType characterType)
+    {
+        Thread.Sleep(100000);
+        return new(teamId, characterId, characterType);
+    }
 #endif
 
     public async void Start()
     {
+#if !UNITY_WEBGL || UNITY_EDITOR
         Task<Client>[] clientTasks = new Task<Client>[14];
+#else
+        Client[] clientTasks = new Client[14];
+#endif
         for (int teamId = 0; teamId < 2; teamId++)
         {
             long baseId = teamId * 7;
@@ -72,7 +78,11 @@ class Players : SingletonMono<Players>
                     teamId, characterId, (teamId == 0 ? buddhists : monsters)[characterId - 2]);
             }
         }
+#if !UNITY_WEBGL || UNITY_EDITOR
         _clients = await Task.WhenAll(clientTasks);
+#else
+        _clients = clientTasks;
+#endif
     }
 
 }

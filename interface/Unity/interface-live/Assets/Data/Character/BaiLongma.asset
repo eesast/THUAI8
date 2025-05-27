@@ -16,5 +16,6 @@ MonoBehaviour:
   maxHp: 150
   attackRange: 5000
   skillRange: 10000
+  cost: 4000
   avatar: {fileID: 21300000, guid: ed06258f2b68e2e46a7ee4c1f7069859, type: 3}
   characterName: "\u767D\u9F99\u9A6C"
