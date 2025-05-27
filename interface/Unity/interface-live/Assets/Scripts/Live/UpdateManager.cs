@@ -24,7 +24,8 @@ public class UpdateManager : SingletonMono<UpdateManager>
         Debug.Log("UpdateManager.UpdateMessageByJson()");
     }
 
-    public void UpdateMessageByBytes(byte[] bytes)
+    // TODO: JavaScript interop for byte arrays
+    /*public void UpdateMessageByBytes(byte[] bytes)
     {
         var frame = MessageToClient.Parser.ParseFrom(bytes);
         if (!CoreParam.initialized && frame.ObjMessage.Any(x => x.MapMessage != null))
@@ -33,5 +34,16 @@ public class UpdateManager : SingletonMono<UpdateManager>
             CoreParam.frameQueue.Add(frame);
         CoreParam.cnt++;
         Debug.Log("UpdateManager.UpdateMessageByBytes()");
+    }*/
+
+    public void UpdateMessageByBase64(string base64)
+    {
+        var frame = MessageToClient.Parser.ParseFrom(System.Convert.FromBase64String(base64));
+        if (!CoreParam.initialized && frame.ObjMessage.Any(x => x.MapMessage != null))
+            CoreParam.firstFrame = frame;
+        else
+            CoreParam.frameQueue.Add(frame);
+        CoreParam.cnt++;
+        Debug.Log("UpdateManager.UpdateMessageByBase64()");
     }
 }
