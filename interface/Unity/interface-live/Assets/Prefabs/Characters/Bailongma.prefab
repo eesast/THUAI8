@@ -334,6 +334,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7929567847335474539}
     m_Modifications:
+    - target: {fileID: 625377349786075215, guid: 9f7a5deb94578aa4bba254c3d09cb334, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143658296890640986, guid: 9f7a5deb94578aa4bba254c3d09cb334, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090824468656148544, guid: 9f7a5deb94578aa4bba254c3d09cb334, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.9
+      objectReference: {fileID: 0}
     - target: {fileID: 2193196343585265693, guid: 9f7a5deb94578aa4bba254c3d09cb334, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -378,9 +390,21 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4577356256729832057, guid: 9f7a5deb94578aa4bba254c3d09cb334, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5725548872907057246, guid: 9f7a5deb94578aa4bba254c3d09cb334, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.9
+      objectReference: {fileID: 0}
     - target: {fileID: 6889611559877192594, guid: 9f7a5deb94578aa4bba254c3d09cb334, type: 3}
       propertyPath: m_Name
       value: StateIcons
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430836982073597981, guid: 9f7a5deb94578aa4bba254c3d09cb334, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

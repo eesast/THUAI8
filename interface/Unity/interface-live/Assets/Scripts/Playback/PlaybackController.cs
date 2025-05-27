@@ -1,33 +1,33 @@
-using Newtonsoft.Json;
 using Playback;
 using Protobuf;
-using Spine;
 using System;
 using System.Collections;
-using System.IO;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlaybackController : SingletonMono<PlaybackController>
 {
-    float GameTime = 0;
 
     byte[] bytes = null;
-    MessageToClient responseVal;
-    MessageReader reader;
-    public static bool isInitial;
+    List<MessageToClient> frames;
+    int currentFrame;
 #if !UNITY_EDITOR
     public static string fileName;
 #else
     public static string fileName = "http://localhost/playback.thuaipb";
 #endif
     public static bool fileNameFlag;
-    float frequency = 0.05f;
+    float deltaTime = 0.05f;
     float timer;
     public static float playSpeed = 1;
 
-    public static bool isMap;
+    public static bool isMap = true;
+    public TextMeshProUGUI speedText;
+    public Slider progressBar;
 
     IEnumerator WebReader()
     {
@@ -42,26 +42,29 @@ public class PlaybackController : SingletonMono<PlaybackController>
         request.timeout = 10;
         yield return request.SendWebRequest();
 
-        if (request.result == UnityWebRequest.Result.ProtocolError || request.result == UnityWebRequest.Result.ConnectionError)
+        if (request.error != null)
         {
             Debug.LogError(request.error);
             yield break;
         }
         bytes = request.downloadHandler.data;
         print(System.Text.Encoding.UTF8.GetString(bytes));
-        reader = new MessageReader(bytes);
-        responseVal = reader.ReadOne();
-        while (responseVal != null)
+        var reader = new MessageReader(bytes);
+        frames = reader.ReadAll();
+        if (frames.Count == 0)
         {
-            responseVal = reader.ReadOne();
+            Debug.LogError("Playback file is empty or not valid.");
+            frames = null;
+            yield break;
         }
-        reader = new MessageReader(bytes);
+        progressBar.maxValue = frames.Count - 1;
     }
 
     void Start()
     {
         StartCoroutine(WebReader());
-        isInitial = false;
+        currentFrame = 0;
+        progressBar.onValueChanged.AddListener((value) => SetProgress((int)value));
     }
 
     void Update()
@@ -70,41 +73,29 @@ public class PlaybackController : SingletonMono<PlaybackController>
 
         try
         {
-            if (timer < 0 && bytes != null)
+            if (timer < 0 && bytes != null && frames != null)
             {
-                if (reader == null)
+                if (isMap)
                 {
-                    try
-                    {
-                        StopAllCoroutines();
-                        reader = new MessageReader(bytes);
-                    }
-                    catch (FileFormatNotLegalException)
-                    {
-                        fileName = null;
-                        playSpeed = -1;
-                        isMap = true;
-                        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-                    }
-                    Debug.Log("reader created");
-                }
-                timer = frequency;
-                var responseVal = reader.ReadOne();
-                if (responseVal == null)
-                {
-                    fileName = null;
-                    playSpeed = -1;
-                    isMap = true;
-                    SceneManager.LoadScene("GameEnd");
-                }
-                else if (isMap)
-                {
-                    CoreParam.firstFrame = responseVal;
+                    CoreParam.firstFrame = frames[currentFrame++];
                     isMap = false;
+                    return;
                 }
-                else
+                int frameToSkip = Mathf.FloorToInt(-timer / deltaTime);
+                currentFrame += frameToSkip;
+                timer = deltaTime;
+                progressBar.SetValueWithoutNotify(currentFrame);
+                if (currentFrame < frames.Count)
                 {
-                    CoreParam.frameQueue.Add(responseVal);
+                    CoreParam.frameQueue.Add(frames[currentFrame++]);
+                    CoreParam.cnt++;
+                }
+            }
+            else if (playSpeed == 0)
+            {
+                if (currentFrame < frames.Count)
+                {
+                    CoreParam.frameQueue.Add(frames[currentFrame]);
                     CoreParam.cnt++;
                 }
             }
@@ -114,9 +105,34 @@ public class PlaybackController : SingletonMono<PlaybackController>
         {
             fileName = null;
             playSpeed = 1;
+            currentFrame = 0;
             isMap = true;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
+    }
+
+    public void SetSpeed(float speed)
+    {
+        playSpeed = speed;
+        // Time.timeScale = speed;
+        speedText.text = $"{speed:0}x";
+        CoreParam.frameQueue.Clear();
+        CoreParam.currentFrame = frames[currentFrame];
+    }
+
+    public void SetProgress(int frameCount)
+    {
+        if (frames == null || frames.Count == 0)
+            return;
+        if (frameCount < 0 || frameCount >= frames.Count)
+        {
+            Debug.LogWarning("Frame count out of bounds.");
+            return;
+        }
+        currentFrame = frameCount;
+        timer = 0;
+        CoreParam.frameQueue.Clear();
+        CoreParam.currentFrame = frames[currentFrame];
     }
 }

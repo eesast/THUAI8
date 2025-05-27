@@ -3,7 +3,7 @@ guid: b70c74076b146f7479960267dbd66b83
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -99,6 +99,19 @@ TextureImporter:
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -928,6 +941,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Leshy Leaf Sprite Sheet_39
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 155
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4231d15b8530cc64c88d2ff4be52e176
+      internalID: -2112637765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -972,6 +1006,7 @@ TextureImporter:
       Leshy Leaf Sprite Sheet_36: 1305103477
       Leshy Leaf Sprite Sheet_37: -2058937145
       Leshy Leaf Sprite Sheet_38: 2022750780
+      Leshy Leaf Sprite Sheet_39: -2112637765
       Leshy Leaf Sprite Sheet_4: -219919864
       Leshy Leaf Sprite Sheet_5: 1104415096
       Leshy Leaf Sprite Sheet_6: -1504591665

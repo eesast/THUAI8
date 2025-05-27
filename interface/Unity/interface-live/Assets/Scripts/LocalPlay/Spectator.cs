@@ -1,6 +1,6 @@
 using UnityEngine;
 using System;
-#if !UNITY_WEBGL
+#if !UNITY_WEBGL || UNITY_EDITOR
 using Grpc.Core;
 using Protobuf;
 
@@ -41,12 +41,6 @@ class Spectator : SingletonMono<Spectator>
     }
 }
 #else
-// Not Implemented
-class Spectator : SingletonMono<Spectator>
-{
-    public void Start()
-    {
-        throw new NotImplementedException("Spectator/LocalPlay mode is not implemented in this build.");
-    }
-}
+// WebGL下使用直播接口实现观战，Spectator类不实现任何功能，为避免编辑器中场景数据绑定异常而保留定义。
+class Spectator : SingletonMono<Spectator> {}
 #endif
