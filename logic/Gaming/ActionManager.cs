@@ -177,11 +177,13 @@ namespace Gaming
                 }
                 CellXY nowPos = GameData.PosGridToCellXY(character.Position);
                 if (traptype == TrapType.CAGE)
+                {
                     gameMap.Add(new Cage(GameData.GetCellCenterPos(nowPos.x, nowPos.y), character.TeamID));
+                }
                 else if (traptype == TrapType.HOLE)
+                {
                     gameMap.Add(new HOLE(GameData.GetCellCenterPos(nowPos.x, nowPos.y), character.TeamID));
-                Cage? cage = (Cage?)gameMap.OneForInteract(character.Position, GameObjType.TRAP);
-                HOLE? hole = (HOLE?)gameMap.OneForInteract(character.Position, GameObjType.TRAP);
+                }
                 new Thread
                 (
                     () =>
@@ -201,6 +203,7 @@ namespace Gaming
                                 switch (traptype)
                                 {
                                     case TrapType.CAGE:
+                                        Cage? cage = (Cage?)gameMap.OneInTheSameCell(character.Position, GameObjType.TRAP);
                                         if (cage == null)
                                         {
                                             return false;
@@ -250,6 +253,7 @@ namespace Gaming
                                         }
                                         break;
                                     case TrapType.HOLE:
+                                        HOLE? hole = (HOLE?)gameMap.OneInTheSameCell(character.Position, GameObjType.TRAP);
                                         if (hole == null)
                                         {
                                             return false;
