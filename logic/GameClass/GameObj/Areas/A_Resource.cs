@@ -13,6 +13,8 @@ public class A_Resource
     public InVariableRange<long> AttackPower { get; }
     public override bool IsRigid(bool args = false) => true;
     public int refreshCount = 0;
+    public bool refresh_at_3_min = false;
+    public bool refresh_at_7_min = false;
     protected readonly object actionLock = new();
     public object ActionLock => actionLock;
     public long LastAttackTime = 0;
@@ -27,11 +29,15 @@ public class A_Resource
                 return State;
         }
     }
-    public A_ResourceType AResourceType { get; }
+    public A_ResourceType AResourceType { get; set; }
     public override ShapeType Shape => ShapeType.SQUARE;
     public void SetARState(AdditionResourceState state)
     {
         State = state;
+    }
+    public void SetARtype(A_ResourceType type)
+    {
+        AResourceType = type;
     }
     public bool TryToRemoveFromGame()
     {
