@@ -168,6 +168,16 @@ namespace Server
 
         protected static double[] LadderCalculate(double[] oriScores, double[] competitionScores)
         {
+            /*
+             * 天梯得分算法注解
+             *
+             * 天梯得分算法是经过多轮调整得到，得分算法的设计原则参见：
+             *   https://github.com/eesast/THUAI6/discussions/441
+             * 以及
+             *   https://github.com/eesast/THUAI5/discussions/86
+             * 中的讨论
+             */
+            
             // 调整顺序，让第一项成为获胜者，便于计算
             bool scoresReverse = false; // 顺序是否需要交换
             if (competitionScores[0] < competitionScores[1])      // 第一项为落败者
