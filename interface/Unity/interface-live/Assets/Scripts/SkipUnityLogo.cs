@@ -12,6 +12,7 @@ public class SkipUnityLogo
 #if UNITY_WEBGL
         Application.focusChanged += Application_focusChanged;
 #else
+        SplashScreen.Stop(SplashScreen.StopBehavior.StopImmediate);
         System.Threading.Tasks.Task.Run(AsyncSkip);
 #endif
     }
@@ -25,7 +26,6 @@ public class SkipUnityLogo
 #else
     private static void AsyncSkip()
     {
-        SplashScreen.Stop(SplashScreen.StopBehavior.StopImmediate);
     }
 #endif
 }
