@@ -353,7 +353,7 @@ namespace Gaming
             public void CheckSkillTime(Character character)
             {
                 long nowtime = Environment.TickCount64;
-                if (nowtime - character.GetSkillTime() >= 6000)
+                if (nowtime - character.GetSkillTime() >= 60000)
                 {
                     character.canskill = true;
                     character.ResetSkillCD();

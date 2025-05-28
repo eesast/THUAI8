@@ -177,8 +177,7 @@ namespace Gaming
                     LogicLogging.logger.LogDebug("Character is not commandable!");
                     return false;
                 }
-                gameobj.BeAttacked(character);
-                if (gameobj.IsActivated == false)
+                if (gameobj.BeAttacked(character))
                 {
                     if (gameobj.ConstructionType == ConstructionType.BARRACKS)
                     {

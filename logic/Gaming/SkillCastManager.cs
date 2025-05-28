@@ -76,15 +76,7 @@ namespace Gaming
                             }
                             foreach (var ObjBeingShot in ObjBeingShots)
                             {
-                                switch (ObjBeingShot.Type)
-                                {
-                                    case GameObjType.CHARACTER:
-                                        {
-                                            characterManager.BeAttacked(ObjBeingShot, GameData.SunWukongSkillATK);
-                                        }
-                                        break;
-                                    default: break;
-                                }
+                                characterManager.BeAttacked(ObjBeingShot, GameData.SunWukongSkillATK);
                             }
                             return true;
                         }
@@ -104,21 +96,13 @@ namespace Gaming
                             }
                             foreach (var ObjBeingShot in ObjBeingShots)
                             {
-                                switch (ObjBeingShot.Type)
+                                if (ObjBeingShot.Purified == true)
+                                    continue;
+                                else
                                 {
-                                    case GameObjType.CHARACTER:
-                                        {
-                                            if (ObjBeingShot.Purified == true)
-                                                continue;
-                                            else
-                                            {
-                                                ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.BLIND);
-                                                ObjBeingShot.blind = true;
-                                                ObjBeingShot.BlindTime = Environment.TickCount64;
-                                            }
-                                        }
-                                        break;
-                                    default: break;
+                                    ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.BLIND);
+                                    ObjBeingShot.blind = true;
+                                    ObjBeingShot.BlindTime = Environment.TickCount64;
                                 }
                             }
                             return true;
@@ -132,15 +116,7 @@ namespace Gaming
                             }
                             foreach (var ObjBeingShot in ObjBeingShots)
                             {
-                                switch (ObjBeingShot.Type)
-                                {
-                                    case GameObjType.CHARACTER:
-                                        {
-                                            characterManager.BeAttacked(ObjBeingShot, GameData.BaiLongmaSkillATK);
-                                        }
-                                        break;
-                                    default: break;
-                                }
+                                characterManager.BeAttacked(ObjBeingShot, GameData.BaiLongmaSkillATK);
                             }
                             return true;
                         }
@@ -153,17 +129,9 @@ namespace Gaming
                             }
                             foreach (var ObjBeingShot in ObjBeingShots)
                             {
-                                switch (ObjBeingShot.Type)
-                                {
-                                    case GameObjType.CHARACTER:
-                                        {
-                                            ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.BURNED);
-                                            ObjBeingShot.burned = true;
-                                            ObjBeingShot.BurnedTime = Environment.TickCount64;
-                                        }
-                                        break;
-                                    default: break;
-                                }
+                                ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.BURNED);
+                                ObjBeingShot.burned = true;
+                                ObjBeingShot.BurnedTime = Environment.TickCount64;
                             }
                             return true;
                         }
@@ -202,33 +170,25 @@ namespace Gaming
                             }
                             foreach (var ObjBeingShot in ObjBeingShots)
                             {
-                                switch (ObjBeingShot.Type)
+                                if (ObjBeingShot.CharacterState2 == CharacterState.BURNED || ObjBeingShot.burned)
                                 {
-                                    case GameObjType.CHARACTER:
-                                        {
-                                            if (ObjBeingShot.CharacterState2 == CharacterState.BURNED || ObjBeingShot.burned)
-                                            {
-                                                characterManager.BeAttacked(ObjBeingShot, GameData.TieShanSkillATK);
-                                            }
-                                            if (ObjBeingShot.Purified == true)
-                                                continue;
-                                            else
-                                            {
-                                                ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.KNOCKED_BACK);
-                                                double angleToBeKnockedBack;
-                                                double tantheta = (ObjBeingShot.Position.y - character.Position.y) / (ObjBeingShot.Position.x - character.Position.x);
-                                                if ((ObjBeingShot
-                                                    .Position.x - character.Position.x) > 0)
-                                                    angleToBeKnockedBack = Math.Atan(tantheta);
-                                                else if ((ObjBeingShot.Position.y - character.Position.y) > 0)
-                                                    angleToBeKnockedBack = Math.PI - Math.Atan(tantheta);
-                                                else
-                                                    angleToBeKnockedBack = -Math.PI - Math.Atan(tantheta);
-                                                actionManager.KnockBackCharacter(ObjBeingShot, angleToBeKnockedBack);
-                                            }
-                                        }
-                                        break;
-                                    default: break;
+                                    characterManager.BeAttacked(ObjBeingShot, GameData.TieShanSkillATK);
+                                }
+                                if (ObjBeingShot.Purified == true)
+                                    continue;
+                                else
+                                {
+                                    ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.KNOCKED_BACK);
+                                    double angleToBeKnockedBack;
+                                    double tantheta = (ObjBeingShot.Position.y - character.Position.y) / (ObjBeingShot.Position.x - character.Position.x);
+                                    if ((ObjBeingShot
+                                        .Position.x - character.Position.x) > 0)
+                                        angleToBeKnockedBack = Math.Atan(tantheta);
+                                    else if ((ObjBeingShot.Position.y - character.Position.y) > 0)
+                                        angleToBeKnockedBack = Math.PI - Math.Atan(tantheta);
+                                    else
+                                        angleToBeKnockedBack = -Math.PI - Math.Atan(tantheta);
+                                    actionManager.KnockBackCharacter(ObjBeingShot, angleToBeKnockedBack);
                                 }
                             }
                             return true;
@@ -242,22 +202,14 @@ namespace Gaming
                             }
                             foreach (var ObjBeingShot in ObjBeingShots)
                             {
-                                switch (ObjBeingShot.Type)
+                                characterManager.BeAttacked(ObjBeingShot, GameData.ZhiZhujingSkillATK);
+                                if (ObjBeingShot.Purified == true)
+                                    continue;
+                                else
                                 {
-                                    case GameObjType.CHARACTER:
-                                        {
-                                            characterManager.BeAttacked(ObjBeingShot, GameData.ZhiZhujingSkillATK);
-                                            if (ObjBeingShot.Purified == true)
-                                                continue;
-                                            else
-                                            {
-                                                ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.STUNNED);//尚未加入时间限制
-                                                ObjBeingShot.stunned = true;
-                                                ObjBeingShot.StunnedTime = Environment.TickCount64;
-                                            }
-                                        }
-                                        break;
-                                    default: break;
+                                    ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.STUNNED);//尚未加入时间限制
+                                    ObjBeingShot.stunned = true;
+                                    ObjBeingShot.StunnedTime = Environment.TickCount64;
                                 }
                             }
                             return true;
