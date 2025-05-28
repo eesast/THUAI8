@@ -19,6 +19,7 @@ public class CharacterBase : MonoBehaviour
     private Transform stateIcons;
     private Transform visual;
     private Vector3 visualScaleInitial;
+    private CharacterState lastState;
 
     void UpdateHpBar()
     {
@@ -72,13 +73,18 @@ public class CharacterBase : MonoBehaviour
                 animator.SetBool("Running", true);
                 break;
             case CharacterState.Attacking:
+                if (lastState != CharacterState.Attacking)
+                    animator.SetTrigger("Attack");
+                break;
             case CharacterState.Harvesting:
                 animator.SetTrigger("Attack");
                 break;
             case CharacterState.SkillCasting:
-                animator.SetTrigger("CastSkill");
+                if (lastState != CharacterState.SkillCasting)
+                    animator.SetTrigger("CastSkill");
                 break;
         }
+        lastState = message.CharacterActiveState;
         bool deceased = GetDeceased();
         if (deceased != animator.GetBool("Deceased"))
         {
