@@ -26,28 +26,30 @@ public class SideBar : MonoBehaviour
     public void AddItem(CharacterInfo info)
     {
         SideBarItem item = Instantiate(itemTemplate, transform).GetComponent<SideBarItem>();
-        item.info = info;
+        item.ID = info.ID;
         item.sideBar = this;
         item.gameObject.SetActive(true);
         addButton.transform.parent.SetAsLastSibling();
         currentCharacters.Add(info);
+        if (currentCharacters.Count == 6)
+            addButton.transform.parent.gameObject.SetActive(false);
     }
     public void ManualAdd(int index)
     {
-#if !UNITY_WEBGL
         // Create new Player
         int teamId = (int)team - 1;
         CharacterType type = addableCharacters[index];
-        var response = Player.buddhistsMain.client.CreatCharacter(new CreatCharacterMsg
+        if (ParaDefine.Instance.GetData(type).cost < CoreParam.teams[teamId].Energy)
         {
-            CharacterType = type,
-            TeamId = teamId,
-            BirthpointIndex = 0
-        });
-        print(response.ActSuccess);
-        addButton.options.RemoveAt(index);
-        addableCharacters.RemoveAt(index);
-#endif
+            Players.Instance.GetMainClient(teamId).CreatCharacter(new CreatCharacterMsg
+            {
+                CharacterType = type,
+                TeamId = teamId,
+                BirthpointIndex = 0
+            });
+            addButton.options.RemoveAt(index);
+            addableCharacters.RemoveAt(index);
+        }
     }
 
 }
