@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using GameClass.GameObj;
+﻿using GameClass.GameObj;
 using GameClass.GameObj.Areas;
 using GameClass.GameObj.Map;
 using GameEngine;
@@ -10,6 +6,11 @@ using Microsoft.Extensions.Logging;
 using Preparation.Interface;
 using Preparation.Utility;
 using Preparation.Utility.Value;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using Timothy.FrameRateTask;
 
 namespace Gaming
 {
@@ -86,18 +87,30 @@ namespace Gaming
                 }
                 characterManager.BeAttacked(gameobj, character);
                 character.LastAttackTime = nowtime;
-                character.ResetCharacterState(stateNum);
-                if (
-                    character.CharacterState2 == CharacterState.INVISIBLE
-                    || character.visible == false
+                new Thread
+                (
+                    () =>
+                    {
+                        character.ThreadNum.WaitOne();
+                        if (!character.StartThread(stateNum))
+                        {
+                            character.ThreadNum.Release();
+                            return;
+                        }
+                        Thread.Sleep(GameData.FrameDuration);
+                        character.ResetCharacterState(stateNum);
+                        if (character.CharacterState2 == CharacterState.INVISIBLE || character.visible == false)
+                        {
+                            character.visible = true;
+                            character.SetCharacterState(
+                                character.CharacterState1,
+                                CharacterState.NULL_CHARACTER_STATE
+                            ); //破隐
+                        }
+                        character.ThreadNum.Release();
+                    }
                 )
-                {
-                    character.visible = true;
-                    character.SetCharacterState(
-                        character.CharacterState1,
-                        CharacterState.NULL_CHARACTER_STATE
-                    ); //破隐
-                }
+                { IsBackground = true }.Start();
                 return true;
             }
 
@@ -136,15 +149,32 @@ namespace Gaming
                 ARManager.BeAttacked(gameobj, character);
                 character.LastAttackTime = nowtime;
                 gameobj.LastBeAttackedTime = nowtime;
-                character.ResetCharacterState(stateNum);
-                if (character.CharacterState2 == CharacterState.INVISIBLE)
-                    character.SetCharacterState(
-                        character.CharacterState1,
-                        CharacterState.NULL_CHARACTER_STATE
-                    ); //破隐
+                new Thread
+                (
+                    () =>
+                    {
+                        character.ThreadNum.WaitOne();
+                        if (!character.StartThread(stateNum))
+                        {
+                            character.ThreadNum.Release();
+                            return;
+                        }
+                        Thread.Sleep(GameData.FrameDuration);
+                        character.ResetCharacterState(stateNum);
+                        if (character.CharacterState2 == CharacterState.INVISIBLE || character.visible == false)
+                        {
+                            character.visible = true;
+                            character.SetCharacterState(
+                                character.CharacterState1,
+                                CharacterState.NULL_CHARACTER_STATE
+                            ); //破隐
+                        }
+                        character.ThreadNum.Release();
+                    }
+                )
+                { IsBackground = true }.Start();
                 return true;
             }
-
             public bool Attack(Character character, Construction gameobj)
             {
                 if (character.CharacterState2 == CharacterState.BLIND || character.blind)
@@ -203,12 +233,30 @@ namespace Gaming
                     team.MoneyPool.AddScore(score);
                 }
                 character.LastAttackTime = nowtime;
-                character.ResetCharacterState(stateNum);
-                if (character.CharacterState2 == CharacterState.INVISIBLE)
-                    character.SetCharacterState(
-                        character.CharacterState1,
-                        CharacterState.NULL_CHARACTER_STATE
-                    ); //破隐
+                new Thread
+                (
+                    () =>
+                    {
+                        character.ThreadNum.WaitOne();
+                        if (!character.StartThread(stateNum))
+                        {
+                            character.ThreadNum.Release();
+                            return;
+                        }
+                        Thread.Sleep(GameData.FrameDuration);
+                        character.ResetCharacterState(stateNum);
+                        if (character.CharacterState2 == CharacterState.INVISIBLE || character.visible == false)
+                        {
+                            character.visible = true;
+                            character.SetCharacterState(
+                                character.CharacterState1,
+                                CharacterState.NULL_CHARACTER_STATE
+                            ); //破隐
+                        }
+                        character.ThreadNum.Release();
+                    }
+                )
+                { IsBackground = true }.Start();
                 return true;
             }
 
