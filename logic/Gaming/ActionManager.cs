@@ -170,6 +170,11 @@ namespace Gaming
                 {
                     return false;
                 }
+                TrapBase? trap = (TrapBase?)gameMap.OneInTheSameCell(character.Position, GameObjType.TRAP);
+                if (trap != null && trap.TrapCost.IsMaxV())
+                {
+                    return false;
+                }
                 long stateNum = character.SetCharacterState(CharacterState.CONSTRUCTING, character.CharacterState2);
                 if (stateNum == -1)
                 {
@@ -177,11 +182,13 @@ namespace Gaming
                 }
                 CellXY nowPos = GameData.PosGridToCellXY(character.Position);
                 if (traptype == TrapType.CAGE)
+                {
                     gameMap.Add(new Cage(GameData.GetCellCenterPos(nowPos.x, nowPos.y), character.TeamID));
+                }
                 else if (traptype == TrapType.HOLE)
+                {
                     gameMap.Add(new HOLE(GameData.GetCellCenterPos(nowPos.x, nowPos.y), character.TeamID));
-                Cage? cage = (Cage?)gameMap.OneForInteract(character.Position, GameObjType.TRAP);
-                HOLE? hole = (HOLE?)gameMap.OneForInteract(character.Position, GameObjType.TRAP);
+                }
                 new Thread
                 (
                     () =>
@@ -201,6 +208,7 @@ namespace Gaming
                                 switch (traptype)
                                 {
                                     case TrapType.CAGE:
+                                        Cage? cage = (Cage?)gameMap.OneInTheSameCell(character.Position, GameObjType.TRAP);
                                         if (cage == null)
                                         {
                                             return false;
@@ -210,7 +218,7 @@ namespace Gaming
                                             character.ResetCharacterState(stateNum);
                                             return false;
                                         }
-                                        if (cage.CageCost.IsMaxV() && !cage.IsActivated)
+                                        if (cage.TrapCost.IsMaxV() && !cage.IsActivated)
                                         {
                                             character.ResetCharacterState(stateNum);
                                             game.AddCageTrap(character.TeamID, GameData.GetCellCenterPos(nowPos.x, nowPos.y));
@@ -250,6 +258,7 @@ namespace Gaming
                                         }
                                         break;
                                     case TrapType.HOLE:
+                                        HOLE? hole = (HOLE?)gameMap.OneInTheSameCell(character.Position, GameObjType.TRAP);
                                         if (hole == null)
                                         {
                                             return false;
@@ -259,7 +268,7 @@ namespace Gaming
                                             character.ResetCharacterState(stateNum);
                                             return false;
                                         }
-                                        if (hole.HoleCost.IsMaxV() && !hole.IsActivated)
+                                        if (hole.TrapCost.IsMaxV() && !hole.IsActivated)
                                         {
                                             character.ResetCharacterState(stateNum);
                                             game.AddHoleTrap(character.TeamID, GameData.GetCellCenterPos(nowPos.x, nowPos.y));

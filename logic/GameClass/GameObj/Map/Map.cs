@@ -142,8 +142,8 @@ namespace GameClass.GameObj.Map
                 return true;
             if (del.x > del.y)
             {
-                var beginx = GameData.PosGridToCellX(pos1) + GameData.NumOfPosGridPerCell;
-                var endx = GameData.PosGridToCellX(pos2);
+                var beginx = GameData.NumOfPosGridPerCell;
+                var endx = Math.Abs(del.x);
                 if (GetPlaceType(pos1) == PlaceType.BUSH && GetPlaceType(pos2) == PlaceType.BUSH)
                 {
                     for (int x = beginx; x < endx; x += GameData.NumOfPosGridPerCell)
@@ -163,8 +163,8 @@ namespace GameClass.GameObj.Map
             }
             else
             {
-                var beginy = GameData.PosGridToCellY(pos1) + GameData.NumOfPosGridPerCell;
-                var endy = GameData.PosGridToCellY(pos2);
+                var beginy = GameData.NumOfPosGridPerCell;
+                var endy = Math.Abs(del.y);
                 if (GetPlaceType(pos1) == PlaceType.BUSH && GetPlaceType(pos2) == PlaceType.BUSH)
                 {
                     for (int y = beginy; y < endy; y += GameData.NumOfPosGridPerCell)
@@ -241,12 +241,21 @@ namespace GameClass.GameObj.Map
                             Add(new Bush(GameData.GetCellCenterPos(i, j)));
                             break;
                         case PlaceType.ADDITION_RESOURCE:
-                            if (count++ == 0)
+                            if (count == 0)
+                            {
                                 Add(new A_Resource(GameData.AResourceRadius, A_ResourceType.CRAZY_MAN1, GameData.GetCellCenterPos(i, j)));
-                            else if (count++ == 1)
+                                count = 1;
+                            }
+                            else if (count == 1)
+                            {
                                 Add(new A_Resource(GameData.AResourceRadius, A_ResourceType.LIFE_POOL1, GameData.GetCellCenterPos(i, j)));
-                            else if (count++ == 2)
+                                count = 2;
+                            }
+                            else if (count == 2)
+                            {
                                 Add(new A_Resource(GameData.AResourceRadius, A_ResourceType.WIDE_VIEW, GameData.GetCellCenterPos(i, j)));
+                                count = 3;
+                            }
                             else
                             {
                                 Add(new A_Resource(GameData.AResourceRadius, A_ResourceType.QUICK_STEP, GameData.GetCellCenterPos(i, j)));

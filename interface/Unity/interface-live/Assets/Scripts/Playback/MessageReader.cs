@@ -2,6 +2,7 @@
 using Google.Protobuf;
 using Protobuf;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 
@@ -69,7 +70,6 @@ namespace Playback
 
         public MessageToClient ReadOne()
         {
-        beginRead:
             if (Finished)
                 return null;
             var pos = cos.Position;
@@ -111,8 +111,21 @@ namespace Playback
                     buffer = tmpBuffer;
                 }
                 cos = new CodedInputStream(buffer);
-                goto beginRead;
+                return ReadOne(); // 递归调用，直到读取成功或结束（替代goto）
             }
+        }
+
+        public List<MessageToClient> ReadAll()
+        {
+            List<MessageToClient> messages = new List<MessageToClient>();
+            while (!Finished)
+            {
+                var msg = ReadOne();
+                if (msg == null)
+                    break;
+                messages.Add(msg);
+            }
+            return messages;
         }
 
         public void Dispose()

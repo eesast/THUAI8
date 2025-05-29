@@ -66,7 +66,7 @@ public:
     // virtual bool Rebuild(THUAI8::ConstructionType constructionType) = 0;
     virtual bool Construct(THUAI8::ConstructionType constructionType) = 0;
     virtual bool ConstructTrap(THUAI8::TrapType trapType) = 0;
-    virtual bool Skill_Attack(int64_t playerID, int64_t teamID, double angle) = 0;
+    virtual bool Skill_Attack(int64_t teamID, int64_t playerID, double angle) = 0;
     virtual bool Common_Attack(int64_t teamID, int64_t playerID, int64_t attacked_teamID, int64_t attacked_playerID) = 0;
     virtual bool AttackConstruction(int64_t playerID, int64_t teamID) = 0;
     virtual bool AttackAdditionResource(int64_t playerID, int64_t teamID) = 0;

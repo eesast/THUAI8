@@ -6,6 +6,7 @@ using System;
 using TMPro;
 using System.Linq;
 using UnityEngine.UI;
+using System.Runtime.CompilerServices;
 
 public class RenderManager : SingletonMono<RenderManager>
 {
@@ -15,6 +16,8 @@ public class RenderManager : SingletonMono<RenderManager>
     public TextMeshProUGUI scoreMon, economyMon, hpMon;
     public Slider hpBarBud, hpBarMon;
     public TextMeshProUGUI gameTime, fps;
+    public delegate void RenderManagerCallback();
+    public RenderManagerCallback onRender, onFirstFrame;
 
     void Start()
     {
@@ -32,7 +35,11 @@ public class RenderManager : SingletonMono<RenderManager>
         {
             while (CoreParam.frameQueue.GetSize() > 100)
             {
-                CoreParam.frameQueue.GetValue();
+                var frame = CoreParam.frameQueue.GetValue();
+                if (frame.ToString().Contains("ATTACK"))
+                {
+                    Debug.Log("ATTACK");
+                }
             }
             StartCoroutine(CalTimems(1250 / CoreParam.frameQueue.GetSize()));
             fps.text = "FPS: " + (1250 / CoreParam.frameQueue.GetSize());
@@ -41,12 +48,19 @@ public class RenderManager : SingletonMono<RenderManager>
         {
             DealFrame(CoreParam.firstFrame);
             ShowFrame();
+            try { onFirstFrame(); }
+            catch { }
         }
-        CoreParam.currentFrame = CoreParam.frameQueue.GetValue();
-        if (CoreParam.currentFrame != null)
+        else
         {
-            DealFrame(CoreParam.currentFrame);
-            ShowFrame();
+            CoreParam.currentFrame = CoreParam.frameQueue.GetValue();
+            if (CoreParam.currentFrame != null)
+            {
+                DealFrame(CoreParam.currentFrame);
+                ShowFrame();
+                try { onRender(); }
+                catch { }
+            }
         }
         while (!callTimeOver)
             yield return 0;
@@ -117,12 +131,12 @@ public class RenderManager : SingletonMono<RenderManager>
         else
         {
             ShowCharacter(CoreParam.characters);
-            ShowObject(CoreParam.barracks, CoreParam.barracksG);
-            ShowObject(CoreParam.springs, CoreParam.springsG);
-            ShowObject(CoreParam.farms, CoreParam.farmsG);
-            ShowObject(CoreParam.traps, CoreParam.trapsG);
-            ShowObject(CoreParam.economyResources, CoreParam.economyResourcesG);
-            ShowObject(CoreParam.additionResources, CoreParam.additionResourcesG);
+            ShowObject(CoreParam.barracks, ref CoreParam.barracksG);
+            ShowObject(CoreParam.springs, ref CoreParam.springsG);
+            ShowObject(CoreParam.farms, ref CoreParam.farmsG);
+            ShowObject(CoreParam.traps, ref CoreParam.trapsG);
+            ShowObject(CoreParam.economyResources, ref CoreParam.economyResourcesG);
+            ShowObject(CoreParam.additionResources, ref CoreParam.additionResourcesG);
             ShowAllMessage(CoreParam.currentFrame);
             // global hp bar logic in CharacterBase.cs
         }
@@ -147,7 +161,7 @@ public class RenderManager : SingletonMono<RenderManager>
                             /*Quaternion.Euler(0, 0, (float)character.Value.FacingDirection)*/
                             Quaternion.identity);
                     CoreParam.charactersG[character.Key] = characterG;
-                    if (!characterG.TryGetComponent<CharacterControl>(out var characterControl)
+                    if (!characterG.TryGetComponent<CharacterInteract>(out var characterInteract)
                      || !characterG.TryGetComponent<CharacterBase>(out var characterBase))
                     {
                         Debug.LogError("Character prefab is missing core components.");
@@ -160,10 +174,8 @@ public class RenderManager : SingletonMono<RenderManager>
                         teamId = character.Value.TeamId,
                         type = character.Value.CharacterType,
                         characterBase = characterBase,
-                        characterControl = characterControl
+                        characterInteract = characterInteract
                     });
-                    /*RendererControl.Instance.SetColToChild((PlayerTeam)(character.Value.TeamId + 1),
-                        CoreParam.charactersG[character.Key].transform);*/
                 }
                 else
                 {
@@ -182,21 +194,22 @@ public class RenderManager : SingletonMono<RenderManager>
                 if (!CoreParam.characters.ContainsKey(characterG.Key))
                 {
                     Destroy(characterG.Value);
+                    CoreParam.charactersG.Remove(characterG.Key);
                 }
             }
         }
     }
-    void ShowObject<MessageOfObject>(Dictionary<Tuple<int, int>, MessageOfObject> objects, Dictionary<Tuple<int, int>, GameObject> objectsG)
+    void ShowObject<MessageOfObject>(Dictionary<Tuple<int, int>, MessageOfObject> objects, ref Dictionary<Tuple<int, int>, GameObject> objectsG)
     {
         foreach (KeyValuePair<Tuple<int, int>, MessageOfObject> obj in objects)
         {
             if (obj.Value != null)
             {
-                if (!objectsG.ContainsKey(obj.Key) || objectsG[obj.Key] == null)
+                if (!objectsG.ContainsKey(obj.Key))
                 {
-                    objectsG[obj.Key] = CreateObject(obj.Value);
-                    // RendererControl.Instance.SetColToChild((PlayerTeam)(obj.Value.TeamId + 1),
-                    //     CoreParam.factoriesG[obj.Key].transform, 5);
+                    var gameObject = objectsG[obj.Key] = CreateObject(obj.Value);
+                    if (gameObject.TryGetComponent(out TileInteract tileInteract))
+                        tileInteract.pos = obj.Key;
                 }
                 else
                 {
@@ -227,8 +240,6 @@ public class RenderManager : SingletonMono<RenderManager>
         {
             MessageOfBarracks barracks => creater.CreateObj(ConstructionType.Barracks,
                 Tool.GridToUxy(barracks.X, barracks.Y)),
-            MessageOfSpring spring => creater.CreateObj(ConstructionType.Spring,
-                Tool.GridToUxy(spring.X, spring.Y)),
             MessageOfFarm farm => creater.CreateObj(ConstructionType.Farm,
                 Tool.GridToUxy(farm.X, farm.Y)),
             MessageOfTrap trap => creater.CreateObj(trap.TrapType,
@@ -258,7 +269,7 @@ public class RenderManager : SingletonMono<RenderManager>
     void ShowAllMessage(MessageToClient messageToClient)
     {
         if (messageToClient == null) return;
-        int time = messageToClient.AllMessage.GameTime;
+        int time = Mathf.Min(messageToClient.AllMessage.GameTime, 600000);
         gameTime.text = $"{time / 60000:00} : {time % 60000 / 1000:00}.{time % 1000:000}";
         scoreBud.text = "得分：" + messageToClient.AllMessage.BuddhistsTeamScore;
         scoreMon.text = "得分：" + messageToClient.AllMessage.MonstersTeamScore;
@@ -266,4 +277,5 @@ public class RenderManager : SingletonMono<RenderManager>
         economyBud.text = "经济：" + messageToClient.AllMessage.BuddhistsTeamEconomy;
         economyMon.text = "经济：" + messageToClient.AllMessage.MonstersTeamEconomy;
     }
+
 }

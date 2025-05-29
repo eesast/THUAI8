@@ -42,5 +42,28 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
-  }
+  },
+  "scopedRegistries": [
+    {
+      "name": "package.openupm.com",
+      "url": "https://package.openupm.com",
+      "scopes": [
+        "ai.transforms.js-interop",
+        "ai.transforms.unity-grpc-web",
+        "ai.transforms.webgl-http-handler",
+        "ai.transforms.webgl-threading-fix",
+        "org.nuget.google.protobuf",
+        "org.nuget.grpc.core.api",
+        "org.nuget.grpc.net.client",
+        "org.nuget.grpc.net.client.web",
+        "org.nuget.grpc.net.common",
+        "org.nuget.microsoft.extensions.logging.abstractions",
+        "org.nuget.system.buffers",
+        "org.nuget.system.diagnostics.diagnosticsource",
+        "org.nuget.system.memory",
+        "org.nuget.system.numerics.vectors",
+        "org.nuget.system.runtime.compilerservices.unsafe"
+      ]
+    }
+  ]
 }
