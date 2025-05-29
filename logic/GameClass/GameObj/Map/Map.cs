@@ -241,12 +241,21 @@ namespace GameClass.GameObj.Map
                             Add(new Bush(GameData.GetCellCenterPos(i, j)));
                             break;
                         case PlaceType.ADDITION_RESOURCE:
-                            if (count++ == 0)
+                            if (count == 0)
+                            {
                                 Add(new A_Resource(GameData.AResourceRadius, A_ResourceType.CRAZY_MAN1, GameData.GetCellCenterPos(i, j)));
-                            else if (count++ == 1)
+                                count = 1;
+                            }
+                            else if (count == 1)
+                            {
                                 Add(new A_Resource(GameData.AResourceRadius, A_ResourceType.LIFE_POOL1, GameData.GetCellCenterPos(i, j)));
-                            else if (count++ == 2)
+                                count = 2;
+                            }
+                            else if (count == 2)
+                            {
                                 Add(new A_Resource(GameData.AResourceRadius, A_ResourceType.WIDE_VIEW, GameData.GetCellCenterPos(i, j)));
+                                count = 3;
+                            }
                             else
                             {
                                 Add(new A_Resource(GameData.AResourceRadius, A_ResourceType.QUICK_STEP, GameData.GetCellCenterPos(i, j)));

@@ -170,6 +170,11 @@ namespace Gaming
                 {
                     return false;
                 }
+                TrapBase? trap = (TrapBase?)gameMap.OneInTheSameCell(character.Position, GameObjType.TRAP);
+                if (trap != null && trap.TrapCost.IsMaxV())
+                {
+                    return false;
+                }
                 long stateNum = character.SetCharacterState(CharacterState.CONSTRUCTING, character.CharacterState2);
                 if (stateNum == -1)
                 {
@@ -213,7 +218,7 @@ namespace Gaming
                                             character.ResetCharacterState(stateNum);
                                             return false;
                                         }
-                                        if (cage.CageCost.IsMaxV() && !cage.IsActivated)
+                                        if (cage.TrapCost.IsMaxV() && !cage.IsActivated)
                                         {
                                             character.ResetCharacterState(stateNum);
                                             game.AddCageTrap(character.TeamID, GameData.GetCellCenterPos(nowPos.x, nowPos.y));
@@ -263,7 +268,7 @@ namespace Gaming
                                             character.ResetCharacterState(stateNum);
                                             return false;
                                         }
-                                        if (hole.HoleCost.IsMaxV() && !hole.IsActivated)
+                                        if (hole.TrapCost.IsMaxV() && !hole.IsActivated)
                                         {
                                             character.ResetCharacterState(stateNum);
                                             game.AddHoleTrap(character.TeamID, GameData.GetCellCenterPos(nowPos.x, nowPos.y));
