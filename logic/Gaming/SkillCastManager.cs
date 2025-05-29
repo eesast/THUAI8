@@ -64,157 +64,180 @@ namespace Gaming
                 }
                 character.StartSkillCD();
                 character.canskill = false;
-                character.ResetCharacterState(stateNum);
-                switch (character.CharacterType)
-                {
-                    case CharacterType.SunWukong:
+                new Thread
+                (
+                    () =>
+                    {
+                        character.ThreadNum.WaitOne();
+                        if (!character.StartThread(stateNum))
                         {
-                            var ObjBeingShots = gameMap.CharacterOnTheSameLineNotTeamID(character.Position, theta, character.TeamID);
-                            if (ObjBeingShots == null || ObjBeingShots.Count == 0)
-                            {
-                                return true;
-                            }
-                            foreach (var ObjBeingShot in ObjBeingShots)
-                            {
-                                characterManager.BeAttacked(ObjBeingShot, GameData.SunWukongSkillATK);
-                            }
-                            return true;
+                            character.ThreadNum.Release();
+                            return;
                         }
-                    case CharacterType.ZhuBajie:
+                        Thread.Sleep(GameData.FrameDuration);
+                        switch (character.CharacterType)
                         {
-                            characterManager.Recover(character, 150);//回复一半血量
-                            character.HarmCut = 0.5;//设置伤害减免。此处尚未增加时间限制
-                            character.HarmCutTime = Environment.TickCount64;
-                            return true;
-                        }
-                    case CharacterType.ShaWujing:
-                        {
-                            var ObjBeingShots = gameMap.CharacterInTheRangeNotTeamID(character.Position, GameData.SkillRange1, character.TeamID);
-                            if (ObjBeingShots == null || ObjBeingShots.Count == 0)
-                            {
-                                return true;
-                            }
-                            foreach (var ObjBeingShot in ObjBeingShots)
-                            {
-                                if (ObjBeingShot.Purified == true)
-                                    continue;
-                                else
+                            case CharacterType.SunWukong:
                                 {
-                                    ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.BLIND);
-                                    ObjBeingShot.blind = true;
-                                    ObjBeingShot.BlindTime = Environment.TickCount64;
+                                    var ObjBeingShots = gameMap.CharacterOnTheSameLineNotTeamID(character.Position, theta, character.TeamID);
+                                    if (ObjBeingShots == null || ObjBeingShots.Count == 0)
+                                    {
+                                        return;
+                                    }
+                                    foreach (var ObjBeingShot in ObjBeingShots)
+                                    {
+                                        characterManager.BeAttacked(ObjBeingShot, GameData.SunWukongSkillATK);
+                                    }
+                                    return;
                                 }
-                            }
-                            return true;
-                        }
-                    case CharacterType.BaiLongma:
-                        {
-                            var ObjBeingShots = gameMap.CharacterInTheRangeNotTeamID(character.Position, GameData.SkillRange2, character.TeamID);
-                            if (ObjBeingShots == null || ObjBeingShots.Count == 0)
-                            {
-                                return true;
-                            }
-                            foreach (var ObjBeingShot in ObjBeingShots)
-                            {
-                                characterManager.BeAttacked(ObjBeingShot, GameData.BaiLongmaSkillATK);
-                            }
-                            return true;
-                        }
-                    case CharacterType.HongHaier:
-                        {
-                            var ObjBeingShots = gameMap.CharacterInTheRangeNotTeamID(character.Position, GameData.SkillRange1, character.TeamID);
-                            if (ObjBeingShots == null || ObjBeingShots.Count == 0)
-                            {
-                                return true;
-                            }
-                            foreach (var ObjBeingShot in ObjBeingShots)
-                            {
-                                ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.BURNED);
-                                ObjBeingShot.burned = true;
-                                ObjBeingShot.BurnedTime = Environment.TickCount64;
-                            }
-                            return true;
-                        }
-                    case CharacterType.NiuMowang:
-                        {
-                            var ObjBeingProtecteds = gameMap.CharacterInTheRangeInTeamID(character.Position, GameData.SkillRange1, character.TeamID);
-                            if (ObjBeingProtecteds == null || ObjBeingProtecteds.Count == 0)
-                            {
-                                return true;
-                            }
-                            long minHP = 1000;
-                            foreach (var ObjBeingProtected in ObjBeingProtecteds)
-                            {
-                                if (ObjBeingProtected.HP < minHP)
+                            case CharacterType.ZhuBajie:
                                 {
-                                    minHP = ObjBeingProtected.HP;
+                                    characterManager.Recover(character, 150);//回复一半血量
+                                    character.HarmCut = 0.5;//设置伤害减免。此处尚未增加时间限制
+                                    character.HarmCutTime = Environment.TickCount64;
+                                    return;
                                 }
-                            }
-                            foreach (var ObjBeingProtected in ObjBeingProtecteds)
-                            {
-                                if (ObjBeingProtected.HP == minHP)
+                            case CharacterType.ShaWujing:
                                 {
-                                    ObjBeingProtected.NiuShield.AddPositiveV(GameData.NiuMowangShield);
-                                    character.NiuShield.AddPositiveV(GameData.NiuMowangShield);
-                                    break;
+                                    var ObjBeingShots = gameMap.CharacterInTheRangeNotTeamID(character.Position, GameData.SkillRange1, character.TeamID);
+                                    if (ObjBeingShots == null || ObjBeingShots.Count == 0)
+                                    {
+                                        return;
+                                    }
+                                    foreach (var ObjBeingShot in ObjBeingShots)
+                                    {
+                                        if (ObjBeingShot.Purified == true)
+                                            continue;
+                                        else
+                                        {
+                                            ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.BLIND);
+                                            ObjBeingShot.blind = true;
+                                            ObjBeingShot.BlindTime = Environment.TickCount64;
+                                        }
+                                    }
+                                    return;
                                 }
-                            }
-                            return true;
+                            case CharacterType.BaiLongma:
+                                {
+                                    var ObjBeingShots = gameMap.CharacterInTheRangeNotTeamID(character.Position, GameData.SkillRange2, character.TeamID);
+                                    if (ObjBeingShots == null || ObjBeingShots.Count == 0)
+                                    {
+                                        return;
+                                    }
+                                    foreach (var ObjBeingShot in ObjBeingShots)
+                                    {
+                                        characterManager.BeAttacked(ObjBeingShot, GameData.BaiLongmaSkillATK);
+                                    }
+                                    return;
+                                }
+                            case CharacterType.HongHaier:
+                                {
+                                    var ObjBeingShots = gameMap.CharacterInTheRangeNotTeamID(character.Position, GameData.SkillRange1, character.TeamID);
+                                    if (ObjBeingShots == null || ObjBeingShots.Count == 0)
+                                    {
+                                        return;
+                                    }
+                                    foreach (var ObjBeingShot in ObjBeingShots)
+                                    {
+                                        ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.BURNED);
+                                        ObjBeingShot.burned = true;
+                                        ObjBeingShot.BurnedTime = Environment.TickCount64;
+                                    }
+                                    return;
+                                }
+                            case CharacterType.NiuMowang:
+                                {
+                                    var ObjBeingProtecteds = gameMap.CharacterInTheRangeInTeamID(character.Position, GameData.SkillRange1, character.TeamID);
+                                    if (ObjBeingProtecteds == null || ObjBeingProtecteds.Count == 0)
+                                    {
+                                        return;
+                                    }
+                                    long minHP = 1000;
+                                    foreach (var ObjBeingProtected in ObjBeingProtecteds)
+                                    {
+                                        if (ObjBeingProtected.HP < minHP)
+                                        {
+                                            minHP = ObjBeingProtected.HP;
+                                        }
+                                    }
+                                    foreach (var ObjBeingProtected in ObjBeingProtecteds)
+                                    {
+                                        if (ObjBeingProtected.HP == minHP)
+                                        {
+                                            ObjBeingProtected.NiuShield.AddPositiveV(GameData.NiuMowangShield);
+                                            character.NiuShield.AddPositiveV(GameData.NiuMowangShield);
+                                            break;
+                                        }
+                                    }
+                                    return;
+                                }
+                            case CharacterType.TieShan:
+                                {
+                                    var ObjBeingShots = gameMap.CharacterInTheRangeNotTeamID(character.Position, GameData.SkillRange1, character.TeamID);
+                                    if (ObjBeingShots == null || ObjBeingShots.Count == 0)
+                                    {
+                                        return;
+                                    }
+                                    foreach (var ObjBeingShot in ObjBeingShots)
+                                    {
+                                        if (ObjBeingShot.CharacterState2 == CharacterState.BURNED || ObjBeingShot.burned)
+                                        {
+                                            characterManager.BeAttacked(ObjBeingShot, GameData.TieShanSkillATK);
+                                        }
+                                        if (ObjBeingShot.Purified == true)
+                                            continue;
+                                        else
+                                        {
+                                            ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.KNOCKED_BACK);
+                                            double angleToBeKnockedBack;
+                                            double tantheta = (ObjBeingShot.Position.y - character.Position.y) / (ObjBeingShot.Position.x - character.Position.x);
+                                            if ((ObjBeingShot
+                                                .Position.x - character.Position.x) > 0)
+                                                angleToBeKnockedBack = Math.Atan(tantheta);
+                                            else if ((ObjBeingShot.Position.y - character.Position.y) > 0)
+                                                angleToBeKnockedBack = Math.PI - Math.Atan(tantheta);
+                                            else
+                                                angleToBeKnockedBack = -Math.PI - Math.Atan(tantheta);
+                                            actionManager.KnockBackCharacter(ObjBeingShot, angleToBeKnockedBack);
+                                        }
+                                    }
+                                    return;
+                                }
+                            case CharacterType.ZhiZhujing:
+                                {
+                                    var ObjBeingShots = gameMap.CharacterInTheRangeNotTeamID(character.Position, GameData.SkillRange1, character.TeamID);
+                                    if (ObjBeingShots == null || ObjBeingShots.Count == 0)
+                                    {
+                                        return;
+                                    }
+                                    foreach (var ObjBeingShot in ObjBeingShots)
+                                    {
+                                        characterManager.BeAttacked(ObjBeingShot, GameData.ZhiZhujingSkillATK);
+                                        if (ObjBeingShot.Purified == true)
+                                            continue;
+                                        else
+                                        {
+                                            ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.STUNNED);//尚未加入时间限制
+                                            ObjBeingShot.stunned = true;
+                                            ObjBeingShot.StunnedTime = Environment.TickCount64;
+                                        }
+                                    }
+                                    return;
+                                }
                         }
-                    case CharacterType.TieShan:
+                        character.ResetCharacterState(stateNum);
+                        if (character.CharacterState2 == CharacterState.INVISIBLE || character.visible == false)
                         {
-                            var ObjBeingShots = gameMap.CharacterInTheRangeNotTeamID(character.Position, GameData.SkillRange1, character.TeamID);
-                            if (ObjBeingShots == null || ObjBeingShots.Count == 0)
-                            {
-                                return true;
-                            }
-                            foreach (var ObjBeingShot in ObjBeingShots)
-                            {
-                                if (ObjBeingShot.CharacterState2 == CharacterState.BURNED || ObjBeingShot.burned)
-                                {
-                                    characterManager.BeAttacked(ObjBeingShot, GameData.TieShanSkillATK);
-                                }
-                                if (ObjBeingShot.Purified == true)
-                                    continue;
-                                else
-                                {
-                                    ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.KNOCKED_BACK);
-                                    double angleToBeKnockedBack;
-                                    double tantheta = (ObjBeingShot.Position.y - character.Position.y) / (ObjBeingShot.Position.x - character.Position.x);
-                                    if ((ObjBeingShot
-                                        .Position.x - character.Position.x) > 0)
-                                        angleToBeKnockedBack = Math.Atan(tantheta);
-                                    else if ((ObjBeingShot.Position.y - character.Position.y) > 0)
-                                        angleToBeKnockedBack = Math.PI - Math.Atan(tantheta);
-                                    else
-                                        angleToBeKnockedBack = -Math.PI - Math.Atan(tantheta);
-                                    actionManager.KnockBackCharacter(ObjBeingShot, angleToBeKnockedBack);
-                                }
-                            }
-                            return true;
+                            character.visible = true;
+                            character.SetCharacterState(
+                                character.CharacterState1,
+                                CharacterState.NULL_CHARACTER_STATE
+                            ); //破隐
                         }
-                    case CharacterType.ZhiZhujing:
-                        {
-                            var ObjBeingShots = gameMap.CharacterInTheRangeNotTeamID(character.Position, GameData.SkillRange1, character.TeamID);
-                            if (ObjBeingShots == null || ObjBeingShots.Count == 0)
-                            {
-                                return true;
-                            }
-                            foreach (var ObjBeingShot in ObjBeingShots)
-                            {
-                                characterManager.BeAttacked(ObjBeingShot, GameData.ZhiZhujingSkillATK);
-                                if (ObjBeingShot.Purified == true)
-                                    continue;
-                                else
-                                {
-                                    ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.STUNNED);//尚未加入时间限制
-                                    ObjBeingShot.stunned = true;
-                                    ObjBeingShot.StunnedTime = Environment.TickCount64;
-                                }
-                            }
-                            return true;
-                        }
-                }
+                        character.ThreadNum.Release();
+                    }
+                )
+                { IsBackground = true }.Start();
                 return true;
             }
         }
