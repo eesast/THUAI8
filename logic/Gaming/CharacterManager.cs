@@ -272,7 +272,7 @@ namespace Gaming
                     {
                         if (character.trapped)
                         {
-                            if ((nowtime - character.TrapTime) % 1000 <= 25 || (nowtime - character.TrapTime) % 1000 >= 975)
+                            if ((nowtime - character.TrapTime) % 1000 <= 5 || (nowtime - character.TrapTime) % 1000 >= 995)
                             {
                                 BeAttacked(character, GameData.TrapDamage);
                             }
@@ -315,7 +315,7 @@ namespace Gaming
                     {
                         if (character.burned)
                         {
-                            if ((nowtime - character.BurnedTime) % 1000 <= 25 || (nowtime - character.BurnedTime) % 1000 >= 975)
+                            if ((nowtime - character.BurnedTime) % 1000 <= 5 || (nowtime - character.BurnedTime) % 1000 >= 995)
                             {
                                 BeAttacked(character, GameData.HongHaierSkillATK);
                             }
@@ -362,7 +362,7 @@ namespace Gaming
             public void CheckCrazyManTime(Character character)
             {
                 long nowtime = Environment.TickCount64;
-                if (nowtime - character.CrazyManTime >= (15 + character.CrazyManNum * 15) && character.CrazyManNum != 0)
+                if (nowtime - character.CrazyManTime >= (15 + character.CrazyManNum * 15) * 1000 && character.CrazyManNum != 0)
                 {
                     character.AttackPower.SubPositiveV(5 + character.CrazyManNum * 5);
                     character.CrazyManTime = 0;
