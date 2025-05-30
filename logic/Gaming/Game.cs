@@ -459,7 +459,7 @@ namespace Gaming
                 if (validRecoverPoint)
                 {
                     long nowtime = Environment.TickCount64;
-                    if(gameMap.Timer.NowTime()>=GameData.SevenMinutes)
+                    if (gameMap.Timer.NowTime() >= GameData.SevenMinutes)
                     {
                         if (recover >= 150)
                             recover = 150;
