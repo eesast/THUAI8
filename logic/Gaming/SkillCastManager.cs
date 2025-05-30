@@ -111,7 +111,6 @@ namespace Gaming
                                             continue;
                                         else
                                         {
-                                            ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.BLIND);
                                             ObjBeingShot.blind = true;
                                             ObjBeingShot.BlindTime = Environment.TickCount64;
                                         }
@@ -140,7 +139,6 @@ namespace Gaming
                                     }
                                     foreach (var ObjBeingShot in ObjBeingShots)
                                     {
-                                        ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.BURNED);
                                         ObjBeingShot.burned = true;
                                         ObjBeingShot.BurnedTime = Environment.TickCount64;
                                     }
@@ -189,7 +187,6 @@ namespace Gaming
                                             continue;
                                         else
                                         {
-                                            ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.KNOCKED_BACK);
                                             double angleToBeKnockedBack;
                                             double tantheta = (ObjBeingShot.Position.y - character.Position.y) / (ObjBeingShot.Position.x - character.Position.x);
                                             if ((ObjBeingShot
@@ -218,7 +215,6 @@ namespace Gaming
                                             continue;
                                         else
                                         {
-                                            ObjBeingShot.SetCharacterState(ObjBeingShot.CharacterState1, CharacterState.STUNNED);//尚未加入时间限制
                                             ObjBeingShot.stunned = true;
                                             ObjBeingShot.StunnedTime = Environment.TickCount64;
                                         }
