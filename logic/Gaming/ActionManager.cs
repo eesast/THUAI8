@@ -96,7 +96,7 @@ namespace Gaming
                 {
                     if (character.Commandable())
                     {
-                        character.SetCharacterState(CharacterState.IDLE, character.CharacterState2);
+                        character.SetCharacterState(CharacterState.NULL_CHARACTER_STATE, character.CharacterState2);
                         return true;
                     }
                 }
