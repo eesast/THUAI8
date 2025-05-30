@@ -437,8 +437,7 @@ namespace Gaming
                         character.InvisibleTime = 0;
                     }
                 }
-                if (nowtime >= GameData.SevenMinutes
-                )
+                if (gameMap.Timer.NowTime() >= GameData.SevenMinutes)
                 {
                     character.visible = true;
                 }
