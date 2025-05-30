@@ -458,6 +458,16 @@ namespace Gaming
                 }
                 if (validRecoverPoint)
                 {
+                    long nowtime = Environment.TickCount64;
+                    if(gameMap.Timer.NowTime()>=GameData.SevenMinutes)
+                    {
+                        if (recover >= 150)
+                            recover = 150;
+                        if (nowtime - character.LastRecoverTime <= 5000)
+                            return false;
+                    }
+                    teamList[(int)character.TeamID].SubMoney(15 * recover);
+                    character.LastRecoverTime = nowtime;
                     return characterManager.Recover(character, recover);
                 }
             }
