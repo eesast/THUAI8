@@ -115,6 +115,7 @@ namespace Gaming
                     //此处缺失加分代码。由于阵营是分明的（妖怪和取经团队，THUAI7阵营并无明显差别），可以直接将得分加至相应阵营。小局结束后再加到队伍得分。
                     var team = game.TeamList[(int)obj.TeamID.Get()];
                     team.MoneyPool.AddScore(score);
+                    character.SetCharacterState(CharacterState.NULL_CHARACTER_STATE, CharacterState.IDLE);
                     Remove(character);
                 }
             }
@@ -157,6 +158,7 @@ namespace Gaming
                         score = character.GetCost();
                     var team = game.TeamList[1 - (int)character.TeamID.Get()];
                     team.MoneyPool.AddScore(score);
+                    character.SetCharacterState(CharacterState.NULL_CHARACTER_STATE, CharacterState.IDLE);
                     Remove(character);
                 }
             }
@@ -198,6 +200,7 @@ namespace Gaming
                     else
                         score = character.GetCost();
                     //此处缺失加分代码。由于阵营是分明的（妖怪和取经团队，THUAI7阵营并无明显差别），可以直接将得分加至相应阵营。小局结束后再加到队伍得分。
+                    character.SetCharacterState(CharacterState.NULL_CHARACTER_STATE, CharacterState.IDLE);
                     Remove(character);
                 }
             }
