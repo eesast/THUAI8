@@ -365,7 +365,6 @@ public class Character : Movable, ICharacter
                 }
             case EquipmentType.INVISIBILITY_POTION:
                 {
-                    SetCharacterState(CharacterState1, CharacterState.INVISIBLE);//此处缺少时间限制
                     InvisibleTime = Environment.TickCount64;
                     visible = false;
                     SubMoney(EquipmentFactory.FindCost(equiptype));
@@ -375,7 +374,6 @@ public class Character : Movable, ICharacter
                 {
                     IsBerserk = true;
                     BerserkTime = Environment.TickCount64;
-                    SetCharacterState(CharacterState1, CharacterState.BERSERK);//此处缺少时间限制
                     AttackPower.SetMaxV((long)1.2 * (AttackPower.GetValue()));
                     AttackPower.AddPositiveV((long)(0.2 * AttackPower.GetValue()));
                     ATKFrequency = GameData.CrazyATKFreq;
