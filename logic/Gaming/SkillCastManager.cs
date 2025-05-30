@@ -222,6 +222,7 @@ namespace Gaming
                                     return;
                                 }
                         }
+                        character.ThreadNum.Release();
                     }
                 )
                 { IsBackground = true }.Start();
@@ -233,7 +234,6 @@ namespace Gaming
                         CharacterState.NULL_CHARACTER_STATE
                     ); //破隐
                 }
-                character.ThreadNum.Release();
                 return true;
             }
         }
