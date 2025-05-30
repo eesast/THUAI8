@@ -75,6 +75,7 @@ namespace Gaming
                             return;
                         }
                         Thread.Sleep(GameData.FrameDuration);
+                        character.ResetCharacterState(stateNum);
                         switch (character.CharacterType)
                         {
                             case CharacterType.SunWukong:
@@ -225,19 +226,18 @@ namespace Gaming
                                     return;
                                 }
                         }
-                        character.ResetCharacterState(stateNum);
-                        if (character.CharacterState2 == CharacterState.INVISIBLE || character.visible == false)
-                        {
-                            character.visible = true;
-                            character.SetCharacterState(
-                                character.CharacterState1,
-                                CharacterState.NULL_CHARACTER_STATE
-                            ); //破隐
-                        }
-                        character.ThreadNum.Release();
                     }
                 )
                 { IsBackground = true }.Start();
+                if (character.CharacterState2 == CharacterState.INVISIBLE || character.visible == false)
+                {
+                    character.visible = true;
+                    character.SetCharacterState(
+                        character.CharacterState1,
+                        CharacterState.NULL_CHARACTER_STATE
+                    ); //破隐
+                }
+                character.ThreadNum.Release();
                 return true;
             }
         }

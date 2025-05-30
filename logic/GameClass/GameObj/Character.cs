@@ -56,6 +56,7 @@ public class Character : Movable, ICharacter
     public long BerserkTime = 0;//狂暴buff计时器
     public bool IsBerserk = false;
     public long InvisibleTime = 0;//隐身药水计时器
+    public long LastRecoverTime = 0;
     public void StartSkillCD()
     {
         skillCD = Environment.TickCount64;
