@@ -65,8 +65,8 @@ namespace Gaming
             }
             public bool KnockBackCharacter(Character characterToMove, double moveDirection)
             {
-                long stateNum = characterToMove.SetCharacterState(characterToMove.CharacterState1, CharacterState.KNOCKED_BACK);
                 CharacterState tempState = characterToMove.CharacterState2;
+                long stateNum = characterToMove.SetCharacterState(characterToMove.CharacterState1, CharacterState.KNOCKED_BACK);
                 if (stateNum == -1)
                 {
                     LogicLogging.logger.LogWarning("Character can not be knocked back");
@@ -84,8 +84,8 @@ namespace Gaming
                         }
                         moveEngine.MoveObj(characterToMove, GameData.KnockedBackTime, moveDirection, characterToMove.StateNum, GameData.KnockedBackSpeed);
                         Thread.Sleep(GameData.KnockedBackTime);
-                        characterToMove.SetCharacterState(characterToMove.CharacterState1, tempState);
                         characterToMove.ResetCharacterState(stateNum);
+                        characterToMove.SetCharacterState(characterToMove.CharacterState1, tempState);
                     }
                 )
                 { IsBackground = true }.Start();
