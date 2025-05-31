@@ -230,7 +230,7 @@ namespace Gaming
                                                             new FrameRateTaskExecutor<int>
                                                             (
                                                                 loopCondition: () =>
-                                                                    gameMap.Timer.IsGaming && cage != null,
+                                                                    gameMap.Timer.IsGaming && cage != null && cage.IsActivated,
                                                                 loopToDo: () =>
                                                                 {
                                                                     var characters = gameMap.CharacterInTheRangeNotTeamID(
@@ -280,14 +280,14 @@ namespace Gaming
                                                         new FrameRateTaskExecutor<int>
                                                         (
                                                             loopCondition: () =>
-                                                                gameMap.Timer.IsGaming && hole != null,
+                                                                gameMap.Timer.IsGaming && hole != null && hole.IsActivated,
                                                             loopToDo: () =>
                                                             {
                                                                 var characters = gameMap.CharacterInTheRangeNotTeamID(
                                                                     hole.Position, GameData.TrapRange, hole.TeamID);
                                                                 if (characters == null || characters.Count == 0)
                                                                 {
-                                                                    return true;
+                                                                    return true; 
                                                                 }
                                                                 foreach (var character in characters)
                                                                 {
