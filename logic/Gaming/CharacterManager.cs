@@ -115,6 +115,7 @@ namespace Gaming
                     //此处缺失加分代码。由于阵营是分明的（妖怪和取经团队，THUAI7阵营并无明显差别），可以直接将得分加至相应阵营。小局结束后再加到队伍得分。
                     var team = game.TeamList[(int)obj.TeamID.Get()];
                     team.MoneyPool.AddScore(score);
+                    character.SetCharacterState(CharacterState.NULL_CHARACTER_STATE, CharacterState.IDLE);
                     Remove(character);
                 }
             }
@@ -272,7 +273,7 @@ namespace Gaming
                     {
                         if (character.trapped)
                         {
-                            if ((nowtime - character.TrapTime) % 1000 <= 25 || (nowtime - character.TrapTime) % 1000 >= 975)
+                            if ((nowtime - character.TrapTime) % 1000 <= 5 || (nowtime - character.TrapTime) % 1000 >= 995)
                             {
                                 BeAttacked(character, GameData.TrapDamage);
                             }
@@ -289,7 +290,7 @@ namespace Gaming
                     character.stunned = true;
                     character.CageTime = Environment.TickCount64;
                     //HP.SubV(GameData.TrapDamage);
-                    character.SetCharacterState(CharacterState.STUNNED);
+                    //character.SetCharacterState(CharacterState.STUNNED);
                 }
             }
             public void CheckCage(Character character)
@@ -315,7 +316,7 @@ namespace Gaming
                     {
                         if (character.burned)
                         {
-                            if ((nowtime - character.BurnedTime) % 1000 <= 25 || (nowtime - character.BurnedTime) % 1000 >= 975)
+                            if ((nowtime - character.BurnedTime) % 1000 <= 5 || (nowtime - character.BurnedTime) % 1000 >= 995)
                             {
                                 BeAttacked(character, GameData.HongHaierSkillATK);
                             }
@@ -353,7 +354,7 @@ namespace Gaming
             public void CheckSkillTime(Character character)
             {
                 long nowtime = Environment.TickCount64;
-                if (nowtime - character.GetSkillTime() >= 6000)
+                if (nowtime - character.GetSkillTime() >= 60000)
                 {
                     character.canskill = true;
                     character.ResetSkillCD();
@@ -362,7 +363,7 @@ namespace Gaming
             public void CheckCrazyManTime(Character character)
             {
                 long nowtime = Environment.TickCount64;
-                if (nowtime - character.CrazyManTime >= (15 + character.CrazyManNum * 15) && character.CrazyManNum != 0)
+                if (nowtime - character.CrazyManTime >= (15 + character.CrazyManNum * 15) * 1000 && character.CrazyManNum != 0)
                 {
                     character.AttackPower.SubPositiveV(5 + character.CrazyManNum * 5);
                     character.CrazyManTime = 0;
@@ -437,8 +438,7 @@ namespace Gaming
                         character.InvisibleTime = 0;
                     }
                 }
-                if (nowtime >= GameData.SevenMinutes
-                )
+                if (gameMap.Timer.NowTime() >= GameData.SevenMinutes)
                 {
                     character.visible = true;
                 }

@@ -424,11 +424,11 @@ namespace Server
                 boolRes.ActSuccess = false;
                 return Task.FromResult(boolRes);
             }*/
-            if (request.AttackRange <= 0)
-            {
-                boolRes.ActSuccess = false;
-                return Task.FromResult(boolRes);
-            }
+            // if (request.AttackRange <= 0)
+            // {
+            //     boolRes.ActSuccess = false;
+            //     return Task.FromResult(boolRes);
+            // }
             boolRes.ActSuccess = game.CastSkill(
                 request.TeamId, request.CharacterId, request.Angle);
             GameServerLogging.logger.LogDebug("END Cast");

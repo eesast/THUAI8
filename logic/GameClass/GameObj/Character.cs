@@ -56,6 +56,7 @@ public class Character : Movable, ICharacter
     public long BerserkTime = 0;//狂暴buff计时器
     public bool IsBerserk = false;
     public long InvisibleTime = 0;//隐身药水计时器
+    public long LastRecoverTime = 0;
     public void StartSkillCD()
     {
         skillCD = Environment.TickCount64;
@@ -364,7 +365,6 @@ public class Character : Movable, ICharacter
                 }
             case EquipmentType.INVISIBILITY_POTION:
                 {
-                    SetCharacterState(CharacterState1, CharacterState.INVISIBLE);//此处缺少时间限制
                     InvisibleTime = Environment.TickCount64;
                     visible = false;
                     SubMoney(EquipmentFactory.FindCost(equiptype));
@@ -374,7 +374,6 @@ public class Character : Movable, ICharacter
                 {
                     IsBerserk = true;
                     BerserkTime = Environment.TickCount64;
-                    SetCharacterState(CharacterState1, CharacterState.BERSERK);//此处缺少时间限制
                     AttackPower.SetMaxV((long)1.2 * (AttackPower.GetValue()));
                     AttackPower.AddPositiveV((long)(0.2 * AttackPower.GetValue()));
                     ATKFrequency = GameData.CrazyATKFreq;

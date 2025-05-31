@@ -156,8 +156,8 @@ namespace Server
             {
                 AdditionResourceMessage = new()
                 {
-                    AdditionResourceType = (AdditionResourceType)additionResource.AResourceType,
-                    AdditionResourceState = (Protobuf.AdditionResourceState)additionResource.ARstate,
+                    AdditionResourceType = Transformation.AResourceToProto(additionResource.AResourceType),
+                    AdditionResourceState = Transformation.AResourceStateToProto(additionResource.ARstate),
 
                     X = additionResource.Position.x,
                     Y = additionResource.Position.y,
