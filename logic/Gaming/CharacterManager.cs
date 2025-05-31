@@ -382,10 +382,14 @@ namespace Gaming
             public void CheckWideViewTime(Character character)
             {
                 long nowtime = Environment.TickCount64;
-                if (nowtime - character.WideViewTime >= 60000 && character.CanSeeAll)
+                if (nowtime - character.WideViewTime >= 60000 && character.CanSeeAll && gameMap.Timer.NowTime() <= GameData.SevenMinutes)
                 {
                     character.CanSeeAll = false;
                     character.WideViewTime = 0;
+                }
+                else if (gameMap.Timer.NowTime() > GameData.SevenMinutes)
+                {
+                    character.CanSeeAll = true;
                 }
             }
             public void CheckPurified(Character character)

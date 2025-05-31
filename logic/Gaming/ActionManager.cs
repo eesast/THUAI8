@@ -287,7 +287,7 @@ namespace Gaming
                                                                     hole.Position, GameData.TrapRange, hole.TeamID);
                                                                 if (characters == null || characters.Count == 0)
                                                                 {
-                                                                    return true; 
+                                                                    return true;
                                                                 }
                                                                 foreach (var character in characters)
                                                                 {
