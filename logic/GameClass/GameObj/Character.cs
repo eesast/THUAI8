@@ -180,6 +180,8 @@ public class Character : Movable, ICharacter
             if (nowState1 == value1 && nowState2 == value2) return -1;
             if (value2 == CharacterState.NULL_CHARACTER_STATE)
                 value2 = nowState2;
+            if (value2 == CharacterState.DECEASED)
+                return ChangeCharacterState(CharacterState.NULL_CHARACTER_STATE, value2, gameobj);
             if (nowState2 == CharacterState.KNOCKED_BACK)
                 return -1;
             switch (value1)

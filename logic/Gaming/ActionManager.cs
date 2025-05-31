@@ -230,7 +230,7 @@ namespace Gaming
                                                             new FrameRateTaskExecutor<int>
                                                             (
                                                                 loopCondition: () =>
-                                                                    gameMap.Timer.IsGaming && cage != null,
+                                                                    gameMap.Timer.IsGaming && cage != null && cage.IsActivated,
                                                                 loopToDo: () =>
                                                                 {
                                                                     var characters = gameMap.CharacterInTheRangeNotTeamID(
@@ -280,7 +280,7 @@ namespace Gaming
                                                         new FrameRateTaskExecutor<int>
                                                         (
                                                             loopCondition: () =>
-                                                                gameMap.Timer.IsGaming && hole != null,
+                                                                gameMap.Timer.IsGaming && hole != null && hole.IsActivated,
                                                             loopToDo: () =>
                                                             {
                                                                 var characters = gameMap.CharacterInTheRangeNotTeamID(
