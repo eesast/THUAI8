@@ -13,6 +13,7 @@ public class CharacterBase : MonoBehaviour
     public MessageOfCharacter message => CoreParam.characters.GetValueOrDefault(ID, null);
     bool GetDeceased() => message.Hp <= 0 || message.CharacterActiveState == CharacterState.Deceased;
     public int maxHp => ParaDefine.Instance.GetData(characterType).maxHp;
+    public GameObject skillFX;
     private Slider globalHpBar;
     private TextMeshProUGUI globalHpText;
     private Animator animator;
@@ -116,24 +117,40 @@ public class CharacterBase : MonoBehaviour
         int harm = lastHp - message.Hp;
         if (harm > 0)
         {
+            bool flag = false;
             foreach (var (id, message) in CoreParam.characters)
             {
                 if (id == ID) continue;
 
                 int atk = message.CommonAttack;
                 int range = message.CommonAttackRange;
+
+                if (message.IsBurned && atk == 15) return;
+
                 int sqDist = (int)Mathf.Pow(message.X - this.message.X, 2) + (int)Mathf.Pow(message.Y - this.message.Y, 2);
                 if (atk == harm && sqDist <= range * range)
                 {
                     CharacterManager.Instance.characterInfo[id].characterBase.ManualSetAttack();
+                    flag = true;
                     break;
                 }
             }
+            /*if (!flag && harm == 50)
+            {
+                foreach (var (id, message) in CoreParam.characters)
+                {
+                    if (message.CharacterType == CharacterType.SunWukong
+                     && CoreParam.currentFrame.AllMessage.GameTime - message.SkillAttackCd <= 100)
+                        CharacterManager.Instance.characterInfo[id].characterBase.ManualSetCastSkill(transform);
+                }
+
+            }*/
+
         }
         lastHp = message.Hp;
 
         if (message.SkillAttackCd > lastSkillTime)
-            animator.SetTrigger("CastSkill");
+            ManualSetCastSkill();
         lastSkillTime = message.SkillAttackCd;
     }
 
@@ -149,5 +166,17 @@ public class CharacterBase : MonoBehaviour
     public void ManualSetAttack()
     {
         animator.SetTrigger("Attack");
+    }
+
+    public void ManualSetCastSkill(Transform target = null)
+    {
+        animator.SetTrigger("CastSkill");
+        GameObject skillFXObj = null;
+        if (skillFX != null) skillFXObj = Instantiate(skillFX, transform);
+        if (characterType == CharacterType.SunWukong)
+        {
+            skillFXObj.transform.LookAt(target);
+        }
+        Destroy(skillFXObj, 15);
     }
 }

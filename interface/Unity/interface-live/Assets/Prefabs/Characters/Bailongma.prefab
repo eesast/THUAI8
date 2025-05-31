@@ -51,6 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 0
   characterType: 5
+  skillFX: {fileID: 6294881711758878020, guid: e1b40773125469346818e6a16031b285, type: 3}
 --- !u!114 &-1615224328681544198
 MonoBehaviour:
   m_ObjectHideFlags: 0
