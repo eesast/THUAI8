@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5725548872907057246}
   - component: {fileID: 3532082833969362881}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Stunned
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 625377349786075215}
   - component: {fileID: 2847105878016497262}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Invisible
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8430836982073597981}
   - component: {fileID: 7242356123559734822}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Deceased
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4577356256729832057}
   - component: {fileID: 4425698600313129092}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Burned
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -346,7 +346,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1143658296890640986}
   - component: {fileID: 7558357262239563024}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: KnockedBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,7 +430,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2090824468656148544}
   - component: {fileID: 268171871841196752}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Blind
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -513,7 +513,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2193196343585265693}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: StateIcons
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -35,11 +35,7 @@ public class RenderManager : SingletonMono<RenderManager>
         {
             while (CoreParam.frameQueue.GetSize() > 100)
             {
-                var frame = CoreParam.frameQueue.GetValue();
-                if (frame.ToString().Contains("ATTACK"))
-                {
-                    Debug.Log("ATTACK");
-                }
+                CoreParam.frameQueue.GetValue();
             }
             StartCoroutine(CalTimems(1250 / CoreParam.frameQueue.GetSize()));
             fps.text = "FPS: " + (1250 / CoreParam.frameQueue.GetSize());

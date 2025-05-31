@@ -7,6 +7,7 @@ public class TileInteract : InteractBase
 {
     public enum TileType
     {
+        Home,
         Barracks,
         Farm,
         EconomyResource,
@@ -15,6 +16,7 @@ public class TileInteract : InteractBase
     }
     public TileType tileType;
     public Tuple<int, int> pos;
+    private int lastHp;
     public object GetMessage() => tileType switch
     {
         TileType.Barracks => CoreParam.barracks.GetValueOrDefault(pos, null),
@@ -55,8 +57,29 @@ public class TileInteract : InteractBase
                 _ => PlayerTeam.NullTeam
             };
             hpBar.getHp = GetHP;
-            hpBar.maxHp = GetMaxHP();
+            hpBar.getMaxHp = GetMaxHP;
         }
+    }
+
+    void Update()
+    {
+        if (tileType != TileType.Barracks && tileType != TileType.Farm && tileType != TileType.AdditionResource) return;
+        int harm = lastHp - GetHP();
+        if (harm > 0)
+        {
+            foreach (var (id, message) in CoreParam.characters)
+            {
+                int atk = message.CommonAttack;
+                int range = message.CommonAttackRange;
+                int sqDist = (int)Mathf.Pow(message.X - pos.Item1, 2) + (int)Mathf.Pow(message.Y - pos.Item2, 2);
+                if (atk == harm && sqDist <= range * range)
+                {
+                    CharacterManager.Instance.characterInfo[id].characterBase.ManualSetAttack();
+                    break;
+                }
+            }
+        }
+        lastHp = GetHP();
     }
 
 
