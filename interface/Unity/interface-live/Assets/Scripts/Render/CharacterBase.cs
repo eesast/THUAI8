@@ -20,6 +20,8 @@ public class CharacterBase : MonoBehaviour
     private Transform visual;
     private Vector3 visualScaleInitial;
     private CharacterState lastState;
+    private int lastHp;
+    private long lastSkillTime = long.MaxValue;
 
     void UpdateHpBar()
     {
@@ -39,7 +41,7 @@ public class CharacterBase : MonoBehaviour
         var hpBar = GetComponentInChildren<HpBar>();
         hpBar.team = message.TeamId == 0 ? PlayerTeam.BuddhistsTeam : PlayerTeam.MonstersTeam;
         hpBar.getHp = () => message?.Hp ?? 0;
-        hpBar.maxHp = maxHp;
+        hpBar.getMaxHp = () => maxHp;
         if (characterType == CharacterType.TangSeng)
         {
             globalHpBar = RenderManager.Instance.hpBarBud;
@@ -107,6 +109,32 @@ public class CharacterBase : MonoBehaviour
         {
             visual.localScale = Vector3.Scale(visualScaleInitial, new Vector3(-1, 1, 1));
         }
+
+        // Temporary patch for Server failing to send Attacking and SkillCasting state:
+        // When getting attacked (HP decreased), manually guess possible attacker
+        // according to the harm value and the attacking range 
+        int harm = lastHp - message.Hp;
+        if (harm > 0)
+        {
+            foreach (var (id, message) in CoreParam.characters)
+            {
+                if (id == ID) continue;
+
+                int atk = message.CommonAttack;
+                int range = message.CommonAttackRange;
+                int sqDist = (int)Mathf.Pow(message.X - this.message.X, 2) + (int)Mathf.Pow(message.Y - this.message.Y, 2);
+                if (atk == harm && sqDist <= range * range)
+                {
+                    CharacterManager.Instance.characterInfo[id].characterBase.ManualSetAttack();
+                    break;
+                }
+            }
+        }
+        lastHp = message.Hp;
+
+        if (message.SkillAttackCd > lastSkillTime)
+            animator.SetTrigger("CastSkill");
+        lastSkillTime = message.SkillAttackCd;
     }
 
     void OnDestroy()
@@ -116,5 +144,10 @@ public class CharacterBase : MonoBehaviour
             globalHpBar.value = 0;
             globalHpText.text = "HP: 0 / " + maxHp;
         }
+    }
+
+    public void ManualSetAttack()
+    {
+        animator.SetTrigger("Attack");
     }
 }
