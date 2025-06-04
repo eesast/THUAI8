@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Life2
   m_EditorClassIdentifier: 
   additionResourceType: 2
-  maxHp: 300
+  maxHp: 500
   name: "\u751F\u547D\u4E4B\u6CC9 Lv.2"

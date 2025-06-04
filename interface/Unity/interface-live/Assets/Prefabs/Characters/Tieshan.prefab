@@ -51,6 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 0
   characterType: 10
+  skillFX: {fileID: 6689536547662901249, guid: 07068e341d7cf2240b9ee2fa8ccfc8a9, type: 3}
 --- !u!114 &-1172271115408087732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,7 +72,6 @@ MonoBehaviour:
   tobeSelectedSign: {fileID: 5230180300230231966, guid: c35172cad03b3784c93db13d884b4bbc, type: 3}
   tobeseObj: {fileID: 0}
   seObj: {fileID: 0}
-  characterBase: {fileID: 0}
 --- !u!70 &8523894468165665822
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

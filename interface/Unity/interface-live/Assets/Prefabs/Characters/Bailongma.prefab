@@ -51,6 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 0
   characterType: 5
+  skillFX: {fileID: 6294881711758878020, guid: e1b40773125469346818e6a16031b285, type: 3}
 --- !u!114 &-1615224328681544198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,7 +72,6 @@ MonoBehaviour:
   tobeSelectedSign: {fileID: 5230180300230231966, guid: c35172cad03b3784c93db13d884b4bbc, type: 3}
   tobeseObj: {fileID: 0}
   seObj: {fileID: 0}
-  characterBase: {fileID: 0}
 --- !u!70 &-2060933286333822399
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 6362823792625723185}
   - component: {fileID: 2248453549097805017}
   - component: {fileID: 4457313292226446327}
+  - component: {fileID: 3371653327047404811}
   m_Layer: 6
   m_Name: Spine Mecanim GameObject (Xiaobailong)
   m_TagString: Untagged
@@ -252,6 +253,18 @@ MonoBehaviour:
     useCustomMixMode: 1
     layerMixModes: 01000000
     layerBlendModes: 01000000
+--- !u!210 &3371653327047404811
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7152394130075183358}
+  m_Enabled: 1
+  m_SortingLayerID: -1397136051
+  m_SortingLayer: 2
+  m_SortingOrder: 0
+  m_SortAtRoot: 1
 --- !u!1001 &1855923076625582540
 PrefabInstance:
   m_ObjectHideFlags: 0

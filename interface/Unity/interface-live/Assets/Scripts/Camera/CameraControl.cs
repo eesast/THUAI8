@@ -27,7 +27,7 @@ public class CameraControl : MonoBehaviour
             if (rendererUpdateFlag)
             {
                 var targetPos = PlayerControl.Instance.selectedCharacter.transform.position;
-                targetPos.z = -10;
+                targetPos.z = -50;
                 camera.transform.position = targetPos;
             }
         };
@@ -65,7 +65,7 @@ public class CameraControl : MonoBehaviour
                 if (PlayerControl.Instance.selectedCharacter)
                 {
                     Vector3 targetPos = PlayerControl.Instance.selectedCharacter.transform.position;
-                    targetPos.z = -10;
+                    targetPos.z = -50;
                     if ((transform.position - targetPos).sqrMagnitude > 0.5f)
                     {
                         transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * 20);

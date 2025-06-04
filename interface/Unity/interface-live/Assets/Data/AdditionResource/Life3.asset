@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Life3
   m_EditorClassIdentifier: 
   additionResourceType: 3
-  maxHp: 400
+  maxHp: 600
   name: "\u751F\u547D\u4E4B\u6CC9 Lv.3"
