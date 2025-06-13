@@ -103,7 +103,7 @@
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
 
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
-		<PackageReference Include="Tencent.QCloud.Cos.Sdk" Version="5.4.46" />
+		<PackageReference Include="Tencent.QCloud.Cos.Sdk" Version="5.4.48" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.100" />
 		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.5.240802000" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'" />
 	</ItemGroup>
