@@ -98,7 +98,7 @@
 
 	<ItemGroup>
 
-		<PackageReference Include="CommunityToolkit.Maui" Version="6.1.0" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="12.1.0" />
 		<PackageReference Include="CommunityToolkit.Maui.Core" Version="6.1.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
 
